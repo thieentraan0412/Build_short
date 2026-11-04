@@ -164,19 +164,19 @@ Mô hình bộ giúp những hướng này dễ làm hơn: mỗi bộ là một 
 
 ### 3.2 Danh sách bộ
 
-| Mã | Tên (EN · VI) | Thời gian | Shorts | Video dài | Nguồn trong kế hoạch |
-|---|---|---|---|---|---|
-| **SERIES-001** | Secret Senses · Giác quan bí mật | 16/11–27/12/2026 | 19 (001–019) | LONG-001 *The Winter Album* · T4 23/12 | Mùa 1 tập 1–5, đặc biệt mùa đông, L01 |
-| **SERIES-002** | Is It a Bug? · Thế nào mới là côn trùng? | 28/12–30/01 | 16 (020–035) | LONG-002 *The Not-a-bug Mystery* · T7 23/01 | Mùa 1 tập 6–10, L02 |
-| **SERIES-003** | Finding the Way · Đường về nhà | 01/02–28/02 | 9 (036–044) | LONG-003 *Straight On Home!* · T7 20/02 | Mùa 1 tập 11–12, Find Rollo, bài hát |
-| **SERIES-004** | Pond Secrets · Bí mật dưới mặt ao | 01/03–06/04 | 16 (045–060) | LONG-004 *Who's Growing Up in the Pond?* · T7 03/04 | Mùa 2 tập 1, 2, 3, 6, 10, L04 |
-| **SERIES-005** | Bug-Friendly Garden · Khu vườn thân thiện | 19/04–04/05 | 5 (061–065) | LONG-005 *Make Your Garden Bug-Friendly!* · T5 22/04 | L05 (Ngày Trái Đất) |
-| **SERIES-006** | The Night Garden · Khu vườn ban đêm | 05/04–09/06 | 23 (066–088) | LONG-006 *Night Band Live!* · T7 05/06 | Mùa 2 tập 4, 5, 7, 8, 9, 11, 12, L08 |
-| **SERIES-007** | Waggle's World · Thế giới của Waggle | 20–28/05 | 4 (089–092) | LONG-007 *Waggle's Big Dance* · T5 20/05 | L06 (Ngày Ong thế giới) |
-| **SERIES-008** | Underground Homes · Những ngôi nhà dưới đất | 14/06–27/07 | 19 (093–111) | LONG-008 *Crumb's Underground Tour* · T7 24/07 | Mùa 3 tập 1, 2, 3, 7, 9, 10, L09 |
-| **SERIES-009** | Small but Mighty · Nhỏ mà có võ | 26/07–07/09 | 19 (112–130) | LONG-009 *The Garden Games* · T7 04/09 | Mùa 3 tập 4, 5, 6, 8, 11, 12 |
-| **SERIES-010** | Not-a-bug Club · Câu lạc bộ "Không phải côn trùng" | 06/09–29/10 | 21 (131–151) | LONG-010 *Not-So-Spooky Night* · T7 23/10 | Mini-series §8.2, L12 |
-| **SERIES-011** | Look Up! · Ngước nhìn lên | từ 11/2027 | 3–4 (thử) | Pilot spin-off | §3, §10 |
+| Xong | Mã | Tên (EN · VI) | Thời gian | Shorts | Video dài | Nguồn trong kế hoạch |
+|:---:|---|---|---|---|---|---|
+| ☐ | **SERIES-001** | Secret Senses · Giác quan bí mật | 16/11–27/12/2026 | 19 (001–019) | LONG-001 *The Winter Album* · T4 23/12 | Mùa 1 tập 1–5, đặc biệt mùa đông, L01 |
+| ☐ | **SERIES-002** | Is It a Bug? · Thế nào mới là côn trùng? | 28/12–30/01 | 16 (020–035) | LONG-002 *The Not-a-bug Mystery* · T7 23/01 | Mùa 1 tập 6–10, L02 |
+| ☐ | **SERIES-003** | Finding the Way · Đường về nhà | 01/02–28/02 | 9 (036–044) | LONG-003 *Straight On Home!* · T7 20/02 | Mùa 1 tập 11–12, Find Rollo, bài hát |
+| ☐ | **SERIES-004** | Pond Secrets · Bí mật dưới mặt ao | 01/03–06/04 | 16 (045–060) | LONG-004 *Who's Growing Up in the Pond?* · T7 03/04 | Mùa 2 tập 1, 2, 3, 6, 10, L04 |
+| ☐ | **SERIES-005** | Bug-Friendly Garden · Khu vườn thân thiện | 19/04–04/05 | 5 (061–065) | LONG-005 *Make Your Garden Bug-Friendly!* · T5 22/04 | L05 (Ngày Trái Đất) |
+| ☐ | **SERIES-006** | The Night Garden · Khu vườn ban đêm | 05/04–09/06 | 23 (066–088) | LONG-006 *Night Band Live!* · T7 05/06 | Mùa 2 tập 4, 5, 7, 8, 9, 11, 12, L08 |
+| ☐ | **SERIES-007** | Waggle's World · Thế giới của Waggle | 20–28/05 | 4 (089–092) | LONG-007 *Waggle's Big Dance* · T5 20/05 | L06 (Ngày Ong thế giới) |
+| ☐ | **SERIES-008** | Underground Homes · Những ngôi nhà dưới đất | 14/06–27/07 | 19 (093–111) | LONG-008 *Crumb's Underground Tour* · T7 24/07 | Mùa 3 tập 1, 2, 3, 7, 9, 10, L09 |
+| ☐ | **SERIES-009** | Small but Mighty · Nhỏ mà có võ | 26/07–07/09 | 19 (112–130) | LONG-009 *The Garden Games* · T7 04/09 | Mùa 3 tập 4, 5, 6, 8, 11, 12 |
+| ☐ | **SERIES-010** | Not-a-bug Club · Câu lạc bộ "Không phải côn trùng" | 06/09–29/10 | 21 (131–151) | LONG-010 *Not-So-Spooky Night* · T7 23/10 | Mini-series §8.2, L12 |
+| ☐ | **SERIES-011** | Look Up! · Ngước nhìn lên | từ 11/2027 | 3–4 (thử) | Pilot spin-off | §3, §10 |
 
 **Video "album" ngoài hệ bộ:**
 

@@ -20,13 +20,15 @@
 
 **Ký hiệu khác:** *A* = tập chính 45–60 s · *B* = bản một bí mật 15–25 s · *MR* = Short mở rộng (không có trong lịch gốc, tùy chọn) · **(Đề xuất)** = thay đổi hoặc bổ sung so với file kế hoạch.
 
+**Tựa video:** viết sẵn để đăng YouTube: tựa tiếng Anh, một emoji, rồi đuôi tên kênh `| Big Secrets of Tiny Bugs`; cả tựa dài tối đa 100 ký tự (giới hạn của YouTube). Tựa tiếng Việt, ở những tập có, là bản dịch nghĩa để tham khảo. Không dùng "Hey Duggee" trong tựa (kế hoạch §0, §12). Dữ kiện còn **[CẦN XÁC MINH NGUỒN]** chỉ xuất hiện trong tựa ở dạng câu hỏi.
+
 ---
 
 ## SERIES-001 · Secret Senses · Giác quan bí mật
 
 16/11–27/12/2026 · 19 Shorts · LONG-001 ra ngày Thứ Tư 23/12/2026
 
-### LONG-001 · The Winter Album · Cuốn sổ mùa đông
+### LONG-001 · How Do Bugs Taste, Smell & Hear? A Snowy Adventure ❄️ | Big Secrets of Tiny Bugs · Côn trùng nếm, ngửi, nghe thế nào? Chuyến phiêu lưu trong tuyết
 
 | Mục | Nội dung |
 |---|---|
@@ -46,7 +48,7 @@
 
 ### Shorts của SERIES-001
 
-**SHORT-001 · Taste With Your Feet? · Nếm bằng chân?**
+**SHORT-001 · Bugs Hide Secret Senses in Their Legs! 🦶 | Big Secrets of Tiny Bugs · Côn trùng giấu giác quan bí mật ở chân!**
 
 A · khoảng 50 s · Thứ Hai 16/11 · dựng lại pilot
 
@@ -61,7 +63,7 @@ A · khoảng 50 s · Thứ Hai 16/11 · dựng lại pilot
 - **Kiến thức:** cả 3 bí mật **[Đã kiểm]**.
 - **Trong LONG-001:** Ch.1 và Ch.3, dàn dựng lại hoàn toàn.
 
-**SHORT-002 · Butterflies Taste With Their Feet! · Bướm nếm bằng chân!**
+**SHORT-002 · This Butterfly Tastes With Its Feet! 🦋 | Big Secrets of Tiny Bugs · Chú bướm này nếm bằng chân!**
 
 B · 20 s · Thứ Tư 18/11
 
@@ -73,7 +75,7 @@ B · 20 s · Thứ Tư 18/11
 - **Kiến thức:** **[Đã kiểm]**.
 - **Trong LONG-001:** Ch.1.
 
-**SHORT-003 · Where Are a Cricket's Ears? · Tai dế ở đâu?**
+**SHORT-003 · Crickets Have Ears on Their Legs?! 🦗 | Big Secrets of Tiny Bugs · Dế có tai ở chân?!**
 
 B · 20 s · Thứ Sáu 20/11
 
@@ -85,7 +87,7 @@ B · 20 s · Thứ Sáu 20/11
 - **Kiến thức:** **[Đã kiểm]**.
 - **Trong LONG-001:** Ch.3.
 
-**SHORT-004 · Can You Smell With Your Fingers? · Ngửi bằng ngón tay được không?**
+**SHORT-004 · Ants Sniff With Their Antennae! 🐜 | Big Secrets of Tiny Bugs · Kiến ngửi bằng râu!**
 
 A · khoảng 50 s · Thứ Hai 23/11
 
@@ -101,7 +103,7 @@ A · khoảng 50 s · Thứ Hai 23/11
 - **Kiến thức:** cả 3 bí mật **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** Ch.2 (mê cung đường mùi).
 
-**SHORT-005 · How Do Ants Say Hello? · Kiến chào nhau thế nào?**
+**SHORT-005 · How Ants Say Hello: Tap, Tap! 🐜 | Big Secrets of Tiny Bugs · Kiến chào nhau: chạm, chạm!**
 
 B · 20 s · Thứ Tư 25/11
 
@@ -113,7 +115,7 @@ B · 20 s · Thứ Tư 25/11
 - **Kiến thức:** **[Cao – chưa kiểm]**. Lời phải nói "ngửi", không nói "nói chuyện bằng lời".
 - **Trong LONG-001:** Ch.2.
 
-**SHORT-006 · Ants Keep Tiny Cows?! · Kiến nuôi "bò" tí hon?!**
+**SHORT-006 · Ants Run a Tiny Cow Farm?! 🐄 | Big Secrets of Tiny Bugs · Kiến mở trại nuôi "bò" tí hon?!**
 
 B · 20 s · Thứ Sáu 27/11
 
@@ -125,7 +127,7 @@ B · 20 s · Thứ Sáu 27/11
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** không có; đây là Short mở rộng.
 
-**SHORT-007 · Could You Glow in the Dark? · Bạn có phát sáng được không?**
+**SHORT-007 · Fireflies Talk in Secret Light Codes! ✨ | Big Secrets of Tiny Bugs · Đom đóm nói chuyện bằng mật mã ánh sáng!**
 
 A · khoảng 50 s · Thứ Hai 30/11
 
@@ -140,7 +142,7 @@ A · khoảng 50 s · Thứ Hai 30/11
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** Ch.4 (mật mã ánh sáng).
 
-**SHORT-008 · Fireflies Make Cold Light · Đom đóm tạo ánh sáng lạnh**
+**SHORT-008 · A Light That Doesn't Get Hot?! 💡 | Big Secrets of Tiny Bugs · Ánh sáng mà không hề nóng?!**
 
 B · 20 s · Thứ Tư 02/12
 
@@ -152,7 +154,7 @@ B · 20 s · Thứ Tư 02/12
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** Ch.4.
 
-**SHORT-009 · Is a Firefly a Fly? · Đom đóm có phải ruồi?**
+**SHORT-009 · Is a Firefly a Fly? Nope! 🪲 | Big Secrets of Tiny Bugs · Đom đóm là ruồi? Không phải!**
 
 B · 20 s · Thứ Sáu 04/12
 
@@ -164,7 +166,7 @@ B · 20 s · Thứ Sáu 04/12
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** không có. Cầu nối sang SERIES-002 (bài học phân loại).
 
-**SHORT-010 · Could You See Behind Your Head? · Bạn có nhìn được sau gáy không?**
+**SHORT-010 · Dragonflies See Behind Their Heads! 👀 | Big Secrets of Tiny Bugs · Chuồn chuồn nhìn được cả sau gáy!**
 
 A · khoảng 50 s · Thứ Hai 07/12
 
@@ -178,7 +180,7 @@ A · khoảng 50 s · Thứ Hai 07/12
 - **Kiến thức:** **[Cao – chưa kiểm]**. Số ô mắt: **[CẦN XÁC MINH NGUỒN]**, chỉ được nói "thousands".
 - **Trong LONG-001:** Ch.4.
 
-**SHORT-011 · Dragonflies See All Around · Chuồn chuồn nhìn quanh mình**
+**SHORT-011 · Sneaking Up on a Dragonfly... Oops! 🙈 | Big Secrets of Tiny Bugs · Rình chuồn chuồn... hụt rồi!**
 
 B · 20 s · Thứ Tư 09/12
 
@@ -190,7 +192,7 @@ B · 20 s · Thứ Tư 09/12
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** Ch.4.
 
-**SHORT-012 · Could You Fly Backwards? · Bạn bay lùi được không?**
+**SHORT-012 · This Bug Can Fly Backwards! ⏪ | Big Secrets of Tiny Bugs · Chú bọ này bay lùi được!**
 
 B · 20 s · Thứ Sáu 11/12
 
@@ -202,7 +204,7 @@ B · 20 s · Thứ Sáu 11/12
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** không có.
 
-**SHORT-013 · Where Are a Grasshopper's Ears? · Tai châu chấu ở đâu?**
+**SHORT-013 · Grasshoppers Hide Their Ears in a Funny Place! 🦗 | Big Secrets of Tiny Bugs · Châu chấu giấu tai ở một chỗ thật buồn cười!**
 
 A · khoảng 50 s · Thứ Hai 14/12
 
@@ -216,7 +218,7 @@ A · khoảng 50 s · Thứ Hai 14/12
 - **Kiến thức:** **[Cao – chưa kiểm]**. Quãng nhảy: **[CẦN XÁC MINH NGUỒN]**, không nói số.
 - **Trong LONG-001:** Ch.3.
 
-**SHORT-014 · Grasshoppers Hear With Their Tummies! · Châu chấu nghe bằng bụng!**
+**SHORT-014 · Hearing With Your Tummy?! 👂 | Big Secrets of Tiny Bugs · Nghe bằng bụng?!**
 
 B · 20 s · Thứ Tư 16/12
 
@@ -228,7 +230,7 @@ B · 20 s · Thứ Tư 16/12
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** Ch.3.
 
-**SHORT-015 · How Do Grasshoppers Sing? · Châu chấu hát bằng gì?**
+**SHORT-015 · Grasshoppers Play Their Legs Like a Violin! 🎻 | Big Secrets of Tiny Bugs · Châu chấu kéo chân như kéo vĩ cầm!**
 
 B · 20 s · Thứ Sáu 18/12
 
@@ -240,7 +242,7 @@ B · 20 s · Thứ Sáu 18/12
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** không có.
 
-**SHORT-016 · Where Do Bugs Go in Winter? · Mùa đông côn trùng đi đâu?**
+**SHORT-016 · Where Do Bugs Go When It Snows? ❄️ | Big Secrets of Tiny Bugs · Tuyết rơi thì côn trùng đi đâu?**
 
 A · khoảng 50 s · Thứ Hai 21/12 · đặc biệt mùa đông
 
@@ -254,7 +256,7 @@ A · khoảng 50 s · Thứ Hai 21/12 · đặc biệt mùa đông
 - **Kiến thức:** **[Cao – chưa kiểm]**. Phải nói rõ bướm vua là quần thể miền đông Bắc Mỹ và bối cảnh là mùa đông Bắc bán cầu (§6).
 - **Trong LONG-001:** cao trào (Ch.5) có thêm bí mật mới.
 
-**SHORT-017 · How Do Bees Stay Warm? · Ong giữ ấm thế nào?**
+**SHORT-017 · Bees Shiver to Keep Warm! 🐝 | Big Secrets of Tiny Bugs · Ong run người để giữ ấm!**
 
 B · 20 s · Thứ Sáu 25/12
 
@@ -266,7 +268,7 @@ B · 20 s · Thứ Sáu 25/12
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-001:** Ch.5.
 
-**SHORT-018 · Is a Snowflake a Bug? · Bông tuyết có phải côn trùng?**
+**SHORT-018 · Six Arms... Is a Snowflake a Bug? ❄️ | Big Secrets of Tiny Bugs · Sáu cánh... bông tuyết là côn trùng?**
 
 MR · 20 s · Thứ Bảy 26/12 · làm sau video dài, tùy chọn
 
@@ -279,7 +281,7 @@ MR · 20 s · Thứ Bảy 26/12 · làm sau video dài, tùy chọn
 - **Kiến thức:** bông tuyết sáu cánh **[Đã kiểm]** (xem [XAC-MINH-DU-KIEN.md](XAC-MINH-DU-KIEN.md), mục 1).
 - **Trong LONG-001:** hook.
 
-**SHORT-019 · Ladybugs Sleep in a Big Pile! · Bọ rùa ngủ thành đống!**
+**SHORT-019 · Ladybugs Nap in a Big Cozy Pile! 🐞 | Big Secrets of Tiny Bugs · Bọ rùa ngủ đông thành một đống thật ấm!**
 
 B · 20 s · Chủ Nhật 27/12
 
@@ -297,7 +299,7 @@ B · 20 s · Chủ Nhật 27/12
 
 28/12/2026–30/01/2027 · 16 Shorts · LONG-002 ra ngày Thứ Bảy 23/01/2027
 
-### LONG-002 · The Not-a-bug Mystery · Bí ẩn "không phải côn trùng"
+### LONG-002 · Who Snuck Into the Bug Book? A Tiny Detective Mystery 🔍 | Big Secrets of Tiny Bugs · Ai lẻn vào sổ côn trùng? Vụ án thám tử tí hon
 
 | Mục | Nội dung |
 |---|---|
@@ -316,7 +318,7 @@ B · 20 s · Chủ Nhật 27/12
 
 ### Shorts của SERIES-002
 
-**SHORT-020 · Is a Spider a Bug?** · A · khoảng 50 s · T2 28/12
+**SHORT-020 · Is a Spider a Bug? Nope! 🕷️ | Big Secrets of Tiny Bugs** · A · khoảng 50 s · T2 28/12
 
 - **Theo §6 tập 6.** Spindle ra mắt, thả mình lộn ngược trước kính. 8 chân (Dot đếm), 2 phần thân, nhiều loài có 8 mắt. Cả tập là một chữ "Nope!".
 - **Cảnh đặc trưng:** 8 Miss Loupe phản chiếu trong 8 mắt.
@@ -324,7 +326,7 @@ B · 20 s · Chủ Nhật 27/12
 - **Kiến thức:** **[Cao – chưa kiểm]**.
 - **Trong LONG-002:** nền của vụ án.
 
-**SHORT-021 · Spiders Have 8 Legs!** · B · T4 30/12
+**SHORT-021 · Six Legs or Eight? Count With Dot! 🕷️ | Big Secrets of Tiny Bugs** · B · T4 30/12
 
 - **Hook:** *"How many legs does a bug have?"*, đếm cùng Dot.
 - **Tiết lộ:** Crumb 6 chân, Spindle 8.
@@ -332,7 +334,7 @@ B · 20 s · Chủ Nhật 27/12
 - **Loop:** Dot đếm lại từ đầu.
 - **Trong LONG-002:** hàng nghi phạm.
 
-**SHORT-022 · Why Isn't a Spider a Bug?** · B · T6 01/01
+**SHORT-022 · Spot the Difference: Ant vs. Spider! 🔍 | Big Secrets of Tiny Bugs** · B · T6 01/01
 
 - **Hook (Đề xuất mới, vì câu móc cũ trùng tập A):** Crumb và Spindle đứng cạnh nhau, chữ SPOT THE DIFFERENCE!
 - **Tiết lộ:** 3 phần thân so với 2 phần thân.
@@ -340,7 +342,7 @@ B · 20 s · Chủ Nhật 27/12
 - **Loop:** Spindle gỡ tơ rồi đứng lại cạnh Crumb.
 - **Trong LONG-002:** manh mối 3.
 
-**SHORT-023 · The Caterpillar Who Became Flutter** · A · T2 04/01
+**SHORT-023 · Flutter Was Once a Caterpillar?! 🐛 | Big Secrets of Tiny Bugs** · A · T2 04/01
 
 - **Theo §6 tập 7.** Sâu lột da nhiều lần → *"Does it just grow wings?"* — *"Nope!"*, trong nhộng cơ thể tan ra rồi xây lại → bướm bơm cánh.
 - **Cảnh đặc trưng:** hình cắt nhẹ nhàng xuyên vỏ nhộng.
@@ -349,40 +351,40 @@ B · 20 s · Chủ Nhật 27/12
 - **Kiến thức:** **[Cao – chưa kiểm]**. Số lần lột: **[CẦN XÁC MINH NGUỒN]**, chỉ nói "many times".
 - **Trong LONG-002:** cánh giấy bỏ lại; Flutter "hồi là sâu" thành nghi phạm.
 
-**SHORT-024 · Caterpillars Grow Out of Their Skin** · B · T4 06/01
+**SHORT-024 · This Caterpillar Grew Out of Its Skin! 🐛 | Big Secrets of Tiny Bugs** · B · T4 06/01
 
 - **Hook:** *"Could you grow out of your skin?"*
 - **Tiết lộ:** sâu lột da khi chật.
 - **Kết (theo kế hoạch):** Crumb thử "lột" chiếc lá đang đội trên đầu.
 - **Loop:** chiếc lá rơi lại lên đầu Crumb.
 
-**SHORT-025 · Where Do Butterfly Wings Come From?** · B · T6 08/01
+**SHORT-025 · Butterflies Pump Up Their Wings! 🦋 | Big Secrets of Tiny Bugs** · B · T6 08/01
 
 - **Hook:** *"Where do butterfly wings come from?"*
 - **Tiết lộ:** bướm bơm chất lỏng cho cánh duỗi ra.
 - **Kết (Đề xuất mới, vì kết cũ trùng tập A):** cánh Flutter bung ra như quạt giấy, gió thổi lật phần phật các trang Albie.
 - **Loop:** cánh khép lại.
 
-**SHORT-026 · Bees See Secret Colours** · A · T2 11/01
+**SHORT-026 · Bees Can See Colours We Can't! 🐝 | Big Secrets of Tiny Bugs** · A · T2 11/01
 
 - **Theo §6 tập 8.** Chế độ "mắt ong": thấy tia cực tím, hoa có vệt chỉ đường → *"Bees have two eyes?"* — *"Nope! Five!"* (Dot đếm) → cả tổ góp sức mới đầy một lọ mật.
 - **Cải trang 2:** áo sọc ong.
 - **Kiến thức:** lượng mật cả đời một con ong **[CẦN XÁC MINH NGUỒN]**, không nói số.
 
-**SHORT-027 · Bees See Secret Colours** · B · T4 13/01
+**SHORT-027 · Flowers Have Secret Arrows for Bees! 🌸 | Big Secrets of Tiny Bugs** · B · T4 13/01
 
 - **Hook (Đề xuất mới, vì câu móc cũ trùng tập A):** bông hoa trắng trơn hiện mũi tên phát sáng. *"What if flowers had secret arrows?"*
 - **Kết (theo kế hoạch):** Miss Loupe soi thử máy quay bằng mắt ong: *"Ooh!"*
 - **Loop:** mũi tên trên hoa nhấp nháy lại.
 
-**SHORT-028 · How Many Eyes Does a Bee Have?** · B · T6 15/01
+**SHORT-028 · A Bee Has How Many Eyes?! 👀 | Big Secrets of Tiny Bugs** · B · T6 15/01
 
 - **Hook:** đếm cùng Dot.
 - **Tiết lộ:** 2 mắt to và 3 mắt nhỏ trên đỉnh đầu (đúng như bảng nhân vật Waggle).
 - **Kết (theo kế hoạch):** 3 mắt nhỏ chớp lần lượt.
 - **Loop:** Dot đếm lại.
 
-**SHORT-029 · Why Are Flies So Hard to Catch?** · A · T2 18/01
+**SHORT-029 · Why Can't You Ever Catch a Fly? 🪰 | Big Secrets of Tiny Bugs** · A · T2 18/01
 
 - **Theo §6 tập 9.** Ruồi thấy chuyển động nhanh hơn người → *"Do flies have teeth?"* — *"Nope!"*, làm mềm thức ăn rồi hút → ruồi cũng nếm bằng chân.
 - **Thông điệp:** The Giant mở cửa sổ cho ruồi bay ra.
@@ -390,40 +392,40 @@ B · 20 s · Chủ Nhật 27/12
 - **Thử nghiệm:** côn trùng "hơi ghê".
 - **Kiến thức:** **[Cao – chưa kiểm]**, không nói số.
 
-**SHORT-030 · Flies See in Slow Motion** · B · T4 20/01
+**SHORT-030 · Flies See the World in Slow Motion! 🪰 | Big Secrets of Tiny Bugs** · B · T4 20/01
 
 - **Hook (Đề xuất mới, vì câu móc cũ trùng tập A):** bàn tay khổng lồ vụt tới, trượt. *"Why do you always miss?"*
 - **Tiết lộ:** khung chậm lại theo góc nhìn của ruồi.
 - **Kết (theo kế hoạch):** The Giant nhẹ nhàng mở cửa sổ.
 - **Loop:** bàn tay lại đưa lên, lần này chậm rãi.
 
-**SHORT-031 · Flies Taste With Their Feet Too!** · B · T6 22/01
+**SHORT-031 · Guess Who Else Tastes With Its Feet! 🪰 | Big Secrets of Tiny Bugs** · B · T6 22/01
 
 - **Hook:** *"Who else tastes with their feet?"*
 - **Kết (Đề xuất mới, vì kết cũ trùng tập A):** Fizz đáp lên góc sổ. Albie: *"Not you too!"*
 - **Loop:** Fizz cọ hai chân trước.
 - **Trong LONG-002:** nối với SHORT-002 (Flutter).
 
-**SHORT-032 · Could You Walk on Water?** · A · T2 25/01 · phát hành sau video dài
+**SHORT-032 · Walking on Water? This Bug Can! 💧 | Big Secrets of Tiny Bugs** · A · T2 25/01 · phát hành sau video dài
 
 - **Theo §6 tập 10.** Lông chống thấm và "lớp da" mặt nước → *"Is it swimming?"* — *"Nope!"* → liên lạc bằng gợn sóng.
 - **Cải trang 4, kèm bất ngờ:** một số loài nhện cũng đi trên nước. Albie: *"BZZT! Still not a bug!"*
 - **Kết:** Miss Loupe nổi bập bềnh như phao.
 - **Lưu ý an toàn:** không có cảnh trẻ thử đi trên nước.
 
-**SHORT-033 · Bugs That Walk on Water** · B · T4 27/01
+**SHORT-033 · When a Pond Becomes a Trampoline! 💦 | Big Secrets of Tiny Bugs** · B · T4 27/01
 
 - **Hook (Đề xuất mới, vì câu móc cũ trùng tập A):** mặt ao lõm xuống như tấm bạt nhún dưới chân Skip. *"What if a pond were a trampoline?"*
 - **Kết (Đề xuất mới):** Skip trượt hình số 8. Dot giơ bảng chấm điểm: *"Ten!"*
 - **Loop:** Skip trượt vòng mới.
 
-**SHORT-034 · Water Striders Talk With Ripples** · B · T6 29/01
+**SHORT-034 · Bugs Send Messages With Ripples! 🌊 | Big Secrets of Tiny Bugs** · B · T6 29/01
 
 - **Hook:** *"Could you talk with ripples?"*
 - **Kết (theo kế hoạch):** Crumb thả sỏi tạo gợn, Skip đáp lại bằng gợn.
 - **Loop:** vòng gợn mới.
 
-**SHORT-035 · Count the Suspects! · Đếm chân nghi phạm!** · MR · 20 s · T7 30/01 · tùy chọn
+**SHORT-035 · Which Suspect Is NOT a Bug? 🔍 | Big Secrets of Tiny Bugs · Nghi phạm nào KHÔNG phải côn trùng?** · MR · 20 s · T7 30/01 · tùy chọn
 
 - **Hook:** hàng nghi phạm. *"Which one is NOT a bug?"*
 - **Tiết lộ:** đếm chân từng người cùng Dot.
@@ -437,7 +439,7 @@ B · 20 s · Chủ Nhật 27/12
 
 01/02–28/02/2027 · 9 Shorts và 1 bài hát · LONG-003 ra ngày Thứ Bảy 20/02/2027
 
-### LONG-003 · Straight On Home! · Thẳng đường về nhà!
+### LONG-003 · Lost at Night! How Do Bugs Find Their Way Home? 🌌 | Big Secrets of Tiny Bugs · Lạc giữa đêm! Côn trùng tìm đường về nhà thế nào?
 
 | Mục | Nội dung |
 |---|---|
@@ -456,50 +458,50 @@ B · 20 s · Chủ Nhật 27/12
 
 ### Shorts của SERIES-003
 
-**SHORT-036 · Who Follows the Stars?** · A · T2 01/02
+**SHORT-036 · Meet Rollo, the Beetle Who Follows the Stars! ⭐ | Big Secrets of Tiny Bugs** · A · T2 01/02
 
 - **Theo §6 tập 11.** Rollo ra mắt chính thức: *"Have you seen me before?"* Lăn thẳng → *"Lost in the dark?"* — *"Nope!"*, nhìn Dải Ngân Hà → viên tròn là phân, bọ hung dọn phân.
 - **Kết:** Miss Loupe bị cuốn theo viên tròn. Đây chính là móc của LONG-003.
 
-**SHORT-037 · Dung Beetles Use the Milky Way** · B · T4 03/02
+**SHORT-037 · The Biggest Map in the World Is the Sky! 🌌 | Big Secrets of Tiny Bugs** · B · T4 03/02
 
 - **Hook (Đề xuất mới, vì câu móc cũ trùng tập A):** *"What's the biggest map in the world?"* Máy quay ngửa lên bầu trời sao.
 - **Kết (theo kế hoạch):** Uncle Telly vẫy từ xa.
 - **Loop:** máy quay hạ xuống Rollo.
 
-**SHORT-038 · What Is Rollo Rolling?** · B · T6 05/02
+**SHORT-038 · What's Inside Rollo's Ball? Eww... Wow! 🪲 | Big Secrets of Tiny Bugs** · B · T6 05/02
 
 - **Hook:** *"What's inside the ball?"*
 - **Kết (theo kế hoạch):** Blink bật sáng: *"Eww! I mean... wow!"*
 - **Kiến thức:** bọ hung dọn phân giúp đất tốt **[Cao – chưa kiểm]**.
 
-**SHORT-039 · The Biggest Secret** · A · 55–60 s · T2 08/02 · kết mùa
+**SHORT-039 · Who Is the Giant? The Last Big Secret! 🔍 | Big Secrets of Tiny Bugs** · A · 55–60 s · T2 08/02 · kết mùa
 
 - **Theo §6 tập 12.** Dot lật 13 trang → *"A monster?"* — *"Nope!"* → **Crumb** tìm ra: người khổng lồ là *bạn*, nhận kính tí hon → Albie mở trang "Not-a-bug Friends!": *"Rules are rules... but friends are friends."*
 - **Lời kết:** *"Look closely... and be gentle."*
 - **Gag:** Flutter nếm màn hình.
 
-**SHORT-040 · Who's the Biggest in the Garden?** · B · T4 10/02
+**SHORT-040 · What If YOU Were the Giant? 🖐️ | Big Secrets of Tiny Bugs** · B · T4 10/02
 
 - **Hook (Đề xuất mới, vì câu móc cũ trùng tập A):** *"What if YOU were a giant?"*
 - **Kết (Đề xuất mới, vì kết cũ trùng tập A):** bàn tay khổng lồ vẫy nhẹ, cả vườn vẫy lại. Dot đếm ngón tay người xem: *"Five!"*
 
-**SHORT-041 · The Not-a-bug Page!** · B · T6 12/02
+**SHORT-041 · Can a Spider Get a Sticker? 🕸️ | Big Secrets of Tiny Bugs** · B · T6 12/02
 
 - **Hook:** *"Can a spider get a sticker?"*
 - **Kết (theo kế hoạch):** Spindle dán sticker đầu tiên; Albie khóc ướt cả trang.
 
-**SHORT-042 · Find Rollo: Season 1** · 20 s · T2 15/02 · tuần nghỉ
+**SHORT-042 · Find Rollo! Every Hiding Spot in Season 1 🔍 | Big Secrets of Tiny Bugs** · 20 s · T2 15/02 · tuần nghỉ
 
 - **Hook:** *"Did you spot Rollo?"*
 - **Nội dung:** chỉ lại mọi chỗ Rollo trốn trong Mùa 1 (tập mùa đông là quả cầu tuyết).
 - **Kết:** Rollo nháy mắt.
 
-**SHORT-043 · The Six Legs Song (vertical)** · 30 s · T4 17/02
+**SHORT-043 · Sing Along: The Six Legs Song! 🎵 | Big Secrets of Tiny Bugs** · bản dọc · 30 s · T4 17/02
 
 - **Nội dung:** bài chant theo §9. Chữ hiện theo từng nhịp. Kết: *"...Not you, Spindle!"*
 
-**SHORT-044 · Desert Ants Count Their Steps! · Kiến sa mạc đếm bước!** · MR · T3 23/02 · tùy chọn
+**SHORT-044 · Desert Ants Have a Step Tracker! 🏜️ | Big Secrets of Tiny Bugs · Kiến sa mạc có "máy đếm bước"!** · MR · T3 23/02 · tùy chọn
 
 - **Hook:** bóng nghĩ của Crumb mở ra một sa mạc cát; một chú kiến sa mạc bước đều, Dot đếm theo. *"Could you find home by counting steps?"*
 - **Kiến thức:** kiến sa mạc *Cataglyphis* dựa vào số bước để đo đường về tổ **[Đã kiểm]** (xem [XAC-MINH-DU-KIEN.md](XAC-MINH-DU-KIEN.md), mục 6). Lời thoại dùng "keep track of their steps".
@@ -515,7 +517,7 @@ B · 20 s · Chủ Nhật 27/12
 
 **(Đề xuất)** Xếp lại Mùa 2: 5 tập về ao lên trước, các tập về đêm để sau. Kế hoạch cho phép đổi lịch từ Mùa 2 (§5).
 
-### LONG-004 · Who's Growing Up in the Pond? · Ai đang lớn lên dưới ao?
+### LONG-004 · Dive In! Meet the Secret Babies of the Pond 🫧 | Big Secrets of Tiny Bugs · Lặn nào! Gặp những em bé bí mật dưới ao
 
 | Mục | Nội dung |
 |---|---|
@@ -536,22 +538,22 @@ B · 20 s · Chủ Nhật 27/12
 
 | Mã · Ngày · Loại | Tựa | Hook 0–3 s | Bí mật | Gag, kết, loop | Trong LONG-004 |
 |---|---|---|---|---|---|
-| **045** · T2 01/03 · A | Could You Breathe Through Your Bottom? | Theo §7 tập 1 | Ấu trùng chuồn chuồn sống dưới nước, thở bằng mang giấu trong mông, phụt nước để lao đi. Nope: *"A baby fish? Nope!"* **[Cao – chưa kiểm]** | Theo kế hoạch: Zip cuối tập *"That was me!"* Loop: tia nước phụt về khung đầu | Bối cảnh mở đầu |
-| **046** · T4 · B | Breathing Through the Bottom | *"Where do baby dragonflies keep their gills?"* | Mang trong mông | Crumb nín thở, má phồng, rồi bật cười "phì". Loop: má phồng lại | Gặp ấu trùng |
-| **047** · T6 · B | The Underwater Rocket | *"Could you zoom with a squirt?"* | Phụt nước để lao đi | Nước bắn lên kính, Miss Loupe lau "két két". Loop: lại phụt | — |
-| **048** · T2 08/03 · A | Could You See Above and Under Water at Once? | Theo §7 tập 2 | Mắt chia đôi, xoay vòng trên mặt ao, bọ lặn mang bong bóng. Nope: *"Holds its breath? Nope! It brings a bubble!"* **[Cao – chưa kiểm]** | Chia khung lần đầu. Kết **(Đề xuất)**: bọ xoay nước làm Miss Loupe chóng mặt | Mẹo bong bóng là "đồng hồ" của truyện |
-| **049** · T4 · B | Split Eyes | *"What if one eye looked up and one looked down?"* | Mắt chia đôi | Miss Loupe thử chia đôi kính và bị lác mắt. Loop: hai nửa khung nhập lại | Chia khung |
-| **050** · T6 · B | Bubble Scuba | *"Could you take your air with you?"* | Bong bóng khí dưới cánh | Bong bóng vỡ "bụp" lên mũi Crumb | Mẹo lặn |
-| **051** · T2 15/03 · A | Which Mosquito Bites? | Theo §7 tập 3 | Chỉ muỗi cái đốt; muỗi đực uống mật hoa; lăng quăng thở bằng ống **[Cao – chưa kiểm]**. Thử nghiệm côn trùng "hơi ghê" lần 2 | Muỗi đực đưa hoa: *"Just juice, thanks!"* | Lăng quăng |
-| **052** · T4 · B | Some Mosquitoes Only Drink Juice | *"Does every mosquito bite?"* | Muỗi đực uống mật hoa | Muỗi đực và Miss Loupe cùng hút nước ép: *"Ahh."* Loop: lại hút | — |
-| **053** · T6 · B | Snorkel Babies | *"Could you breathe through a straw upside down?"* | Ống thở của lăng quăng | Crumb thử treo ngược trên lá và rơi tõm. Loop: lăng quăng ngoe nguẩy | Gặp lăng quăng |
-| **054** · T2 22/03 · A | Could You Build a House From Pebbles? | Theo §7 tập 6 | Ấu trùng cánh lông xây nhà sỏi dính bằng tơ, lớn lên thì bay. Nope: *"A shell like a snail? Nope!"* **[Cao – chưa kiểm]** | Spindle: *"Silk? I know silk!"* | Nhà sỏi |
-| **055** · T4 · B | Wear Your House! | *"What if you wore your house?"* | Nhà mang theo người | Crumb tự dán sỏi lên mình rồi không nhúc nhích nổi | Nhà sỏi |
-| **056** · T6 · B | The Best Glue in the Pond | *"What's the best glue in the pond?"* | Keo bằng tơ | Spindle và ấu trùng đập tay, dính chặt vào nhau | — |
-| **057** · T2 29/03 · A | Could You Live Underwater Until You Grow Up? | Theo §7 tập 10 | Ấu trùng phù du sống lâu dưới nước, cả đàn cùng bay lên, con trưởng thành không ăn **[Cao – chưa kiểm]**. Tuổi thọ: **[CẦN XÁC MINH NGUỒN]** | "Tuyết rơi ngược" (bản ngắn; cao trào video dài dùng bản đầy đủ) | Cao trào |
-| **058** · T4 · B | Who's the Baby in the Pond? | *"Who's the baby in the pond?"* (khác câu móc tập A) | Tuổi thơ dưới nước | Bóng phù du bay lên; một con đậu lên kính | Trò ghép |
-| **059** · T6 · B | Grown-ups Who Don't Eat | *"What if you never had to eat?"* | Phù du trưởng thành không ăn | Crumb, kẻ mê vụn bánh, thốt lên *"No snacks?!"* rồi ngất kịch tính | — |
-| **060** · T3 06/04 · MR, tùy chọn | Who Will I Become? | *"Guess who this baby becomes!"* | Ghép em bé với hình lúc lớn | Zip: *"That was me!"* Loop: em bé tiếp theo | Viết lại trò chơi trong video dài |
+| **045** · T2 01/03 · A | Could You Breathe Through Your Bottom? 💧 \| Big Secrets of Tiny Bugs | Theo §7 tập 1 | Ấu trùng chuồn chuồn sống dưới nước, thở bằng mang giấu trong mông, phụt nước để lao đi. Nope: *"A baby fish? Nope!"* **[Cao – chưa kiểm]** | Theo kế hoạch: Zip cuối tập *"That was me!"* Loop: tia nước phụt về khung đầu | Bối cảnh mở đầu |
+| **046** · T4 · B | Baby Dragonflies Hide Their Gills in Their Bottoms! 🫧 \| Big Secrets of Tiny Bugs | *"Where do baby dragonflies keep their gills?"* | Mang trong mông | Crumb nín thở, má phồng, rồi bật cười "phì". Loop: má phồng lại | Gặp ấu trùng |
+| **047** · T6 · B | Zoom! The Bug That Squirts Like a Rocket 🚀 \| Big Secrets of Tiny Bugs | *"Could you zoom with a squirt?"* | Phụt nước để lao đi | Nước bắn lên kính, Miss Loupe lau "két két". Loop: lại phụt | — |
+| **048** · T2 08/03 · A | Eyes That See Above AND Below the Water! 🪲 \| Big Secrets of Tiny Bugs | Theo §7 tập 2 | Mắt chia đôi, xoay vòng trên mặt ao, bọ lặn mang bong bóng. Nope: *"Holds its breath? Nope! It brings a bubble!"* **[Cao – chưa kiểm]** | Chia khung lần đầu. Kết **(Đề xuất)**: bọ xoay nước làm Miss Loupe chóng mặt | Mẹo bong bóng là "đồng hồ" của truyện |
+| **049** · T4 · B | Half Up, Half Down: The Split-Eye Beetle! 👀 \| Big Secrets of Tiny Bugs | *"What if one eye looked up and one looked down?"* | Mắt chia đôi | Miss Loupe thử chia đôi kính và bị lác mắt. Loop: hai nửa khung nhập lại | Chia khung |
+| **050** · T6 · B | This Beetle Carries Its Own Air Bubble! 🫧 \| Big Secrets of Tiny Bugs | *"Could you take your air with you?"* | Bong bóng khí dưới cánh | Bong bóng vỡ "bụp" lên mũi Crumb | Mẹo lặn |
+| **051** · T2 15/03 · A | Only SOME Mosquitoes Bite! 🦟 \| Big Secrets of Tiny Bugs | Theo §7 tập 3 | Chỉ muỗi cái đốt; muỗi đực uống mật hoa; lăng quăng thở bằng ống **[Cao – chưa kiểm]**. Thử nghiệm côn trùng "hơi ghê" lần 2 | Muỗi đực đưa hoa: *"Just juice, thanks!"* | Lăng quăng |
+| **052** · T4 · B | Some Mosquitoes Just Want Juice! 🧃 \| Big Secrets of Tiny Bugs | *"Does every mosquito bite?"* | Muỗi đực uống mật hoa | Muỗi đực và Miss Loupe cùng hút nước ép: *"Ahh."* Loop: lại hút | — |
+| **053** · T6 · B | Baby Mosquitoes Breathe Through a Snorkel! 🤿 \| Big Secrets of Tiny Bugs | *"Could you breathe through a straw upside down?"* | Ống thở của lăng quăng | Crumb thử treo ngược trên lá và rơi tõm. Loop: lăng quăng ngoe nguẩy | Gặp lăng quăng |
+| **054** · T2 22/03 · A | This Baby Builds a House From Pebbles! 🏠 \| Big Secrets of Tiny Bugs | Theo §7 tập 6 | Ấu trùng cánh lông xây nhà sỏi dính bằng tơ, lớn lên thì bay. Nope: *"A shell like a snail? Nope!"* **[Cao – chưa kiểm]** | Spindle: *"Silk? I know silk!"* | Nhà sỏi |
+| **055** · T4 · B | The Bug That Wears Its House! 🪨 \| Big Secrets of Tiny Bugs | *"What if you wore your house?"* | Nhà mang theo người | Crumb tự dán sỏi lên mình rồi không nhúc nhích nổi | Nhà sỏi |
+| **056** · T6 · B | The Best Glue in the Pond Is... Silk! 🧵 \| Big Secrets of Tiny Bugs | *"What's the best glue in the pond?"* | Keo bằng tơ | Spindle và ấu trùng đập tay, dính chặt vào nhau | — |
+| **057** · T2 29/03 · A | Growing Up Underwater, Then Flying Away! 🌅 \| Big Secrets of Tiny Bugs | Theo §7 tập 10 | Ấu trùng phù du sống lâu dưới nước, cả đàn cùng bay lên, con trưởng thành không ăn **[Cao – chưa kiểm]**. Tuổi thọ: **[CẦN XÁC MINH NGUỒN]** | "Tuyết rơi ngược" (bản ngắn; cao trào video dài dùng bản đầy đủ) | Cao trào |
+| **058** · T4 · B | Bug Babies Live Underwater?! 💧 \| Big Secrets of Tiny Bugs | *"Who's the baby in the pond?"* (khác câu móc tập A) | Tuổi thơ dưới nước | Bóng phù du bay lên; một con đậu lên kính | Trò ghép |
+| **059** · T6 · B | Grown-ups Who Never Eat?! No Snacks! 🍪 \| Big Secrets of Tiny Bugs | *"What if you never had to eat?"* | Phù du trưởng thành không ăn | Crumb, kẻ mê vụn bánh, thốt lên *"No snacks?!"* rồi ngất kịch tính | — |
+| **060** · T3 06/04 · MR, tùy chọn | Guess Who This Baby Becomes! 🔍 \| Big Secrets of Tiny Bugs | *"Guess who this baby becomes!"* | Ghép em bé với hình lúc lớn | Zip: *"That was me!"* Loop: em bé tiếp theo | Viết lại trò chơi trong video dài |
 
 ---
 
@@ -559,7 +561,7 @@ B · 20 s · Chủ Nhật 27/12
 
 19/04–04/05/2027 · 5 Shorts · LONG-005 ra ngày Thứ Năm 22/04/2027 (Ngày Trái Đất)
 
-### LONG-005 · Make Your Garden Bug-Friendly! · Làm khu vườn thân thiện với côn trùng
+### LONG-005 · Earth Day Special: Make a Garden Bugs Will Love! 🌍 | Big Secrets of Tiny Bugs · Đặc biệt Ngày Trái Đất: làm khu vườn côn trùng yêu thích!
 
 | Mục | Nội dung |
 |---|---|
@@ -581,11 +583,11 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 | Mã · Ngày | Tựa | Hook | Kết |
 |---|---|---|---|
-| **061** · T3 20/04 | Can You Build a Bug Hotel? (teaser) | Một khách sạn tí hon chưa có khách | Biển "Opening Thursday" |
-| **062** · T7 24/04 | Leave the Leaves! | *"Where do caterpillars sleep in winter?"* | Sâu gấu len chui vào đống lá; Dot đếm lá: *"One, two... cozy!"* |
-| **063** · T3 27/04 | A Drink for Bugs | *"Do bugs get thirsty?"* | Waggle đậu lên viên sỏi trong đĩa nước |
-| **064** · T7 01/05 | Plant a Flower Café | *"What's on the menu for bees?"* | Flutter "đọc" thực đơn bằng chân |
-| **065** · T3 04/05 | Look, Don't Catch! | Bàn tay vụt tới định bắt | Bàn tay mở ra, chỉ nhìn; bọ vẫy chào |
+| **061** · T3 20/04 | A Tiny Hotel... for Bugs?! 🏨 \| Big Secrets of Tiny Bugs (teaser) | Một khách sạn tí hon chưa có khách | Biển "Opening Thursday" |
+| **062** · T7 24/04 | Leave Some Leaves for the Bugs! 🍂 \| Big Secrets of Tiny Bugs | *"Where do caterpillars sleep in winter?"* | Sâu gấu len chui vào đống lá; Dot đếm lá: *"One, two... cozy!"* |
+| **063** · T3 27/04 | Do Bugs Get Thirsty? Make a Bug Bath! 💧 \| Big Secrets of Tiny Bugs | *"Do bugs get thirsty?"* | Waggle đậu lên viên sỏi trong đĩa nước |
+| **064** · T7 01/05 | Open a Flower Café for Bees! 🌼 \| Big Secrets of Tiny Bugs | *"What's on the menu for bees?"* | Flutter "đọc" thực đơn bằng chân |
+| **065** · T3 04/05 | Look, Don't Catch! The Golden Bug Rule 👀 \| Big Secrets of Tiny Bugs | Bàn tay vụt tới định bắt | Bàn tay mở ra, chỉ nhìn; bọ vẫy chào |
 
 ---
 
@@ -593,7 +595,7 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 05/04–09/06/2027 · 23 Shorts · LONG-006 ra ngày Thứ Bảy 05/06/2027
 
-### LONG-006 · Night Band Live! · Đêm nhạc Night Band
+### LONG-006 · Night Band Live! The Garden's Glowing Concert 🎤 | Big Secrets of Tiny Bugs · Night Band trực tiếp! Đêm nhạc lấp lánh của khu vườn
 
 | Mục | Nội dung |
 |---|---|
@@ -614,29 +616,29 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 | Mã · Ngày · Loại | Tựa | Hook 0–3 s | Bí mật | Gag, kết, loop | Trong LONG-006 |
 |---|---|---|---|---|---|
-| **066** · T2 05/04 · A | Could You Hear a Bat? | Theo §7 tập 4 | Ngài nghe tiếng dơi và lao xuống; râu ngài như lông vũ. Nope: *"Same antennae as Flutter? Nope!"* | Vòng sóng dơi, con ngài lượn né | Tiết mục ngài |
-| **067** · T4 · B | Why Do Moths Suddenly Drop? | *"Why did that moth just drop?"* | Né dơi | Blink cười khúc khích, ngài lại bay lên | Tiết mục ngài |
-| **068** · T6 · B | Feathery Antennae | *"Antennae like feathers?"* | Râu ngài so với râu bướm | Flutter và ngài cụng râu "boop" | — |
-| **069** · T2 12/04 · A | Could You Tell the Temperature by Listening? | Theo §7 tập 5 | Ấm thì kêu nhanh; chỉ dế đực kêu; kêu bằng cánh. **Chirp nói từ đầu tiên.** Công thức đổi ra độ: **[CẦN XÁC MINH NGUỒN]** | Nắng lên, tiếng kêu nhanh dần | Nhịp chậm lại |
-| **070** · T4 · B | Why Do Crickets Sing Faster When It's Warm? | *"Why do crickets sing faster on warm nights?"* (khác câu móc tập A) | Nhiệt và nhịp kêu | Dot đếm không theo kịp | Dot đếm |
-| **071** · T6 · B | Crickets Sing With Their Wings | *"Is that music coming from its legs?"* | Kêu bằng cánh | Miss Loupe cọ hai trang Albie; Albie: *"Ticklish!"* | — |
-| **072** · T2 19/04 · A | Is a Glow-worm a Worm? | Theo §7 tập 7 | Glow-worm ở Anh là bọ cánh cứng; con cái không cánh phát sáng. "Mọi" ấu trùng đều sáng: **[CẦN XÁC MINH NGUỒN]** | Blink gặp Glimmer | Đèn sân khấu |
-| **073** · T4 · B | Can You Trust a Name? | *"Can you trust a name?"* (khác câu móc tập A) | Tên nói dối | Glimmer và Blink nháy "hello" cho nhau | Glimmer |
-| **074** · T6 · B | Glowing Babies | *"Can babies glow too?"* | Ấu trùng phát sáng (phạm vi: **[CẦN XÁC MINH NGUỒN]**) | "Ảnh hồi bé" của Blink cũng phát sáng | — |
-| **075** · T2 26/04 · A | Who Has Just One Ear? | Theo §7 tập 8 | Bọ ngựa một tai giữa ngực; nghe được dơi; ngoái đầu qua vai | Kính đi tìm tai khắp đầu rồi xuống ngực | "Bảo vệ" |
-| **076** · T4 · B | Just One Ear! | *"Where would you put just ONE ear?"* | Tai ở ngực | Miss Loupe đi tìm "tai" của chính mình | — |
-| **077** · T6 · B | Look Over Your Shoulder | *"Could you look behind you without turning?"* | Ngoái đầu | Bọ ngựa quay đầu về phía máy quay: "ú òa" | — |
-| **078** · T2 03/05 · A | Is a Snail a Bug? | Theo §7 tập 9 | Một bàn chân trượt trên nhớt; mắt trên râu; vỏ lớn theo ốc. BZZT, rồi Spindle "tuyển" ốc vào trang | Thành viên Not-a-bug đầu tiên | Quản lý sân khấu |
-| **079** · T4 · B | One Big Foot | *"Could you walk on one foot all day?"* | Một bàn chân | Ốc tới đích đúng lúc Short hết giờ | Ốc tới muộn |
-| **080** · T6 · B | Eyes on Stalks | *"Where would you keep your eyes?"* | Mắt trên râu | Crumb hét "Boo!", mắt ốc rụt lại | — |
-| **081** · T2 10/05 · A | Could You Look Just Like a Leaf? | Theo §7 tập 11 | Cánh giống lá; tai ở chân trước; âm cao: **[CẦN XÁC MINH NGUỒN]** | Một chiếc lá chớp mắt | Tiết mục muồm muỗm |
-| **082** · T4 · B | The Leaf That Blinked | *"Is that leaf looking at me?"* | Ngụy trang | Một trang của Albie chớp mắt đáp lại | — |
-| **083** · T6 · B | Ears on Knees, Again! | *"Who else has ears on their legs?"* | Tai ở chân | Chirp và muồm muỗm so đầu gối | — |
-| **084** · T2 17/05 · A | The Night Band | Theo §7 tập 12 (kết mùa) | Ôn cả mùa bằng âm thanh và ánh sáng | *"Listen closely!"* | Báo trước buổi hòa nhạc |
-| **085** · T4 · B | What Does the Garden Sound Like at Night? | *"Close your eyes... what do you hear?"* | Âm thanh đêm | Ốc sên tới muộn | Gag cuối |
-| **086** · T6 · B | Chirp's First Solo | *"Can a shy cricket sing alone?"* | Chỉ dế đực kêu | Chirp: *"...Hi."* | Chirp sợ sân khấu |
-| **087** · T4 02/06 · MR | Backstage Jitters | Hậu trường, đuôi Blink sáng rực | — | *"I'm not nervous!"* Lời hẹn ngày diễn | Hook video dài |
-| **088** · T4 09/06 · MR, tùy chọn | Fireflies in Sync | *"What if everyone blinked at once?"* | Một số loài đom đóm nháy cùng lúc **[Đã kiểm]** | Blink lệch nhịp một lần | Cao trào |
+| **066** · T2 05/04 · A | This Moth Can Hear a Bat Coming! 🦇 \| Big Secrets of Tiny Bugs | Theo §7 tập 4 | Ngài nghe tiếng dơi và lao xuống; râu ngài như lông vũ. Nope: *"Same antennae as Flutter? Nope!"* | Vòng sóng dơi, con ngài lượn né | Tiết mục ngài |
+| **067** · T4 · B | Whoa! Why Did That Moth Just Drop? 🦇 \| Big Secrets of Tiny Bugs | *"Why did that moth just drop?"* | Né dơi | Blink cười khúc khích, ngài lại bay lên | Tiết mục ngài |
+| **068** · T6 · B | Moth or Butterfly? Check the Antennae! 🪶 \| Big Secrets of Tiny Bugs | *"Antennae like feathers?"* | Râu ngài so với râu bướm | Flutter và ngài cụng râu "boop" | — |
+| **069** · T2 12/04 · A | Can a Cricket Tell the Temperature? 🌡️ \| Big Secrets of Tiny Bugs | Theo §7 tập 5 | Ấm thì kêu nhanh; chỉ dế đực kêu; kêu bằng cánh. **Chirp nói từ đầu tiên.** Công thức đổi ra độ: **[CẦN XÁC MINH NGUỒN]** | Nắng lên, tiếng kêu nhanh dần | Nhịp chậm lại |
+| **070** · T4 · B | Warm Night, Faster Song! 🦗 \| Big Secrets of Tiny Bugs | *"Why do crickets sing faster on warm nights?"* (khác câu móc tập A) | Nhiệt và nhịp kêu | Dot đếm không theo kịp | Dot đếm |
+| **071** · T6 · B | Crickets Sing With Their WINGS, Not Legs! 🦗 \| Big Secrets of Tiny Bugs | *"Is that music coming from its legs?"* | Kêu bằng cánh | Miss Loupe cọ hai trang Albie; Albie: *"Ticklish!"* | — |
+| **072** · T2 19/04 · A | Is a Glow-worm a Worm? Nope! ✨ \| Big Secrets of Tiny Bugs | Theo §7 tập 7 | Glow-worm ở Anh là bọ cánh cứng; con cái không cánh phát sáng. "Mọi" ấu trùng đều sáng: **[CẦN XÁC MINH NGUỒN]** | Blink gặp Glimmer | Đèn sân khấu |
+| **073** · T4 · B | Don't Trust This Bug's Name! ✨ \| Big Secrets of Tiny Bugs | *"Can you trust a name?"* (khác câu móc tập A) | Tên nói dối | Glimmer và Blink nháy "hello" cho nhau | Glimmer |
+| **074** · T6 · B | Can Baby Fireflies Glow? ✨ \| Big Secrets of Tiny Bugs | *"Can babies glow too?"* | Ấu trùng phát sáng (phạm vi: **[CẦN XÁC MINH NGUỒN]**) | "Ảnh hồi bé" của Blink cũng phát sáng | — |
+| **075** · T2 26/04 · A | This Bug Has Only ONE Ear! 👂 \| Big Secrets of Tiny Bugs | Theo §7 tập 8 | Bọ ngựa một tai giữa ngực; nghe được dơi; ngoái đầu qua vai | Kính đi tìm tai khắp đầu rồi xuống ngực | "Bảo vệ" |
+| **076** · T4 · B | Guess Where the Mantis Keeps Its Ear! 👂 \| Big Secrets of Tiny Bugs | *"Where would you put just ONE ear?"* | Tai ở ngực | Miss Loupe đi tìm "tai" của chính mình | — |
+| **077** · T6 · B | The Bug That Looks Over Its Shoulder! 👀 \| Big Secrets of Tiny Bugs | *"Could you look behind you without turning?"* | Ngoái đầu | Bọ ngựa quay đầu về phía máy quay: "ú òa" | — |
+| **078** · T2 03/05 · A | Is a Snail a Bug? BZZT! 🐌 \| Big Secrets of Tiny Bugs | Theo §7 tập 9 | Một bàn chân trượt trên nhớt; mắt trên râu; vỏ lớn theo ốc. BZZT, rồi Spindle "tuyển" ốc vào trang | Thành viên Not-a-bug đầu tiên | Quản lý sân khấu |
+| **079** · T4 · B | Snails Walk on Just One Big Foot! 🐌 \| Big Secrets of Tiny Bugs | *"Could you walk on one foot all day?"* | Một bàn chân | Ốc tới đích đúng lúc Short hết giờ | Ốc tới muộn |
+| **080** · T6 · B | Where Does a Snail Keep Its Eyes? 👀 \| Big Secrets of Tiny Bugs | *"Where would you keep your eyes?"* | Mắt trên râu | Crumb hét "Boo!", mắt ốc rụt lại | — |
+| **081** · T2 10/05 · A | Is That a Leaf? Nope, It's a Bug! 🍃 \| Big Secrets of Tiny Bugs | Theo §7 tập 11 | Cánh giống lá; tai ở chân trước; âm cao: **[CẦN XÁC MINH NGUỒN]** | Một chiếc lá chớp mắt | Tiết mục muồm muỗm |
+| **082** · T4 · B | Wait... Is That Leaf Looking at Me? 🍃 \| Big Secrets of Tiny Bugs | *"Is that leaf looking at me?"* | Ngụy trang | Một trang của Albie chớp mắt đáp lại | — |
+| **083** · T6 · B | Another Bug With Ears on Its Legs! 🦗 \| Big Secrets of Tiny Bugs | *"Who else has ears on their legs?"* | Tai ở chân | Chirp và muồm muỗm so đầu gối | — |
+| **084** · T2 17/05 · A | Meet the Night Band: The Garden After Dark! 🌙 \| Big Secrets of Tiny Bugs | Theo §7 tập 12 (kết mùa) | Ôn cả mùa bằng âm thanh và ánh sáng | *"Listen closely!"* | Báo trước buổi hòa nhạc |
+| **085** · T4 · B | Close Your Eyes: Hear the Night Garden! 🌙 \| Big Secrets of Tiny Bugs | *"Close your eyes... what do you hear?"* | Âm thanh đêm | Ốc sên tới muộn | Gag cuối |
+| **086** · T6 · B | Can a Shy Cricket Sing Alone? 🎤 \| Big Secrets of Tiny Bugs | *"Can a shy cricket sing alone?"* | Chỉ dế đực kêu | Chirp: *"...Hi."* | Chirp sợ sân khấu |
+| **087** · T4 02/06 · MR | Backstage Jitters Before the Big Show! 🎤 \| Big Secrets of Tiny Bugs | Hậu trường, đuôi Blink sáng rực | — | *"I'm not nervous!"* Lời hẹn ngày diễn | Hook video dài |
+| **088** · T4 09/06 · MR, tùy chọn | Fireflies That Blink Together! ✨ \| Big Secrets of Tiny Bugs | *"What if everyone blinked at once?"* | Một số loài đom đóm nháy cùng lúc **[Đã kiểm]** | Blink lệch nhịp một lần | Cao trào |
 
 ---
 
@@ -644,7 +646,7 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 20–28/05/2027 · 4 Shorts · LONG-007 ra ngày Thứ Năm 20/05/2027 (Ngày Ong thế giới)
 
-### LONG-007 · Waggle's Big Dance · Điệu nhảy lớn của Waggle
+### LONG-007 · Waggle's Big Dance: How Bees Share the Way! 🐝 | Big Secrets of Tiny Bugs · Điệu nhảy lớn của Waggle: ong chỉ đường cho nhau thế nào!
 
 | Mục | Nội dung |
 |---|---|
@@ -663,10 +665,10 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 | Mã · Ngày | Tựa | Hook | Kết |
 |---|---|---|---|
-| **089** · T5 20/05 | Waggle's Big Dance (45 s, không lời) | Cắt từ video dài, mở bằng cú lộn nhào | Cả tổ nhảy theo |
-| **090** · T7 22/05 | How Do Bees Tell the Way? (§7) | *"How do you give directions without words?"* | Vạch nhảy kéo dài thành đường bay (nối với pilot) |
-| **091** · T4 26/05 | Pollen Hitchhikers | *"Who's riding on that bee?"* | Hạt phấn "nhảy xe" sang bông hoa kế tiếp |
-| **092** · T6 28/05 | The Bee Fan Club | *"How do bees cool their house?"* | Miss Loupe đứng trước "quạt ong", kính đọng sương |
+| **089** · T5 20/05 | Dance, Waggle, Dance! 🐝 \| Big Secrets of Tiny Bugs (45 s, không lời) | Cắt từ video dài, mở bằng cú lộn nhào | Cả tổ nhảy theo |
+| **090** · T7 22/05 | Bees Give Directions by Dancing! 🐝 \| Big Secrets of Tiny Bugs (§7) | *"How do you give directions without words?"* | Vạch nhảy kéo dài thành đường bay (nối với pilot) |
+| **091** · T4 26/05 | Pollen Hitches a Ride on Bees! 🌼 \| Big Secrets of Tiny Bugs | *"Who's riding on that bee?"* | Hạt phấn "nhảy xe" sang bông hoa kế tiếp |
+| **092** · T6 28/05 | Bees Use Their Wings as Fans! 🐝 \| Big Secrets of Tiny Bugs | *"How do bees cool their house?"* | Miss Loupe đứng trước "quạt ong", kính đọng sương |
 
 ---
 
@@ -676,7 +678,7 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 **(Đề xuất)** Xếp lại Mùa 3 thành hai bộ. Shorts ở mức tựa và câu móc; câu móc riêng của bản B và gag kết sẽ viết khi chốt Mùa 3 sau mốc đánh giá 24/05 (§5, §8).
 
-### LONG-008 · Crumb's Underground Tour · Crumb dẫn tour dưới lòng đất
+### LONG-008 · Crumb's Underground Tour: Secret Homes Under Your Feet! 🐜 | Big Secrets of Tiny Bugs · Crumb dẫn tour dưới lòng đất: những ngôi nhà bí mật dưới chân bạn
 
 | Mục | Nội dung |
 |---|---|
@@ -694,13 +696,13 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 ### Shorts của SERIES-008
 
-- **093 A** · T2 14/06 · *Welcome to Crumb's House!* (§8 tập 1) · B: **094** *Rooms for Everything* · **095** *Who Takes Care of the Babies?*
-- **096 A** · T2 21/06 · *Could You Build a Megaphone?* (tập 3) · B: **097** *Hands Like Shovels* · **098** *A Song You Can Hear Far Away*
-- **099 A** · T2 28/06 · *Could You Wait Years for Your Birthday?* (tập 2) · B: **100** *The Longest Wait* · **101** *Whose Empty Coat Is That?*
-- **102 A** · T2 05/07 · *Who Draws in the Sand?* (tập 7) · B: **103** *Doodles in the Sand* · **104** *Walking Backwards*
-- **105 A** · T2 12/07 · *Who Grows a Garden Underground?* (tập 9) · B: **106** *Ants That Farm* · **107** *Leaves Are Not for Lunch*
-- **108 A** · T2 19/07 · *Who Builds Towers Out of Mud?* (tập 10) · B: **109** *Mud Skyscrapers* · **110** *Are Termites Ants? Nope!*
-- **111 MR** · T3 27/07 · *Crumb Gets Lost at Home* (viết lại từ video dài)
+- **093 A** · T2 14/06 · *Come Inside an Ant's House! 🐜 | Big Secrets of Tiny Bugs* (§8 tập 1) · B: **094** *An Ant Nest Has Rooms for Everything! 🐜 | Big Secrets of Tiny Bugs* · **095** *Who Babysits the Baby Ants? 🍼 | Big Secrets of Tiny Bugs*
+- **096 A** · T2 21/06 · *Could a Bug Build a Megaphone? 📣 | Big Secrets of Tiny Bugs* (tập 3) · B: **097** *This Bug Has Shovels for Hands! ⛏️ | Big Secrets of Tiny Bugs* · **098** *A Bug Song You Can Hear From Far Away! 🎵 | Big Secrets of Tiny Bugs*
+- **099 A** · T2 28/06 · *Waiting Years Underground for a Birthday! 🎂 | Big Secrets of Tiny Bugs* (tập 2) · B: **100** *The Bug That Waits the Longest! ⏳ | Big Secrets of Tiny Bugs* · **101** *Who Left This Empty Coat Behind? 👻 | Big Secrets of Tiny Bugs*
+- **102 A** · T2 05/07 · *Who's Doodling in the Sand? ✏️ | Big Secrets of Tiny Bugs* (tập 7) · B: **103** *Meet the Doodlebug! ✏️ | Big Secrets of Tiny Bugs* · **104** *The Bug That Walks Backwards! ⏪ | Big Secrets of Tiny Bugs*
+- **105 A** · T2 12/07 · *Ants Grow a Secret Garden Underground! 🍄 | Big Secrets of Tiny Bugs* (tập 9) · B: **106** *Tiny Farmers: Ants That Grow Food! 🍄 | Big Secrets of Tiny Bugs* · **107** *Why These Ants Don't Eat Leaves! 🍃 | Big Secrets of Tiny Bugs*
+- **108 A** · T2 19/07 · *Who Builds Giant Towers Out of Mud? 🏰 | Big Secrets of Tiny Bugs* (tập 10) · B: **109** *Termites Build Mud Skyscrapers! 🏰 | Big Secrets of Tiny Bugs* · **110** *Are Termites Just Ants? Nope! 🔍 | Big Secrets of Tiny Bugs*
+- **111 MR** · T3 27/07 · *Crumb Gets Lost... at Home?! 🐜 | Big Secrets of Tiny Bugs* (viết lại từ video dài)
 
 ---
 
@@ -708,7 +710,7 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 26/07–07/09/2027 · 19 Shorts · LONG-009 ra ngày Thứ Bảy 04/09/2027
 
-### LONG-009 · The Garden Games · Hội thao khu vườn
+### LONG-009 · The Garden Games: Who's the Strongest Bug? 🏆 | Big Secrets of Tiny Bugs · Hội thao khu vườn: ai là côn trùng mạnh nhất?
 
 | Mục | Nội dung |
 |---|---|
@@ -726,13 +728,13 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 ### Shorts của SERIES-009
 
-- **112 A** · T2 26/07 · *Do Spots Tell a Ladybug's Age?* (tập riêng của Dot) · B: **113** *Spots Aren't Birthdays* · **114** *Baby Ladybugs Look Like Tiny Crocodiles*
-- **115 A** · T2 02/08 · *Who Goes "Pop!"?* · B: **116** *The Tiny Firework* · **117** *Aim and Pop!*
-- **118 A** · T2 09/08 · *Do All Bees Live in a Hive?* · B: **119** *Bees That Live Alone* · **120** *Holes in the Ground*
-- **121 A** · T2 16/08 · *The Strongest Bug in the Garden* · B: **122** *Tug of War!* · **123** *Biggest Isn't Strongest*
-- **124 A** · T2 23/08 · *Who Cleans Up the Garden?* · B: **125** *Where Do Fallen Leaves Go?* · **126** *The Clean-up Crew*
-- **127 A** · T2 30/08 · *The Secret Under Everything* (kết mùa) · B: **128** *What's Under Your Feet?* · **129** *Have You Ever Looked UP?*
-- **130 MR** · T3 07/09 · *The Cicada Still Hasn't Finished* (gag cuối của video dài)
+- **112 A** · T2 26/07 · *Can You Tell a Ladybug's Age by Its Spots? 🐞 | Big Secrets of Tiny Bugs* (tập riêng của Dot) · B: **113** *Ladybug Spots Aren't Birthday Candles! 🐞 | Big Secrets of Tiny Bugs* · **114** *Baby Ladybugs Look Like Tiny Crocodiles! 🐊 | Big Secrets of Tiny Bugs*
+- **115 A** · T2 02/08 · *Which Bug Goes POP? 💥 | Big Secrets of Tiny Bugs* · B: **116** *The Beetle That Pops Like a Firework! 🎆 | Big Secrets of Tiny Bugs* · **117** *This Beetle Can Aim Its Pop! 🎯 | Big Secrets of Tiny Bugs*
+- **118 A** · T2 09/08 · *Do All Bees Live in a Hive? Nope! 🐝 | Big Secrets of Tiny Bugs* · B: **119** *Meet the Bees That Live All Alone! 🐝 | Big Secrets of Tiny Bugs* · **120** *Who Lives in These Tiny Holes? 🕳️ | Big Secrets of Tiny Bugs*
+- **121 A** · T2 16/08 · *Tiny Bugs, Super Strength! 💪 | Big Secrets of Tiny Bugs* · B: **122** *Tug of War: Ant vs. Beetle! 💪 | Big Secrets of Tiny Bugs* · **123** *The Biggest Isn't Always the Strongest! 🏆 | Big Secrets of Tiny Bugs*
+- **124 A** · T2 23/08 · *Who Keeps the Garden Clean? ♻️ | Big Secrets of Tiny Bugs* · B: **125** *Where Do Fallen Leaves Disappear To? 🍂 | Big Secrets of Tiny Bugs* · **126** *The Tiny Clean-up Crew! 🧹 | Big Secrets of Tiny Bugs*
+- **127 A** · T2 30/08 · *The Secret Hiding Under Everything! 🌱 | Big Secrets of Tiny Bugs* (kết mùa) · B: **128** *What's Living Under Your Feet? 🌱 | Big Secrets of Tiny Bugs* · **129** *Have You Ever Looked UP? 🔭 | Big Secrets of Tiny Bugs*
+- **130 MR** · T3 07/09 · *The Cicada STILL Hasn't Finished the Race! 🏁 | Big Secrets of Tiny Bugs* (gag cuối của video dài)
 
 ---
 
@@ -740,7 +742,7 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 06/09–29/10/2027 · 21 Shorts · LONG-010 ra ngày Thứ Bảy 23/10/2027 (Halloween)
 
-### LONG-010 · Not-So-Spooky Night · Đêm chẳng đáng sợ
+### LONG-010 · A Not-So-Spooky Halloween in the Garden! 🎃 | Big Secrets of Tiny Bugs · Halloween chẳng đáng sợ trong khu vườn!
 
 | Mục | Nội dung |
 |---|---|
@@ -758,11 +760,11 @@ Tất cả đều cắt từ video dài, mỗi Short có câu móc và cảnh k�
 
 ### Shorts của SERIES-010
 
-- **131 A** · T2 06/09 · *Is a Pill Bug a Bug?* · B: **132** *Roll Into a Ball!* · **133** *Cousins of Crabs?*
-- **134 A** · T2 13/09 · *Could You Breathe Through Your Skin?* · B: **135** *No Eyes, But...* · **136** *Worms Make Soil*
-- **137 A** · T2 20/09 · *Does a Millipede Have 1,000 Legs?* (con số: **[CẦN XÁC MINH NGUỒN]**) · B: **138** *Two Pairs Per Step* · **139** *Count With Dot... and Give Up*
-- **140 A** · T2 27/09 · *Is a Daddy Longlegs a Spider?* · B: **141** *Not Even a Spider!* · **142** *One Body, Two Eyes*
-- **143 A** · T2 04/10 · *Could You Fly Without Wings?* · B: **144** *Flying on Silk* · **145** *Recycled Webs*
-- **146 A** · T2 11/10 · *The Not-a-bug Club Party* · B: **147** *Welcome to the Club!* · **148** *Everyone Belongs*
-- **149** · T2 18/10 · *Are Spiders Spooky? Nope!* (§8)
-- **150, 151** · tuần 25/10 · 2 bản B cắt từ video dài, mỗi bản có móc và kết riêng (§8): *The Pumpkin Rolled Away* · *Costume Swap!*
+- **131 A** · T2 06/09 · *A Pill Bug Isn't a Bug?! 🔍 | Big Secrets of Tiny Bugs* · B: **132** *Roll Up! The Critter That Turns Into a Ball ⚪ | Big Secrets of Tiny Bugs* · **133** *Pill Bugs Are Cousins of Crabs?! 🦀 | Big Secrets of Tiny Bugs*
+- **134 A** · T2 13/09 · *Earthworms Breathe Through Their Skin! 🪱 | Big Secrets of Tiny Bugs* · B: **135** *No Eyes... So How Do Worms Know? 🪱 | Big Secrets of Tiny Bugs* · **136** *Worms Are Tiny Soil Makers! 🌱 | Big Secrets of Tiny Bugs*
+- **137 A** · T2 20/09 · *Does a Millipede REALLY Have 1,000 Legs? 👣 | Big Secrets of Tiny Bugs* (con số: **[CẦN XÁC MINH NGUỒN]**) · B: **138** *Two by Two: How Millipedes Walk! 👣 | Big Secrets of Tiny Bugs* · **139** *Can You Count a Millipede's Legs? 🔢 | Big Secrets of Tiny Bugs*
+- **140 A** · T2 27/09 · *Daddy Longlegs: Spider or Not? 🕷️ | Big Secrets of Tiny Bugs* · B: **141** *Daddy Longlegs Isn't Even a Spider! 🕸️ | Big Secrets of Tiny Bugs* · **142** *One Body, Two Eyes: Meet the Harvestman! 👀 | Big Secrets of Tiny Bugs*
+- **143 A** · T2 04/10 · *Flying Without Wings?! 🎈 | Big Secrets of Tiny Bugs* · B: **144** *Baby Spiders Sail Away on Silk! 🪁 | Big Secrets of Tiny Bugs* · **145** *Spiders Recycle Their Webs! ♻️ | Big Secrets of Tiny Bugs*
+- **146 A** · T2 11/10 · *Party Time at the Not-a-bug Club! 🎉 | Big Secrets of Tiny Bugs* · B: **147** *Welcome to the Not-a-bug Club! 🕸️ | Big Secrets of Tiny Bugs* · **148** *Everyone Belongs in the Garden! 💛 | Big Secrets of Tiny Bugs*
+- **149** · T2 18/10 · *Are Spiders Spooky? Nope! They're Garden Helpers 🕷️ | Big Secrets of Tiny Bugs* (§8)
+- **150, 151** · tuần 25/10 · 2 bản B cắt từ video dài, mỗi bản có móc và kết riêng (§8): *Oops! Rollo's Pumpkin Rolls Away 🎃 | Big Secrets of Tiny Bugs* · *Halloween Costume Swap! 🎃 | Big Secrets of Tiny Bugs*

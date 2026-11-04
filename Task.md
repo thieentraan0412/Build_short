@@ -1,8 +1,2 @@
-Push code lên github này echo "# Build_short" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/thieentraan0412/Build_short.git
-git push -u origin main
-
+Hãy sửa tên của các tập long và short trong file De-cuong-cac-bo.md, Hãy đặt tiêu đề thu hút và phần đuôi nên có 1 tý tên kênh
+vid dụ: Birds are full of surprises 🐦  | Hey Duggee
