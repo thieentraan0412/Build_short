@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Big Secrets of Tiny Bugs — Character Design System</title>
+<style>
+@font-face{font-family:'Baloo 2';src:url(../fonts/Baloo2-VF.ttf) format('truetype');font-weight:400 800}
+@font-face{font-family:'Paytone One';src:url(../fonts/PaytoneOne-Regular.ttf) format('truetype')}
+html,body{margin:0;background:#1E1B3A}canvas{display:block;max-width:100vw;height:auto}
+</style></head><body><canvas id="cv"></canvas>
+<script type="module">
+import { SHEETS as PER, drawSheet } from './sheets.js';
+import { ENSEMBLE } from './ensemble.js';
+const SHEETS = [...ENSEMBLE.filter(s => s.first), ...PER, ...ENSEMBLE.filter(s => !s.first)];
+await Promise.all(['800 40px "Baloo 2"', '600 40px "Baloo 2"', '40px "Paytone One"'].map(f => document.fonts.load(f, 'Big Secrets ẢĐơ 0123')));
+const cv = document.getElementById('cv'), c = cv.getContext('2d');
+// vẽ một trang; clean = bản không chữ (cho AI tạo video). Trả về PNG dạng dataURL.
+window.SHEETS = SHEETS.map(s => ({ id: s.id, file: s.file, w: s.w, h: s.h, clean: s.clean !== false }));
+window.renderSheet = (id, clean = false, scale = 2) => {
+  const s = SHEETS.find(x => x.id === id);
+  cv.width = s.w * scale; cv.height = s.h * scale;
+  c.setTransform(scale, 0, 0, scale, 0, 0);
+  drawSheet(c, s, { clean });
+  return cv.toDataURL('image/png');
+};
+window.render = () => {};
+const q = new URLSearchParams(location.search);
+if (q.get('sheet')) window.renderSheet(q.get('sheet'), q.get('clean') === '1', 1);
+window.READY = true;
+</script></body></html>

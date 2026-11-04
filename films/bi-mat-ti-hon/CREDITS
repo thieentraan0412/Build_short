@@ -1,0 +1,25 @@
+Big Secrets of Tiny Bugs — third-party material and licences
+
+FONTS (both under the SIL Open Font License 1.1; full texts in fonts/)
+  Baloo 2 — Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)
+    source: https://github.com/google/fonts/tree/main/ofl/baloo2 — fonts/OFL-Baloo2.txt
+  Paytone One — Copyright 2011 The Paytone Project Authors (https://github.com/googlefonts/paytoneFont)
+    source: https://github.com/google/fonts/tree/main/ofl/paytoneone — fonts/OFL-PaytoneOne.txt
+
+VOICE
+  Narration: Microsoft neural voice en-US-EmmaNeural, generated through Microsoft's online speech service
+  with the edge-tts client (https://github.com/rany2/edge-tts). Check Microsoft's terms before any commercial use.
+
+MUSIC AND SOUND EFFECTS
+  Original. Every note and effect is synthesized in mix.py (numpy/scipy) with the procedural helpers of
+  core/audio/sfx.py. No samples, loops or recordings by third parties.
+
+PICTURE
+  Original. Every frame is drawn in code (film.js, cast.js, kit.js). No images, footage or generated video.
+
+TOOLS (used to make the film, not part of it)
+  Speech check: faster-whisper with the Whisper small.en / base.en models (MIT).
+  Rendering and mux: Chrome Headless Shell via playwright-core (Apache-2.0), ffmpeg.
+
+FACTS
+  Every claim in the narration, with its source and quoted wording: FACTS.md.

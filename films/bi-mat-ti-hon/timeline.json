@@ -1,0 +1,169 @@
+{
+ "bpm": 120,
+ "dur": 46,
+ "secs": [
+  {
+   "id": "hook",
+   "bar": 0,
+   "bars": 2,
+   "t0": 0,
+   "t1": 4
+  },
+  {
+   "id": "title",
+   "bar": 2,
+   "bars": 1,
+   "t0": 4,
+   "t1": 6
+  },
+  {
+   "id": "butterfly",
+   "bar": 3,
+   "bars": 5,
+   "t0": 6,
+   "t1": 16
+  },
+  {
+   "id": "cricket",
+   "bar": 8,
+   "bars": 5,
+   "t0": 16,
+   "t1": 26
+  },
+  {
+   "id": "bee",
+   "bar": 13,
+   "bars": 3,
+   "t0": 26,
+   "t1": 32
+  },
+  {
+   "id": "map",
+   "bar": 16,
+   "bars": 3,
+   "t0": 32,
+   "t1": 38
+  },
+  {
+   "id": "album",
+   "bar": 19,
+   "bars": 2,
+   "t0": 38,
+   "t1": 42
+  },
+  {
+   "id": "gag",
+   "bar": 21,
+   "bars": 2,
+   "t0": 42,
+   "t1": 46
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "t": 0,
+   "dur": 1.585,
+   "card": 1,
+   "text": "Can you taste with your feet?"
+  },
+  {
+   "id": "L02",
+   "t": 2.25,
+   "dur": 1.245,
+   "card": 2,
+   "text": "Butterflies can!"
+  },
+  {
+   "id": "L03",
+   "t": 4.125,
+   "dur": 1.79,
+   "card": 3,
+   "text": "Big secrets of tiny bugs!"
+  },
+  {
+   "id": "L04",
+   "t": 6.52,
+   "dur": 1.946,
+   "card": 4,
+   "text": "A butterfly lands on a flower,"
+  },
+  {
+   "id": "L05",
+   "t": 8.6,
+   "dur": 3.019,
+   "card": 4,
+   "text": "and tiny taste spots on its feet tell it right away:"
+  },
+  {
+   "id": "L06",
+   "t": 12.25,
+   "dur": 1.759,
+   "card": 5,
+   "text": "Sweet! Time to eat!"
+  },
+  {
+   "id": "L07",
+   "t": 16,
+   "dur": 1.246,
+   "card": 6,
+   "text": "What about crickets?"
+  },
+  {
+   "id": "L08",
+   "t": 17.4,
+   "dur": 1.136,
+   "card": 6,
+   "text": "Where are its ears?"
+  },
+  {
+   "id": "L09",
+   "t": 19.5,
+   "dur": 1.346,
+   "card": 7,
+   "text": "Nope, not on its head!"
+  },
+  {
+   "id": "L10",
+   "t": 22,
+   "dur": 2.197,
+   "card": 8,
+   "text": "A cricket's ears are on its front legs!"
+  },
+  {
+   "id": "L11",
+   "t": 26,
+   "dur": 1.383,
+   "card": 9,
+   "text": "Honeybees can't talk,"
+  },
+  {
+   "id": "L12",
+   "t": 28,
+   "dur": 1.015,
+   "card": 9,
+   "text": "so they dance!"
+  },
+  {
+   "id": "L13",
+   "t": 30,
+   "dur": 3.598,
+   "card": 10,
+   "text": "The dance tells the hive which way the flowers are, and how far."
+  },
+  {
+   "id": "L14",
+   "t": 38,
+   "dur": 2.143,
+   "card": 11,
+   "text": "Next time you're outside, look closely!"
+  },
+  {
+   "id": "L15",
+   "t": 43,
+   "dur": 1.97,
+   "card": 12,
+   "text": "Hey... is it tasting me?"
+  }
+ ]
+}
