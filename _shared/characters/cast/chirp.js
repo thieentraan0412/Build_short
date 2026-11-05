@@ -44,7 +44,8 @@ export const CHIRP = {
       r.cap(foot, V.add(foot, [0, f ? -.04 : 0, .16]), .07, dark, { bias: .042 });
       if (r.detail || P.earGlow) {
         const e = V.lerp(knee, foot, .32), q = r.P(e);
-        r.flat(q[2] + .045, c => { c.fillStyle = C.leafD; c.beginPath(); c.ellipse(q[0], q[1], .085, .05, Math.PI / 2, 0, Math.PI * 2); c.fill(); c.fillStyle = P.earGlow ? C.mint : C.limeD; c.beginPath(); c.ellipse(q[0], q[1], .066, .034, Math.PI / 2, 0, Math.PI * 2); c.fill(); });
+        // luôn nằm trên ống chân: ống chân vẽ ở độ sâu trung bình của gối và bàn chân (+.041), nên lấy độ sâu lớn hơn của hai điểm đó
+        r.flat(Math.max(r.Z(knee), r.Z(foot)) + .045, c => { c.fillStyle = C.leafD; c.beginPath(); c.ellipse(q[0], q[1], .085, .05, Math.PI / 2, 0, Math.PI * 2); c.fill(); c.fillStyle = P.earGlow ? C.mint : C.limeD; c.beginPath(); c.ellipse(q[0], q[1], .066, .034, Math.PI / 2, 0, Math.PI * 2); c.fill(); });
       }
     }
     // đầu

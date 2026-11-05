@@ -1,0 +1,51 @@
+[
+ {
+  "id": "L01",
+  "text": "What if your socks could taste your snack?",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L02",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L03",
+  "text": "Its feet have tiny taste spots.",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L04",
+  "text": "It's sweet!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L05",
+  "text": "So out comes its curly straw!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L06",
+  "text": "Wow!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L07",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L08",
+  "text": "NOT my pages!",
+  "voice": "bm_lewis",
+  "speed": 0.8,
+  "asr": "Not my pages!"
+ }
+]
