@@ -10,6 +10,10 @@ Mọi tập sau đều lấy nhân vật, bảng màu và font từ đây. Đừ
 | [`characters/out/clean/`](characters/out/clean/) | 61 bảng không chữ, dành cho AI tạo video |
 | [`kit.js`](kit.js) | Bảng màu `C` và các hàm vẽ khối phẳng của style "Khối Kẹo Phẳng" |
 | [`fonts/`](fonts/) | Baloo 2 và Paytone One, kèm giấy phép OFL |
+| [`voices.js`](voices.js) | Giọng Kokoro và tốc độ của từng nhân vật có lời (Miss Loupe `af_heart` 0,9 · Albie `bm_lewis` 0,8), câu cửa miệng viết chuẩn. `tools/lines.mjs` của mỗi tập đọc bảng này |
+| [`audio/band.py`](audio/band.py) | Dàn nhạc tổng hợp của kênh (ukulele, marimba, kèn đồ chơi, tiếng dế, tiếng ong…) và **nhạc hiệu 2 s** `jingle()`, giống hệt nhau ở mọi tập. `mix.py` của tập import từ đây Kèm tiếng của nhân vật không lời: `mmm()` (Flutter ngân "Mmm!") |
+| [`audio/toon.py`](audio/toon.py) | Bảng tiếng động hoạt hình của kênh: `swipe` `swish` `zip_` `whistle` (còi trượt) `swirl` `boing` `wobble` `bubble` `pops` `plip` `splat` `sparkle` `gliss` `ding` `tink` `swell` `cymbal` `revcymbal` `paper` `buzzup` `block` `windup` `blip`, mỗi tiếng có tham số để các lần chuyển cảnh không lặp y hệt. Kèm công cụ trộn: `verb()` (vang cho đuôi tiếng), `duck()` (nhạc/tiếng động nhường giọng theo dải 300–4000 Hz), `master()` (đo LUFS, chặn đỉnh thật để `mux.sh` nâng tuyến tính). Bảng cue mẫu: `films/short-00x/SOUND.md` |
+| [`episode.js`](episode.js) | Thư viện dựng tập: `loupe()` đặt Miss Loupe theo tâm kính và vẽ cảnh phóng to trong kính, `ex()` biểu cảm có nhép miệng/chớp mắt, `makeTalk()` khẩu hình theo giọng thật, `flutterAt()`, `albieAt()`, `badge()`, `subtitle()` phụ đề hiện dần, máy quay `look()`. Tập mới import từ đây |
 
 ## Dùng trong một tập mới
 
@@ -36,3 +40,7 @@ Tham số `drawChar`, biểu cảm, tư thế mẫu và cách thêm khách mời
 ## Pilot
 
 Thư mục `films/bi-mat-ti-hon/` là tập pilot đã giao. Nó giữ `kit.js` và `cast.js` riêng, nên `build.sh` của pilot vẫn chạy như cũ. Khi dựng lại tập 1 theo kế hoạch, hãy làm thành một tập mới dùng `_shared`.
+
+Tập 1 đã dựng lại theo cách đó: [`films/short-001/`](../films/short-001/) (SHORT-001, dùng `_shared` cho nhân vật, font, giọng và nhạc hiệu). Đây là mẫu tốt nhất để bắt đầu một tập mới: hàm `loupe()` đặt Miss Loupe theo tâm kính và vẽ cảnh phóng to bằng tham số `inside` của rig; `tools/lines.mjs` lấy giọng từ `voices.js`.
+
+Từ SHORT-002 ([`films/short-002/`](../films/short-002/)), các hàm dựng tập nằm trong `episode.js`; SHORT-002 là mẫu nên chép khi bắt đầu một tập mới.

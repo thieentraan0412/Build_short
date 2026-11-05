@@ -1,0 +1,87 @@
+{
+ "bpm": 120,
+ "dur": 22,
+ "secs": [
+  {
+   "id": "picnic",
+   "t0": 0,
+   "t1": 14
+  },
+  {
+   "id": "album",
+   "t0": 14,
+   "t1": 22
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.1,
+   "dur": 2.511,
+   "card": 1,
+   "text": "What if your socks could taste your snack?"
+  },
+  {
+   "id": "L02",
+   "who": "loupe",
+   "t": 2.75,
+   "dur": 0.999,
+   "card": 1,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 4.4,
+   "dur": 2.503,
+   "card": 2,
+   "text": "Its feet have tiny taste spots."
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 7,
+   "dur": 1.083,
+   "card": 2,
+   "text": "It's sweet!"
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 8.75,
+   "dur": 2.306,
+   "card": 3,
+   "text": "So out comes its curly straw!"
+  },
+  {
+   "id": "L06",
+   "who": "loupe",
+   "t": 11.75,
+   "dur": 0.574,
+   "card": 4,
+   "text": "Wow!",
+   "pace": 1
+  },
+  {
+   "id": "L07",
+   "who": "albie",
+   "t": 15,
+   "dur": 2.297,
+   "card": 5,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L08",
+   "who": "albie",
+   "t": 18.25,
+   "dur": 1.718,
+   "card": 6,
+   "text": "Not my pages!",
+   "say": "NOT my pages!",
+   "pace": 1
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+[
+ {
+  "id": "L01",
+  "text": "Can you taste with your feet?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L02",
+  "text": "Butterflies can!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L03",
+  "text": "Big secrets of tiny bugs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L04",
+  "text": "A butterfly lands on a flower.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L05",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L06",
+  "text": "Tiny taste spots on its feet tell it right away:",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L07",
+  "text": "Sweet! Time to eat!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L08",
+  "text": "What about crickets?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L09",
+  "text": "Where... are its ears?",
+  "voice": "af_heart",
+  "speed": 0.9,
+  "asr": "Where are its ears?"
+ },
+ {
+  "id": "L10",
+  "text": "On its head?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L11",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L12",
+  "text": "A cricket's ears are on its front legs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L13",
+  "text": "Honeybees can't talk,",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L14",
+  "text": "so they dance!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L15",
+  "text": "The dance shows the way!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L16",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L17",
+  "text": "Go outside with a grown-up, and look closely!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L18",
+  "text": "Hey... is it tasting me?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]
