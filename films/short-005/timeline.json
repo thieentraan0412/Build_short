@@ -1,0 +1,228 @@
+{
+ "bpm": 120,
+ "dur": 24,
+ "secs": [
+  {
+   "id": "twig",
+   "t0": 0,
+   "t1": 15.3
+  },
+  {
+   "id": "album",
+   "t0": 15.3,
+   "t1": 19.1
+  },
+  {
+   "id": "gag",
+   "t0": 19.1,
+   "t1": 24
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.1,
+   "dur": 2.176,
+   "card": 1,
+   "text": "What if you said hello with a sniff?"
+  },
+  {
+   "id": "L02",
+   "who": "crumb",
+   "t": 2.6,
+   "dur": 1.235,
+   "card": 1,
+   "text": "That's how I say hi!",
+   "pace": 1
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 4.5,
+   "dur": 0.999,
+   "card": 2,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 6,
+   "dur": 2.308,
+   "card": 2,
+   "text": "Their antennae are like noses!"
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 8.95,
+   "dur": 2.156,
+   "card": 3,
+   "text": "Same smell? Same home!"
+  },
+  {
+   "id": "L06",
+   "who": "crumb",
+   "t": 11.4,
+   "dur": 1.002,
+   "card": 3,
+   "text": "Hey, who's that?",
+   "pace": 1
+  },
+  {
+   "id": "L07",
+   "who": "loupe",
+   "t": 13.6,
+   "dur": 0.628,
+   "card": 4,
+   "text": "Nope!",
+   "catch": true
+  },
+  {
+   "id": "L08",
+   "who": "albie",
+   "t": 16,
+   "dur": 2.297,
+   "card": 5,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L09",
+   "who": "crumb",
+   "t": 19.3,
+   "dur": 0.989,
+   "card": 6,
+   "text": "Hello, lens!",
+   "pace": 1
+  },
+  {
+   "id": "L10",
+   "who": "crumb",
+   "t": 21.25,
+   "dur": 1.288,
+   "card": 6,
+   "text": "You don't smell like home!",
+   "pace": 1
+  },
+  {
+   "id": "L11",
+   "who": "loupe",
+   "t": 22.65,
+   "dur": 1.193,
+   "card": 6,
+   "text": "How do YOU say hi?",
+   "pace": 1
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "crash": [
+   0,
+   0.4
+  ],
+  "tap0": [
+   0.5,
+   1
+  ],
+  "sniff0": [
+   1.5,
+   1.8
+  ],
+  "turn0": 2.3,
+  "turnBack": 3.95,
+  "lensIn": 3.6,
+  "zoom": 5.55,
+  "clouds": 5.75,
+  "tapZ": [
+   6.5,
+   7
+  ],
+  "wisp": [
+   7.6,
+   8.3
+  ],
+  "match": 8.35,
+  "same": 8.45,
+  "nuzzle": [
+   10.9,
+   11.3
+  ],
+  "hearts": 11,
+  "stranger": [
+   10.8,
+   11.7
+  ],
+  "turn1": [
+   11.3,
+   11.65
+  ],
+  "lensSlide": [
+   11.7,
+   12.25
+  ],
+  "tapS": [
+   12.5,
+   13
+  ],
+  "wispS": [
+   13,
+   13.4
+  ],
+  "clash": 13.4,
+  "nope": 13.6,
+  "shrug": 14.05,
+  "leave": [
+   14.35,
+   15.3
+  ],
+  "back": [
+   14.3,
+   14.6
+  ],
+  "tapB": 14.62,
+  "snap": 14.66,
+  "irisA": 14.76,
+  "irisB": 15.06,
+  "zoomIn": [
+   14.76,
+   15.06
+  ],
+  "zoomOut": [
+   15.06,
+   15.4
+  ],
+  "stamp": 15.55,
+  "flip": [
+   18.6,
+   19.1
+  ],
+  "walkG": [
+   19.1,
+   19.6
+  ],
+  "glass": [
+   20.5,
+   21
+  ],
+  "curl": [
+   21.05,
+   22.5
+  ],
+  "laugh": 22.85,
+  "recall": 23,
+  "lift": [
+   23,
+   23.55
+  ],
+  "turnG": 23.05,
+  "puff": [
+   23.35,
+   24
+  ]
+ }
+}

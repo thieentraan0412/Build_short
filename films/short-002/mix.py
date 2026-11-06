@@ -1,8 +1,8 @@
-"""Âm thanh của SHORT-002 → out/mix.wav (48 kHz stereo): nhạc tổng hợp theo lưới 120 BPM, tiếng động theo events.json, nền, giọng.
+"""Âm thanh của SHORT-002 → out/mix.wav (48 kHz stereo): nhạc theo từng cảnh ("Calypso picnic" ở giọng G, MUSIC.md) trên lưới 120 BPM, tiếng động theo events.json, nền, giọng.
 python mix.py   (cần timeline.json + voice/*.wav từ tools/lines.mjs và core/tts/tts.py, events.json từ core/render/events.mjs)
 Nhạc cụ, tiếng ngân của Flutter: _shared/audio/band.py; tiếng động hoạt hình: _shared/audio/toon.py (dùng chung cho mọi tập).
 Không dùng mẫu âm thanh của bên thứ ba. Bảng cue âm thanh (hình ↔ tiếng): SOUND.md.
-Phim phát vòng lặp: ba nốt marimba cuối phim (21,0 · 21,5) nối với nốt đầu phim (0,0) và cú dậm chân ở 0,5 s;
+Phim phát vòng lặp: hai nốt steel pan cuối phim (21,0 · 21,5) nối với nốt đầu phim (0,0, hợp âm D) và cú dậm chân ở 0,5 s (hợp âm G);
 mọi đuôi tiếng vượt quá 22 s (còi rơi, vang, nốt ngân) được gấp về đầu phim, nên điểm lặp không bị ngắt."""
 import os, sys, json, numpy as np, soundfile as sf, soxr
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -10,6 +10,7 @@ LIB = os.environ.get('LIB') or os.path.abspath(os.path.join(HERE, '..', '..'))
 sys.path.insert(0, os.path.join(LIB, 'core', 'audio')); sys.path.insert(0, os.path.join(LIB, '_shared', 'audio'))
 from sfx import SR, t_, env_exp, bp, lp, hp, noise, norm, brown, whoosh, thump, ding, pop, click, step, compress, limit, add
 from band import fade, mf, pluck, marimba, bassn, kick, clap, hat, shaker, bell, horn, pad, riser, glide, mmm
+from band import pizz, xylo, flute, steel, tuba, claves, celesta, harp, secret   # nhạc cụ của lượt nhạc nền theo cảnh (MUSIC.md)
 import toon as T
 
 TL = json.load(open(os.path.join(HERE, 'timeline.json'), encoding='utf-8'))
@@ -23,59 +24,92 @@ def mixl(*xs):
     n = max(len(x) for x in xs); return sum(np.pad(x, (0, n - len(x))) for x in xs)
 
 
-# ---------- nhạc: mô-típ marimba của bộ "Giác quan", cùng hoà âm với SHORT-001 ----------
-CH = [(48, [60, 64, 67]), (43, [59, 62, 67]), (45, [57, 60, 64]), (41, [57, 60, 65])]
-MEL = [[76, 0, 79, 0, 76, 74, 72, 0], [74, 0, 79, 0, 74, 0, 71, 0], [72, 0, 76, 0, 81, 79, 76, 0], [77, 0, 81, 0, 79, 0, 76, 0]]
-def parts(bar):
-    if bar == 0: return {'clap', 'sparse', 'tiptoe'}                          # móc: bass nhón chân + mõ gỗ sau cú dậm 0,5 s
-    if bar == 1: return {'kick1', 'bass', 'strum'}                            # không shaker: tiếng xì ngay sau "snack?" bị nghe thành "snacks"
-    if bar <= 3: return {'kick', 'bass', 'strum', 'mel', 'hat', 'clap', 'wings'}
-    if bar == 4: return {'kick', 'strum', 'mel', 'wings'}                     # tia "ngọt" chạy lên: chuông nằm ở tiếng động
-    if bar == 5: return {'strum', 'melsparse', 'kick1'}
-    if bar == 6: return {'wonder'}                                           # nhịp "ồ": chỉ một lớp pad mỏng, tiếng giày nổi lên
-    if bar == 7: return {'kick1', 'strum', 'mel', 'wings'}                   # sổ: thưa dưới câu của Albie (giọng trầm dễ bị bè trầm che)
-    if bar == 8: return {'kick1', 'strum', 'clap', 'wings'}
-    if bar == 9: return {'strum', 'wings', 'clap', 'kick1'}                  # gag: rút bè trầm
-    return {'sparse'}
+# ---------- nhạc: "Calypso picnic" ở giọng G (MUSIC.md) — khác SHORT-001 về giọng, điệu và nhạc cụ ----------
+# Trống thép (steel pan) đệm phách lệch, bass tresillo 3+3+2, phách gỗ son clave; marimba và ukulele của ban nhạc kênh vẫn có mặt.
+# Mô-típ bí mật đô–mi–sol (band.secret) ở giọng G khi điểm nếm sáng. Vòng lặp: hai nốt cuối phim (21,0 · 21,5) + nốt đầu phim (0,0, hợp âm D)
+# dẫn vào cú dậm chân (0,5 s, hợp âm G); đuôi tiếng sau 22 s được gấp về đầu phim như cũ.
 mus = B['mus']
-HIT_STOMP, HIT_IRIS = .5, at(6, 3)
-def M(x, t, g=1., pan=0.): add(mus, x, t, g, pan)
-for bar in range(11):
-    P = parts(bar); root, tones = CH[bar % 4]; t0 = at(bar)
-    for b in range(4):
-        tb = t0 + b * BEAT
-        if 'kick' in P: M(kick(), tb, 1.2)
-        if 'kick1' in P and b == 0: M(kick(.7), tb, .7)
-        if 'clap' in P and b in (1, 3): M(clap(), tb, .7, .1)
-        if 'hat' in P: M(hat(), tb + BEAT / 2, .8, .35)
-        if 'bass' in P and b in (0, 2, 3): M(bassn(root + (12 if b == 3 else 0)), tb, 1.35)
-        if 'strum' in P and b in (1, 3):
-            for k, n in enumerate(tones): M(pluck(n), tb + k * .014, .55, -.35 + .35 * k)
-        if 'sparse' in P and b == 0: M(pluck(tones[0] + 12, 1.2), tb, .55)
-        if 'wings' in P:
-            for s in range(4): M(shaker(.9 if s == 0 else .5), tb + s * BEAT / 4, .8, -.45)
-    if 'tiptoe' in P:                           # bass gảy ngắn từng móc đơn + mõ gỗ phách lẻ (không có tiếng xì, để giữ chữ "socks", "snack")
-        for i, n in enumerate((55, 52, 55, 48, 50, 52)):
-            M(bassn(n, .16), t0 + BEAT * 1.5 + i * BEAT / 2, .9)
-        for i in range(6): M(T.block(84 if i % 2 else 79, .6), t0 + BEAT * 1.25 + i * BEAT / 2, .3, .3)
-    if 'wonder' in P: M(pad(tones + [root + 12, root + 24], BAR + .6), t0 - .1, 1.3)
-    if 'mel' in P:
-        for i, n in enumerate(MEL[bar % 4]):
-            if n: M(marimba(n), t0 + i * BEAT / 2, .8, .2)
-    if 'melsparse' in P:
-        for i in (0, 4):
-            n = MEL[bar % 4][i]
-            if n: M(marimba(n, .9), t0 + i * BEAT / 2, .7, .2)
-# vòng lặp: hai nốt cuối phim + nốt đầu phim đi lên, rồi chân dậm ở phách 1
-for t, n in ((at(10, 2), 67), (at(10, 3), 69), (0., 71)): M(marimba(n, .5), t, .65, .2)
-# phách đầu phim: kick + bass + một phím glock cao, để giây đầu tiên đã có nhịp; cú dậm 0,5 s là điểm giải (C)
-M(kick(.8), 0., .8); M(bassn(43, .3), 0., 1.0); M(T._ting(mf(96), .5), 0., .25, .4)
-M(kick(), HIT_STOMP, 1.1); M(bassn(36, .5), HIT_STOMP, 1.2); M(marimba(72, .6), HIT_STOMP, .8, .2); M(marimba(76, .6), HIT_STOMP + .01, .5, .2)
-# vào sổ: chuỗi marimba lên dần trong lúc kính nở ra, chạm 14,0 bằng kick + chũm chọe mềm
-for i, n in enumerate((72, 74, 76, 79)): M(marimba(n, .35), HIT_IRIS + i * BEAT / 4, .6 + .1 * i, .2)
-M(kick(.9), at(7), .9); M(T.cymbal(1.6, .5), at(7), .35, -.2)
-# nhịp "ồ": một nốt khi Miss Loupe nhún vai
-M(marimba(79, .8), 13.0, .6, .3); M(marimba(72, .8), 13.25, .5, .3)
+HIT = TL['hit']
+# khựng (ngắt nhạc): lúc mắt Flutter phồng to sau cú bung vòi; lúc Flutter vừa đậu lên trang, ngay trước "NOT my pages!"
+REST = ((1.0, 1.2), (HIT['land'], HIT['land'] + .18))   # khựng ngắn (một móc đơn) khi mắt phồng to, nhịp chạy tiếp ngay
+def M(x, t, g=1., pan=0.):
+    if any(a - .02 <= t < b - .02 for a, b in REST): return
+    add(mus, x, t, g, pan)
+def seq(inst, ns, t0, step, g=1., pan=0., d=None, ramp=0.):
+    for i, n in enumerate(ns):
+        if n: M(inst(n, d) if d else inst(n), t0 + i * step, g * (1 + ramp * i), pan)
+def strum(inst, ns, t, g=.55, d=None, spread=.014):
+    for k, n in enumerate(ns): M(inst(n, d) if d else inst(n), t + k * spread, g, -.35 + .7 * k / max(1, len(ns) - 1))
+def cymbal(t, g=.25, br=4500): M(T.cymbal(1.6, 1., br), t, g, .15)
+CLAVE = (0, 3, 6, 10, 12)                       # son clave 3-2, tính theo móc kép trong một ô nhịp
+def calypso(bar, root, tones, ta=None, tb=None, g=1., bass=True, comp=True, clave=True, kick_=True):
+    """Một ô nhịp calypso (hoặc một đoạn [ta, tb) của ô): bass tresillo gốc–năm–tám ở móc đơn 0, 3, 6; steel pan đệm phách lệch; son clave; kick 1 và 3."""
+    t0 = at(bar); ta = t0 if ta is None else ta; tb = t0 + BAR if tb is None else tb
+    for i in range(8):
+        t = t0 + i * BEAT / 2
+        if not ta <= t < tb: continue
+        if bass and i in (0, 3, 6): M(bassn((root, root + 7, root + 12)[(0, 3, 6).index(i)], .3), t, 1.1 * g)
+        if comp and i % 2: strum(steel, tones, t, .2 * g, .22, .006)
+        if kick_ and i in (0, 4): M(kick(.7), t, .55 * g)
+    for p in CLAVE if clave else ():
+        t = t0 + p * BEAT / 4
+        if ta <= t < tb: M(claves(), t, .45 * g, .3)
+G_, C_, D_, EM = (43, (67, 71, 74)), (48, (67, 72, 76)), (50, (66, 69, 74)), (40, (67, 71, 76))
+
+# — Hook 0–2,45 s: dậm chân → tò mò, khựng khi mắt phồng to → "hả?" —
+M(kick(.8), 0., .35); M(bassn(50, .3), 0., .6); M(T._ting(mf(98), .5), 0., .16, .4); M(steel(74, .5), 0., .3, .2)   # nốt đầu phim (D) nối từ cuối phim
+ts = HIT['stomp']; M(kick(), ts, 1.1); M(bassn(43, .5), ts, 1.2); strum(steel, (67, 71, 74, 79), ts, .5, .6); M(xylo(79), ts + .01, .35, .2); cymbal(ts, .16, 5000)
+calypso(0, *G_, ta=ts + .1, comp=False, g=.48)                             # nhịp calypso chạy ngay sau cú dậm (bass tresillo, son clave, kick), không có tiếng đệm dưới câu hỏi
+seq(xylo, (74, 79, 83), HIT['sproing'], .045, .42, .25)                   # vòi bật ra: xylophone vút lên, rồi khựng 1,0–1,45 s
+seq(pizz, (71, 74), 1.45, .12, .42, -.15, d=.18)                           # cúi nhìn cái vòi: "hm?"
+seq(pizz, (74, 71, 67), HIT['curl'], .12, .38, -.15, d=.18)               # vòi cuộn lại
+calypso(1, *G_, tb=HIT['pull'] + .05, comp=False, g=.48); calypso(1, *G_, ta=HIT['pull'] + .05, g=.75)                                # máy kéo xa: nhịp calypso vào
+
+# — Soi trong kính 4–10,3 s: khám phá, có nhịp —
+calypso(2, *G_, tb=at(2, 2)); calypso(2, *C_, ta=at(2, 2))
+seq(steel, (74, 76, 79), at(2) - .38, .12, .4, .25)                        # câu dẫn trước "Its feet have tiny taste spots"
+secret(M, celesta, 79, HIT['tap'], .17, .4, .35)                           # điểm nếm sáng: mô-típ bí mật ở giọng G
+calypso(3, *EM, tb=at(3, 2), comp=False)
+tsw = HIT['sweet']                                                         # "It's sweet!": hợp âm C bừng lên
+M(kick(.8), tsw, .8); M(bassn(48, .5), tsw, 1.0); M(xylo(84), tsw, .2, .25); M(xylo(88), tsw + .07, .18, .25); cymbal(tsw, .12, 5500)   # nhỏ, để chữ "sweet" rõ
+calypso(3, *C_, ta=tsw + .6, comp=False, clave=False, g=.75)
+M(pad([62, 69, 72], 1.1), HIT['sigA'], .6)                                 # tia "ngọt" chạy lên: D7 chờ, bass móc đơn dồn
+seq(pizz, (50,) * 8, HIT['sigA'], BEAT / 4, .24, 0., d=.14, ramp=.08)
+seq(harp, (67, 71, 74, 79), HIT['straw'], .1, .2, -.2, d=.8)              # vòi duỗi ra: đàn hạc rải G đi lên
+calypso(4, *G_, ta=at(4, 2), comp=False, g=.6)
+calypso(5, *G_, tb=HIT['lensOut'], comp=False, g=.55)
+
+# — Nhịp "ồ" 10,3–14 s: ấm, rồi gần như ngắt nhạc cho tiếng giày —
+M(pad([64, 67, 71], 1.6), HIT['lensOut'], .5); M(flute(71, .8), 11.15, .38, .2)   # sáo vào sau chữ "straw" (QA: nốt Si nằm giữa dải giọng)
+M(pad([64, 67, 72], 2.4), 11.5, .7); M(flute(72, .5), 11.2, .3, .2)
+seq(xylo, (71, 67), HIT['shrug'], .25, .4, .3)                             # nhún vai: "hử?"
+seq(marimba, (67, 69, 71, 74, 79), HIT['snap'] + .04, .07, .5, .2, ramp=.1)   # v4: "chụp": marimba chạy lên
+M(T.gliss(79, 100, HIT['zoomIn'][1] - HIT['zoomIn'][0], .28, 'harp'), HIT['zoomIn'][0], .9)
+M(T.gliss(96, 79, HIT['zoomOut'][1] - HIT['zoomOut'][0], .2, 'harp'), HIT['zoomOut'][0], .7)
+
+ti = HIT['stamp']; M(kick(.9), ti, .9); cymbal(ti, .3, 4500); strum(steel, (67, 71, 74, 79), ti, .4, .6)   # v4: nhấn ở cú dán sticker
+
+# — Sổ 14–18 s: sticker, Albie (thưa, không bè trầm dưới giọng trầm của Albie) —
+tst = HIT['stamp']; strum(steel, (71, 74, 79, 83), tst, .45, .5); M(xylo(91), tst + .02, .3, .3); M(kick(.6), tst, .5)
+for t, ch in ((at(7, 3), (67, 71, 74)), (at(8, 1), (67, 72, 76)), (at(8, 3), (66, 69, 74))):   # ukulele G · C · D
+    strum(pluck, ch, t, .42)
+seq(flute, (74, 76, 79, 81, 83, 86, 83, 86), HIT['fly'] + .1, .085, .4, .3, d=.12)   # Flutter bay vào: sáo vút lên, láy
+calypso(8, *D_, ta=HIT['fly'] + .05, bass=False, clave=False, g=.8)
+
+# — Gag 18–21,25 s: khựng → "NOT my pages!" → "Mmm!" → nhịp vui trở lại —
+strum(pizz, (64, 67, 71), HIT['land'] + .19, .5, .16); M(tuba(40, .4, .6, bend=-3), HIT['land'] + .19, .5)   # "ối!": hợp âm Em ngắn
+for i, n in enumerate((88, 91, 95, 91, 88, 95)): M(xylo(n, .2), HIT['land'] + .55 + i * .3, .12, .35)   # v4: lấp lánh xylophone thưa ở dải cao dưới gag (không còn lỗ im)
+M(shaker(.5), HIT['sipPage'], .3, .4); M(shaker(.5), HIT['sipPage'] + .25, .25, .4)
+calypso(10, *G_, ta=at(10, 1) + .1, tb=HIT['takeoff'], g=.85)
+seq(steel, (71, 72), at(10, 2), BEAT, .5, .2)                              # vòng lặp: hai nốt cuối phim → nốt D ở 0,0 → G ở 0,5
+M(bassn(50, .3), at(10, 3), .9); M(claves(), at(10, 3), .4, .3)
+
+# — cường độ theo cảnh (chuyển mềm 0,3 s) —
+LEVEL = ((0, .72), (HIT['pull'], .95), (at(2), .85), (tsw, .8), (HIT['sigA'], .9), (HIT['lensOut'], .75), (12., .6), (HIT['snap'], 1.0), (ti, .85), (ti + .3, .78),   # v4: dâng ở cú chụp và chữ móc trở lại
+         (HIT['fly'], 1.), (HIT['land'], .8), (HIT['mmm'], .85), (20.4, .6), (HIT['recall'] + .8, .9))   # dưới câu hỏi kết: hạ nhạc để lời rõ
+tt = np.arange(len(mus)) / SR; lev = np.full(len(mus), LEVEL[0][1])
+for (t, g), (_, g0) in zip(LEVEL[1:], LEVEL[:-1]): lev = np.where(tt >= t - .15, np.where(tt < t + .15, g0 + (g - g0) * (tt - t + .15) / .3, g), lev)
+mus *= lev[:, None]
 
 
 # ---------- tiếng động theo sự kiện ----------
@@ -109,8 +143,9 @@ SFX = {
     'shrink': lambda e: T.whistle(2400, 1200, .3, .2),     # chữ móc thu lại
     'swipe': lambda e: T.swipe(e.get('d', .3), .32, True, e.get('lo', 1500), e.get('hi', 5500)),
     'tink': lambda e: T.tink(.3),
-    'swishout': lambda e: T.swish(.5, .45, 400, 2800, False),
-    'push': lambda e: T.swish(.8, .3, 250, 1500, True, .75, .6),
+    'titlepop': lambda e: mixl(T.bubble(1600, .5, .06, 2.4), np.pad(T._ting(mf(103), .5, .35), (int(.02 * SR), 0))),   # chữ móc bật ra ở khung đầu
+    'swishout': lambda e: T.swish(.5, .22, 1500, 5000, False),                                 # dưới chữ "curly straw": dải cao, nhỏ (QA)
+    'push': lambda e: T.swish(.8, .18, 250, 1500, True, .75, .6),
     'wonder': lambda e: T.sparkle(1.1, .5, 91, 108, 9, 4, 'down'),
     'lensiris': lambda e: mixl(T.swirl(.5, .45, 5, 800, 3400), T.swell(.5, .55, 79, 103)),       # kết thúc đúng 14,0
     'page': lambda e: mixl(T.paper(.35, .45, 5, 1), T.bubble(520, .3, .09)),
@@ -125,18 +160,24 @@ SFX = {
     'whoosh': lambda e: whoosh(e.get('d', .35), e.get('v', .5)),
     'zoom': lambda e: mixl(riser(.6, 1.), T.whistle(420, 1250, .55, .15)),
     'tap': lambda e: mixl(step(.7), thump(.3, 140) * .5),
-    'sparkle': lambda e: mixl(*(np.pad(bell(n, .6, .9), (int(i * .07 * SR), 0)) for i, n in enumerate((88, 91, 95)))),
-    'bubbles': lambda e: bubbles(e.get('d', 1.)),
+    'sparkle': lambda e: mixl(*(np.pad(bell(n, .6, .9), (int(i * .07 * SR), 0)) for i, n in enumerate((88, 91, 95)))) * .6,   # dưới câu "Its feet have tiny taste spots" (QA)
+    'bubbles': lambda e: bubbles(e.get('d', 1.)) * .45,
     'chime': lambda e: mixl(ding(.55) * .5, bell(84, .7)),
-    'signal': lambda e: signal(e.get('d', .9)),
-    'slide': lambda e: glide(500, 1400, e.get('d', .8), .3, .02),
-    'slurp': lambda e: mixl(glide(900, 380, .35, .3), bp(noise(.35), 600, 2200) * np.sin(np.pi * t_(.35) / .35) * .15),
+    'signal': lambda e: signal(e.get('d', .9)) * .6,                                           # nằm dưới câu "So out comes its curly straw!": nhỏ lại (QA)
+    'slide': lambda e: glide(2400, 5200, e.get('d', .8), .1, .02),                             # vòi duỗi: còi trượt trên dải giọng, nhỏ (bản cũ 500–1400 Hz che lời)
+    'slurp': lambda e: mixl(glide(900, 380, .35, .14), bp(noise(.35), 600, 2200) * np.sin(np.pi * t_(.35) / .35) * .08),
     'squeak': lambda e: squeak(e.get('v', .5)),
     'boing': lambda e: glide(260, 520, .35, .3 * e.get('v', .5) / .5, .06),
     'stamp': lambda e: stamp(),
     'flutter': lambda e: wings(e.get('d', .6)),
     'land': lambda e: mixl(step(.5) * .6, np.pad(glide(320, 640, .25, .25, .04), (int(.02 * SR), 0))),
     'mmm': lambda e: mmm(1.),
+    'swish': lambda e: T.swish(e.get('d', .45), e.get('v', .4), e.get('lo', 350), e.get('hi', 2600), e.get('up', True)),
+    'wordpop': lambda e: mixl(T.boing(220 + 120 * e.get('n', 0), .35, .3, 2.4, 16.), np.pad(pop(.6) * .45, (int(.02 * SR), 0)), T.bubble(1300 + 500 * e.get('n', 0), .35, .05, 2.4)),
+    'snap': lambda e: mixl(click(1., .25) * .8, np.pad(click(.8, .2) * .5, (int(.045 * SR), 0)), np.pad(T.sparkle(.45, .3, 93, 108, 6, 7, 'up'), (int(.06 * SR), 0))),
+    'zoomin': lambda e: mixl(T.swish(e.get('d', .3), .42, 600, 5200, True, .15, .25), riser(e.get('d', .3), .4)),
+    'zoomout': lambda e: mixl(T.swish(e.get('d', .35), .3, 500, 3800, False, .25, .2), np.pad(T.paper(.3, .35, 5, 4), (int(.1 * SR), 0))),
+    'recall': lambda e: SFX['titlepop'](e) * .6,                 # chữ móc trở lại giữa câu hỏi kết: chỉ một tiếng "ting" nhỏ ở dải cao (không che lời)
 }
 missing = sorted({e['type'] for e in EV} - SFX.keys())
 if missing: sys.exit(f'mix.py: no sound for event types {missing}')
@@ -185,6 +226,9 @@ mix = B['mus'] + B['fx'] + B['amb'] + B['vox']
 mix = np.tanh(mix * 1.1) / 1.1
 # khâu cuối: chặn đỉnh thật ở độ to + 12,3 dB, để loudnorm của mux.sh nâng tuyến tính lên −14 LUFS mà đỉnh vẫn ≤ −1,2 dBTP
 mix, I_mix, ceil_db = T.master(mix); print(f'master: {I_mix:.1f} LUFS, true-peak ceiling {ceil_db:.1f} dBFS')
+# mép đầu file: fade-in 20 ms. Khung đầu là phách nối vòng lặp nên mẫu đầu không bằng 0, và bộ mã AAC vọt đỉnh ở mép file
+# (đo được −0,4 dBTP ở 13 ms, trong khi loudnorm ra −1,5). 20 ms chỉ làm mềm đầu cú kick; trình phát khởi động lại khi lặp chứ không nối liền từng mẫu.
+nf = int(.02 * SR); mix[:nf] *= np.linspace(0, 1, nf)[:, None]
 os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)
 sf.write(os.path.join(HERE, 'out', 'mix.wav'), mix.astype(np.float32), SR, subtype='PCM_24')
 for k in ('mus', 'fx', 'vox'): sf.write(os.path.join(HERE, 'out', f'stem_{k}.wav'), B[k].astype(np.float32), SR, subtype='PCM_16')   # để kiểm lời có bị che không

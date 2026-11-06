@@ -1,0 +1,296 @@
+{
+ "bpm": 120,
+ "dur": 52,
+ "secs": [
+  {
+   "id": "hook",
+   "bar": 0,
+   "bars": 2,
+   "t0": 0,
+   "t1": 4
+  },
+  {
+   "id": "title",
+   "bar": 2,
+   "bars": 1,
+   "t0": 4,
+   "t1": 6
+  },
+  {
+   "id": "meet",
+   "bar": 3,
+   "bars": 5,
+   "t0": 6,
+   "t1": 16
+  },
+  {
+   "id": "trail",
+   "bar": 8,
+   "bars": 6,
+   "t0": 16,
+   "t1": 28
+  },
+  {
+   "id": "farm",
+   "bar": 14,
+   "bars": 4,
+   "t0": 28,
+   "t1": 36
+  },
+  {
+   "id": "album",
+   "bar": 18,
+   "bars": 5,
+   "t0": 36,
+   "t1": 46
+  },
+  {
+   "id": "gag",
+   "bar": 23,
+   "bars": 3,
+   "t0": 46,
+   "t1": 52
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.1,
+   "dur": 1.604,
+   "card": 1,
+   "text": "Could you smell with your fingers?"
+  },
+  {
+   "id": "L02",
+   "who": "crumb",
+   "t": 2,
+   "dur": 1.354,
+   "card": 1,
+   "text": "Ants can! Well, sort of!"
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 4.125,
+   "dur": 1.707,
+   "card": 2,
+   "text": "Big secrets of tiny bugs!"
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 6.5,
+   "dur": 1.417,
+   "card": 3,
+   "text": "This is Crumb, the ant!"
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 8.3,
+   "dur": 0.999,
+   "card": 3,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L06",
+   "who": "loupe",
+   "t": 10,
+   "dur": 1.592,
+   "card": 4,
+   "text": "Ants sniff with their antennae!"
+  },
+  {
+   "id": "L07",
+   "who": "crumb",
+   "t": 13.5,
+   "dur": 1.077,
+   "card": 5,
+   "text": "Tap, tap, hello!"
+  },
+  {
+   "id": "L08",
+   "who": "crumb",
+   "t": 17,
+   "dur": 1.261,
+   "card": 6,
+   "text": "So, they follow a map?"
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 18.6,
+   "dur": 0.628,
+   "card": 6,
+   "text": "Nope!",
+   "catch": true
+  },
+  {
+   "id": "L10",
+   "who": "loupe",
+   "t": 20.2,
+   "dur": 1.49,
+   "card": 7,
+   "text": "They follow a smell trail!"
+  },
+  {
+   "id": "L11",
+   "who": "loupe",
+   "t": 30.3,
+   "dur": 1.736,
+   "card": 8,
+   "text": "Some ants keep tiny cows!"
+  },
+  {
+   "id": "L12",
+   "who": "albie",
+   "t": 38,
+   "dur": 2.297,
+   "card": 9,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L13",
+   "who": "crumb",
+   "t": 41.2,
+   "dur": 1.343,
+   "card": 10,
+   "text": "Can I hold the lens?"
+  },
+  {
+   "id": "L14",
+   "who": "loupe",
+   "t": 42.9,
+   "dur": 0.828,
+   "card": 10,
+   "text": "Not yet!"
+  },
+  {
+   "id": "L15",
+   "who": "crumb",
+   "t": 47.5,
+   "dur": 1.042,
+   "card": 11,
+   "text": "I can carry it!"
+  },
+  {
+   "id": "L16",
+   "who": "loupe",
+   "t": 50.55,
+   "dur": 1.396,
+   "card": 12,
+   "text": "What can YOU smell right now?",
+   "pace": 1
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "sniff": [
+   1,
+   1.3
+  ],
+  "pop": 1.75,
+  "lensHook": 2.9,
+  "walk1": [
+   6,
+   7.6
+  ],
+  "lupIn": 7.6,
+  "zoom": 9.35,
+  "scent": 9.6,
+  "lensOut": 12,
+  "ant2": [
+   12,
+   12.9
+  ],
+  "taps": [
+   13,
+   13.25
+  ],
+  "ant2Out": [
+   14.8,
+   15.5
+  ],
+  "map": 16.6,
+  "nope": 18.6,
+  "rest": [
+   19.4,
+   20
+  ],
+  "trail": 20,
+  "slide": [
+   22,
+   27
+  ],
+  "rollo": [
+   24.4,
+   26.2
+  ],
+  "freeze": [
+   25,
+   25.7
+  ],
+  "aphidTap": [
+   29,
+   29.2
+  ],
+  "drop": 29.6,
+  "sip": 30,
+  "cows": 31.65,
+  "spindle": [
+   33.3,
+   33.8
+  ],
+  "drop2": [
+   33.9,
+   34.35
+  ],
+  "aim": [
+   34.85,
+   35.2
+  ],
+  "snap": 35.3,
+  "zoomIn": [
+   35.4,
+   35.7
+  ],
+  "zoomOut": [
+   35.7,
+   36.05
+  ],
+  "irisB": 35.7,
+  "stamp": [
+   36.5,
+   37,
+   37.5
+  ],
+  "sayIn": 39.4,
+  "gagWalk": [
+   46,
+   47.3
+  ],
+  "gagSniff": 46.6,
+  "lift": [
+   48.6,
+   49.2
+  ],
+  "topple": 49.4,
+  "splat": 49.75,
+  "laugh": 50.2,
+  "finger": [
+   50.6,
+   51.3
+  ],
+  "recall": 51,
+  "loopIris": [
+   51.3,
+   52
+  ]
+ }
+}

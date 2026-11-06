@@ -68,3 +68,25 @@ Bản trước: `out/short-001-v2.mp4`, `out/film-v2.js`, `out/timeline-v2.js`, 
 | [SOUND.md](SOUND.md) | Cập nhật bảng 3 giây đầu. |
 
 Kết quả kiểm tra của bản mới: xem mục cuối trong [SOUND.md](SOUND.md).
+
+## 5. Lượt tối ưu phần mở đầu (Task.md "Tối ưu phần mở đầu")
+
+Bản trước lượt này: `out/short-001-v4.mp4`, `out/film-v4.js`, `out/timeline-v4.js`, `out/mix-v4.py`.
+
+| Yêu cầu | Trong phim bây giờ |
+|---|---|
+| Nhạc vui, sôi động từ giây 0 | Kick mỗi phách từ 0,0 s đến cú giẫm (**mới**), pizzicato trầm đi lên từng nửa cung, mõ gỗ phách lẻ, xylophone "hỏi". Tom dồn ở 1,25 · 1,375 s khi chân lấy đà (**mới**). Cả dàn đánh cùng cú giẫm 1,5 s, rồi polka nảy |
+| Khung đầu: nhân vật có hành động hoặc biểu cảm bất ngờ | Bàn chân The Giant lơ lửng, ngón ngọ nguậy. **Flutter có mặt từ khung đầu (mới):** lơ lửng bên trái cây kem, mắt tròn xoe (×1,2) rồi phồng to (×1,45) trong 0,25 s, nhìn bàn chân; giật nảy lên khi chân giẫm |
+| Một câu ngắn giới thiệu nội dung, gây tò mò | *"Can you taste with your feet?"* (0,0–1,5 s) |
+| Tiêu đề chữ lớn, dễ đọc, màu thiếu nhi | TASTE WITH (tím nho, bóng kem) **bật ra ngay khung đầu (mới)**: 80% → 100% trong 0,22 s, đọc được từ khung 0. FEET?! (hồng berry, cỡ 230) bật từng ký tự ở 0,55 s |
+| SFX khi nhân vật xuất hiện và tiêu đề hiện | 0,0 s: bong bóng cao + phím glock cho chữ, cánh vỗ nhỏ cho Flutter (**mới**). 0,55 s: chuỗi pop cho FEET?!. 1,6 s: swipe khi Miss Loupe bật lên. 2,0 s: cánh vỗ, 2,6 s: tiếng đậu. 3,25 s: tink lấp lánh |
+| Không intro logo dài, không cảnh tĩnh | Không có logo trước hook. Nhạc hiệu 2 s (4–6 s) theo khung tập của kênh, có kính lướt và chữ bật |
+| Vào chuyện chính trong 3 s | 2,0–3,4 s: Flutter đậu lên chỗ kem bẹp, bàn chân lóe sáng trong kính: chính là bí mật 1 |
+| Nhạc khớp chuyển động, biểu cảm, nhịp dựng | Kick theo phách, trống dồn lúc chân lấy đà, cả dàn ở cú giẫm, hợp âm ngân lúc Miss Loupe sững sờ, polka khi Flutter sà xuống, xylophone chạy lên khi kính nở |
+| Giữ nhân vật, phong cách, cốt truyện, thông điệp | Lời, cốt truyện, thời lượng 52,0 s không đổi. Flutter vốn có trong cảnh, chỉ xuất hiện sớm hơn |
+
+Kiểm tra:
+- −14,0 LUFS, đỉnh −1,5 dBFS.
+- Whisper `small.en` 85/85 từ.
+- Câu mở đầu so với mọi thứ còn lại: 13,4 dB, bằng bản trước dù có thêm kick, tom và tiếng chữ bật.
+- Readcheck đạt; không có chỗ tụt tiếng.

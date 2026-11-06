@@ -103,3 +103,98 @@ def mmm(v=1.):
     nasal = lp(src, 1000) + .7 * bp(src, 230, 420)
     e = np.clip(np.minimum(tt / .06, (d - tt) / .16), 0, 1) * (.75 + .25 * np.sin(np.pi * tt / d))
     return fade(norm(nasal) * e, .004, .05) * v * .5
+
+
+# ---------- nhạc cụ mở rộng: nhạc nền theo từng cảnh (lượt nhạc nền 11/2026, MUSIC.md của từng tập) ----------
+# Mỗi tập chọn một "màu" từ các nhạc cụ này (SHORT-001: dàn dây gảy + sáo + celesta; SHORT-002: trống thép calypso),
+# nên các tập không còn chung một kiểu phối. Nhạc cụ cũ ở trên giữ nguyên để bản cũ dựng lại vẫn y hệt.
+def pizz(m, d=.4, v=1.):                        # dây gảy pizzicato: bội âm tắt nhanh dần, thân đàn ấm
+    f = mf(m); tt = t_(d)
+    x = sum(np.sin(2 * np.pi * f * k * tt + .3 * k) * np.exp(-tt * (7 + 4 * k)) / k ** 1.1 for k in range(1, 9) if f * k < 9000)
+    return fade(lp(x * np.minimum(1, tt / .0015), min(4000., f * 6)), .001, .03) * v * .42
+def xylo(m, d=.35, v=1.):                       # xylophone: gỗ cứng, sáng, ngắn
+    f = mf(m); tt = t_(d)
+    x = np.sin(2 * np.pi * f * tt) * np.exp(-tt * 9) + .4 * np.sin(2 * np.pi * 3 * f * tt) * np.exp(-tt * 24) + .12 * np.sin(2 * np.pi * 6.1 * f * tt) * np.exp(-tt * 55)
+    x = x + hp(noise(d), 2500) * env_exp(d, .0015) * .06
+    return fade(x, .001, .02) * v * .36
+def flute(m, d=.5, v=1., vib=.012):             # sáo: sine + hơi thở, rung nhẹ sau 0,12 s
+    f = mf(m); tt = t_(d); fr = f * (1 + vib * np.sin(2 * np.pi * 5.2 * tt) * np.clip((tt - .12) / .15, 0, 1))
+    ph = 2 * np.pi * np.cumsum(fr) / SR
+    x = np.sin(ph) + .2 * np.sin(2 * ph) + .05 * np.sin(3 * ph) + bp(noise(d), f * .8, min(f * 2.5, 9000.)) * .1
+    return fade(x * np.minimum(1, tt / .045) * np.minimum(1, (d - tt) / .07), .004, .03) * v * .3
+def reed(m, d=.5, v=1.):                        # kèn dăm đồ chơi (clarinet/bassoon): bội lẻ, ấm, hơi "rón rén"
+    f = mf(m); tt = t_(d); ph = 2 * np.pi * f * tt
+    x = lp(sum(np.sin(ph * k) / k ** 1.3 for k in (1, 3, 5, 7, 9)) + .15 * np.sin(2 * ph), 1800)
+    return fade(x * np.minimum(1, tt / .03) * np.minimum(1, (d - tt) / .06), .005, .03) * v * .3
+def steel(m, d=.6, v=1.):                       # trống thép (steel pan): chuông tròn, bội 2 và 3 hơi lệch
+    f = mf(m); tt = t_(d)
+    x = np.sin(2 * np.pi * f * tt) * np.exp(-tt * 4) + .5 * np.sin(2 * np.pi * 2.005 * f * tt) * np.exp(-tt * 6.5) + .22 * np.sin(2 * np.pi * 3.01 * f * tt) * np.exp(-tt * 10)
+    return fade(x * np.minimum(1, tt / .004), .002, .05) * v * .32
+def tuba(m, d=.35, v=1., bend=0.):              # tuba đồ chơi "oom-pah"; bend: trượt bao nhiêu nửa cung trong nốt (âm = xuống, "bwomp")
+    tt = t_(d); f = mf(m) * 2 ** (bend * (tt / d) ** 1.5 / 12); ph = 2 * np.pi * np.cumsum(f) / SR
+    x = lp(np.tanh(1.8 * (np.sin(ph) + .5 * np.sin(2 * ph) + .3 * np.sin(3 * ph))), 900)
+    return fade(x * np.minimum(1, tt / .025) * np.exp(-tt * (3 if not bend else 1.5)), .004, .05) * v * .42
+def tom(m=50, v=1.):                            # trống tom mềm
+    d = .35; tt = t_(d); f = mf(m) * (1 + .5 * np.exp(-tt * 30))
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 9) + bp(noise(d), 200, 900) * env_exp(d, .02) * .25
+    return fade(x, .001, .05) * v * .5
+def claves(v=1.):                               # phách gỗ "cốc"
+    d = .06; tt = t_(d); return fade(np.sin(2 * np.pi * 2500 * tt) * np.exp(-tt * 80), .0005, .01) * v * .3
+def brush(v=1., d=.18):                         # chổi quét trống: "xẹt" mềm (chỉ dùng chỗ không có lời)
+    tt = t_(d); return bp(noise(d), 1500, 5000) * np.sin(np.pi * tt / d) ** 1.5 * v * .12
+def tamb(v=1.):                                 # lục lạc mỏng (chỉ dùng chỗ không có lời)
+    d = .12; return hp(noise(d), 6000) * env_exp(d, .025) * v * .12
+def celesta(m, d=1., v=1.):                     # celesta / hộp nhạc: tròn, ngân
+    f = mf(m); tt = t_(d)
+    x = np.sin(2 * np.pi * f * tt) * np.exp(-tt * 3) + .3 * np.sin(2 * np.pi * 4 * f * tt) * np.exp(-tt * 12)
+    return fade(x * np.minimum(1, tt / .002), .001, .08) * v * .28
+def harp(m, d=.6, v=1.):                        # đàn hạc: rải hợp âm nhẹ
+    f = mf(m); tt = t_(d)
+    x = sum(a * np.sin(2 * np.pi * f * k * tt) * np.exp(-tt * (3 + 3 * k)) for k, a in ((1, 1), (2, .45), (3, .2), (4, .08)))
+    return fade(x, .002, .04) * v * .3
+
+
+# ---------- ngữ pháp nhạc dùng chung ----------
+MAJ, MIN = (0, 4, 7), (0, 3, 7)
+def triad(root, kind=MAJ, inv=0):               # hợp âm ba (midi); inv: đảo bao nhiêu nốt lên quãng tám
+    n = [root + i for i in kind]
+    for _ in range(inv): n = n[1:] + [n[0] + 12]
+    return n
+# Mô-típ "bí mật" của kênh: đô–mi–sol đi lên (giống "BIG SE-CRETS" của nhạc hiệu). Mỗi tập, mỗi cảnh đổi nhạc cụ, giọng,
+# nhịp và cách chơi (rón rén, lơ lửng, swing, dãn dài, bừng sáng…), nên khán giả nhận ra kênh mà nhạc không lặp khuôn.
+SECRET = (0, 4, 7)
+def secret(M, inst, root, t, step=.17, g=.6, pan=.2, minor=False, d=None, last=None):
+    """Chơi mô-típ bí mật ở giọng `root` từ thời điểm t; `last`: nốt thứ tư tuỳ chọn (ví dụ quãng tám, để kết câu)."""
+    iv = (0, 3, 7) if minor else SECRET
+    ns = [root + i for i in iv] + ([root + last] if last is not None else [])
+    for i, n in enumerate(ns): M(inst(n, d) if d else inst(n), t + i * step, g * (1 + .08 * i), pan)
+
+
+# ---------- nhạc cụ cho màu "Night Band" (SHORT-003): phím điện, vibraphone, contrabass gảy, búng tay ----------
+def rhodes(m, d=.8, v=1.):                      # đàn phím điện kiểu Rhodes: sine ấm + tiếng "tine" sáng lúc đánh, tremolo nhẹ
+    f = mf(m); tt = t_(d)
+    x = np.sin(2 * np.pi * f * tt) * np.exp(-tt * 2.2) + .3 * np.sin(2 * np.pi * 2 * f * tt) * np.exp(-tt * 4) + .22 * np.sin(2 * np.pi * 7.1 * f * tt) * np.exp(-tt * 28)
+    return fade(x * (1 + .12 * np.sin(2 * np.pi * 4.5 * tt)) * np.minimum(1, tt / .003), .002, .06) * v * .3
+def vibes(m, d=1.2, v=1.):                      # vibraphone: thanh kim loại tròn, rung tremolo
+    f = mf(m); tt = t_(d)
+    x = (np.sin(2 * np.pi * f * tt) + .18 * np.sin(2 * np.pi * 4 * f * tt) * np.exp(-tt * 6)) * np.exp(-tt * 1.8)
+    return fade(x * (1 + .35 * np.sin(2 * np.pi * 5.5 * tt)) * np.minimum(1, tt / .002), .001, .08) * v * .28
+def snap(v=1.):                                 # búng tay
+    d = .07; tt = t_(d)
+    return (bp(noise(d), 1800, 6000) * np.exp(-tt / .008) + np.sin(2 * np.pi * 1900 * tt) * np.exp(-tt / .004) * .3) * v * .4
+def upright(m, d=.5, v=1.):                     # contrabass gảy (đi bộ): ấm, tắt chậm hơn bassn
+    f = mf(m); tt = t_(d)
+    x = (np.sin(2 * np.pi * f * tt) + .35 * np.sin(4 * np.pi * f * tt) + .12 * np.sin(6 * np.pi * f * tt)) * np.exp(-tt * 3) + bp(noise(d), 80, 400) * env_exp(d, .01) * .15
+    return fade(x, .004, .05) * v * .55
+
+
+# ---------- nhạc cụ cho màu "Ant Parade" (SHORT-004): trống snare diễu hành, banjo ----------
+def snare(v=1., d=.16):                         # trống snare đồ chơi: da trống + dây lò xo
+    tt = t_(d); f = 190 * (1 + .4 * np.exp(-tt * 40))
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 30) * .5 + bp(noise(d), 1800, 7000) * np.exp(-tt * 22)
+    return fade(x, .0005, .02) * v * .32
+def banjo(m, d=.45, v=1.):                      # banjo: gảy sáng, tắt nhanh, tiếng "twang" của mặt da
+    f = mf(m); tt = t_(d)
+    x = sum(np.sin(2 * np.pi * f * k * tt * (1 + .002 * k)) * np.exp(-tt * (6 + 5 * k)) / k ** .8 for k in range(1, 9) if f * k < 9000)
+    x = x + hp(noise(d), 3000) * env_exp(d, .004) * .25
+    return fade(lp(x, 6000), .001, .03) * v * .3

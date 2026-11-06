@@ -205,5 +205,52 @@
    "card": 14,
    "text": "Hey... is it tasting me?"
   }
- ]
+ ],
+ "hit": {
+  "stomp": 1.5,
+  "hook": {
+   "boop": 0.62,
+   "lupIn": 1.6,
+   "footOut": 1.95,
+   "bfIn": 2,
+   "bfLand": 2.6,
+   "taps": [
+    2.88,
+    3.12
+   ],
+   "bf": {
+    "x": 590,
+    "y": 948,
+    "k": 118
+   },
+   "hover": {
+    "x": 185,
+    "y": 1150,
+    "k": 125
+   }
+  },
+  "bfLand": 8,
+  "bfZoom": 9.6,
+  "bfGlow": 10.4,
+  "sweet": 14.25,
+  "ckHead": 21.1,
+  "ckNope": 22.3,
+  "ckSilence": 23,
+  "ckEar": 24,
+  "ckLift": 26,
+  "dance": 30,
+  "rolloIn": 36.2,
+  "rolloOut": 39.8,
+  "albieWake": 40.5,
+  "stamp": [
+   40.5,
+   41,
+   41.5
+  ],
+  "albieIn": 43.46,
+  "gagLand": 49,
+  "gagSlurp": 50.1,
+  "gagLaugh": 50.5,
+  "recall": 50.7
+ }
 }

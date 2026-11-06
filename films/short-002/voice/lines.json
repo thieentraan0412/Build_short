@@ -47,5 +47,11 @@
   "voice": "bm_lewis",
   "speed": 0.8,
   "asr": "Not my pages!"
+ },
+ {
+  "id": "L09",
+  "text": "What would YOUR feet taste?",
+  "voice": "af_heart",
+  "speed": 0.9
  }
 ]

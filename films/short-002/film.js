@@ -2,6 +2,7 @@
 import { C, REC, circle, ell, capsule, rrect, poly, ground, popText, subFont, bigFont, clamp, lerp, seg, back, eo, TAU } from '/_shared/kit.js';
 import { BY } from '/_shared/characters/cast/index.js';
 import { star } from '/_shared/characters/face.js';
+import { hookTitle, stickerMatchCut, snapFlash } from '/_shared/episode.js';
 import { makeTalk, blinkAt, flutterWave, ex, rigPt, look, toScreen, loupe, zoomIn, ARM, flutterAt, tasteGlow, albieAt, albiePageTip, badge, shadow, subtitle } from '/_shared/episode.js';
 import { cloud, sun, flower, gingham, watermelon, drop } from './props.js';
 import { at, BEAT, SECS, LINES, CARDS, DUR, HIT } from './timeline.js';
@@ -28,7 +29,7 @@ const STAND = { x: 846, y: 880, r: 200 };                         // chỗ Miss 
 const HOOK = { peek: 1.45, huhEnd: 2.95, twinkle: 2.3, tip: [0, -.25, .95], camLook: [-.12, .02] };
 function cam(t) {
   // móc: đẩy cận vào đầu và cái vòi (cánh nằm dưới chữ móc, không che chữ), giữ cận và trôi nhẹ đến lúc kéo xa
-  const [cx, cy, z] = K([[-1, [575, 815, 1.9]], [HIT.sproing - .12, [575, 815, 1.9]], [HIT.sproing + .2, PUSH[0]], [HIT.pull, PUSH[1]], [3.2, [540, 960, 1]], [HIT.push, [540, 960, 1]], [11.4, [STAND.x - 20, 1150, 1.3]], [15, [STAND.x - 20, 1150, 1.3]]])(t);
+  const [cx, cy, z] = K([[-1, [575, 760, 1.9]], [HIT.sproing - .12, [575, 760, 1.9]], [HIT.sproing + .2, PUSH[0]], [HIT.pull, PUSH[1]], [3.2, [540, 960, 1]], [HIT.push, [540, 960, 1]], [11.4, [STAND.x - 20, 1150, 1.3]], [HIT.aim[0], [STAND.x - 20, 1150, 1.3]], [HIT.aim[1], [640, 1000, 1.25]], [15, [640, 1000, 1.25]]])(t);   // v4: lia về phía Flutter trước cú chụp
   return { cx, cy, z };
 }
 const PUSH = [[630, 765, 2.3], [636, 760, 2.35]];   // đỉnh cánh (y ≈ 520 trong cảnh) nằm dưới chữ móc đã thu nhỏ
@@ -43,7 +44,7 @@ function sproingTongue(t) {
 function flutterPicnic(c, t, detail) {
   const p = ss(seg(t, -.75, HIT.stomp)), landed = t >= HIT.stomp;
   const x = BFX + (landed ? 0 : Math.sin(t * 5) * 30 * (1 - p)), y = BFY - 260 * (1 - p) + (landed ? 0 : Math.sin(t * 7) * 18 * (1 - p));
-  const beta = landed ? .2 + .14 * Math.sin(t * 2.4) + .5 * Math.exp(-(t - HIT.stomp) * 6) : .25 + flutterWave(t) * 1.05;
+  const beta = landed ? .2 + .14 * Math.sin(t * 2.4) + .5 * Math.exp(-(t - HIT.stomp) * 6) : .25 + flutterWave(t + .078) * 1.05;   // lệch nửa nhịp vỗ: khung đầu bắt đúng lúc cánh mở ngang, không che chữ móc
   const tongue = Math.max(t > HIT.sproing - .1 && t < HIT.curl + .6 ? sproingTongue(t) : 0, ss(seg(t, HIT.straw, HIT.straw + .8)));
   const lift = ss(seg(t, 2.7, 3.3)) * (1 - ss(seg(t, HIT.tap - .14, HIT.tap)));      // chân trước nhấc lên rồi dậm xuống
   const glow = ss(seg(t, HIT.tap, HIT.tap + .4)) * (1 - seg(t, 10.0, 10.6));
@@ -52,7 +53,9 @@ function flutterPicnic(c, t, detail) {
   if (t > HIT.sproing - .05 && t < HOOK.peek) name = 'surprised';
   else if (t >= HOOK.peek && t < HIT.curl) { name = 'curious'; lk = [.6, .9]; }
   else if (t >= HIT.curl && t < HOOK.huhEnd) { name = 'confused'; lk = HOOK.camLook; }
+  if (t < HIT.stomp + .15) { name = 'excited'; lk = [.35, .8]; }   // khung đầu (và trong đốm mắt cuối phim): phấn khích, mắt to, nhìn xuống miếng dưa sắp dậm
   const E = ex(BY.flutter, name, { look: lk });
+  if (name === 'excited') E.eye = { ...E.eye, scale: 1.3 };
   if (name === 'surprised') E.eye = { ...E.eye, scale: lerp(1, 1.45, back(seg(t, HIT.sproing - .05, HIT.sproing + .2), 3)), pupil: .3 };
   if (t > HIT.sproing - .05 && t < HIT.sproing + .4) {           // vệt "bung" phẳng sau đầu vòi: cú bật đọc được ở cỡ điện thoại
     const q = seg(t, HIT.sproing - .05, HIT.sproing + .4), tip = bp(HOOK.tip), R = BFK * .36 * eo(Math.min(1, q * 2.4)) * (1 - q * q);
@@ -106,12 +109,14 @@ function lensState(t) {
   x = lerp(x, sp[0] + 10, follow); y = lerp(y, sp[1] + 34, follow);
   x = lerp(x, HEADP[0] + 30, head); y = lerp(y, HEADP[1] + 60, head);
   x = lerp(x, STAND.x, out); y = lerp(y, STAND.y, out); r = lerp(r, STAND.r, out);
+  const aim = ss(seg(t, HIT.aim[0], HIT.aim[1])); x = lerp(x, AIM.x, aim); y = lerp(y, AIM.y, aim); r = lerp(r, AIM.r, aim);   // v4: giơ kính về phía Flutter để "chụp"
   // điểm của cảnh nằm giữa kính khi phóng to
   let fx = FOOT0[0] + 6, fy = FOOT0[1] - 6;
   fx = lerp(fx, sp[0], follow); fy = lerp(fy, sp[1], follow); fx = lerp(fx, HEADP[0] + 26, head); fy = lerp(fy, HEADP[1] + 40, head);
   const m = ss(seg(t, HIT.zoom, HIT.zoom + .5)) * (1 - out), mag = lerp(1.4, lerp(4.0, 3.1, follow), m);
   return { x, y, r, m, mag, fx, fy, out };
 }
+const AIM = { x: 610, y: 820, r: 190 };                          // v4: chỗ kính lúc "chụp" Flutter (toạ độ cảnh)
 const SHOE = K([[12.2, [0]], [12.4, [1]], [HIT.shoe[0], [0]], [HIT.shoe[0] + .12, [.8]], [HIT.shoe[1], [0]], [14, [0]]]);
 function loupePicnic(c, t) {
   if (t < HIT.lensIn) return;
@@ -133,44 +138,43 @@ function loupePicnic(c, t) {
 function sPicnic(c, t, o = {}) {
   const cm = cam(t);
   look(c, cm, () => { picnicWorld(c, t, 0); if (!o.noLup) loupePicnic(c, t); });
-  // chữ móc (ảnh bìa): hiện sẵn từ khung đầu, thu nhỏ biến mất khi máy kéo xa
-  // khi máy đẩy cận, chữ nhỏ lại và nhích lên để cánh không che (cánh nằm dưới chữ)
-  const gone = ss(seg(t, 2.55, 2.9)), up = ss(seg(t, HIT.sproing - .12, HIT.sproing + .2)), sc = (1 - gone) * lerp(1, .7, up);
-  if (gone < 1) {
-    c.save(); c.translate(540, lerp(360, 255, up)); c.scale(sc, sc); c.rotate(-.04 + (t > HIT.stomp ? Math.sin((t - HIT.stomp) * 14) * Math.exp(-(t - HIT.stomp) * 5) * .05 : 0)); c.translate(-540, -360);
-    popText(c, 'TASTY', 540, 255, 180, C.lemon, C.night, -1, -1, { sh: 11 });
-    popText(c, 'SOCKS?!', 540, 430, 180, C.berry, C.cream, -1, -1, { sh: 11 });
-    c.restore();
-  }
+  // chữ móc (v4: hookTitle dùng chung): hiện đủ ở khung 0, từng dòng nảy có tiếng; khi máy đẩy cận, chữ nhỏ lại và nhích lên để cánh không che; thu nhỏ biến mất khi máy kéo xa
+  const gone = ss(seg(t, 2.55, 2.9)), up = ss(seg(t, HIT.sproing - .12, HIT.sproing + .2));
+  hookTitle(c, TITLE, t, { gone: 1 - (1 - gone) * lerp(1, .7, up), dy: -105 * up, cy: 360, rot: -.04, wob: t > HIT.stomp ? Math.sin((t - HIT.stomp) * 14) * Math.exp(-(t - HIT.stomp) * 5) * .05 : 0 });
   if (t > HIT.sweet - .05 && t < 10.4) popText(c, 'SWEET!', 540, 420, 180, C.berry, C.cream, t, HIT.sweet, { step: .05, sh: 10 });
 }
 
 /* ================= SỔ: sticker, Albie, rồi Flutter nếm góc trang ================= */
 const AL = { x: 262, y: 1440, k: 240 }, PAGE = [.82, -1.35, -.15], BFK2 = 118;
+const TITLE = [{ text: 'TASTY', y: 258, px: 186, fill: C.lemon, shadow: C.night, t0: HIT.words[0] }, { text: 'SOCKS?!', y: 446, px: 190, fill: C.berry, shadow: C.cream, t0: HIT.words[1] }];
+const SLOT = { x: 280, y: 480, r: 140 }, stickerArt = cc => flutterAt(cc, -12, 92, 78, { beta: .3 });
 const PAGE_SPOT = rigPt(AL.x, AL.y, AL.k, .32, 0, albiePageTip(PAGE, .74));
 function sAlbum(c, t, o = {}) {
   ground(c, C.sky); ell(c, 200, 1760, 900, 420, 0, C.skyL);
   ell(c, 540, 1720, 980, 330, 0, C.leaf); ell(c, 540, 1760, 900, 280, 0, C.leafD);
+  const pageOff = ss(seg(t, HIT.recall - .2, HIT.recall + .1));   // v4: trang sổ trượt lên khỏi khung để chữ móc trở lại trên nền trời
+  c.save(); c.translate(0, -980 * pageOff);
   rrect(c, 96, 218, 890, 560, 54, C.grape); rrect(c, 84, 200, 890, 560, 54, C.cream);
   // một sticker lớn
   const t0 = HIT.stamp;
   circle(c, 280, 480, 142, '#EBDDBC');
-  if (t >= t0 - .3) {
-    const p = t >= t0 ? back(seg(t, t0, t0 + .22), 2.6) : 1, fly = 760 * (1 - ss(seg(t, t0 - .3, t0)));
-    badge(c, 280 + fly, 480 - fly * .25, 140, C.mint, cc => flutterAt(cc, -12, 92, 78, { beta: .3 }), -.05, t >= t0 ? lerp(1.25, 1, p) : .9);
+  if (t >= HIT.irisB) {                                          // v4: sticker nằm sẵn ở chỗ (máy lùi ra từ chính nó), nảy lên ở cú dán
+    const p = t >= t0 ? back(seg(t, t0, t0 + .22), 2.6) : 1;
+    badge(c, SLOT.x, SLOT.y, SLOT.r, C.mint, stickerArt, -.05, t >= t0 ? lerp(1.2, 1, p) : 1);
     popText(c, 'Taste', 470, 468, 122, C.berry, null, t, t0 + .1, { align: 'left', step: .02 });
     popText(c, 'with feet', 470, 560, 76, C.ink, null, t, t0 + .2, { align: 'left', step: .012, font: subFont });
   }
+  c.restore();
   // Albie
   const landed = t >= HIT.land, talk = talkAt(t, 'albie');
   const hop = .1 * Math.sin(Math.PI * seg(t, t0, t0 + .22)) + .14 * Math.sin(Math.PI * seg(t, HIT.land + .05, HIT.land + .3));
   let E;
-  if (!landed) E = ex(BY.albie, 'happy', { talk, look: t < 15.6 ? [.45, -.65] : [.15, -.05], blink: talk ? 0 : blinkAt(t, .4) });
-  else if (t < 18.25) E = ex(BY.albie, 'surprised', { look: [.75, .35] });
+  if (!landed) E = ex(BY.albie, 'happy', { talk, look: t < HIT.stamp + 1.1 ? [.45, -.65] : [.15, -.05], blink: talk ? 0 : blinkAt(t, .4) });
+  else if (t < 17.85) E = ex(BY.albie, 'surprised', { look: [.75, .35] });
   else if (talk > 0) E = ex(BY.albie, 'shout', { talk, look: [.75, .35] });
   else E = ex(BY.albie, 'worried', { look: [.75, .35], fx: true });
   shadow(c, AL.x + 18, AL.y + 4, 220, .18);
-  albieAt(c, AL.x, AL.y, AL.k, { E, hop, tabsUp: landed ? 1 - seg(t, HIT.land, HIT.land + 1.5) : 0, page: t > 15.3 ? PAGE : null, curl: -.2, fx: landed && talk === 0 && t > 19.9 });
+  albieAt(c, AL.x, AL.y, AL.k, { E, hop, tabsUp: landed ? 1 - seg(t, HIT.land, HIT.land + 1.5) : 0, page: t > 14.9 ? PAGE : null, curl: -.2, fx: landed && talk === 0 && t > 19.55 });
   // Flutter bay vào, đậu lên góc trang, nếm giấy
   if (t >= HIT.fly && t < HIT.takeoff) {
     const p = ss(seg(t, HIT.fly, HIT.land)), spot = [PAGE_SPOT[0], PAGE_SPOT[1] - hop * AL.k];
@@ -201,6 +205,12 @@ function loopOut(c, t) {
 }
 
 /* ---------- iris qua kính: picnic → sổ ---------- */
+function matchCut(c, t) {                                      // v4: kính "chụp" Flutter → máy lao xuyên qua mặt kính → hình hoá thành sticker → lùi ra lộ trang sổ
+  const cm = cam(HIT.zoomIn[0]), L = lensState(HIT.zoomIn[0]), [sx, sy] = toScreen(cm, L.x, L.y);
+  stickerMatchCut(c, t, { t0: HIT.zoomIn[0], t1: HIT.zoomOut[0], t2: HIT.zoomOut[1], lens: { x: sx, y: sy, r: L.r * cm.z }, from: cc => sPicnic(cc, HIT.zoomIn[0]), to: (cc, tt) => sAlbum(cc, tt), slot: SLOT, fill: C.mint, draw: stickerArt });
+}
+function lensScreen(t) { const cm = cam(t), L = lensState(t), [x, y] = toScreen(cm, L.x, L.y); return { x, y, r: L.r * cm.z }; }
+function recallTitle(c, t) { hookTitle(c, TITLE, -1, { gone: 1 - back(seg(t, HIT.recall, HIT.recall + .32), 2.4), cy: 360, rot: -.04 }); }   // v4: chữ móc trở lại đúng chỗ, đúng cỡ của khung đầu
 function irisLens(c, t) {
   const cm = cam(HIT.irisA), L = lensState(HIT.irisA), [sx, sy] = toScreen(cm, L.x, L.y), r0 = L.r * cm.z;
   const u = ei(seg(t, HIT.irisA, HIT.irisB)), R = lerp(r0, 2200, u);
@@ -211,9 +221,10 @@ function irisLens(c, t) {
 export function drawFilm(c, t) {
   t = clamp(t, 0, DUR - .001);
   c.save();
-  if (t >= HIT.irisA && t < HIT.irisB) irisLens(c, t);
-  else if (t < HIT.irisA) sPicnic(c, t);
+  if (t >= HIT.zoomIn[0] && t < HIT.zoomOut[1]) matchCut(c, t);
+  else if (t < HIT.zoomIn[0]) { sPicnic(c, t); snapFlash(c, t, HIT.snap, lensScreen(t)); }
   else { sAlbum(c, t); loopOut(c, t); }
+  if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
   if (l) subtitle(c, l, t);
   c.restore();

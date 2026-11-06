@@ -11,9 +11,12 @@ export function cookieCrumb(r, p, s, bias = .2) {
   [[-.4, -.3, .7], [.35, -.1, .75], [-.05, .35, .8], [.5, .4, .6]].forEach(([a, b, z], i) => r.decal(p, [s * 1.1, s * .78, s * .9], [a, b, z], s * (.13 + (i % 2) * .05), c => { c.fillStyle = C.honeyD; c.beginPath(); c.arc(0, 0, 1, 0, TAU); c.fill(); }, { bias: .003 }));
 }
 // râu: cuống thẳng lên tới khuỷu, phần sau là đường cong; q = 0 móc nhẹ, 1 = dấu hỏi tròn
-function antennaQ(r, base, elbow, sd, q, col) {
+// reach 0..1: râu nghiêng về phía trước (mặt nhân vật, +z) để chạm đầu râu với kiến khác (SHORT-005). 0 = như cũ.
+export const antennaElbow = (sd, y, reach = 0) => [sd * (.22 - .06 * reach), y + .12 * reach, .34 + .28 * reach];
+export const antennaU = (sd, reach = 0) => [sd * (.42 - .36 * reach), 0, .5 * reach];
+function antennaQ(r, base, elbow, sd, q, col, reach = 0) {
   r.limb([base, elbow], .07, col, { bias: .06 });
-  r.plane(elbow, [sd * .42, 0, 0], [0, .42, 0], c => {
+  r.plane(elbow, antennaU(sd, reach), [0, .42, 0], c => {
     c.strokeStyle = col; c.lineWidth = .16; c.lineCap = 'round'; c.beginPath();
     if (q > .5) { c.moveTo(0, 0); c.lineTo(0, -.35); c.arc(.42, -.78, .55, Math.PI * .72, Math.PI * 1.95 + .9); }   // dấu hỏi
     else { c.moveTo(0, 0); c.quadraticCurveTo(.1, -.9, .62, -1.05); c.quadraticCurveTo(1.0, -1.1, 1.0, -.72); }   // móc nhẹ
@@ -24,7 +27,7 @@ function antennaQ(r, base, elbow, sd, q, col) {
 
 export const CRUMB_POSE = {
   lift: 0, carry: 'crumb', armL: [-.32, -2.5, .25], armR: [.32, -2.5, .25], q: 0,
-  feet: [[-.4, 0, .3], [-.48, 0, -.1], [.4, 0, .3], [.48, 0, -.1]], prop: null, bodyLean: 0,
+  feet: [[-.4, 0, .3], [-.48, 0, -.1], [.4, 0, .3], [.48, 0, -.1]], prop: null, bodyLean: 0, reach: 0,
 };
 
 export const CRUMB = {
@@ -53,8 +56,8 @@ export const CRUMB = {
     const H = [0, Y(-1.58), .14];
     r.ball(H, .5, body, { bias: .05, shade: { col: dark, k: .18 } });
     bugFace(r, H, .5, E, { eyeA: .38, eyeEl: -.04, eyeR: .4, lid: body, cheekA: .74, cheekEl: .3, mouthEl: .46, mouthW: .24 });
-    const q = E.q ?? P.q;
-    for (const sd of [-1, 1]) antennaQ(r, [sd * .14, Y(-1.98), .3], [sd * .22, Y(-2.32), .34], sd, q, dark);
+    const q = E.q ?? P.q, rr = Array.isArray(P.reach) ? P.reach : [P.reach || 0, P.reach || 0];
+    for (const sd of [-1, 1]) { const re = rr[sd < 0 ? 0 : 1]; antennaQ(r, [sd * .14, Y(-1.98), .3], antennaElbow(sd, Y(-2.32), re), sd, q, dark, re); }
     // đồ vác trên đầu
     if (P.carry === 'crumb') cookieCrumb(r, V.add(V.lerp(P.armL, P.armR, .5), [0, -.44 - L, -.05]), .5, .2);
     if (P.prop) P.prop(r, P);

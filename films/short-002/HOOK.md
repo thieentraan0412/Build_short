@@ -66,3 +66,25 @@ Bản trước: `out/short-002-v2.mp4`, `out/film-v2.js`, `out/timeline-v2.js`, 
 | [SOUND.md](SOUND.md) | Cập nhật bảng 3 giây đầu. |
 
 Khung từ 0 đến 0,5 s và khung cuối không đổi, nên vòng lặp vẫn liền. Kết quả kiểm tra của bản mới: xem mục cuối trong [SOUND.md](SOUND.md).
+
+## 5. Lượt tối ưu phần mở đầu (Task.md "Tối ưu phần mở đầu")
+
+Bản trước lượt này: `out/short-002-v4.mp4`, `out/film-v4.js`, `out/timeline-v4.js`, `out/mix-v4.py`.
+
+| Yêu cầu | Trong phim bây giờ |
+|---|---|
+| Nhạc vui, sôi động từ giây 0 | 0,0 s: phách D (kick, bass, steel pan, glock) nối từ cuối phim. **Từ 0,6 s nhịp calypso chạy liền** (bass tresillo, son clave, kick) thay cho đoạn nhón chân (**mới**). Khoảng khựng khi mắt Flutter phồng to rút từ 0,45 s xuống 0,2 s |
+| Khung đầu: nhân vật có hành động hoặc biểu cảm bất ngờ | Flutter dang cánh lao xuống miếng dưa, **mắt to phấn khích (×1,3) nhìn xuống chỗ sắp dậm (mới)**. Nhịp vỗ cánh lệch nửa chu kỳ để khung đầu bắt đúng lúc cánh mở ngang |
+| Một câu ngắn giới thiệu nội dung, gây tò mò | *"What if your socks could taste your snack?"* (0,1–2,6 s) |
+| Tiêu đề chữ lớn, dễ đọc, màu thiếu nhi | TASTY SOCKS?! (vàng chanh / hồng berry) **bật ra ở khung đầu (mới)**: 85% → 100% trong 0,22 s. Ở khung 0 không còn bị cánh che, vì máy hạ thấp một chút và cánh đang mở |
+| SFX khi nhân vật xuất hiện và tiêu đề hiện | 0,0 s: bong bóng cao + phím glock cho chữ (**mới**), cánh vỗ. 0,5 s: bẹp mọng nước + nước bắn. 0,875 s: sproing. 2,6 s: swipe khi Miss Loupe trượt vào |
+| Không intro logo dài, không cảnh tĩnh | Bản B không có cảnh tựa: vào thẳng hook |
+| Vào chuyện chính trong 3 s | 2,75 s: *"Let's zoom in!"*, kính tiến vào bàn chân |
+| Nhạc khớp chuyển động, biểu cảm, nhịp dựng | Phách D ở 0,0 s giải về G đúng cú dậm 0,5 s. Xylophone vút lên theo vòi bung. Khựng một móc đơn khi mắt phồng to. Pizzicato đi xuống theo vòi cuộn. Nhịp đầy khi máy kéo xa |
+| Giữ nhân vật, phong cách, cốt truyện, thông điệp | Lời, cốt truyện, thời lượng 22,0 s không đổi. Vòng lặp vẫn liền: khung cuối vẽ lại đúng khung đầu (cùng biểu cảm, cỡ chữ, góc máy) |
+
+Kiểm tra:
+- −13,9 LUFS, đỉnh −1,4 dBFS.
+- Whisper `small.en` (VAD) 34/34 từ; `base.en` 32/34, hai chỗ lệch vẫn là "its" ↔ "it's".
+- Câu mở đầu so với nhạc: 12,8 dB (bản trước 13,5). Nhịp calypso dưới câu hỏi đã được hạ để giữ lời rõ.
+- Readcheck đạt; không có chỗ tụt tiếng.

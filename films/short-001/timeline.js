@@ -29,13 +29,13 @@ export const IRIS = [
 export const HIT = {
   stomp: at(0, 3),
   // nhịp móc 0–3,5 s (HOOK.md): chạm thử kem, Miss Loupe bật lên, chân rút đi, Flutter sà xuống và dậm chân
-  hook: { boop: .62, lupIn: 1.6, footOut: 1.95, bfIn: 2.0, bfLand: 2.6, taps: [2.88, 3.12], bf: { x: 590, y: 948, k: 118 } },
+  hook: { boop: .62, lupIn: 1.6, footOut: 1.95, bfIn: 2.0, bfLand: 2.6, taps: [2.88, 3.12], bf: { x: 590, y: 948, k: 118 }, hover: { x: 185, y: 1150, k: 125 } },   // hover: Flutter lơ lửng từ khung đầu
   bfLand: at(4), bfZoom: 9.6, bfGlow: 10.4, sweet: at(7, .5),
   ckHead: 21.1, ckNope: 22.3, ckSilence: at(11, 2), ckEar: at(12), ckLift: 26,
   dance: at(15),
   rolloIn: at(18, .4), rolloOut: at(19, 3.6),
   albieWake: at(20, 1), stamp: [at(20, 1), at(20, 2), at(20, 3)], albieIn: at(21) + 1.46,   // sticker đầu tiên đánh thức Albie
-  gagLand: at(24, 2), gagSlurp: at(24, 2) + 1.1, gagLaugh: at(25, 1),
+  gagLand: at(24, 2), gagSlurp: at(24, 2) + 1.1, gagLaugh: at(25, 1), recall: at(25, 1.4),   // recall: chữ móc trở lại ở cuối (QUALITY.md §6)
 };
 
 // t: lúc bắt đầu nói (giây). dur: độ dài thật của giọng (voice/dur.json). who: giọng trong _shared/voices.js. card: các câu chung một tấm phụ đề.
@@ -84,7 +84,10 @@ export const BOARD = [
 export const EV = [
   // mở (0–3,5 s, HOOK.md): chân lơ lửng trên kem → FEET?! bật ra, ngón chân chạm thử "boop" → lấy đà → giẫm bẹp kem → giọt kem văng, chữ lắc
   // → Miss Loupe bật lên sững sờ → chân vút đi → Flutter sà xuống chỗ kem bẹp, dậm chân → lóe sáng trong kính
+  { t: 0, type: 'titlepop' },                                      // khung đầu: chữ TASTE WITH bật ra (bong bóng cao + phím glock, trên dải giọng)
+  { t: 0, type: 'flutter', d: .45, v: .45, pan: -.6 },             // Flutter lơ lửng bên trái, tròn mắt (cánh vỗ nhỏ)
   { t: .55, type: 'pops', n: 6, step: .035, m: 91, v: .4 },        // FEET?! hiện từng ký tự (.55 + i·.035)
+  { t: .02, type: 'wordpop', n: 0 }, { t: .56, type: 'wordpop', n: 1 },   // v3: mỗi dòng chữ móc nảy một tiếng
   { t: HIT.hook.boop, type: 'boop' },                               // ngón chân chạm thử kem, ngay sau chữ "taste"
   { t: .9, type: 'windup', d: .4 },                                 // chân nhấc lên lấy đà .9–1,3: tách-tách lên dây cót (tiếng ngắn, không che chữ "feet")
   { t: 1.32, type: 'drop', d: .18 },                                // chân rơi 1,3–1,5: gió vút ở dải cao
@@ -154,4 +157,5 @@ export const EV = [
   { t: HIT.gagLand + .25, type: 'tink', f: 4300, v: .22 }, { t: HIT.gagLand + .5, type: 'tink', f: 3600, v: .22 }, { t: HIT.gagLand + .75, type: 'tink', f: 4100, v: .22 },   // chân nếm thử trên kính
   { t: HIT.gagSlurp, type: 'slurp' },
   { t: HIT.gagLaugh, type: 'boing', v: .5 },
+  { t: HIT.recall, type: 'recall' },                               // v3: chữ TASTE WITH FEET?! trở lại trên khung cuối
 ];

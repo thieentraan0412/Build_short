@@ -12,7 +12,7 @@ if (bad.length) { console.error('no voice for', bad.map(l => `${l.id} (${l.who})
 // bản B đọc chậm hơn (T.PACE, ví dụ .85); câu cửa miệng (catch: true) giữ tốc độ chuẩn để giống hệt mọi tập
 const speedOf = l => +(VOICES[l.who].speed * (l.catch ? 1 : (l.pace ?? T.PACE ?? 1))).toFixed(3);
 w('voice/lines.json', T.LINES.map(l => ({ id: l.id, text: l.say || l.text, voice: VOICES[l.who].voice, speed: speedOf(l), ...((l.asr || l.say) && { asr: l.asr || l.text }) })));
-w('timeline.json', { bpm: T.BPM, dur: T.DUR, secs: T.SECS, lines: T.LINES });
+w('timeline.json', { bpm: T.BPM, dur: T.DUR, secs: T.SECS, lines: T.LINES, hit: T.HIT });   // hit: mốc hành động, để nhạc khớp với hình
 w('cards.json', T.CARDS.map(({ t0, t1, text }) => ({ t0, t1, text })));
 if (T.CARD_CLASHES.length) { console.error('subtitle cards overlap:', T.CARD_CLASHES); process.exit(1); }
 // lời đọc chồng nhau thì không nghe được

@@ -1,0 +1,103 @@
+[
+ {
+  "id": "L01",
+  "text": "Could you smell with your fingers?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L02",
+  "text": "Ants can! Well, sort of!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L03",
+  "text": "Big secrets of tiny bugs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L04",
+  "text": "This is Crumb, the ant!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L05",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L06",
+  "text": "Ants sniff with their antennae!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L07",
+  "text": "Tap, tap, hello!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L08",
+  "text": "So, they follow a map?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L09",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L10",
+  "text": "They follow a smell trail!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L11",
+  "text": "Some ants keep tiny cows!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L12",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L13",
+  "text": "Can I hold the lens?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L14",
+  "text": "Not yet!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L15",
+  "text": "I can carry it!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L16",
+  "text": "What can YOU smell right now?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

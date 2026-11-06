@@ -1,0 +1,72 @@
+[
+ {
+  "id": "L01",
+  "text": "What if you said hello with a sniff?",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L02",
+  "text": "That's how I say hi!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L03",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L04",
+  "text": "Their antennae are like noses!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L05",
+  "text": "Same smell? Same home!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L06",
+  "text": "Hey, who's that?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L07",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L08",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L09",
+  "text": "Hello, lens!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L10",
+  "text": "You don't smell like home!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L11",
+  "text": "How do YOU say hi?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]
