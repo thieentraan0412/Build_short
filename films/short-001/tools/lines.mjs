@@ -10,7 +10,7 @@ fs.mkdirSync(path.join(film, 'voice'), { recursive: true });
 const bad = T.LINES.filter(l => !VOICES[l.who]);
 if (bad.length) { console.error('no voice for', bad.map(l => `${l.id} (${l.who})`)); process.exit(1); }
 w('voice/lines.json', T.LINES.map(({ id, who, text, say, asr }) => ({ id, text: say || text, ...VOICES[who], ...(asr && { asr: asr }), ...(say && { asr: asr || text }) })));
-w('timeline.json', { bpm: T.BPM, dur: T.DUR, secs: T.SECS, lines: T.LINES });
+w('timeline.json', { bpm: T.BPM, dur: T.DUR, secs: T.SECS, lines: T.LINES, hit: T.HIT });   // hit: mốc hành động, để nhạc khớp với hình
 w('cards.json', T.CARDS.map(({ t0, t1, text }) => ({ t0, t1, text })));
 if (T.CARD_CLASHES.length) { console.error('subtitle cards overlap:', T.CARD_CLASHES); process.exit(1); }
 // lời đọc chồng nhau thì không nghe được

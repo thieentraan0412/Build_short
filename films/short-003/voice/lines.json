@@ -1,0 +1,62 @@
+[
+ {
+  "id": "L01",
+  "text": "What if your ears were on your knees?",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L02",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L03",
+  "text": "Its ears are on its front legs!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L04",
+  "text": "Each one is like a tiny drum!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L05",
+  "text": "Hello, little ears!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L06",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L07",
+  "text": "Ears on its head?",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L08",
+  "text": "NOPE!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L09",
+  "text": "Oops! Sorry!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L10",
+  "text": "Where are YOUR ears?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

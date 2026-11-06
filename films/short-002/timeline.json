@@ -5,11 +5,11 @@
   {
    "id": "picnic",
    "t0": 0,
-   "t1": 14
+   "t1": 13.8
   },
   {
    "id": "album",
-   "t0": 14,
+   "t0": 13.8,
    "t1": 22
   }
  ],
@@ -67,7 +67,7 @@
   {
    "id": "L07",
    "who": "albie",
-   "t": 15,
+   "t": 14.6,
    "dur": 2.297,
    "card": 5,
    "text": "Six legs? In you go!",
@@ -76,12 +76,71 @@
   {
    "id": "L08",
    "who": "albie",
-   "t": 18.25,
+   "t": 17.85,
    "dur": 1.718,
    "card": 6,
    "text": "Not my pages!",
    "say": "NOT my pages!",
    "pace": 1
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 20.45,
+   "dur": 1.314,
+   "card": 7,
+   "text": "What would YOUR feet taste?",
+   "pace": 1
   }
- ]
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "stomp": 0.5,
+  "sproing": 0.875,
+  "curl": 1.9,
+  "pull": 2.45,
+  "lensIn": 2.6,
+  "zoom": 3.6,
+  "tap": 4.5,
+  "sweet": 7,
+  "sigA": 8,
+  "sigB": 8.9,
+  "straw": 9.2,
+  "sip": 10.2,
+  "lensOut": 10.3,
+  "push": 10.6,
+  "wow": 11.75,
+  "shoe": [
+   12.5,
+   12.75
+  ],
+  "shrug": 13,
+  "aim": [
+   13,
+   13.35
+  ],
+  "snap": 13.4,
+  "zoomIn": [
+   13.5,
+   13.8
+  ],
+  "zoomOut": [
+   13.8,
+   14.15
+  ],
+  "irisA": 13.5,
+  "irisB": 13.8,
+  "stamp": 14.3,
+  "fly": 16.8,
+  "land": 17.6,
+  "sipPage": 18.5,
+  "mmm": 19.65,
+  "recall": 21,
+  "takeoff": 21.25,
+  "spot": 21.55,
+  "loop": 22
+ }
 }

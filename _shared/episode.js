@@ -1,6 +1,7 @@
 // Thư viện dựng tập: các hàm dùng lại ở mọi Short (rút ra từ films/short-001/film.js).
 // Nhân vật vẽ bằng rig dùng chung (drawChar); hàm ở đây chỉ đặt nhân vật vào cảnh, nhép miệng theo giọng thật, phụ đề, máy quay.
-import { C, REC, circle, rrect, subFont, wrap, seg, back, TAU } from './kit.js';
+import { C, REC, circle, rrect, subFont, wrap, popText, lerp, seg, back, eo, TAU } from './kit.js';
+import { ei } from '/core/lib.js';
 import { drawChar, resolveExpr } from './characters/stage.js';
 import { BY } from './characters/cast/index.js';
 
@@ -105,6 +106,47 @@ export function badge(c, x, y, r, fill, draw, rot = 0, s = 1) {
   circle(c, 8, 10, r, 'rgba(30,27,58,.18)'); circle(c, 0, 0, r, fill);
   c.save(); c.beginPath(); c.arc(0, 0, r, 0, TAU); c.clip(); draw(c); c.restore();
   c.restore();
+}
+/* ---------- tựa móc của mọi Short (QUALITY.md §1) ----------
+   Chữ to, tương phản cao, đọc được ngay ở khung 0 (hiện đủ 100%, để khung cuối của vòng lặp khớp đúng), rồi từng dòng nảy lên
+   (1 → ≈1,17 → 1 trong 0,32 s, kèm một tiếng động ở mỗi dòng). lines: [{ text, y, px, fill, shadow, t0 }].
+   o.gone 0..1: thu nhỏ biến mất (âm: phóng to quá đà khi chữ trở lại ở cuối phim); o.wob: lắc; o.cx, o.cy: tâm co giãn; o.rot: nghiêng */
+export function hookTitle(c, lines, t, o = {}) {
+  const gone = o.gone || 0; if (gone >= 1) return;
+  const cx = o.cx ?? 540, cy = o.cy ?? 350;
+  c.save(); c.translate(cx, cy + (o.dy || 0)); c.scale(1 - gone, 1 - gone); c.rotate((o.rot ?? -.03) + (o.wob || 0)); c.translate(-cx, -cy);   // o.dy: nhích cả khối lên/xuống (ví dụ nhường chỗ cho cánh bướm)
+  for (const L of lines) {
+    const t0 = L.t0 ?? 0, u = seg(t, t0, t0 + .32), p = t < t0 ? 0 : Math.sin(Math.PI * u) * (1 - .35 * u), s = 1 + .17 * p, my = L.y - L.px * .34;
+    c.save(); c.translate(cx, my); c.scale(s, s); c.translate(-cx, -my);
+    popText(c, L.text, cx, L.y, L.px, L.fill, L.shadow, -1, -1, { sh: L.px * .065 });
+    c.restore();
+  }
+  c.restore();
+}
+/* ---------- chuyển cảnh kính → sổ (QUALITY.md §2): "chụp" rồi match cut qua sticker ----------
+   t0–t1: máy lao xuyên qua mặt kính, hình trong kính hoá thành sticker (vành kính mỏng dần thành mép sticker);
+   t1–t2: máy lùi ra từ chính sticker đó, lộ trang sổ (sticker đã nằm đúng chỗ của nó trên trang).
+   o = { t0, t1, t2, lens: {x, y, r} (toạ độ khung lúc t0), from(c) vẽ khung trước (đứng lại), to(c, t) vẽ trang sổ,
+         slot: {x, y, r} chỗ sticker trên trang, fill màu nền sticker, draw(cc) hình trong sticker (cỡ theo slot.r), rim màu vành kính } */
+export const MATCH_R = 1150;
+export function stickerMatchCut(c, t, o) {
+  if (t < o.t1) {
+    const u = ei(seg(t, o.t0, o.t1)); o.from(c);
+    const cx = lerp(o.lens.x, 540, u), cy = lerp(o.lens.y, 960, u), R = lerp(o.lens.r * .94, MATCH_R, u);
+    circle(c, cx, cy, R + 22 * (1 - u), o.rim || C.berry);
+    badge(c, cx, cy, R, o.fill, cc => { const k = R / o.slot.r; cc.scale(k, k); o.draw(cc); }, -.05 * u, 1);
+    const f = 1 - seg(t, o.t0, o.t0 + .2); if (f > 0) circle(c, cx, cy, R, `rgba(255,255,255,${.6 * f})`);
+  } else {
+    const v = eo(seg(t, o.t1, o.t2)), k = lerp(MATCH_R / o.slot.r, 1, v), cx = lerp(540, o.slot.x, v), cy = lerp(960, o.slot.y, v);
+    c.save(); c.translate(cx, cy); c.scale(k, k); c.translate(-o.slot.x, -o.slot.y); o.to(c, t); c.restore();
+  }
+}
+// chớp sáng trong mặt kính lúc "chụp" (L: {x, y, r} toạ độ khung)
+export function snapFlash(c, t, t0, L) {
+  const a = 1 - seg(t, t0, t0 + .3); if (a <= 0 || t < t0) return;
+  circle(c, L.x, L.y, L.r * .96, `rgba(255,255,255,${.85 * a})`);
+  c.strokeStyle = C.lemon; c.lineCap = 'round'; c.lineWidth = 10 * a;
+  for (let i = 0; i < 8; i++) { const g = i / 8 * TAU, r0 = L.r * 1.1, r1 = L.r * (1.1 + .35 * (1 - a)); c.beginPath(); c.moveTo(L.x + Math.cos(g) * r0, L.y + Math.sin(g) * r0); c.lineTo(L.x + Math.cos(g) * r1, L.y + Math.sin(g) * r1); c.stroke(); }
 }
 export const shadow = (c, x, y, w, a = .16) => { c.fillStyle = `rgba(30,27,58,${a})`; c.beginPath(); c.ellipse(x, y, w, w * .17, 0, 0, TAU); c.fill(); };
 

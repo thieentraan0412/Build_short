@@ -14,7 +14,8 @@ VOICE
 MUSIC AND SOUND EFFECTS
   Original. Every note, Flutter's "Mmm!" hum and every effect are synthesized in mix.py,
   _shared/audio/band.py and the cartoon effects of _shared/audio/toon.py (numpy/scipy), with the
-  procedural helpers of core/audio/sfx.py.
+  procedural helpers of core/audio/sfx.py. The scene-by-scene score (MUSIC.md) uses the synthesized
+  pizzicato, xylophone, flute, reed, steel pan, tuba, celesta and harp voices of band.py.
   No samples, loops or recordings by third parties.
 
 PICTURE

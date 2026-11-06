@@ -7,6 +7,7 @@ import { BY } from '/_shared/characters/cast/index.js';
 import { flower, cloud, sun, iceCream, shadow, badge } from './props.js';
 import { at, BEAT, SECS, IRIS, LINES, CARDS, WAGGLE_DEG, DUR, HIT } from './timeline.js';
 import { track, ss, ei } from '/core/lib.js';
+import { hookTitle } from '/_shared/episode.js';
 
 const secBy = id => SECS.find(s => s.id === id);
 const K = keys => track(keys);
@@ -137,23 +138,28 @@ function shockedLoupe(look) {                                    // sững sờ:
   const E = ex(BY.loupe, 'surprised', { look }); E.eye = { ...E.eye, scale: 1.34, pupil: .24, glint: 2 }; E.mouth = 'shout';
   return E;
 }
-function flutterHook(c, t, detail) {                             // Flutter sà xuống đúng chỗ kem bẹp, dậm hai cái; chỉ trong kính mới thấy bàn chân sáng
-  if (t <= HK.bfIn) return;
-  const p = ss(seg(t, HK.bfIn, HK.bfLand)), landed = t >= HK.bfLand, B = HK.bf;
-  const x = lerp(-160, B.x, p), y = lerp(820, B.y, p) - (landed ? 0 : Math.sin(p * Math.PI) * 60);   // bay thấp dưới chữ FEET?!
+function flutterHook(c, t, detail) {                             // Flutter có mặt từ khung đầu: lơ lửng bên trái, tròn mắt nhìn bàn chân, giật nảy khi chân giẫm;
+  const p = ss(seg(t, HK.bfIn, HK.bfLand)), landed = t >= HK.bfLand, B = HK.bf, H = HK.hover;   // rồi sà xuống đúng chỗ kem bẹp, dậm hai cái; chỉ trong kính mới thấy bàn chân sáng
+  const flinch = t > stomp ? Math.sin(Math.PI * seg(t, stomp, stomp + .35)) : 0;
+  const hx = H.x + Math.sin(t * 2.4) * 10, hy = H.y + Math.sin(t * 4.2) * 14 - 60 * flinch;
+  const x = lerp(hx, B.x, p), y = lerp(hy, B.y, p) - (landed ? 0 : Math.sin(p * Math.PI) * 60), k = lerp(H.k, B.k, p);
   const tap = HK.taps.reduce((a, s) => Math.max(a, Math.sin(Math.PI * seg(t, s - .14, s))), 0);
   const glow = detail ? ss(seg(t, HK.taps[0], HK.taps[0] + .25)) : 0;
   if (glow > 0) for (const f of BF_FEET) {                       // vệt sáng phẳng dưới bàn chân trên mặt kem: chanh đặc + lõi kem (chỉ trong kính)
-    const P = rigPt(x, y, B.k, 1.25, 0, f); ell(c, P[0], P[1] + 3, B.k * .13 * glow, B.k * .045 * glow, 0, C.lemon); ell(c, P[0], P[1] + 3, B.k * .06 * glow, B.k * .02 * glow, 0, C.cream);
+    const P = rigPt(x, y, k, 1.25, 0, f); ell(c, P[0], P[1] + 3, k * .13 * glow, k * .045 * glow, 0, C.lemon); ell(c, P[0], P[1] + 3, k * .06 * glow, k * .02 * glow, 0, C.cream);
+  }
+  let E = ex(BY.flutter, 'happy', { look: landed ? [.45, .85] : [.3, .1] });
+  if (t < HK.bfIn) {                                             // khung đầu: mắt tròn xoe (×1,2) rồi phồng to hẳn trong 0,25 s; giẫm thì phồng thêm
+    E = ex(BY.flutter, 'surprised', { look: t < stomp ? [.55, -.45] : [.6, .25] });
+    E.eye = { ...E.eye, scale: lerp(1.2, 1.45, back(seg(t, 0, .25), 2.5)) + .15 * flinch, pupil: .3 };
   }
   drawChar(c, BY.flutter, {
-    x, y, k: B.k, yaw: 1.25, lean: landed ? 0 : -.12, detail: detail ? 1 : 0, showFx: false, extra: glow > 0 ? tasteGlow(glow) : null,
-    expr: ex(BY.flutter, 'happy', { look: landed ? [.45, .85] : [.3, .1] }),
+    x, y, k, yaw: 1.25, lean: landed ? 0 : -.12, detail: detail ? 1 : 0, showFx: false, extra: glow > 0 ? tasteGlow(glow) : null, expr: E,
     pose: { beta: landed ? .22 + .5 * Math.exp(-(t - HK.bfLand) * 6) : .25 + flutter(t), lift: landed ? 0 : .3 * (1 - p), legsUp: [[-.3, -.32 * tap, .44 + .1 * tap], 0, 0, 0, 0, 0] },
   });
   if (detail) HK.taps.forEach(s => {                             // mỗi cú dậm, hai đốm sao nháy lên ở bàn chân (chỉ trong kính)
     const q = seg(t, s, s + .45); if (q <= 0 || q >= 1) return;
-    [BF_FEET[0], BF_FEET[3]].forEach((f, i) => { const P = rigPt(x, y, B.k, 1.25, 0, f); star(c, P[0] + (i ? 30 : -30), P[1] + 10 - 22 * eo(q), 20 * Math.sin(Math.PI * q), C.lemon); });
+    [BF_FEET[0], BF_FEET[3]].forEach((f, i) => { const P = rigPt(x, y, k, 1.25, 0, f); star(c, P[0] + (i ? 30 : -30), P[1] + 10 - 22 * eo(q), 20 * Math.sin(Math.PI * q), C.lemon); });
   });
 }
 function sHook(c, t, o = {}) {
@@ -177,7 +183,8 @@ function sHook(c, t, o = {}) {
   c.restore();
   const wob = t > stomp ? Math.sin((t - stomp) * 14) * Math.exp(-(t - stomp) * 5) * .05 : 0;
   c.save(); c.translate(540, 340); c.rotate(-.03 + wob); c.translate(-540, -340);
-  popText(c, 'TASTE WITH', 540, 290, 140, C.grape, C.cream, t, -.5, { sh: 9 });
+  const tp = lerp(.8, 1, back(seg(t, 0, .22), 2.5));               // chữ móc bật ra ngay khung đầu (đọc được từ khung 0, "pop" đến cỡ thật trong 0,22 s)
+  c.save(); c.translate(540, 290); c.scale(tp, tp); c.translate(-540, -290); popText(c, 'TASTE WITH', 540, 290, 140, C.grape, C.cream, t, -.5, { sh: 9 }); c.restore();
   popText(c, 'FEET?!', 540, 500, 230, C.berry, C.cream, t, .55, { sh: 10 });
   c.restore();
   if (!o.noLup && t > HK.lupIn) {                                 // Miss Loupe bật lên từ góc dưới-phải (vọt quá rồi nảy lại), sững sờ; "Butterflies can!" thì bật cười
@@ -445,6 +452,9 @@ function subtitle(c, card, t) {
 
 const SC = { hook: sHook, title: sTitle, butterfly: sButterfly, cricket: sCricket, bee: sBee, map: sMap, album: sAlbum, gag: sGag };
 const IRISES = IRIS.map(i => i.kind === 'flower' ? { ...i, x: FL_END[0], y: FL_END[1], r0: 60 } : i.kind === 'albumLens' ? { ...i, x: AL_LENS.x, y: AL_LENS.y, r0: AL_LENS.r } : { ...i, x: LX, y: LY, r0: 240 });
+// v3: chữ móc trở lại ở cuối phim, đúng chỗ và đúng cỡ như ở khung mở (TASTE WITH / FEET?!)
+const TITLE = [{ text: 'TASTE WITH', y: 290, px: 140, fill: C.grape, shadow: C.cream, t0: 0 }, { text: 'FEET?!', y: 500, px: 230, fill: C.berry, shadow: C.cream, t0: .12 }];
+function recallTitle(c, t) { hookTitle(c, TITLE, t - HIT.recall, { gone: 1 - .62 * back(seg(t, HIT.recall, HIT.recall + .32), 2.4), cy: 340, dy: -200 }); }   // nhỏ lại và nằm trên kính: không che Flutter đang nếm kính (gag cuối)
 export function drawFilm(c, t) {
   t = clamp(t, 0, DUR - .001);
   const sec = SECS.find(s => t >= s.t0 && t < s.t1) || SECS[SECS.length - 1];
@@ -461,6 +471,7 @@ export function drawFilm(c, t) {
       loupe(c, ir.x, ir.y, R, { E: ex(BY.loupe, album ? 'explaining' : 'surprised', { talk: talkAt(t), look: [0, -.4] }), rot: album ? 0 : -.14, pose: album ? ARM.point : ARM.up, inside: () => SC[ir.to](c, tt, { noLup: true }) });
     }
   } else SC[sec.id](c, t);
+  if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
   if (l) subtitle(c, l, t);
   c.restore();

@@ -753,11 +753,11 @@ Giọng TTS đọc theo nhịp được nhưng **không hát được**. Bản �
 4. **Storyboard:** khung hình dựng bằng code thật. Duyệt nhanh trước khi dựng tiếp.
 5. **Giọng đọc:** tạo giọng cho từng nhân vật, cho Whisper nghe lại từng câu. Đặt lại thời gian theo độ dài thật, không để phụ đề chồng nhau.
 6. **Hình và âm thanh:** dựng hình theo timeline, mix âm thanh theo danh sách sự kiện, chạy `build.sh`.
-7. **Tự kiểm tra:**
+7. **Tự kiểm tra theo bộ tiêu chí của kênh, [`_shared/QUALITY.md`](_shared/QUALITY.md)** (7 nhóm: hook 3 s, giữ chân, nội dung, âm thanh, hình ảnh, xem lại, giọng nhân vật):
    - readcheck: mọi chữ đủ thời gian đọc;
-   - độ lớn −14 LUFS;
-   - không có khung đen;
-   - Whisper nghe lại bản mix cuối;
+   - Whisper `small.en` và `base.en` nghe lại từng câu;
+   - **`_shared/qa.py`** (bước cuối của `build.sh`): đo hook, khoảng chết, hình đứng yên, độ to −14 LUFS, đỉnh thật, độ rõ của lời, mật độ tiếng động, khung đen, chớp sáng, vòng lặp, cao độ giọng. Không được giao khi còn mục CHƯA ĐẠT; mục CẢNH BÁO phải sửa hoặc ghi lý do;
+   - checklist thủ công cuối `QUALITY.md` (nhịp móc, gag, thông điệp, biểu cảm, kết nối về đầu), điền vào báo cáo giao;
    - xem trọn tập một lần có tiếng.
 8. **Bản B:** dựng 2 bản theo khung §4.3, mỗi bản có câu móc, gag kết và ảnh bìa riêng.
 
@@ -798,6 +798,7 @@ Thứ tự dựng nhân vật bám theo lịch ra mắt: Albie, Rollo, Crumb, Bl
 
 - Flutter, Chirp, Waggle, The Giant và Smudge **không có lời**: chỉ có tiếng động, nên không tốn giọng và hợp với mọi ngôn ngữ.
 - Chọn giọng cho từng nhân vật bằng cách nghe so sánh A/B, như đã làm với Emma và Kokoro.
+- Mỗi nhân vật có lời một giọng riêng, cách mọi giọng khác ≥ 3 nửa cung. Nhân vật trẻ em (Crumb, Blink, Dot) có giọng trẻ em ≥ 240 Hz, nâng cao độ bằng trường `pitch` trong `_shared/voices.js` (`_shared/voicefx.py`). Kiểm bằng `_shared/qa.py`, tiêu chí 7 của [`_shared/QUALITY.md`](_shared/QUALITY.md). Mẫu A/B cho Miss Loupe và Albie: [`_shared/voice-tests/`](_shared/voice-tests/).
 - Hai nhân vật cùng xuất hiện phải khác nhau rõ về cao độ.
 
 ---

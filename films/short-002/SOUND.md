@@ -11,10 +11,10 @@ Nhịp móc làm lại theo [HOOK.md](HOOK.md): vòi bật ra như lò xo, Flutt
 
 | Thời điểm | Hình | Tiếng |
 |---|---|---|
-| 0,00 | Flutter đang hạ xuống, chữ TASTY SOCKS?! | Phách đầu: kick + bass + phím glock cao + nốt marimba nối từ cuối phim. Cánh vỗ. Đuôi còi rơi nối qua điểm lặp |
+| 0,00 | Flutter dang cánh lao xuống, mắt to phấn khích; chữ TASTY SOCKS?! bật ra (85% → 100% trong 0,22 s) | Chữ bật: bong bóng cao + phím glock. Phách đầu: nốt D (kick nhẹ, bass, steel pan, glock) nối từ cuối phim. Cánh vỗ. Đuôi còi rơi nối qua điểm lặp |
 | 0,10 | | Lời: "What if your socks could taste your snack?" |
 | 0,50 | Chân dậm lên miếng dưa, nước bắn | Bẹp mọng nước + giọt bắn; ban nhạc đánh cùng lúc (kick, bass C, hai nốt marimba) |
-| 0,55–2,0 | | Nhạc "nhón chân": bass gảy ngắn từng móc đơn + mõ gỗ phách lẻ (không có tiếng xì: shaker từng làm "snack" thành "snacks") |
+| 0,6–2,45 | | Nhịp calypso chạy liền: bass tresillo, son clave, kick; không có tiếng đệm hay tiếng xì dưới câu hỏi (shaker từng làm "snack" thành "snacks"); khựng một móc đơn 1,0–1,2 s khi mắt Flutter phồng to |
 | 0,68 | Máy đẩy cận vào đầu và cái vòi; chữ móc nhỏ lại, nhích lên khỏi cánh | Swish ngắn ở dải cao |
 | 0,875 | Vòi bật ra như lò xo, vệt "bung" chanh, năm vạch hành động; mắt Flutter phồng to | Sproing + pop |
 | 1,45 | Flutter cúi nhìn cái vòi đang nảy | |
@@ -33,7 +33,7 @@ Nhịp móc làm lại theo [HOOK.md](HOOK.md): vòi bật ra như lò xo, Flutt
 | 4,50 | Chân dậm, điểm nếm sáng lên | Tap + lấp lánh + bong bóng |
 | 7,00 | SWEET! | Chime |
 | 8,0–8,9 | Tia "ngọt" chạy lên đầu | Chuỗi chuông đi lên |
-| 9,2 · 10,2 | Vòi duỗi ra, hút | Còi trượt · slurp |
+| 9,2 · 10,2 | Vòi duỗi ra, hút | Còi trượt (dải cao 2,4–5,2 kHz, để không che câu "So out comes its curly straw!") · slurp nhỏ |
 | 10,30 | Kính rời bướm | Swish lùi |
 | 10,60 | Máy đẩy vào Miss Loupe | Gió dâng trầm |
 | 12,20 | Sau chữ "Wow!" | Lấp lánh rơi xuống, pad mỏng (cảnh "ồ") |
@@ -51,14 +51,9 @@ Mỗi chuyển cảnh dùng một tiếng khác nhau. Tiếng chuyển cảnh v�
 
 ## Nhạc
 
-Lưới 120 BPM, hoà âm C–G–Am–F như SHORT-001.
-- Mở: có nhịp ngay từ phách đầu.
-- Soi: đầy đủ nhất.
-- Cảnh "ồ": chỉ còn một lớp pad.
-- Sổ: thưa dưới giọng trầm của Albie.
-- Gag: rút bè trầm.
-
-Vòng lặp: các nốt ở 21,0 và 21,5 nối với nốt ở 0,0 và cú dậm ở 0,5. Mọi đuôi tiếng sau 22 s được cộng vào đầu phim.
+Lượt nhạc nền theo cảnh ("Calypso picnic" ở giọng G): bảng Soundtrack Timeline, nhạc cụ và số đo ở [MUSIC.md](MUSIC.md).
+Vòng lặp: hai nốt steel pan ở 21,0 và 21,5 nối với nốt D ở 0,0 và hợp âm G ở cú dậm 0,5 s. Mọi đuôi tiếng sau 22 s được cộng vào đầu phim; mép đầu file có fade-in 20 ms (lý do trong MUSIC.md).
+Bản trước lượt này (cùng hoà âm và nhạc cụ với SHORT-001): `out/short-002-v3.mp4`, `out/mix-v3.py`.
 
 ## Nhường giọng và kiểm tra
 
@@ -77,3 +72,8 @@ Vòng lặp: các nốt ở 21,0 và 21,5 nối với nốt ở 0,0 và cú dậ
 - Giọng so với nhạc trong dải chữ: câu mở đầu 15,5 dB (bản trước 15 dB). So với tiếng động: 25 dB. Tiếng tink mới (2,36 s) nằm sau chữ "snack".
 - Không có chỗ tụt quá 24 dB trong 50 ms.
 - Khung 0–0,5 s và khung cuối không đổi trong code, nên vòng lặp vẫn liền. Hình sau 4,0 s giống bản v2 (PSNR trung bình 56 dB, chỉ khác do nén).
+
+## Lượt QA (`_shared/qa.py`)
+
+- Dời còi trượt của vòi lên dải cao, hạ slurp, chuông, lấp lánh, bong bóng, swish. Lý do và số đo từng câu: [MUSIC.md](MUSIC.md), mục *Lượt QA*.
+- Phim: −13,9 LUFS, đỉnh thật −1,4 dBTP, 22,0 s. `qa.py`: 23/23 đạt.

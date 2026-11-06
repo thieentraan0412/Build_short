@@ -1,0 +1,165 @@
+{
+ "bpm": 120,
+ "dur": 24,
+ "secs": [
+  {
+   "id": "night",
+   "t0": 0,
+   "t1": 12.55
+  },
+  {
+   "id": "album",
+   "t0": 12.55,
+   "t1": 24
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.1,
+   "dur": 2.145,
+   "card": 1,
+   "text": "What if your ears were on your knees?"
+  },
+  {
+   "id": "L02",
+   "who": "loupe",
+   "t": 2.75,
+   "dur": 0.999,
+   "card": 1,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 4.4,
+   "dur": 2.17,
+   "card": 2,
+   "text": "Its ears are on its front legs!"
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 7.3,
+   "dur": 2.316,
+   "card": 3,
+   "text": "Each one is like a tiny drum!"
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 10.25,
+   "dur": 1.444,
+   "card": 4,
+   "text": "Hello, little ears!"
+  },
+  {
+   "id": "L06",
+   "who": "albie",
+   "t": 13.1,
+   "dur": 2.297,
+   "card": 5,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L07",
+   "who": "albie",
+   "t": 16.1,
+   "dur": 1.483,
+   "card": 6,
+   "text": "Ears on its head?",
+   "pace": 1
+  },
+  {
+   "id": "L08",
+   "who": "loupe",
+   "t": 17.7,
+   "dur": 0.628,
+   "card": 6,
+   "text": "NOPE!",
+   "pace": 1
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 19.3,
+   "dur": 1.013,
+   "card": 7,
+   "text": "Oops! Sorry!",
+   "pace": 1
+  },
+  {
+   "id": "L10",
+   "who": "loupe",
+   "t": 20.7,
+   "dur": 1,
+   "card": 7,
+   "text": "Where are YOUR ears?",
+   "pace": 1
+  }
+ ],
+ "hit": {
+  "crash": [
+   0,
+   0.45
+  ],
+  "words": [
+   0,
+   0.12
+  ],
+  "hear": 0.5,
+  "kneeLook": [
+   0.52,
+   0.8
+  ],
+  "answer": 0.8,
+  "answerEnd": 1.7,
+  "listen2": 1.75,
+  "pull": 2.45,
+  "lensIn": 2.6,
+  "zoom": 3.6,
+  "glow": 4.5,
+  "drumIn": 7.3,
+  "drumHit": [
+   8,
+   8.5,
+   9.3
+  ],
+  "drumText": 8.45,
+  "lensOut": 9.6,
+  "push": 9.6,
+  "bend": 9.7,
+  "giggle": 11.75,
+  "laugh": 11.95,
+  "snap": 12.1,
+  "zoomIn": [
+   12.2,
+   12.55
+  ],
+  "zoomOut": [
+   12.55,
+   12.9
+  ],
+  "irisA": 12.2,
+  "irisB": 12.55,
+  "stamp": 12.9,
+  "hop": 15.4,
+  "hopLand": 15.85,
+  "nope": 17.7,
+  "cover": 17.8,
+  "peek": 20.35,
+  "show": 21.85,
+  "recall": 22.2,
+  "listen3": 22.6,
+  "far3": [
+   22.75,
+   23.05,
+   23.6
+  ],
+  "ring": 23.2,
+  "loop": 24
+ }
+}

@@ -1,0 +1,718 @@
+[
+ {
+  "id": "L01",
+  "who": "loupe",
+  "text": "Six arms... is it a bug?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L02",
+  "who": "albie",
+  "text": "BZZT! Not a bug!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L03",
+  "who": "albie",
+  "text": "Six arms are not six legs.",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L04",
+  "who": "albie",
+  "text": "And my pages are... frozen!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L05",
+  "who": "crumb",
+  "text": "Frozen? Oh no!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L06",
+  "who": "loupe",
+  "text": "Each page keeps a secret sense.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L07",
+  "who": "loupe",
+  "text": "Remember the secret... and the page melts!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L08",
+  "who": "albie",
+  "text": "Hurry... I'm getting so sleepy...",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L09",
+  "who": "crumb",
+  "text": "Let's wake up your pages!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L10",
+  "who": "loupe",
+  "text": "Big secrets of tiny bugs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L11",
+  "who": "loupe",
+  "text": "Page one... taste!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L12",
+  "who": "crumb",
+  "text": "I'll warm it up!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L13",
+  "who": "loupe",
+  "text": "Which one will Flutter pick?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L14",
+  "who": "crumb",
+  "text": "Too sour!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L15",
+  "who": "crumb",
+  "text": "Not yummy!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L16",
+  "who": "crumb",
+  "text": "Flutter picked the sweet one!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L17",
+  "who": "loupe",
+  "text": "But how did Flutter know?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L18",
+  "who": "loupe",
+  "text": "With its tongue... or its feet?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L19",
+  "who": "loupe",
+  "text": "Three... two... one!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L20",
+  "who": "loupe",
+  "text": "Its feet!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L21",
+  "who": "loupe",
+  "text": "Butterflies taste with their feet!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L22",
+  "who": "albie",
+  "text": "Secret unlocked!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L23",
+  "who": "albie",
+  "text": "One page warm... three to go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L24",
+  "who": "crumb",
+  "text": "Ooh, this page smells funny!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L25",
+  "who": "loupe",
+  "text": "Page two... smell!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L26",
+  "who": "loupe",
+  "text": "A maze! The trail only shows in my lens.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L27",
+  "who": "crumb",
+  "text": "I'll sniff the way with my antennae!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L28",
+  "who": "loupe",
+  "text": "Left or right?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L29",
+  "who": "crumb",
+  "text": "Left!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L30",
+  "who": "loupe",
+  "text": "Up or down?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L31",
+  "who": "loupe",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L32",
+  "who": "crumb",
+  "text": "Oops! I forgot to sniff!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L33",
+  "who": "loupe",
+  "text": "Left or right?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L34",
+  "who": "crumb",
+  "text": "Right!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L35",
+  "who": "crumb",
+  "text": "Tap, tap, hello!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L36",
+  "who": "loupe",
+  "text": "Ants sniff with their antennae...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L37",
+  "who": "loupe",
+  "text": "...and follow smell trails!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L38",
+  "who": "albie",
+  "text": "Secret unlocked!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L39",
+  "who": "albie",
+  "text": "Two pages warm!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L40",
+  "who": "crumb",
+  "text": "Shh... I hear music!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L41",
+  "who": "loupe",
+  "text": "Page three... hearing!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L42",
+  "who": "loupe",
+  "text": "Let's find their ears!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L43",
+  "who": "loupe",
+  "text": "Ears go on heads... right?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L44",
+  "who": "crumb",
+  "text": "Nope!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L45",
+  "who": "loupe",
+  "text": "Chirp's ears are on its front legs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L46",
+  "who": "loupe",
+  "text": "And Hop? On its head?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L47",
+  "who": "crumb",
+  "text": "Nope!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L48",
+  "who": "loupe",
+  "text": "Hop's ears are on its tummy!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L49",
+  "who": "crumb",
+  "text": "Ears on legs... ears on tummies!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L50",
+  "who": "albie",
+  "text": "Secret unlocked!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L51",
+  "who": "albie",
+  "text": "Three pages warm!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L52",
+  "who": "loupe",
+  "text": "Page four... sight and signals!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L53",
+  "who": "crumb",
+  "text": "I'll sneak up on Zip... shh!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L54",
+  "who": "crumb",
+  "text": "How did Zip see me?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L55",
+  "who": "loupe",
+  "text": "Its giant eyes cover most of its head!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L56",
+  "who": "loupe",
+  "text": "Blink, do you know a secret?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L57",
+  "who": "blink",
+  "text": "I'm not glowing!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L58",
+  "who": "loupe",
+  "text": "Your tail says you do!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L59",
+  "who": "loupe",
+  "text": "Some fireflies flash their own secret code!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L60",
+  "who": "loupe",
+  "text": "And Waggle's dance shows the way...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L61",
+  "who": "albie",
+  "text": "Secret unlocked!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L62",
+  "who": "albie",
+  "text": "Four pages warm!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L63",
+  "who": "crumb",
+  "text": "This page is empty!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L64",
+  "who": "loupe",
+  "text": "Where do bugs go in winter?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L65",
+  "who": "albie",
+  "text": "No memory... no secret...",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L66",
+  "who": "loupe",
+  "text": "Then I'll find a new one... outside!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L67",
+  "who": "crumb",
+  "text": "I'll keep Albie warm!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L68",
+  "who": "crumb",
+  "text": "My family's snug under the ground!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L69",
+  "who": "loupe",
+  "text": "Brr! So cold!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L70",
+  "who": "loupe",
+  "text": "Is anyone home?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L71",
+  "who": "loupe",
+  "text": "Honeybees huddle in a warm ball!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L72",
+  "who": "loupe",
+  "text": "Ladybugs nap together under leaves!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L73",
+  "who": "dot",
+  "text": "One, two, three... so many!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L74",
+  "who": "loupe",
+  "text": "A woolly bear caterpillar!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L75",
+  "who": "loupe",
+  "text": "It freezes all winter...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L76",
+  "who": "loupe",
+  "text": "...and wakes up in spring!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L77",
+  "who": "loupe",
+  "text": "Oh no! I can't see!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L78",
+  "who": "loupe",
+  "text": "Heat lens... on!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L79",
+  "who": "loupe",
+  "text": "The warm window! That way!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L80",
+  "who": "loupe",
+  "text": "Three winter secrets!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L81",
+  "who": "albie",
+  "text": "Secret unlocked!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L82",
+  "who": "albie",
+  "text": "All my pages are warm!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L83",
+  "who": "crumb",
+  "text": "Do you remember?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L84",
+  "who": "loupe",
+  "text": "Where does a butterfly taste?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L85",
+  "who": "crumb",
+  "text": "With its feet!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L86",
+  "who": "loupe",
+  "text": "What do ants sniff with?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L87",
+  "who": "crumb",
+  "text": "Antennae!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L88",
+  "who": "loupe",
+  "text": "Where are a grasshopper's ears?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L89",
+  "who": "crumb",
+  "text": "On its tummy!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L90",
+  "who": "loupe",
+  "text": "And where do ladybugs nap?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L91",
+  "who": "crumb",
+  "text": "Together, under leaves!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L92",
+  "who": "crumb",
+  "text": "Time for a winter nap?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L93",
+  "who": "loupe",
+  "text": "See you in spring!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L94",
+  "who": "loupe",
+  "text": "Look closely... even in winter.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L95",
+  "who": "albie",
+  "text": "Ah... ah... CHOO!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L96",
+  "who": "loupe",
+  "text": "Now THAT'S a bug!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L97",
+  "who": "loupe",
+  "text": "Did you spot Rollo?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L98",
+  "who": "crumb",
+  "text": "Watch again and find him!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ }
+]

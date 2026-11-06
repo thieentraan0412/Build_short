@@ -11,17 +11,17 @@ Nhịp móc làm lại theo [HOOK.md](HOOK.md): bàn chân có mặt từ khung 
 
 | Thời điểm | Hình | Tiếng |
 |---|---|---|
-| 0,00 | Bàn chân lơ lửng ngay trên cây kem, ngón ngọ nguậy "đánh hơi"; chữ TASTE WITH | Phách đầu: kick + phím glock cao. Bass gảy ngắn đi lên từng nửa cung C → F, mõ gỗ phách lẻ (nhạc "rình"). Marimba hỏi đi lên. Lời: "Can you taste with your feet?" |
+| 0,00 | Bàn chân lơ lửng ngay trên cây kem, ngón ngọ nguậy "đánh hơi"; Flutter lơ lửng bên trái, mắt tròn xoe phồng to; chữ TASTE WITH bật ra (80% → 100% trong 0,22 s) | Chữ bật: bong bóng cao + phím glock. Cánh vỗ nhỏ. Kick mỗi phách đến cú giẫm, pizzicato trầm đi lên từng nửa cung C → F, mõ gỗ phách lẻ; xylophone "hỏi" đi lên (MUSIC.md). Lời: "Can you taste with your feet?" |
 | 0,55 | FEET?! hiện từng ký tự | Chuỗi 6 bong bóng cao dần, mỗi ký tự một tiếng |
 | 0,62 | Ngón chân chạm thử đỉnh kem, kem rung rinh | "Boop": bong bóng trầm + giọt nhỏ, ngay sau chữ "taste" |
-| 0,90–1,30 | Chân nhấc lên lấy đà | Lên dây cót tách-tách nhanh dần (tiếng ngắn: không che chữ "feet") |
+| 0,90–1,30 | Chân nhấc lên lấy đà | Lên dây cót tách-tách nhanh dần (tiếng ngắn: không che chữ "feet"); hai tiếng tom dồn ở 1,25 · 1,375 |
 | 1,32 | Chân rơi | Gió vút ở dải cao |
-| 1,50 | Giẫm bẹp cây kem, màn hình rung | Thump + bẹp kem; ban nhạc đánh cùng lúc (kick, bass C, hợp âm, chũm chọe mềm) |
+| 1,50 | Giẫm bẹp cây kem, màn hình rung; Flutter giật nảy lên | Thump + bẹp kem; cả dàn đánh C cùng lúc (kick, tuba, hợp âm pizzicato, kèn, chũm chọe mềm) |
 | 1,53 | Chữ còn lắc | Lò xo trầm "boyoing" |
 | 1,60 | Miss Loupe bật lên từ góc dưới-phải, mắt tròn xoe, miệng chữ O | Swipe mỏng, pan phải (nằm trong khoảng trống giữa hai câu) |
 | 1,62 · 1,78 · 1,94 | Giọt kem văng ra | Ba tiếng giọt nước, mỗi giọt một cao độ |
 | 2,00 | Bàn chân vút khỏi khung (2,0–2,4) | Zíp đi lên, xong trước chữ "Butterflies" |
-| 2,00–2,60 | Flutter sà vào từ trái, bay thấp dưới chữ | Cánh vỗ |
+| 2,00–2,60 | Flutter sà từ chỗ lơ lửng xuống chỗ kem bẹp, bay thấp dưới chữ | Cánh vỗ |
 | 2,00–3,50 | | Nhạc nảy theo phách: kick, clap, bass G, mõ gỗ; không có tiếng xì dưới "Butterflies can!" |
 | 2,25 | Miss Loupe bật cười | Lời: "Butterflies can!" |
 | 2,60 | Flutter đậu lên chỗ kem bẹp | Tiếng đậu |
@@ -67,17 +67,9 @@ Nhịp móc làm lại theo [HOOK.md](HOOK.md): bàn chân có mặt từ khung 
 
 ## Nhạc
 
-Lưới 120 BPM, C–G–Am–F, cường độ đổi theo cảnh:
-- Mở: rình rồi nảy.
-- Tựa: nhạc hiệu 2 s đứng một mình.
-- Bướm: đầy đủ.
-- Dế: bỏ bè trầm.
-- Ong: bè vo ve.
-- Bản đồ: pad và arp mở rộng.
-- Sổ: cả ba côn trùng cùng chơi.
-- Kết: nhón chân rồi hợp âm.
-
-Hai khoảng lặng trước đáp án (23–24 s, 29–30 s) không còn cắt cụt: chỉ ngừng gõ nốt mới, nốt cũ ngân hết, tiếng nền đêm và tổ ong vẫn chạy. Tiếng nền vườn chạy đến hết phim.
+Lượt nhạc nền theo cảnh ("Tổ khúc khu vườn"): bảng Soundtrack Timeline, giọng, điệu, nhạc cụ và số đo ở [MUSIC.md](MUSIC.md).
+Lưới 120 BPM giữ nguyên vì hình khớp theo phách. Hai khoảng lặng trước đáp án (23–24 s, 29–30 s) giữ nguyên: chỉ ngừng gõ nốt mới, nốt cũ ngân hết, tiếng nền đêm và tổ ong vẫn chạy. Thêm một chỗ ngắt nhạc cho gag kết (49,0–50,25 s); tiếng nền vườn chạy đến hết phim.
+Bản trước lượt này (nhạc C–G–Am–F một khuôn suốt phim): `out/short-001-v3.mp4`, `out/mix-v3.py`.
 
 ## Nhường giọng và kiểm tra
 

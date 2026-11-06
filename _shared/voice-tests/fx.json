@@ -1,0 +1,26 @@
+{
+ "loupe_B_af_heart_p+2": {
+  "key": "Let's zoom in! Ants sniff with their antennae!|af_heart|0.95|2",
+  "size": 110092
+ },
+ "loupe_C_af_bella_p+1": {
+  "key": "Let's zoom in! Ants sniff with their antennae!|af_bella|0.95|1",
+  "size": 124726
+ },
+ "loupe_D_af_nova_p+2": {
+  "key": "Let's zoom in! Ants sniff with their antennae!|af_nova|0.95|2",
+  "size": 108400
+ },
+ "albie_B_bm_lewis_p+3": {
+  "key": "Six legs? In you go!|bm_lewis|0.85|3",
+  "size": 81580
+ },
+ "albie_C_bm_fable_p+2": {
+  "key": "Six legs? In you go!|bm_fable|0.85|2",
+  "size": 105442
+ },
+ "albie_D_am_puck_p+1": {
+  "key": "Six legs? In you go!|am_puck|0.9|1",
+  "size": 60408
+ }
+}
