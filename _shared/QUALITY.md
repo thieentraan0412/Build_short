@@ -33,6 +33,7 @@ Một video chỉ được giao khi:
 | Chữ móc to, 2–4 từ, đọc được ngay ở khung đầu, không bị nhân vật che | readcheck + khung tĩnh |
 | **Tựa móc dùng `hookTitle`** (`_shared/episode.js`): chữ ≥ 180 px, màu tương phản cao với nền, hiện đủ 100% ở khung 0 (để khung cuối của vòng lặp khớp), từng dòng nảy lên 1 → 1,17 → 1 kèm một tiếng `wordpop` | khung tĩnh 0 s và 0,15 s + `events.json` |
 | Trong 1 s đầu nhân vật có **một phản ứng bất ngờ gắn với câu hỏi khoa học** (ví dụ: cái đầu gối "nghe" trước, Chirp ngó xuống đầu gối mình), và máy có chuyển động (lao vào, đẩy nhanh) | checklist + `qa.py` chuyển động giây đầu |
+| Phản ứng bất ngờ phải **đọc được ở cỡ điện thoại**: có dấu hiệu hình (dấu "!" bật ra, vạch giật mình) ngay ở chỗ bất ngờ (ví dụ cái đầu gối), kèm tiếng động | khung tĩnh 0,6 s |
 
 ## 2. Giữ chân người xem
 
@@ -44,6 +45,7 @@ Một video chỉ được giao khi:
 | Tốc độ lời 0,8–2,2 từ/s; câu ngắn, mỗi ý một câu | `qa.py` |
 | Chuyển cảnh theo ngữ pháp kênh (qua kính, vòng sóng, đốm mắt…), mỗi chuyển cảnh một tiếng riêng | `SOUND.md` + checklist |
 | **Kính → sổ phải có chuyển động nối**, không iris trơn sang cảnh không liên quan: kính "chụp" (`snapFlash`) → máy lao xuyên qua mặt kính, hình trong kính hoá thành sticker → máy lùi ra từ chính sticker, lộ trang sổ (`stickerMatchCut`). Cả chuyển cảnh ≤ 0,8 s; câu đầu tiên của cảnh sau bắt đầu ≤ 0,5 s sau khi sticker dán | khung tĩnh + checklist |
+| **Kính phải đang soi đúng thứ sẽ thành sticker trước cú chụp** (≥ 0,25 s): không chụp một mặt kính trống rồi hình mới hiện ra từ chỗ trống. Sticker vẽ cùng nhân vật, cùng tư thế, cùng chi tiết sáng (cái tai, cái chân…) với hình trong kính | khung tĩnh 0,3 s trước cú chụp |
 | Mỗi 3–5 s có một chuyện mới: hành động, câu hỏi, phát hiện, gag | Treatment (bảng cảnh) + checklist |
 
 ## 3. Nội dung và câu chuyện
@@ -91,6 +93,8 @@ Một video chỉ được giao khi:
 | Quy tắc | Kiểm |
 |---|---|
 | **3–5 s cuối: một câu hỏi ngắn cho trẻ trả lời to** (≤ 1,5 s, ví dụ *"Where are YOUR ears?"*), gắn với chính bí mật của tập. Không kêu gọi bình luận: video cho trẻ em bị YouTube tắt bình luận | `qa.py` |
+| **Câu hỏi kết đứng riêng và hiện to**: hỏi thẳng trẻ (*YOU / YOUR*), có tấm phụ đề riêng (không chung tấm với câu gag trước nó), và chữ to trên hình trong lúc được nói (`askTitle` trong `_shared/episode.js`, mốc `HIT.ask = [t0, t1]`). Sau câu hỏi chừa **0,2–0,4 s cho trẻ trả lời**, rồi mới tới đáp án hoặc "ta-da" | `qa.py` + khung tĩnh |
+| Chữ câu hỏi nhường chỗ cho **chữ móc trở lại đúng chỗ đó** (câu hỏi → đáp án là chính câu móc), không để hai khối chữ to cùng lúc | khung tĩnh |
 | **Cảnh cuối gợi lại câu móc**: chữ móc trở lại đúng chỗ, đúng cỡ của khung 0 (`hookTitle`, mốc `HIT.recall`), hoặc âm thanh/hành động của câu móc trở lại; không để màn hình trống hay kết cụt | `qa.py` |
 | Bản B phát vòng lặp liền (khung cuối mở về khung đầu); tập A có câu cuối nối câu móc. Phim lặp kết bằng một sự kiện tên chứa `iris` trong 1,5 s cuối (hoặc khai báo mốc `loop` trong `HIT`) để `qa.py` đo khung nối | `qa.py` |
 | Tập A có ít nhất một chi tiết để tìm lại (Rollo, Spindle, một chi tiết chỉ thấy trong kính) | `qa.py` + Treatment |
@@ -122,4 +126,6 @@ Một video chỉ được giao khi:
 - [ ] Tựa móc nảy ở khung đầu có tiếng; nhân vật phản ứng bất ngờ trong 1 s
 - [ ] Chuyển cảnh kính → sổ có chuyển động nối (chụp sticker, match cut), không iris trơn
 - [ ] Cảnh cuối gợi lại câu móc (chữ móc trở lại / âm thanh mở đầu); không màn hình trống
+- [ ] Câu hỏi kết hỏi thẳng trẻ, đứng riêng một tấm phụ đề, có chữ to trên hình và một nhịp chờ trẻ trả lời
+- [ ] Trước cú chụp, kính đang soi đúng hình sẽ thành sticker (không chụp kính trống)
 - [ ] Mỗi nhân vật có lời một giọng riêng; giọng trẻ em cho nhân vật trẻ em

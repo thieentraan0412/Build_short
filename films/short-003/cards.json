@@ -30,8 +30,13 @@
   "text": "Ears on its head? NOPE!"
  },
  {
-  "t0": 19.3,
-  "t1": 22.3,
-  "text": "Oops! Sorry! Where are YOUR ears?"
+  "t0": 19,
+  "t1": 20.8,
+  "text": "Oops! Sorry!"
+ },
+ {
+  "t0": 20.85,
+  "t1": 22.650000000000002,
+  "text": "Where are YOUR ears?"
  }
 ]

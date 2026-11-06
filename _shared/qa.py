@@ -128,9 +128,16 @@ if len(F) > 2:
     # phim lặp: có chuyển cảnh "iris" mở về khung đầu trong 1,5 s cuối (ringiris, puffiris…), hoặc timeline khai báo mốc 'loop'
     loop_film = any(e['type'] in ('ringiris', 'spot', 'descend') or ('iris' in e['type'] and e['t'] > DUR - 1.5) for e in EV) or 'loop' in TL.get('hit', {})
     row('6 Xem lại', 'Khung cuối nối khung đầu', OK if seam < 25 or not loop_film else WARN, f'chênh {seam:.1f}/255' + ('' if loop_film else ' (phim không lặp hình)'), 'phim lặp: < 25; phim không lặp: câu cuối nối câu móc')
+import re
 endq = [l for l in LINES if '?' in l['text'] and l['t'] >= DUR - 5.5]
+kidq = [l for l in endq if re.search(r'\b(you|your)\b', l['text'], re.I)]            # hỏi thẳng trẻ (YOU / YOUR), không phải câu hỏi giữa hai nhân vật
 recall = 'recall' in TL.get('hit', {})
-row('6 Xem lại', 'Câu hỏi kết cho trẻ', OK if endq else WARN, f"\"{endq[-1]['text']}\" ở {endq[-1]['t']:.1f} s" if endq else 'không có', 'một câu hỏi ngắn trong 5,5 s cuối (trẻ trả lời to; không kêu gọi bình luận)')
+row('6 Xem lại', 'Câu hỏi kết cho trẻ', OK if kidq else WARN, f"\"{(kidq or endq)[-1]['text']}\" ở {(kidq or endq)[-1]['t']:.1f} s" + ('' if kidq or not endq else ' (không hỏi thẳng trẻ)') if endq else 'không có', 'một câu hỏi ngắn trong 5,5 s cuối, hỏi thẳng trẻ ("YOU/YOUR"), trẻ trả lời to; không kêu gọi bình luận')
+if kidq:
+    q = kidq[-1]; mates = [l['text'] for l in LINES if l.get('card') is not None and l.get('card') == q.get('card') and l['id'] != q['id']]
+    row('6 Xem lại', 'Câu hỏi kết có tấm phụ đề riêng', OK if not mates else WARN, 'riêng' if not mates else f"chung với: {' / '.join(mates)}", 'câu hỏi kết đứng một mình trên tấm phụ đề (không lẫn vào câu gag trước nó)')
+    ask = TL.get('hit', {}).get('ask')
+    row('6 Xem lại', 'Câu hỏi kết hiện to trên hình', OK if ask else WARN, f'{ask[0]:.1f}–{ask[1]:.1f} s' if ask else 'không có mốc HIT.ask', 'chữ to (askTitle, _shared/episode.js) trong lúc câu hỏi được nói, rồi chữ móc trở lại đúng chỗ đó')
 row('6 Xem lại', 'Cảnh cuối gợi lại câu móc', OK if recall else WARN, 'có (chữ móc trở lại)' if recall else 'không có mốc recall', 'chữ/âm thanh của câu móc trở lại ở cuối (mốc HIT.recall)')
 egg = [e for e in EV if e['type'] in ('roll',)] + [1 for s in ('spindle', 'rollo') if s in TL.get('hit', {})]
 if title: row('6 Xem lại', 'Chi tiết để tìm lại', OK if egg else WARN, 'có' if egg else 'không có', 'tập A có trứng phục sinh (Rollo, Spindle…)')

@@ -3,7 +3,7 @@ import { C, REC, circle, ell, capsule, rrect, ground, popText, nope, subFont, cl
 import { drawChar } from '/_shared/characters/stage.js';
 import { BY } from '/_shared/characters/cast/index.js';
 import { star } from '/_shared/characters/face.js';
-import { makeTalk, blinkAt, ex, rigPt, look, toScreen, loupe, zoomIn, ARM, albieAt, badge, shadow, subtitle, LENS_UP, hookTitle, stickerMatchCut, snapFlash } from '/_shared/episode.js';
+import { makeTalk, blinkAt, ex, rigPt, look, toScreen, loupe, zoomIn, ARM, albieAt, badge, shadow, subtitle, LENS_UP, hookTitle, askTitle, stickerMatchCut, snapFlash } from '/_shared/episode.js';
 import { antAt, antHead, antRelaxTip, smellCloud, wisp, morning, nearGround, stem, stemY, heart, squeakLines, SMELL, rgba } from './props.js';
 import { at, LINES, CARDS, DUR, HIT } from './timeline.js';
 import { track, ss, ei } from '/core/lib.js';
@@ -140,7 +140,7 @@ function loupeTwig(c, t) {
     E: ex(BY.loupe, name, { talk: talkAt(t), look: L.m > .3 ? [-.3, -.55] : [-.7, -.3], blink: name === 'happy' ? blinkAt(t) : 0 }), rot: L.m > .3 ? -.28 : -.12, pose: L.m > .3 ? ARM.peer : name === 'explaining' ? ARM.wave : ARM.up,
     inside: L.m > .01 ? zoomIn(L.x, L.y, L.mag, L.x, L.y, () => look(c, cm, () => twigWorld(c, t, L.m > .3 ? 1 : 0, { cloudOn: ss(seg(t, HIT.clouds, HIT.clouds + .5)) }))) : null,
   });
-  if (L.m > .5 && t > HIT.clash && t < HIT.leave[0] + .3) nope(c, L.x - L.r * .62, L.y - L.r * .62, 62, seg(t, HIT.clash, HIT.clash + .25));
+  if (L.m > .5 && t > HIT.clash && t < Math.min(HIT.leave[0] + .3, HIT.back[0] + .1)) nope(c, L.x - L.r * .62, L.y - L.r * .62, 62, seg(t, HIT.clash, HIT.clash + .25));
 }
 function sTwig(c, t, o = {}) {
   look(c, twigCam(t), () => { twigWorld(c, t, 0); nearGround(c, 1560); });
@@ -266,6 +266,7 @@ export function drawFilm(c, t) {
   else if (t >= HIT.zoomOut[1]) sAlbum(c, t);
   else if (t >= HIT.zoomIn[0]) matchCut(c, t);
   else { const sh = t > HIT.tap0[0] && t < HIT.tap0[0] + .22 ? 1 - seg(t, HIT.tap0[0], HIT.tap0[0] + .22) : 0; c.save(); c.translate(Math.sin(t * 90) * 6 * sh, 0); sTwig(c, t); c.restore(); snapFlash(c, t, HIT.snap, lensState(t)); }
+  askTitle(c, t, HIT.ask[0], HIT.ask[1], { small: 'How do', big: 'YOU SAY HI?', cy: 340, px: 126, shadow: C.cream, fill: C.berry, ink: C.grape, q: C.grape });   // v3: câu hỏi kết hiện to, rồi nhường chỗ cho chữ móc
   if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
   if (l) subtitle(c, l, t);

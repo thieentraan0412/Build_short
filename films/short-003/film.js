@@ -4,7 +4,7 @@ import { drawChar } from '/_shared/characters/stage.js';
 import { BY } from '/_shared/characters/cast/index.js';
 import { X } from '/_shared/characters/parts.js';
 import { star } from '/_shared/characters/face.js';
-import { makeTalk, blinkAt, ex, rigPt, look, toScreen, loupe, zoomIn, ARM, albieAt, badge, shadow, subtitle, hookTitle } from '/_shared/episode.js';
+import { makeTalk, blinkAt, ex, rigPt, look, toScreen, loupe, zoomIn, ARM, albieAt, badge, shadow, subtitle, hookTitle, askTitle } from '/_shared/episode.js';
 import { stars, moon, grass, mushroom, farCricket, note } from './props.js';
 import { at, BEAT, LINES, CARDS, DUR, HIT } from './timeline.js';
 import { track, ss, ei } from '/core/lib.js';
@@ -63,7 +63,7 @@ function chirpState(t) {
   } else if (t >= HIT.bend && t < HIT.giggle) s.E = chirpE('happy', { look: [-.5, .35] });   // nhìn Miss Loupe đang cúi xuống
   else if (t >= HIT.giggle) {                                                    // khúc khích, tai lóe sáng, hạ chân
     s.chirp = t < HIT.giggle + .6 ? Math.abs(Math.sin((t - HIT.giggle) * TAU * 6)) * .7 : 0;
-    s.glow = t < HIT.giggle + .9 ? 1 : 0; s.lift = 1 - ss(seg(t, HIT.giggle + .3, HIT.giggle + .6));
+    s.glow = t < HIT.giggle + .9 ? 1 : 0; s.lift = 1;   // v4: chân vẫn vểnh, cái tai sáng nằm trong kính tới cú chụp (sticker vẽ đúng tư thế này)
     s.E = chirpE(t < HIT.giggle + .9 ? 'laugh' : 'happy', { look: [-.3, .2] });
   }
   return s;
@@ -140,6 +140,8 @@ function sNight(c, t, o = {}) {
   skyLayer(c, t, cm);                                            // v2: nền (trời, sao, quầng trăng, đồi xa) trôi chậm hơn máy
   look(c, cm, () => { nightWorld(c, t, 0, behind ? () => loupeNight(c, t) : null, true); if (!o.noLup && !behind) loupeNight(c, t); });
   fgLayer(c, t, cm); motes(c, t, cm);                            // tiền cảnh cỏ tối trôi nhanh hơn máy; bụi trăng lơ lửng
+  if (t > HIT.bang[0] && t < HIT.bang[1]) bang(c, t, cm);
+  if (t > HIT.aim[0] && t < HIT.zoomIn[0]) viewfinder(c, t);      // v4: kính "ngắm" Chirp: trong kính hiện dần đúng hình sẽ thành sticker         // v4: dấu "!" bật ra ở cái đầu gối (bất ngờ đọc được ở cỡ điện thoại)
   if (t < HIT.crash[1] + .1) speedLines(c, 1 - seg(t, HIT.crash[0], HIT.crash[1] + .1));
   // chữ móc: hiện sẵn từ khung đầu và bật ra (85% → 100%), lắc khi tiếng gáy chạm tai, thu nhỏ biến mất khi máy kéo xa
   // v3: chữ to hơn, hiện đủ ngay khung 0, từng dòng nảy lên có tiếng (hookTitle dùng chung), lắc khi tiếng gáy chạm tai, thu nhỏ biến mất khi máy kéo xa
@@ -175,7 +177,7 @@ function sAlbum(c, t) {
   farCricket(c, 960, 930, 30, Math.abs(Math.sin(t * TAU * 4)) * (HIT.far3.some(f => t > f && t < f + .2) ? 1 : 0));   // con dế xa trên vầng trăng: gáy ở câu "can you hear it?"
   for (const f of HIT.far3) { const q = seg(t, f, f + 1.1); if (q > 0 && q < 1) { c.strokeStyle = C.lime; c.lineCap = 'round'; c.lineWidth = 8 * (1 - q); c.beginPath(); c.arc(960, 930, 30 + 520 * q, Math.PI * .75, Math.PI * 1.1); c.stroke(); } }
   ell(c, 200, 1760, 900, 420, 0, C.nightL); ell(c, 540, 1730, 980, 330, 0, C.grape); ell(c, 540, 1770, 900, 280, 0, X.nightD);
-  const pageOff = ss(seg(t, HIT.recall - .2, HIT.recall + .1));   // v3: trang sổ trượt lên khỏi khung để chữ móc trở lại trên nền đêm
+  const pageOff = ss(seg(t, HIT.ask[0] - .3, HIT.ask[0] + .05));   // v4: trang sổ trượt lên khỏi khung để chữ câu hỏi, rồi chữ móc, hiện trên nền đêm
   c.save(); c.translate(0, -980 * pageOff);
   rrect(c, 96, 218, 890, 560, 54, C.grape); rrect(c, 84, 200, 890, 560, 54, C.cream);
   // một sticker lớn (v3: máy lùi ra từ chính sticker; nảy lên ở cú dán)
@@ -280,6 +282,18 @@ function zoomMatch(c, t) {                                     // v3: máy lao x
     c.save(); c.translate(cx, cy); c.scale(k, k); c.translate(-SLOT.x, -SLOT.y); sAlbum(c, t); c.restore();
   }
 }
+function bang(c, t, cm) {                                      // v4: dấu "!" và vạch giật mình ở cái đầu gối khi vòng sóng chạm tới
+  const [x, y] = toScreen(cm, EAR_UP[0], EAR_UP[1]), a = back(seg(t, HIT.bang[0], HIT.bang[0] + .2), 2.6), q = ss(seg(t, HIT.bang[1] - .2, HIT.bang[1])), s = Math.max(.01, a * (1 - q));
+  c.save(); c.translate(x - 5, y - 180); c.rotate(.12 + Math.sin(t * 30) * .03); c.scale(s, s);
+  for (let i = 0; i < 5; i++) { const g = -2.6 + i * .5; capsule(c, Math.cos(g) * 105, Math.sin(g) * 105 - 20, Math.cos(g) * 150, Math.sin(g) * 150 - 20, 13, C.cream); }
+  popText(c, '!', 0, 60, 230, C.lemon, X.nightD, -1, -1, { sh: 12, read: false }); c.restore();
+}
+function viewfinder(c, t) {                                    // v4: trước cú chụp, mặt kính hiện đúng hình sticker (cùng con Chirp, chân vểnh, tai sáng); bốn góc ngắm khép vào
+  const a = ss(seg(t, HIT.aim[0], HIT.aim[1])), L = lensScreen(t), R = L.r * .94;
+  c.save(); c.globalAlpha = a; badge(c, L.x, L.y, R, C.mint, cc => { const k = R / SLOT.r; cc.scale(k, k); stickerDraw(cc); }, 0, 1); c.restore();
+  const g = lerp(1.35, 1.12, a); c.strokeStyle = `rgba(255,248,231,${a})`; c.lineWidth = 9; c.lineCap = 'round';
+  for (let i = 0; i < 4; i++) { const ang = Math.PI / 4 + i * Math.PI / 2, x = L.x + Math.cos(ang) * R * g, y = L.y + Math.sin(ang) * R * g, sx = Math.sign(Math.cos(ang)), sy = Math.sign(Math.sin(ang)); c.beginPath(); c.moveTo(x - sx * 34, y); c.lineTo(x, y); c.lineTo(x, y - sy * 34); c.stroke(); }
+}
 function recallTitle(c, t) {                                   // v3: chữ móc trở lại ở cuối, đúng chỗ và đúng cỡ của khung đầu (vòng lặp liền)
   const a = back(seg(t, HIT.recall, HIT.recall + .32), 2.4);
   hookTitle(c, TITLE, -1, { gone: 1 - a, cy: 350 });
@@ -300,6 +314,7 @@ export function drawFilm(c, t) {
   if (t >= HIT.zoomIn[0] && t < HIT.zoomOut[1]) zoomMatch(c, t);
   else if (t < HIT.zoomIn[0]) { c.save(); c.translate(Math.sin(t * 90) * 7 * shk, Math.cos(t * 70) * 5 * shk); sNight(c, t); c.restore(); snapFlash(c, t); }
   else { sAlbum(c, t); loopOut(c, t); }
+  askTitle(c, t, HIT.ask[0], HIT.ask[1], { small: 'Where are', big: 'YOUR EARS?', cy: 350, px: 132, shadow: X.nightD, fill: C.lemon, q: C.mint });   // v4: câu hỏi kết hiện to, rồi nhường chỗ cho chữ móc
   if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
   if (l) subtitle(c, l, t);

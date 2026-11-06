@@ -19,5 +19,9 @@ Nope!
 Six legs? In you go!
 
 6
-00:00:19,300 --> 00:00:24,000
-Hello, lens! You don't smell like home! How do YOU say hi?
+00:00:18,950 --> 00:00:21,988
+Hello, lens! You don't smell like home!
+
+7
+00:00:22,000 --> 00:00:23,800
+How do YOU say hi?

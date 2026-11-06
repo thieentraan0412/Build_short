@@ -23,5 +23,9 @@ Six legs? In you go!
 Ears on its head? NOPE!
 
 7
-00:00:19,300 --> 00:00:22,300
-Oops! Sorry! Where are YOUR ears?
+00:00:19,000 --> 00:00:20,800
+Oops! Sorry!
+
+8
+00:00:20,850 --> 00:00:22,650
+Where are YOUR ears?

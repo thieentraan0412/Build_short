@@ -166,3 +166,20 @@ Khoảng lặng thật: nửa sau ô 11 và hai phách cuối ô 14. Âm đầu 
 - **Lượt hook (Task.md "Thiết kế hook mở đầu"):** ba phương án và lựa chọn ở [`HOOK.md`](HOOK.md). Chỉ đổi phần mở 0–3,5 s (hình và tiếng động). Lời, nhạc, thời lượng và các cảnh sau giữ nguyên. Sau lượt này: −14,0 LUFS, đỉnh −1,6 dBFS, Whisper 85/85 từ.
 - **Lượt nhạc nền (Task.md "Điều chỉnh nhạc nền sinh động"):** nhạc viết lại theo từng cảnh thành "Tổ khúc khu vườn" (C → F → La thứ/C → F swing → C). Mô-típ bí mật đô–mi–sol trở lại ở mỗi phát hiện, mỗi lần một cách chơi. Hình, lời, tiếng động và thời lượng giữ nguyên. Soundtrack Timeline và số đo: [`MUSIC.md`](MUSIC.md). Sau lượt này: −14,0 LUFS, đỉnh −1,6 dBFS, Whisper 85/85 từ.
 - **Lượt tối ưu phần mở đầu (Task.md "Tối ưu phần mở đầu"):** Flutter có mặt từ khung đầu với mắt tròn xoe, chữ móc bật ra có tiếng, nhịp nhạc chạy từ giây 0. Bảng đối chiếu từng yêu cầu: [`HOOK.md`](HOOK.md) mục 5.
+
+## 10. Bản v4 (quy tắc câu hỏi kết, 06/11/2026)
+
+Áp dụng quy tắc mới của [`_shared/QUALITY.md`](../../_shared/QUALITY.md) §6, rút ra từ SHORT-003 v4. Câu cuối cũ *"Hey... is it tasting me?"* là câu giữa hai nhân vật, không hỏi trẻ.
+
+- **Câu hỏi kết mới (L19, Miss Loupe, tốc độ chuẩn):** *"Can YOUR feet taste?"* ở 50,3 s (1,25 s), trên tấm phụ đề riêng. Câu này nhắc lại câu móc *"Can you taste with your feet?"*, trẻ đáp to "No!". Không thêm dữ kiện mới (FACTS.md không đổi).
+- **Chữ to trên hình** (`askTitle`, mốc `HIT.ask` 49,2–51,45 s; chữ hiện trước lời khoảng 1,1 s để đủ 2,2 s đọc): *Can YOUR / FEET TASTE?* ở đúng chỗ chữ móc sẽ trở lại (phía trên kính). Miss Loupe thôi cười, nhìn thẳng ra người xem và giơ ngón tay khi hỏi.
+- **Chữ móc trở lại** TASTE WITH / FEET?! ở 51,45 s (`HIT.recall`, có kick và chuông nhỏ), đúng lúc câu hỏi vừa dứt, nên ở trên khung cuối khoảng 0,55 s (lần dựng đầu chỉ 0,18 s, trông như chớp).
+- **Nhịp chờ trẻ trả lời:** 51,6 s, hai nốt hộp nhạc hỏi lên, trong lúc chữ móc đang ở trên hình.
+- **Dời mốc để vừa 52 s:**
+  - L17: 44,95 → 44,9 s.
+  - L18: 49,0 → 48,16 s; Flutter đậu ở 48,45 s, liếm ở 49,55 s, cười "ta-da" ở 49,75 s.
+  - Chỗ khựng của gag theo mốc mới.
+  - Dưới câu hỏi có lớp nhạc mỏng ngoài dải giọng (bass trầm, hat cao); nhạc hạ 0,72 dưới câu hỏi.
+- **Tiếng mới:** `ask` (chữ câu hỏi bật ra), `askq` (hai dấu "?" nhún).
+- **Chuyển cảnh kính → sổ:** tập này vào sổ qua bông hoa nở (không có cú "chụp" sticker), nên quy tắc "kính soi đúng hình trước cú chụp" không áp dụng.
+- `build.sh` thêm bước kiểm Whisper `base.en` (QUALITY.md §7). Bản cũ: `out/short-001-v3.mp4`.

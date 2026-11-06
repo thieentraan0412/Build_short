@@ -76,7 +76,7 @@
   {
    "id": "L08",
    "who": "albie",
-   "t": 17.85,
+   "t": 17.7,
    "dur": 1.718,
    "card": 6,
    "text": "Not my pages!",
@@ -86,7 +86,7 @@
   {
    "id": "L09",
    "who": "loupe",
-   "t": 20.45,
+   "t": 20.05,
    "dur": 1.314,
    "card": 7,
    "text": "What would YOUR feet taste?",
@@ -136,11 +136,17 @@
   "stamp": 14.3,
   "fly": 16.8,
   "land": 17.6,
-  "sipPage": 18.5,
-  "mmm": 19.65,
-  "recall": 21,
-  "takeoff": 21.25,
-  "spot": 21.55,
+  "shout": 17.7,
+  "sipPage": 18.4,
+  "mmm": 19.42,
+  "ask": [
+   19.4,
+   21.6
+  ],
+  "wait": 21.42,
+  "recall": 21.6,
+  "takeoff": 21.4,
+  "spot": 21.6,
   "loop": 22
  }
 }

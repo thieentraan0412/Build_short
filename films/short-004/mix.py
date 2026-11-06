@@ -119,10 +119,11 @@ M(pad([53, 60, 65, 69], 1.0), HIT['laugh'] + .4, .35); M(bassn(41, .6), HIT['lau
 tl = HIT['laugh']; strum(pluck, (65, 69, 72, 77), tl, .55, .8, .02); M(tuba(41, .6), tl, .8); M(kick(), tl, .8); cymbal(tl, .2, 5000)   # v2: ngắn lại để câu hỏi kết rõ
 march(HIT['loopIris'][0], DUR, [41], [F_], g=.6, comp=False)                                 # vòng lặp: nhịp diễu hành dẫn về khung đầu
 M(riser(.7, .7), HIT['loopIris'][0], .3)
+M(celesta(84, .5), HIT['wait'], .16, .35); M(celesta(88, .6), HIT['wait'] + .12, .18, .35)   # v3: nhịp chờ trẻ trả lời: hai nốt hộp nhạc hỏi lên "ding-ding?" (dải cao, sau lời)
 
 # — cường độ theo cảnh (chuyển mềm 0,3 s) —
 LEVEL = ((0, .62), (at(2), .45), (at(3), .85), (HIT['scent'], .8), (HIT['lensOut'], .85), (at(8), .8), (HIT['slide'][0], 1.), (at(14), .85), (HIT['snap'], 1.0), (at(18), .8), (44., .7),   # v2: dâng ở cú chụp, ở tiếng cười; hạ dưới câu hỏi kết
-         (at(23), .85), (HIT['laugh'], 1.0), (50.5, .72), (HIT['loopIris'][0], .85))
+         (at(23), .85), (HIT['laugh'], 1.0), (HIT['ask'][0] + .3, .72), (HIT['wait'], .85), (HIT['loopIris'][0], .85))   # v3: hạ dưới câu hỏi kết, dâng ở nhịp chờ trẻ trả lời
 tt = np.arange(len(mus)) / SR; lev = np.full(len(mus), LEVEL[0][1])
 for (t, g), (_, g0) in zip(LEVEL[1:], LEVEL[:-1]): lev = np.where(tt >= t - .15, np.where(tt < t + .15, g0 + (g - g0) * (tt - t + .15) / .3, g), lev)
 mus *= lev[:, None]
@@ -184,6 +185,8 @@ SFX = {
     'snap': lambda e: mixl(click(1., .25) * .8, np.pad(click(.8, .2) * .5, (int(.045 * SR), 0)), np.pad(T.sparkle(.45, .3, 93, 108, 6, 7, 'up'), (int(.06 * SR), 0))),
     'zoomin': lambda e: mixl(T.swish(e.get('d', .3), .42, 600, 5200, True, .15, .25), riser(e.get('d', .3), .4)),
     'zoomout': lambda e: mixl(T.swish(e.get('d', .35), .3, 500, 3800, False, .25, .2), np.pad(T.paper(.3, .35, 5, 4), (int(.1 * SR), 0))),
+    'ask': lambda e: mixl(T.bubble(1500, .3, .05, 2.4), np.pad(SFX['titlepop'](e) * .4, (int(.1 * SR), 0))),   # v3: chữ câu hỏi kết bật ra (nhỏ, trước lời)
+    'askq': lambda e: mixl(T.tink(.18, 4800), np.pad(T.tink(.16, 5400), (int(.09 * SR), 0))),   # hai dấu "?" nhún: dải cao, nhỏ
     'recall': lambda e: SFX['titlepop'](e) * .6,                 # chữ móc trở lại giữa câu hỏi kết: một tiếng "ting" nhỏ ở dải cao
     'boing': lambda e: T.boing(e.get('f0', 150), .5, .3 * e.get('v', .5) / .5, 2.2, 14.),
     'squeak': lambda e: mixl(glide(1400, 2200, .18, .2, .1), np.pad(glide(2000, 1300, .15, .15, .1), (int(.2 * SR), 0))),

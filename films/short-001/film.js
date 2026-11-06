@@ -7,7 +7,7 @@ import { BY } from '/_shared/characters/cast/index.js';
 import { flower, cloud, sun, iceCream, shadow, badge } from './props.js';
 import { at, BEAT, SECS, IRIS, LINES, CARDS, WAGGLE_DEG, DUR, HIT } from './timeline.js';
 import { track, ss, ei } from '/core/lib.js';
-import { hookTitle } from '/_shared/episode.js';
+import { hookTitle, askTitle } from '/_shared/episode.js';
 
 const secBy = id => SECS.find(s => s.id === id);
 const K = keys => track(keys);
@@ -428,9 +428,10 @@ function sGag(c, t) {
   const g0 = secBy('gag').t0, u = t - g0, land = HIT.gagLand - g0, z = 1 + .05 * seg(u, 0, 4);
   camera(c, 540, 760, z, () => {
     ground(c, C.mint); rays(c, 540, 640, C.mintL, t * .1);
-    const hop = t > HIT.gagLaugh ? Math.abs(Math.sin((t - HIT.gagLaugh) * 8)) * 22 : 0, x = 540, y = 600, r = 320;
-    const name = u < land - .1 ? 'happy' : t < HIT.gagLaugh ? 'crosseyed' : 'laugh';
-    loupe(c, x, y - hop, r, { E: ex(BY.loupe, name, { talk: talkAt(t), blink: name === 'happy' ? blinkAt(t) : 0, look: [0, -.3] }), rot: 0, pose: name === 'crosseyed' ? ARM.shrug : ARM.up });
+    const ask = t >= LINES.find(l => l.id === 'L19').t - .1;           // v4: hỏi thẳng trẻ: thôi cười, nhìn ra người xem
+    const hop = t > HIT.gagLaugh ? Math.abs(Math.sin((t - HIT.gagLaugh) * 8)) * 22 * (1 - ss(seg(t, HIT.gagLaugh + .3, HIT.gagLaugh + .5))) : 0, x = 540, y = 600, r = 320;
+    const name = u < land - .1 ? 'happy' : t < HIT.gagLaugh ? 'crosseyed' : ask ? 'happy' : 'laugh';
+    loupe(c, x, y - hop, r, { E: ex(BY.loupe, name, { talk: talkAt(t), blink: name === 'happy' && !ask ? blinkAt(t) : 0, look: ask ? [0, 0] : [0, -.3] }), rot: 0, pose: name === 'crosseyed' ? ARM.shrug : ask ? ARM.point : ARM.up });
     const p = ss(seg(u, 0, land)), bx = lerp(1240, 548, p), by = lerp(170, y + 40 - hop, p) + (u < land ? Math.sin(u * 8) * 40 * (1 - p) : 0);
     flutterAt(c, bx, by, 110, { beta: u < land ? .22 + flutter(t) : .2 + .14 * Math.sin(t * 2.4), tongue: ss(seg(t, HIT.gagSlurp - .2, HIT.gagSlurp + .6)), rot: u < land ? -.14 : 0, lift: u < land ? .25 : 0, E: ex(BY.flutter, t > HIT.gagSlurp ? 'laugh' : 'happy', { look: [.4, .5] }) });
   });
@@ -471,6 +472,7 @@ export function drawFilm(c, t) {
       loupe(c, ir.x, ir.y, R, { E: ex(BY.loupe, album ? 'explaining' : 'surprised', { talk: talkAt(t), look: [0, -.4] }), rot: album ? 0 : -.14, pose: album ? ARM.point : ARM.up, inside: () => SC[ir.to](c, tt, { noLup: true }) });
     }
   } else SC[sec.id](c, t);
+  askTitle(c, t, HIT.ask[0], HIT.ask[1], { small: 'Can YOUR', big: 'FEET TASTE?', cy: 170, px: 112, shadow: C.cream, fill: C.berry, ink: C.grape, q: C.grape });   // v4: câu hỏi kết hiện to ở đúng chỗ chữ móc sẽ trở lại
   if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
   if (l) subtitle(c, l, t);

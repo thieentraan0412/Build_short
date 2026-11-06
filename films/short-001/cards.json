@@ -60,13 +60,18 @@
   "text": "Six legs? In you go!"
  },
  {
-  "t0": 44.95,
-  "t1": 48.201,
+  "t0": 44.9,
+  "t1": 48.151,
   "text": "Go outside with a grown-up, and look closely!"
  },
  {
-  "t0": 49,
-  "t1": 51.119,
+  "t0": 48.16,
+  "t1": 50.278999999999996,
   "text": "Hey... is it tasting me?"
+ },
+ {
+  "t0": 50.3,
+  "t1": 52,
+  "text": "Can YOUR feet taste?"
  }
 ]

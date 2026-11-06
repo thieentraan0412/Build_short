@@ -25,8 +25,13 @@
   "text": "Six legs? In you go!"
  },
  {
-  "t0": 19.3,
-  "t1": 24,
-  "text": "Hello, lens! You don't smell like home! How do YOU say hi?"
+  "t0": 18.95,
+  "t1": 21.988000000000003,
+  "text": "Hello, lens! You don't smell like home!"
+ },
+ {
+  "t0": 22,
+  "t1": 23.8,
+  "text": "How do YOU say hi?"
  }
 ]

@@ -192,7 +192,7 @@
   {
    "id": "L17",
    "who": "loupe",
-   "t": 44.95,
+   "t": 44.9,
    "dur": 2.651,
    "card": 13,
    "text": "Go outside with a grown-up, and look closely!"
@@ -200,10 +200,19 @@
   {
    "id": "L18",
    "who": "loupe",
-   "t": 49,
+   "t": 48.16,
    "dur": 1.519,
    "card": 14,
    "text": "Hey... is it tasting me?"
+  },
+  {
+   "id": "L19",
+   "who": "loupe",
+   "t": 50.3,
+   "dur": 1.254,
+   "card": 15,
+   "text": "Can YOUR feet taste?",
+   "pace": 1
   }
  ],
  "hit": {
@@ -248,9 +257,14 @@
    41.5
   ],
   "albieIn": 43.46,
-  "gagLand": 49,
-  "gagSlurp": 50.1,
-  "gagLaugh": 50.5,
-  "recall": 50.7
+  "gagLand": 48.45,
+  "gagSlurp": 49.550000000000004,
+  "gagLaugh": 49.75,
+  "ask": [
+   49.2,
+   51.45
+  ],
+  "wait": 51.6,
+  "recall": 51.45
  }
 }

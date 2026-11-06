@@ -117,3 +117,26 @@ Giọng của kênh ([`_shared/voices.js`](../../_shared/voices.js)): Miss Loupe
 ## 8. Bản v2 (tối ưu theo Retensis)
 
 Ngày 06/11/2026, theo Task.md (Retensis Virality Score): crash zoom ở hook; ba lớp chiều sâu có parallax; nhịp "ồ" ngắn lại; chuyển cảnh kính → sổ bằng cú "chụp" sticker và lia máy; sổ tới sớm hơn 1,25 s; nhạc đổi theo cảnh, không còn lỗ im; nền đêm sống động; câu gọi *"Shh... can you hear it?"* nối tiếng gáy xa về khung đầu. Lý do, số đo và timeline mới: [RETENSIS.md](RETENSIS.md). Bản cũ: `out/short-003-v1.mp4`.
+
+## 9. Bản v3 và v4
+
+- **v3:**
+  - tựa móc dùng `hookTitle` chung: nảy có tiếng ở khung đầu, cái đầu gối "nghe" trước;
+  - chuyển cảnh kính → sổ bằng zoom xuyên mặt kính, hình trong kính hoá thành sticker;
+  - câu hỏi kết *"Where are YOUR ears?"*, Chirp khoe tai ở đầu gối;
+  - chữ móc trở lại đúng chỗ khung đầu.
+- **v4** (06/11/2026, theo Task.md):
+  - dấu "!" bật ra ở cái đầu gối (0,5 s);
+  - kính "ngắm" đúng hình sẽ thành sticker trước cú chụp (11,6–12,1 s);
+  - câu hỏi kết đứng riêng một tấm phụ đề và hiện to (`askTitle`, 20,25–22,45 s);
+  - nhịp chờ trẻ trả lời "ding-ding?" (21,9 s) trước khi Chirp khoe đầu gối (22,1 s);
+  - chữ móc trở lại ở 22,45 s.
+
+  Lý do, timeline và số đo: [RETENSIS.md](RETENSIS.md). Lời thoại không đổi, chỉ dời L09 sang 19,0 s và L10 sang 20,85 s.
+- **Nhịp móc 0–3 s (v4):**
+  - 0–1 s: máy lao vào, chữ móc nảy, cái đầu gối giật lên, dấu "!";
+  - 1–2 s: Chirp ngó xuống đầu gối mình rồi gáy đáp;
+  - 2–3 s: lại vểnh chân; câu hỏi *"What if your ears were on your knees?"* chưa có lời giải.
+- **Chi tiết để xem lại:**
+  - con dế xa trên vầng trăng gáy ở cả khung đầu và cuối phim;
+  - hình trong kính lúc ngắm chính là sticker trong sổ.

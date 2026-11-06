@@ -2,7 +2,7 @@
 import { C, REC, circle, ell, capsule, rrect, poly, ground, popText, subFont, bigFont, clamp, lerp, seg, back, eo, TAU } from '/_shared/kit.js';
 import { BY } from '/_shared/characters/cast/index.js';
 import { star } from '/_shared/characters/face.js';
-import { hookTitle, stickerMatchCut, snapFlash } from '/_shared/episode.js';
+import { hookTitle, stickerMatchCut, snapFlash, askTitle } from '/_shared/episode.js';
 import { makeTalk, blinkAt, flutterWave, ex, rigPt, look, toScreen, loupe, zoomIn, ARM, flutterAt, tasteGlow, albieAt, albiePageTip, badge, shadow, subtitle } from '/_shared/episode.js';
 import { cloud, sun, flower, gingham, watermelon, drop } from './props.js';
 import { at, BEAT, SECS, LINES, CARDS, DUR, HIT } from './timeline.js';
@@ -141,6 +141,7 @@ function sPicnic(c, t, o = {}) {
   // chữ móc (v4: hookTitle dùng chung): hiện đủ ở khung 0, từng dòng nảy có tiếng; khi máy đẩy cận, chữ nhỏ lại và nhích lên để cánh không che; thu nhỏ biến mất khi máy kéo xa
   const gone = ss(seg(t, 2.55, 2.9)), up = ss(seg(t, HIT.sproing - .12, HIT.sproing + .2));
   hookTitle(c, TITLE, t, { gone: 1 - (1 - gone) * lerp(1, .7, up), dy: -105 * up, cy: 360, rot: -.04, wob: t > HIT.stomp ? Math.sin((t - HIT.stomp) * 14) * Math.exp(-(t - HIT.stomp) * 5) * .05 : 0 });
+  if (t > HIT.aim[0] && t <= HIT.zoomIn[0]) viewfinder(c, t);     // v5: kính "ngắm" Flutter: trong kính hiện dần đúng hình sẽ thành sticker (không chụp kính trống)
   if (t > HIT.sweet - .05 && t < 10.4) popText(c, 'SWEET!', 540, 420, 180, C.berry, C.cream, t, HIT.sweet, { step: .05, sh: 10 });
 }
 
@@ -152,7 +153,7 @@ const PAGE_SPOT = rigPt(AL.x, AL.y, AL.k, .32, 0, albiePageTip(PAGE, .74));
 function sAlbum(c, t, o = {}) {
   ground(c, C.sky); ell(c, 200, 1760, 900, 420, 0, C.skyL);
   ell(c, 540, 1720, 980, 330, 0, C.leaf); ell(c, 540, 1760, 900, 280, 0, C.leafD);
-  const pageOff = ss(seg(t, HIT.recall - .2, HIT.recall + .1));   // v4: trang sổ trượt lên khỏi khung để chữ móc trở lại trên nền trời
+  const pageOff = ss(seg(t, HIT.ask[0] - .3, HIT.ask[0] + .05));   // v5: trang sổ trượt lên khỏi khung để chữ câu hỏi, rồi chữ móc, hiện trên nền trời
   c.save(); c.translate(0, -980 * pageOff);
   rrect(c, 96, 218, 890, 560, 54, C.grape); rrect(c, 84, 200, 890, 560, 54, C.cream);
   // một sticker lớn
@@ -170,11 +171,11 @@ function sAlbum(c, t, o = {}) {
   const hop = .1 * Math.sin(Math.PI * seg(t, t0, t0 + .22)) + .14 * Math.sin(Math.PI * seg(t, HIT.land + .05, HIT.land + .3));
   let E;
   if (!landed) E = ex(BY.albie, 'happy', { talk, look: t < HIT.stamp + 1.1 ? [.45, -.65] : [.15, -.05], blink: talk ? 0 : blinkAt(t, .4) });
-  else if (t < 17.85) E = ex(BY.albie, 'surprised', { look: [.75, .35] });
+  else if (t < HIT.shout) E = ex(BY.albie, 'surprised', { look: [.75, .35] });
   else if (talk > 0) E = ex(BY.albie, 'shout', { talk, look: [.75, .35] });
   else E = ex(BY.albie, 'worried', { look: [.75, .35], fx: true });
   shadow(c, AL.x + 18, AL.y + 4, 220, .18);
-  albieAt(c, AL.x, AL.y, AL.k, { E, hop, tabsUp: landed ? 1 - seg(t, HIT.land, HIT.land + 1.5) : 0, page: t > 14.9 ? PAGE : null, curl: -.2, fx: landed && talk === 0 && t > 19.55 });
+  albieAt(c, AL.x, AL.y, AL.k, { E, hop, tabsUp: landed ? 1 - seg(t, HIT.land, HIT.land + 1.5) : 0, page: t > 14.9 ? PAGE : null, curl: -.2, fx: landed && talk === 0 && t > HIT.mmm });
   // Flutter bay vào, đậu lên góc trang, nếm giấy
   if (t >= HIT.fly && t < HIT.takeoff) {
     const p = ss(seg(t, HIT.fly, HIT.land)), spot = [PAGE_SPOT[0], PAGE_SPOT[1] - hop * AL.k];
@@ -209,6 +210,12 @@ function matchCut(c, t) {                                      // v4: kính "ch�
   const cm = cam(HIT.zoomIn[0]), L = lensState(HIT.zoomIn[0]), [sx, sy] = toScreen(cm, L.x, L.y);
   stickerMatchCut(c, t, { t0: HIT.zoomIn[0], t1: HIT.zoomOut[0], t2: HIT.zoomOut[1], lens: { x: sx, y: sy, r: L.r * cm.z }, from: cc => sPicnic(cc, HIT.zoomIn[0]), to: (cc, tt) => sAlbum(cc, tt), slot: SLOT, fill: C.mint, draw: stickerArt });
 }
+function viewfinder(c, t) {                                    // v5: trước cú chụp, mặt kính hiện đúng hình sticker (cùng Flutter); bốn góc ngắm khép vào
+  const a = ss(seg(t, HIT.aim[0], HIT.aim[1])), L = lensScreen(t), R = L.r * .94;
+  c.save(); c.globalAlpha = a; badge(c, L.x, L.y, R, C.mint, cc => { const k = R / SLOT.r; cc.scale(k, k); stickerArt(cc); }, 0, 1); c.restore();
+  const g = lerp(1.35, 1.12, a); c.strokeStyle = `rgba(255,248,231,${a})`; c.lineWidth = 9; c.lineCap = 'round';
+  for (let i = 0; i < 4; i++) { const ang = Math.PI / 4 + i * Math.PI / 2, x = L.x + Math.cos(ang) * R * g, y = L.y + Math.sin(ang) * R * g, sx = Math.sign(Math.cos(ang)), sy = Math.sign(Math.sin(ang)); c.beginPath(); c.moveTo(x - sx * 34, y); c.lineTo(x, y); c.lineTo(x, y - sy * 34); c.stroke(); }
+}
 function lensScreen(t) { const cm = cam(t), L = lensState(t), [x, y] = toScreen(cm, L.x, L.y); return { x, y, r: L.r * cm.z }; }
 function recallTitle(c, t) { hookTitle(c, TITLE, -1, { gone: 1 - back(seg(t, HIT.recall, HIT.recall + .32), 2.4), cy: 360, rot: -.04 }); }   // v4: chữ móc trở lại đúng chỗ, đúng cỡ của khung đầu
 function irisLens(c, t) {
@@ -224,6 +231,7 @@ export function drawFilm(c, t) {
   if (t >= HIT.zoomIn[0] && t < HIT.zoomOut[1]) matchCut(c, t);
   else if (t < HIT.zoomIn[0]) { sPicnic(c, t); snapFlash(c, t, HIT.snap, lensScreen(t)); }
   else { sAlbum(c, t); loopOut(c, t); }
+  askTitle(c, t, HIT.ask[0], HIT.ask[1], { small: 'What would', big: 'YOUR FEET?', cy: 360, px: 132, shadow: C.cream, ink: C.night, fill: C.berry, q: C.night });   // v5: câu hỏi kết hiện to, rồi nhường chỗ cho chữ móc
   if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
   if (l) subtitle(c, l, t);

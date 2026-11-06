@@ -103,10 +103,11 @@ M(shaker(.5), HIT['sipPage'], .3, .4); M(shaker(.5), HIT['sipPage'] + .25, .25, 
 calypso(10, *G_, ta=at(10, 1) + .1, tb=HIT['takeoff'], g=.85)
 seq(steel, (71, 72), at(10, 2), BEAT, .5, .2)                              # vòng lặp: hai nốt cuối phim → nốt D ở 0,0 → G ở 0,5
 M(bassn(50, .3), at(10, 3), .9); M(claves(), at(10, 3), .4, .3)
+M(celesta(84, .5), HIT['wait'], .16, .35); M(celesta(88, .6), HIT['wait'] + .12, .18, .35)   # v5: nhịp chờ trẻ trả lời: hai nốt hộp nhạc hỏi lên "ding-ding?" (dải cao, sau lời)
 
 # — cường độ theo cảnh (chuyển mềm 0,3 s) —
 LEVEL = ((0, .72), (HIT['pull'], .95), (at(2), .85), (tsw, .8), (HIT['sigA'], .9), (HIT['lensOut'], .75), (12., .6), (HIT['snap'], 1.0), (ti, .85), (ti + .3, .78),   # v4: dâng ở cú chụp và chữ móc trở lại
-         (HIT['fly'], 1.), (HIT['land'], .8), (HIT['mmm'], .85), (20.4, .6), (HIT['recall'] + .8, .9))   # dưới câu hỏi kết: hạ nhạc để lời rõ
+         (HIT['fly'], 1.), (HIT['land'], .8), (HIT['mmm'], .85), (HIT['ask'][0] + .4, .6), (HIT['wait'], .85), (HIT['recall'] + .05, .9))   # v5: dưới câu hỏi kết: hạ nhạc để lời rõ; dâng ở nhịp chờ và khi chữ móc trở lại
 tt = np.arange(len(mus)) / SR; lev = np.full(len(mus), LEVEL[0][1])
 for (t, g), (_, g0) in zip(LEVEL[1:], LEVEL[:-1]): lev = np.where(tt >= t - .15, np.where(tt < t + .15, g0 + (g - g0) * (tt - t + .15) / .3, g), lev)
 mus *= lev[:, None]
@@ -173,6 +174,8 @@ SFX = {
     'land': lambda e: mixl(step(.5) * .6, np.pad(glide(320, 640, .25, .25, .04), (int(.02 * SR), 0))),
     'mmm': lambda e: mmm(1.),
     'swish': lambda e: T.swish(e.get('d', .45), e.get('v', .4), e.get('lo', 350), e.get('hi', 2600), e.get('up', True)),
+    'ask': lambda e: mixl(T.bubble(1500, .3, .05, 2.4), np.pad(SFX['wordpop']({'n': 1}) * .55, (int(.1 * SR), 0))),   # v5: chữ câu hỏi kết bật ra (nhỏ, trước lời)
+    'askq': lambda e: mixl(T.tink(.18, 4800), np.pad(T.tink(.16, 5400), (int(.09 * SR), 0))),   # hai dấu "?" nhún: dải cao, nhỏ, không che lời
     'wordpop': lambda e: mixl(T.boing(220 + 120 * e.get('n', 0), .35, .3, 2.4, 16.), np.pad(pop(.6) * .45, (int(.02 * SR), 0)), T.bubble(1300 + 500 * e.get('n', 0), .35, .05, 2.4)),
     'snap': lambda e: mixl(click(1., .25) * .8, np.pad(click(.8, .2) * .5, (int(.045 * SR), 0)), np.pad(T.sparkle(.45, .3, 93, 108, 6, 7, 'up'), (int(.06 * SR), 0))),
     'zoomin': lambda e: mixl(T.swish(e.get('d', .3), .42, 600, 5200, True, .15, .25), riser(e.get('d', .3), .4)),

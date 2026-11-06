@@ -141,3 +141,22 @@ Giọng ([`_shared/voices.js`](../../_shared/voices.js)): Miss Loupe `af_heart`,
   - Whisper trên bản mix cuối: `small.en` 64/64 từ; `base.en` 63/64 (chữ "In" của câu cửa miệng Albie).
   - Không có chỗ tụt tiếng.
 
+
+## Bản v3 (quy tắc câu hỏi kết, 06/11/2026)
+
+Áp dụng các quy tắc mới của [`QUALITY.md`](../../_shared/QUALITY.md) §2 và §6 (rút ra khi sửa SHORT-003 v4). Bản cũ lưu ở `out/short-004-v2.mp4`.
+
+- **Câu hỏi kết hiện to trên hình.** Ở bản v2, chữ móc trở lại (51,0 s) khi câu hỏi còn đang nói, nên câu hỏi chỉ có trên tấm phụ đề. Bản v3:
+  - khối chữ *What can / YOU SMELL?* nảy lên ở 49,1 s (`askTitle`, mốc `HIT.ask = [49,1; 51,3]`), cùng bảng màu với tựa tập (tím, hồng đậm, bóng kem); readcheck đo 2,12 s;
+  - câu *"What can YOU smell right now?"* ở 49,45–50,85 s, vẫn đứng riêng tấm phụ đề;
+  - **nhịp chờ trẻ trả lời** 50,85–51,3 s, có hai nốt hộp nhạc "ding-ding?" ở 50,95 s;
+  - chữ SMELL WITH FINGERS?! trở lại đúng chỗ đó ở 51,3 s, rồi kính nở về khung đầu ở 51,45–52,0 s.
+- **Gag dời sớm khoảng 1,3 s để có chỗ.** Giữ nguyên cảnh, lời và dữ kiện:
+  - Crumb đi 46,0–47,0 s; *"I can carry it!"* ở 47,05 s;
+  - nhấc cây kem 47,95 s; đổ 48,65 s; kem dính bẹp 48,95 s; cười 49,35 s;
+  - ngón tay 49,9–50,6 s.
+- **Ngón tay thò vào từ mép phải**, không còn từ mép trên, nên cánh tay nằm dưới khối chữ câu hỏi và chữ móc.
+- **Kính soi chú rệp sớm hơn** (34,7–35,05 s), nên trong kính đã thấy chú rệp 0,35 s trước cú chụp (35,3 s). Không còn cảnh chụp một mặt kính trống.
+- **Âm thanh:**
+  - có tiếng `ask` khi chữ câu hỏi bật ra và tiếng `askq` khi hai dấu "?" nhún (dải cao, nhỏ);
+  - nhạc hạ dưới câu hỏi (0,72) và dâng ở nhịp chờ (0,85).

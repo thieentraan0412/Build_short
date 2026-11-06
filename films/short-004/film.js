@@ -3,7 +3,7 @@ import { C, REC, circle, ell, capsule, rrect, poly, ground, rays, popText, stick
 import { drawChar } from '/_shared/characters/stage.js';
 import { BY } from '/_shared/characters/cast/index.js';
 import { star } from '/_shared/characters/face.js';
-import { hookTitle, stickerMatchCut, snapFlash } from '/_shared/episode.js';
+import { hookTitle, askTitle, stickerMatchCut, snapFlash } from '/_shared/episode.js';
 import { makeTalk, blinkAt, ex, rigPt, look, loupe, zoomIn, ARM, albieAt, badge, shadow, subtitle, LENS_UP } from '/_shared/episode.js';
 import { iceCream, workerAnt, antTip, aphid, honeydew, tinyMap, soil, grassTuft, pebble, cloud, cookie, web } from './props.js';
 import { at, BEAT, SECS, IRIS, LINES, CARDS, DUR, HIT } from './timeline.js';
@@ -306,7 +306,7 @@ function gagWorld(c, t) {
   const x = lerp(-160, GC.x + 120, ss(seg(t, HIT.gagWalk[0], HIT.gagWalk[1])));
   shadow(c, x + 10, GC.y + 4, 160, .2);
   const E = t < HIT.gagWalk[1] ? crumbE('happy', t, { look: [.6, -.3] }) : t < HIT.lift[0] ? crumbE('confident', t, { look: [.6, -.6] }) : t < HIT.splat ? crumbE('surprised', t, { look: [.3, -.9] }) : crumbE('worried', t, { look: [.5, -.6] });
-  crumbAt(c, x, GC.y, GC.k, { walk: t < HIT.gagWalk[1] ? 1 : 0, ph: t * 2.2, E, q: t > HIT.gagSniff && t < 47.3 ? 1 : 0, arms: UP_ARMS, hop: -.05 * lift });
+  crumbAt(c, x, GC.y, GC.k, { walk: t < HIT.gagWalk[1] ? 1 : 0, ph: t * 2.2, E, q: t > HIT.gagSniff && t < HIT.gagWalk[1] ? 1 : 0, arms: UP_ARMS, hop: -.05 * lift });
   if (!gone) iceCream(c, lerp(IC.x, x + 40, lift), lerp(IC.y, GC.y - 2.55 * GC.k - 210 * IC.s, lift) - 30 * tip, IC.s, 0, lerp(0, .2, lift) + wob + tip * 1.3);   // nhấc bổng cả cây kem (to gấp mấy lần Crumb), lắc lư rồi đổ sang phải
   if (t < HIT.lift[0]) { const [kx, ky] = crumbTop(x, GC.y, GC.k); cookie(c, kx - 6, ky - .2 * GC.k, GC.k * 1.0, .08); }
 }
@@ -321,13 +321,13 @@ function splatOnGlass(c, x, y, r, p) {                          // kem dính b�
 function sGag(c, t, o = {}) {
   gagWorld(c, t);
   if (o.noLup) return;
-  const splat = seg(t, HIT.splat, HIT.splat + .3), hop = t > HIT.laugh ? Math.abs(Math.sin((t - HIT.laugh) * 8)) * 18 * (1 - seg(t, HIT.laugh, 51)) : 0;
+  const splat = seg(t, HIT.splat, HIT.splat + .3), hop = t > HIT.laugh ? Math.abs(Math.sin((t - HIT.laugh) * 8)) * 18 * (1 - seg(t, HIT.laugh, HIT.laugh + .8)) : 0;
   const name = t < HIT.topple ? 'curious' : t < HIT.splat ? 'surprised' : t < HIT.laugh ? 'crosseyed' : 'laugh';
   loupe(c, GL.x, GL.y - hop, GL.r, { E: ex(BY.loupe, name, { talk: talkAt(t), look: [-.4, .6] }), rot: -.06, pose: name === 'crosseyed' ? ARM.shrug : ARM.peer });
   splatOnGlass(c, GL.x, GL.y - hop, GL.r, splat * (1 - ss(seg(t, HIT.finger[1] - .2, HIT.loopIris[1]))));
   // ngón tay khổng lồ thò xuống, ngọ nguậy trong vệt kem ("ngửi" kem)
   const fp = ss(seg(t, HIT.finger[0], HIT.finger[0] + .4));
-  if (fp > 0) finger(c, GL.x + 60, lerp(-260, GL.y - 20, fp), 240, t, { dip: 0, tilt: .35 });
+  if (fp > 0) finger(c, lerp(1500, GL.x + 60, fp), GL.y - 20, 240, t, { dip: 0, tilt: 1.15 });   // v3: ngón tay thò vào từ mép phải (cánh tay nằm dưới khối chữ câu hỏi / chữ móc, không che chữ)
 }
 
 /* ---------- vòng lặp: kính nở ra, bên trong là khung đầu (ngón tay ngọ nguậy cạnh vụn bánh) ---------- */
@@ -356,6 +356,7 @@ export function drawFilm(c, t) {
     SC[ir.from](c, t, { noLup: true });
     loupe(c, ir.x, ir.y, R, { E: ex(BY.loupe, 'surprised', { talk: talkAt(t), look: [0, -.4] }), rot: -.1, pose: ARM.up, inside: () => SC[ir.to](c, tt, { noLup: true }) });
   } else { SC[sec.id](c, t); if (sec.id === 'farm') snapFlash(c, t, HIT.snap, FARM_LENS); }
+  askTitle(c, t, HIT.ask[0], HIT.ask[1], { small: 'What can', big: 'YOU SMELL?', cy: 360, px: 132, shadow: C.cream, fill: C.berry, ink: C.grape, q: C.grape });   // v3: câu hỏi kết hiện to, rồi nhường chỗ cho chữ móc
   if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
   if (l) subtitle(c, l, t);

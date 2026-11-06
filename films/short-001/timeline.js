@@ -35,7 +35,8 @@ export const HIT = {
   dance: at(15),
   rolloIn: at(18, .4), rolloOut: at(19, 3.6),
   albieWake: at(20, 1), stamp: [at(20, 1), at(20, 2), at(20, 3)], albieIn: at(21) + 1.46,   // sticker đầu tiên đánh thức Albie
-  gagLand: at(24, 2), gagSlurp: at(24, 2) + 1.1, gagLaugh: at(25, 1), recall: at(25, 1.4),   // recall: chữ móc trở lại ở cuối (QUALITY.md §6)
+  // v4 (quy tắc câu hỏi kết): gag dời sớm 0,55 s để câu hỏi cho trẻ "Can YOUR feet taste?" có tấm phụ đề riêng; chữ câu hỏi to (ask) rồi chữ móc trở lại đúng chỗ đó
+  gagLand: 48.45, gagSlurp: 48.45 + 1.1, gagLaugh: 49.75, ask: [49.2, 51.45], wait: 51.6, recall: 51.45,   // recall: chữ móc trở lại ở cuối (QUALITY.md §6)
 };
 
 // t: lúc bắt đầu nói (giây). dur: độ dài thật của giọng (voice/dur.json). who: giọng trong _shared/voices.js. card: các câu chung một tấm phụ đề.
@@ -56,13 +57,14 @@ export const LINES = [
   { id: 'L14', who: 'loupe', t: at(15), dur: .971, card: 10, text: 'so they dance!' },
   { id: 'L15', who: 'loupe', t: at(16), dur: 1.315, card: 11, text: 'The dance shows the way!' },
   { id: 'L16', who: 'albie', t: at(21), dur: 2.297, card: 12, text: 'Six legs? In you go!' },
-  { id: 'L17', who: 'loupe', t: 44.95, dur: 2.651, card: 13, text: 'Go outside with a grown-up, and look closely!' },
-  { id: 'L18', who: 'loupe', t: at(24, 2), dur: 1.519, card: 14, text: 'Hey... is it tasting me?' },
+  { id: 'L17', who: 'loupe', t: 44.9, dur: 2.651, card: 13, text: 'Go outside with a grown-up, and look closely!' },
+  { id: 'L18', who: 'loupe', t: 48.16, dur: 1.519, card: 14, text: 'Hey... is it tasting me?' },   // v4: sớm 0,9 s (bắt đầu khi Flutter sà xuống)
+  { id: 'L19', who: 'loupe', t: 50.3, dur: 1.254, card: 15, text: 'Can YOUR feet taste?', pace: 1 },   // v4: câu hỏi kết cho trẻ, nối về câu móc (trẻ đáp "No!"); không nói điều gì mới
 ];
 // Tấm phụ đề: giữ ≥ 1,8 s và ≥ câu cuối + 0,6 s (DIRECTOR.md §7); không được chồng tấm sau. Chữ hiện dần theo câu đã nói.
 export const CARDS = [...new Set(LINES.map(l => l.card))].map(k => {
   const ls = LINES.filter(l => l.card === k), t0 = ls[0].t, end = ls.at(-1).t + ls.at(-1).dur;
-  return { t0, t1: Math.max(t0 + 1.8, end + .6), text: ls.map(l => l.text).join(' '), parts: ls.map(l => ({ t: l.t, text: l.text })) };
+  return { t0, t1: Math.min(DUR, Math.max(t0 + 1.8, end + .6)), text: ls.map(l => l.text).join(' '), parts: ls.map(l => ({ t: l.t, text: l.text })) };
 });
 export const CARD_CLASHES = CARDS.filter((c, i) => i + 1 < CARDS.length && c.t1 > CARDS[i + 1].t0).map(c => c.text);
 
@@ -77,6 +79,7 @@ export const BOARD = [
   { t: 31.6, shot: '14', frame: 'Wide', dur: '4 s', line: 'so they dance!' },
   { t: 38.6, shot: '15', frame: 'Extreme wide · Find Rollo!', dur: '6 s', line: '(no voice: signature shot)' },
   { t: 43.4, shot: '16', frame: 'Wide, held', dur: '7 s', line: 'Six legs? In you go!' },
+  { t: 51.0, shot: '18', frame: 'Medium, big question', dur: '2 s', line: 'Can YOUR feet taste?' },
 ];
 
 // Sự kiện âm thanh, khớp với chuyển động trong film.js. Bộ trộn đọc chúng qua events.json (core/render/events.mjs).
@@ -157,5 +160,7 @@ export const EV = [
   { t: HIT.gagLand + .25, type: 'tink', f: 4300, v: .22 }, { t: HIT.gagLand + .5, type: 'tink', f: 3600, v: .22 }, { t: HIT.gagLand + .75, type: 'tink', f: 4100, v: .22 },   // chân nếm thử trên kính
   { t: HIT.gagSlurp, type: 'slurp' },
   { t: HIT.gagLaugh, type: 'boing', v: .5 },
-  { t: HIT.recall, type: 'recall' },                               // v3: chữ TASTE WITH FEET?! trở lại trên khung cuối
+  { t: HIT.ask[0], type: 'ask' },                                  // v4: chữ câu hỏi kết bật ra (askTitle)
+  { t: HIT.ask[0] + .3, type: 'askq' },                            // hai dấu "?" nhún (dải cao, nhỏ)
+  { t: HIT.recall, type: 'recall' },                               // v3: chữ TASTE WITH FEET?! trở lại trên khung cuối (v4: ngay sau nhịp chờ trẻ trả lời)
 ];

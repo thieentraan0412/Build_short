@@ -103,3 +103,16 @@ Bốn nhân vật nói câu dài (Miss Loupe, Albie, Crumb, Dot nói một câu 
   - **Sâu gấu len:** gọi đúng tên, chỉ nói về loài này.
   - **Kiến:** "trú đông dưới đất, túm tụm giữ ấm", không nói độ sâu.
 - **Côn trùng mùa hè chỉ ở trong ký ức** (đề cương): ngoài tuyết chỉ có ong (trong tổ), bọ rùa, sâu gấu len, và kiến (dưới đất). Crumb ở trong nhà ấm.
+
+## Áp quy tắc chung mới (06/11/2026, theo SHORT-003 v4)
+
+Bản dựng của tập này phải theo các quy tắc mới trong [`QUALITY.md`](../../_shared/QUALITY.md), đã áp cho SHORT-001…005:
+
+- **Câu hỏi kết** *"Did you spot Rollo?"* (287,4 s):
+  - đã hỏi thẳng trẻ và đã đứng riêng một tấm phụ đề;
+  - khi dựng, cho hiện to bằng `askTitle` (mốc `HIT.ask`), chữ ở trên hình ≥ 2,1 s;
+  - chừa 0,2–0,4 s cho trẻ trả lời trước *"Watch again and find him!"*.
+- **Chữ móc trở lại** (`HIT.recall`) ngay sau câu hỏi, đúng chỗ của khung mở đầu.
+- **Mỗi cú chụp kính → sổ**: kính phải đang soi đúng hình sẽ thành sticker (không chụp kính trống).
+- **Phản ứng bất ngờ ở móc**: có dấu hiệu hình ("!", vạch giật mình) ngay chỗ bất ngờ, kèm tiếng.
+- **Không kêu gọi bình luận hay đăng ký** (Made for Kids).

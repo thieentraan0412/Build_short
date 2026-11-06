@@ -66,3 +66,15 @@ Soundtrack Timeline đầy đủ của bản mới nằm ở mục C của RETEN
 - **Nền đêm:** gió trầm dâng hạ chậm, dàn dế xa từng tràng ngắn nhiều hướng, vài tiếng ếch mềm ở chỗ không có lời. Nền cũng nhường giọng.
 - **Cường độ theo cảnh:** 0,85 · 0,95 · 0,8 · 0,85 · 0,72 · 0,85 · 0,9 (chụp) · 0,82 (dán) · 0,9 · 0,72 · 0,85 · 0,55 (lắng nghe) · 0,9 (vòng lặp).
 - **Bản cuối:** −13,9 LUFS, đỉnh thật −1,5 dBTP; giọng so với nhạc + tiếng động thấp nhất 11,5 dB.
+
+## Bản v4 ([RETENSIS.md](RETENSIS.md))
+
+| Thời gian | Cảnh | Nhạc | SFX |
+|---|---|---|---|
+| 0,5 | Dấu "!" ở cái đầu gối | Như v3 (vibraphone "ping") | `bang`: tink cao + lò xo ngắn |
+| 11,6–12,1 | Kính ngắm Chirp | Như v3 | swish mỏng dải cao, tink |
+| 20,25–21,9 | Câu hỏi kết hiện to, rồi được nói | Hạ (`LEVEL` 0,7). Chỉ bass gảy thưa (Rê–La, dải trầm) + hat dải cao, không hợp âm trong dải giọng | `ask` (hai cú nảy nhỏ trước lời), `askq` (tink) |
+| 21,9 | Nhịp chờ trẻ trả lời | Hai nốt hộp nhạc đi lên "ding-ding?" (`LEVEL` 0,85) | — |
+| 22,1 · 22,45 | Ta-da · chữ móc trở lại | Như v3 (dời theo mốc mới) | show · recall |
+
+Kết quả: không còn giây nào nhạc dưới −45 dB. Chênh âm lượng nhạc giữa các cảnh 31 dB. Lời rõ hơn nhạc + tiếng động thấp nhất 13,1 dB.

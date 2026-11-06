@@ -109,3 +109,15 @@ Như SHORT-001: Paytone One cho chữ lớn, Baloo 2 ExtraBold cho phụ đề (
 - **Lượt hook (Task.md "Thiết kế hook mở đầu"):** ba phương án và lựa chọn ở [`HOOK.md`](HOOK.md). Chỉ đổi phần mở 0,75–2,9 s (hình và một tiếng tink). Khung đầu, lời, nhạc, thời lượng và vòng lặp giữ nguyên. Sau lượt này: −13,7 LUFS, đỉnh −1,2 dBFS, Whisper 34/34 từ.
 - **Lượt nhạc nền (Task.md "Điều chỉnh nhạc nền sinh động"):** nhạc viết lại theo từng cảnh thành "Calypso picnic" ở giọng G (steel pan, bass tresillo, son clave), khác hẳn màu của SHORT-001. Có hai chỗ ngắt nhạc cho gag. Hình, lời, tiếng động, thời lượng và vòng lặp giữ nguyên. Soundtrack Timeline và số đo: [`MUSIC.md`](MUSIC.md). Sau lượt này: −13,9 LUFS, đỉnh −1,5 dBFS, Whisper 34/34 từ.
 - **Lượt tối ưu phần mở đầu (Task.md "Tối ưu phần mở đầu"):** Flutter phấn khích ở khung đầu, chữ móc bật ra có tiếng, nhịp calypso chạy ngay sau cú dậm. Vòng lặp vẫn liền. Bảng đối chiếu từng yêu cầu: [`HOOK.md`](HOOK.md) mục 5.
+
+## Bản v5 (quy tắc câu hỏi kết, 06/11/2026)
+
+Áp quy tắc mới của [`_shared/QUALITY.md`](../../_shared/QUALITY.md) (rút ra từ SHORT-003 v4). Giữ nguyên DUR 22 s, gag, lời và dữ kiện.
+
+- **Câu hỏi kết hiện to trên hình** (`askTitle`, `HIT.ask = [19,4; 21,6]`): dòng nhỏ "What would", dòng lớn "YOUR FEET?" (berry, viền kem), hai dấu "?" nhún. Chữ ở trên hình 2,2 s (readcheck cần 2,1 s). Trang sổ trượt lên ở 19,1 s để nhường chỗ.
+- **Dời gag sớm hơn** để có chỗ: "NOT my pages!" 17,85 → **17,7** (`HIT.shout`); Flutter nếm trang 18,5 → 18,4; "Mmm!" 19,65 → **19,42**; câu hỏi "What would YOUR feet taste?" 20,45 → **20,05** (vẫn tấm phụ đề riêng).
+- **Nhịp chờ trẻ trả lời** 21,36–21,6 s: hai nốt celesta "ding-ding?" ở 21,42 (`HIT.wait`); Flutter cất cánh 21,25 → 21,4.
+- **Chữ móc trở lại** 21,0 → **21,6**, đúng chỗ chữ câu hỏi, nảy xong trước điểm lặp; vòng đốm mắt 21,55 → 21,6. Khung cuối chênh khung đầu 16,4/255 (như v4).
+- **Cú chụp**: trước đây 13,0–13,4 s mặt kính còn trống. Nay `viewfinder()` cho hình sticker (Flutter trên nền bạc hà) hiện dần trong kính cùng bốn góc ngắm từ 13,0 s, rồi mới chụp ở 13,4 s.
+- **Âm thanh**: tiếng `ask` (19,4) và `askq` (19,7); đường cường độ hạ dưới câu hỏi (0,6), dâng ở nhịp chờ (0,85) và khi chữ móc trở lại (0,9).
+- **Kiểm**: `qa.py` 30/30 đạt; Whisper 0 lệch với cả `small.en` và `base.en`. Bản v4 lưu ở `out/short-002-v4.mp4`.

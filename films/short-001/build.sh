@@ -12,6 +12,7 @@ cd "$LIB"
 node "$HERE/tools/lines.mjs"                                                     # timeline.js → JSON
 "$PY" core/tts/tts.py "$HERE/voice/lines.json" "$HERE/voice"
 WHISPER_MODEL=small.en "$PY" core/tts/asr_check.py "$HERE/voice/lines.json" "$HERE/voice" --lang en
+WHISPER_MODEL=base.en "$PY" core/tts/asr_check.py "$HERE/voice/lines.json" "$HERE/voice" --lang en    # v4: kiểm bằng hai model (QUALITY.md §7)
 "$PY" "$HERE/tools/env.py"                                                       # khẩu hình
 node core/render/events.mjs "$HERE" --size 1080x1920
 node core/render/readcheck.mjs "$HERE" --size 1080x1920

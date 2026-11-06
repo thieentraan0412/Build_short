@@ -70,3 +70,21 @@ Mỗi chuyển cảnh một tiếng riêng (kéo xa: whoosh; kính → sổ: xo�
 | 22,85 · 23,15 · 23,70 | Con dế xa trên vầng trăng gáy; tai Chirp lóe | Tiếng gáy xa (chính là tiếng của khung đầu) |
 
 Bỏ: xoáy của kính nở (`lensiris`), swipe sticker bay vào. Các tiếng còn lại giữ nguyên, dời theo mốc mới trong `timeline.js`.
+
+## Bản v4: cue mới và mốc đã dời
+
+Các mốc trong hai bảng trên là của bản v1. Mốc đang dùng nằm trong `timeline.js` (`HIT`, `EV`). Cue mới hoặc dời ở v4:
+
+| Thời điểm | Hình | Tiếng |
+|---|---|---|
+| 0,54 | Dấu "!" bật ra ở cái đầu gối | `bang`: tink 5,2 kHz + lò xo ngắn |
+| 11,60 · 11,85 | Kính ngắm: hình sticker hiện dần trong kính, góc ngắm khép vào | swish mỏng 1,5–5,2 kHz · tink |
+| 19,00 | | Lời: "Oops! Sorry!" |
+| 20,10 | Chirp hé mắt | blip |
+| 20,25 · 20,55 | Chữ "Where are / YOUR EARS?" bật ra · hai dấu "?" nhún | `ask`: bong bóng + cú nảy nhỏ · `askq`: hai tink dải cao |
+| 20,85 | | Lời: "Where are YOUR ears?" (tấm phụ đề riêng) |
+| 21,90 | Nhịp chờ trẻ trả lời | Hai nốt hộp nhạc "ding-ding?" |
+| 22,10 | Chirp khoe tai ở đầu gối | `show` (đàn hạc + lấp lánh + boing) |
+| 22,45 | EARS ON KNEES?! trở lại | `recall` |
+| 22,70 · 22,85 · 23,10 · 23,60 | Vểnh chân · tiếng gáy xa ×3 | legup · farchirp |
+| 23,20 | Vòng sóng âm mở về khung đầu | ringiris |

@@ -126,3 +126,24 @@ Bản B đọc chậm hơn tập A 15% (`PACE = .85`); câu cửa miệng giữ 
   - −14,0 LUFS, đỉnh thật −2,2 dBTP, 24,0 s; khung cuối nối khung đầu chênh 4,4/255.
   - `_shared/qa.py`: 24/24 đạt. Lượt này sửa `qa.py` để nhận ra vòng lặp kết bằng một chuyển cảnh "iris" bất kỳ trong 1,5 s cuối (trước đó chỉ nhận ra các tên sự kiện của tập cũ).
 - **Giọng:** dùng giọng hiện tại trong [`_shared/voices.js`](../../_shared/voices.js) (Miss Loupe `af_heart`, Albie `bm_lewis`, Crumb `af_jessica` +5). Mẫu thử A/B cho Miss Loupe và Albie trong [`_shared/voice-tests/`](../../_shared/voice-tests/) còn chờ chủ kênh chọn; nếu đổi thì dựng lại tập này bằng `build.sh`.
+
+## Bản v3 (quy tắc câu hỏi kết, 06/11/2026)
+
+Theo các quy tắc mới trong [`_shared/QUALITY.md`](../../_shared/QUALITY.md) §6 và §2, rút ra khi sửa SHORT-003. Giữ nguyên nhân vật, lời, dữ kiện, gag và độ dài 24 s. Bản cũ lưu ở `out/short-005-v2.mp4`.
+
+- **Câu hỏi kết đứng riêng.** Trước đây *"How do YOU say hi?"* chung tấm phụ đề với hai câu của Crumb và chỉ nói ở 22,65–23,84 s, sát vòng lặp. Giờ câu hỏi có tấm riêng (tấm 7) và nói ở **22,0 s**.
+- **Chữ câu hỏi to trên hình** (`askTitle`, mốc `HIT.ask = [21,2; 23,45]`): dòng nhỏ "How do" và dòng lớn "YOU SAY HI?", cùng màu với chữ móc (tím, đỏ dâu, viền kem), hai dấu "?" nhún hai bên. Chữ ở trên hình 2,2 s (đạt readcheck), rồi thu nhỏ để chữ **SNIFF HELLO?!** trở lại đúng chỗ đó ở 23,45 s.
+- **Nhịp chờ trẻ trả lời:** từ 23,19 s (hết câu hỏi) tới 23,4 s, có hai nốt hộp nhạc hỏi lên. Sau đó Crumb quay lại chạm râu với chị kiến (đáp án: chào bằng một cú hít) và chữ móc trở lại. Đám mây mùi mở về khung đầu ở 23,55–24,0 s.
+- **Dồn gag sớm một phách:**
+
+  | Mốc | Cũ | Mới |
+  |---|---|---|
+  | Lật trang | 18,6–19,1 | 18,3–18,8 |
+  | Crumb lon ton tới | 19,1–19,6 | 18,8–19,0 |
+  | Hai tiếng squeak | 20,5 · 21,0 | 19,0 · 19,5 |
+  | Râu xoăn | 21,05–22,5 | 19,55–21,1 |
+  | Miss Loupe cười | 22,85 | 21,2 |
+
+  Hai câu của Crumb dời theo: *"Hello, lens!"* 19,3 → 18,95 (nói đúng lúc râu chạm kính) và *"You don't smell like home!"* 21,25 → 20,1. Chữ SQUEAK! ở trên hình 19,0–21,1 s, tắt trước khi chữ câu hỏi bật ra, nên không có hai khối chữ to cùng lúc.
+- **Cú chụp:** dấu X "khác mùi" giờ tắt lúc kính quay lại chị kiến (14,4 s), không còn dính tới 14,65 s. Vì vậy trong 0,25 s trước cú chụp, mặt kính chỉ còn đúng hình sẽ thành sticker: Crumb chạm râu với chị kiến.
+- **Âm thanh:** thêm tiếng `ask` (chữ câu hỏi bật ra) và `askq` (hai dấu "?", dải cao, nhỏ). Nhạc hạ xuống 0,68 dưới câu hỏi, rồi dâng ở nhịp chờ và khi chữ móc trở lại.

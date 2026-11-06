@@ -6,6 +6,8 @@ export const PACE = .85;   // lời dẫn chậm hơn tập A khoảng 15% (kế
 // night: sân khấu nấm dưới trăng → kéo xa → soi trong kính → nhịp "ồ" (một cảnh liền, máy quay theo keyframe); album: sổ của Albie, gag, vòng lặp
 // Bản v3 (RETENSIS.md): tựa móc nảy to ở khung đầu, cái đầu gối "nghe" trước; kính → sổ bằng cú zoom xuyên qua mặt kính, hình trong kính hoá thành sticker (match cut);
 // kết: "Where are YOUR ears?" → Chirp khoe cái tai ở đầu gối → chữ EARS ON KNEES?! trở lại đúng chỗ của khung đầu → vòng lặp liền
+// Bản v4 (RETENSIS.md): dấu "!" bật ra ở cái đầu gối lúc nó "nghe" trước; trước cú chụp kính soi đúng Chirp và cái tai đang sáng (không chụp kính trống);
+// câu hỏi kết đứng riêng một tấm phụ đề, hiện to trên hình (askTitle), chừa một nhịp cho trẻ trả lời, rồi chữ móc trở lại đúng chỗ đó
 export const SECS = [
   { id: 'night', t0: 0, t1: 12.55 },
   { id: 'album', t0: 12.55, t1: at(12) },
@@ -15,9 +17,9 @@ export const DUR = at(12);
 // Mốc hành động dùng chung cho hình và tiếng (giây tuyệt đối)
 export const HIT = {
   crash: [0, .45], words: [0, .12], hear: at(0, 1), kneeLook: [.52, .8], answer: .8, answerEnd: 1.7, listen2: 1.75, pull: 2.45, lensIn: 2.6, zoom: 3.6,
-  glow: at(2, 1), drumIn: 7.3, drumHit: [8.0, 8.5, 9.3], drumText: 8.45, lensOut: 9.6, push: 9.6, bend: 9.7, giggle: 11.75, laugh: 11.95,
+  glow: at(2, 1), drumIn: 7.3, drumHit: [8.0, 8.5, 9.3], drumText: 8.45, lensOut: 9.6, push: 9.6, bend: 9.7, giggle: 11.75, laugh: 11.95, aim: [11.6, 11.85], bang: [.5, 1.15],
   snap: 12.1, zoomIn: [12.2, 12.55], zoomOut: [12.55, 12.9], irisA: 12.2, irisB: 12.55,
-  stamp: 12.9, hop: 15.4, hopLand: 15.85, nope: 17.7, cover: 17.8, peek: 20.35, show: 21.85, recall: 22.2, listen3: 22.6, far3: [22.75, 23.05, 23.6], ring: 23.2, loop: at(12),
+  stamp: 12.9, hop: 15.4, hopLand: 15.85, nope: 17.7, cover: 17.8, peek: 20.1, ask: [20.25, 22.45], wait: 21.9, show: 22.1, recall: 22.45, listen3: 22.7, far3: [22.85, 23.1, 23.6], ring: 23.2, loop: at(12),
 };
 
 // t: lúc bắt đầu nói (giây). dur: độ dài thật (voice/dur.json). who: giọng trong _shared/voices.js.
@@ -31,8 +33,8 @@ export const LINES = [
   { id: 'L06', who: 'albie', t: 13.1, dur: 2.297, card: 5, text: 'Six legs? In you go!', catch: true },
   { id: 'L07', who: 'albie', t: 16.1, dur: 1.483, card: 6, text: 'Ears on its head?', pace: 1 },
   { id: 'L08', who: 'loupe', t: HIT.nope, dur: .628, card: 6, text: 'NOPE!', pace: 1 },
-  { id: 'L09', who: 'loupe', t: 19.3, dur: 1.013, card: 7, text: 'Oops! Sorry!', pace: 1 },
-  { id: 'L10', who: 'loupe', t: 20.7, dur: 1.0, card: 7, text: 'Where are YOUR ears?', pace: 1 },   // câu hỏi kết (RETENSIS.md v3): trẻ chỉ vào tai mình, Chirp khoe tai ở đầu gối
+  { id: 'L09', who: 'loupe', t: 19.0, dur: 1.013, card: 7, text: 'Oops! Sorry!', pace: 1 },   // v4: sớm 0,3 s để câu hỏi kết có tấm phụ đề riêng
+  { id: 'L10', who: 'loupe', t: 20.85, dur: 1.0, card: 8, text: 'Where are YOUR ears?', pace: 1 },   // câu hỏi kết: trẻ chỉ vào tai mình, Chirp khoe tai ở đầu gối. v4: tấm phụ đề riêng + chữ to (HIT.ask)
 ];
 // Tấm phụ đề: giữ ≥ 1,8 s và ≥ câu cuối + 0,6 s (DIRECTOR.md §7); không được chồng tấm sau. Chữ hiện dần theo câu đã nói.
 export const CARDS = [...new Set(LINES.map(l => l.card))].map(k => {
@@ -52,7 +54,8 @@ export const BOARD = [
   { t: 12.45, shot: '6', frame: 'Zoom through the lens → sticker', dur: '0.8 s', line: '(match cut: lens = sticker)' },
   { t: 14.2, shot: '7', frame: 'Wide, drifting', dur: '2.7 s', line: 'Six legs? In you go!' },
   { t: 18.0, shot: '8', frame: 'Wide, shake', dur: '4.9 s', line: 'Ears on its head? NOPE!' },
-  { t: 22.4, shot: '9', frame: 'Wide, title returns', dur: '1.8 s', line: 'Where are YOUR ears? EARS ON KNEES?!' },
+  { t: 21.4, shot: '9', frame: 'Wide, big question', dur: '1.3 s', line: 'Where are YOUR ears?' },
+  { t: 22.6, shot: '10', frame: 'Wide, title returns', dur: '1.4 s', line: 'EARS ON KNEES?!' },
 ];
 
 // Sự kiện âm thanh, khớp với chuyển động trong film.js (core/render/events.mjs → events.json → mix.py). Bảng cue đầy đủ ở SOUND.md.
@@ -64,7 +67,8 @@ export const EV = [
   ...HIT.words.map((t, i) => ({ t, type: 'wordpop', n: i })),     // v3: mỗi dòng chữ móc nảy lên một tiếng (boing · pop)
   { t: 0, type: 'farchirp', pan: .75 },                          // tiếng gáy xa (tiếng trước đó ở 23,75 cuối phim: vòng lặp)
   { t: HIT.hear, type: 'hear' },                                 // vòng sóng chạm tai: "ping", mắt Chirp tròn xoe
-  { t: HIT.hear + .02, type: 'twitch', pan: .1 },                // v3: cái đầu gối giật lên trước cả cái đầu; Chirp ngó xuống đầu gối mình
+  { t: HIT.hear + .02, type: 'twitch', pan: .1 },
+  { t: HIT.bang[0] + .04, type: 'bang', pan: .15 },               // v4: dấu "!" bật ra ở cái đầu gối                // v3: cái đầu gối giật lên trước cả cái đầu; Chirp ngó xuống đầu gối mình
   ...[0, 1, 2, 3].map(i => ({ t: HIT.answer + i * .25, type: 'chirp', pan: -.15 })),   // Chirp gáy đáp lại
   ...[0, 1, 2].map(i => ({ t: HIT.answer + .08 + i * .3, type: 'notepop', m: [84, 88, 91][i] })),   // nốt nhạc bật lên
   { t: HIT.listen2, type: 'legup' },                             // vểnh chân lên nghe
@@ -87,6 +91,8 @@ export const EV = [
   { t: HIT.giggle + .05, type: 'sparkle', v: .4 },
   { t: HIT.laugh, type: 'boing', v: .35 },
   // chuyển cảnh mới: kính "chụp" cái tai thành sticker → sticker bay ra → máy lia theo sang sổ
+  { t: HIT.aim[0], type: 'swish', d: .3, v: .2, lo: 1500, hi: 5200, up: true, pan: .25 },   // v4: kính lướt tới soi Chirp và cái tai đang sáng
+  { t: HIT.aim[1], type: 'tink', pan: .2 },                      // kính dừng đúng chỗ: sẵn sàng chụp
   { t: HIT.snap, type: 'snap' },
   { t: HIT.zoomIn[0], type: 'zoomin', d: HIT.zoomIn[1] - HIT.zoomIn[0] },     // v3: máy lao xuyên qua mặt kính
   { t: HIT.zoomOut[0], type: 'zoomout', d: HIT.zoomOut[1] - HIT.zoomOut[0] },  // hình trong kính hoá thành sticker, máy lùi ra: trang sổ của Albie
@@ -100,6 +106,8 @@ export const EV = [
   { t: HIT.nope + .05, type: 'pages', d: .4, pan: -.3 },         // trang Albie phần phật
   { t: HIT.cover, type: 'squeeze', pan: .2 },                    // Chirp bịt chặt đầu gối
   { t: HIT.peek, type: 'blip', m: 88, pan: .2 },                 // hé mắt
+  { t: HIT.ask[0], type: 'ask' },                                // v4: chữ câu hỏi kết bật ra (hai tiếng nảy nhỏ, trước lời 0,5 s: chữ ở trên hình đủ 2,1 s để đọc)
+  { t: HIT.ask[0] + .3, type: 'askq' },                          // hai dấu "?" nhún (tiếng ở dải cao, nhỏ)
   { t: HIT.show, type: 'show', pan: .2 },                        // v3: Chirp khoe cái tai ở đầu gối (ta-da)
   { t: HIT.recall, type: 'recall' },                             // chữ EARS ON KNEES?! trở lại đúng chỗ của khung đầu
   { t: HIT.listen3, type: 'legup' },                             // quay chân về phía tiếng gáy xa (đúng tư thế khung đầu)

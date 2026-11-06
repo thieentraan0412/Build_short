@@ -123,6 +123,23 @@ export function hookTitle(c, lines, t, o = {}) {
   }
   c.restore();
 }
+/* ---------- câu hỏi kết cho trẻ (QUALITY.md §6) ----------
+   Chữ to trên hình trong lúc câu hỏi được nói: một dòng nhỏ ("Where are") và một dòng lớn ("YOUR EARS?") nảy lên có tiếng,
+   hai dấu "?" nhún hai bên mời trẻ trả lời to. Đến t1 (thường là HIT.recall) chữ thu nhỏ biến mất để chữ móc trở lại đúng chỗ đó.
+   o = { small, big, cy (tâm khối chữ), px (cỡ dòng lớn), fill, shadow, ink (màu dòng nhỏ), q (màu dấu ?) } */
+export function askTitle(c, t, t0, t1, o) {
+  if (t < t0 || t >= t1) return;
+  const px = o.px || 150, cy = o.cy ?? 360, a = back(seg(t, t0, t0 + .3), 2.4), z = 1 - eo(seg(t, t1 - .16, t1)), s = Math.max(.01, a * z);
+  c.save(); c.translate(540, cy); c.scale(s, s); c.rotate(-.03 + Math.sin((t - t0) * 5) * .012); c.translate(-540, -cy);
+  if (o.small) popText(c, o.small, 540, cy - px * .55, Math.round(px * .5), o.ink || C.cream, o.shadow, t, t0, { step: .02, sh: px * .03, font: subFont });
+  popText(c, o.big, 540, cy + px * .55, px, o.fill || C.lemon, o.shadow, t, t0 + .06, { step: .03, sh: px * .065 });
+  c.font = subFont(Math.round(px * .5)); const w = o.small ? c.measureText(o.small).width : 0;
+  for (const sd of [-1, 1]) {                                     // hai dấu "?" nhún lệch phách hai bên dòng nhỏ (không lấn dòng lớn, không ra mép)
+    const b = Math.abs(Math.sin((t - t0) * 7 + (sd > 0 ? 1.2 : 0))), x = 540 + sd * (w / 2 + px * .6), y = cy - px * .45 - 22 * b;
+    c.save(); c.translate(x, y); c.rotate(sd * (.18 + .06 * b)); popText(c, '?', 0, 0, Math.round(px * .8), o.q || C.mint, o.shadow, t, t0 + .3, { sh: px * .05, read: false }); c.restore();
+  }
+  c.restore();
+}
 /* ---------- chuyển cảnh kính → sổ (QUALITY.md §2): "chụp" rồi match cut qua sticker ----------
    t0–t1: máy lao xuyên qua mặt kính, hình trong kính hoá thành sticker (vành kính mỏng dần thành mép sticker);
    t1–t2: máy lùi ra từ chính sticker đó, lộ trang sổ (sticker đã nằm đúng chỗ của nó trên trang).

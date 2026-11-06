@@ -104,6 +104,8 @@ for i in range(18): add(mus, vibes((74, 75)[i % 2], .14), HIT['nope'] + .25 + i 
 add(mus, upright(38, .6), HIT['nope'] + 1.5, .55, 0); add(mus, pad([62, 65, 69], 1.2), HIT['nope'] + 1.5, .18, 0)   # nối mềm sang "Oops! Sorry!" (không còn lỗ im)
 L9 = next(l for l in TL['lines'] if l['id'] == 'L09'); seq(vibes, (81, 77, 74), L9['t'] + L9['dur'] + .02, .16, .22, .25, d=.6)
 M(vibes(74, .8), HIT['peek'], .28, .2)
+swing(HIT['ask'][0] + .2, HIT['show'], (38, 0, 45, 0), [DM], g=.5, snaps=False, comp=False, kick_=False)   # v4: dưới câu hỏi kết vẫn còn lớp mỏng ngoài dải giọng (bass gảy thưa dải trầm + hat dải cao): không lỗ im
+M(celesta(84, .5), HIT['wait'], .16, .35); M(celesta(88, .6), HIT['wait'] + .12, .18, .35)   # v4: nhịp chờ trẻ trả lời: hai nốt hộp nhạc hỏi lên "ding-ding?" (dải cao, sau lời)
 strum(rhodes, [65, 69, 72, 77], HIT['show'], .32, .8); M(vibes(84, .9), HIT['show'] + .05, .3, .3)   # v3: "ta-da" khi Chirp khoe cái tai
 M(kick(.8), HIT['recall'], .7); M(upright(38, .5), HIT['recall'], 1.0); M(vibes(74, 1.0), HIT['recall'], .35, .3); M(vibes(81, 1.0), HIT['recall'] + .12, .3, .3)   # chữ móc trở lại: đúng phách mở đầu phim
 swing(HIT['recall'] + BEAT, HIT['ring'], (41, 45, 43, 45), [DM], g=.7, comp=False)
@@ -114,7 +116,7 @@ M(upright(40, .3), DUR - BEAT / 2, .9)                                          
 # v3: tự động hoá âm lượng rõ hơn: dâng ở chỗ khám phá và bất ngờ, hạ dưới lời (nhường giọng thêm ở toon.duck bên dưới)
 LEVEL = ((0, .92), (.6, .8), (HIT['pull'], 1.0), (HIT['zoom'], .82), (HIT['glow'], 1.0), (HIT['glow'] + .6, .78), (HIT['drumIn'], .88), (HIT['drumHit'][2], 1.0),
          (HIT['lensOut'], .74), (HIT['giggle'], .86), (HIT['snap'], 1.0), (ti + .2, .82), (ti + .4, .76), (HIT['hop'], .92), (HIT['hopLand'] + .2, .74),
-         (HIT['nope'], 1.0), (HIT['nope'] + .4, .8), (HIT['peek'], .74), (HIT['show'], .95), (HIT['recall'], 1.0), (HIT['ring'], .92))
+         (HIT['nope'], 1.0), (HIT['nope'] + .4, .8), (HIT['peek'], .74), (HIT['ask'][0], .7), (HIT['wait'], .85), (HIT['show'], .95), (HIT['recall'], 1.0), (HIT['ring'], .92))
 tt = np.arange(len(mus)) / SR; lev = np.full(len(mus), LEVEL[0][1])
 for (t, g), (_, g0) in zip(LEVEL[1:], LEVEL[:-1]): lev = np.where(tt >= t - .15, np.where(tt < t + .15, g0 + (g - g0) * (tt - t + .15) / .3, g), lev)
 mus *= lev[:, None]
@@ -150,6 +152,9 @@ SFX = {
     'recall': lambda e: mixl(SFX['titlepop'](e), SFX['wordpop']({'n': 0}), np.pad(SFX['wordpop']({'n': 1}), (int(.12 * SR), 0))),   # chữ móc trở lại
     'whip': lambda e: mixl(T.swish(e.get('d', .45), .5, 700, 5200, True, .25, .25), whoosh(e.get('d', .45), .35)),   # lia máy nhanh
     'farchirp': lambda e: farchirp(e.get('v', 1.)),
+    'bang': lambda e: mixl(T.tink(.3, 5200), np.pad(T.boing(420, .25, .2, 2.8, 22.), (int(.03 * SR), 0))),   # v4: dấu "!" bật ra ở cái đầu gối
+    'ask': lambda e: mixl(T.bubble(1500, .3, .05, 2.4), np.pad(SFX['wordpop']({'n': 1}) * .55, (int(.1 * SR), 0))),   # v4: chữ câu hỏi kết bật ra (nhỏ, ngay trước lời)
+    'askq': lambda e: mixl(T.tink(.18, 4800), np.pad(T.tink(.16, 5400), (int(.09 * SR), 0))),   # hai dấu "?" nhún: tiếng ở dải cao, nhỏ, không che lời
     'hear': lambda e: mixl(T.tink(.35, 4400), T.bubble(900, .35, .07, 2.0)),                   # vòng sóng chạm tai
     'chirp': lambda e: chirp(1.),
     'notepop': lambda e: T.bubble(mf(e.get('m', 84)) * .5, .3, .06, 2.2),

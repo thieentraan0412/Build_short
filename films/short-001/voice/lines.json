@@ -107,5 +107,11 @@
   "text": "Hey... is it tasting me?",
   "voice": "af_heart",
   "speed": 0.9
+ },
+ {
+  "id": "L19",
+  "text": "Can YOUR feet taste?",
+  "voice": "af_heart",
+  "speed": 0.9
  }
 ]

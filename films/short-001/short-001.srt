@@ -47,9 +47,13 @@ The dance shows the way!
 Six legs? In you go!
 
 13
-00:00:44,950 --> 00:00:48,201
+00:00:44,900 --> 00:00:48,151
 Go outside with a grown-up, and look closely!
 
 14
-00:00:49,000 --> 00:00:51,119
+00:00:48,160 --> 00:00:50,279
 Hey... is it tasting me?
+
+15
+00:00:50,300 --> 00:00:52,000
+Can YOUR feet taste?

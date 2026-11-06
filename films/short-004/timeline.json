@@ -171,7 +171,7 @@
   {
    "id": "L15",
    "who": "crumb",
-   "t": 47.5,
+   "t": 47.05,
    "dur": 1.042,
    "card": 11,
    "text": "I can carry it!"
@@ -179,7 +179,7 @@
   {
    "id": "L16",
    "who": "loupe",
-   "t": 50.55,
+   "t": 49.45,
    "dur": 1.396,
    "card": 12,
    "text": "What can YOU smell right now?",
@@ -252,8 +252,8 @@
    34.35
   ],
   "aim": [
-   34.85,
-   35.2
+   34.7,
+   35.05
   ],
   "snap": 35.3,
   "zoomIn": [
@@ -273,23 +273,28 @@
   "sayIn": 39.4,
   "gagWalk": [
    46,
-   47.3
+   47
   ],
-  "gagSniff": 46.6,
+  "gagSniff": 46.4,
   "lift": [
-   48.6,
-   49.2
+   47.95,
+   48.5
   ],
-  "topple": 49.4,
-  "splat": 49.75,
-  "laugh": 50.2,
+  "topple": 48.65,
+  "splat": 48.95,
+  "laugh": 49.35,
   "finger": [
-   50.6,
+   49.9,
+   50.6
+  ],
+  "ask": [
+   49.1,
    51.3
   ],
-  "recall": 51,
+  "wait": 50.95,
+  "recall": 51.3,
   "loopIris": [
-   51.3,
+   51.45,
    52
   ]
  }

@@ -26,7 +26,7 @@ def mixl(*xs):                                  # cộng các đoạn khác đ�
 # nhạc cụ và cường độ của từng cảnh. Mô-típ bí mật đô–mi–sol (band.secret) trở lại ở mỗi phát hiện, mỗi lần một cách chơi.
 mus = B['mus']
 # khoảng lặng: trước hai đáp án (giữ nguyên) và lúc Flutter đậu lên kính ở cảnh kết (ngắt nhạc cho gag); nốt cũ ngân hết tự nhiên
-REST = ((at(11, 2), at(12)), (at(14, 2), at(15)), (at(24, 2), at(25, 1) - .25))
+REST = ((at(11, 2), at(12)), (at(14, 2), at(15)), (TL['hit']['gagLand'], TL['hit']['gagLaugh'] - .25))   # v4: khựng của gag theo mốc mới
 def M(x, t, g=1., pan=0.):
     if any(a - .02 <= t < b - .02 for a, b in REST): return
     add(mus, x, t, g, pan)
@@ -158,17 +158,23 @@ seq(pizz, (60, 67, 64, 67), at(24), BEAT / 2, .36, .2, d=.14, ramp=-.06)
 for i in range(2): M(reed(48 if i == 0 else 55, .14), at(24) + i * BEAT, .26, -.2); M(T.block(84 if i else 79, .4), at(24) + i * BEAT + BEAT / 4, .18, .3)
 # v3: hai chỗ khựng có chủ đích vẫn còn một lớp mỏng (không im hẳn: QUALITY.md §4)
 add(mus, buzzbass(41, 1.0, .5), at(14, 2) + .02, .3, 0); add(mus, pad([65, 69, 72], 1.0), at(14, 2) + .02, .14, 0)   # "Honeybees can't talk," … "so they dance!": ong vo ve chờ
-for i in range(10): add(mus, celesta((84, 86)[i % 2], .2), at(24, 2) + .05 + i * .12, .07, .3)   # "Hey... is it tasting me?": hộp nhạc rón rén
-add(mus, pad([60, 64, 67], 1.25), at(24, 2) + .02, .14, 0)
+for i in range(10): add(mus, celesta((84, 86)[i % 2], .2), HIT['gagLand'] + .05 + i * .12, .07, .3)   # "Hey... is it tasting me?": hộp nhạc rón rén
+add(mus, pad([60, 64, 67], 1.25), HIT['gagLand'] + .02, .14, 0)
 tf = HIT['gagLaugh']
 seq(xylo, (74, 76), tf - .25, .125, .45, .2)                               # hai nốt dẫn vào tiếng cười
 strum(pluck, (60, 64, 67, 72), tf, .6, 1.4, .02)
 secret(M, lambda n: horn(n, .9, .7), 72, tf, .1, .5, .1, last=12)         # "ta-da": kèn chơi mô-típ bí mật
 M(bell(84, .8, 1.4), tf + .3, .6); M(bassn(36, 1.4), tf, 1.); M(kick(), tf, .9); M(T.cymbal(1.8, 1.), tf, .28, -.15)
+# v4: câu hỏi kết "Can YOUR feet taste?": lớp mỏng ngoài dải giọng (bass trầm + hat cao), rồi nhịp chờ trẻ trả lời (hai nốt hộp nhạc hỏi lên), rồi chữ móc trở lại
+L19 = next(l for l in TL['lines'] if l['id'] == 'L19')
+M(bassn(41, 1.0), L19['t'], .55); M(bassn(36, .8), L19['t'] + 2 * BEAT, .5)
+for i in range(4): M(hat(.4), L19['t'] + i * BEAT, .22, .35)
+M(celesta(84, .5), HIT['wait'], .16, .35); M(celesta(88, .6), HIT['wait'] + .12, .18, .35)
+M(kick(.8), HIT['recall'], .6); M(bell(91, .6, 1.0), HIT['recall'] + .05, .3, .3)
 
 # — cường độ theo cảnh (chuyển mềm 0,3 s), trước khi chuẩn hoá và nhường giọng —
 LEVEL = ((0, .75), (at(2), .52), (at(3), .9), (HIT['sweet'], 1.), (at(8, 2), .9), (at(9), .85), (HIT['ckEar'], 1.), (26., .9), (at(14), .7), (HIT['dance'], .95),
-         (at(17), .9), (at(20), 1.), (44.3, .95), (at(24), .9), (tf - .3, .85), (HIT['recall'], 1.0))   # mở · nhạc hiệu (dưới lời tựa) · bướm · SWEET · đêm · dế · đáp án · … · bản đồ · sổ · lời dặn · kết
+         (at(17), .9), (at(20), 1.), (44.3, .95), (at(24), .9), (tf - .3, .85), (L19['t'] - .1, .72), (HIT['wait'], .9), (HIT['recall'], 1.0))   # mở · nhạc hiệu (dưới lời tựa) · bướm · SWEET · đêm · dế · đáp án · … · bản đồ · sổ · lời dặn · kết
 tt = np.arange(len(mus)) / SR; lev = np.full(len(mus), LEVEL[0][1])
 for (t, g), (_, g0) in zip(LEVEL[1:], LEVEL[:-1]): lev = np.where(tt >= t - .15, np.where(tt < t + .15, g0 + (g - g0) * (tt - t + .15) / .3, g), lev)
 mus *= lev[:, None]
@@ -202,6 +208,8 @@ def stampN(n):                                  # ba sticker liên tiếp: tiế
     if n is None: return stamp()
     return mixl(thump(.8, 95 + 18 * n) * .7, hp(noise(.07), 1200) * env_exp(.07, .012) * .6, T._ting(mf((79, 84, 88)[n]), .35, .35))
 SFX = {
+    'ask': lambda e: mixl(T.bubble(1500, .3, .05, 2.4), np.pad(SFX['wordpop']({'n': 1}) * .55, (int(.1 * SR), 0))),   # v4: chữ câu hỏi kết bật ra
+    'askq': lambda e: mixl(T.tink(.18, 4800), np.pad(T.tink(.16, 5400), (int(.09 * SR), 0))),   # hai dấu "?" nhún: dải cao, nhỏ
     'wordpop': lambda e: mixl(T.boing(220 + 120 * e.get('n', 0), .35, .3, 2.4, 16.), np.pad(pop(.6) * .45, (int(.02 * SR), 0)), T.bubble(1300 + 500 * e.get('n', 0), .35, .05, 2.4)),   # v3: mỗi dòng chữ móc nảy một tiếng
     'recall': lambda e: mixl(T.bubble(1600, .5, .06, 2.4), np.pad(T._ting(mf(103), .5, .35), (int(.02 * SR), 0)), SFX['wordpop']({'n': 0}) * .8, np.pad(SFX['wordpop']({'n': 1}) * .8, (int(.12 * SR), 0))),   # chữ móc trở lại
     'stomp': lambda e: mixl(thump(1., 58), lp(noise(.3), 900) * env_exp(.3, .06) * .7),
@@ -244,7 +252,7 @@ SFX = {
     'chime': lambda e: mixl(ding(.55) * .5, bell(84, .7)),
     'buzzer': lambda e: buzzer(),
     'reveal': lambda e: mixl(bell(84, .9), bell(91, .6)),
-    'stamp': lambda e: stampN(e.get('n')),
+    'stamp': lambda e: stampN(e.get('n')) * (.75 if e.get('n') == 0 else 1.),   # v4: sticker đầu hạ nhẹ (đỉnh thật sau loudnorm từng chạm −0,9 dBTP)
     'pullback': lambda e: mixl(whoosh(1.1, .7) * .8, lp(noise(1.1), 300) * np.sin(np.pi * t_(1.1) / 1.1) * .2),
     'buzzby': lambda e: buzzby(e.get('d', 1.5)),
     'roll': lambda e: roll(e.get('d', 3.)),

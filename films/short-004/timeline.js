@@ -30,9 +30,10 @@ export const HIT = {
   walk1: [6.0, 7.6], lupIn: 7.6, zoom: 9.35, scent: 9.6, lensOut: 12.0, ant2: [12.0, 12.9], taps: [13.0, 13.25], ant2Out: [14.8, 15.5],
   map: 16.6, nope: 18.6, rest: [19.4, 20.0], trail: 20.0, slide: [22.0, 27.0], rollo: [24.4, 26.2], freeze: [25.0, 25.7],
   aphidTap: [29.0, 29.2], drop: 29.6, sip: 30.0, cows: 31.65, spindle: [33.3, 33.8], drop2: [33.9, 34.35],
-  aim: [34.85, 35.2], snap: 35.3, zoomIn: [35.4, 35.7], zoomOut: [35.7, 36.05], irisB: 35.7,   // v2: kính soi lại chú rệp, "chụp" → match cut thành sticker thứ ba
+  aim: [34.7, 35.05], snap: 35.3, zoomIn: [35.4, 35.7], zoomOut: [35.7, 36.05], irisB: 35.7,   // v2: kính soi lại chú rệp, "chụp" → match cut thành sticker thứ ba
   stamp: [36.5, 37.0, 37.5], sayIn: 39.4,
-  gagWalk: [46.0, 47.3], gagSniff: 46.6, lift: [48.6, 49.2], topple: 49.4, splat: 49.75, laugh: 50.2, finger: [50.6, 51.3], recall: 51.0, loopIris: [51.3, 52.0],
+  // v3 (quy tắc câu hỏi kết): gag sớm hơn ~1,3 s để câu hỏi kết có chữ to đọc đủ 2,2 s (HIT.ask), một nhịp chờ trẻ trả lời (wait), rồi chữ móc trở lại đúng chỗ đó (recall = ask[1])
+  gagWalk: [46.0, 47.0], gagSniff: 46.4, lift: [47.95, 48.5], topple: 48.65, splat: 48.95, laugh: 49.35, finger: [49.9, 50.6], ask: [49.1, 51.3], wait: 50.95, recall: 51.3, loopIris: [51.45, 52.0],
 };
 
 // t: lúc bắt đầu nói (giây). dur: độ dài thật (voice/dur.json, sau voicefx.py). who: giọng trong _shared/voices.js. catch: câu cửa miệng.
@@ -51,8 +52,8 @@ export const LINES = [
   { id: 'L12', who: 'albie', t: at(19), dur: 2.297, card: 9, text: 'Six legs? In you go!', catch: true },
   { id: 'L13', who: 'crumb', t: 41.2, dur: 1.343, card: 10, text: 'Can I hold the lens?' },
   { id: 'L14', who: 'loupe', t: 42.9, dur: .828, card: 10, text: 'Not yet!' },
-  { id: 'L15', who: 'crumb', t: 47.5, dur: 1.042, card: 11, text: 'I can carry it!' },
-  { id: 'L16', who: 'loupe', t: 50.55, dur: 1.396, card: 12, text: 'What can YOU smell right now?', pace: 1 },   // v2: câu hỏi kết cho trẻ (QUALITY.md §6)
+  { id: 'L15', who: 'crumb', t: 47.05, dur: 1.042, card: 11, text: 'I can carry it!' },   // v3: sớm 0,45 s (gag dời sớm)
+  { id: 'L16', who: 'loupe', t: 49.45, dur: 1.396, card: 12, text: 'What can YOU smell right now?', pace: 1 },   // câu hỏi kết cho trẻ (QUALITY.md §6). v3: tấm riêng + chữ to (HIT.ask), xong trước chữ móc trở lại
 ];
 // Tấm phụ đề: giữ ≥ 1,8 s và ≥ câu cuối + 0,6 s (DIRECTOR.md §7); không được chồng tấm sau. Chữ hiện dần theo câu đã nói.
 export const CARDS = [...new Set(LINES.map(l => l.card))].map(k => {
@@ -72,7 +73,7 @@ export const BOARD = [
   { t: 24.0, shot: '7', frame: 'Lens slides along the trail', dur: '7 s', line: 'They follow a smell trail!' },
   { t: 30.8, shot: '8', frame: 'Leaf with aphids', dur: '8 s', line: 'Some ants keep tiny cows!' },
   { t: 42.0, shot: '9', frame: 'Album, held', dur: '9.5 s', line: 'Six legs? In you go! · Can I hold the lens? Not yet!' },
-  { t: 49.9, shot: '10', frame: 'Medium · ice cream on the lens', dur: '6 s', line: 'I can carry it!' },
+  { t: 50.3, shot: '10', frame: 'Medium · ice cream on the lens · big question', dur: '6 s', line: 'I can carry it! · What can YOU smell right now?' },
 ];
 
 // Sự kiện âm thanh, khớp với chuyển động trong film.js (core/render/events.mjs → events.json → mix.py). Bảng cue đầy đủ ở SOUND.md.
@@ -135,6 +136,8 @@ export const EV = [
   { t: HIT.splat, type: 'splat' }, { t: HIT.splat + .02, type: 'tink' },
   { t: HIT.laugh, type: 'boing', v: .45 },
   { t: HIT.finger[0] + .2, type: 'squeak' },
+  { t: HIT.ask[0], type: 'ask' },                               // v3: chữ câu hỏi kết bật ra (nhỏ, trước lời)
+  { t: HIT.ask[0] + .3, type: 'askq' },                         // hai dấu "?" nhún (dải cao, nhỏ)
   { t: HIT.recall, type: 'recall' },                           // v2: chữ SMELL WITH FINGERS?! trở lại đúng chỗ của khung đầu
   { t: HIT.loopIris[0], type: 'ringiris' },
 ];
