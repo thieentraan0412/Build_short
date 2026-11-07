@@ -17,7 +17,7 @@ Một video chỉ được giao khi:
 | 1. Treatment (`TREATMENT.md`) | Viết rõ: nhịp móc 0–1 / 1–2 / 2–3 s; ba cấu trúc và lựa chọn; mỗi 3–5 s có chuyện gì mới (bảng cảnh); gag hoặc bất ngờ; thông điệp; chi tiết để xem lại (trứng phục sinh, vòng lặp); màu nhạc riêng của tập |
 | 2. Giọng | Mỗi nhân vật có lời phải có trong [`voices.js`](voices.js). Nhân vật mới phải thử A/B. Mọi câu qua Whisper `small.en` và `base.en` (`build.sh` chạy cả hai) |
 | 3. Hình | Dựng khung tĩnh của mọi cảnh trước khi render; soi lỗi che khuất, chữ đè, nhân vật lơ lửng, cắt mép |
-| 4. Âm thanh | Bảng Soundtrack Timeline (`MUSIC.md`) và bảng cue (`SOUND.md`) trước khi trộn |
+| 4. Âm thanh | Bảng Soundtrack Timeline (`MUSIC.md`) có **bảng cảnh nhạc** (mỗi cảnh một điệu, dựng bằng [`audio/groove.py`](audio/groove.py)) và bảng cue (`SOUND.md`) trước khi trộn |
 | 5. Dựng | `build.sh` chạy readcheck, Whisper và **`qa.py`** ở cuối |
 | 6. Giao | Báo cáo gồm bảng `qa.py` (hoặc `out/qa.json`) và checklist thủ công, ghi rõ mục nào chưa đạt và lý do |
 
@@ -69,6 +69,10 @@ Một video chỉ được giao khi:
 | Không chói (năng lượng > 6 kHz ≤ 6 %), không tụt tiếng đột ngột | `qa.py` |
 | **Tự động hoá âm lượng theo cảnh** (`LEVEL` trong `mix.py`): dâng ở chỗ khám phá và bất ngờ (phát hiện, chụp sticker, "NOPE!", chữ móc trở lại), hạ dưới lời; chênh giữa giây to nhất và nhỏ nhất ≥ 6 dB | `qa.py` |
 | **Không có lỗ im của nhạc**: nhạc không dưới −45 dB quá 1 giây. Chỗ "khựng" cho gag thì vẫn còn một lớp mỏng (vibraphone run run, pad), không im hẳn | `qa.py` |
+| **Nhạc nền sinh động, đổi theo cảnh** (lượt 11/2026): không có đoạn nào quá 8 s (video dài: 15 s) mà nhạc giữ nguyên một kiểu. Hai cảnh nhạc kề nhau khác nhau ở ít nhất 2 trong 5 thứ: điệu, vòng hoà âm, bộ nhạc cụ, bộ trống, mức năng lượng. Một Short có ≥ 3 điệu (dưới 20 s: ≥ 2). Dựng bằng lớp nhịp theo cảnh [`audio/groove.py`](audio/groove.py) (`G.sec`); đoạn viết tay (nhạc hiệu, stinger, tổ khúc) ghi bằng `G.mark`; `G.save` ghi `out/music.json` | `qa.py` (`out/music.json`) + bảng cảnh nhạc trong `MUSIC.md` |
+| **Nhạc có nhịp liền, kể cả dưới lời**: dưới lời còn bass, kick, hat/shaker và tiếng đệm ngắn ở dải cao (giai điệu im); dưới giọng trầm (Albie) bỏ bass. Không để nhạc đứng thành pad ngân dài: chỗ khám phá dùng điệu rải (`float`), không dùng pad trơn | `qa.py`: ≥ 85 % số giây có ≥ 3 nốt |
+| **Nhạc đáp lời**: khoảng không lời giữa hai câu có một câu đáp ngắn của nhạc cụ hát chính (lớp nhịp tự chen; câu đáp viết tay ghi bằng `G.answer`), ≥ 1 câu / 10 s | `qa.py` |
+| **Đổi cảnh nhạc có dấu**: trước cảnh mạnh hơn có trống dồn, trước cảnh nhẹ hơn có chuỗi nốt đi xuống; phách đầu cảnh mới có kick + chũm chọe mềm (lớp nhịp tự làm); chỗ khựng, stinger viết tay | `MUSIC.md` + nghe lại |
 | Có tiếng động cho mọi chuyển động chính: nhân vật (nhảy, giật mình, khoe), kính (chụp, lao vào, lùi ra), sổ (lật, dán), gag | `SOUND.md` |
 | Nền (ambience) theo bối cảnh: đêm (gió, dế xa), vườn (chim xa, gió lá)…, nhường giọng như nhạc | `mix.py` |
 
@@ -117,6 +121,7 @@ Một video chỉ được giao khi:
 - [ ] Có thông điệp hoặc bài học nhỏ thấy được
 - [ ] Biểu cảm đọc được ở cỡ điện thoại; không che, không cắt mép, không lơ lửng
 - [ ] Nhạc đổi theo cảnh, khớp hành động; màu nhạc khác các tập trước
+- [ ] Nghe lại cả phim: mỗi cảnh nhạc nghe ra khác cảnh trước; dưới lời vẫn còn nhịp; có câu đáp giữa các câu; không đoạn nào nghe như một vòng lặp đều
 - [ ] Kết có điểm nhấn và nối về đầu (vòng lặp hoặc câu cuối)
 - [ ] Không kêu gọi bình luận hay đăng ký (Made for Kids); câu hỏi kết là câu trẻ trả lời to
 - [ ] Tựa móc nảy ở khung đầu có tiếng; nhân vật phản ứng bất ngờ trong 1 s

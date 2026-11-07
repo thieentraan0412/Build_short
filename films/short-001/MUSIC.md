@@ -1,5 +1,7 @@
 # SHORT-001 · Soundtrack Timeline
 
+> **Bản hiện hành:** lượt nhạc nền sinh động (11/2026), ở [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-hiện-hành). Lớp đệm của các bảng dưới đây đã được thay bằng lớp nhịp theo cảnh; các điểm nhấn viết tay giữ nguyên.
+
 Lượt nhạc nền theo `Task.md` (*Điều chỉnh nhạc nền sinh động*). Hình, lời, thời lượng 52,0 s và tiếng động giữ nguyên. Chỉ phần nhạc trong [mix.py](mix.py) được viết lại.
 Bản trước: `out/short-001-v3.mp4`, `out/mix-v3.py`.
 
@@ -75,3 +77,63 @@ Cảnh bản đồ không có lời nên nhạc đầy nhất ở đó; các c�
   - Thấp nhất là "Sweet! Time to eat!" 10,8 dB (trước 11,7) và "A cricket's ears…" 11,1 dB (trước 11,6). Whisper vẫn nghe đúng cả hai.
 - **Chỗ hụt tiếng:** không có chỗ tụt quá 24 dB trong 50 ms.
 - **Phổ:** phần trên 6 kHz chiếm 3,7% năng lượng (bản trước 3,5%), không chói hơn.
+
+## Lượt nhạc nền sinh động (11/2026) · bản hiện hành
+
+Theo `Task.md`: *"Cần thêm nhiều nhạc nền sinh động, trong 1 short nhạc nền đang không có sự thay đổi."* Hình, lời, tiếng động và các điểm nhấn nhạc viết tay (mô-típ bí mật, stinger, khựng, nhạc hiệu, nối vòng lặp) giữ nguyên. Lớp đệm đứng yên được thay bằng **lớp nhịp theo cảnh** ([`_shared/audio/groove.py`](../../_shared/audio/groove.py)):
+- **Mỗi cảnh một điệu.** Mỗi cảnh có điệu, vòng hoà âm, bộ nhạc cụ, bộ trống và mức năng lượng riêng. Hai cảnh kề nhau khác nhau ở ít nhất hai trong năm thứ đó.
+- **Dưới lời nhạc vẫn chạy.** Dưới lời còn bass, kick, hat/shaker và tiếng đệm ngắn ở dải cao. Dưới giọng trầm của Albie thì bỏ bass.
+- **Nhạc đáp lời.** Khoảng không lời giữa hai câu có một câu đáp ngắn của nhạc cụ hát chính.
+- **Đổi cảnh có dấu.** Trước cảnh mạnh hơn có trống dồn, trước cảnh nhẹ hơn có chuỗi nốt đi xuống. Phách đầu cảnh mới có kick và chũm chọe mềm.
+
+**Bản trước:** v5 (`out/mix-v5.py`, `out/MUSIC-v5.md`, `out/stem_mus-v4.wav`; video trước: `out/short-001-v2pre.mp4`, giống hệt bản đã giao).
+
+**Vì sao nghe như không đổi.** Tổ khúc đã đổi giọng và điệu theo từng bí mật. Còn ba lớp đệm đứng yên: đàn hạc 3+3+2 chạy liền 8 s (6–14 s, kể cả lúc kính phóng to); "Time to eat!" chỉ có kick, clap, ukulele lặp một mẫu; cảnh sổ chỉ có vài tiếng ukulele và pad dưới lời của Albie và lời dặn.
+
+**Bản mới.** Ba chỗ đó thành ba cảnh nhạc riêng:
+- **Kính phóng to:** marimba rải lơ lửng, không trống, sáo đáp lời.
+- **SWEET:** pop nảy theo màu ban nhạc kênh, marimba đáp sau câu.
+- **Sổ:** shuffle ukulele dưới câu của Albie (không bass), rồi nửa nhịp ấm C · Am · F · G dưới lời dặn.
+
+Các đoạn tổ khúc viết tay khác giữ nguyên và được ghi vào bảng cảnh bằng `G.mark`.
+
+Bản này cũng là lần đầu SHORT-001 được dựng lại từ mã nguồn hiện tại. `film.js` và `timeline.js` đã sửa lúc 16:58 ngày 06/11 (chữ móc `hookTitle`, Flutter lơ lửng từ khung đầu, chữ móc trở lại `recall`), nhưng `short-001.mp4` vẫn là bản 09:08. Hình đã được render lại (`out/video.mp4`); readcheck đạt.
+
+### Bảng cảnh nhạc
+
+Sinh từ `out/music.json`. Cột *Nguồn*: "lớp nhịp" là phần `groove.py` dựng; "viết tay" là đoạn có sẵn trong `mix.py` (điểm nhấn, tổ khúc, nhạc hiệu). Các điểm nhấn viết tay ở bảng Timeline phía trên vẫn nằm trên lớp nhịp.
+
+| Thời gian | Cảnh nhạc | Điệu | Hoà âm | Nhạc cụ | Trống | Năng lượng | Nguồn |
+|---|---|---|---|---|---|---|---|
+| 0–1,5 | rình · rón rén | rón rén | C | pizzicato, trống tom, xylophone | — | vừa | viết tay |
+| 1,5–4 | giẫm · polka | polka | C | tuba, xylophone, pizzicato | — | đầy | viết tay |
+| 4–6 | nhạc hiệu | nhạc hiệu | C | kèn đồ chơi, chuông, marimba | — | vừa | viết tay |
+| 6–9,6 | bướm bay · đàn hạc 3+3+2 | đàn hạc lơi 3+3+2 | F | đàn hạc, pizzicato, sáo | — | vừa | viết tay |
+| 9,6–13 | kính phóng to · marimba rải | rải lơ lửng | C · Dm · B♭ | pizzicato trầm, marimba, sáo | — | nhẹ | lớp nhịp |
+| 13–14,25 | dồn vào SWEET | khựng / điểm nhấn viết tay | — | pizzicato | — | — | viết tay |
+| 14,25–17 | SWEET · pop nảy | pop nảy | F · C | bass gảy, ukulele, marimba | kick, clap, shaker | đầy | lớp nhịp |
+| 17–18 | ngày → đêm | khựng / điểm nhấn viết tay | — | đàn hạc, kèn dăm | — | — | viết tay |
+| 18–23 | dế · rón rén trong đêm | rón rén | Am | pizzicato, tiếng dế, kèn dăm | — | nhẹ | viết tay |
+| 23–24 | khựng trước đáp án | khựng / điểm nhấn viết tay | — | — | — | — | viết tay |
+| 24–28 | tai ở chân · bừng sáng | rón rén | C | pizzicato, tiếng dế, hộp nhạc | — | đầy | viết tay |
+| 28–30 | ong · ú ớ | khựng / điểm nhấn viết tay | — | bass vo ve | — | — | viết tay |
+| 30–34 | ong · swing "bee bop" | swing | F | bass vo ve, xylophone, ukulele | — | đầy | viết tay |
+| 34–40 | bản đồ · phiêu lưu | phi nước kiệu (nhịp kép) | C | pizzicato, chuông, kèn đồ chơi | — | đầy | viết tay |
+| 40–42 | sổ · ba sticker | khựng / điểm nhấn viết tay | — | pizzicato, xylophone | — | — | viết tay |
+| 42–44,3 | Albie · shuffle ukulele | shuffle nhún nhảy | C→Am | bass gảy, ukulele, xylophone | kick, clap, shaker | vừa | lớp nhịp |
+| 44,3–47,5 | lời dặn · nửa nhịp ấm | nửa nhịp đung đưa | C→Am · F→G | pizzicato trầm, ukulele, sáo | kick, chổi trống, hat | vừa | lớp nhịp |
+| 47,5–49 | nhón chân | rón rén | C | pizzicato, xylophone, kèn dăm | — | nhẹ | viết tay |
+| 49–52 | khựng · ta-da | khựng / điểm nhấn viết tay | — | kèn đồ chơi, ukulele, chuông | — | — | viết tay |
+
+### Số đo trước / sau
+
+| | Bản trước | Bản mới |
+|---|---|---|
+| Số điệu trong phim | 7 cảnh tổ khúc | 9 điệu, 19 cảnh nhạc |
+| Đoạn dài nhất cùng một kiểu | ≈ 8 s (đàn hạc 6–14 s) | 6,0 s (bản đồ, viết tay) |
+| Câu đáp giữa các câu thoại | — | 11 (2 tự động, 9 viết tay) |
+| Lời rõ hơn nhạc + tiếng động, câu thấp nhất | 10,8 dB ("Sweet! Time to eat!") | 10,7 dB ("A cricket's ears…", đoạn viết tay không đổi); "Sweet!" lên 11,7 dB |
+
+Nốt mỗi giây được đếm từ các lệnh đặt nốt của `mix.py`; một hợp âm tính mỗi nốt một lần. Độ rõ lời đo theo `qa.py` (dải 300–4000 Hz, trung vị theo câu), trên cùng một stem giọng và tiếng động.
+
+**`_shared/qa.py`: 33/33 đạt**, không còn cảnh báo. Độ to −14,1 LUFS, đỉnh thật −2,1 dBTP (`T.master(mix, 11.6)`, như SHORT-004: lần mux đầu đỉnh thật vọt lên −0,5 dBTP).

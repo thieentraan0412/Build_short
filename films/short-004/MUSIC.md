@@ -1,5 +1,7 @@
 # SHORT-004 · Soundtrack Timeline
 
+> **Bản hiện hành:** lượt nhạc nền sinh động (11/2026), ở [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-hiện-hành). Lớp đệm của các bảng dưới đây đã được thay bằng lớp nhịp theo cảnh; các điểm nhấn viết tay giữ nguyên.
+
 ## Màu nhạc của tập: "Ant Parade"
 
 Đàn kiến đi thành hàng, nên tập này được viết như một **ban kèn diễu hành đồ chơi**. Ba bí mật đổi màu theo cảnh:
@@ -59,3 +61,68 @@ Hai nhạc cụ mới trong [band.py](../../_shared/audio/band.py): `snare`, `ba
 | 0,62 | 0,45 | 0,85 | 0,8 | 0,85 | 0,8 | 1,0 | 0,85 | 0,8 | 0,7 | 0,85 | 0,85 |
 
 Nhạc hiệu giữ nguyên nốt và âm sắc, chỉ nhỏ hơn để câu "Big secrets of tiny bugs!" đọc cùng lúc vẫn rõ.
+
+## Lượt nhạc nền sinh động (11/2026) · bản hiện hành
+
+Theo `Task.md`: *"Cần thêm nhiều nhạc nền sinh động, trong 1 short nhạc nền đang không có sự thay đổi."* Hình, lời, tiếng động và các điểm nhấn nhạc viết tay (mô-típ bí mật, stinger, khựng, nhạc hiệu, nối vòng lặp) giữ nguyên. Lớp đệm đứng yên được thay bằng **lớp nhịp theo cảnh** ([`_shared/audio/groove.py`](../../_shared/audio/groove.py)):
+- **Mỗi cảnh một điệu.** Mỗi cảnh có điệu, vòng hoà âm, bộ nhạc cụ, bộ trống và mức năng lượng riêng. Hai cảnh kề nhau khác nhau ở ít nhất hai trong năm thứ đó.
+- **Dưới lời nhạc vẫn chạy.** Dưới lời còn bass, kick, hat/shaker và tiếng đệm ngắn ở dải cao. Dưới giọng trầm của Albie thì bỏ bass.
+- **Nhạc đáp lời.** Khoảng không lời giữa hai câu có một câu đáp ngắn của nhạc cụ hát chính.
+- **Đổi cảnh có dấu.** Trước cảnh mạnh hơn có trống dồn, trước cảnh nhẹ hơn có chuỗi nốt đi xuống. Phách đầu cảnh mới có kick và chũm chọe mềm.
+
+**Bản trước:** v2 (`out/short-004-v2.mp4`, `out/mix-v2.py`, `out/MUSIC-v2.md`, `out/stem_mus-v2.wav`).
+
+**Vì sao nghe như không đổi.** Diễu hành Fa chạy liền 6–16 s rồi 22–27 s, cùng tuba, snare và pizzicato. Hai chỗ khám phá (hạt mùi, đường mùi) chỉ là pad ngân dài đứng yên. Cảnh sổ 36–46 s gần như chỉ có vài nốt ukulele và glockenspiel.
+
+**Bản mới.** Hai mươi hai cảnh nhạc, bảy điệu. Diễu hành vẫn là màu chính nhưng không còn chạy liền:
+- **Đầu phim:** diễu hành rồi polka khi Crumb bật lên; sau nhạc hiệu là diễu hành ra mắt.
+- **Bí mật 1:** đàn hạc rải khi hạt mùi bay vào, shuffle "tap, tap".
+- **Bí mật 2:** thám tử rón rén, glockenspiel rải khi đường mùi sáng, diễu hành dồn theo đường mùi.
+- **Bí mật 3:** đồng quê "boom-chick" ở trại rệp, polka "TINY COWS".
+- **Sổ:** shuffle dưới câu của Albie, nửa nhịp "Can I hold the lens?", diễu hành.
+- **Kết:** rón rén theo mùi tới cây kem, nửa nhịp dưới câu hỏi kết, diễu hành về khung đầu.
+
+Lớp nhịp làm nhạc chung đầy hơn, nên khâu chuẩn hoá đẩy nhạc hiệu nhỏ đi khoảng 4 dB. `LEVEL` của nhạc hiệu được nâng từ 0,45 lên 0,68 để giữ gần đúng độ to cũ (chênh 1–2 dB). Câu "Big secrets of tiny bugs!" đọc chồng lên nhạc hiệu vẫn rõ: 13,1 dB, bản trước 12,1.
+
+### Bảng cảnh nhạc
+
+Sinh từ `out/music.json`. Cột *Nguồn*: "lớp nhịp" là phần `groove.py` dựng; "viết tay" là đoạn có sẵn trong `mix.py` (điểm nhấn, tổ khúc, nhạc hiệu). Các điểm nhấn viết tay ở bảng Timeline phía trên vẫn nằm trên lớp nhịp.
+
+| Thời gian | Cảnh nhạc | Điệu | Hoà âm | Nhạc cụ | Trống | Năng lượng | Nguồn |
+|---|---|---|---|---|---|---|---|
+| 0–1,75 | móc · diễu hành | diễu hành | F | tuba, pizzicato, glockenspiel | kick, snare, lục lạc | vừa | lớp nhịp |
+| 1,75–3,5 | Ants can! · polka | polka | F · F→C | tuba, pizzicato, xylophone | kick, snare | đầy | lớp nhịp |
+| 3,5–4 | kính nở | khựng / điểm nhấn viết tay | — | glockenspiel | — | — | viết tay |
+| 4–6 | nhạc hiệu | nhạc hiệu | C | kèn đồ chơi, chuông, marimba | — | vừa | viết tay |
+| 6–9,35 | Crumb ra mắt · diễu hành | diễu hành | F→B♭ · C→F | tuba, pizzicato, glockenspiel | kick, snare, lục lạc | vừa | lớp nhịp |
+| 9,35–12 | hạt mùi · rải đàn hạc | rải lơ lửng | F | tuba, đàn hạc, glockenspiel | — | nhẹ | lớp nhịp |
+| 12–16 | tap, tap · shuffle | shuffle nhún nhảy | F · C | tuba, ukulele, xylophone | kick, clap, shaker | vừa | lớp nhịp |
+| 16–18,6 | thám tử · rón rén | rón rén | Dm · A7 | pizzicato trầm, pizzicato, kèn dăm | mõ gỗ, shaker | nhẹ | lớp nhịp |
+| 18,6–20 | Nope · lặng | khựng / điểm nhấn viết tay | — | — | — | — | viết tay |
+| 20–22 | đường mùi sáng · rải glockenspiel | rải lơ lửng | Dm | tuba, glockenspiel, hộp nhạc | — | nhẹ | lớp nhịp |
+| 22–27 | theo đường mùi · diễu hành dồn | diễu hành | Dm→B♭ · C→F | tuba, pizzicato, glockenspiel | kick, snare, lục lạc | đầy | lớp nhịp |
+| 27–28 | bò lên thân cây | khựng / điểm nhấn viết tay | — | glockenspiel | — | — | viết tay |
+| 28–31,65 | trại rệp · đồng quê | đồng quê "boom-chick" | C · G | tuba, banjo, xylophone | kick, clap | vừa | lớp nhịp |
+| 31,65–35,3 | TINY COWS · polka | polka | G · C · G | tuba, banjo, xylophone | kick, snare | đầy | lớp nhịp |
+| 35,3–36,5 | chụp sticker | khựng / điểm nhấn viết tay | — | — | — | — | viết tay |
+| 36,5–41,2 | sổ · shuffle | shuffle nhún nhảy | F · F→B♭ · F | tuba, ukulele, glockenspiel | kick, clap, shaker | vừa | lớp nhịp |
+| 41,2–44 | Can I hold the lens? · nửa nhịp | nửa nhịp đung đưa | F · B♭ | tuba, marimba, glockenspiel | kick, chổi trống, hat | nhẹ | lớp nhịp |
+| 44–46 | về kết · diễu hành | diễu hành | F→C | tuba, pizzicato, glockenspiel | kick, snare, lục lạc | vừa | lớp nhịp |
+| 46–48,6 | theo mùi tới cây kem · rón rén | rón rén | F · C | pizzicato trầm, pizzicato, kèn dăm | mõ gỗ, shaker | nhẹ | lớp nhịp |
+| 48,6–50,2 | nhấc · đổ · khựng | khựng / điểm nhấn viết tay | — | — | — | — | viết tay |
+| 50,2–51,3 | cười · câu hỏi kết | nửa nhịp đung đưa | F | tuba, marimba, glockenspiel | kick, chổi trống, hat | nhẹ | lớp nhịp |
+| 51,3–52 | về khung đầu · diễu hành | diễu hành | F | tuba, pizzicato, glockenspiel | kick, snare, lục lạc | vừa | lớp nhịp |
+
+### Số đo trước / sau
+
+| | Bản trước | Bản mới |
+|---|---|---|
+| Số điệu trong phim | 3 (diễu hành, rón rén, đồng quê) + pad | 7, 22 cảnh nhạc |
+| Đoạn dài nhất cùng một kiểu | ≈ 7,3 s (đồng quê 28–35,3 s) | 5,0 s (diễu hành dồn theo đường mùi) |
+| Nốt nhạc mỗi giây (trung vị) dưới lời / khoảng trống | 6 / 6 | 10 / 14 |
+| Câu đáp giữa các câu thoại | — | 19 (11 tự động, 8 viết tay) |
+| Lời rõ hơn nhạc + tiếng động, câu thấp nhất | 12,1 dB (câu đọc trên nhạc hiệu) | 13,1 dB (cùng câu) |
+
+Nốt mỗi giây được đếm từ các lệnh đặt nốt của `mix.py`; một hợp âm tính mỗi nốt một lần. Độ rõ lời đo theo `qa.py` (dải 300–4000 Hz, trung vị theo câu), trên cùng một stem giọng và tiếng động.
+
+**`_shared/qa.py`: 34/34 đạt**, không còn cảnh báo. Độ to −14,0 LUFS, đỉnh thật −2,0 dBTP.

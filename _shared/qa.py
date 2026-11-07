@@ -1,7 +1,8 @@
 """Kiểm tra chất lượng một Short theo bộ tiêu chí của kênh (_shared/QUALITY.md). Chạy sau khi dựng xong:
     python _shared/qa.py films/short-00x            # đo các tiêu chí đo được, in bảng ĐẠT / CẢNH BÁO / CHƯA ĐẠT
     python _shared/qa.py films/short-00x --json     # thêm out/qa.json
-Cần: <film>/timeline.json, events.json, out/stem_{mus,fx,vox}.wav, out/mix.wav, <film>/<tên>.mp4 (build.sh tạo ra hết).
+Cần: <film>/timeline.json, events.json, out/stem_{mus,fx,vox}.wav, out/mix.wav, <film>/<tên>.mp4 (build.sh tạo ra hết),
+và out/music.json (bảng cảnh nhạc do _shared/audio/groove.py ghi; thiếu thì mục "Nhạc đổi theo cảnh" là CẢNH BÁO).
 Đo bằng numpy và ffmpeg, không dùng mạng. Phần không đo được (câu chuyện, độ hài, biểu cảm) nằm trong checklist của QUALITY.md.
 Mã thoát: 0 khi không có mục CHƯA ĐẠT; 1 khi có (build.sh vẫn in đủ báo cáo)."""
 import os, sys, json, glob, subprocess, numpy as np, soundfile as sf
@@ -106,6 +107,46 @@ row('4 Âm thanh', 'Lỗ im của nhạc nền', OK if len(holes) <= 1 else WARN
 act = [v for v in sec_db if v > -60]
 dyn = (max(act) - min(act)) if act else 0
 row('4 Âm thanh', 'Âm lượng nhạc đổi theo cảnh', OK if dyn >= 6 else WARN, f'{dyn:.0f} dB giữa giây to nhất và nhỏ nhất', '≥ 6 dB (dâng ở chỗ khám phá, hạ dưới lời)')
+
+# nhạc nền sinh động (QUALITY.md §4): nhạc đổi điệu theo cảnh, có nhịp liền, có câu đáp giữa các câu thoại.
+# Bảng cảnh nhạc do lớp nhịp _shared/audio/groove.py ghi ra (out/music.json): mỗi cảnh một điệu, một vòng hoà âm, một bộ nhạc cụ, một mức năng lượng.
+LONG = DUR > 90
+mj = os.path.join(OUT, 'music.json')
+MS = sorted(json.load(open(mj, encoding='utf-8'))['sections'], key=lambda s: s['t0']) if os.path.exists(mj) else []
+MJ = json.load(open(mj, encoding='utf-8')) if MS else {}
+FILLS, HAND = MJ.get('fills', 0), len(MJ.get('answers', []))      # câu đáp tự động của lớp nhịp + câu đáp viết tay (Groove.answer)
+PAUSE = ('break', 'jingle')                                        # khựng, stinger, nhạc hiệu: là chỗ đổi, không phải một điệu
+def differs(a, b):
+    ia = {a.get(k) for k in ('bass', 'comp', 'lead', 'arp')} - {None}; ib = {b.get(k) for k in ('bass', 'comp', 'lead', 'arp')} - {None}
+    return (a['style'] != b['style']) + (a['chords'] != b['chords']) + (ia != ib) + (a.get('kit') != b.get('kit')) + (a.get('energy') != b.get('energy'))
+if MS:
+    runs, cur = [], None                                           # các đoạn liền nhau mà nhạc gần như không đổi (khác nhau < 2 điểm)
+    for s in MS:
+        if s['style'] in PAUSE: cur = None; continue
+        if cur and differs(cur[-1], s) < 2 and abs(s['t0'] - cur[-1]['t1']) < .3: cur.append(s)
+        else: cur = [s]; runs.append(cur)
+    longest = max(runs, key=lambda r: r[-1]['t1'] - r[0]['t0']); L_ = longest[-1]['t1'] - longest[0]['t0']
+    lim = 15 if LONG else 8
+    row('4 Âm thanh', 'Nhạc đổi theo cảnh: đoạn dài nhất cùng một kiểu', OK if L_ <= lim else WARN if L_ <= lim + 4 else FAIL,
+        f"{L_:.1f} s ({longest[0]['name']}, {longest[0]['t0']:.1f}–{longest[-1]['t1']:.1f} s); {len(MS)} cảnh nhạc", f'≤ {lim} s (đổi điệu, hoà âm, nhạc cụ hoặc năng lượng; out/music.json)')
+    styles = {s['style'] for s in MS if s['style'] not in PAUSE}; need = 2 if DUR < 20 else 3
+    row('4 Âm thanh', 'Số điệu nhạc khác nhau', OK if len(styles) >= need else WARN, f"{len(styles)}: {', '.join(sorted(styles))}", f'≥ {need} trong một tập')
+    same = [f"{a['name']}→{b['name']}" for a, b in zip(MS, MS[1:]) if a['style'] not in PAUSE and b['style'] not in PAUSE and differs(a, b) < 2]
+    row('4 Âm thanh', 'Hai cảnh nhạc kề nhau khác rõ', OK if not same else WARN, ', '.join(same) or 'mọi cặp khác nhau ≥ 2 điểm', 'khác ≥ 2 trong: điệu, hoà âm, nhạc cụ, bộ trống, năng lượng')
+    row('4 Âm thanh', 'Câu đáp của nhạc giữa các câu thoại', OK if FILLS + HAND >= DUR / 10 else WARN, f'{FILLS + HAND} câu đáp ({FILLS} tự động, {HAND} viết tay)', f'≥ 1 / 10 s (nhạc cụ hát chính chen vào khoảng không lời)')
+else:
+    row('4 Âm thanh', 'Nhạc đổi theo cảnh', WARN, 'không có out/music.json', 'dựng nhạc bằng _shared/audio/groove.py (hoặc ghi bảng cảnh bằng Groove.mark) để kiểm')
+from scipy.signal import stft as _stft
+from scipy.ndimage import median_filter, maximum_filter1d
+_f, _t, _Z = _stft(mu1, sr, nperseg=1024, noverlap=768); _L = np.log10(1e-6 + np.abs(_Z[(_f >= 80) & (_f <= 10000)]))
+flux = np.r_[0, np.maximum(0, np.diff(_L, axis=1)).sum(0)]; hop = 256 / sr; w = int(.4 / hop) | 1
+base = median_filter(flux, w); thr = base + 2.5 * median_filter(np.abs(flux - base), w) + .05 * np.percentile(flux, 95)
+ons = _t[(flux > thr) & (flux == maximum_filter1d(flux, int(.06 / hop) | 1))]
+per = np.histogram(ons, bins=np.arange(0, int(DUR) + 1))[0]
+paused = [i for i in range(len(per)) if any(s['style'] in PAUSE and s['t0'] <= i + .5 < s['t1'] for s in MS)]
+keep_s = [v for i, v in enumerate(per) if i not in paused]
+pulse = float(np.mean([v >= 3 for v in keep_s])) if keep_s else 0.
+row('4 Âm thanh', 'Nhạc có nhịp liền', OK if pulse >= .85 else WARN if pulse >= .7 else FAIL, f'{pulse:.0%} số giây có ≥ 3 nốt (trung vị {np.median(keep_s) if keep_s else 0:.0f} nốt/s)', '≥ 85 % (trừ chỗ khựng / nhạc hiệu); nhạc không đứng thành nốt ngân dài')
 
 # ======================= 5. Hình ảnh =======================
 blank = int(((F.std(axis=(1, 2)) < 2)).sum())

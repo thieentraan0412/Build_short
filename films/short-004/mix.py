@@ -26,6 +26,12 @@ glock = lambda m, d=.6: T._ting(mf(m), d, 1.) * .5
 
 
 # ---------- nhạc: "Ant Parade" — ban kèn diễu hành đồ chơi; khác SHORT-001 (tổ khúc), 002 (calypso), 003 (swing) ----------
+# v3 (nhạc nền sinh động, MUSIC.md): lớp nhịp theo cảnh (_shared/audio/groove.py) đổi điệu ở mỗi cảnh: diễu hành → polka khi Crumb bật lên →
+# nhạc hiệu → diễu hành ra mắt → rải đàn hạc khi hạt mùi bay vào → shuffle "tap, tap" → thám tử rón rén → lặng → rải glockenspiel khi
+# đường mùi sáng → diễu hành dồn theo đường mùi → đồng quê "boom-chick" ở trại rệp → polka "TINY COWS" → shuffle ở sổ → nửa nhịp →
+# diễu hành → rón rén theo mùi tới cây kem → khựng → nửa nhịp dưới câu hỏi kết → diễu hành về khung đầu.
+# Lớp nhịp thưa dưới lời, chen câu đáp vào khoảng trống, có dấu ở chỗ đổi cảnh. Điểm nhấn của tập đặt tay như trước.
+from groove import Groove
 mus = B['mus']
 REST = ((HIT['rest'][0], HIT['rest'][1] - .02), (HIT['freeze'][0] + .05, HIT['freeze'][1] - .05), (HIT['splat'] + .1, HIT['laugh'] - .02))   # khoảng lặng trước đáp án; khựng khi Rollo lăn qua; khựng khi kem đổ
 def M(x, t, g=1., pan=0.):
@@ -37,61 +43,66 @@ def seq(inst, ns, t0, step, g=1., pan=0., d=None, ramp=0.):
 def strum(inst, ns, t, g=.4, d=None, spread=.012):
     for k, n in enumerate(ns): M(inst(n, d) if d else inst(n), t + k * spread, g, -.3 + .6 * k / max(1, len(ns) - 1))
 def cymbal(t, g=.25, br=4500): M(T.cymbal(1.6, 1., br), t, g, .15)
-def march(t0, t1, roots, chords, g=1., drum=True, tub=True, comp=True, mel=None, inst=pizz):
-    """Nhịp diễu hành 2/4: tuba "oom" phách 1 và 3 (gốc – năm), hợp âm "pah" phách 2 và 4, snare: móc đơn + nhấn phách 2, 4.
-    roots/chords: một gốc và một hợp âm mỗi nửa ô nhịp (lặp vòng). mel: [(beat_offset, midi)] glockenspiel theo từng ô."""
-    b0, b1 = int(round(t0 / BEAT)), int(round(t1 / BEAT))
-    for i, b in enumerate(range(b0, b1)):
-        tb = b * BEAT; h = (b // 2) % len(roots); r = roots[h]
-        if tub and b % 2 == 0: M(tuba(r if (b // 2) % 2 == 0 else r + 7, .32), tb, .85 * g)
-        if comp and b % 2 == 1: strum(inst, chords[h], tb, .3 * g, .25)
-        if drum:
-            M(snare(.6 if b % 2 else .35), tb, .55 * g, -.15); M(snare(.25), tb + BEAT / 2, .4 * g, -.15)
-            if b % 2 == 0: M(kick(.6), tb, .5 * g)
-    if mel:
-        for off, n in mel:
-            if t0 <= t0 + off < t1: M(glock(n, .5), t0 + off, .32 * g, .25)
+def mel(t0, notes, g=.32):                      # giai điệu glockenspiel viết tay: [(phách tính từ t0, midi)]
+    for off, n in notes: M(glock(n, .5), t0 + off * BEAT, g, .25)
+LINES = TL['lines']
+ask = next(l for l in LINES if l['id'] == 'L13')['t']; no = next(l for l in LINES if l['id'] == 'L14')['t']
+
+# — lớp nhịp theo cảnh (v3): bảng ở MUSIC.md —
+AVOID = [(HIT['sniff'][0] - .05, HIT['sniff'][1] + .3), (HIT['pop'] - .05, at(2)), (HIT['scent'] - .05, HIT['scent'] + .7), (HIT['taps'][0] - .05, HIT['taps'][1] + .3),
+         (HIT['nope'] + .4, HIT['nope'] + 1.0), (HIT['trail'] - .05, HIT['trail'] + .7), (HIT['aphidTap'][0] - .05, HIT['drop'] + .7), (HIT['cows'], HIT['cows'] + .9),
+         (HIT['spindle'][0] - .05, HIT['spindle'][1]), (HIT['stamp'][0] - .05, HIT['stamp'][2] + .5), (ask + 1.4, ask + 1.8), (no + .8, no + 1.4), (HIT['lift'][0], HIT['laugh'] + .4)]
+G = Groove(M, BEAT, LINES, seed=4, avoid=AVOID)
+G.sec('móc · diễu hành', 0, HIT['pop'], 'march', 'F', 'F', bass='tuba', comp='pizz', lead='glock', kit='march', energy=2, cue=False)
+G.sec('Ants can! · polka', HIT['pop'], at(1, 3), 'polka', 'F', 'F F,C', bass='tuba', comp='pizz', lead='xylo', kit='march', energy=3, cue=False, fills=False)
+G.mark('kính nở', at(1, 3), at(2), 'break', 'F', 'glock')
+G.mark('nhạc hiệu', at(2), at(3), 'jingle', 'C', 'horn marimba bell')
+G.sec('Crumb ra mắt · diễu hành', at(3), HIT['zoom'], 'march', 'F', 'F,Bb C,F', bass='tuba', comp='pizz', lead='glock', kit='march', energy=2)
+G.sec('hạt mùi · rải đàn hạc', HIT['zoom'], HIT['lensOut'], 'float', 'F', 'F', bass='tuba', arp='harp', lead='glock', energy=1)
+G.sec('tap, tap · shuffle', HIT['lensOut'], at(8), 'skip', 'F', 'F C', bass='tuba', comp='pluck', lead='xylo', kit='toy', energy=2)
+G.sec('thám tử · rón rén', at(8), HIT['nope'], 'tiptoe', 'Dm', 'Dm A7', bass='pizzbass', comp='pizz', lead='reed', kit='wood', energy=1)
+G.sec('Nope · lặng', HIT['nope'], HIT['trail'], 'break', 'Dm', 'Dm', cue=False)
+G.sec('đường mùi sáng · rải glockenspiel', HIT['trail'], HIT['slide'][0], 'float', 'Dm', 'Dm', bass='tuba', arp='glock', lead='celesta', energy=1, cue=False)
+G.sec('theo đường mùi · diễu hành dồn', HIT['slide'][0], HIT['slide'][1], 'march', 'Dm', 'Dm,Bb C,F', bass='tuba', comp='pizz', lead='glock', kit='march', energy=3, fills=False)
+G.mark('bò lên thân cây', HIT['slide'][1], at(14), 'break', 'F', 'glock')
+G.sec('trại rệp · đồng quê', at(14), HIT['cows'], 'country', 'C', 'C G', bass='tuba', comp='banjo', arp='banjo', lead='xylo', kit='toy', energy=2)
+G.sec('TINY COWS · polka', HIT['cows'], HIT['snap'], 'polka', 'C', 'G C G', bass='tuba', comp='banjo', lead='xylo', kit='march', energy=3)
+G.sec('chụp sticker', HIT['snap'], HIT['stamp'][0], 'break', 'F', 'F', cue=False)
+G.sec('sổ · shuffle', HIT['stamp'][0], ask, 'skip', 'F', 'F F,Bb F', bass='tuba', comp='pluck', lead='glock', kit='toy', energy=2, cue=False)
+G.sec('Can I hold the lens? · nửa nhịp', ask, at(22), 'sway', 'F', 'F Bb', bass='tuba', comp='marimba', lead='glock', kit='brush', energy=1)
+G.sec('về kết · diễu hành', at(22), at(23), 'march', 'F', 'F,C', bass='tuba', comp='pizz', lead='glock', kit='march', energy=2)
+G.sec('theo mùi tới cây kem · rón rén', at(23), HIT['lift'][0], 'tiptoe', 'F', 'F C', bass='pizzbass', comp='pizz', lead='reed', kit='wood', energy=1)
+G.sec('nhấc · đổ · khựng', HIT['lift'][0], HIT['laugh'], 'break', 'F', 'F', cue=False)
+G.sec('cười · câu hỏi kết', HIT['laugh'], HIT['loopIris'][0], 'sway', 'F', 'F', bass='tuba', comp='marimba', lead='glock', kit='brush', energy=1, cue=False)
+G.sec('về khung đầu · diễu hành', HIT['loopIris'][0], DUR, 'march', 'F', 'F', bass='tuba', comp='pizz', lead='glock', kit='march', energy=2, fills=False)
+G.answer(at(1), HIT['taps'][0], HIT['nope'] + .45, HIT['drop'], HIT['cows'] + .05, HIT['spindle'][0], ask + 1.45, no + .85)   # câu đáp viết tay bên dưới
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
 F_, BB, C_, DM, AM, G_ = triad(65), triad(58, inv=1), triad(60), triad(62, MIN), triad(57, MIN), triad(55, inv=1)
 
-# — Hook 0–3,5 s: nhịp diễu hành chạy từ giây 0; vụn bánh nhón chân; ngón tay "ngửi"; Crumb bật lên = cú đánh của cả ban —
+# — Hook 0–3,5 s: nhịp diễu hành chạy từ giây 0 (lớp nhịp); vụn bánh nhón chân; ngón tay "ngửi"; Crumb bật lên = cú đánh của cả ban —
 M(kick(.8), 0., .6); M(T._ting(mf(96), .5), 0., .16, .4)
 for i in range(4): M(pizz((53, 57, 60, 57)[i], .2), i * BEAT / 2, .55, -.1)                # bước nhón chân của vụn bánh
-march(0., HIT['pop'], [41], [F_], g=.6, comp=False)
 for t in HIT['sniff']: M(reed(60, .25), t, .3, .3); M(reed(64, .2), t + .12, .25, .3)         # "khịt khịt" (kèn dăm nhỏ)
 tp = HIT['pop']; M(kick(), tp, 1.0); M(tuba(41, .5), tp, .9); strum(xylo, [65, 69, 72, 77], tp, .45); cymbal(tp, .25, 5000)
 for n in (72, 76, 79): M(horn(n, .3, .7), tp, .3)
-march(2.0, at(1, 3), [41, 36], [F_, C_], g=.75, mel=[(0, 77), (.5, 81), (1, 84), (1.25, 81)])
+mel(at(1), [(0, 77), (1, 81), (2, 84), (2.5, 81)])                                           # "Ants can! Well, sort of!": glockenspiel đi lên
 seq(glock, (72, 74, 77, 79), at(1, 3), BEAT / 4, .4, .2, ramp=.08)                          # kính nở: chạy lên vào nhạc hiệu
-J = jingle(); s = int(at(2) * SR); e = min(N, s + len(J)); mus[s:e] += J[:e - s] * .9          # nhạc hiệu 2 s, giống hệt mọi tập
+J = jingle(); s = int(at(2) * SR); e = min(N, s + len(J)); mus[s:e] += J[:e - s] * .9          # nhạc hiệu 2 s, giống hệt mọi tập (v3: LEVEL .45 → .68 để giữ đúng độ to cũ khi nhạc chung đầy hơn)
 
-# — Bí mật 1 (6–16 s), Fa: diễu hành nhẹ, glockenspiel; mô-típ bí mật khi hạt mùi bay vào râu; "tap, tap" —
-cymbal(at(3), .2, 5000)
-march(at(3), HIT['zoom'] - .2, [41, 46, 36, 41], [F_, BB, C_, F_], g=.65, comp=True, mel=[(1.5, 72), (3.5, 74), (5.5, 77)])
+# — Bí mật 1 (6–16 s), Fa: mô-típ bí mật khi hạt mùi bay vào râu; "tap, tap" —
 M(riser(.5, .7), HIT['zoom'] - .45, .3)
 secret(M, glock, 77, HIT['scent'], .18, .4, .3)                                             # mô-típ bí mật: Fa–La–Đô
 M(pad([65, 69, 72, 76], 2.3), HIT['scent'], .35)
-march(HIT['lensOut'], at(7, 3), [41, 36], [F_, C_], g=.55, drum=False)
 for i, t in enumerate(HIT['taps']): M(glock((84, 88)[i], .7), t, .4, .3); M(xylo((72, 76)[i]), t, .3, -.2)   # tap, tap
-strum(xylo, [69, 72, 77], 14.75, .3)
 
-# — Bí mật 2 (16–28 s), Rê thứ: thám tử rón rén → "Nope!" → lặng → đường mùi sáng lên → đi theo đường mùi (nhịp dồn) —
-cymbal(at(8), .15, 3500)
-for i in range(int((HIT['nope'] - at(8)) / (BEAT / 2))):                                    # pizzicato rón rén + snare chổi
-    t = at(8) + i * BEAT / 2; M(pizz((50, 57, 53, 57, 50, 57, 55, 57)[i % 8], .18), t, .42, -.1)
-    if i % 2: M(snare(.25), t, .3, -.15)
+# — Bí mật 2 (16–28 s), Rê thứ: "Nope!" → lặng → đường mùi sáng lên → đi theo đường mùi (lớp nhịp: diễu hành dồn; glockenspiel hát viết tay) —
 M(tuba(45, .5, .7, bend=-4), HIT['nope'] + .45, .6)                                          # "bwomp" sau "Nope!"
 tr = HIT['trail']; secret(M, glock, 77, tr, .15, .42, .3); M(pad([62, 65, 69, 74], 2.0), tr, .38); M(bell(89, .4, 1.2), tr + 1.5, .3)   # đáp án: mô-típ bí mật, pad Rê thứ sáng
-march(HIT['slide'][0], HIT['slide'][1], [38, 46, 36, 41], [DM, BB, C_, F_], g=.9, mel=[(0, 74), (.5, 77), (1, 81), (2, 79), (3, 77), (4, 74), (4.5, 77), (5, 81), (6, 84)])   # đi theo đường mùi
+mel(HIT['slide'][0], [(0, 74), (.5, 77), (1, 81), (2, 79), (3, 77), (4, 74), (4.5, 77), (5, 81), (6, 84)], .29)   # đi theo đường mùi
 seq(glock, (74, 77, 81, 86), HIT['slide'][1] - .1, BEAT / 4, .35, .2, ramp=.08)              # đường mùi bò lên thân cây
 M(riser(.6, .7), at(13, 3) - .1, .3)
 
-# — Bí mật 3 (28–36 s), Đô trưởng đồng quê: banjo "boom-chick", tuba; giọt ngọt = mô-típ bí mật; TINY COWS! = tuba "moo" —
-cymbal(at(14), .18, 5000)
-for i, b in enumerate(range(int(at(14) / BEAT), int(at(17, 3) / BEAT))):
-    tb = b * BEAT
-    if b % 2 == 0: M(tuba((36, 43)[(b // 2) % 2], .3), tb, .7)
-    else: strum(banjo, C_ if (b // 4) % 2 == 0 else G_, tb, .32)
-    M(banjo((72, 76, 79, 76)[i % 4] + 12, .25), tb + BEAT / 2, .16, .3)
+# — Bí mật 3 (28–36 s), Đô trưởng (lớp nhịp: đồng quê "boom-chick" → polka); giọt ngọt = mô-típ bí mật; TINY COWS! = tuba "moo" —
 for t in HIT['aphidTap']: M(glock(91, .5), t, .3, .2)
 secret(M, xylo, 72, HIT['drop'], .14, .45, .2, last=12)                                     # giọt ngọt: Đô–Mi–Sol–Đô
 M(tuba(36, .9, .75, bend=-2), HIT['cows'] + .05, .55)                                        # "moo" tí hon
@@ -100,28 +111,20 @@ seq(marimba, (72, 74, 76, 79, 84), HIT['snap'] + .04, .07, .5, .2, ramp=.1)     
 M(T.gliss(79, 100, HIT['zoomIn'][1] - HIT['zoomIn'][0], .28, 'harp'), HIT['zoomIn'][0], .9)
 M(T.gliss(96, 79, HIT['zoomOut'][1] - HIT['zoomOut'][0], .2, 'harp'), HIT['zoomOut'][0], .7)
 
-# — Sổ (36–46 s), Fa: ấm, nhẹ; ba sticker; dưới câu của Albie không có bè trầm —
+# — Sổ (36–46 s), Fa: ba sticker; dấu hỏi glockenspiel; "Not yet!" (lớp nhịp: shuffle, không bè trầm dưới giọng trầm của Albie → nửa nhịp → diễu hành) —
 for i, (t, ch) in enumerate(zip(HIT['stamp'], ((65, 69, 72, 77), (67, 70, 74, 79), (60, 64, 67, 72)))):
     strum(pizz, ch, t, .45, .3); M(kick(.6), t, .5); M(glock(ch[-1] + 12, .6), t + .02, .25, .3)
-for t, ch in ((at(19, 1), (65, 69, 72)), (at(19, 3), (58, 62, 65))): strum(pluck, ch, t, .38)
-ask = [l for l in TL['lines'] if l['id'] == 'L13'][0]['t']; no = [l for l in TL['lines'] if l['id'] == 'L14'][0]['t']
 seq(glock, (72, 76, 79, 84), ask + 1.45, .08, .3, .3)                                         # "Can I hold the lens?": dấu hỏi đi lên
-for i, n in enumerate((84, 88, 91, 88, 84, 91, 88)): M(glock(n, .4), 40.3 + i * .3, .2, .4)   # v2: lấp lánh thưa ở dải cao (không còn lỗ im sau câu của Albie)
-for i in range(6): M(pizz((41, 48)[i % 2], .3), 40.25 + i * BEAT, .45, 0)                       # bass gảy nhẹ (dải trầm)
 M(tuba(41, .5, .6, bend=-3), no + .85, .45)                                                  # "Not yet!": Crumb xìu xuống
-march(44.0, at(22, 3), [41, 36], [F_, C_], g=.45, drum=False)
 
-# — Kết (46–52 s): nhón chân theo đường mùi → "I can carry it!" → trống dồn khi nhấc → kem đổ: khựng → bật cười: hợp âm Fa → vòng lặp —
-for i in range(int((HIT['gagWalk'][1] - HIT['gagWalk'][0]) / (BEAT / 2))): M(pizz((53, 60, 57, 60)[i % 4], .16), HIT['gagWalk'][0] + i * BEAT / 2, .4, -.1)
+# — Kết (46–52 s): rón rén theo mùi (lớp nhịp) → "I can carry it!" → trống dồn khi nhấc → kem đổ: khựng → bật cười: hợp âm Fa → vòng lặp —
 for i in range(10): M(snare(.3 + .06 * i, .1), HIT['lift'][0] + i * .06, .5, -.1)              # trống dồn khi Crumb gồng nhấc cây kem
 for n in (72, 77, 81): M(horn(n, .35, .7), HIT['lift'][1] - .05, .3)                          # kèn đồ chơi "ta-da!" (sắp đổ…)
-M(pad([53, 60, 65, 69], 1.0), HIT['laugh'] + .4, .35); M(bassn(41, .6), HIT['laugh'] + .45, .6)   # v2: lớp mỏng dưới câu hỏi kết
 tl = HIT['laugh']; strum(pluck, (65, 69, 72, 77), tl, .55, .8, .02); M(tuba(41, .6), tl, .8); M(kick(), tl, .8); cymbal(tl, .2, 5000)   # v2: ngắn lại để câu hỏi kết rõ
-march(HIT['loopIris'][0], DUR, [41], [F_], g=.6, comp=False)                                 # vòng lặp: nhịp diễu hành dẫn về khung đầu
 M(riser(.7, .7), HIT['loopIris'][0], .3)
 
 # — cường độ theo cảnh (chuyển mềm 0,3 s) —
-LEVEL = ((0, .62), (at(2), .45), (at(3), .85), (HIT['scent'], .8), (HIT['lensOut'], .85), (at(8), .8), (HIT['slide'][0], 1.), (at(14), .85), (HIT['snap'], 1.0), (at(18), .8), (44., .7),   # v2: dâng ở cú chụp, ở tiếng cười; hạ dưới câu hỏi kết
+LEVEL = ((0, .62), (at(2), .68), (at(3), .85), (HIT['scent'], .8), (HIT['lensOut'], .85), (at(8), .8), (HIT['slide'][0], 1.), (at(14), .85), (HIT['snap'], 1.0), (at(18), .8), (44., .7),   # v2: dâng ở cú chụp, ở tiếng cười; hạ dưới câu hỏi kết
          (at(23), .85), (HIT['laugh'], 1.0), (50.5, .72), (HIT['loopIris'][0], .85))
 tt = np.arange(len(mus)) / SR; lev = np.full(len(mus), LEVEL[0][1])
 for (t, g), (_, g0) in zip(LEVEL[1:], LEVEL[:-1]): lev = np.where(tt >= t - .15, np.where(tt < t + .15, g0 + (g - g0) * (tt - t + .15) / .3, g), lev)

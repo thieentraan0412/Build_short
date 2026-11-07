@@ -24,6 +24,10 @@ def mixl(*xs):                                  # cộng các đoạn khác đ�
 # ---------- nhạc: "Tổ khúc khu vườn" — mỗi cảnh một giọng, một điệu, một nhóm nhạc cụ (MUSIC.md) ----------
 # Lưới 120 BPM giữ nguyên vì hình đã khớp theo phách; cái đổi là giọng, điệu (rón rén, polka, lơi 3+3+2, swing, chạy móc đơn),
 # nhạc cụ và cường độ của từng cảnh. Mô-típ bí mật đô–mi–sol (band.secret) trở lại ở mỗi phát hiện, mỗi lần một cách chơi.
+# v5 (nhạc nền sinh động, MUSIC.md): ba đoạn đệm còn đứng yên được thay bằng lớp nhịp theo cảnh (_shared/audio/groove.py):
+# kính phóng to (marimba rải, bí ẩn) · SWEET (pop nảy, màu ban nhạc kênh) · sổ (shuffle dưới câu của Albie → nửa nhịp ấm dưới lời dặn).
+# Các đoạn tổ khúc viết tay khác giữ nguyên và được ghi vào bảng cảnh nhạc bằng G.mark (out/music.json, qa.py).
+from groove import Groove
 mus = B['mus']
 # khoảng lặng: trước hai đáp án (giữ nguyên) và lúc Flutter đậu lên kính ở cảnh kết (ngắt nhạc cho gag); nốt cũ ngân hết tự nhiên
 REST = ((at(11, 2), at(12)), (at(14, 2), at(15)), (at(24, 2), at(25, 1) - .25))
@@ -60,12 +64,12 @@ J = jingle(); s = int(at(2) * SR); e = min(N, s + len(J)); mus[s:e] += J[:e - s]
 # — Bướm 6–18 s, F: bay bổng, đàn hạc rải lơi 3+3+2, sáo vỗ cánh ở chỗ nghỉ lời —
 BF = [(41, (65, 69, 72)), (40, (64, 67, 72)), (38, (62, 65, 69)), (46, (62, 65, 70, 72))]   # F · C/E · Dm · B♭add9
 cymbal(at(3), .22, 5000)
-for k, (root, tones) in enumerate(BF):
+for k, (root, tones) in enumerate(BF[:2]):                                 # v5: hai ô đầu (6–9,6 s); từ lúc kính phóng to là lớp nhịp (marimba rải)
     t0 = at(3 + k); ns = list(tones[:3]) + [tones[0] + 12]
-    thin = k == 2                                                          # dưới câu dài "Tiny taste spots…": thưa một nửa
     for i, j in enumerate((0, 1, 2, 3, 2, 1, 2, 3)):                       # rải hợp âm 8 móc đơn, nhấn 3+3+2
-        if not thin or i in (0, 3, 6): M(harp(ns[j], .7), t0 + i * BEAT / 2, .34 * (1.25 if i in (0, 3, 6) else .8), -.3)
-    for b in (0, 1.5, 3): M(pizz(root + 12, .35), t0 + b * BEAT, .55)
+        if t0 + i * BEAT / 2 < HIT['bfZoom']: M(harp(ns[j], .7), t0 + i * BEAT / 2, .34 * (1.25 if i in (0, 3, 6) else .8), -.3)
+    for b in (0, 1.5, 3):
+        if t0 + b * BEAT < HIT['bfZoom']: M(pizz(root + 12, .35), t0 + b * BEAT, .55)
     M(kick(.5), t0, .45)
 seq(flute, (77, 79, 77, 79, 77, 79), at(3), .07, .42, .3, d=.12); M(flute(81, .3), at(3) + .42, .4, .3)   # Flutter bay vào: láy vỗ cánh
 seq(flute, (84, 81), 8.28, .14, .38, .3, d=.16)                           # đậu lên hoa (giữa hai câu)
@@ -75,15 +79,7 @@ M(pad([62, 65, 69, 72], 2.6), 10.4, .55)
 seq(pizz, (60, 62, 64, 65, 67, 69, 70, 72), 13.0, .155, .32, .2, d=.2, ramp=.07)   # dồn vào SWEET!
 tsw = HIT['sweet']; M(kick(), tsw, 1.0); M(bassn(41, .5), tsw, 1.1); strum(pluck, (65, 69, 72, 77), tsw, .45); M(xylo(84), tsw, .35, .25); M(xylo(89), tsw + .07, .3, .25)
 cymbal(tsw, .2, 5500)
-for k, (root, tones) in enumerate(((41, (65, 69, 72)), (36, (64, 67, 72)))):   # Time to eat!: màu ban nhạc kênh (ukulele, marimba, kick, clap)
-    t0 = at(7 + k)
-    for b in range(4):
-        tb = t0 + b * BEAT
-        if (k == 1 and b >= 2) or tb < tsw + .2: continue                  # 17,0: chuyển sang đêm
-        if b % 2 == 0: M(kick(), tb, .9); M(bassn(root), tb, 1.2)
-        else: M(clap(), tb, .4, .1); strum(pluck, tones, tb, .45)
-seq(xylo, (77, 81), 15.62, .12, .38, .25)
-seq(marimba, (81, 84, 81, 79, 77), at(8), BEAT / 2, .75, .2)
+# Time to eat!: lớp nhịp "pop nảy" ở màu ban nhạc kênh (ukulele, marimba, kick, clap), marimba đáp sau câu (xem cuối phần nhạc)
 for i, (n, dt) in enumerate(((84, 0), (81, .12), (76, .26), (72, .42), (69, .6), (64, .8))):   # ngày → đêm: đàn hạc rơi xuống, chậm dần
     M(harp(n, .9), at(8, 2) + dt, .36 - .02 * i, .2 - .08 * i)
 M(pad([57, 60, 64], 1.6), at(8, 2), .7); M(reed(45, 1.2), at(8, 3), .4)
@@ -145,26 +141,46 @@ for i in range(8): M(brush(.4 + .08 * i, .12), at(19, 2) + i * BEAT / 4, .55, -.
 seq(celesta, (79, 76), at(20), .25, .4, .3, d=1.0)                         # Albie còn ngủ: hộp nhạc
 for t, ch in zip(HIT['stamp'], ((60, 64, 67, 72), (65, 69, 72, 77), (67, 71, 74, 79))):   # ba sticker: C–F–G cao dần
     strum(pizz, ch, t, .45, .3); M(kick(.6), t, .5); M(xylo(ch[-1] + 12), t + .02, .3, .3)
-for t, ch in ((at(21, 1), (60, 64, 67)), (at(21, 3), (57, 60, 64))):       # "Six legs? In you go!": ukulele phách 2–4, không bè trầm
-    strum(pluck, ch, t, .45)
+# "Six legs? In you go!" và lời dặn: lớp nhịp (shuffle ukulele không bè trầm dưới giọng Albie → nửa nhịp ấm C · Am · F · G)
 seq(flute, (72, 76, 79), 44.32, .2, .45, .2, d=.3)                         # mô-típ bí mật trên sáo, ngay trước lời dặn
-for k, (root, ch) in enumerate(((48, (60, 64, 67)), (45, (57, 60, 64)), (41, (57, 60, 65)), (43, (59, 62, 67)))):   # C · Am · F · G
-    t0 = at(22) + k * BAR / 2
-    M(pizz(root + 12, .5), t0, .5); strum(pluck, ch, t0 + BEAT, .4); M(pad(list(ch), BAR / 2 + .3), t0, .55)
 seq(xylo, (79, 76, 74, 72), at(23, 3), BEAT / 4, .45, .2)                  # kính nở: bốn nốt đi xuống, như nhón chân bước vào
 
 # — Kết 48–52 s: nhón chân → ngắt nhạc → "ta-da" —
 seq(pizz, (60, 67, 64, 67), at(24), BEAT / 2, .36, .2, d=.14, ramp=-.06)
 for i in range(2): M(reed(48 if i == 0 else 55, .14), at(24) + i * BEAT, .26, -.2); M(T.block(84 if i else 79, .4), at(24) + i * BEAT + BEAT / 4, .18, .3)
 # v3: hai chỗ khựng có chủ đích vẫn còn một lớp mỏng (không im hẳn: QUALITY.md §4)
-add(mus, buzzbass(41, 1.0, .5), at(14, 2) + .02, .3, 0); add(mus, pad([65, 69, 72], 1.0), at(14, 2) + .02, .14, 0)   # "Honeybees can't talk," … "so they dance!": ong vo ve chờ
-for i in range(10): add(mus, celesta((84, 86)[i % 2], .2), at(24, 2) + .05 + i * .12, .07, .3)   # "Hey... is it tasting me?": hộp nhạc rón rén
-add(mus, pad([60, 64, 67], 1.25), at(24, 2) + .02, .14, 0)
+add(mus, buzzbass(41, 1.0, .5), at(14, 2) + .02, .5, 0); add(mus, pad([65, 69, 72], 1.0), at(14, 2) + .02, .26, 0)   # v5: to hơn một chút (lớp nhịp làm nhạc chung đầy hơn)   # "Honeybees can't talk," … "so they dance!": ong vo ve chờ
+for i in range(10): add(mus, celesta((84, 86)[i % 2], .2), at(24, 2) + .05 + i * .12, .12, .3)   # "Hey... is it tasting me?": hộp nhạc rón rén
+add(mus, pad([60, 64, 67], 1.25), at(24, 2) + .02, .26, 0)
 tf = HIT['gagLaugh']
 seq(xylo, (74, 76), tf - .25, .125, .45, .2)                               # hai nốt dẫn vào tiếng cười
 strum(pluck, (60, 64, 67, 72), tf, .6, 1.4, .02)
 secret(M, lambda n: horn(n, .9, .7), 72, tf, .1, .5, .1, last=12)         # "ta-da": kèn chơi mô-típ bí mật
 M(bell(84, .8, 1.4), tf + .3, .6); M(bassn(36, 1.4), tf, 1.); M(kick(), tf, .9); M(T.cymbal(1.8, 1.), tf, .28, -.15)
+
+# — lớp nhịp theo cảnh (v5) + bảng cảnh nhạc của cả tổ khúc (MUSIC.md); các đoạn viết tay ở trên ghi bằng G.mark —
+G = Groove(M, BEAT, TL['lines'], seed=1, avoid=[(HIT['bfGlow'] - .05, HIT['bfGlow'] + .7), (tsw - .05, tsw + .4), (44.25, 45.0)])
+G.mark('rình · rón rén', 0, HIT['stomp'], 'tiptoe', 'C', 'pizz xylo tom')
+G.mark('giẫm · polka', HIT['stomp'], at(2), 'polka', 'C', 'tuba pizz xylo', energy=3)
+G.mark('nhạc hiệu', at(2), at(3), 'jingle', 'C', 'horn marimba bell')
+G.mark('bướm bay · đàn hạc 3+3+2', at(3), HIT['bfZoom'], 'lilt', 'F', 'harp flute pizz')
+G.sec('kính phóng to · marimba rải', HIT['bfZoom'], 13.0, 'float', 'F', 'C Dm Bb', bass='pizzbass', arp='marimba', lead='flute', energy=1, cue=False)
+G.mark('dồn vào SWEET', 13.0, tsw, 'break', 'F', 'pizz')
+G.sec('SWEET · pop nảy', tsw, at(8, 2), 'bounce', 'F', 'F C', bass='bassn', comp='pluck', lead='marimba', kit='toy', energy=3, cue=False, g=.6)   # câu "Sweet! Time to eat!" vẫn phải rõ
+G.mark('ngày → đêm', at(8, 2), at(9), 'break', 'Am', 'harp reed')
+G.mark('dế · rón rén trong đêm', at(9), at(11, 2), 'tiptoe', 'Am', 'pizz reed chirp', energy=1)
+G.mark('khựng trước đáp án', at(11, 2), at(12), 'break', 'Am')
+G.mark('tai ở chân · bừng sáng', at(12), at(14), 'tiptoe', 'C', 'pizz celesta chirp', energy=3)
+G.mark('ong · ú ớ', at(14), HIT['dance'], 'break', 'F', 'buzz')
+G.mark('ong · swing "bee bop"', HIT['dance'], at(17), 'swing', 'F', 'buzz pluck xylo', energy=3)
+G.mark('bản đồ · phiêu lưu', at(17), at(20), 'gallop', 'C', 'pizz horn bell', energy=3)
+G.mark('sổ · ba sticker', at(20), at(21), 'break', 'C', 'pizz xylo')
+G.sec('Albie · shuffle ukulele', at(21), 44.3, 'skip', 'C', 'C,Am', bass='bassn', comp='pluck', lead='xylo', kit='toy', energy=2, cue=False)
+G.sec('lời dặn · nửa nhịp ấm', 44.3, at(23, 3), 'sway', 'C', 'C,Am F,G', bass='pizzbass', comp='pluck', lead='flute', kit='brush', energy=2)
+G.mark('nhón chân', at(23, 3), at(24, 2), 'tiptoe', 'C', 'pizz reed xylo', energy=1)
+G.mark('khựng · ta-da', at(24, 2), DUR, 'break', 'C', 'horn bell pluck')
+G.answer(3.25, 8.28, 20.78, 22.95, 26.0, 26.7, 31.0, 33.32, 44.32)          # câu đáp viết tay ở trên (xylophone tíu tít, sáo, "hử?", "bwomp", hỏi–đáp với tiếng dế…)
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
 
 # — cường độ theo cảnh (chuyển mềm 0,3 s), trước khi chuẩn hoá và nhường giọng —
 LEVEL = ((0, .75), (at(2), .52), (at(3), .9), (HIT['sweet'], 1.), (at(8, 2), .9), (at(9), .85), (HIT['ckEar'], 1.), (26., .9), (at(14), .7), (HIT['dance'], .95),
@@ -310,7 +326,7 @@ B['fx'] = fx = T.duck(fx, ve, .5, .2)                 # tiếng động nhườn
 mix = B['mus'] + B['fx'] + B['amb'] + B['vox']
 mix = np.tanh(mix * 1.1) / 1.1
 # khâu cuối: chặn đỉnh thật ở độ to + 12,3 dB, để loudnorm của mux.sh nâng tuyến tính lên −14 LUFS mà đỉnh vẫn ≤ −1,2 dBTP
-mix, I_mix, ceil_db = T.master(mix); print(f'master: {I_mix:.1f} LUFS, true-peak ceiling {ceil_db:.1f} dBFS')
+mix, I_mix, ceil_db = T.master(mix, 11.6); print(f'master: {I_mix:.1f} LUFS, true-peak ceiling {ceil_db:.1f} dBFS')   # crest 11,6: chừa đỉnh cho AAC (SHORT-004; lượt nhạc nền sinh động 11/2026)
 os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)
 sf.write(os.path.join(HERE, 'out', 'mix.wav'), mix.astype(np.float32), SR, subtype='PCM_24')
 for k in ('mus', 'fx', 'vox'): sf.write(os.path.join(HERE, 'out', f'stem_{k}.wav'), B[k].astype(np.float32), SR, subtype='PCM_16')
