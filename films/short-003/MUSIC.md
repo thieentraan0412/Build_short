@@ -1,5 +1,7 @@
 # SHORT-003 · Soundtrack Timeline
 
+> **Bản hiện hành:** lượt nhạc nền sinh động (11/2026), ở [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-hiện-hành). Lớp đệm của các bảng dưới đây đã được thay bằng lớp nhịp theo cảnh; các điểm nhấn viết tay giữ nguyên.
+
 ## Màu nhạc của tập: "Night Band swing"
 
 Chirp là nhạc công của kênh, nên tập về cái tai của nó được viết như một ban nhạc đêm nhỏ chơi swing. Màu này khác hai tập cùng tuần:
@@ -66,3 +68,54 @@ Soundtrack Timeline đầy đủ của bản mới nằm ở mục C của RETEN
 - **Nền đêm:** gió trầm dâng hạ chậm, dàn dế xa từng tràng ngắn nhiều hướng, vài tiếng ếch mềm ở chỗ không có lời. Nền cũng nhường giọng.
 - **Cường độ theo cảnh:** 0,85 · 0,95 · 0,8 · 0,85 · 0,72 · 0,85 · 0,9 (chụp) · 0,82 (dán) · 0,9 · 0,72 · 0,85 · 0,55 (lắng nghe) · 0,9 (vòng lặp).
 - **Bản cuối:** −13,9 LUFS, đỉnh thật −1,5 dBTP; giọng so với nhạc + tiếng động thấp nhất 11,5 dB.
+
+## Lượt nhạc nền sinh động (11/2026) · bản hiện hành
+
+Theo `Task.md`: *"Cần thêm nhiều nhạc nền sinh động, trong 1 short nhạc nền đang không có sự thay đổi."* Hình, lời, tiếng động và các điểm nhấn nhạc viết tay (mô-típ bí mật, stinger, khựng, nhạc hiệu, nối vòng lặp) giữ nguyên. Lớp đệm đứng yên được thay bằng **lớp nhịp theo cảnh** ([`_shared/audio/groove.py`](../../_shared/audio/groove.py)):
+- **Mỗi cảnh một điệu.** Mỗi cảnh có điệu, vòng hoà âm, bộ nhạc cụ, bộ trống và mức năng lượng riêng. Hai cảnh kề nhau khác nhau ở ít nhất hai trong năm thứ đó.
+- **Dưới lời nhạc vẫn chạy.** Dưới lời còn bass, kick, hat/shaker và tiếng đệm ngắn ở dải cao. Dưới giọng trầm của Albie thì bỏ bass.
+- **Nhạc đáp lời.** Khoảng không lời giữa hai câu có một câu đáp ngắn của nhạc cụ hát chính.
+- **Đổi cảnh có dấu.** Trước cảnh mạnh hơn có trống dồn, trước cảnh nhẹ hơn có chuỗi nốt đi xuống. Phách đầu cảnh mới có kick và chũm chọe mềm.
+
+**Bản trước:** v3 (`out/short-003-v3.mp4`, `out/mix-v3.py`, `out/MUSIC-v3.md`, `out/stem_mus-v3.wav`).
+
+**Vì sao nghe như không đổi.** Swing Night Band từ đầu đến cuối: cùng contrabass đi bộ, búng tay, hat và phím điện. Chỉ nhịp "ồ" bỏ trống. Phần lớn thời gian lớp swing chạy ở mức 0,5–0,7, nên tai nghe một nền đều.
+
+**Bản mới.** Mười một cảnh nhạc, bảy điệu:
+- **Đầu phim:** nhịp tim hồi hộp (kick "thình-thịch", pizzicato) lúc lắng nghe, swing đầy khi kéo xa.
+- **Trong kính:** đàn hạc rải khi cái tai sáng lên, nhịp trống tom khi mặt tai rung.
+- **"Hello, little ears!":** nửa nhịp đung đưa.
+- **Sổ:** shuffle ukulele dưới câu của Albie.
+- **Cuối phim:** rón rén trước "NOPE!", nửa nhịp "aww", swing đầy khi chữ móc trở lại.
+
+### Bảng cảnh nhạc
+
+Sinh từ `out/music.json`. Cột *Nguồn*: "lớp nhịp" là phần `groove.py` dựng; "viết tay" là đoạn có sẵn trong `mix.py` (điểm nhấn, tổ khúc, nhạc hiệu). Các điểm nhấn viết tay ở bảng Timeline phía trên vẫn nằm trên lớp nhịp.
+
+| Thời gian | Cảnh nhạc | Điệu | Hoà âm | Nhạc cụ | Trống | Năng lượng | Nguồn |
+|---|---|---|---|---|---|---|---|
+| 0–2,45 | móc · hồi hộp | nhịp tim hồi hộp | Dm | contrabass, pizzicato | kick, hat | nhẹ | lớp nhịp |
+| 2,45–4,5 | kéo xa · swing đầy | swing | Dm · B♭ | contrabass, phím điện, vibraphone | kick, búng tay, hat | đầy | lớp nhịp |
+| 4,5–7,3 | soi · khám phá | rải lơ lửng | F · Dm | contrabass, đàn hạc, vibraphone | hat | vừa | lớp nhịp |
+| 7,3–9,6 | mặt trống | pop nảy | Dm · F | contrabass, ukulele, xylophone | kick, trống tom, shaker | vừa | lớp nhịp |
+| 9,6–12,1 | ồ · đáng yêu | nửa nhịp đung đưa | B♭ · F | contrabass, vibraphone, hộp nhạc | kick, chổi trống, hat | nhẹ | lớp nhịp |
+| 12,1–12,9 | chụp sticker | khựng / điểm nhấn viết tay | — | — | — | — | viết tay |
+| 12,9–15,4 | sổ · shuffle vui | shuffle nhún nhảy | F · B♭ | contrabass, ukulele, vibraphone | kick, búng tay, hat | vừa | lớp nhịp |
+| 15,4–17,7 | rón rén | rón rén | Dm · Gm | pizzicato trầm, pizzicato | mõ gỗ, shaker | nhẹ | lớp nhịp |
+| 17,7–19,3 | NOPE! · khựng | khựng / điểm nhấn viết tay | — | — | — | — | viết tay |
+| 19,3–22,2 | aww · câu hỏi | nửa nhịp đung đưa | Dm · B♭ | contrabass, phím điện, vibraphone | kick, chổi trống, hat | vừa | lớp nhịp |
+| 22,2–24 | chữ móc trở lại | swing | Dm | contrabass, phím điện, vibraphone | kick, búng tay, hat | đầy | lớp nhịp |
+
+### Số đo trước / sau
+
+| | Bản trước | Bản mới |
+|---|---|---|
+| Số điệu trong phim | 1 (swing) + nửa nhịp | 7, 11 cảnh nhạc |
+| Đoạn dài nhất cùng một kiểu | ≈ 7 s (swing 0,5–7,3 s) | 2,9 s |
+| Nốt nhạc mỗi giây (trung vị) dưới lời / khoảng trống | 10 / 8 | 14 / 22 |
+| Câu đáp giữa các câu thoại | — | 8 (3 tự động, 5 viết tay) |
+| Lời rõ hơn nhạc + tiếng động, câu thấp nhất | 13,5 dB ("Let's zoom in!") | 15,9 dB ("Its ears are on its front legs!") |
+
+Nốt mỗi giây được đếm từ các lệnh đặt nốt của `mix.py`; một hợp âm tính mỗi nốt một lần. Độ rõ lời đo theo `qa.py` (dải 300–4000 Hz, trung vị theo câu), trên cùng một stem giọng và tiếng động.
+
+**`_shared/qa.py`: 33/33 đạt**, không còn cảnh báo. Độ to −13,9 LUFS, đỉnh thật −2,2 dBTP (`T.master(mix, 11.6)`).

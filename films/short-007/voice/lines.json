@@ -1,0 +1,110 @@
+[
+ {
+  "id": "L01",
+  "text": "Could your tummy glow?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L02",
+  "text": "My tummy can!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L03",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L04",
+  "text": "Fireflies make cold light!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L05",
+  "text": "Look! No fire!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L06",
+  "text": "Is a firefly a fly?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L07",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L08",
+  "text": "I'm a little beetle!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L09",
+  "text": "See? Beetle wing cases!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L10",
+  "text": "Blink, any more secrets?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L11",
+  "text": "No!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L12",
+  "text": "Okay, yes.",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L13",
+  "text": "Some fireflies flash a secret code!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L14",
+  "text": "Light up, everyone!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L15",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L16",
+  "text": "Is it winking at me?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L17",
+  "text": "Can YOU blink a secret code?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

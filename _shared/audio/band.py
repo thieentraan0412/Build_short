@@ -92,6 +92,25 @@ def jingle(v=1.):
     return out * v
 
 
+# ---------- nhạc hiệu ngắn 0,8 s (tập A từ 11/2026: logo lồng vào cú lao vào kính, PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md §6) ----------
+# Cùng câu "BIG SE-CRETS · of ti-ny bugs!" của jingle() nhưng gọn trong 0,8 s: ba nốt kèn đồ chơi đô–mi–sol (0–0,3 s),
+# bốn nốt marimba tí hon (0,34–0,5 s), hợp âm + chuông + kick ở 0,55 s ngân ra sau. root: nốt chủ (72 = Đô như jingle(); tập ở giọng khác đổi root).
+# jingle() 2 s giữ nguyên cho video dài và các tập cũ. Nhạc nền của tập phải nhường trong 0,8 s này (G.mark('…', t0, t0 + .8, 'jingle', …)).
+def sting(v=1., root=72):
+    d = .8 + .8; out = np.zeros((int(d * SR), 2))
+    J = lambda x, t, g=1., pan=0.: add(out, x, t, g, pan)
+    for b, n, dd in ((0, 0, .14), (.11, 4, .14), (.22, 7, .22)):
+        J(horn(root + n, dd + .06), b, .95); J(horn(root + n - 12, dd + .06), b, .35)
+    J(kick(), 0, .9); J(bassn(root - 24, .3), 0, 1.1); J(clap(.7), .22, .5, .1)
+    for i, n in enumerate((24, 26, 28, 31)):                       # "of ti-ny bugs": cao, nhỏ, lên dần
+        J(marimba(root + n, .16, .5 + .1 * i), .34 + i * .045, .5, -.45 + .3 * i)
+    t3 = .55
+    for k, n in enumerate((-12, -8, -5, 0)): J(pluck(root + n, .9), t3 + k * .012, .5, -.3 + .2 * k)
+    for n in (0, 4, 7): J(horn(root + n, .5, .7), t3, .42)
+    J(bell(root + 12, .6, 1.0), t3, .55, .2); J(kick(.9), t3, .9); J(bassn(root - 36 + 12, .7), t3, 1.1); J(clap(.6), t3, .45, -.1)
+    return out * v
+
+
 # ---------- tiếng của các nhân vật không lời (giống nhau mọi tập) ----------
 def mmm(v=1.):
     """Flutter ngân "Mmm!": một hơi liền, miệng khép (âm mũi), cao độ trẻ con vút lên rồi hạ ("mmMMm!"). ~0,6 s.

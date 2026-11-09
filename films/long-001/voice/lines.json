@@ -96,7 +96,7 @@
  {
   "id": "L14",
   "who": "crumb",
-  "text": "Too sour!",
+  "text": "That one's not sweet at all!",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5
@@ -228,7 +228,7 @@
  {
   "id": "L32",
   "who": "crumb",
-  "text": "Oops! I forgot to sniff!",
+  "text": "Oh no! I forgot to sniff!",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5
@@ -287,7 +287,7 @@
  {
   "id": "L40",
   "who": "crumb",
-  "text": "Shh... I hear music!",
+  "text": "Listen! I hear music!",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5
@@ -316,7 +316,7 @@
  {
   "id": "L44",
   "who": "crumb",
-  "text": "Nope!",
+  "text": "Nope! Not there!",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5
@@ -338,7 +338,7 @@
  {
   "id": "L47",
   "who": "crumb",
-  "text": "Nope!",
+  "text": "Nope! Not there!",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5
@@ -382,7 +382,7 @@
  {
   "id": "L53",
   "who": "crumb",
-  "text": "I'll sneak up on Zip... shh!",
+  "text": "I'll sneak up on the dragonfly!",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5
@@ -521,7 +521,7 @@
  {
   "id": "L72",
   "who": "loupe",
-  "text": "Ladybugs nap together under leaves!",
+  "text": "Some ladybugs nap together under leaves!",
   "voice": "af_heart",
   "speed": 0.9
  },
@@ -614,7 +614,7 @@
  {
   "id": "L85",
   "who": "crumb",
-  "text": "With its feet!",
+  "text": "With its feet, of course!",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5
@@ -629,7 +629,7 @@
  {
   "id": "L87",
   "who": "crumb",
-  "text": "Antennae!",
+  "text": "With their antennae!",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5
@@ -637,7 +637,7 @@
  {
   "id": "L88",
   "who": "loupe",
-  "text": "Where are a grasshopper's ears?",
+  "text": "Where does a grasshopper hear?",
   "voice": "af_heart",
   "speed": 0.9
  },
@@ -652,7 +652,7 @@
  {
   "id": "L90",
   "who": "loupe",
-  "text": "And where do ladybugs nap?",
+  "text": "And where did the ladybugs sleep?",
   "voice": "af_heart",
   "speed": 0.9
  },
@@ -710,7 +710,7 @@
  {
   "id": "L98",
   "who": "crumb",
-  "text": "Watch again and find him!",
+  "text": "Can you find him next time?",
   "voice": "af_jessica",
   "speed": 0.85,
   "pitch": 5

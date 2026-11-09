@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Big Secrets of Tiny Bugs · SHORT-006</title>
+<style>
+@font-face{font-family:'Baloo 2';src:url(/_shared/fonts/Baloo2-VF.ttf) format('truetype');font-weight:400 800}
+@font-face{font-family:'Paytone One';src:url(/_shared/fonts/PaytoneOne-Regular.ttf) format('truetype')}
+html,body{margin:0;background:#1E1B3A;overflow:hidden}canvas{display:block}
+</style></head><body><canvas id="cv"></canvas>
+<script type="module">
+import { drawFilm, setEnv } from './film.js';
+import { modelSheet, storyboard } from './sheets.js';
+import { poster, thumb } from './poster.js';   // ảnh bìa: ?mode=poster (1080x1920) · ?mode=thumb (1920x1080)
+import { REC } from '/_shared/kit.js';
+import { DUR, EV } from './timeline.js';
+const q = new URLSearchParams(location.search), mode = q.get('mode') || 'film';
+const cv = document.getElementById('cv'), c = cv.getContext('2d');
+const W = innerWidth, H = innerHeight; cv.width = W; cv.height = H;
+const off = document.createElement('canvas'); off.width = 1080; off.height = 1920;
+const probe = document.createElement('canvas'); probe.width = W; probe.height = H;
+await Promise.all(['800 40px "Baloo 2"', '40px "Paytone One"'].map(f => document.fonts.load(f, 'BIG SECRETS of tiny bugs?!')));
+const env = await fetch('voice/env.json').then(r => r.ok ? r.json() : null).catch(() => null);   // khẩu hình theo giọng thật; thiếu thì nhép đều
+if (env) setEnv(env);
+window.DUR = DUR;
+window.EV = EV;
+window.render = t => {
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  if (mode === 'model') return modelSheet(c, W, H);
+  if (mode === 'poster') { c.setTransform(W / 1080, 0, 0, W / 1080, 0, 0); return poster(c); }
+  if (mode === 'thumb') { c.setTransform(W / 1920, 0, 0, W / 1920, 0, 0); return thumb(c); }
+  if (mode === 'board') return storyboard(c, W, H, off);
+  c.setTransform(W / 1080, 0, 0, W / 1080, 0, 0); drawFilm(c, t);
+};
+// mọi chữ đang hiện ở thời điểm t, cho core/render/readcheck.mjs
+window.TEXTS = t => {
+  const p = probe.getContext('2d'); p.setTransform(W / 1080, 0, 0, W / 1080, 0, 0);
+  REC.on = true; REC.list = []; drawFilm(p, t); REC.on = false;
+  return REC.list;
+};
+window.render(0);
+window.READY = true;
+</script></body></html>

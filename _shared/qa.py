@@ -1,15 +1,21 @@
 """Kiểm tra chất lượng một Short theo bộ tiêu chí của kênh (_shared/QUALITY.md). Chạy sau khi dựng xong:
     python _shared/qa.py films/short-00x            # đo các tiêu chí đo được, in bảng ĐẠT / CẢNH BÁO / CHƯA ĐẠT
     python _shared/qa.py films/short-00x --json     # thêm out/qa.json
-Cần: <film>/timeline.json, events.json, out/stem_{mus,fx,vox}.wav, out/mix.wav, <film>/<tên>.mp4 (build.sh tạo ra hết).
+Cần: <film>/timeline.json, events.json, out/stem_{mus,fx,vox}.wav, out/mix.wav, <film>/<tên>.mp4 (build.sh tạo ra hết),
+và out/music.json (bảng cảnh nhạc do _shared/audio/groove.py ghi; thiếu thì mục "Nhạc đổi theo cảnh" là CẢNH BÁO).
+Với Short (1080×1920), qa.py tự chạy `node _shared/tools/safezone.mjs` để đo vùng giao diện Shorts và "người nói có trên hình"
+(với --json ghi out/safezone.json, không thì ghi ra file tạm; --safezone <file> dùng một file đã đo sẵn).
 Đo bằng numpy và ffmpeg, không dùng mạng. Phần không đo được (câu chuyện, độ hài, biểu cảm) nằm trong checklist của QUALITY.md.
 Mã thoát: 0 khi không có mục CHƯA ĐẠT; 1 khi có (build.sh vẫn in đủ báo cáo)."""
-import os, sys, json, glob, subprocess, numpy as np, soundfile as sf
+import os, sys, json, glob, subprocess, tempfile, numpy as np, soundfile as sf
+from scipy.ndimage import median_filter
 
 FILM = os.path.abspath(sys.argv[1]); NAME = os.path.basename(FILM)
+LIB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TL = json.load(open(os.path.join(FILM, 'timeline.json'), encoding='utf-8'))
 EV = json.load(open(os.path.join(FILM, 'events.json'), encoding='utf-8'))['ev']
 DUR = TL['dur']; LINES = TL['lines']; SECS = TL.get('secs', [])
+LONG = DUR > 90                                                    # video dài 16:9
 MP4 = os.path.join(FILM, f'{NAME}.mp4')
 OUT = os.path.join(FILM, 'out')
 rows = []
@@ -46,6 +52,8 @@ first_line = min(l['t'] for l in LINES) if LINES else 99
 row('1 Hook', 'Lời đầu tiên', OK if first_line <= .5 else WARN if first_line <= 1.5 else FAIL, f'{first_line:.2f} s', '≤ 0,5 s (câu móc có cả hình và lời)')
 mot1 = float(diff[1:FPS + 1].mean()) if len(diff) > FPS else 0
 row('1 Hook', 'Chuyển động trong giây đầu', OK if mot1 >= 1.2 else WARN if mot1 >= .6 else FAIL, f'{mot1:.2f}', '≥ 1,2 (khung đầu đã có hành động)')
+mot2 = float(diff[FPS + 1:int(2.5 * FPS) + 1].mean()) if len(diff) > 2.5 * FPS else 0
+row('1 Hook', 'Chuyển động 1–2,5 s', OK if mot2 >= 2 else WARN, f'{mot2:.2f}', '≥ 2,0 (1–2 s nhân vật phản ứng bằng hành động, không chỉ bằng chữ; hiệu chỉnh 11/2026)')
 m0 = db(rms(mus[:int(.5 * sr)]))
 row('1 Hook', 'Nhạc ngay từ giây 0', OK if m0 > -40 else FAIL, f'{m0:.0f} dBFS (0–0,5 s)', '> −40 dBFS')
 sfx0 = [e for e in EV if e['t'] <= .3]
@@ -53,7 +61,11 @@ row('1 Hook', 'Tiếng động ở khung đầu', OK if sfx0 else WARN, f'{len(s
 hook_ev = [e for e in EV if e['t'] < 3]
 row('1 Hook', 'Mật độ tiếng động 0–3 s', OK if len(hook_ev) >= 5 else WARN, f'{len(hook_ev)}', '≥ 5 cue khớp hành động')
 title = next((s for s in SECS if s.get('id') == 'title'), None)
-if title: row('1 Hook', 'Cảnh tựa / logo', OK if title['t0'] >= 3 and title['t1'] - title['t0'] <= 2.05 else FAIL, f"{title['t0']:.1f}–{title['t1']:.1f} s", 'sau 3 s móc, dài ≤ 2 s')
+if title and LONG: row('1 Hook', 'Cảnh tựa / logo', OK if title['t0'] >= 3 and title['t1'] - title['t0'] <= 2.05 else FAIL, f"{title['t0']:.1f}–{title['t1']:.1f} s", 'video dài: sau móc, dài ≤ 2 s')
+elif title:                                                        # tập A: từ 11/2026 nhạc hiệu ≤ 0,8 s lồng vào cú lao vào kính; nhạc hiệu 2 s của các tập trước là CẢNH BÁO
+    td = title['t1'] - title['t0']
+    row('1 Hook', 'Cảnh tựa / logo', OK if title['t0'] >= 2.5 and td <= .85 else WARN if title['t0'] >= 2.5 and td <= 2.05 else FAIL, f"{title['t0']:.1f}–{title['t1']:.1f} s ({td:.1f} s)",
+        'tập A: sau móc, ≤ 0,8 s, lồng vào cú lao vào kính (quy tắc 11/2026; nhạc hiệu 2 s cũ: CẢNH BÁO)')
 else: row('1 Hook', 'Cảnh tựa / logo', OK, 'không có', 'bản B không có cảnh tựa')
 
 # ======================= 2. Giữ chân =======================
@@ -71,6 +83,34 @@ secs_n = len(SECS); avg = DUR / max(1, secs_n)
 row('2 Giữ chân', 'Độ dài trung bình mỗi cảnh', OK if avg <= 12 else WARN, f'{avg:.1f} s ({secs_n} cảnh, {cuts} chuyển cảnh mạnh)', '≤ 12 s; trong cảnh dài phải có máy quay hoặc kính di chuyển')
 words = sum(len(l['text'].split()) for l in LINES); wps = words / DUR
 row('2 Giữ chân', 'Tốc độ lời', OK if .8 <= wps <= 2.2 else WARN, f'{wps:.2f} từ/s ({words} từ)', '0,8–2,2 từ/s cho trẻ 4–8 tuổi')
+
+# đoạn không lời dài: nhạc và vài tiếng động không đủ giữ trẻ (QUALITY.md §2; 001 ở 33,3–42,0 s, 004 ở 21,7–30,3 s)
+tt = np.arange(len(ev_v)) * .1
+nv = (ev_v < 10 ** (-45 / 20)) & (tt < DUR - .5)
+if title: nv &= ~((tt >= title['t0']) & (tt < title['t1']))
+NV_LIM = 8 if LONG else 4
+novoice = [(a, b) for a, b in spans(nv, .1) if b - a > NV_LIM]
+row('2 Giữ chân', 'Đoạn không lời dài', OK if not novoice else WARN, ', '.join(f'{a:.1f}–{b:.1f} ({b - a:.1f} s)' for a, b in novoice) or 'không có',
+    f'không đoạn nào > {NV_LIM} s không lời (trừ cảnh tựa); nếu cố ý thì có chữ trên hình hoặc hành động mới mỗi 2 s')
+# hình gần đứng yên kéo dài, kể cả khi đang có lời: trung vị chuyển động trong 1,5 s (bền với một cú nháy ngắn) dưới 1,5 quá 3 s.
+# Hiệu chỉnh 11/2026 trên SHORT-001..005: bắt được kính đứng yên (002 4–8 s, 003 6–9 s, 005 6–11 s) và cảnh sổ (001 42–48 s, 004 36–46 s);
+# không báo ở móc của 002, đoạn kính trượt dọc đường mùi của 004 (22–27 s) và gag của 005.
+# Hai mục này mới hiệu chỉnh cho Short; video dài (nhịp kể chậm hơn, khung 16:9) chưa có ngưỡng nên chưa đo.
+med = median_filter(diff, int(1.5 * FPS) | 1, mode='nearest')
+calm = [(a, b) for a, b in spans(med < 1.5, 1 / FPS) if b - a > 3]
+if not LONG: row('2 Giữ chân', 'Hình gần đứng yên kéo dài (kể cả khi có lời)', OK if not calm else WARN, ', '.join(f'{a:.1f}–{b:.1f}' for a, b in calm) or 'không có',
+    'trung vị chuyển động 1,5 s < 1,5 không quá 3 s: kính, sổ và câu cửa miệng phải có hành động')
+# câu cửa miệng của Albie nói trong lúc có hành động (Albie đớp sticker, nhân vật nhảy vào sổ), không đọc trên trang đứng yên
+cat = [l for l in LINES if l['who'] == 'albie' and (l.get('catch') or 'in you go' in l['text'].lower())]
+if cat and not LONG:
+    cm = [(l, float(diff[int(l['t'] * FPS) + 1:int((l['t'] + l['dur']) * FPS) + 1].mean())) for l in cat]
+    row('2 Giữ chân', 'Câu cửa miệng có hành động', OK if all(m >= 2 for _, m in cm) else WARN, ', '.join(f"{l['t']:.1f} s: {m:.2f}" for l, m in cm),
+        '≥ 2,0 trong lúc Albie nói "Six legs? In you go!"')
+if title and not LONG:                                             # tập A: cảnh sổ ngắn, có hành động
+    alb = [s for s in SECS if s.get('id') == 'album']
+    if alb:
+        ad = max(s['t1'] - s['t0'] for s in alb)
+        row('2 Giữ chân', 'Cảnh sổ (tập A)', OK if ad <= 4.5 else WARN, f'{ad:.1f} s', '≤ 4,5 s; trang đủ sticker đứng ≥ 3 s nhưng nhân vật vẫn chuyển động')
 
 # ======================= 4. Âm thanh =======================
 try:
@@ -107,6 +147,45 @@ act = [v for v in sec_db if v > -60]
 dyn = (max(act) - min(act)) if act else 0
 row('4 Âm thanh', 'Âm lượng nhạc đổi theo cảnh', OK if dyn >= 6 else WARN, f'{dyn:.0f} dB giữa giây to nhất và nhỏ nhất', '≥ 6 dB (dâng ở chỗ khám phá, hạ dưới lời)')
 
+# nhạc nền sinh động (QUALITY.md §4): nhạc đổi điệu theo cảnh, có nhịp liền, có câu đáp giữa các câu thoại.
+# Bảng cảnh nhạc do lớp nhịp _shared/audio/groove.py ghi ra (out/music.json): mỗi cảnh một điệu, một vòng hoà âm, một bộ nhạc cụ, một mức năng lượng.
+mj = os.path.join(OUT, 'music.json')
+MS = sorted(json.load(open(mj, encoding='utf-8'))['sections'], key=lambda s: s['t0']) if os.path.exists(mj) else []
+MJ = json.load(open(mj, encoding='utf-8')) if MS else {}
+FILLS, HAND = MJ.get('fills', 0), len(MJ.get('answers', []))      # câu đáp tự động của lớp nhịp + câu đáp viết tay (Groove.answer)
+PAUSE = ('break', 'jingle')                                        # khựng, stinger, nhạc hiệu: là chỗ đổi, không phải một điệu
+def differs(a, b):
+    ia = {a.get(k) for k in ('bass', 'comp', 'lead', 'arp')} - {None}; ib = {b.get(k) for k in ('bass', 'comp', 'lead', 'arp')} - {None}
+    return (a['style'] != b['style']) + (a['chords'] != b['chords']) + (ia != ib) + (a.get('kit') != b.get('kit')) + (a.get('energy') != b.get('energy'))
+if MS:
+    runs, cur = [], None                                           # các đoạn liền nhau mà nhạc gần như không đổi (khác nhau < 2 điểm)
+    for s in MS:
+        if s['style'] in PAUSE: cur = None; continue
+        if cur and differs(cur[-1], s) < 2 and abs(s['t0'] - cur[-1]['t1']) < .3: cur.append(s)
+        else: cur = [s]; runs.append(cur)
+    longest = max(runs, key=lambda r: r[-1]['t1'] - r[0]['t0']); L_ = longest[-1]['t1'] - longest[0]['t0']
+    lim = 15 if LONG else 8
+    row('4 Âm thanh', 'Nhạc đổi theo cảnh: đoạn dài nhất cùng một kiểu', OK if L_ <= lim else WARN if L_ <= lim + 4 else FAIL,
+        f"{L_:.1f} s ({longest[0]['name']}, {longest[0]['t0']:.1f}–{longest[-1]['t1']:.1f} s); {len(MS)} cảnh nhạc", f'≤ {lim} s (đổi điệu, hoà âm, nhạc cụ hoặc năng lượng; out/music.json)')
+    styles = {s['style'] for s in MS if s['style'] not in PAUSE}; need = 2 if DUR < 20 else 3
+    row('4 Âm thanh', 'Số điệu nhạc khác nhau', OK if len(styles) >= need else WARN, f"{len(styles)}: {', '.join(sorted(styles))}", f'≥ {need} trong một tập')
+    same = [f"{a['name']}→{b['name']}" for a, b in zip(MS, MS[1:]) if a['style'] not in PAUSE and b['style'] not in PAUSE and differs(a, b) < 2]
+    row('4 Âm thanh', 'Hai cảnh nhạc kề nhau khác rõ', OK if not same else WARN, ', '.join(same) or 'mọi cặp khác nhau ≥ 2 điểm', 'khác ≥ 2 trong: điệu, hoà âm, nhạc cụ, bộ trống, năng lượng')
+    row('4 Âm thanh', 'Câu đáp của nhạc giữa các câu thoại', OK if FILLS + HAND >= DUR / 10 else WARN, f'{FILLS + HAND} câu đáp ({FILLS} tự động, {HAND} viết tay)', f'≥ 1 / 10 s (nhạc cụ hát chính chen vào khoảng không lời)')
+else:
+    row('4 Âm thanh', 'Nhạc đổi theo cảnh', WARN, 'không có out/music.json', 'dựng nhạc bằng _shared/audio/groove.py (hoặc ghi bảng cảnh bằng Groove.mark) để kiểm')
+from scipy.signal import stft as _stft
+from scipy.ndimage import median_filter, maximum_filter1d
+_f, _t, _Z = _stft(mu1, sr, nperseg=1024, noverlap=768); _L = np.log10(1e-6 + np.abs(_Z[(_f >= 80) & (_f <= 10000)]))
+flux = np.r_[0, np.maximum(0, np.diff(_L, axis=1)).sum(0)]; hop = 256 / sr; w = int(.4 / hop) | 1
+base = median_filter(flux, w); thr = base + 2.5 * median_filter(np.abs(flux - base), w) + .05 * np.percentile(flux, 95)
+ons = _t[(flux > thr) & (flux == maximum_filter1d(flux, int(.06 / hop) | 1))]
+per = np.histogram(ons, bins=np.arange(0, int(DUR) + 1))[0]
+paused = [i for i in range(len(per)) if any(s['style'] in PAUSE and s['t0'] <= i + .5 < s['t1'] for s in MS)]
+keep_s = [v for i, v in enumerate(per) if i not in paused]
+pulse = float(np.mean([v >= 3 for v in keep_s])) if keep_s else 0.
+row('4 Âm thanh', 'Nhạc có nhịp liền', OK if pulse >= .85 else WARN if pulse >= .7 else FAIL, f'{pulse:.0%} số giây có ≥ 3 nốt (trung vị {np.median(keep_s) if keep_s else 0:.0f} nốt/s)', '≥ 85 % (trừ chỗ khựng / nhạc hiệu); nhạc không đứng thành nốt ngân dài')
+
 # ======================= 5. Hình ảnh =======================
 blank = int(((F.std(axis=(1, 2)) < 2)).sum())
 row('5 Hình ảnh', 'Khung trống / đen', OK if blank == 0 else FAIL, f'{blank} khung', '0')
@@ -114,6 +193,36 @@ pr = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v', '-show_en
 try: vw, vh, num, den = int(pr[0]), int(pr[1]), *map(float, pr[2].split('/')); vfps = num / den
 except Exception: vw = vh = 0; vfps = 0
 row('5 Hình ảnh', 'Khung hình và tốc độ', OK if (vw, vh) in ((1080, 1920), (1920, 1080)) and abs(vfps - 30) < .01 else FAIL, f'{vw}×{vh}, {vfps:g} fps', '1080×1920 (Short) hoặc 1920×1080 (video dài), 30 fps')
+# vùng giao diện Shorts (QUALITY.md §5) và người nói có trên hình (QUALITY.md §3): đo bằng _shared/tools/safezone.mjs
+SZ = None
+if (vw, vh) == (1080, 1920):
+    if '--safezone' in sys.argv and os.path.exists(sys.argv[sys.argv.index('--safezone') + 1]):
+        SZ = json.load(open(sys.argv[sys.argv.index('--safezone') + 1], encoding='utf-8'))
+    else:
+        dst = os.path.join(OUT, 'safezone.json') if '--json' in sys.argv else os.path.join(tempfile.mkdtemp(), 'safezone.json')
+        try:
+            r = subprocess.run(['node', os.path.join(LIB, '_shared', 'tools', 'safezone.mjs'), FILM, '--out', dst], capture_output=True, text=True, encoding='utf-8', errors='ignore', cwd=LIB, timeout=600)
+            if r.returncode == 0 and os.path.exists(dst): SZ = json.load(open(dst, encoding='utf-8'))
+        except Exception: pass
+    RULE_Z = 'phụ đề trên 1500 px; chữ và mặt nhân vật ngoài thanh trên (150 px), vùng dưới (1530 px), cột nút phải (x > 940, y 880–1780)'
+    if SZ is None:
+        row('5 Hình ảnh', 'Vùng giao diện Shorts', WARN, 'không đo được (chạy node _shared/tools/safezone.mjs để xem lỗi)', RULE_Z)
+    else:
+        iss = [i for i in SZ['issues'] if i['t1'] - i['t0'] >= .5]
+        zs = [i for i in iss if i['kind'] != 'phụ đề che mặt']; sub = [i for i in zs if i['kind'] == 'phụ đề']; oth = [i for i in zs if i['kind'] != 'phụ đề']
+        val = [f"phụ đề trong vùng {sub[0]['zone']}: {len(sub)} đoạn, {sum(i['t1'] - i['t0'] for i in sub):.1f} s"] if sub else []
+        val += [f"{i['t0']:.1f}–{i['t1']:.1f} {i['kind']} {i['who']} (vùng {i['zone']})" for i in oth]
+        if not SZ.get('subMeasured') and LINES: val.append('phụ đề: không đo được (hàm phụ đề riêng của tập)')
+        row('5 Hình ảnh', 'Vùng giao diện Shorts', OK if not zs and SZ.get('subMeasured') else WARN, '; '.join(val) or 'không chạm', RULE_Z)
+        cov = [i for i in iss if i['kind'] == 'phụ đề che mặt']
+        row('5 Hình ảnh', 'Phụ đề che mặt nhân vật', OK if not cov else WARN, ', '.join(f"{i['t0']:.1f}–{i['t1']:.1f} {i['who']}" for i in cov) or ('không có' if SZ.get('subMeasured') else 'không đo được'), 'tấm phụ đề không nằm trên mặt nhân vật')
+        miss = []
+        for l in LINES:
+            if l['t'] < 3 or l.get('off'): continue
+            fr = [F for F in SZ['frames'] if l['t'] - 1e-3 <= F['t'] <= l['t'] + l['dur']]
+            if fr and sum(any(f['who'] == l['who'] for f in F['faces']) for F in fr) / len(fr) < .5: miss.append(l)
+        row('3 Nội dung', 'Người nói có trên hình', OK if not miss else WARN, '; '.join(f"{l['t']:.1f} s {l['who']} \"{l['text']}\"" for l in miss) or 'mọi câu sau 3 s',
+            'sau 3 s, mặt người nói hiện ≥ 50 % thời gian câu (kể cả trong kính); lời dẫn ngoài hình ghi off: "<lý do>" trong timeline.js')
 flash = np.abs(np.diff(luma)) > 40; fl_rate = max((np.convolve(flash, np.ones(FPS), 'same')).max() if len(flash) else 0, 0)
 row('5 Hình ảnh', 'Chớp sáng mạnh', OK if fl_rate <= 3 else FAIL, f'tối đa {int(fl_rate)} lần/giây', '≤ 3 lần/giây (an toàn cho trẻ)')
 sat = []

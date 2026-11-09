@@ -1,4 +1,4 @@
-// LONG-001 · một nguồn thời gian duy nhất cho hình, phụ đề, âm thanh. 16:9, 1920×1080, 24 fps.
+// LONG-001 · một nguồn thời gian duy nhất cho hình, phụ đề, âm thanh. 16:9, 1920×1080, 30 fps (QUALITY.md §5).
 // Kịch bản viết dạng "chảy": mỗi câu thoại và mỗi mốc hành động nối tiếp mục trước một khoảng gap.
 // Độ dài thật của từng câu (dur.js, do tools/lines.mjs sinh từ voice/dur.json) tự đẩy mọi thứ phía sau, nên đổi một câu không phải căn lại tay.
 import { D as MEASURED } from './dur.js';
@@ -29,8 +29,8 @@ M('yawn', .3);
 L('albie', "Hurry... I'm getting so sleepy...", { gap: .3 });
 L('crumb', "Let's wake up your pages!", { gap: .3 });
 M('s_title', .3); M('jingle');                        // tựa và nhạc hiệu 2 s
-L('loupe', 'Big secrets of tiny bugs!', { gap: .1 });
-M('titleEnd', .1);
+L('loupe', 'Big secrets of tiny bugs!', { gap: .05 });
+M('titleEnd', -.03);                                  // cảnh tựa ≈ 2 s (QUALITY.md §1; readcheck: chữ SECRETS cần ≥ 1,97 s)
 
 /* ======================= CHƯƠNG 1 · VỊ GIÁC: Flutter chọn món ======================= */
 M('s_c1', 0); M('c1_page', 0, .3);
@@ -40,9 +40,9 @@ M('c1_huff', .15, 1.1); M('c1_dive', 0, 1.0);         // Crumb hà hơi → sư�
 M('s_c1m');
 L('loupe', 'Which one will Flutter pick?', { gap: .3 });
 M('c1_lab', .15, 1.4);                                // nhãn Lemon? Leaf? Strawberry? bật lần lượt
-P(1.0);                                               // trẻ đoán
+M('rollo1', 0); P(1.0);                               // trẻ đoán; Rollo lăn ngang mép bàn (trứng phục sinh)
 M('c1_fly', 0, 1.1); M('c1_land1', 0, .5);
-L('crumb', 'Too sour!', { gap: .2 });
+L('crumb', "That one's not sweet at all!", { gap: .2 });   // "not sweet!" ở giọng Crumb bị nghe thành "not sweeter"                    // FACTS §2: nguồn chỉ nói chân bướm nếm được vị ngọt
 M('c1_off1', .2, 1.1); M('c1_land2', 0, .5);
 L('crumb', 'Not yummy!', { gap: .1 });
 M('c1_off2', .2, 1.1); M('c1_land3', 0, .45); M('c1_mmm', 0, .9);
@@ -55,7 +55,7 @@ M('c1_zoom', 0, .35);
 L('loupe', 'Its feet!', { gap: 0 });
 L('loupe', 'Butterflies taste with their feet!', { gap: .3 });
 M('c1_sip', .25, 1.2);
-M('c1_out', 0, .8); M('c1_melt', 0, 1.3);             // ra khỏi ký ức, băng nứt và tan, sticker sáng
+M('c1_out', 0, .8); M('s_c1s'); M('c1_melt', 0, 1.3); // ra khỏi ký ức, băng nứt và tan, sticker sáng
 L('albie', 'Secret unlocked!', { gap: .1, catch: true });
 L('albie', 'One page warm... three to go!', { gap: .3 });
 L('crumb', 'Ooh, this page smells funny!', { gap: .3 });
@@ -76,8 +76,8 @@ M('c2_walk2', .15, 1.9);
 L('loupe', 'Up or down?', { gap: 0 });
 P(1.0); M('c2_wrong', 0, 1.1); M('c2_bonk', 0, .3);   // Crumb lao xuống mà quên ngửi → đụng ngõ cụt
 L('loupe', 'Nope!', { gap: 0, catch: true });
-L('crumb', 'Oops! I forgot to sniff!', { gap: .25 });
-M('c2_sniff2', .15, .6); M('c2_walk3', 0, 2.2);
+L('crumb', 'Oh no! I forgot to sniff!', { gap: .25 });   // "Oops" bị Whisper nghe thành "noobs"
+M('c2_sniff2', .15, .6); M('rollo2', 0); M('c2_walk3', 0, 2.2);
 L('loupe', 'Left or right?', { gap: 0 });
 P(1.0); M('c2_sniff3', 0, .5);
 L('crumb', 'Right!', { gap: 0 });
@@ -86,32 +86,32 @@ M('c2_tap', 0, 1.0);                                  // chạm râu với chị
 L('crumb', 'Tap, tap, hello!', { gap: 0 });
 L('loupe', 'Ants sniff with their antennae...', { gap: .3 });
 L('loupe', '...and follow smell trails!', { gap: .2 });
-M('c2_out', .3, .8); M('c2_melt', 0, 1.3);
+M('c2_out', .3, .8); M('s_c2s'); M('c2_melt', 0, 1.3);
 L('albie', 'Secret unlocked!', { gap: .1, catch: true });
 L('albie', 'Two pages warm!', { gap: .3 });
-L('crumb', 'Shh... I hear music!', { gap: .3 });
+L('crumb', 'Listen! I hear music!', { gap: .3 });
 M('c2_next', .2, .5);
 
 /* ======================= CHƯƠNG 3 · THÍNH GIÁC: trốn tìm cái tai ======================= */
 M('s_c3', 0); M('c3_page', 0, .2);
 L('loupe', 'Page three... hearing!', { gap: .1 });
 M('c3_dive', .2, 1.0); M('s_c3m');
-M('c3_band', 0, 2.4);                                 // Chirp và Hop chơi nhạc dưới trăng (không lời)
+M('rollo3', 0); M('c3_band', 0, 2.4);                 // Chirp và Hop chơi nhạc dưới trăng (không lời); Rollo lăn trên đồi xa
 L('loupe', "Let's find their ears!", { gap: 0 });
 L('loupe', 'Ears go on heads... right?', { gap: .3 });
 M('c3_head1', 0, .4);                                 // kính soi đầu Chirp: không có tai
-L('crumb', 'Nope!', { gap: 0 });
+L('crumb', 'Nope! Not there!', { gap: 0 });                 // "Nope!" một chữ ở giọng Crumb bị nghe thành "nobody"
 M('c3_down1', .1, 1.6);                               // kính trượt xuống chân trước, cái tai sáng
 L('loupe', "Chirp's ears are on its front legs!", { gap: 0 });
 M('c3_chirp', .2, .8);
-L('loupe', 'And Hop? On its head?', { gap: .1 });
+M('s_c3h', .1); L('loupe', 'And Hop? On its head?', { gap: 0 });
 M('c3_head2', 0, .4);
-L('crumb', 'Nope!', { gap: 0 });
+L('crumb', 'Nope! Not there!', { gap: 0 });
 M('c3_down2', .1, 1.6);                               // kính trượt dọc thân Hop xuống bụng, dưới cánh
 L('loupe', "Hop's ears are on its tummy!", { gap: 0 });
 M('c3_fiddle', .2, 2.2);                              // Hop kéo "vĩ cầm" bằng chân sau, Chirp gáy theo: buổi hòa nhạc nhỏ
 L('crumb', 'Ears on legs... ears on tummies!', { gap: 0 });
-M('c3_out', .3, .8); M('c3_melt', 0, 1.3);
+M('c3_out', .3, .8); M('s_c3s'); M('c3_melt', 0, 1.3);
 L('albie', 'Secret unlocked!', { gap: .1, catch: true });
 L('albie', 'Three pages warm!', { gap: .3 });
 M('c3_next', .3, .5);
@@ -120,8 +120,8 @@ M('c3_next', .3, .5);
 M('s_c4', 0); M('c4_page', 0, .2);
 L('loupe', 'Page four... sight and signals!', { gap: .1 });
 M('c4_dive', .2, 1.0); M('s_c4m');
-L('crumb', "I'll sneak up on Zip... shh!", { gap: .2 });
-M('c4_sneak', .1, 2.6); M('c4_spot', 0, .5); M('c4_zip', 0, .5); M('c4_flop', 0, .4);
+L('crumb', "I'll sneak up on the dragonfly!", { gap: .2 });   // tên "Zip" ở giọng Crumb bị nghe thành "Zib"
+M('rollo4', .1); M('c4_sneak', 0, 2.6); M('c4_spot', 0, .5); M('c4_zip', 0, .5); M('c4_flop', 0, .4);
 L('crumb', 'How did Zip see me?', { gap: .2 });
 M('c4_zoom', .1, .4);
 L('loupe', 'Its giant eyes cover most of its head!', { gap: 0 });
@@ -135,7 +135,7 @@ L('loupe', 'Some fireflies flash their own secret code!', { gap: 0 });
 M('c4_hive', .3, 1.0); M('s_c4h');                     // sang tổ ong: Waggle nhảy
 L('loupe', "And Waggle's dance shows the way...", { gap: .1 });
 M('c4_point', .2, 1.2);                               // vạch nhảy kéo dài, chỉ ra mép trang
-M('c4_out', 0, .8); M('c4_melt', 0, 1.3);
+M('c4_out', 0, .8); M('s_c4s'); M('c4_melt', 0, 1.3);
 L('albie', 'Secret unlocked!', { gap: .1, catch: true });
 L('albie', 'Four pages warm!', { gap: .3 });
 M('c4_arrow', .2, 1.0);                               // mũi tên của điệu nhảy chỉ vào trang cuối
@@ -157,17 +157,17 @@ M('c5_hiveSeen', .2, .8);
 L('loupe', 'Is anyone home?', { gap: 0 });
 M('c5_heat', .2, .6);                                 // bật "kính nhiệt": quả bóng ong rực cam
 L('loupe', 'Honeybees huddle in a warm ball!', { gap: 0 });
-M('c5_toRock', .3, 1.4); M('c5_lift', 0, .6);          // tới hòn đá, nhấc chiếc lá khô
-L('loupe', 'Ladybugs nap together under leaves!', { gap: .1 });
+M('s_c5r', .3); M('c5_toRock', 0, 1.4); M('c5_lift', 0, .6);          // tới hòn đá, nhấc chiếc lá khô
+L('loupe', 'Some ladybugs nap together under leaves!', { gap: .1 });   // FACTS §12: chỉ một số loài trú đông thành đám
 M('c5_dotWake', .2, .4);
 L('dot', 'One, two, three... so many!', { gap: 0 });
 M('c5_dotSleep', .2, 1.0);
-M('c5_toLeaf', 0, 1.2);
+M('s_c5w'); M('c5_toLeaf', 0, 1.2);
 L('loupe', 'A woolly bear caterpillar!', { gap: .1 });
 L('loupe', 'It freezes all winter...', { gap: .3 });
 L('loupe', '...and wakes up in spring!', { gap: .2 });
 M('c5_found', .2, 1.0);                               // ba bí mật mùa đông: mô-típ bí mật
-M('c5_fog', 0, 1.0);
+M('s_c5f'); M('c5_fog', 0, 1.0);
 L('loupe', "Oh no! I can't see!", { gap: 0 });
 M('c5_lost', .1, 1.4);
 L('loupe', 'Heat lens... on!', { gap: 0 });
@@ -184,23 +184,23 @@ L('albie', 'Secret unlocked!', { gap: 0, catch: true });
 L('albie', 'All my pages are warm!', { gap: .3 });
 M('s_quiz', .3);
 L('crumb', 'Do you remember?', { gap: 0 });
-M('q1', .2); L('loupe', 'Where does a butterfly taste?', { gap: 0 }); M('q1c', .2, 2.4); L('crumb', 'With its feet!', { gap: 0 });
-M('q2', .4); L('loupe', 'What do ants sniff with?', { gap: 0 }); M('q2c', .2, 2.4); L('crumb', 'Antennae!', { gap: 0 });
-M('q3', .4); L('loupe', "Where are a grasshopper's ears?", { gap: 0 }); M('q3c', .2, 2.4); L('crumb', 'On its tummy!', { gap: 0 });
-M('q4', .4); L('loupe', 'And where do ladybugs nap?', { gap: 0 }); M('q4c', .2, 2.4); L('crumb', 'Together, under leaves!', { gap: 0 });
+M('q1', .2); L('loupe', 'Where does a butterfly taste?', { gap: 0 }); M('q1c', .2, 2.4); L('crumb', 'With its feet, of course!', { gap: 0 });
+M('s_q2', .4); M('q2'); L('loupe', 'What do ants sniff with?', { gap: 0 }); M('q2c', .2, 2.4); L('crumb', 'With their antennae!', { gap: 0 });
+M('q3', .4); L('loupe', 'Where does a grasshopper hear?', { gap: 0 }); M('q3c', .2, 2.4); L('crumb', 'On its tummy!', { gap: 0 });
+M('q4', .4); L('loupe', 'And where did the ladybugs sleep?', { gap: 0 }); M('q4c', .2, 2.4); L('crumb', 'Together, under leaves!', { gap: 0 });   // FACTS §12
 M('s_bye', .4); M('e_yawn', 0, 1.0);
 L('crumb', 'Time for a winter nap?', { gap: 0 });
 L('loupe', 'See you in spring!', { gap: .3 });
 L('loupe', 'Look closely... even in winter.', { gap: .3 });
 M('e_sneeze', .3);
 L('albie', 'Ah... ah... CHOO!', { gap: 0 });
-M('e_fly', 0, 2.6); M('e_land', 0, .6);               // sticker bay như tuyết; một tấm đậu lên kính đúng chỗ bông tuyết đầu phim
+M('e_fly', 0, 2.6); M('e_land', 0); M('recall', 0, .6);   // sticker bay như tuyết; một tấm đậu lên kính đúng chỗ bông tuyết đầu phim, chữ móc trở lại (QUALITY.md §6)
 L('loupe', "Now THAT'S a bug!", { gap: 0 });
-M('s_rollo', .3); M('e_rollo', 0, 1.4);               // ngoài cửa sổ, Rollo lăn quả cầu tuyết thẳng tắp
+M('s_rollo', .3); M('e_rollo', 0, 1.4);               // sticker Rollo lăn thẳng tắp dọc bậu cửa sổ (bọ mùa hè chỉ là sticker/ký ức, FACTS ghi chú)
 L('loupe', 'Did you spot Rollo?', { gap: 0 });
 M('e_spots', .2, 6.0);                                // bốn chỗ Rollo đã trốn
-L('crumb', 'Watch again and find him!', { gap: 0 });
-M('e_end', .3, 4.0);
+L('crumb', 'Can you find him next time?', { gap: 0 });   // câu hỏi kết cho trẻ trả lời to (QUALITY.md §6)
+M('e_end', .3, 2.6);
 M('end');
 
 /* ---------- dựng lịch: thời gian tuyệt đối cho câu, mốc, tấm phụ đề ---------- */
@@ -233,3 +233,4 @@ export const PACE = 1;   // video dài cho 4–8 tuổi: tốc độ chuẩn (b�
 const sk = Object.keys(HIT).filter(k => k.startsWith('s_')).sort((a, b) => HIT[a] - HIT[b]);
 export const SECS = sk.map((k, i) => ({ id: k === 's_title' ? 'title' : k.slice(2), t0: HIT[k], t1: i + 1 < sk.length ? HIT[sk[i + 1]] : DUR }));
 export const SEC = Object.fromEntries(SECS.map(s => [s.id, s]));
+
