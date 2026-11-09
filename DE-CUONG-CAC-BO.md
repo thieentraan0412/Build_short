@@ -2,6 +2,11 @@
 
 > Đi kèm [QUY-HOACH-NOI-DUNG.md](QUY-HOACH-NOI-DUNG.md): phân tích, Cấp độ 1–2, liên kết, lịch, quy chuẩn.
 > File này là **đề cương để duyệt**, chưa phải kịch bản sản xuất (Cấp độ 4). Khi bạn chọn một bộ, mình viết bộ đó thành kịch bản chi tiết.
+> **Nâng cấp 09/11/2026:**
+> - Từ SHORT-006, các tập theo [kế hoạch nâng cấp](PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md).
+> - Tập A dài khoảng 45 s, logo ≤ 0,8 s.
+> - Kế hoạch có ghi chú riêng cho 006–013 ở mục 7.
+> - SHORT-001 đến 005 giữ nguyên.
 
 **Mức chi tiết**
 
@@ -129,7 +134,7 @@ B · 20 s · Thứ Sáu 27/11
 
 **SHORT-007 · Fireflies Talk in Secret Light Codes! ✨ | Big Secrets of Tiny Bugs · Đom đóm nói chuyện bằng mật mã ánh sáng!**
 
-A · khoảng 50 s · Thứ Hai 30/11
+A · khoảng 45 s · Thứ Hai 30/11
 
 - **Ý tưởng:** Blink ra mắt; Night Band chơi lần đầu.
 - **Nhân vật:** có lời Miss Loupe, Blink (ra mắt), Albie. Không lời: Chirp, Crumb (chỉ có râu dấu hỏi).
@@ -168,7 +173,7 @@ B · 20 s · Thứ Sáu 04/12
 
 **SHORT-010 · Dragonflies See Behind Their Heads! 👀 | Big Secrets of Tiny Bugs · Chuồn chuồn nhìn được cả sau gáy!**
 
-A · khoảng 50 s · Thứ Hai 07/12
+A · khoảng 45 s · Thứ Hai 07/12
 
 - **Nhân vật:** có lời Miss Loupe, Crumb, Albie. Không lời: Zip (chỉ "zip!").
 - **Hook 0–3 s:** Crumb rón rén sau lưng Miss Loupe định hù.
@@ -206,7 +211,7 @@ B · 20 s · Thứ Sáu 11/12
 
 **SHORT-013 · Grasshoppers Hide Their Ears in a Funny Place! 🦗 | Big Secrets of Tiny Bugs · Châu chấu giấu tai ở một chỗ thật buồn cười!**
 
-A · khoảng 50 s · Thứ Hai 14/12
+A · khoảng 45 s · Thứ Hai 14/12
 
 - **Ý tưởng:** thử đặt "Nope!" ở bí mật 1 (§6).
 - **Nhân vật:** có lời Miss Loupe, Crumb (*"But WHY on its tummy?"*), Albie. Không lời: Chirp, Hop.
@@ -244,7 +249,7 @@ B · 20 s · Thứ Sáu 18/12
 
 **SHORT-016 · Where Do Bugs Go When It Snows? ❄️ | Big Secrets of Tiny Bugs · Tuyết rơi thì côn trùng đi đâu?**
 
-A · khoảng 50 s · Thứ Hai 21/12 · đặc biệt mùa đông
+A · khoảng 45 s · Thứ Hai 21/12 · đặc biệt mùa đông
 
 - **Ý tưởng:** Dot ra mắt.
 - **Nhân vật:** có lời Miss Loupe, Dot (ra mắt), Albie (quàng khăn). Không lời: Waggle, Flutter.
@@ -318,7 +323,7 @@ B · 20 s · Chủ Nhật 27/12
 
 ### Shorts của SERIES-002
 
-**SHORT-020 · Is a Spider a Bug? Nope! 🕷️ | Big Secrets of Tiny Bugs** · A · khoảng 50 s · T2 28/12
+**SHORT-020 · Is a Spider a Bug? Nope! 🕷️ | Big Secrets of Tiny Bugs** · A · khoảng 45 s · T2 28/12
 
 - **Theo §6 tập 6.** Spindle ra mắt, thả mình lộn ngược trước kính. 8 chân (Dot đếm), 2 phần thân, nhiều loài có 8 mắt. Cả tập là một chữ "Nope!".
 - **Cảnh đặc trưng:** 8 Miss Loupe phản chiếu trong 8 mắt.

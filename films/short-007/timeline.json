@@ -1,0 +1,359 @@
+{
+ "bpm": 120,
+ "dur": 44,
+ "secs": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 3
+  },
+  {
+   "id": "title",
+   "t0": 3,
+   "t1": 3.8
+  },
+  {
+   "id": "cold",
+   "t0": 3.8,
+   "t1": 10.6
+  },
+  {
+   "id": "beetle",
+   "t0": 10.6,
+   "t1": 17.7
+  },
+  {
+   "id": "code",
+   "t0": 17.7,
+   "t1": 30.45
+  },
+  {
+   "id": "album",
+   "t0": 30.45,
+   "t1": 34.9
+  },
+  {
+   "id": "gag",
+   "t0": 34.9,
+   "t1": 44
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.1,
+   "dur": 1.163,
+   "card": 1,
+   "text": "Could your tummy glow?"
+  },
+  {
+   "id": "L02",
+   "who": "blink",
+   "t": 1.5,
+   "dur": 0.931,
+   "card": 1,
+   "text": "My tummy can!"
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 3.9,
+   "dur": 0.999,
+   "card": 2,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 5.35,
+   "dur": 1.712,
+   "card": 3,
+   "text": "Fireflies make cold light!"
+  },
+  {
+   "id": "L05",
+   "who": "blink",
+   "t": 8.05,
+   "dur": 0.876,
+   "card": 4,
+   "text": "Look! No fire!"
+  },
+  {
+   "id": "L06",
+   "who": "loupe",
+   "t": 10.85,
+   "dur": 1.505,
+   "card": 5,
+   "text": "Is a firefly a fly?"
+  },
+  {
+   "id": "L07",
+   "who": "loupe",
+   "t": 12.95,
+   "dur": 0.628,
+   "card": 5,
+   "text": "Nope!",
+   "catch": true
+  },
+  {
+   "id": "L08",
+   "who": "blink",
+   "t": 13.7,
+   "dur": 0.962,
+   "card": 6,
+   "text": "I'm a little beetle!"
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 15,
+   "dur": 1.825,
+   "card": 6,
+   "text": "See? Beetle wing cases!"
+  },
+  {
+   "id": "L10",
+   "who": "loupe",
+   "t": 18,
+   "dur": 1.587,
+   "card": 7,
+   "text": "Blink, any more secrets?"
+  },
+  {
+   "id": "L11",
+   "who": "blink",
+   "t": 19.85,
+   "dur": 0.51,
+   "card": 7,
+   "text": "No!"
+  },
+  {
+   "id": "L12",
+   "who": "blink",
+   "t": 21.45,
+   "dur": 0.886,
+   "card": 8,
+   "text": "Okay, yes."
+  },
+  {
+   "id": "L13",
+   "who": "loupe",
+   "t": 22.6,
+   "dur": 2.292,
+   "card": 9,
+   "text": "Some fireflies flash a secret code!"
+  },
+  {
+   "id": "L14",
+   "who": "blink",
+   "t": 27,
+   "dur": 0.929,
+   "card": 10,
+   "text": "Light up, everyone!"
+  },
+  {
+   "id": "L15",
+   "who": "albie",
+   "t": 31.55,
+   "dur": 2.297,
+   "card": 11,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L16",
+   "who": "loupe",
+   "t": 37.2,
+   "dur": 1.231,
+   "card": 12,
+   "text": "Is it winking at me?"
+  },
+  {
+   "id": "L17",
+   "who": "loupe",
+   "t": 40.5,
+   "dur": 1.601,
+   "card": 13,
+   "text": "Can YOU blink a secret code?"
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "zip": [
+   -0.35,
+   1.15
+  ],
+  "burst": [
+   -0.05,
+   0.2,
+   0.45
+  ],
+  "startle": -0.1,
+  "land": 1.15,
+  "turn": 1.45,
+  "flare": [
+   2.1,
+   2.7
+  ],
+  "glint0": 2.45,
+  "titleOut": [
+   2.55,
+   2.85
+  ],
+  "slots": 2.75,
+  "raise": 2.7,
+  "sting": [
+   3,
+   3.8
+  ],
+  "mallowIn": [
+   4.6,
+   5.5
+  ],
+  "hold": [
+   5.9,
+   8
+  ],
+  "ticks": [
+   6.5,
+   6.9,
+   7.3
+  ],
+  "ask": 7.6,
+  "munch": 9.35,
+  "snap1": 9.9,
+  "fly1": [
+   10,
+   10.55
+  ],
+  "stamp1": 10.6,
+  "bubble": [
+   11.15,
+   11.45
+  ],
+  "hush": [
+   12.35,
+   12.95
+  ],
+  "bubblePop": 12.97,
+  "dotIn": [
+   13.3,
+   13.75
+  ],
+  "clack": [
+   14.75,
+   15.5,
+   16,
+   16.6
+  ],
+  "snap2": 17,
+  "fly2": [
+   17.1,
+   17.65
+  ],
+  "stamp2": 17.7,
+  "away": 19.85,
+  "tattle": [
+   20.5,
+   20.75,
+   21
+  ],
+  "code": [
+   23,
+   23.3,
+   23.9
+  ],
+  "codeLong": 0.5,
+  "reply": [
+   25.05,
+   25.5
+  ],
+  "wide": [
+   25.2,
+   26
+  ],
+  "chirp": [
+   26,
+   30.25
+  ],
+  "sync": [
+   28,
+   28.5,
+   29,
+   29.5,
+   30
+  ],
+  "rollo": [
+   27,
+   29.8
+  ],
+  "snap3": 30.35,
+  "zoomIn": [
+   30.45,
+   30.75
+  ],
+  "zoomOut": [
+   30.75,
+   31.1
+  ],
+  "stamp3": 31.25,
+  "slotsDown": [
+   31.1,
+   31.5
+  ],
+  "blinkIn": [
+   31.55,
+   32.15
+  ],
+  "counts": [
+   32,
+   32.2,
+   32.4
+  ],
+  "dive": [
+   33.05,
+   33.5
+  ],
+  "gulp": 33.5,
+  "mini": 33.65,
+  "flip": [
+   34.4,
+   34.9
+  ],
+  "glint1": 35.45,
+  "reply1": [
+   35.85
+  ],
+  "glint2": 36.35,
+  "reply2": [
+   36.75,
+   37
+  ],
+  "wink": 38.8,
+  "glint3": [
+   38.85,
+   39.15,
+   39.45
+  ],
+  "reply3": [
+   39.75,
+   40,
+   40.25
+  ],
+  "joy": [
+   40.3,
+   41
+  ],
+  "recall": 42.3,
+  "lift": 42.4,
+  "loop": [
+   43.1,
+   44
+  ]
+ }
+}

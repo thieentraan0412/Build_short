@@ -20,7 +20,7 @@
 | **Khán giả** | Trẻ 4–8 tuổi xem cùng bố mẹ, tiếng Anh. Phụ huynh là người quyết định bật video và đăng ký kênh. |
 | **Tài sản riêng** | Nhân vật Miss Loupe và thủ pháp **kính lúp phóng to thật** (khung trong khung). Không kênh nào khác có đúng thứ này. Đây là thứ cần bảo vệ và lặp lại. |
 | **Dàn nhân vật** | 13 nhân vật định kỳ. Có 6 nhân vật mới, mỗi người gánh một việc trong tập: **Albie** (cuốn sổ giữ luật), **Crumb** (kiến con hay hỏi), **Spindle** (nhện muốn được vào sổ), **Blink** (đom đóm không giữ nổi bí mật), **Mr. Rollo** (bọ hung trốn trong mọi tập), **Dot** (bọ rùa hay đếm). |
-| **Định dạng** | **A.** Tập chính dọc 45–60 s. **B.** Bản cắt 1 bí mật 15–25 s. **C.** Video dài 16:9: sổ tổng hợp, đặc biệt dựng mới, trọn mùa, marathon. |
+| **Định dạng** | **A.** Tập chính dọc khoảng 45 s (từ 11/2026; trước đó 45–60 s). **B.** Bản cắt 1 bí mật 15–25 s. **C.** Video dài 16:9: sổ tổng hợp, đặc biệt dựng mới, trọn mùa, marathon. |
 | **Nhịp đăng** | Mỗi tuần 1 tập A + 2 bản B, tức 3 Shorts. Mỗi tháng 1 video dài, có tháng 2. |
 | **12 tháng đầu** | Mùa 1 *The Garden Album* (16/11/2026–08/02/2027) → Mùa 2 *Night & Pond* (01/03–17/05/2027) → Mùa 3 *Under the Ground* (14/06–30/08/2027) → mini-series *Not-a-bug Club* và đặc biệt Halloween (09–10/2027). Tổng cộng khoảng 45 tập A, 90 bản B và 13 video dài (§5). |
 | **Mục tiêu 12 tháng** | Đủ điều kiện YouTube Partner Program qua **giờ xem video dài**, không trông vào lượt xem Shorts. Có bản tiếng Việt Mùa 1, ba mùa phim và sản phẩm đầu tiên (sổ dán sticker in được). |
@@ -251,7 +251,7 @@ Shorts được xem lẻ và không theo thứ tự, nên **mỗi tập phải t
 
 | Định dạng | Độ dài | Nội dung | Mục đích |
 |---|---|---|---|
-| **A. Tập chính** | 45–60 s, dọc | Móc → tựa 2 s → 3 bí mật (một có "Nope!") → sổ → gag kết vòng | Định danh kênh, đăng mỗi tuần |
+| **A. Tập chính** | Khoảng 45 s (44–50 s), dọc | Móc → logo ≤ 0,8 s trong cú lao vào kính → 3 bí mật (một có "Nope!") → sổ ≤ 4,5 s → gag kết vòng | Định danh kênh, đăng mỗi tuần |
 | **B. Một bí mật** | 15–25 s, dọc | Dựng lại từ A theo khung §4.3, nhịp chậm hơn | Cho trẻ nhỏ. Thử xem côn trùng nào hút người xem nhất |
 | **C1. Sổ tổng hợp** | 6–10 phút, 16:9 | 4–7 tập A nối bằng **khung truyện mới** | Giờ xem, xem trên TV |
 | **C2. Đặc biệt dựng mới** | 4–7 phút, 16:9 gốc | Một câu chuyện trọn vẹn, không dùng lại cảnh cũ | Chứng minh kênh là sáng tạo thật, gắn với ngày lễ |
@@ -259,17 +259,21 @@ Shorts được xem lẻ và không theo thứ tự, nên **mỗi tập phải t
 | **C4. Marathon** | 45–60 phút, 16:9 | Cả năm, khung tiệc kỷ niệm | Xem dài trên TV |
 | **Bài hát** | 1,5–2 phút, 16:9 và dọc | Bài đọc theo nhịp (chant) có lời trên màn hình | Trẻ xem lại rất nhiều lần |
 
-### 4.2 Khung một tập chính (50 s, 120 BPM)
+### 4.2 Khung một tập chính (khoảng 45 s, 120 BPM)
+
+*(đổi ngày 09/11/2026 theo [kế hoạch nâng cấp](PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md); áp dụng từ SHORT-006, SHORT-001 đến 005 giữ nguyên)*
 
 | Giây | Nhịp | Yêu cầu |
 |---|---|---|
-| 0–3 | **Móc** "Could you…?" | Hình hành động ngay từ khung đầu, có chữ lớn. Khung đầu chính là ảnh bìa |
-| 3–5 | Tựa và nhạc hiệu 2 s | Giống nhau mọi tập để trẻ nhận ra kênh |
-| 5–17 | Bí mật 1, trả lời câu móc | "Let's zoom in!", kính phóng, chữ lớn |
-| 17–29 | Bí mật 2, có "Nope!" | Đoán sai → im lặng 1 nhịp → đáp án là âm thanh đầu tiên sau khoảng lặng |
-| 29–40 | Bí mật 3 và cảnh đặc trưng của tập | Mỗi tập **một** cú hình chỉ thủ pháp kính làm được |
-| 40–45 | Sổ sưu tầm và Albie | Giữ tĩnh ≥ 3 s, đủ để chụp màn hình |
-| 45–50 | Gag kết, nối về câu móc | Câu cuối nối được với câu đầu khi video tự lặp |
+| 0–3 | **Móc** "Could you…?" | Hình hành động ngay từ khung đầu, có chữ lớn; nhân vật phản ứng bằng hành động trong 1–2,5 s. Khung đầu chính là ảnh bìa. Ba ô sticker trống "1 2 3" hiện khi chữ móc rời đi (vòng mở) |
+| ≈3–3,8 | Logo và nhạc hiệu ≤ 0,8 s | Lồng vào cú lao vào kính, giống nhau mọi tập để trẻ nhận ra kênh. Không có khung tựa đứng riêng, không có cảnh giới thiệu lặp lại điều móc vừa cho thấy |
+| 3,8–14 | Bí mật 1, trả lời câu móc | "Let's zoom in!", kính lớn (r ≥ 300 px) hoặc cận toàn khung, bí mật "xảy ra" thành chuyển động; kính không đứng quá 3 s |
+| 14–24 | Bí mật 2, có "Nope!" | Đoán sai → khựng ≤ 1 s → đáp án là âm thanh đầu tiên sau khoảng lặng |
+| 24–34 | Bí mật 3 và cảnh đặc trưng của tập | Mỗi tập **một** cú hình chỉ thủ pháp kính làm được |
+| 34–38 | Sổ sưu tầm và Albie | "Six legs? In you go!" nói trong lúc Albie đớp sticker. Trang đủ 3 sticker đứng ≥ 3 s, đủ để chụp màn hình, nhưng nhân vật vẫn chuyển động |
+| 38–45 | Gag kết, nối về câu móc | Đạo cụ của gag đã được gài trước. Câu hỏi cho trẻ trả lời to; câu cuối nối được với câu đầu khi video tự lặp |
+
+Không có đoạn nào dài hơn 4 s không lời. Người nói có trên hình. Phụ đề và mặt nhân vật ngoài vùng giao diện YouTube Shorts ([`QUALITY.md`](_shared/QUALITY.md) §5).
 
 **Mẫu câu móc** (chọn một mỗi tập): *Could you…? / Where are…? / What if you…? / Is a ___ a bug?*
 
@@ -293,6 +297,11 @@ Không bao giờ chỉ thay chữ vào cùng một khuôn hình.
 | 17–20 | Gag kết mới | 2–4 s hình mới, nối được về câu móc của bản B |
 
 Bản B không phải là tập A bị cắt ngắn: phải có câu móc riêng, kết riêng và ảnh bìa riêng. Hai bản B của cùng một tuần dùng hai bí mật khác nhau.
+
+*(đổi ngày 09/11/2026 theo [kế hoạch nâng cấp](PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md); áp dụng từ SHORT-006, SHORT-001 đến 005 giữ nguyên)* Thêm ba ràng buộc:
+- kính đứng ≤ 3 s, bí mật xảy ra trong kính;
+- "Six legs? In you go!" nói trong lúc có hành động;
+- người nói có trên hình, nhất là câu gag và câu hỏi cuối.
 
 ### 4.4 Khung video dài
 
@@ -701,7 +710,7 @@ Giọng TTS đọc theo nhịp được nhưng **không hát được**. Bản �
 - **Thử một biến số mỗi lần.** Các thử nghiệm đã cài sẵn vào từng tập (đầu §6):
   1. Kiểu câu móc: "Could you…?" so với "Where are…?" so với "Is a ___ a bug?".
   2. Khung đầu có chữ hay không.
-  3. Độ dài: bản B 20 s so với tập A 50 s.
+  3. Độ dài: bản B 20 s so với tập A khoảng 45 s (50 s ở SHORT-001 và 004).
   4. Côn trùng "đáng yêu" so với côn trùng "hơi ghê".
   5. Vị trí của "Nope!".
 - **Chỉ số trong YouTube Studio:**
