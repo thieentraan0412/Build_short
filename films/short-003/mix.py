@@ -24,9 +24,13 @@ def mixl(*xs):
     n = max(len(x) for x in xs); return sum(np.pad(x, (0, n - len(x))) for x in xs)
 
 
-# ---------- nhạc: "Night Band swing" — khác SHORT-001 (tổ khúc) và SHORT-002 (calypso) về giọng, điệu, nhạc cụ ----------
-# Contrabass gảy đi bộ, búng tay phách 2–4, chổi trống và hat nhịp swing (móc đơn lệch về 2/3 phách), phím điện đệm phách lệch, vibraphone hát.
-# Tiếng gáy của Chirp và của con dế xa (tiếng động) đóng vai bộ gõ của ban nhạc. Mô-típ bí mật đô–mi–sol ở Fa trưởng khi cái tai sáng lên.
+# ---------- nhạc: "Night Band" — khác SHORT-001 (tổ khúc) và SHORT-002 (calypso) về giọng, điệu, nhạc cụ ----------
+# Contrabass gảy, búng tay, chổi trống, phím điện, vibraphone. Tiếng gáy của Chirp và của con dế xa (tiếng động) đóng vai bộ gõ của ban nhạc.
+# v4 (nhạc nền sinh động, MUSIC.md): lớp nhịp theo cảnh (_shared/audio/groove.py) đổi điệu ở mỗi cảnh: nhịp tim hồi hộp → swing đầy →
+# rải đàn hạc khám phá → nhịp trống tom → nửa nhịp "ồ" → shuffle vui ở sổ → rón rén → nửa nhịp "aww" → swing đầy về vòng lặp.
+# Lớp nhịp thưa dưới lời, chen câu đáp vibraphone vào khoảng trống và có trống dồn / chũm chọe ở chỗ đổi cảnh.
+# Các điểm nhấn của tập (mô-típ bí mật, "bum" của mặt tai, "NOPE!", vòng lặp) đặt tay như trước, ở trên lớp nhịp.
+from groove import Groove
 mus = B['mus']
 REST = ((HIT['nope'] + .12, HIT['nope'] + 1.5),)  # khựng ban nhạc sau tiếng hét (v2: ngắn hơn, và vẫn còn tiếng vibraphone run run bên dưới, không im hẳn)
 def M(x, t, g=1., pan=0.):
@@ -37,38 +41,42 @@ def seq(inst, ns, t0, step, g=1., pan=0., d=None, ramp=0., swing=0.):
         if n: M(inst(n, d) if d else inst(n), t0 + i * step + (swing * step if i % 2 else 0), g * (1 + ramp * i), pan)
 def strum(inst, ns, t, g=.4, d=None, spread=.012):
     for k, n in enumerate(ns): M(inst(n, d) if d else inst(n), t + k * spread, g, -.3 + .6 * k / max(1, len(ns) - 1))
-SW = 1 / 3                                      # swing: móc đơn thứ hai của mỗi phách rơi ở 2/3 phách
-def swing(t0, t1, walk, chords, g=1., snaps=True, comp=True, ride=True, kick_=True, brush_=False):
-    """Nhịp swing của Night Band trong [t0, t1): walk = các nốt bass (một nốt mỗi phách, lặp vòng), chords = các hợp âm phím điện (một hợp âm mỗi ô nhịp)."""
-    b0 = int(round(t0 / BEAT)); b1 = int(round(t1 / BEAT))
-    for i, b in enumerate(range(b0, b1)):
-        tb = b * BEAT
-        if walk and walk[i % len(walk)]: M(upright(walk[i % len(walk)], .45), tb, 1.05 * g)   # 0 = nghỉ
-        if ride: M(hat(.7), tb, .45 * g, .35); M(hat(.45), tb + BEAT * (1 - SW), .32 * g, .35)
-        if b % 2 == 1:
-            if snaps: M(snap(.8), tb, .5 * g, -.25)
-            if brush_: M(brush(.8), tb, .4 * g, -.2)
-        elif kick_: M(kick(.6), tb, .5 * g)
-        if comp and b % 2 == 0: strum(rhodes, chords[(b // 4) % len(chords)], tb + BEAT * (1 - SW), .3 * g, .5)   # đệm phách lệch (swing)
-DM, F_, BB, C_, A7 = triad(62, MIN), triad(65), triad(58, inv=1), triad(60), [61, 64, 67]
-# vòng hoà âm: Rê thứ · Si♭ · Đô · Rê thứ (mở) → Fa · Rê thứ · Si♭ · Đô (khi cái tai sáng lên)
+LINES = TL['lines']; L9 = next(l for l in LINES if l['id'] == 'L09')
 
-# — Hook 0–2,45 s: nhịp swing chạy ngay từ giây 0; vibraphone "ping" khi tiếng gáy xa chạm tai; phím điện hỏi–đáp với tiếng gáy của Chirp —
+# — lớp nhịp theo cảnh (v4): mỗi cảnh một điệu, một bộ nhạc cụ, một vòng hoà âm, một mức năng lượng (bảng ở MUSIC.md) —
+AVOID = [(HIT['hear'] - .05, HIT['answerEnd'] + .1), (HIT['listen2'] - .05, HIT['pull'] - .05), (HIT['glow'] - .05, HIT['glow'] + .75),   # giai điệu của lớp nhịp nhường điểm nhấn
+         (HIT['drumHit'][2] - .05, HIT['drumHit'][2] + .9), (HIT['giggle'] - .1, HIT['stamp'] + .5), (HIT['hop'] - .1, HIT['hopLand'] + .2),
+         (HIT['peek'] - .05, HIT['peek'] + .4), (HIT['show'] - .05, HIT['show'] + .6), (HIT['ring'] - .05, DUR)]
+G = Groove(M, BEAT, LINES, seed=3, avoid=AVOID)
+G.sec('móc · hồi hộp', 0, HIT['pull'], 'tension', 'Dm', 'Dm', bass='upright', arp='pizz', kit='jazz', energy=1, cue=False)
+G.sec('kéo xa · swing đầy', HIT['pull'], HIT['glow'], 'swing', 'Dm', 'Dm Bb', bass='upright', comp='rhodes', lead='vibes', kit='jazz', energy=3)
+G.sec('soi · khám phá', HIT['glow'], HIT['drumIn'], 'float', 'F', 'F Dm', bass='upright', arp='harp', lead='vibes', kit='jazz', energy=2)
+G.sec('mặt trống', HIT['drumIn'], HIT['lensOut'], 'bounce', 'F', 'Dm F', bass='upright', comp='pluck', lead='xylo', kit='tom', energy=2)
+G.sec('ồ · đáng yêu', HIT['lensOut'], HIT['snap'], 'sway', 'Bb', 'Bb F', bass='upright', comp='vibes', lead='celesta', kit='brush', energy=1)
+G.sec('chụp sticker', HIT['snap'], HIT['stamp'], 'break', 'F', 'F', cue=False)
+G.sec('sổ · shuffle vui', HIT['stamp'], HIT['hop'], 'skip', 'F', 'F Bb', bass='upright', comp='pluck', lead='vibes', kit='jazz', energy=2)
+G.sec('rón rén', HIT['hop'], HIT['nope'], 'tiptoe', 'Dm', 'Dm Gm', bass='pizzbass', comp='pizz', lead='pizz', kit='wood', energy=1)
+G.sec('NOPE! · khựng', HIT['nope'], L9['t'], 'break', 'Dm', 'Dm', cue=False)
+G.sec('aww · câu hỏi', L9['t'], HIT['recall'], 'sway', 'Dm', 'Dm Bb', bass='upright', comp='rhodes', lead='vibes', kit='brush', energy=2)
+G.sec('chữ móc trở lại', HIT['recall'], DUR, 'swing', 'Dm', 'Dm', bass='upright', comp='rhodes', lead='vibes', kit='jazz', energy=3)
+G.answer(HIT['answer'] + .125, HIT['listen2'], HIT['giggle'], L9['t'] + L9['dur'] + .02, HIT['show'])   # câu đáp viết tay bên dưới (phím điện đáp tiếng gáy, "aww"…)
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
+
+DM, F_, BB, C_, A7 = triad(62, MIN), triad(65), triad(58, inv=1), triad(60), [61, 64, 67]
+# vòng hoà âm: Rê thứ · Si♭ (mở) → Fa · Rê thứ (khi cái tai sáng lên) → Si♭ · Fa (nhịp "ồ") → Fa · Si♭ (sổ) → Rê thứ · Sol thứ (rón rén) → Rê thứ
+
+# — Hook 0–2,45 s: nhịp tim hồi hộp chạy ngay từ giây 0 (lớp nhịp); vibraphone "ping" khi tiếng gáy xa chạm tai; phím điện hỏi–đáp với tiếng gáy của Chirp —
 M(kick(.8), 0., .55); M(upright(38, .5), 0., 1.0); M(vibes(74, 1.0), 0., .35, .3); M(T._ting(mf(98), .5), 0., .15, .4)
 for i in range(10): M(vibes((86, 89)[i % 2], .22), .05 + i * .22, .07 * (1 - i / 12), .45)   # v2: vibraphone rung nhẹ ở dải cao lúc máy lao vào: "hồi hộp, lắng nghe"
-swing(BEAT, HIT['listen2'], (41, 45, 43), [DM], g=.7, comp=False)                       # bass đi bộ Rê–Fa–La… dưới câu hỏi, không đệm dày
 M(vibes(81, 1.2), HIT['hear'], .42, .3); M(vibes(86, 1.0), HIT['hear'] + .04, .22, .3)   # nghe thấy!
 for i, ch in enumerate(([62, 65, 69], [64, 67, 70], [65, 69, 72])):                    # Chirp gáy đáp: phím điện chen vào giữa các tiếng gáy
     strum(rhodes, ch, HIT['answer'] + .125 + i * .3, .26, .35)
 seq(upright, (38, 40, 41, 43, 45), HIT['listen2'], BEAT / 4, .85, 0., d=.3, ramp=.05)   # lại vểnh chân: bass chạy lên "tò mò"
-swing(at(1), at(2), (38, 41, 45, 48), [DM, BB], g=.85)                                    # kéo xa, "Let's zoom in!": nhịp đầy
 M(riser(.6, .8), HIT['zoom'] - .5, .3)
 
 # — Soi trong kính 4–9,8 s: khám phá, sang Fa trưởng khi cái tai sáng lên; mỗi cú "bum" của mặt tai là một nốt bass + tom —
-swing(at(2), at(2, 1), (38,), [DM], g=.7)
 secret(M, vibes, 77, HIT['glow'], .17, .42, .3)                                           # mô-típ bí mật: Fa–La–Đô trên vibraphone
 M(pad([65, 69, 72, 76], 2.6), HIT['glow'], .55)
-swing(at(2, 2), HIT['drumIn'], (41, 45, 48, 45, 38, 41, 45, 41), [F_, DM], g=.7, snaps=False)
 for i, h in enumerate(HIT['drumHit']):                                                    # mặt tai rung: "bum" (dải trầm, nằm dưới lời)
     M(upright(41 if i < 2 else 38, .6), h, 1.1); M(tom(43 if i < 2 else 41, .8), h, .5)
     if i < 2: M(vibes(72 + 2 * i, .6), h + .25, .18, .3)
@@ -78,7 +86,6 @@ strum(rhodes, [65, 69, 72, 77], tdr + .38, .3, .8); M(vibes(84, 1.0), tdr + .38,
 
 # — Nhịp "ồ" 9,8–13,5 s: ấm, nửa nhịp (không trống), vibraphone giữ nốt dài; Chirp khúc khích: vibraphone láy —
 M(pad([58, 62, 65, 69], 1.8), HIT['lensOut'], .55)
-seq(upright, (46, 0, 41), HIT['push'], BEAT * 1.5, .7)
 M(vibes(77, 1.2), HIT['bend'] + .2, .25, .25); M(vibes(74, 1.0), HIT['giggle'] - .4, .2, .25)
 M(celesta(84, .8), HIT['bend'] + .5, .16, .3); M(celesta(81, .8), HIT['bend'] + 1.0, .14, .3)   # v2: hộp nhạc nhỏ, đáng yêu (sau chữ "Hello")
 seq(vibes, (81, 84, 81, 86), HIT['giggle'], .09, .24, .3, d=.4)
@@ -90,12 +97,9 @@ M(T.gliss(96, 79, HIT['zoomOut'][1] - HIT['zoomOut'][0], .22, 'harp'), HIT['zoom
 # — Sổ 14–19,6 s: sticker, Albie (thưa, không bè trầm dưới giọng trầm của Albie), Chirp nhảy tới —
 ti = HIT['stamp']; M(kick(.8), ti, .8); M(T.cymbal(1.6, 1., 4500), ti, .26, .15); strum(rhodes, [65, 69, 72, 77], ti, .32, .9)   # v2: nhấn ở cú dán sticker
 ts = HIT['stamp']; M(vibes(89, 1.0), ts + .02, .3, .3); strum(pluck, (65, 69, 72), ts, .38)
-swing(ti + .5, HIT['hop'], (41, 0, 46, 0, 45, 0, 43, 0), [F_, BB], g=.6, kick_=False, comp=False, ride=False, brush_=True)   # v2: dưới câu của Albie: búng tay, chổi trống, bass gảy thưa (dải trầm); không hợp âm phím điện (từng che chữ "In")
-for i, n in enumerate((89, 93, 96, 93, 89, 96)): M(celesta(n, .3), ti + .6 + i * .42, .1, .45)   # lấp lánh hộp nhạc ở dải cao, thưa: sổ vui, không còn lặng
 L6 = next(l for l in TL['lines'] if l['id'] == 'L06'); strum(rhodes, [65, 69, 72], L6['t'] + L6['dur'] + .1, .3, .5)   # hết câu mới đệm
 seq(upright, (38, 40, 41, 43, 45), HIT['hop'] - .05, .09, .8, 0., d=.25)                 # Chirp nhảy tới: bass chạy lên
 M(vibes(81, .8), HIT['hopLand'], .25, .2)
-swing(HIT['hopLand'] + .1, HIT['nope'] - .05, (38, 41, 43, 45), [DM], g=.5, snaps=False, ride=False)   # dưới câu hỏi của Albie: nhẹ, rón rén
 for i in range(6): M(pizz((62, 64, 65, 67, 69, 70)[i], .18), HIT['hopLand'] + .2 + i * .25, .18, -.3)   # v2: pizzicato đi lên rón rén: "hồi hộp" trước "NOPE!"
 strum(rhodes, [62, 65, 69, 72], HIT['nope'] - .02, .42, .25); M(upright(38, .3), HIT['nope'] - .02, 1.0); M(kick(), HIT['nope'] - .02, .7)   # "NOPE!": cả ban nhạc khựng một phát
 
@@ -106,7 +110,6 @@ L9 = next(l for l in TL['lines'] if l['id'] == 'L09'); seq(vibes, (81, 77, 74), 
 M(vibes(74, .8), HIT['peek'], .28, .2)
 strum(rhodes, [65, 69, 72, 77], HIT['show'], .32, .8); M(vibes(84, .9), HIT['show'] + .05, .3, .3)   # v3: "ta-da" khi Chirp khoe cái tai
 M(kick(.8), HIT['recall'], .7); M(upright(38, .5), HIT['recall'], 1.0); M(vibes(74, 1.0), HIT['recall'], .35, .3); M(vibes(81, 1.0), HIT['recall'] + .12, .3, .3)   # chữ móc trở lại: đúng phách mở đầu phim
-swing(HIT['recall'] + BEAT, HIT['ring'], (41, 45, 43, 45), [DM], g=.7, comp=False)
 seq(vibes, (69, 72, 74, 77, 81), HIT['ring'], .12, .26, .3, d=.8, ramp=.06)               # vòng sóng âm mở ra: vibraphone rải lên
 M(upright(40, .3), DUR - BEAT / 2, .9)                                                    # nốt dẫn (Mi) → Rê ở 0,0
 
@@ -233,7 +236,7 @@ B['fx'] = fx = T.duck(fx, ve, .6, .3)                 # tiếng động nhườn
 B['amb'] = T.duck(B['amb'], ve, .7, .5)              # v2: nền đêm cũng nhường giọng
 mix = B['mus'] + B['fx'] + B['amb'] + B['vox']
 mix = np.tanh(mix * 1.1) / 1.1
-mix, I_mix, ceil_db = T.master(mix); print(f'master: {I_mix:.1f} LUFS, true-peak ceiling {ceil_db:.1f} dBFS')
+mix, I_mix, ceil_db = T.master(mix, 11.6); print(f'master: {I_mix:.1f} LUFS, true-peak ceiling {ceil_db:.1f} dBFS')   # crest 11,6: chừa đỉnh cho AAC (SHORT-004; lượt nhạc nền sinh động 11/2026)
 # mép đầu file: fade-in 20 ms (khung đầu là phách nối vòng lặp; bộ mã AAC vọt đỉnh ở mép file nếu mẫu đầu không bằng 0, xem SHORT-002 MUSIC.md)
 nf = int(.02 * SR); mix[:nf] *= np.linspace(0, 1, nf)[:, None]
 os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)

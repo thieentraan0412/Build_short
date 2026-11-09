@@ -1,10 +1,14 @@
 // Đặt nhân vật lên trang: dựng rig, áp dáng + biểu cảm, vẽ hiệu ứng quanh đầu, bóng đen cho bảng silhouette.
-import { C } from '../kit.js';
+import { C, REC } from '../kit.js';
 import { Rig } from './rig.js';
 import { EXPR, fx } from './face.js';
 
 const FACE_FX = new Set(['tear', 'tears', 'blush']);
 export const VIEW = { front: 0, q: .62, side: Math.PI / 2, back: Math.PI, ql: -.62 };
+// Ghi vị trí mặt nhân vật theo toạ độ màn hình (px), cho _shared/tools/safezone.mjs (vùng giao diện Shorts, người nói có trên hình).
+// Chỉ ghi khi FACES.on; không vẽ gì nên không đổi hình của tập nào. { who, x, y, r, clip }: tâm, bán kính mặt; clip = vẽ trong kính hoặc vòng iris (REC.mute).
+export const FACES = { on: false, list: [] };
+let OFF_DRAW = 0;
 
 export function resolveExpr(CH, expr) {
   if (typeof expr === 'object') return expr;
@@ -23,6 +27,10 @@ export function drawChar(c, CH, o = {}) {
   if (o.extra) o.extra(r);
   c.save(); c.globalAlpha *= alpha; c.translate(x, y - hop * k); if (flip) c.scale(-1, 1); c.rotate(lean + (E.tilt || 0) * (CH.tiltK ?? 1)); c.scale(k, k);
   r.draw(c);
+  if (FACES.on && !OFF_DRAW && CH.face) {
+    const m = c.getTransform(), p = r.P(CH.face.c);
+    FACES.list.push({ who: CH.id, x: m.a * p[0] + m.c * p[1] + m.e, y: m.b * p[0] + m.d * p[1] + m.f, r: CH.face.r * Math.hypot(m.a, m.b), clip: REC.mute > 0 });
+  }
   if (props) props(c, r);
   if (showFx && E.fx && CH.face) {
     const f = (FACE_FX.has(E.fx) ? CH.face : CH.head) || CH.face, p = r.P(f.c), side = Math.cos(yaw) < -.2 ? -1 : 1;
@@ -41,7 +49,7 @@ export function silhouette(c, CH, o = {}, col = C.ink) {
   if (!OFF || OFF.width !== W || OFF.height !== H) { OFF = document.createElement('canvas'); OFF.width = W; OFF.height = H; }
   const oc = OFF.getContext('2d'); oc.setTransform(1, 0, 0, 1, 0, 0); oc.clearRect(0, 0, W, H);
   oc.setTransform(c.getTransform());
-  drawChar(oc, CH, { ...o, showFx: false });
+  OFF_DRAW++; drawChar(oc, CH, { ...o, showFx: false }); OFF_DRAW--;   // bóng đen trên canvas phụ: không ghi mặt
   oc.setTransform(1, 0, 0, 1, 0, 0); for (let i = 0; i < 5; i++) oc.drawImage(OFF, 0, 0);   // làm đặc các phần trong suốt (Smudge, cánh)
   oc.globalCompositeOperation = 'source-in'; oc.fillStyle = col; oc.fillRect(0, 0, W, H); oc.globalCompositeOperation = 'source-over';
   c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.drawImage(OFF, 0, 0); c.restore();

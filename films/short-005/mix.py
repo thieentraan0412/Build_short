@@ -26,8 +26,12 @@ def speaking(t, pad_=.05): return any(l['t'] - pad_ <= t < l['t'] + l['dur'] + p
 
 
 # ---------- nhạc: "Tap-Tap Waltz" — nhịp ba, khác SHORT-001 (tổ khúc), 002 (calypso), 003 (swing), 004 (diễu hành) ----------
-# "Um" = pizzicato trầm (+ bass gảy cho loa nhỏ); "pa-pa" = hợp âm đàn hạc ngắn ở phách 2 và 3 — đúng chỗ hai cú chạm râu.
-# Hộp nhạc (celesta) hát giai điệu ở chỗ trống giữa các câu; kèn dăm giữ hợp âm như phong cầm ở nhịp "ồ". Mô-típ bí mật La–Đô♯–Mi khi cùng mùi.
+# Hai cú chạm râu "tách, tách" rơi đúng hai phách "pa-pa" của valse. Mô-típ bí mật La–Đô♯–Mi trên hộp nhạc khi cùng mùi.
+# v3 (nhạc nền sinh động, MUSIC.md): lớp nhịp theo cảnh (_shared/audio/groove.py) đổi điệu ở mỗi cảnh: valse chạm râu → valse đầy
+# khi Miss Loupe vào → hộp nhạc rải mơ màng trong kính → valse phong cầm ấm khi cùng mùi → rón rén khi chú kiến lạ tới →
+# valse marimba ở sổ → polka lon ton khi Crumb tới cành → lắng lại cho tiếng "squeak" → valse đầy dẫn về khung đầu.
+# Lớp nhịp thưa dưới lời, chen câu đáp vào khoảng trống, có dấu ở chỗ đổi cảnh. Điểm nhấn của tập đặt tay như trước.
+from groove import Groove
 mus = B['mus']
 REST = ((HIT['clash'] - .02, HIT['shrug'] - .05), (HIT['glass'][0] - .06, HIT['glass'][1] + .55))   # khựng nhạc: lúc "khác mùi" và lúc kính kêu squeak
 def M(x, t, g=1., pan=0.):
@@ -38,44 +42,42 @@ def seq(inst, ns, t0, step, g=1., pan=0., d=None, ramp=0.):
         if n: M(inst(n, d) if d else inst(n), t0 + i * step, g * (1 + ramp * i), pan)
 def strum(inst, ns, t, g=.4, d=None, spread=.012):
     for k, n in enumerate(ns): M(inst(n, d) if d else inst(n), t + k * spread, g, -.3 + .6 * k / max(1, len(ns) - 1))
-A_, D_, E7, FSM, BM = (57, 61, 64), (57, 62, 66), (56, 59, 62, 64), (57, 61, 66), (59, 62, 66)
-ROOT = {A_: 45, D_: 50, E7: 40, FSM: 42, BM: 47}
-def waltz(b0, b1, chords, g=1., bass=True, pa=True, clave=False, hi=False):
-    """Điệu valse từ ô nhịp b0 tới b1 (không gồm b1): chords = một hợp âm mỗi ô nhịp (lặp vòng).
-    Dưới lời: "pa-pa" chỉ còn đàn hạc rất ngắn và nhỏ (không giữ nốt trong dải giọng)."""
-    for i, b in enumerate(range(b0, b1)):
-        tb = at(b); ch = chords[i % len(chords)]
-        if bass: M(pizz(ROOT[ch], .5), tb, 1.0 * g); M(bassn(ROOT[ch], .35), tb, .45 * g)
-        for k in (1, 2):
-            tk = tb + k * BEAT; quiet = speaking(tk)
-            if pa: strum(harp, [n + 12 for n in ch][:3], tk, (.16 if quiet else .3) * g, .18 if quiet else .3, .008)
-            if clave and not quiet: M(claves(.6), tk, .35 * g, .25)
-            if hi and not quiet: M(celesta(ch[-1] + 24, .3), tk, .12 * g, .3)
 MEL = {                                         # giai điệu hộp nhạc (chỉ đặt vào chỗ không có lời)
     'hook': (76, 81, 85), 'turn': (85, 83, 81, 78), 'aww': (88, 85, 81), 'end': (76, 81, 85, 88, 86, 85, 83, 81),
 }
 
-# — Hook 0–3 s: valse chạy từ giây 0; hai cú "tách" của râu nằm đúng phách pa-pa —
+# — lớp nhịp theo cảnh (v3): bảng ở MUSIC.md. Ô nhịp valse 1,5 s (ba phách); các điệu bốn phách (rón rén, polka, lắng) dùng ô 2 s —
+AVOID = [(2.25, 2.62), (HIT['lensIn'] - .05, HIT['lensIn'] + .4), (HIT['match'] - .05, HIT['match'] + .6), (HIT['nuzzle'][0] + .05, HIT['nuzzle'][0] + .65),
+         (16.6, 16.95), (HIT['glass'][1] + .5, HIT['glass'][1] + 1.0), (HIT['laugh'], DUR)]
+G = Groove(M, BEAT, LINES, meter=3, seed=5, avoid=AVOID)
+G.sec('chạm râu · valse', 0, at(2), 'waltz', 'A', 'A E7', bass='pizzbass', comp='harp', lead='celesta', kit='toy', energy=2, cue=False)
+G.sec('Miss Loupe vào · valse đầy', at(2), HIT['zoom'], 'waltz', 'D', 'D E7', bass='bassn', comp='pluck', lead='xylo', kit='toy', energy=3)
+G.sec('kính ngửi · mơ màng', HIT['zoom'], HIT['match'], 'waltzfloat', 'A', 'A A D', bass='pizzbass', arp='celesta', lead='flute', energy=1)
+G.sec('cùng mùi · phong cầm', HIT['match'], HIT['stranger'][0], 'waltz', 'A', 'A A D', bass='pizzbass', comp='reed', lead='celesta', kit='brush', energy=2)
+G.sec('chú kiến lạ · rón rén', HIT['stranger'][0], HIT['clash'], 'tiptoe', 'F#m', 'F#m Bm', bass='pizzbass', comp='pizz', lead='reed', kit='wood', energy=1)
+G.sec('khác mùi · khựng', HIT['clash'], HIT['stamp'], 'break', 'F#m', 'F#m', cue=False)
+G.sec('sổ · valse marimba', HIT['stamp'], HIT['flip'][0], 'waltz', 'A', 'A D E7', bass='pizzbass', comp='marimba', lead='xylo', kit='brush', energy=2)
+G.sec('lật trang · polka lon ton', HIT['flip'][0], HIT['glass'][0], 'polka', 'A', 'A E7', bass='pizzbass', comp='pizz', lead='xylo', kit='toy', energy=2)
+G.sec('squeak · lắng', HIT['glass'][0], HIT['laugh'], 'hush', 'Bm', 'Bm E7', arp='celesta', energy=1, cue=False)
+G.sec('cười · về khung đầu', HIT['laugh'], DUR, 'waltz', 'A', 'E7', bass='pizzbass', comp='harp', lead='celesta', kit='toy', energy=3, no=('comp',))   # câu hỏi kết phải rõ: "pa-pa" chỉ còn phách gỗ
+G.answer(2.3, HIT['shrug'] + .02, HIT['nope'] + .66, HIT['glass'][1] + .55)   # câu đáp viết tay bên dưới ("ta-da" nhỏ, "thôi vậy", "wah-wah", "hả?")
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
+
+# — Hook 0–3 s: valse chạy từ giây 0 (lớp nhịp); hai cú "tách" của râu nằm đúng phách pa-pa —
 M(pizz(45, .6), 0., 1.1); M(bassn(45, .4), 0., .5); M(celesta(88, .8), 0., .22, .3); M(T._ting(mf(100), .5), 0., .14, .4)
-waltz(0, 2, [A_, E7], g=.75)
 seq(celesta, MEL['hook'], 2.3, BEAT / 2, .3, .3, d=.5)                                    # "ta-da" nhỏ giữa câu móc và câu của Crumb
-# — Miss Loupe vào, "Let's zoom in!": đàn hạc vuốt lên, valse đầy —
-waltz(2, 3, [D_], g=.85)
+# — Miss Loupe vào, "Let's zoom in!": đàn hạc vuốt lên —
 seq(harp, (69, 73, 76, 81, 85), HIT['lensIn'], .06, .35, .2, d=.4)
-waltz(3, 4, [E7], g=.7, pa=False)
 M(riser(.6, .8), HIT['zoom'] - .55, .3)
 
-# — Trong kính 5,5–10,5 s: "kính ngửi" mơ màng; nhẹ dưới lời; mô-típ bí mật khi cùng mùi; kèn dăm (phong cầm) ấm ở nhịp "ồ" —
+# — Trong kính 5,5–10,5 s: "kính ngửi" mơ màng; mô-típ bí mật khi cùng mùi; kèn dăm (phong cầm) ấm ở nhịp "ồ" —
 M(pad([69, 73, 76, 81], 1.8), HIT['clouds'], .3)
-waltz(4, 6, [A_, D_], g=.6, clave=False)
 secret(M, celesta, 81, HIT['match'], .15, .45, .3)                                        # mô-típ bí mật: La–Đô♯–Mi trên hộp nhạc
 M(pad([57, 61, 64, 69], 2.4), HIT['match'], .32)
-waltz(6, 7, [A_], g=.6)
 for i, n in enumerate((61, 64)): M(reed(n, 1.2), 10.45 + i * .02, .2, -.2 + .4 * i)       # phong cầm ấm (dải thấp, sau lời)
 seq(celesta, MEL['aww'], HIT['nuzzle'][0] + .1, .16, .28, .3, d=.7)                       # nhịp "ồ": dụi đầu
 # — Chú kiến lạ 10,8–14,8 s: Pha♯ thứ, pizzicato rón rén; khựng khi khác mùi; kèn dăm "wah-wah" sau "Nope!" —
 for i in range(6): M(pizz((66, 69, 66, 64, 66, 69)[i], .2), HIT['stranger'][0] + i * BEAT / 2 + .05, .3, -.4)
-waltz(7, 9, [FSM, BM], g=.55, pa=True)
 M(tuba(42, .5, 1., -3.), HIT['clash'] + .02, .55)                                         # "bwomp": khác mùi
 for i, n in enumerate((64, 63)): M(reed(n, .32), HIT['nope'] + .66 + i * .3, .35, -.3)    # "wah-wah" (sau chữ "Nope!")
 seq(pizz, (69, 66), HIT['shrug'] + .02, .2, .4, -.4, d=.3)                                # nhún vai: "thôi vậy"
@@ -84,28 +86,24 @@ seq(marimba, (69, 73, 76, 81, 85), HIT['snap'] + .04, .07, .45, .2, ramp=.1)    
 M(T.gliss(81, 100, HIT['zoomIn'][1] - HIT['zoomIn'][0], .28, 'harp'), HIT['zoomIn'][0], .9)   # lao xuyên qua mặt kính
 M(T.gliss(96, 79, HIT['zoomOut'][1] - HIT['zoomOut'][0], .2, 'harp'), HIT['zoomOut'][0], .7)   # lùi ra khỏi sticker
 
-# — Sổ 15,3–19,1 s: valse nhẹ, không bè trầm dưới giọng trầm của Albie; sticker: hộp nhạc + hợp âm —
+# — Sổ 15,3–19,1 s: sticker: hộp nhạc + hợp âm; Crumb ló vào: xylophone —
 ti = HIT['zoomOut'][1]; strum(harp, (69, 73, 76, 81), ti, .35, .9); M(celesta(93, 1.0), HIT['stamp'] + .02, .3, .3)
-for i, n in enumerate((57, 61, 64)): M(pizz(n, .5), HIT['recall'] + i * .012, .5, -.2 + .2 * i)   # v2: chữ móc trở lại: hợp âm La của khung đầu
-M(celesta(88, .8), HIT['recall'], .25, .3)
-waltz(10, 13, [A_, D_, E7], g=.55, bass=False)
 M(xylo(88, .2), 16.65, .25, .5); M(xylo(91, .2), 16.8, .25, .5)                          # Crumb ló vào trang sổ
-for i, n in enumerate((93, 88, 96, 91, 88, 93)): M(celesta(n, .3), 16.1 + i * .36, .1, .45)   # v2: lấp lánh hộp nhạc dải cao dưới câu của Albie (không còn lỗ im)
 add(mus, pad([69, 73, 76], 1.15), HIT['glass'][0] + .02, .16, 0); add(mus, celesta(93, .5), HIT['glass'][1] + .05, .12, .3)   # khựng cho tiếng squeak nhưng còn một lớp mỏng
 M(T.gliss(76, 100, .45, .3, 'harp'), HIT['flip'][0] + .02, .7)                            # lật trang: đàn hạc vuốt lên
 
-# — Gag 19,1–24 s: valse nhẹ khi Crumb lon ton tới; khựng cho tiếng squeak; pizzicato "hả?" khi râu xoăn; cả ban nhạc trở lại, dẫn về khung đầu —
-waltz(13, 14, [A_], g=.55, pa=True)
+# — Gag 19,1–24 s: khựng cho tiếng squeak; pizzicato "hả?" khi râu xoăn; cả ban nhạc trở lại, dẫn về khung đầu —
 seq(pizz, (73, 0, 76), HIT['glass'][1] + .55, .16, .35, .2, d=.25)                       # "hả?" (râu xoăn tít)
-waltz(14, 15, [BM], g=.5, pa=False)
-waltz(15, 16, [E7], g=.85, clave=True, hi=True)                                          # Miss Loupe cười → valse đầy, Mi7 dẫn về La ở 0,0
+for i, n in enumerate((57, 61, 64)): M(pizz(n, .5), HIT['recall'] + i * .012, .5, -.2 + .2 * i)   # v2: chữ móc trở lại: hợp âm La của khung đầu
+M(celesta(88, .8), HIT['recall'], .25, .3)
 seq(xylo, MEL['end'][:4], HIT['laugh'] + .05, .08, .3, .3, d=.3)
-seq(celesta, (76, 80, 83, 86), at(15, 1.5), BEAT / 2, .28, .3, d=.4)
+seq(celesta, (76, 80, 83, 86), at(15, 1.5), BEAT / 2, .2, .3, d=.3)
 M(pizz(40, .3), DUR - BEAT / 2, .8)                                                       # nốt dẫn (Mi) → La ở 0,0
 
 # — cường độ theo cảnh (chuyển mềm 0,3 s) —
+L11 = next(l for l in LINES if l['id'] == 'L11')
 LEVEL = ((0, .88), (.5, .8), (HIT['lensIn'], .9), (HIT['zoom'], .75), (HIT['match'], 1.0), (HIT['match'] + .6, .82), (HIT['nuzzle'][0], .8), (HIT['stranger'][0], .85), (HIT['clash'], .95), (HIT['clash'] + .5, .82), (HIT['snap'], 1.0), (ti, .75),
-         (HIT['flip'][0], .9), (HIT['walkG'][0], .8), (HIT['glass'][0], .95), (HIT['glass'][1] + .6, .8), (HIT['laugh'], .85), (HIT['recall'], 1.0))
+         (HIT['flip'][0], .9), (HIT['walkG'][0], .8), (HIT['glass'][0], .95), (HIT['glass'][1] + .6, .8), (HIT['laugh'], .75), (HIT['recall'], .72), (L11['t'] + L11['dur'], 1.0))   # v3: câu hỏi kết rõ hơn; nhạc dâng sau câu hỏi, dẫn về khung đầu
 tt = np.arange(len(mus)) / SR; lev = np.full(len(mus), LEVEL[0][1])
 for (t, g), (_, g0) in zip(LEVEL[1:], LEVEL[:-1]): lev = np.where(tt >= t - .15, np.where(tt < t + .15, g0 + (g - g0) * (tt - t + .15) / .3, g), lev)
 mus *= lev[:, None]

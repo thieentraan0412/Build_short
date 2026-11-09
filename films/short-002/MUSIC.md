@@ -1,5 +1,7 @@
 # SHORT-002 · Soundtrack Timeline
 
+> **Bản hiện hành:** lượt nhạc nền sinh động (11/2026), ở [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-hiện-hành). Lớp đệm của các bảng dưới đây đã được thay bằng lớp nhịp theo cảnh; các điểm nhấn viết tay giữ nguyên.
+
 Lượt nhạc nền theo `Task.md` (*Điều chỉnh nhạc nền sinh động*). Hình, lời, thời lượng 22,0 s, tiếng động và vòng lặp giữ nguyên. Chỉ phần nhạc trong [mix.py](mix.py) được viết lại.
 Bản trước: `out/short-002-v3.mp4`, `out/mix-v3.py`.
 
@@ -89,3 +91,54 @@ Nhạc được nhân một đường cường độ (chuyển mềm 0,3 s), r�
 (dB, giọng so với nhạc + tiếng động trong dải 300–4000 Hz, trung vị theo câu.)
 
 Bản cuối: −13,9 LUFS, đỉnh thật −1,4 dBTP, 22,0 s. `qa.py`: 23/23 đạt. Giọng không đổi, nên kết quả Whisper ở trên vẫn đúng.
+
+## Lượt nhạc nền sinh động (11/2026) · bản hiện hành
+
+Theo `Task.md`: *"Cần thêm nhiều nhạc nền sinh động, trong 1 short nhạc nền đang không có sự thay đổi."* Hình, lời, tiếng động và các điểm nhấn nhạc viết tay (mô-típ bí mật, stinger, khựng, nhạc hiệu, nối vòng lặp) giữ nguyên. Lớp đệm đứng yên được thay bằng **lớp nhịp theo cảnh** ([`_shared/audio/groove.py`](../../_shared/audio/groove.py)):
+- **Mỗi cảnh một điệu.** Mỗi cảnh có điệu, vòng hoà âm, bộ nhạc cụ, bộ trống và mức năng lượng riêng. Hai cảnh kề nhau khác nhau ở ít nhất hai trong năm thứ đó.
+- **Dưới lời nhạc vẫn chạy.** Dưới lời còn bass, kick, hat/shaker và tiếng đệm ngắn ở dải cao. Dưới giọng trầm của Albie thì bỏ bass.
+- **Nhạc đáp lời.** Khoảng không lời giữa hai câu có một câu đáp ngắn của nhạc cụ hát chính.
+- **Đổi cảnh có dấu.** Trước cảnh mạnh hơn có trống dồn, trước cảnh nhẹ hơn có chuỗi nốt đi xuống. Phách đầu cảnh mới có kick và chũm chọe mềm.
+
+**Bản trước:** v5 (`out/short-002-v5.mp4`, `out/mix-v5.py`, `out/MUSIC-v5.md`, `out/stem_mus-v5.wav`).
+
+**Vì sao nghe như không đổi.** Calypso G chạy từ cú dậm chân tới hết cảnh soi (0,5–10,3 s), rồi pad, rồi calypso lại. Một bộ nhạc cụ (bass tresillo, trống thép, phách gỗ) cho cả phim. Dưới lời lớp đệm còn bass và phách gỗ, nên nghe như một vòng lặp.
+
+**Bản mới.** Mười một cảnh nhạc, sáu điệu:
+- **Đầu phim:** calypso khi dậm chân, pop nảy (kick, clap, ukulele) khi kéo xa.
+- **Trong kính:** trống thép rải lơ lửng khi soi (kể cả chữ "sweet"), calypso đầy khi tia ngọt chạy lên và cái vòi duỗi ra.
+- **"Wow":** nửa nhịp ấm.
+- **Sổ:** shuffle ukulele dưới câu của Albie, calypso D khi Flutter bay vào.
+- **Cuối phim:** rón rén ở gag, calypso về khung đầu.
+
+### Bảng cảnh nhạc
+
+Sinh từ `out/music.json`. Cột *Nguồn*: "lớp nhịp" là phần `groove.py` dựng; "viết tay" là đoạn có sẵn trong `mix.py` (điểm nhấn, tổ khúc, nhạc hiệu). Các điểm nhấn viết tay ở bảng Timeline phía trên vẫn nằm trên lớp nhịp.
+
+| Thời gian | Cảnh nhạc | Điệu | Hoà âm | Nhạc cụ | Trống | Năng lượng | Nguồn |
+|---|---|---|---|---|---|---|---|
+| 0–0,5 | nối vòng lặp | khựng / điểm nhấn viết tay | — | — | — | — | viết tay |
+| 0,5–2,45 | dậm chân · calypso | calypso | G | bass gảy, trống thép, xylophone | kick, shaker, phách gỗ | vừa | lớp nhịp |
+| 2,45–4,5 | kéo xa · pop nảy | pop nảy | G | bass gảy, ukulele, xylophone | kick, clap, shaker | đầy | lớp nhịp |
+| 4,5–8 | soi · trống thép rải | rải lơ lửng | G→C · Em→C | bass gảy, trống thép, hộp nhạc | shaker | vừa | lớp nhịp |
+| 8–10,3 | tia ngọt · calypso đầy | calypso | D · G | bass gảy, trống thép, sáo | kick, shaker, phách gỗ | đầy | lớp nhịp |
+| 10,3–12,4 | Wow · nửa nhịp ấm | nửa nhịp đung đưa | G · Em | bass gảy, ukulele, sáo | kick, chổi trống, hat | nhẹ | lớp nhịp |
+| 12,4–14,3 | giày · chụp sticker | khựng / điểm nhấn viết tay | — | — | — | — | viết tay |
+| 14,3–16,8 | sổ · shuffle ukulele | shuffle nhún nhảy | G · C | bass gảy, ukulele, trống thép | kick, clap, shaker | vừa | lớp nhịp |
+| 16,8–17,6 | Flutter bay vào | calypso | D | bass gảy, trống thép, sáo | kick, shaker, phách gỗ | đầy | lớp nhịp |
+| 17,6–20,4 | gag · rón rén | rón rén | Em · C | pizzicato trầm, pizzicato, xylophone | mõ gỗ, shaker | nhẹ | lớp nhịp |
+| 20,4–22 | câu hỏi · về khung đầu | calypso | G | bass gảy, trống thép | kick, shaker, phách gỗ | vừa | lớp nhịp |
+
+### Số đo trước / sau
+
+| | Bản trước | Bản mới |
+|---|---|---|
+| Số điệu trong phim | 1 (calypso) + pad | 6, 11 cảnh nhạc |
+| Đoạn dài nhất cùng một kiểu | ≈ 9,8 s (calypso 0,5–10,3 s) | 3,5 s |
+| Nốt nhạc mỗi giây (trung vị) dưới lời / khoảng trống | 6 / 9 | 15 / 9 |
+| Câu đáp giữa các câu thoại | — | 8 (viết tay; khoảng trống của tập này đã có điểm nhấn) |
+| Lời rõ hơn nhạc + tiếng động, câu thấp nhất | 10,5 dB (câu mở) | 11,3 dB ("It's sweet!") |
+
+Nốt mỗi giây được đếm từ các lệnh đặt nốt của `mix.py`; một hợp âm tính mỗi nốt một lần. Độ rõ lời đo theo `qa.py` (dải 300–4000 Hz, trung vị theo câu), trên cùng một stem giọng và tiếng động.
+
+**`_shared/qa.py`: 33/33 đạt**, không còn cảnh báo. Độ to −13,9 LUFS, đỉnh thật −1,8 dBTP (`T.master(mix, 11.6)`).

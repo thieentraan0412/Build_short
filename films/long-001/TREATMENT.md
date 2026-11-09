@@ -2,7 +2,7 @@
 
 **Tựa đăng YouTube:** *How Do Bugs Taste, Smell & Hear? A Snowy Adventure ❄️ | Big Secrets of Tiny Bugs* (tiếng Việt tham khảo: *Côn trùng nếm, ngửi, nghe thế nào? Chuyến phiêu lưu trong tuyết*)
 
-Video dài đầu tiên của kênh, khép lại SERIES-001 *Secret Senses*. Ra ngày Thứ Tư 23/12/2026. Định dạng **C2 dựng mới**, 16:9 gốc 1920×1080, 24 fps, khoảng **6 phút**. Tiếng Anh cho lời, chữ trên hình và phụ đề. Khán giả 4–8 tuổi xem cùng bố mẹ.
+Video dài đầu tiên của kênh, khép lại SERIES-001 *Secret Senses*. Ra ngày Thứ Tư 23/12/2026. Định dạng **C2 dựng mới**, 16:9 gốc 1920×1080, **30 fps** (QUALITY.md §5), dài **4 phút 49 giây** (kịch bản "chảy" theo độ dài giọng thật; đề cương dự kiến 6 phút). Tiếng Anh cho lời, chữ trên hình và phụ đề. Khán giả 4–8 tuổi xem cùng bố mẹ.
 
 Theo:
 - đề cương ([DE-CUONG-CAC-BO.md](../../DE-CUONG-CAC-BO.md), LONG-001);
@@ -103,3 +103,18 @@ Bốn nhân vật nói câu dài (Miss Loupe, Albie, Crumb, Dot nói một câu 
   - **Sâu gấu len:** gọi đúng tên, chỉ nói về loài này.
   - **Kiến:** "trú đông dưới đất, túm tụm giữ ấm", không nói độ sâu.
 - **Côn trùng mùa hè chỉ ở trong ký ức** (đề cương): ngoài tuyết chỉ có ong (trong tổ), bọ rùa, sâu gấu len, và kiến (dưới đất). Crumb ở trong nhà ấm.
+
+## 8. Ghi chú dựng (07/11/2026)
+
+- **Lời thoại sửa theo FACTS.md và Whisper:** L14, L72, L85, L87, L88, L90, L98 (bảng ở cuối FACTS.md). Câu hỏi kết cho trẻ trả lời to: *"Can you find him next time?"* (QUALITY.md §6).
+- **Rollo cuối phim** là sticker lăn dọc bậu cửa sổ, không lăn quả cầu tuyết ngoài vườn: bọ hung là côn trùng mùa hè, chỉ được xuất hiện trong ký ức hoặc trên sticker (mục 7).
+- **Cảnh tựa ≤ 2 s**: câu "Big secrets of tiny bugs!" đọc ngay trên nhạc hiệu.
+- **Cảnh nhỏ** (`s_c1s`, `s_c3h`, `s_c5r`…) đánh dấu chỗ máy đổi khung, để mỗi cảnh trung bình ≤ 12 s.
+- **Nhạc** dựng bằng lớp nhịp theo cảnh (`_shared/audio/groove.py`), bảng cảnh nhạc ở MUSIC.md.
+- **Whisper (bản cuối):** `small.en` khớp 89/98 câu, `base.en` khớp 83/98. Các câu còn lệch trong `small.en` không phải lỗi phát âm:
+  - từ tượng thanh: "BZZT", "CHOO";
+  - tên riêng: Flutter → "A flutter", Albie → "Elby", Rollo → "Rolo";
+  - đồng âm: sight/site, tail/tale, hear/here;
+  - viết tắt: family's → "family is".
+
+  `base.en` lệch thêm ở vài câu ngắn của Crumb mà `small.en` nghe đúng.
