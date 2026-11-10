@@ -58,12 +58,13 @@ G.sec('kính lớn · rón rén', HIT['zoom'][0], HIT['pop'], 'tiptoe', 'C#m', '
 G.sec('pop · tiny cows', HIT['pop'], HIT['snap'], 'country', 'E', 'E A B7', bass='tuba', comp='banjo', lead='kazoo', kit='comic', energy=3,
       bpm=132, mood='funny', arc='peak', what='Giọt ngọt "pop!", Crumb uống: "Like milking tiny cows!" – con rệp "clonk"', emo='phấn khích, buồn cười',
       why='Cao trào: đồng quê nhanh 132 BPM, kazoo "vè vè" như tiếng cười, mõ hai cao độ cho tiếng "clonk"; "pop!" là mô-típ bí mật Mi–Sol♯–Si (viết tay).')
-G.sec('sổ · ukulele nắng', HIT['snap'], HIT['flip'][0], 'sunny', 'A', 'A E', bass='bassn', comp='pluck', lead='toypiano', kit='clap', energy=2,
+G.sec('sổ · shuffle banjo', HIT['snap'], HIT['flip'][0], 'skip', 'A', 'A E', bass='bassn', comp='pluck', lead='banjo', kit='clap', energy=2,
       bpm=112, mood='happy', arc='end', what='Sticker dán vào sổ; Albie: "Six legs? In you go!" – Crumb nhảy ùm vào trang', emo='vui, tự hào',
-      why='Ukulele quạt 112 BPM, vỗ tay, piano đồ chơi; xylophone trượt xuống khi Crumb nhảy ùm (viết tay).')
-G.sec('giọt nảy · polka', HIT['flip'][0], HIT['laugh'], 'polka', 'E', 'E B7', bass='tuba', comp='accordion', lead='xylo', kit='toy', energy=3,
+      why='Shuffle nhảy chân sáo 112 BPM của sân trại: banjo đáp sau câu cửa miệng, ukulele, vỗ tay; xylophone trượt xuống khi Crumb nhảy ùm (viết tay). '
+          '(v2, 11/2026 lượt 2: thay ukulele nắng + piano đồ chơi, công thức trùng ở 5 tập.)')
+G.sec('giọt nảy · polka', HIT['flip'][0], HIT['laugh'], 'polka', 'E', 'E B7', bass='tuba', comp='accordion', lead='trombone', kit='toy', energy=3,
       bpm=136, mood='bouncy', arc='end', what='Giọt ngọt nảy khỏi trang, Crumb đuổi theo: "Wait! Come back!" – giọt trúng mặt kính', emo='tinh nghịch, náo nhiệt',
-      why='Polka 136 BPM, accordion, mỗi cú nảy một nốt xylophone cao dần (viết tay), khựng khi giọt trúng kính.')
+      why='Polka 136 BPM, accordion, trombone "oom-pah" đáp; mỗi cú nảy một nốt xylophone cao dần (viết tay), khựng khi giọt trúng kính.')
 G.sec('câu hỏi · về khung đầu', HIT['laugh'], DUR, 'bounce', 'E', 'E A', bass='bassn', comp='banjo', lead='reed', kit='pop', energy=2, no=('comp',),
       bpm=120, mood='happy', arc='end', what='Mọi người cười: "What would YOUR pet make?" – về khung đầu', emo='vui, mời gọi',
       why='Pop nảy nhẹ ở 120 BPM dẫn về hợp âm Mi của khung đầu; bỏ đệm để câu hỏi kết rõ, clarinet đáp.')

@@ -163,6 +163,7 @@ Tập A đọc ở tốc độ chuẩn (`PACE = 1`). Zip không có lời; tiế
 ## 8. Nhạc, tiếng động, chữ
 
 - **Màu nhạc riêng: "Rewind Pond Hop"** (Mi giáng trưởng, giọng kênh chưa dùng). Chi tiết: [MUSIC.md](MUSIC.md), bảng cảnh: [SOUND-PLAN.md](SOUND-PLAN.md).
+  - **Điệu riêng của tập (11/2026 lượt 2, chống trùng giữa các tập): samba lễ hội.** Không dùng điệu riêng của tập khác; cảnh sổ, gag và cao trào phối theo điệu của tập. Chi tiết: [MUSIC.md](MUSIC.md), [SOUND-PLAN.md](SOUND-PLAN.md), [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
   - **Bay lùi là nhạc chạy lùi:** motif bốn nốt của Zip đi lên khi Zip bay tới, và đi ngược xuống (đúng bốn nốt ấy, đảo thứ tự) khi Zip bay lùi.
   - **Rón rén là pizzicato** nhón từng bước; khựng trước "Nope!" là trống lăn thì thầm.
   - **Hàng nghìn ô mắt là một làn mưa nốt toy piano** rất cao, mỗi làn sóng vẫy tay là một chuỗi nốt chạy từ giữa ra.

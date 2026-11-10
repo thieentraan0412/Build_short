@@ -1,5 +1,18 @@
 # SHORT-009 · Soundtrack Timeline
 
+## Lượt chống trùng giữa các tập (11/2026, lượt 2) · bản hiện hành
+
+Điệu riêng của tập: **ska** (đếm theo phách lẻ), chiếm 23 % thời lượng.
+
+- **"Me! I'm a firefly!":** ragtime + trumpet bịt (trùng SHORT-004) → ska 112 BPM, piano chặn, trumpet bịt "wah".
+- **Đếm cánh ruồi:** ukulele nắng → ska chậm 104 BPM, ukulele chặn "chk – chk"; nốt marimba đếm viết tay giữ nguyên.
+- **Tấm cánh của Blink:** celesta hát (trùng SHORT-008) → đàn hạc hát, celesta rải.
+- **"So I'm a beetle!":** cao trào anh hùng + trumpet → ska 132 BPM, kèn đồ chơi chặn, trumpet hát.
+- **Sổ:** piano đồ chơi → accordion đáp.
+- **Gag:** rình rập + bassoon (trùng công thức với SHORT-002) → kazoo của Fizz bắt chước.
+
+Kết quả: không cảnh nào trùng công thức (điệu + nhạc cụ hát chính + đệm + bộ gõ) với một Short khác. Số liệu ở mục "Chống trùng lặp giữa các tập" của [SOUND-PLAN.md](SOUND-PLAN.md); lý do và đề xuất cho cả kênh: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md). Hình không đổi: mp4 giữ nguyên luồng hình đã giao, chỉ thay tiếng. Các mục bên dưới mô tả các lượt trước; chỗ nào khác mục này thì theo mục này.
+
 ## Màu nhạc của tập: "Sunset Counting Song"
 
 Tập này là một trò **đếm cánh** lúc hoàng hôn, nên nhạc là một bài đếm số:

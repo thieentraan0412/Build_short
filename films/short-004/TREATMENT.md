@@ -99,8 +99,9 @@ Giọng ([`_shared/voices.js`](../../_shared/voices.js)): Miss Loupe `af_heart`,
 ## 6. Nhạc và tiếng động
 
 - **Màu nhạc của tập:** "Ant Parade", một ban kèn diễu hành đồ chơi ở **Fa trưởng**. Trống snare rải, tuba, glockenspiel, kèn đồ chơi.
+  - **Điệu riêng của tập (11/2026 lượt 2, chống trùng giữa các tập): diễu hành + second-line.** Không dùng điệu riêng của tập khác; cảnh sổ, gag và cao trào phối theo điệu của tập. Chi tiết: [MUSIC.md](MUSIC.md), [SOUND-PLAN.md](SOUND-PLAN.md), [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
   - Đoạn đường mùi chuyển sang **Rê thứ** kiểu "thám tử rón rén".
-  - Đoạn trại rệp sang **Đô trưởng** kiểu đồng quê (banjo gảy).
+  - Đoạn trại rệp sang **Đô trưởng**, ban kèn diễu phố second-line (11/2026 lượt 2; trước là đồng quê, nay là điệu riêng của 006).
   - Khác SHORT-001 (tổ khúc), SHORT-002 (calypso) và SHORT-003 (swing).
 - **Nhận diện:** nhạc hiệu 2 s, mô-típ bí mật đô–mi–sol ở mỗi phát hiện, marimba khi kính nở.
 - Chi tiết: [MUSIC.md](MUSIC.md), [SOUND.md](SOUND.md).

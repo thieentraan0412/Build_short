@@ -278,6 +278,12 @@ def timpani(m=41, v=1., d=1.):                  # trống định âm: cao độ
 def bongo(v=1., hi=True):                       # bongo: trống tay nhỏ, "bóc" cao (hi) hoặc trầm hơn
     d = .18; tt = t_(d); f = (420 if hi else 300) * (1 + .25 * np.exp(-tt / .01))
     return fade(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 22) + bp(noise(d), 800, 3000) * env_exp(d, .006) * .4, .0005, .02) * v * .45
+def ohat(v=1., d=.2):                           # hi-hat mở (disco): "tsss" ngắn ở phách lẻ, dải rất cao nên không che lời
+    return fade(hp(noise(d), 7500) * env_exp(d, .045), .001, .03) * v * .2
+def agogo(v=1., hi=True):                       # chuông đôi agogô (samba): kim loại, hai cao độ
+    d = .16; tt = t_(d); f = 1180. if hi else 885.
+    x = (np.sin(2 * np.pi * f * tt) + .5 * np.sin(2 * np.pi * 2.76 * f * tt) * np.exp(-tt * 40)) * np.exp(-tt * 22)
+    return fade(x, .0008, .02) * v * .22
 def triangle(v=1., d=1.):                       # kẻng tam giác: "ting" mỏng, ngân (phách đầu cảnh dễ thương)
     tt = t_(d)
     x = sum(a * np.sin(2 * np.pi * 1250 * r * tt + r) * np.exp(-tt * k) for r, a, k in ((1, .5, 3.5), (2.76, .6, 4), (5.4, .4, 6), (7.1, .25, 8)))

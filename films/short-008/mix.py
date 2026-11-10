@@ -47,15 +47,15 @@ L8end = L['L08']['t'] + L['L08']['dur']
 # Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển.
 # Giữ 120 BPM ở móc và ở cảnh kết (vòng lặp nối về hợp âm Fa thứ của khung đầu) và ở cú bùng sáng của móc (cùng ô nhịp).
 G = Groove(M, BEAT, LINES, meter=4, seed=8, avoid=AVOID, plan=True)
-G.sec('móc · run cầm cập', 0, 2.4, 'sneak', 'Fm', 'Fm Db', bass='pizzbass', comp='pizz', lead='bassoon', kit='comic', energy=2, cue=False,
+G.sec('móc · run cầm cập', 0, 2.4, 'tiptoe', 'Fm', 'Fm Db', bass='pizzbass', comp='marimba', lead='bassoon', kit='comic', energy=2, cue=False,
       bpm=120, mood='funny', arc='open', what='Đêm lạnh: Miss Loupe quàng khăn hơ tay bên "lửa trại" Blink, băng mọc trên tay, cô giật nảy "BRRR!": "Could you glow without getting hot?"',
-      emo='buồn cười, tò mò', why='Rình rập hài ở Fa thứ: pizzicato và bassoon trầm "run cầm cập", mõ hai cao độ gõ như răng va; nhạc chạy từ giây 0 dưới câu móc.')
+      emo='buồn cười, tò mò', why='Rón rén hài ở Fa thứ: marimba gõ nhanh "run cầm cập", bassoon trầm là cái lạnh, mõ hai cao độ gõ như răng va; nhạc chạy từ giây 0 dưới câu móc.')
 G.sec('"Watch this!" · bùng sáng', 2.4, HIT['raise'][0], 'stab', 'Ab', 'Ab', bass='tuba', comp='trumpet', lead='xylo', kit='epic', energy=3,
       bpm=120, mood='suspense', arc='open', what='Blink quay ra máy: "Watch this!" – đuôi bùng sáng rực cả trại, tay Miss Loupe vẫn đóng băng',
       emo='bất ngờ, phấn khích', why='Dừng nhịp: hai cú chặn của kèn trumpet và timpani rồi để trống cho tiếng bùng sáng; câu hỏi "vì sao sáng mà không nóng" còn bỏ ngỏ.')
-G.sec('"Let\'s zoom in!"', HIT['raise'][0], HIT['zoom'][0], 'hop', 'Ab', 'Ab Eb', bass='bassn', comp='piano', lead='marimba', kit='bongo', energy=2,
+G.sec('"Let\'s zoom in!"', HIT['raise'][0], HIT['zoom'][0], 'disco', 'Ab', 'Ab Eb', bass='bassn', comp='strings', lead='marimba', kit='disco', energy=2,
       bpm=128, mood='bouncy', arc='open', what='Miss Loupe giơ kính: "Let\'s zoom in!"', emo='háo hức',
-      why='Nảy lệch phách 128 BPM, piano chặn hợp âm và bongo cho cú giơ kính; marimba đáp ngay sau câu cửa miệng.')
+      why='Điệu riêng của tập vào lần đầu: disco 128 BPM (kick bốn phách, hi-hat mở, dàn dây chặn) như một bữa tiệc que phát sáng; marimba đáp ngay sau câu cửa miệng.')
 G.sec('buồng sáng · trộn và "pop"', HIT['zoom'][0], HIT['bloom'], 'quest', 'Ab', 'Ab Fm Db Eb', bass='upright', comp='pizz', arp='harp', lead='celesta', kit='tom', energy=2,
       bpm=108, mood='magic', arc='build', what='Kính lớn lao vào trong đèn đuôi: giọt vàng, bong bóng xanh, cánh quạt hồng gặp nhau, "pop!" thành ánh sáng: "Tiny bits mix together and make light!"',
       emo='kỳ diệu, khám phá', why='Phiêu lưu 108 BPM: trống tom nước kiệu như đi vào bên trong, đàn hạc rải; mỗi cú "pop" là một nốt glockenspiel viết tay đi lên, nhanh dần tới lúc bừng sáng.')
@@ -67,20 +67,23 @@ G.sec('nhịp "ồ" · Blink nháy mắt', HIT['out'][0], HIT['snap'], 'twinkle'
       why='Một hơi thở dễ thương: hộp nhạc lấp lánh 96 BPM, triangle, celesta ba nốt theo cái nháy mắt (viết tay).')
 G.mark('chụp → sổ', HIT['snap'], HIT['stamp'], 'break', 'Ab', 'marimba harp', 2, mood='happy', arc='build', what='Kính "chụp" buồng sáng, máy lao xuyên kính, sticker hiện trên trang sổ',
        emo='háo hức', why='Marimba chạy lên (tiếng "chụp" của ban nhạc kênh), đàn hạc vuốt lên rồi xuống theo cú lao xuyên kính.')
-G.sec('sổ · Albie', HIT['stamp'], HIT['flip'][0], 'sunny', 'Ab', 'Ab Db', bass='bassn', comp='pluck', lead='toypiano', kit='clap', energy=2, cue=False,
+G.sec('sổ · disco que sáng', HIT['stamp'], HIT['flip'][0], 'disco', 'Ab', 'Ab Db', bass='bassn', comp='strings', lead='xylo', kit='disco', energy=2, cue=False,
       bpm=116, mood='happy', arc='build', what='Sticker "Mix and make light!" dán vào sổ; Albie đếm chân: "Six legs? In you go!", Blink lao vào trang đúng chữ "go!"',
-      emo='vui, tự hào', why='Ukulele quạt lửa trại 116 BPM, vỗ tay, piano đồ chơi đáp; dưới giọng trầm của Albie lớp nhịp tự bỏ bass.')
+      emo='vui, tự hào', why='Disco 116 BPM: kick bốn phách, hi-hat mở, dàn dây chặn, xylophone đáp sau câu cửa miệng; dưới giọng trầm của Albie lớp nhịp tự bỏ bass. '
+                           '(11/2026 lượt 2: thay ukulele nắng + piano đồ chơi, công thức trùng ở 5 tập.)')
 G.sec('về trại · "You\'re so bright!"', HIT['flip'][0], HIT['blaze'][0] - .1, 'sway', 'Db', 'Db Ab', bass='pizzbass', comp='harp', lead='flute', kit='brush', energy=1,
       bpm=104, mood='cute', arc='build', what='Trang sổ lật về trại: "You\'re so bright, Blink!" – Blink ngượng, lấy chân che mặt',
       emo='ấm áp, ngượng ngùng', why='Nửa nhịp đung đưa 104 BPM, đàn hạc và sáo mềm như lời khen; nhịp chậm lại để cú bùng chói sau đó bật ra.')
-G.sec('"I\'m not glowing!" · bùng chói', HIT['blaze'][0] - .1, HIT['blaze'][1], 'hero', 'Ab', 'Ab Eb', bass='tuba', comp='piano', lead='trumpet', arp='strings', kit='epic', energy=3,
+G.sec('"I\'m not glowing!" · bùng chói', HIT['blaze'][0] - .1, HIT['blaze'][1], 'disco', 'Ab', 'Ab Eb', bass='bassn', comp='strings', lead='trumpet', kit='disco', energy=3,
       bpm=132, mood='epic', arc='peak', what='Blink chối "I\'m not glowing!" – đúng lúc đuôi bùng chói cả trại, Miss Loupe nheo mắt che kính',
-      emo='phấn khích, buồn cười', why='Cao trào hài: dàn dây spiccato, timpani, bass tuba dồn 132 BPM; "ta-da" kèn trumpet ngay sau câu chối (viết tay), không đè lên chữ "glowing".')
+      emo='phấn khích, buồn cười', why='Cao trào hài: disco nhanh nhất tập 132 BPM, dàn dây spiccato chặn, bass quãng tám, timpani nhấn phách đầu; "ta-da" kèn trumpet ngay sau câu chối (viết tay), không đè lên chữ "glowing".')
 G.sec('câu hỏi · về khung đầu', HIT['blaze'][1], DUR, 'skip', 'Ab', 'Db Ab,C7', bass='bassn', comp='pluck', lead='glock', kit='toy', energy=2,
       bpm=120, mood='playful', arc='end', what='"What would YOU light up?" – chữ móc trở lại, Miss Loupe lại chìa tay hơ, vòng sáng mở về khung đầu',
       emo='vui, mời gọi', why='Shuffle ukulele 120 BPM; hợp âm Đô bảy ở cuối dẫn về Fa thứ của khung đầu nên vòng lặp liền; glockenspiel nhắc lại "tiếng của ánh sáng".')
 G.answer(HIT['frost'][0], HIT['tick'], HIT['wink'][0], L8end + .02)   # câu đáp viết tay bên dưới (băng "tinh tinh", nhiệt kế "tích", nháy mắt, "ta-da")
-G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Campfire Glow" (La giáng trưởng, móc ở Fa thứ)')
+# v2 (11/2026, lượt 2: chống trùng giữa các tập): disco là điệu riêng của tập (giơ kính, sổ, cao trào "bùng chói": ánh sáng không nóng = tiệc que phát sáng);
+# móc đổi sang rón rén + marimba (bassoon vẫn là cái lạnh) vì rình rập + bassoon đã quá quen ở 002, 003, 005.
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Campfire Glow" (La giáng trưởng, móc ở Fa thứ; tiệc disco que sáng)')
 
 # — Móc 0–3,9 s: hợp âm Fa thứ ở giây 0; băng mọc: glockenspiel rơi xuống lạnh; giật nảy: pizzicato chặn; bùng sáng: kèn đi lên + đàn hạc vuốt —
 M(bassn(41, .5), 0., 1.0); strum(pizz, (53, 56, 60, 65), 0., .32, .3); M(glock(89, .5), 0., .12, .4)

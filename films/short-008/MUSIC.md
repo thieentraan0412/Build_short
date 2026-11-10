@@ -1,5 +1,17 @@
 # SHORT-008 · Soundtrack Timeline
 
+## Lượt chống trùng giữa các tập (11/2026, lượt 2) · bản hiện hành
+
+Điệu riêng của tập: **disco** ("tiệc que phát sáng": ánh sáng mà không nóng), chiếm 25 % thời lượng.
+
+- **Móc:** rình rập + bassoon (quá quen ở 002, 003, 005) → rón rén hài, marimba gõ "run cầm cập"; bassoon vẫn là cái lạnh.
+- **"Let's zoom in!":** nảy lệch phách → disco 128 BPM, dàn dây chặn, marimba đáp.
+- **Sổ:** ukulele nắng + piano đồ chơi (trùng công thức ở 5 tập) → disco 116 BPM, xylophone đáp.
+- **"I'm not glowing!":** cao trào anh hùng + trumpet (trùng 003, 007, 009) → disco 132 BPM, trumpet hát, dàn dây chặn, timpani nhấn phách đầu.
+- **Giữ nguyên:** phiêu lưu nước kiệu + celesta ở buồng sáng (SHORT-009 đã đổi); tiếng "chụp" của kênh.
+
+Kết quả: không cảnh nào trùng công thức (điệu + nhạc cụ hát chính + đệm + bộ gõ) với một Short khác. Số liệu ở mục "Chống trùng lặp giữa các tập" của [SOUND-PLAN.md](SOUND-PLAN.md); lý do và đề xuất cho cả kênh: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md). Hình không đổi: mp4 giữ nguyên luồng hình đã giao, chỉ thay tiếng. Các mục bên dưới mô tả các lượt trước; chỗ nào khác mục này thì theo mục này.
+
 ## Màu nhạc của tập: "Campfire Glow"
 
 Tập này là một đêm "cắm trại" lạnh, Blink làm lửa trại, nên nhạc là bài hát quanh lửa trại, và bí mật cũng là một câu nhạc:

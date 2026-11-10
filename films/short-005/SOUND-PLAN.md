@@ -64,4 +64,13 @@
 - Chuyển cảnh: trống dồn ×2, dâng lấp lánh ×2, ngân đuôi, cảnh sau vào mềm ×2, viết tay (stinger, khựng, nhạc hiệu) ×2, nốt mồi của nhạc cụ mới ×1.
 - Câu đáp của nhạc giữa các câu thoại: 8.
 
-Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-005` (nhóm "4 Âm thanh").
+## Chống trùng lặp giữa các tập
+
+So với 9 Short khác (001, 002, 003, 004, 006, 007, 008, 009, 010), từ `music-plan.json` của từng tập.
+
+- **Điệu riêng của tập:** valse 3/4, valse lơ lửng, chiếm 39 % thời lượng.
+- **Công thức trùng với Short khác:** 10,8 s rình rập hài + bassoon + dây pizzicato + gỗ (mõ, shaker) = short-003 15,4 s; 15,6 s ukulele nắng + piano đồ chơi + ukulele + vỗ tay + lục lạc = short-002 14,3 s.
+- **Cặp điệu + nhạc cụ hát chính đã có ở Short khác:** rình rập hài + bassoon (002, 003); ukulele nắng + piano đồ chơi (002); polka + xylophone (004).
+- **Vui nhộn:** hồi hộp + khựng 30 %, cảnh nền giọng thứ 21 % thời lượng (mỗi mục ≤ 20 %).
+
+Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-005` (nhóm "4 Âm thanh" và "Sound Design Plan").

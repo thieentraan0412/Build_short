@@ -67,4 +67,13 @@
 - Chuyển cảnh: viết tay (stinger, khựng, nhạc hiệu) ×3, trống dồn ×3, ngân đuôi, cảnh sau vào mềm ×3, vuốt đàn hạc ×1.
 - Câu đáp của nhạc giữa các câu thoại: 9.
 
-Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-002` (nhóm "4 Âm thanh").
+## Chống trùng lặp giữa các tập
+
+So với 9 Short khác (001, 003, 004, 005, 006, 007, 008, 009, 010), từ `music-plan.json` của từng tập.
+
+- **Điệu riêng của tập:** calypso, chiếm 27 % thời lượng.
+- **Công thức trùng với Short khác:** 14,3 s ukulele nắng + piano đồ chơi + ukulele + vỗ tay + lục lạc = short-005 15,6 s.
+- **Cặp điệu + nhạc cụ hát chính đã có ở Short khác:** rải lơ lửng + celesta (001, 003); nửa nhịp đung đưa + vibraphone (004); ukulele nắng + piano đồ chơi (005); phi ngựa (nhịp kép) + sáo (009); rình rập hài + bassoon (003, 005).
+- **Vui nhộn:** hồi hộp + khựng 11 %, cảnh nền giọng thứ 13 % thời lượng (mỗi mục ≤ 20 %).
+
+Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-002` (nhóm "4 Âm thanh" và "Sound Design Plan").

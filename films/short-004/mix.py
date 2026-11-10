@@ -73,30 +73,32 @@ G.sec('hạt mùi · rải đàn hạc', HIT['zoom'], HIT['lensOut'], 'float', '
 G.sec('tap, tap · shuffle', HIT['lensOut'], at(8), 'skip', 'F', 'F C', bass='tuba', comp='pluck', lead='xylo', kit='toy', energy=2,
       bpm=116, mood='playful', arc='build', what='Hai chú kiến chạm râu: "Tap, tap, hello!"', emo='vui, thân thiện',
       why='Shuffle ukulele 116 BPM nhảy chân sáo; mỗi cú "tap" một nốt glockenspiel và xylophone (viết tay).')
-G.sec('thám tử · rình rập', at(8), HIT['nope'], 'sneak', 'Dm', 'Dm A7', bass='bassoonlo', comp='pizz', lead='bassoon', kit='wood', energy=1,
+G.sec('thám tử · rình rập', at(8), HIT['nope'], 'sneak', 'Dm', 'Dm A7', bass='bassoonlo', comp='pizz', lead='trombone', kit='wood', energy=1,
       bpm=96, mood='suspense', arc='build', what='Crumb đội mũ thám tử: "So, they follow a map?"', emo='tò mò, hồi hộp',
-      why='Rình rập thám tử 96 BPM: bassoon trầm làm bass và giai điệu dò dẫm, mõ gỗ, Rê thứ.')
+      why='Rình rập thám tử 96 BPM: bassoon trầm làm bass, trombone "wah" dò dẫm của ban kèn (v4: bassoon hát chính trùng gag của 003, 005), mõ gỗ, Rê thứ.')
 G.sec('Nope · lặng', HIT['nope'], HIT['trail'], 'break', 'Dm', 'Dm', cue=False, mood='suspense', arc='build', what='"Nope!" – khoảng lặng trước đáp án',
       emo='bất ngờ', why='Tuba "bwomp" đi xuống sau "Nope!" rồi lặng một nhịp để đáp án bật ra.')
-G.sec('đường mùi sáng · lấp lánh', HIT['trail'], HIT['slide'][0], 'twinkle', 'Dm', 'Dm', bass='tuba', arp='glock', lead='celesta', kit='tri', energy=1, cue=False,
+G.sec('đường mùi sáng · lấp lánh', HIT['trail'], HIT['slide'][0], 'twinkle', 'Dm', 'Dm', bass='tuba', arp='glock', lead='harp', kit='tri', energy=1, cue=False,
       bpm=108, mood='magic', arc='build', what='Đường mùi sáng lên: "They follow a smell trail!"', emo='kỳ diệu, vỡ lẽ',
-      why='Hộp nhạc lấp lánh 108 BPM, triangle; mô-típ bí mật trên glockenspiel (viết tay) đúng lúc đường mùi sáng.')
+      why='Hộp nhạc lấp lánh 108 BPM, triangle, đàn hạc đáp; mô-típ bí mật trên glockenspiel (viết tay) đúng lúc đường mùi sáng.')
 G.sec('theo đường mùi · phiêu lưu', HIT['slide'][0], HIT['slide'][1], 'quest', 'Dm', 'Dm,Bb C,F', bass='tuba', comp='pizz', arp='strings', lead='glock', kit='tom', energy=3, fills=False,
       bpm=120, mood='magic', arc='build', what='Kính trượt dọc đường mùi; Rollo lăn qua, khựng một chút', emo='phiêu lưu, hồi hộp vui',
       why='Phiêu lưu nước kiệu: trống tom "da-da-dum", dàn dây spiccato, glockenspiel hát giai điệu viết tay theo phách nên giữ 120 BPM.')
 G.mark('bò lên thân cây', HIT['slide'][1], at(14), 'break', 'F', 'glock', 2, mood='magic', arc='build', what='Đường mùi bò lên thân cây', emo='háo hức',
        why='Glockenspiel chạy lên và riser (viết tay) dẫn vào trại rệp.')
-G.sec('trại rệp · đồng quê', at(14), HIT['cows'], 'country', 'C', 'C G', bass='tuba', comp='banjo', arp='banjo', lead='reed', kit='toy', energy=2,
+G.sec('trại rệp · second-line', at(14), HIT['cows'], 'secondline', 'C', 'C G', bass='tuba', comp='trombone', lead='reed', kit='second', energy=2,
       bpm=112, mood='happy', arc='build', what='Crumb gõ nhẹ con rệp, giọt ngọt rơi: "Some ants keep tiny cows!"', emo='vui, ngạc nhiên',
-      why='Trại rệp là một nông trại tí hon: đồng quê "boom-chick" 112 BPM, banjo cuộn, clarinet hát như harmonica; giọt ngọt là mô-típ bí mật (viết tay).')
+      why='Điệu riêng của tập: ban kèn diễu phố second-line 112 BPM (tuba, trombone chặn, snare lệch phách), clarinet hát kiểu New Orleans; '
+          'giọt ngọt là mô-típ bí mật (viết tay). (v4: thay đồng quê, điệu riêng của 006.)')
 G.sec('TINY COWS · polka', HIT['cows'], HIT['snap'], 'polka', 'C', 'G C G', bass='tuba', comp='accordion', lead='xylo', kit='clap', energy=3,
       bpm=132, mood='funny', arc='peak', what='"TINY COWS!" – tuba "moo", Spindle ló ra', emo='phấn khích, buồn cười',
       why='Cao trào hài của tập: polka nhanh nhất (132 BPM), accordion và vỗ tay, tuba "moo" tí hon (viết tay).')
 G.sec('chụp sticker', HIT['snap'], HIT['stamp'][0], 'break', 'F', 'F', cue=False, mood='suspense', arc='end', what='Kính chụp, máy lao xuyên kính vào sổ',
       emo='bất ngờ', why='Marimba chạy lên (viết tay) là tiếng "chụp" của ban nhạc kênh.')
-G.sec('sổ · ukulele nắng', HIT['stamp'][0], ask, 'sunny', 'F', 'F F,Bb F', bass='tuba', comp='pluck', lead='toypiano', kit='toy', energy=2, cue=False,
+G.sec('sổ · second-line', HIT['stamp'][0], ask, 'secondline', 'F', 'F F,Bb F', bass='tuba', comp='horn', lead='trumpet', kit='second', energy=2, cue=False,
       bpm=116, mood='happy', arc='end', what='Ba sticker dán vào sổ; Albie: "Six legs? In you go!"', emo='vui, tự hào',
-      why='Ukulele quạt 116 BPM cho ba cú dán sticker; piano đồ chơi đáp, không bass dưới giọng trầm của Albie.')
+      why='Ban kèn diễu phố trở lại ở sổ, 116 BPM: kèn đồ chơi chặn, trumpet đáp sau câu cửa miệng; không bass dưới giọng trầm của Albie. '
+          '(v4: thay ukulele nắng + piano đồ chơi, công thức trùng ở 5 tập.)')
 G.sec('Can I hold the lens? · nửa nhịp', ask, at(22), 'sway', 'F', 'F Bb', bass='tuba', comp='marimba', lead='vibes', kit='brush', energy=1,
       bpm=100, mood='cute', arc='end', what='Crumb: "Can I hold the lens?" – Miss Loupe: "Not yet!"', emo='dễ thương, nài nỉ',
       why='Nửa nhịp 100 BPM, marimba và vibraphone mềm như lời nài nỉ của Crumb.')
@@ -115,6 +117,7 @@ G.sec('về khung đầu · diễu hành', HIT['loopIris'][0], DUR, 'march', 'F'
       bpm=120, mood='playful', arc='end', what='Vòng sóng về khung đầu', emo='vui',
       why='Diễu hành của móc trở lại ở 120 BPM cho vòng lặp, đệm piano và năng lượng đầy hơn mở đầu.')
 G.answer(at(1), HIT['taps'][0], HIT['nope'] + .45, HIT['drop'], HIT['cows'] + .05, HIT['spindle'][0], ask + 1.45, no + .85)   # câu đáp viết tay bên dưới
+# v4 (11/2026, lượt 2: chống trùng giữa các tập): điệu riêng là diễu hành + second-line (trại rệp, sổ); trombone hát cảnh thám tử, đàn hạc ở đường mùi sáng.
 G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Ant Parade" (Fa trưởng)')
 F_, BB, C_, DM, AM, G_ = triad(65), triad(58, inv=1), triad(60), triad(62, MIN), triad(57, MIN), triad(55, inv=1)
 

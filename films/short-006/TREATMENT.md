@@ -109,6 +109,7 @@ Thời gian dưới đây là bản cuối: lời đã đo trên giọng thật 
 ## 6. Nhạc, tiếng động, chữ
 
 - **Màu nhạc riêng: "Barnyard Hoedown"** (Mi trưởng, nhịp đồng quê 4/4 ở 120 BPM).
+  - **Điệu riêng của tập (11/2026 lượt 2, chống trùng giữa các tập): đồng quê.** Không dùng điệu riêng của tập khác; cảnh sổ, gag và cao trào phối theo điệu của tập. Chi tiết: [MUSIC.md](MUSIC.md), [SOUND-PLAN.md](SOUND-PLAN.md), [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
   - Kèn dăm hát giai điệu như harmonica, banjo gảy đệm, tuba "oom-pah" làm bè trầm. Bộ gõ gỗ gõ như tiếng vó ngựa "lóc cóc".
   - Lần đầu kênh dùng điệu `country` của lớp nhịp.
   - Khác 004 (diễu hành Fa, snare dẫn) và 005 (valse La).

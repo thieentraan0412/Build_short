@@ -1,5 +1,14 @@
 # SHORT-006 · Soundtrack Timeline
 
+## Lượt chống trùng giữa các tập (11/2026, lượt 2) · bản hiện hành
+
+Điệu riêng của tập: **đồng quê** (móc, "tiny cows"), chiếm 31 % thời lượng. SHORT-004 đã bỏ đồng quê, nên điệu này chỉ còn ở tập này.
+
+- **Sổ (12,2–16,1 s):** ukulele nắng + piano đồ chơi (trùng công thức ở 5 tập) → shuffle 112 BPM của sân trại, banjo đáp sau câu cửa miệng.
+- **Giọt nảy (16,1–19,3 s):** polka với xylophone hát (trùng 004, 005) → trombone "oom-pah" hát; nốt xylophone viết tay theo mỗi cú nảy giữ nguyên.
+
+Kết quả: không cảnh nào trùng công thức (điệu + nhạc cụ hát chính + đệm + bộ gõ) với một Short khác. Số liệu ở mục "Chống trùng lặp giữa các tập" của [SOUND-PLAN.md](SOUND-PLAN.md); lý do và đề xuất cho cả kênh: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md). Hình không đổi: mp4 giữ nguyên luồng hình đã giao, chỉ thay tiếng. Các mục bên dưới mô tả các lượt trước; chỗ nào khác mục này thì theo mục này.
+
 ## Lượt Sound Design Plan (11/2026) · bản hiện hành
 
 Nhạc của tập được dựng lại theo Sound Design Plan ([`QUALITY.md`](../../_shared/QUALITY.md) §4, các mục *(SDP)*): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển cảnh. **Bảng đầy đủ 7 cột, lý do chọn nhạc từng cảnh và các chỗ chuyển cảnh: [`SOUND-PLAN.md`](SOUND-PLAN.md)** (sinh từ `mix.py` bằng `_shared/tools/soundplan.py`).

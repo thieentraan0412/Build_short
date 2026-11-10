@@ -1,5 +1,17 @@
 # SHORT-001 · Soundtrack Timeline
 
+## Lượt chống trùng giữa các tập (11/2026, lượt 2) · bản hiện hành
+
+Điệu riêng của tập: **jig 12/8** (chân nhảy step-dance), chiếm 24 % thời lượng. Jig chia ba mỗi phách của phim, nên hình vẫn nhún đúng 120 BPM.
+
+- **Ong nhảy (30–34 s):** swing "bee bop" viết tay (swing là điệu riêng của SHORT-003) → lớp nhịp jig: bass vo ve của ong, accordion "oom-cha-cha", trống bodhrán. Mô-típ bí mật chia ba trên sáo ở 31,0 s, xylophone đáp đi xuống ở 33,32 s.
+- **Bản đồ (34–40 s):** pizzicato viết tay chạy chia ba (jig phiêu lưu) thay cho phi ngựa; kèn, chuông, riser giữ nguyên.
+- **Albie (42–44,3 s):** shuffle + piano đồ chơi (trùng công thức với SHORT-009) → jig ukulele, accordion đáp.
+- **Giữ nguyên:** giọng từng cảnh, mô-típ bí mật, cảnh dế ở La thứ bừng sang Đô trưởng (cách kể của tập), các đoạn tổ khúc viết tay khác.
+- **Vui nhộn:** hồi hộp + khựng 20 %, giọng thứ 10 % thời lượng.
+
+Kết quả: không cảnh nào trùng công thức (điệu + nhạc cụ hát chính + đệm + bộ gõ) với một Short khác. Số liệu ở mục "Chống trùng lặp giữa các tập" của [SOUND-PLAN.md](SOUND-PLAN.md); lý do và đề xuất cho cả kênh: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md). Hình không đổi: mp4 giữ nguyên luồng hình đã giao, chỉ thay tiếng. Các mục bên dưới mô tả các lượt trước; chỗ nào khác mục này thì theo mục này.
+
 > **Bản hiện hành:** lượt Sound Design Plan (11/2026), ngay bên dưới; bảng đầy đủ ở [`SOUND-PLAN.md`](SOUND-PLAN.md). Lượt nhạc nền sinh động (11/2026, [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-trước-sound-design-plan)) và các bảng cũ hơn giữ lại để so sánh; các điểm nhấn viết tay vẫn dùng.
 
 Lượt nhạc nền theo `Task.md` (*Điều chỉnh nhạc nền sinh động*). Hình, lời, thời lượng 52,0 s và tiếng động giữ nguyên. Chỉ phần nhạc trong [mix.py](mix.py) được viết lại.
@@ -26,7 +38,7 @@ Ba bí mật là ba bản nhạc nhỏ, mỗi bản một giọng, một điệu
 | Hook | C | Rón rén → cú giẫm → polka nảy | Pizzicato, xylophone, tuba, kèn |
 | Bướm | F | Bay bổng, rải hợp âm lơi | Đàn hạc, sáo, celesta, ukulele |
 | Dế | La thứ → C | Đêm rón rén, đáp án bừng sáng | Pizzicato staccato, kèn dăm trầm, tiếng dế làm bộ gõ |
-| Ong | F | Swing "bee bop" | Bass vo ve đi bộ, chổi trống, xylophone swing |
+| Ong | F | Jig 12/8 "bee hop" (trước: swing) | Bass vo ve, accordion "oom-cha-cha", bodhrán; sáo chơi mô-típ chia ba |
 | Bản đồ | C | Phiêu lưu, chuyển động liên tục | Pizzicato chạy móc đơn, tom, kèn chơi mô-típ dãn dài |
 | Sổ | C | Ấm áp, ăn mừng nhỏ | Hộp nhạc, ukulele, sáo |
 | Kết | C | Nhón chân → ngắt nhạc → "ta-da" | Pizzicato, kèn, chuông |

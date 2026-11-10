@@ -102,6 +102,7 @@ Thời gian là bản cuối (lời đo trên giọng thật, khớp trong `time
 ## 6. Nhạc, tiếng động, chữ
 
 - **Màu nhạc riêng: "Sunset Counting Song"** (Rê trưởng, lần đầu kênh dùng): bài đếm số vui lúc hoàng hôn. **Mỗi số đếm là một nốt marimba cao dần**; Fizz có mô-típ kazoo "vè vè" riêng, Blink có glockenspiel. Dựng theo Sound Design Plan (`plan=True`). Bảng: [SOUND-PLAN.md](SOUND-PLAN.md); chi tiết: [MUSIC.md](MUSIC.md).
+  - **Điệu riêng của tập (11/2026 lượt 2, chống trùng giữa các tập): ska.** Không dùng điệu riêng của tập khác; cảnh sổ, gag và cao trào phối theo điệu của tập. Chi tiết: [MUSIC.md](MUSIC.md), [SOUND-PLAN.md](SOUND-PLAN.md), [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
 - **Tiếng động riêng:** ruồi vo ve và đáp, cọ chân "sột sột", Blink nhận "ta-da" nhỏ, "Nope!" bật vào, đếm "ding" cao dần, tấm cánh bật "clack", cánh mỏng mở "vút", Fizz gồng "ưm" rồi tia "xì", Fizz bay một vòng. Bảng cue: [SOUND.md](SOUND.md).
 - **Chữ trên hình:** WHO'S / THE FLY?! (móc), số đếm 1 2 và 1 2 3 4, sticker "Beetle!", FIZZ!
 

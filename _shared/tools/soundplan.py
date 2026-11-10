@@ -5,11 +5,13 @@ events.json (tiếng động theo hình) và timeline.json. Viết:
 - bảng 7 cột: Thời gian | Nội dung cảnh | Cảm xúc | Phong cách nhạc | Nhạc cụ | BPM | SFX;
 - vì sao chọn nhạc đó cho từng cảnh;
 - các chỗ chuyển cảnh âm thanh;
-- tóm tắt chống trùng lặp (cùng số liệu qa.py kiểm).
+- tóm tắt chống trùng lặp (cùng số liệu qa.py kiểm);
+- chống trùng lặp giữa các tập (_shared/audio/channel.py), và ghi <tập>/music-plan.json để các tập khác so.
 Không sửa tay SOUND-PLAN.md: sửa G.sec / G.mark trong mix.py (what=, emo=, why=, mood=, arc=, bpm=, sfx=), chạy mix.py rồi chạy lại công cụ này."""
 import os, sys, json, collections
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'audio'))
 from groove import MOODS, ARCS, TRANS, INST_VI, KIT_VI, STYLE_VI, FAMILY   # noqa: E402
+from channel import write_plan, check, lead_of                              # noqa: E402  (chống trùng giữa các tập)
 
 FILM = os.path.abspath(sys.argv[1]); NAME = os.path.basename(FILM)
 MJ = json.load(open(os.path.join(FILM, 'out', 'music.json'), encoding='utf-8'))
@@ -132,7 +134,24 @@ out += ['', '## Chống trùng lặp', '',
         f"- {len(fams)} họ nhạc cụ: " + ', '.join(fams) + '.',
         f"- BPM: {', '.join(map(str, bpms))} ({len(bpms)} mức).",
         f"- Chuyển cảnh: " + ', '.join(f'{TRANS.get(k, k)} ×{n}' for k, n in trc.most_common()) + '.',
-        f"- Câu đáp của nhạc giữa các câu thoại: {MJ.get('fills', 0) + len(MJ.get('answers', []))}.",
-        '', 'Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/' + NAME + '` (nhóm "4 Âm thanh").', '']
+        f"- Câu đáp của nhạc giữa các câu thoại: {MJ.get('fills', 0) + len(MJ.get('answers', []))}.", '']
+# ---- chống trùng giữa các tập (channel.py): so với music-plan.json của mọi Short khác ----
+write_plan(FILM, MJ, DUR)
+if not NAME.startswith('long-'):
+    R = check(FILM, MS, DUR)
+    pct = lambda x: f'{x * 100:.0f} %'
+    sty = lambda k: STYLE_VI.get(k, k)
+    rec = lambda s: ' + '.join(x for x in (sty(s['style']), inst(lead_of(s)), inst(s.get('comp') or s.get('arp')), KIT_VI.get(s.get('kit') or '', '')) if x)
+    borrowed = ', '.join(sty(s['style']) + ' (' + ep + ')' for s, ep in R['foreign'])
+    out += ['## Chống trùng lặp giữa các tập', '',
+            f"So với {len(R['compared'])} Short khác ({', '.join(c.replace('short-', '') for c in R['compared']) or 'chưa có'}), từ `music-plan.json` của từng tập.", '',
+            '- **Điệu riêng của tập:** ' + (', '.join(sty(s) for s in R['own']) or 'chưa có (ghi vào `SIGNATURE` trong groove.py)')
+            + f", chiếm {pct(R['sig_share'])} thời lượng" + (f'; mượn điệu riêng của tập khác: {borrowed}' if borrowed else '') + '.',
+            '- **Công thức trùng với Short khác:** ' + ('; '.join(f"{f1(s['t0'])} s {rec(s)} = {n} {f1(o['t0'])} s" for s, n, o in R['dups']) or 'không có') + '.',
+            '- **Cặp điệu + nhạc cụ hát chính đã có ở Short khác:** '
+            + ('; '.join(f"{STYLE_VI.get(k[0], k[0])} + {inst(k[1])} ({', '.join(e.replace('short-', '') for e in v)})" for k, v in R['pairs'].items() if v) or 'không có')
+            + (f" (quá quen, ≥ 3 tập: {len(R['common'])})" if R['common'] else '') + '.',
+            f"- **Vui nhộn:** hồi hộp + khựng {pct(R['sus_share'])}, cảnh nền giọng thứ {pct(R['minor_share'])} thời lượng (mỗi mục ≤ 20 %).", '']
+out += ['Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/' + NAME + '` (nhóm "4 Âm thanh" và "Sound Design Plan").', '']
 open(os.path.join(FILM, 'SOUND-PLAN.md'), 'w', encoding='utf-8').write('\n'.join(out))
-print(f'{NAME}/SOUND-PLAN.md: {len(MS)} cảnh, {len(moods)} phong cách, {len(leads)} nhạc cụ chính, BPM {bpms}')
+print(f'{NAME}/SOUND-PLAN.md: {len(MS)} cảnh, {len(moods)} phong cách, {len(leads)} nhạc cụ chính, BPM {bpms}; music-plan.json')

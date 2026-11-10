@@ -67,4 +67,13 @@
 - Chuyển cảnh: trống dồn ×4, ngân đuôi, cảnh sau vào mềm ×4, viết tay (stinger, khựng, nhạc hiệu) ×2.
 - Câu đáp của nhạc giữa các câu thoại: 8.
 
-Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-003` (nhóm "4 Âm thanh").
+## Chống trùng lặp giữa các tập
+
+So với 9 Short khác (001, 002, 004, 005, 006, 007, 008, 009, 010), từ `music-plan.json` của từng tập.
+
+- **Điệu riêng của tập:** swing, chiếm 16 % thời lượng.
+- **Công thức trùng với Short khác:** 15,4 s rình rập hài + bassoon + dây pizzicato + gỗ (mõ, shaker) = short-005 10,8 s.
+- **Cặp điệu + nhạc cụ hát chính đã có ở Short khác:** rải lơ lửng + celesta (001, 002); shuffle nhảy chân sáo + xylophone (004); rình rập hài + bassoon (002, 005); hộp nhạc lấp lánh + celesta (007).
+- **Vui nhộn:** hồi hộp + khựng 30 %, cảnh nền giọng thứ 48 % thời lượng (mỗi mục ≤ 20 %).
+
+Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-003` (nhóm "4 Âm thanh" và "Sound Design Plan").

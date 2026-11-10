@@ -1,1 +1,1 @@
-Hãy đề xuất làm nhạc nên từng short 
+hãy phân tích short cho video thiếu nhi và nâng cấp nhạc 

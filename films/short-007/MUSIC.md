@@ -1,5 +1,21 @@
 # SHORT-007 · Soundtrack Timeline
 
+## Lượt chống trùng giữa các tập (11/2026, lượt 2) · bản hiện hành
+
+Điệu riêng của tập: **bossa nova** (điệu mới của kênh, đúng tên màu nhạc), chiếm 24 % thời lượng: móc, sổ, nháy đáp.
+
+- **Móc:** pop nảy latin → bossa (rim clave, phím điện, bass gốc – năm); glockenspiel vẫn là "tiếng của ánh sáng".
+- **Ánh sáng lạnh:** Sol thứ, đàn hạc + sáo (trùng SHORT-004) → Si giáng trưởng maj7, celesta rải, sáo hát.
+- **Họ bọ cánh cứng:** xylophone + piano (trùng SHORT-005) → trumpet bịt hát, marimba chặn.
+- **Mật mã:** celesta + glockenspiel + triangle (trùng SHORT-003) → celesta trên phím điện, rim click.
+- **Cả vườn:** trumpet hát (trùng SHORT-003) → kèn đồ chơi hát, dàn dây spiccato, timpani.
+- **Sổ:** ukulele nắng + piano đồ chơi → bossa, ukulele gảy kiểu guitar bossa, sáo đáp.
+- **Nháy đáp:** calypso + trống thép (điệu riêng của SHORT-002) → bossa nhanh 132 BPM, marimba hát.
+- **Giữ nguyên:** rón rén + bassoon ở trò kẹo dẻo (tập này đăng trước; SHORT-010 đã đổi).
+- **Vui nhộn:** giọng thứ 23 % → 15 % thời lượng.
+
+Kết quả: không cảnh nào trùng công thức (điệu + nhạc cụ hát chính + đệm + bộ gõ) với một Short khác. Số liệu ở mục "Chống trùng lặp giữa các tập" của [SOUND-PLAN.md](SOUND-PLAN.md); lý do và đề xuất cho cả kênh: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md). Hình không đổi: mp4 giữ nguyên luồng hình đã giao, chỉ thay tiếng. Các mục bên dưới mô tả các lượt trước; chỗ nào khác mục này thì theo mục này.
+
 ## Lượt Sound Design Plan (11/2026) · bản hiện hành
 
 Nhạc của tập được dựng lại theo Sound Design Plan ([`QUALITY.md`](../../_shared/QUALITY.md) §4, các mục *(SDP)*): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển cảnh. **Bảng đầy đủ 7 cột, lý do chọn nhạc từng cảnh và các chỗ chuyển cảnh: [`SOUND-PLAN.md`](SOUND-PLAN.md)** (sinh từ `mix.py` bằng `_shared/tools/soundplan.py`).

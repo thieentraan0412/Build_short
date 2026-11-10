@@ -48,36 +48,38 @@ G = Groove(M, BEAT, LINES, meter=4, seed=9, avoid=AVOID, plan=True)
 G.sec('móc · ai là ruồi?', 0, HIT['claim'] - .1, 'hop', 'D', 'D G', bass='bassn', comp='pluck', lead='kazoo', kit='bongo', energy=2, cue=False,
       bpm=120, mood='playful', arc='open', what='Fizz vừa đáp xuống cạnh Blink lúc hoàng hôn, cọ hai chân trước; Blink bắt chước: "Which one is a fly?"',
       emo='tò mò, buồn cười', why='Nảy lệch phách, ukulele và bongo vào ngay giây 0 theo cú đáp của Fizz; kazoo "vè vè" là giọng của Fizz, chen vào sau câu hỏi.')
-G.sec('"Me! I\'m a firefly!"', HIT['claim'] - .1, HIT['hush'][0], 'stride', 'D', 'D A7', bass='tuba', comp='piano', lead='mute', kit='march', energy=2,
+G.sec('"Me! I\'m a firefly!"', HIT['claim'] - .1, HIT['hush'][0], 'ska', 'D', 'D A7', bass='bassn', comp='piano', lead='mute', kit='ska', energy=2,
       bpm=112, mood='funny', arc='open', what='Blink giơ chân nhận: "Me! I\'m a firefly!"', emo='tự tin, buồn cười',
-      why='Ragtime piano 112 BPM cho câu nhận vơ đầy tự tin; trumpet bịt "wah" như đang cười thầm, vì ai cũng biết câu đoán sắp sai.')
+      why='Điệu riêng của tập: ska 112 BPM, piano chặn ở mọi phách lẻ cho câu nhận vơ đầy tự tin; trumpet bịt "wah" như đang cười thầm, vì ai cũng biết câu đoán sắp sai.')
 G.mark('khựng', HIT['hush'][0], L['L03']['t'], 'break', 'D', '', 1, mood='suspense', arc='open', what='Khựng: Blink chờ, Fizz nghiêng đầu',
        emo='nín thở', why='Khoảng lặng có chủ đích 0,6 s (chỉ còn trống lăn thì thầm) để "Nope!" bật ra rõ.')
 G.sec('"Nope!" · "Let\'s zoom in!"', L['L03']['t'], HIT['zoom'][0], 'bounce', 'D', 'D Bm', bass='bassn', comp='harp', lead='xylo', kit='pop', energy=2, cue=False,
       bpm=126, mood='happy', arc='open', what='Miss Loupe bật vào: "Nope!" – Blink xìu; "Let\'s zoom in!"', emo='bất ngờ, háo hức',
       why='Pop nảy 126 BPM ngay sau "Nope!"; trombone "wah-wah" đi xuống khi Blink xìu (viết tay), rồi xylophone đáp sau "zoom in".')
-G.sec('đếm cánh ruồi · 1, 2', HIT['zoom'][0], HIT['pan'][0], 'sunny', 'D', 'D A', bass='bassn', comp='pluck', lead='vibes', kit='clap', energy=2,
+G.sec('đếm cánh ruồi · 1, 2', HIT['zoom'][0], HIT['pan'][0], 'ska', 'D', 'D A', bass='bassn', comp='pluck', lead='vibes', kit='ska', energy=2,
       bpm=104, mood='happy', arc='build', what='Kính lớn soi Fizz xoè cánh, số "1", "2" bật lên: "A fly has two wings."', emo='vui, rõ ràng',
-      why='Bài đếm số: ukulele quạt 104 BPM, vỗ tay nhẹ; mỗi số là một nốt marimba cao (viết tay), trẻ đếm theo được.')
-G.sec('tấm cánh của Blink · 1–4', HIT['pan'][0], HIT['proud'] - .4, 'quest', 'G', 'G Em D', bass='upright', comp='pizz', arp='harp', lead='celesta', kit='tom', energy=2,
+      why='Bài đếm số theo phách lẻ: ska chậm 104 BPM, ukulele chặn "chk – chk" như tiếng đếm; mỗi số là một nốt marimba cao (viết tay), trẻ đếm theo được.')
+G.sec('tấm cánh của Blink · 1–4', HIT['pan'][0], HIT['proud'] - .4, 'quest', 'G', 'G Em D', bass='upright', comp='pizz', arp='celesta', lead='harp', kit='tom', energy=2,
       bpm=108, mood='magic', arc='build', what='Kính lia sang Blink: tấm cánh bật lên "1, 2", hai cánh mỏng mở ra "3, 4": "Blink has wing cases on top!"',
-      emo='kỳ diệu, bất ngờ', why='Phiêu lưu 108 BPM, đàn hạc rải khi tấm cánh bật; bốn nốt marimba tiếp tục đi lên từ hai nốt của ruồi, nên "4" nghe rõ là nhiều hơn "2".')
-G.sec('"So I\'m a beetle!"', HIT['proud'] - .4, HIT['snap'], 'hero', 'D', 'D G', bass='tuba', comp='piano', lead='trumpet', arp='strings', kit='epic', energy=3,
+      emo='kỳ diệu, bất ngờ', why='Phiêu lưu 108 BPM, đàn hạc hát và celesta rải khi tấm cánh bật (008 đã dùng celesta hát chính cho điệu này); bốn nốt marimba tiếp tục đi lên từ hai nốt của ruồi, nên "4" nghe rõ là nhiều hơn "2".')
+G.sec('"So I\'m a beetle!"', HIT['proud'] - .4, HIT['snap'], 'ska', 'D', 'D G', bass='bassn', comp='horn', lead='trumpet', kit='ska', energy=3,
       bpm=132, mood='epic', arc='peak', what='Blink vỡ lẽ, tự hào: "So I\'m a beetle!"', emo='vỡ lẽ, tự hào',
-      why='Cao trào ngắn của tập: kèn trumpet ba nốt đi lên ngay trước câu (viết tay), dàn dây spiccato và timpani 132 BPM.')
+      why='Cao trào ngắn của tập: ska nhanh 132 BPM, kèn chặn mọi phách lẻ, timpani nhấn phách đầu; kèn trumpet ba nốt đi lên ngay trước câu (viết tay).')
 G.mark('chụp → sổ', HIT['snap'], HIT['stamp'], 'break', 'D', 'marimba harp', 2, mood='happy', arc='end', what='Kính "chụp" Blink đang mở tấm cánh, sticker hiện trên trang sổ',
        emo='háo hức', why='Marimba chạy lên (tiếng "chụp" của ban nhạc kênh), đàn hạc vuốt qua mặt kính.')
-G.sec('sổ · Albie', HIT['stamp'], HIT['flip'][0], 'skip', 'D', 'D G', bass='bassn', comp='pluck', lead='toypiano', kit='toy', energy=2, cue=False,
+G.sec('sổ · Albie', HIT['stamp'], HIT['flip'][0], 'skip', 'D', 'D G', bass='bassn', comp='pluck', lead='accordion', kit='toy', energy=2, cue=False,
       bpm=116, mood='playful', arc='end', what='Sticker "Beetle!" dán vào sổ; Albie đếm chân: "Six legs? In you go!", Blink lao vào trang đúng "go!"',
-      emo='vui, tự hào', why='Shuffle ukulele 116 BPM, piano đồ chơi đáp; dưới giọng trầm của Albie lớp nhịp tự bỏ bass.')
-G.sec('gag · Fizz bắt chước', HIT['flip'][0], L['L10']['t'] - .1, 'sneak', 'Bm', 'Bm G', bass='tuba', comp='pizz', lead='bassoon', kit='comic', energy=1,
+      emo='vui, tự hào', why='Shuffle ukulele 116 BPM, accordion đáp sau câu cửa miệng; dưới giọng trầm của Albie lớp nhịp tự bỏ bass. (11/2026 lượt 2: piano đồ chơi ở cảnh sổ đã quá quen.)')
+G.sec('gag · Fizz bắt chước', HIT['flip'][0], L['L10']['t'] - .1, 'sneak', 'Bm', 'Bm G', bass='tuba', comp='pizz', lead='kazoo', kit='comic', energy=1,
       bpm=100, mood='funny', arc='end', what='Fizz nhấc cánh như tấm cánh, gồng đuôi cho sáng… chỉ ra một tia "xì": "Nice try, Fizz!"',
-      emo='buồn cười, thương', why='Rình rập hài 100 BPM ở Si thứ: pizzicato rón rén theo cú gồng, tuba "bwomp" đi xuống khi "xì" (viết tay), bassoon an ủi.')
+      emo='buồn cười, thương', why='Rình rập hài 100 BPM ở Si thứ: pizzicato rón rén theo cú gồng, tuba "bwomp" đi xuống khi "xì" (viết tay), kazoo của Fizz "vè vè" bắt chước theo.')
 G.sec('câu hỏi · Fizz bay một vòng', L['L10']['t'] - .1, DUR, 'gallop', 'D', 'D A', bass='bassn', comp='marimba', lead='flute', kit='toy', energy=2,
       bpm=120, mood='bouncy', arc='end', what='"How many wings does a fly have?" – Fizz vỗ hai cánh, bay một vòng, đáp về đúng khung đầu', emo='háo hức, mời gọi',
       why='Phi ngựa (nhịp kép) 120 BPM theo vòng bay của Fizz; hợp âm La ở cuối dẫn về Rê của khung đầu nên vòng lặp liền.')
 G.answer(1.7, end('L03') + .02, C2[0], end('L06') + .05, HIT['fizzle'])   # câu đáp viết tay bên dưới (kazoo của Fizz, "wah-wah", số đếm, kèn, "bwomp")
-G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Sunset Counting Song" (Rê trưởng)')
+# v2 (11/2026, lượt 2: chống trùng giữa các tập): ska là điệu riêng của tập ("Me!", đếm cánh ruồi, cao trào "So I'm a beetle!");
+# đàn hạc hát ở tấm cánh (008 giữ celesta), accordion ở sổ, kazoo của Fizz ở gag (002 giữ bassoon).
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Sunset Counting Song" (Rê trưởng, đếm theo phách lẻ ska)')
 
 # — Móc: hợp âm Rê ở giây 0; kazoo "vè vè" của Fizz trong khoảng trống sau câu hỏi —
 M(bassn(38, .5), 0., 1.0); strum(pluck, (62, 66, 69, 74), 0., .35, .5); M(glock(93, .5), 0., .12, .4)

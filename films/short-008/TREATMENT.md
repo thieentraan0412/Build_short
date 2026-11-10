@@ -101,7 +101,8 @@ Thời gian là bản cuối: lời đã đo trên giọng thật và khớp l�
 ## 6. Nhạc, tiếng động, chữ
 
 - **Màu nhạc riêng: "Campfire Glow"** (La giáng trưởng, lần đầu kênh dùng).
-  - Ukulele quạt như hát quanh lửa trại; **mỗi cú "pop" của buồng sáng là một nốt glockenspiel** (đi lên theo thang ngũ cung, nhanh dần), nên bí mật cũng là một câu nhạc.
+  - **Điệu riêng của tập (11/2026 lượt 2, chống trùng giữa các tập): disco.** Không dùng điệu riêng của tập khác; cảnh sổ, gag và cao trào phối theo điệu của tập. Chi tiết: [MUSIC.md](MUSIC.md), [SOUND-PLAN.md](SOUND-PLAN.md), [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
+  - Disco "tiệc que phát sáng" ở sổ và cao trào (11/2026 lượt 2; trước là ukulele quạt quanh lửa trại); **mỗi cú "pop" của buồng sáng là một nốt glockenspiel** (đi lên theo thang ngũ cung, nhanh dần), nên bí mật cũng là một câu nhạc.
   - Bassoon và pizzicato "run cầm cập" cho cái lạnh; cao trào gag là kèn trumpet và timpani khi đuôi bùng sáng.
   - Khác 001–007 về giọng (La giáng), điệu và nhạc cụ hát chính. Dựng theo Sound Design Plan (`plan=True`): mỗi cảnh một phong cách, một BPM, một nhạc cụ chính. Bảng: [SOUND-PLAN.md](SOUND-PLAN.md); chi tiết: [MUSIC.md](MUSIC.md).
 - **Tiếng động riêng của tập:** răng va lập cập và hơi thở "phù" (lạnh), băng "kẽo kẹt" mọc trên tay, "brrr" vẩy tay, bùng sáng "whumm", bong bóng xanh "blup" lùa vào, mỗi cú pha trộn "pop + ting", nhiệt kế "tích" nhích một nấc, Blink lao vào trang, đuôi bùng chói "FWOOM", vòng sáng mở về khung đầu. Bảng cue: [SOUND.md](SOUND.md).

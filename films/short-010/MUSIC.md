@@ -1,12 +1,27 @@
 # SHORT-010 · Soundtrack Timeline
 
+## Lượt chống trùng giữa các tập (11/2026, lượt 2) · bản hiện hành
+
+Điệu riêng của tập: **samba lễ hội**, chiếm 24 % thời lượng.
+
+- **Rón rén của Crumb (móc, gag, 1,2 s cuối):** bassoon hát (trùng SHORT-007) → pizzicato hát, bassoon đệm (vẫn là "pizzicato + bassoon = Crumb"); phong cách hài thay vì hồi hộp.
+- **Mắt chiếm gần hết đầu:** celesta → glockenspiel hát.
+- **Crumb đi một vòng:** Đô thứ → Mi giáng trưởng (nốt marimba và trumpet viết tay vẫn hợp).
+- **"Nope!" bay lùi:** phi ngựa → samba 132 BPM; motif tua ngược giữ nguyên.
+- **Hàng nghìn Crumb:** calypso + trống thép (điệu riêng của SHORT-002) → samba 120 BPM, marimba hát; làn mưa toy piano giữ nguyên.
+- **"That's a lot of Crumbs!":** trumpet bịt → trombone (SHORT-004 giữ trumpet bịt).
+- **Sổ:** diễu hành (điệu riêng của SHORT-004) → samba 116 BPM, kèn đồ chơi đáp.
+- **Vui nhộn:** hồi hộp + khựng 21 % → 9 %, giọng thứ 15 % → 8 % thời lượng.
+
+Kết quả: không cảnh nào trùng công thức (điệu + nhạc cụ hát chính + đệm + bộ gõ) với một Short khác. Số liệu ở mục "Chống trùng lặp giữa các tập" của [SOUND-PLAN.md](SOUND-PLAN.md); lý do và đề xuất cho cả kênh: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md). Hình không đổi: mp4 giữ nguyên luồng hình đã giao, chỉ thay tiếng. Các mục bên dưới mô tả các lượt trước; chỗ nào khác mục này thì theo mục này.
+
 ## Màu nhạc của tập: "Rewind Pond Hop"
 
 Tập này kể về một chú chuồn chuồn **nhìn được ra sau** và **bay lùi được**, nên nhạc biết "tua ngược":
 - **Giọng Mi giáng trưởng**, lần đầu kênh dùng làm giọng chính. Ba cảnh "rình" (nhịp tim hồi hộp, Crumb đi một vòng, "One, two, three, boo!") xuống **Đô thứ**, giọng thứ cùng hoá biểu. Cảnh đứng yên giữa trời và cảnh nũng nịu lên **La giáng**. Nốt Si giáng ở cuối dẫn về hợp âm Mi giáng của khung đầu nên vòng lặp liền.
 - **Motif bốn nốt của Zip: Mi♭–Sol–Si♭–Mi♭.** Khi Zip bay tới, motif đi lên. Khi Zip **bay lùi**, đúng bốn nốt ấy chạy **ngược thứ tự**, đi xuống. Trẻ nghe được "tua ngược" mỗi lần Zip lùi (móc, "Nope!", bay tới – bay lùi, gag).
 - **Rón rén là pizzicato và bassoon.** Bản rón rén của móc trở lại y nguyên ở gag và ở 1,2 s cuối (reprise, cùng 112 BPM): cùng mạch "Crumb đi rình", và nối vòng lặp liền.
-- **Hàng nghìn ô mắt là một làn mưa nốt toy piano** rất cao, lan từ giữa ra đúng lúc các hình phản chiếu hiện lên. Cao trào là **calypso có trống thép** như một bữa tiệc nghìn Crumb.
+- **Hàng nghìn ô mắt là một làn mưa nốt toy piano** rất cao, lan từ giữa ra đúng lúc các hình phản chiếu hiện lên. Cao trào là **samba lễ hội** như một bữa tiệc nghìn Crumb (trước 11/2026 lượt 2: calypso có trống thép).
 - Dựng theo **Sound Design Plan** (`Groove(..., plan=True)`): mỗi cảnh một phong cách, một BPM (96–132), một nhạc cụ hát chính. Bảng đầy đủ 7 cột, lý do từng cảnh và các chỗ chuyển: **[SOUND-PLAN.md](SOUND-PLAN.md)**.
 
 | | 008 | 009 | **010** |

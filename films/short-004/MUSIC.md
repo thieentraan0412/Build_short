@@ -1,5 +1,17 @@
 # SHORT-004 · Soundtrack Timeline
 
+## Lượt chống trùng giữa các tập (11/2026, lượt 2) · bản hiện hành
+
+Điệu riêng của tập: **diễu hành + second-line** (ban kèn diễu phố New Orleans), chiếm 27 % thời lượng.
+
+- **Trại rệp (28–31,6 s):** đồng quê (điệu riêng của SHORT-006) → second-line 112 BPM: clarinet hát kiểu New Orleans, trombone chặn, snare lệch phách.
+- **Sổ (36,5–41,2 s):** ukulele nắng + piano đồ chơi (trùng công thức ở 5 tập) → second-line 116 BPM, kèn đồ chơi chặn, trumpet đáp.
+- **Thám tử (16–18,6 s):** bassoon hát chính (trùng gag của 003, 005) → trombone "wah"; bassoon trầm vẫn làm bass.
+- **Đường mùi sáng (20–22 s):** celesta → đàn hạc hát (hộp nhạc lấp lánh + celesta trùng SHORT-003).
+- **Giữ nguyên:** ragtime + trumpet bịt (44–46 s), vì tập này đăng trước; 009 và 010 đã đổi.
+
+Kết quả: không cảnh nào trùng công thức (điệu + nhạc cụ hát chính + đệm + bộ gõ) với một Short khác. Số liệu ở mục "Chống trùng lặp giữa các tập" của [SOUND-PLAN.md](SOUND-PLAN.md); lý do và đề xuất cho cả kênh: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md). Hình không đổi: mp4 giữ nguyên luồng hình đã giao, chỉ thay tiếng. Các mục bên dưới mô tả các lượt trước; chỗ nào khác mục này thì theo mục này.
+
 > **Bản hiện hành:** lượt Sound Design Plan (11/2026), ngay bên dưới; bảng đầy đủ ở [`SOUND-PLAN.md`](SOUND-PLAN.md). Lượt nhạc nền sinh động (11/2026, [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-trước-sound-design-plan)) và các bảng cũ hơn giữ lại để so sánh; các điểm nhấn viết tay vẫn dùng.
 
 ## Lượt Sound Design Plan (11/2026) · bản hiện hành
@@ -90,7 +102,7 @@ Theo `Task.md`: *"Cần thêm nhiều nhạc nền sinh động, trong 1 short n
 - **Đầu phim:** diễu hành rồi polka khi Crumb bật lên; sau nhạc hiệu là diễu hành ra mắt.
 - **Bí mật 1:** đàn hạc rải khi hạt mùi bay vào, shuffle "tap, tap".
 - **Bí mật 2:** thám tử rón rén, glockenspiel rải khi đường mùi sáng, diễu hành dồn theo đường mùi.
-- **Bí mật 3:** đồng quê "boom-chick" ở trại rệp, polka "TINY COWS".
+- **Bí mật 3:** second-line kèn đồng ở trại rệp (trước: đồng quê), polka "TINY COWS".
 - **Sổ:** shuffle dưới câu của Albie, nửa nhịp "Can I hold the lens?", diễu hành.
 - **Kết:** rón rén theo mùi tới cây kem, nửa nhịp dưới câu hỏi kết, diễu hành về khung đầu.
 

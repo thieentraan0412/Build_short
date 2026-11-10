@@ -8,9 +8,9 @@
 ## Cung bậc
 
 - **Mở đầu** 0,0–6,0 s: Playful Cartoon, Funny Comedy; 120 BPM; glockenspiel, xylophone
-- **Diễn biến** 6,0–31,6 s: Epic Cartoon, Magical Adventure, Playful Cartoon, Suspense & Surprise, Happy Kids; 96–120 BPM; trumpet, sáo, xylophone, bassoon, celesta, glockenspiel, clarinet
+- **Diễn biến** 6,0–31,6 s: Epic Cartoon, Magical Adventure, Playful Cartoon, Suspense & Surprise, Happy Kids; 96–120 BPM; trumpet, sáo, xylophone, trombone, đàn hạc, glockenspiel, clarinet
 - **Cao trào** 31,6–35,3 s: Funny Comedy; 132 BPM; xylophone
-- **Kết** 35,3–52,0 s: Happy Kids, Cute & Sweet, Funny Comedy, Suspense & Surprise, Playful Cartoon; 100–120 BPM; piano đồ chơi, vibraphone, trumpet bịt, sáo, celesta, glockenspiel
+- **Kết** 35,3–52,0 s: Happy Kids, Cute & Sweet, Funny Comedy, Suspense & Surprise, Playful Cartoon; 100–120 BPM; trumpet, vibraphone, trumpet bịt, sáo, celesta, glockenspiel
 
 ## Bảng thiết kế âm thanh
 
@@ -23,15 +23,15 @@
 | 6,0–9,3 s<br>*Diễn biến* | Crumb bước ra: "This is Crumb, the ant!" – "Let's zoom in!" | tự hào, háo hức · nhịp vừa | Epic Cartoon<br>diễu hành, F | **trumpet** (giai điệu) · dây pizzicato · tuba · diễu hành (snare, lục lạc) | 112 | huy hiệu ding, bước chân, whoosh mỏng |
 | 9,3–12,0 s<br>*Diễn biến* | Trong kính: hạt mùi bay vào râu: "Ants sniff with their antennae!" | kỳ diệu, tò mò · nhịp chậm | Magical Adventure<br>rải lơ lửng, F | **sáo** (giai điệu) · đàn hạc · bass gảy | 100 | whoosh lao vào kính, mùi bay |
 | 12,0–16,0 s<br>*Diễn biến* | Hai chú kiến chạm râu: "Tap, tap, hello!" | vui, thân thiện · nhịp vừa | Playful Cartoon<br>shuffle nhảy chân sáo, F | **xylophone** (giai điệu) · ukulele · tuba · đồ chơi (vỗ tay, shaker, phách gỗ) | 116 | bước chân ×2, gõ nhẹ ×2, whoosh lùi, whoosh |
-| 16,0–18,6 s<br>*Diễn biến* | Crumb đội mũ thám tử: "So, they follow a map?" | tò mò, hồi hộp · nhịp chậm | Suspense & Surprise<br>rình rập hài, Dm | **bassoon** (giai điệu) · dây pizzicato · bassoon trầm · gỗ (mõ, shaker) | 96 | huy hiệu ding, giấy sột soạt |
+| 16,0–18,6 s<br>*Diễn biến* | Crumb đội mũ thám tử: "So, they follow a map?" | tò mò, hồi hộp · nhịp chậm | Suspense & Surprise<br>rình rập hài, Dm | **trombone** (giai điệu) · dây pizzicato · bassoon trầm · gỗ (mõ, shaker) | 96 | huy hiệu ding, giấy sột soạt |
 | 18,6–20,0 s<br>*Diễn biến* | "Nope!" – khoảng lặng trước đáp án | bất ngờ · nhịp khựng | Khựng (Suspense & Surprise) | lớp mỏng (khoảng lặng có chủ đích) | — | còi sai |
-| 20,0–22,0 s<br>*Diễn biến* | Đường mùi sáng lên: "They follow a smell trail!" | kỳ diệu, vỡ lẽ · nhịp chậm | Magical Adventure<br>hộp nhạc lấp lánh, Dm | **celesta** (giai điệu) · glockenspiel · tuba · triangle + shaker | 108 | lộ ra (bất ngờ), bước chân, mùi bay |
+| 20,0–22,0 s<br>*Diễn biến* | Đường mùi sáng lên: "They follow a smell trail!" | kỳ diệu, vỡ lẽ · nhịp chậm | Magical Adventure<br>hộp nhạc lấp lánh, Dm | **đàn hạc** (giai điệu) · glockenspiel · tuba · triangle + shaker | 108 | lộ ra (bất ngờ), bước chân, mùi bay |
 | 22,0–27,0 s<br>*Diễn biến* | Kính trượt dọc đường mùi; Rollo lăn qua, khựng một chút | phiêu lưu, hồi hộp vui · nhịp nhanh | Magical Adventure<br>phiêu lưu nước kiệu, Dm | **glockenspiel** (giai điệu) · dây pizzicato · dàn dây spiccato · tuba · trống tom | 120 | lướt, Rollo lăn, khựng, bước chân |
 | 27,0–28,0 s<br>*Diễn biến* | Đường mùi bò lên thân cây | háo hức · nhịp khựng | Khựng · Magical Adventure | glockenspiel | — | leo |
-| 28,0–31,6 s<br>*Diễn biến* | Crumb gõ nhẹ con rệp, giọt ngọt rơi: "Some ants keep tiny cows!" | vui, ngạc nhiên · nhịp vừa | Happy Kids<br>đồng quê, C | **clarinet** (giai điệu) · banjo · tuba · đồ chơi (vỗ tay, shaker, phách gỗ) | 112 | gõ nhẹ ×2, huy hiệu ding, giọt rơi, nhấp |
+| 28,0–31,6 s<br>*Diễn biến* | Crumb gõ nhẹ con rệp, giọt ngọt rơi: "Some ants keep tiny cows!" | vui, ngạc nhiên · nhịp vừa | Happy Kids<br>second-line kèn đồng, C | **clarinet** (giai điệu) · trombone · tuba · kèn đồng diễu phố (snare lệch phách, lục lạc) | 112 | gõ nhẹ ×2, huy hiệu ding, giọt rơi, nhấp |
 | 31,6–35,3 s<br>*Cao trào* | "TINY COWS!" – tuba "moo", Spindle ló ra | phấn khích, buồn cười · nhịp cao trào | Funny Comedy<br>polka, C | **xylophone** (giai điệu) · accordion · tuba · vỗ tay + lục lạc | 132 | chuỗi pop, blip "…", rơi, giọt rơi, boing, +1 tiếng khác |
 | 35,3–36,5 s<br>*Kết* | Kính chụp, máy lao xuyên kính vào sổ | bất ngờ · nhịp khựng | Khựng (Suspense & Surprise) | lớp mỏng (khoảng lặng có chủ đích) | — | chụp sticker, whoosh xuyên kính, whoosh lùi ra sổ, lật trang, whoosh mỏng |
-| 36,5–41,2 s<br>*Kết* | Ba sticker dán vào sổ; Albie: "Six legs? In you go!" | vui, tự hào · nhịp vừa | Happy Kids<br>ukulele nắng, F | **piano đồ chơi** (giai điệu) · ukulele · tuba · đồ chơi (vỗ tay, shaker, phách gỗ) | 116 | dán sticker ×3, whoosh mỏng ×2 |
+| 36,5–41,2 s<br>*Kết* | Ba sticker dán vào sổ; Albie: "Six legs? In you go!" | vui, tự hào · nhịp vừa | Happy Kids<br>second-line kèn đồng, F | **trumpet** (giai điệu) · kèn đồ chơi · tuba · kèn đồng diễu phố (snare lệch phách, lục lạc) | 116 | dán sticker ×3, whoosh mỏng ×2 |
 | 41,2–44,0 s<br>*Kết* | Crumb: "Can I hold the lens?" – Miss Loupe: "Not yet!" | dễ thương, nài nỉ · nhịp chậm | Cute & Sweet<br>nửa nhịp đung đưa, F | **vibraphone** (giai điệu) · marimba · tuba · chổi trống | 100 (cảm giác 50) | — |
 | 44,0–46,0 s<br>*Kết* | Crumb ngửi thấy một mùi mới | tinh nghịch · nhịp vừa | Funny Comedy<br>ragtime piano, F | **trumpet bịt** (giai điệu) · piano · tuba · diễu hành (snare, lục lạc) | 112 | chuyển cảnh qua kính |
 | 46,0–48,6 s<br>*Kết* | Crumb theo mùi tới cây kem: "I can carry it!" | hồi hộp, buồn cười · nhịp chậm | Suspense & Surprise<br>rón rén, F | **sáo** (giai điệu) · dây pizzicato · pizzicato trầm · gỗ (mõ, shaker) | 100 | bước chân, hít ngửi |
@@ -48,15 +48,15 @@
 5. **6,0–9,3 s · Crumb bước ra: "This is Crumb, the ant!" – "Let's zoom in!"** (Epic Cartoon, 112 BPM): Màn ra mắt như duyệt binh: diễu hành 112 BPM theo bước chân Crumb, trumpet thổi một câu chào sau tên Crumb. *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
 6. **9,3–12,0 s · Trong kính: hạt mùi bay vào râu: "Ants sniff with their antennae!"** (Magical Adventure, 100 BPM): Chậm lại 100 BPM, đàn hạc rải như hạt mùi lơ lửng, glockenspiel chơi mô-típ bí mật (viết tay), sáo đáp. *Vào cảnh:* dâng lấp lánh.
 7. **12,0–16,0 s · Hai chú kiến chạm râu: "Tap, tap, hello!"** (Playful Cartoon, 116 BPM): Shuffle ukulele 116 BPM nhảy chân sáo; mỗi cú "tap" một nốt glockenspiel và xylophone (viết tay). *Vào cảnh:* trống dồn.
-8. **16,0–18,6 s · Crumb đội mũ thám tử: "So, they follow a map?"** (Suspense & Surprise, 96 BPM): Rình rập thám tử 96 BPM: bassoon trầm làm bass và giai điệu dò dẫm, mõ gỗ, Rê thứ. *Vào cảnh:* chuỗi nốt đi xuống.
+8. **16,0–18,6 s · Crumb đội mũ thám tử: "So, they follow a map?"** (Suspense & Surprise, 96 BPM): Rình rập thám tử 96 BPM: bassoon trầm làm bass, trombone "wah" dò dẫm của ban kèn (v4: bassoon hát chính trùng gag của 003, 005), mõ gỗ, Rê thứ. *Vào cảnh:* chuỗi nốt đi xuống.
 9. **18,6–20,0 s · "Nope!" – khoảng lặng trước đáp án** (Khựng (Suspense & Surprise), — BPM): Tuba "bwomp" đi xuống sau "Nope!" rồi lặng một nhịp để đáp án bật ra. *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
-10. **20,0–22,0 s · Đường mùi sáng lên: "They follow a smell trail!"** (Magical Adventure, 108 BPM): Hộp nhạc lấp lánh 108 BPM, triangle; mô-típ bí mật trên glockenspiel (viết tay) đúng lúc đường mùi sáng. *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
+10. **20,0–22,0 s · Đường mùi sáng lên: "They follow a smell trail!"** (Magical Adventure, 108 BPM): Hộp nhạc lấp lánh 108 BPM, triangle, đàn hạc đáp; mô-típ bí mật trên glockenspiel (viết tay) đúng lúc đường mùi sáng. *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
 11. **22,0–27,0 s · Kính trượt dọc đường mùi; Rollo lăn qua, khựng một chút** (Magical Adventure, 120 BPM): Phiêu lưu nước kiệu: trống tom "da-da-dum", dàn dây spiccato, glockenspiel hát giai điệu viết tay theo phách nên giữ 120 BPM. *Vào cảnh:* dâng lấp lánh.
 12. **27,0–28,0 s · Đường mùi bò lên thân cây** (Khựng · Magical Adventure, — BPM): Glockenspiel chạy lên và riser (viết tay) dẫn vào trại rệp. *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
-13. **28,0–31,6 s · Crumb gõ nhẹ con rệp, giọt ngọt rơi: "Some ants keep tiny cows!"** (Happy Kids, 112 BPM): Trại rệp là một nông trại tí hon: đồng quê "boom-chick" 112 BPM, banjo cuộn, clarinet hát như harmonica; giọt ngọt là mô-típ bí mật (viết tay). *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
+13. **28,0–31,6 s · Crumb gõ nhẹ con rệp, giọt ngọt rơi: "Some ants keep tiny cows!"** (Happy Kids, 112 BPM): Điệu riêng của tập: ban kèn diễu phố second-line 112 BPM (tuba, trombone chặn, snare lệch phách), clarinet hát kiểu New Orleans; giọt ngọt là mô-típ bí mật (viết tay). (v4: thay đồng quê, điệu riêng của 006.) *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
 14. **31,6–35,3 s · "TINY COWS!" – tuba "moo", Spindle ló ra** (Funny Comedy, 132 BPM): Cao trào hài của tập: polka nhanh nhất (132 BPM), accordion và vỗ tay, tuba "moo" tí hon (viết tay). *Vào cảnh:* trống dồn.
 15. **35,3–36,5 s · Kính chụp, máy lao xuyên kính vào sổ** (Khựng (Suspense & Surprise), — BPM): Marimba chạy lên (viết tay) là tiếng "chụp" của ban nhạc kênh. *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
-16. **36,5–41,2 s · Ba sticker dán vào sổ; Albie: "Six legs? In you go!"** (Happy Kids, 116 BPM): Ukulele quạt 116 BPM cho ba cú dán sticker; piano đồ chơi đáp, không bass dưới giọng trầm của Albie. *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
+16. **36,5–41,2 s · Ba sticker dán vào sổ; Albie: "Six legs? In you go!"** (Happy Kids, 116 BPM): Ban kèn diễu phố trở lại ở sổ, 116 BPM: kèn đồ chơi chặn, trumpet đáp sau câu cửa miệng; không bass dưới giọng trầm của Albie. (v4: thay ukulele nắng + piano đồ chơi, công thức trùng ở 5 tập.) *Vào cảnh:* viết tay (stinger, khựng, nhạc hiệu).
 17. **41,2–44,0 s · Crumb: "Can I hold the lens?" – Miss Loupe: "Not yet!"** (Cute & Sweet, 100 (cảm giác 50) BPM): Nửa nhịp 100 BPM, marimba và vibraphone mềm như lời nài nỉ của Crumb. *Vào cảnh:* ngân đuôi, cảnh sau vào mềm.
 18. **44,0–46,0 s · Crumb ngửi thấy một mùi mới** (Funny Comedy, 112 BPM): Ragtime piano 112 BPM, trumpet bịt "wah" như một cái nháy mắt: gag sắp tới. *Vào cảnh:* trống dồn.
 19. **46,0–48,6 s · Crumb theo mùi tới cây kem: "I can carry it!"** (Suspense & Surprise, 100 BPM): Rón rén 100 BPM theo từng bước Crumb; sáo hỏi nhỏ giữa các bước. *Vào cảnh:* chuỗi nốt đi xuống.
@@ -79,11 +79,11 @@
 | 20,0 | Nope · lặng → đường mùi sáng · lấp lánh | viết tay (stinger, khựng, nhạc hiệu) | 120 → 108 |
 | 22,0 | đường mùi sáng · lấp lánh → theo đường mùi · phiêu lưu | dâng lấp lánh | 108 → 120 |
 | 27,0 | theo đường mùi · phiêu lưu → bò lên thân cây | viết tay (stinger, khựng, nhạc hiệu) | 120 |
-| 28,0 | bò lên thân cây → trại rệp · đồng quê | viết tay (stinger, khựng, nhạc hiệu) | 120 → 112 |
-| 31,6 | trại rệp · đồng quê → TINY COWS · polka | trống dồn | 112 → 132 |
+| 28,0 | bò lên thân cây → trại rệp · second-line | viết tay (stinger, khựng, nhạc hiệu) | 120 → 112 |
+| 31,6 | trại rệp · second-line → TINY COWS · polka | trống dồn | 112 → 132 |
 | 35,3 | TINY COWS · polka → chụp sticker | viết tay (stinger, khựng, nhạc hiệu) | 132 → 120 |
-| 36,5 | chụp sticker → sổ · ukulele nắng | viết tay (stinger, khựng, nhạc hiệu) | 120 → 116 |
-| 41,2 | sổ · ukulele nắng → Can I hold the lens? · nửa nhịp | ngân đuôi, cảnh sau vào mềm | 116 → 100 |
+| 36,5 | chụp sticker → sổ · second-line | viết tay (stinger, khựng, nhạc hiệu) | 120 → 116 |
+| 41,2 | sổ · second-line → Can I hold the lens? · nửa nhịp | ngân đuôi, cảnh sau vào mềm | 116 → 100 |
 | 44,0 | Can I hold the lens? · nửa nhịp → về kết · ragtime | trống dồn | 100 → 112 |
 | 46,0 | về kết · ragtime → theo mùi tới cây kem · rón rén | chuỗi nốt đi xuống | 112 → 100 |
 | 48,6 | theo mùi tới cây kem · rón rén → nhấc · đổ · khựng | viết tay (stinger, khựng, nhạc hiệu) | 100 → 120 |
@@ -94,10 +94,19 @@
 
 - 22 cảnh nhạc (16 cảnh có điệu, còn lại là khựng / nhạc hiệu viết tay).
 - 7 phong cách nhạc: Playful Cartoon ×3, Funny Comedy ×3, Magical Adventure ×3, Happy Kids ×3, Suspense & Surprise ×2, Epic Cartoon ×1, Cute & Sweet ×1.
-- 10 nhạc cụ hát chính: glockenspiel ×3, xylophone ×3, sáo ×2, celesta ×2, trumpet ×1, bassoon ×1, clarinet ×1, piano đồ chơi ×1, vibraphone ×1, trumpet bịt ×1.
+- 10 nhạc cụ hát chính: glockenspiel ×3, xylophone ×3, trumpet ×2, sáo ×2, trombone ×1, đàn hạc ×1, clarinet ×1, vibraphone ×1, trumpet bịt ×1, celesta ×1.
 - 13 họ nhạc cụ: bass, bộ gõ, chuông, dàn dây, dây pizzicato, kèn gỗ, kèn đồng, marimba, nhạc cụ hoạt hình, piano, ukulele, xylophone, đàn hạc.
 - BPM: 96, 100, 104, 108, 112, 116, 120, 132 (8 mức).
 - Chuyển cảnh: viết tay (stinger, khựng, nhạc hiệu) ×12, trống dồn ×4, dâng lấp lánh ×2, chuỗi nốt đi xuống ×2, ngân đuôi, cảnh sau vào mềm ×1.
 - Câu đáp của nhạc giữa các câu thoại: 18.
 
-Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-004` (nhóm "4 Âm thanh").
+## Chống trùng lặp giữa các tập
+
+So với 9 Short khác (001, 002, 003, 005, 006, 007, 008, 009, 010), từ `music-plan.json` của từng tập.
+
+- **Điệu riêng của tập:** diễu hành, second-line kèn đồng, chiếm 27 % thời lượng.
+- **Công thức trùng với Short khác:** không có.
+- **Cặp điệu + nhạc cụ hát chính đã có ở Short khác:** polka + xylophone (005); rải lơ lửng + sáo (007); shuffle nhảy chân sáo + xylophone (003); phiêu lưu nước kiệu + glockenspiel (010); nửa nhịp đung đưa + vibraphone (002).
+- **Vui nhộn:** hồi hộp + khựng 15 %, cảnh nền giọng thứ 18 % thời lượng (mỗi mục ≤ 20 %).
+
+Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-004` (nhóm "4 Âm thanh" và "Sound Design Plan").

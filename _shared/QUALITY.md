@@ -18,6 +18,10 @@ Một video chỉ được giao khi:
 - Áp dụng cho mọi Short, kể cả SHORT-001 đến 007 (đã dựng lại nhạc theo quy tắc này).
 - Video dài chưa áp dụng (LONG-001 giữ lớp nhịp cũ, `plan=False`); `qa.py` chỉ đo nhóm "Sound Design Plan" ở Short.
 
+**Lượt chống trùng giữa các tập 11/2026 (lượt 2).** Các quy tắc ghi *(Kênh)* ở §4 đến từ yêu cầu "kiểm tra nhạc nền, đề xuất nhạc nền vui nhộn, tránh trùng lặp các short" (`Task.md`, 10/11/2026). Kết quả kiểm tra và đề xuất từng tập: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
+- Áp dụng cho mọi Short dựng hoặc dựng lại nhạc từ nay. SHORT-001, 004, 006–010 đã dựng lại nhạc theo các quy tắc này.
+- SHORT-002, 003, 005 đã đăng nên giữ nguyên; chạy lại `qa.py` ở các tập này thì các mục *(Kênh)* có thể là CẢNH BÁO.
+
 ## Quy trình
 
 | Bước | Việc phải làm theo bộ tiêu chí này |
@@ -101,6 +105,9 @@ Một video chỉ được giao khi:
 | *(SDP)* **Mở đầu · diễn biến · cao trào · kết** khác nhau rõ (`arc=`): có đủ bốn phần; cao trào năng lượng 3 và khác điệu hoặc nhạc cụ của mở đầu; cảnh kết khác cảnh mở đầu ≥ 2 điểm (điệu, nhạc cụ, đệm, bộ gõ, năng lượng, BPM), kể cả khi kết nối vòng lặp về hoà âm của móc | `qa.py` |
 | *(SDP)* **Chuyển cảnh âm thanh tự nhiên** (`plan=True` tự làm, ghi vào `music.json`): mỗi chỗ đổi cảnh một cách chuyển (trống dồn, riser, nốt mồi của nhạc cụ mới, chuỗi nốt đi xuống, vuốt đàn hạc, dâng lấp lánh, còi trượt "bwomp", ngân đuôi để cảnh sau vào mềm), không cách nào quá 50 % số chỗ chuyển tự động; khi có lời ở điểm cắt thì chỉ dùng cách không chạm dải giọng; phách đầu cảnh mới được nhấn theo phong cách (timpani cho cao trào, triangle cho dễ thương, mõ cho hài) | `qa.py` + nghe lại |
 | *(SDP)* **Nhạc không lời, tích cực**: không có giọng hát trong nhạc nền; hồi hộp chỉ ở mức hoạt hình (rón rén, nhịp tim), không nhạc buồn hay đáng sợ; nhạc đỡ câu chuyện, không giành chú ý với lời | checklist |
+| *(Kênh)* **Điệu riêng của tập**: mỗi Short có ≥ 1 điệu chỉ tập đó dùng (`SIGNATURE` trong [`audio/groove.py`](audio/groove.py)), chiếm ≥ 20 % thời lượng, tính cả đoạn viết tay ghi bằng `G.mark`. Không dùng điệu riêng của tập khác. Tập mới thì thêm một điệu mới vào `STYLES` rồi ghi vào `SIGNATURE` | `qa.py` (`music-plan.json`) |
+| *(Kênh)* **Không trùng cảnh nhạc của Short khác**: không cảnh nào cùng điệu + nhạc cụ hát chính + đệm + bộ gõ với một cảnh của Short khác. Một cặp điệu + nhạc cụ hát chính đã có ở ≥ 3 Short khác là quá quen. Tập đăng trước được giữ công thức; tập sau đổi nhạc cụ hoặc điệu. Các cảnh lặp lại ở mọi tập (sổ, gag rình rập, cao trào, phép thuật trong kính) phối theo thể loại riêng của tập, không dùng cách phối mặc định. Tiếng "chụp" (marimba chạy lên + đàn hạc vuốt) và nhạc hiệu là tiếng của kênh, cố ý giống nhau. `soundplan.py` ghi `<tập>/music-plan.json` (được commit) để các tập so với nhau | `qa.py` + mục "Chống trùng lặp giữa các tập" trong `SOUND-PLAN.md` |
+| *(Kênh)* **Nhạc vui nhộn**: hồi hộp + khựng ≤ 20 % thời lượng; cảnh nhạc ở giọng thứ ≤ 20 % thời lượng. Cảnh rình rập, rón rén ưu tiên giọng trưởng và phong cách hài (`mood='funny'`) | `qa.py` |
 | Có tiếng động cho mọi chuyển động chính: nhân vật (nhảy, giật mình, khoe), kính (chụp, lao vào, lùi ra), sổ (lật, dán), gag. *(SDP)* Bảng tiếng động theo hành động trong [`audio/toon.py`](audio/toon.py): boing, pop, whoosh (`swish`, `zip_`), va chạm nhẹ (`bonk`), bước chân (`footsteps`), chạy (`scurry`), nhảy (`boing` + `swish`), cười (`giggle`), ngạc nhiên (`surprise`), reo vui (`cheer`), chuyển cảnh (`swirl`, `revcymbal`), "ta-da" (`band.tada`) | `SOUND.md` + cột SFX của `SOUND-PLAN.md` |
 | *(SDP)* **Tiếng động không lạm dụng, không lấn lời**: ≤ 8 cue trong 1 s bất kỳ sau móc; mỗi câu lời hơn riêng tiếng động ≥ 11 dB (dải 300–4000 Hz) | `qa.py` |
 | Nền (ambience) theo bối cảnh: đêm (gió, dế xa), vườn (chim xa, gió lá)…, nhường giọng như nhạc | `mix.py` |
@@ -187,6 +194,7 @@ Trước lượt này (nhạc dựng bằng lớp nhịp cũ), cả 7 Short đ�
 - [ ] Có thông điệp hoặc bài học nhỏ thấy được
 - [ ] Biểu cảm đọc được ở cỡ điện thoại; không che, không cắt mép, không lơ lửng
 - [ ] Nhạc đổi theo cảnh, khớp hành động; màu nhạc khác các tập trước
+- [ ] *(Kênh)* Nghe tập này ngay sau tập đăng trước: điệu riêng nghe ra ngay; cảnh sổ, gag và cao trào không nghe như của tập trước; nhạc vui, phần lớn ở giọng trưởng
 - [ ] Nghe lại cả phim: mỗi cảnh nhạc nghe ra khác cảnh trước; dưới lời vẫn còn nhịp; có câu đáp giữa các câu; không đoạn nào nghe như một vòng lặp đều
 - [ ] *(SDP)* Đọc `SOUND-PLAN.md`: phong cách, nhạc cụ và BPM của từng cảnh hợp với hành động và cảm xúc; mở đầu, diễn biến, cao trào, kết nghe khác nhau; chỗ đổi tốc độ không bị giật (có cầu nối); không cảnh nào nghe như cảnh khác chỉ đổi tốc độ; nhạc không lời, vui, không buồn hay đáng sợ
 - [ ] Kết có điểm nhấn và nối về đầu (vòng lặp hoặc câu cuối)

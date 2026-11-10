@@ -104,26 +104,20 @@ seq(pizz, (67, 71, 74), 26.0, .125, .4, -.2, d=.2); M(chirp(1.2), 26.45, .9, .55
 seq(pizz, (69, 72, 76), 26.7, .125, .4, -.2, d=.2); M(chirp(1.2), 27.1, .8, .55)
 seq(pizz, (62, 67) * 4, at(13, 2), BEAT / 4, .16, .1, d=.12, ramp=.12)    # đêm → tổ ong: pizzicato rung dồn
 
-# — Ong 28–34 s, F: khựng (ú ớ) → swing "bee bop" —
+# — Ong 28–34 s, F: khựng (ú ớ) → jig "bee hop" (v6, 11/2026 lượt 2: swing là điệu riêng của SHORT-003; jig là điệu riêng của tập này) —
 M(buzzbass(41, 1.0, .7), at(14), .55); M(pluck(77, 1.2), at(14), .3)
 td = HIT['dance']; M(kick(), td, 1.1); M(buzzbass(41, .5), td, 1.1); strum(pluck, (65, 69, 72, 77), td, .55); M(xylo(89), td, .4, .3)
 cymbal(td, .32, 4000)
-SW = 1 / 3                                                                 # swing: móc đơn lệch về 2/3 phách
-for i, n in enumerate((41, 45, 46, 50, 48, 52, 41, 48)):                   # bass vo ve đi bộ: F A | B♭ D | C E | F C
-    tb = td + i * BEAT; M(buzzbass(n, .42), tb, 1.0)
-    M(hat(.8), tb, .4, .35); M(hat(.5), tb + BEAT * (1 - SW), .3, .35)     # "ding — da-ding"
-    if i % 2: M(brush(.9), tb, .35, -.2); M(clap(.7), tb, .25, .1)
-    else:
-        M(kick(.8), tb, .7); strum(pluck, triad((65, 70, 72, 65)[i // 2]), tb + BEAT * (1 - SW), .32, .3)
-seq(xylo, (77, 81, 84, 89), 31.0, BEAT / 2, .45, .3, swing=SW)            # mô-típ bí mật chơi swing, giữa hai câu
-seq(xylo, (84, 81, 77, 72), 33.32, BEAT / 3, .42, .3, swing=SW * .5)
+# điệu nhảy của Waggle: lớp nhịp jig 12/8 (bass vo ve, accordion "oom-cha-cha", bodhrán) khai báo ở G.sec bên dưới; mô-típ bí mật chia ba
+seq(flute, (77, 81, 84, 89), 31.0, BEAT / 3, .45, .3, d=.14)               # mô-típ bí mật trên sáo (tin whistle), giữa hai câu
+seq(xylo, (84, 81, 77, 72), 33.32, BEAT / 3, .42, .3)
 
 # — Bản đồ 34–40 s, C: phiêu lưu, chuyển động liên tục (cảnh không lời) —
 cymbal(at(17), .25, 5500)
 MAP = [(at(17), 4, 48), (at(18), 2, 41), (at(18, 2), 2, 43), (at(19), 2, 45), (at(19, 2), 1, 41), (at(19, 3), 1, 43)]   # C · F · G · Am · F · G
 for t0, beats, root in MAP:
-    for i in range(beats * 2):                                             # pizzicato móc đơn liên tục: gốc–năm–tám–năm
-        M(pizz((root, root + 7, root + 12, root + 7)[i % 4] + (12 if root < 46 else 0), .2), t0 + i * BEAT / 2, .36, -.15)
+    for i in range(beats * 3):                                             # v6: pizzicato chia ba liên tục (jig phiêu lưu): gốc–năm–tám
+        M(pizz((root, root + 7, root + 12)[i % 3] + (12 if root < 46 else 0), .17), t0 + i * BEAT / 3, (.4 if i % 3 == 0 else .3), -.15)
     for b in range(beats):
         tb = t0 + b * BEAT
         if b % 2 == 0: M(tom(45 if root != 48 else 48, .7), tb, .6); M(kick(.7), tb, .55); M(bassn(root, .4), tb, .8)
@@ -161,7 +155,9 @@ M(bell(84, .8, 1.4), tf + .3, .6); M(bassn(36, 1.4), tf, 1.); M(kick(), tf, .9);
 # — lớp nhịp theo cảnh (v5) + bảng cảnh nhạc của cả tổ khúc (MUSIC.md); các đoạn viết tay ở trên ghi bằng G.mark —
 # Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): tổ khúc viết tay giữ nguyên ở 120 BPM vì hình khớp theo phách (dế gáy, ong nhảy,
 # bản đồ); bốn cảnh của lớp nhịp đổi BPM theo nội dung (kính phóng to 104, SWEET 126, Albie 112, lời dặn 112 nửa nhịp) và đổi nhạc cụ hát chính.
-G = Groove(M, BEAT, TL['lines'], seed=1, avoid=[(HIT['bfGlow'] - .05, HIT['bfGlow'] + .7), (tsw - .05, tsw + .4), (44.25, 45.0)], plan=True)
+# v6 (11/2026, lượt 2: chống trùng giữa các tập): điệu riêng của tập là jig 12/8 (chân nhảy step-dance), chạy qua ong nhảy, bản đồ và cảnh Albie;
+# bỏ swing (điệu riêng của 003) và shuffle + piano đồ chơi (trùng công thức với 009).
+G = Groove(M, BEAT, TL['lines'], seed=1, avoid=[(HIT['bfGlow'] - .05, HIT['bfGlow'] + .7), (tsw - .05, tsw + .4), (31.0, 31.6), (33.3, 34.0), (44.25, 45.0)], plan=True)
 G.mark('rình · rón rén', 0, HIT['stomp'], 'tiptoe', 'C', 'pizz xylo tom', mood='suspense', arc='open',
        what='Bàn chân rình trên hoa: "Can you taste with your feet?"', emo='tò mò, hồi hộp',
        why='Pizzicato trầm đi lên từng nửa cung như bàn chân đang rình, kick mỗi phách, trống dồn khi chân lấy đà; xylophone "hỏi" đi lên.')
@@ -193,17 +189,18 @@ G.mark('tai ở chân · bừng sáng', at(12), at(14), 'tiptoe', 'C', 'pizz cel
        why='La thứ bừng sang Đô trưởng, mô-típ bí mật trên celesta, chuông; pizzicato hỏi – đáp với tiếng dế khi Chirp nhấc chân.')
 G.mark('ong · ú ớ', at(14), HIT['dance'], 'break', 'F', 'buzz', 1, mood='funny', arc='build', what='"Honeybees can\'t talk," – Waggle ú ớ', emo='buồn cười',
        why='Gần như ngắt nhạc: chỉ còn ong vo ve trầm và hợp âm mỏng chờ "so they dance!".')
-G.mark('ong · swing "bee bop"', HIT['dance'], at(17), 'swing', 'F', 'pluck xylo buzz', energy=3, mood='playful', arc='build',
-       what='"so they dance!" – Waggle nhảy điệu lắc', emo='vui nhộn',
-       why='Swing "bee bop": bass vo ve đi bộ, ukulele Charleston, hi-hat "ding – da-ding"; xylophone chơi mô-típ bí mật kiểu swing giữa hai câu.')
-G.mark('bản đồ · phiêu lưu', at(17), at(20), 'gallop', 'C', 'pizz horn bell', energy=3, mood='epic', arc='peak',
+G.sec('ong · jig "bee hop"', HIT['dance'], at(17), 'jig', 'F', 'F,Bb C,F', bass='buzz', comp='accordion', lead='flute', kit='bodhran', energy=3, cue=False,
+      mood='playful', arc='build', what='"so they dance!" – Waggle nhảy điệu lắc', emo='vui nhộn',
+      why='Điệu riêng của tập: jig 12/8 trên đúng phách của hình (mỗi phách chia ba), bass vo ve của ong, accordion "oom-cha-cha", trống bodhrán; '
+          'sáo chơi mô-típ bí mật chia ba giữa hai câu, xylophone đáp đi xuống.')
+G.mark('bản đồ · jig phiêu lưu', at(17), at(20), 'jig', 'C', 'pizz horn bell', energy=3, mood='epic', arc='peak',
        what='Bản đồ điệu nhảy: đường bay dẫn tới bông hoa đích nở trùm màn hình; Rollo lăn qua', emo='phiêu lưu, vỡ oà',
-       why='Cao trào của tập (cảnh không lời): pizzicato chạy liên tục, tom và kick, mô-típ bí mật dãn dài trên kèn, chuông rải khi hoa nở, riser vào sổ.')
+       why='Cao trào của tập (cảnh không lời): jig phiêu lưu, pizzicato chia ba chạy liên tục, tom và kick, mô-típ bí mật dãn dài trên kèn, chuông rải khi hoa nở, riser vào sổ.')
 G.mark('sổ · ba sticker', at(20), at(21), 'break', 'C', 'pizz xylo', 2, mood='happy', arc='end', what='Albie còn ngủ; ba sticker dán lên trang',
        emo='hài lòng', why='Hộp nhạc cho Albie ngủ, ba hợp âm Đô – Fa – Sol cao dần theo ba sticker.')
-G.sec('Albie · shuffle ukulele', at(21), 44.3, 'skip', 'C', 'C,Am', bass='bassn', comp='pluck', lead='toypiano', kit='toy', energy=2, cue=False,
+G.sec('Albie · jig ukulele', at(21), 44.3, 'jig', 'C', 'C,Am', bass='bassn', comp='pluck', lead='accordion', kit='bodhran', energy=2, cue=False,
       bpm=112, mood='happy', arc='end', what='Albie: "Six legs? In you go!"', emo='vui, tự hào',
-      why='Shuffle ukulele 112 BPM, không bè trầm dưới giọng trầm của Albie; piano đồ chơi đáp sau câu cửa miệng.')
+      why='Jig ukulele 112 BPM (điệu riêng của tập trở lại ở sổ), không bè trầm dưới giọng trầm của Albie; accordion đáp sau câu cửa miệng.')
 G.sec('lời dặn · nửa nhịp ấm', 44.3, at(23, 3), 'sway', 'C', 'C,Am F,G', bass='pizzbass', comp='pluck', lead='flute', kit='tri', energy=2,
       bpm=112, mood='cute', arc='end', what='"Go outside with a grown-up, and look closely!"', emo='ấm áp, dặn dò',
       why='Nửa nhịp ấm 112 BPM (cảm giác 56) dưới lời dặn, triangle ở phách ba; sáo chơi mô-típ bí mật ngay trước câu (viết tay).')

@@ -32,13 +32,19 @@ của cảnh, nếu có), `mood` (một trong 8 phong cách của `MOODS`), `arc
 'end' kết), `reprise=True` (cố ý lặp lại nhạc của một cảnh trước, ví dụ kết nối về khung đầu của phim lặp). `qa.py` kiểm các
 quy tắc chống trùng lặp của QUALITY.md §4 từ music.json; `_shared/tools/soundplan.py` viết bảng 7 cột ra SOUND-PLAN.md.
 
+**Điệu riêng của tập** (lượt chống trùng giữa các tập, 11/2026 lượt 2). `SIGNATURE` ghi điệu nào thuộc tập nào: jig 12/8 (001),
+calypso (002), swing (003), diễu hành + second-line (004), valse (005), đồng quê (006), bossa nova (007), disco (008), ska (009),
+samba (010). Mỗi Short dùng điệu riêng của mình ≥ 20 % thời lượng và không mượn điệu riêng của tập khác; `channel.py` so bảng
+cảnh nhạc với `music-plan.json` của mọi Short khác (soundplan.py ghi, qa.py kiểm). Tập mới: thêm một điệu mới vào `STYLES`.
+Điệu `jig` chia ba mỗi phách của phim (`'swing': 'trip'`), nên hình vẫn nhún đúng phách 120 BPM.
+
 Mọi nốt dùng nhạc cụ tổng hợp của band.py và toon.py (không mẫu của bên thứ ba).
 """
 import json
 import numpy as np
 from band import (mf, pluck, marimba, bassn, buzzbass, kick, clap, hat, shaker, bell, horn, pizz, xylo, flute, reed, steel, tuba,
                   tom, claves, brush, tamb, celesta, harp, rhodes, vibes, snap, upright, snare, banjo, riser,
-                  piano, toypiano, trumpet, trombone, bassoon, kazoo, accordion, strings, timpani, bongo, triangle)
+                  piano, toypiano, trumpet, trombone, bassoon, kazoo, accordion, strings, timpani, bongo, triangle, ohat, agogo)
 import toon as T
 
 # ---------- nhạc cụ có cao độ: (hàm (midi, dài) → mono, quãng thường dùng cho từng vai) ----------
@@ -96,11 +102,20 @@ KITS = {
     'clap':  {'kick': kick, 'back': lambda v: clap(v), 'hat': lambda v: tamb(v * 1.2), 'perc': lambda v: clap(v * .5)},
     'tri':   {'kick': None, 'back': lambda v: triangle(v * .7, .5), 'hat': lambda v: shaker(v * .6), 'perc': lambda v: triangle(v * .5, .4)},
     'comic': {'kick': kick, 'back': lambda v: T.block(72, v * .6), 'hat': lambda v: shaker(v * .8), 'perc': lambda v: T.block(86, v * .45)},
+    # lượt "chống trùng giữa các tập" (11/2026, lượt 2): bộ gõ của các điệu riêng
+    'bodhran': {'kick': lambda v: tom(43, v * .95), 'back': lambda v: tom(55, v * .6), 'hat': lambda v: shaker(v * .8), 'perc': lambda v: tom(50, v * .45)},
+    'rim':     {'kick': lambda v: kick(v * .6), 'back': lambda v: T.block(90, v * .4), 'hat': lambda v: shaker(v * .7), 'perc': lambda v: brush(v * .6, .1)},
+    'ska':     {'kick': kick, 'back': lambda v: snare(v * .9), 'hat': hat, 'perc': lambda v: T.block(84, v * .35)},
+    'samba':   {'kick': lambda v: tom(40, v * 1.1), 'back': lambda v: T.block(82, v * .5), 'hat': shaker, 'perc': lambda v: agogo(v, v > .55)},
+    'disco':   {'kick': kick, 'back': clap, 'hat': ohat, 'perc': hat},
+    'second':  {'kick': kick, 'back': lambda v: snare(v), 'hat': lambda v: tamb(v * .9), 'perc': lambda v: snare(v * .45, .08)},
 }
 KIT_VI = {'toy': 'đồ chơi (vỗ tay, shaker, phách gỗ)', 'pop': 'pop (kick, vỗ tay, hi-hat)', 'march': 'diễu hành (snare, lục lạc)',
           'jazz': 'jazz (búng tay, hi-hat, chổi)', 'latin': 'latin (phách gỗ, shaker)', 'wood': 'gỗ (mõ, shaker)', 'tom': 'trống tom',
           'brush': 'chổi trống', 'none': '', 'epic': 'timpani + snare', 'bongo': 'bongo + shaker', 'clap': 'vỗ tay + lục lạc',
-          'tri': 'triangle + shaker', 'comic': 'mõ hai cao độ'}
+          'tri': 'triangle + shaker', 'comic': 'mõ hai cao độ', 'bodhran': 'trống bodhrán + shaker', 'rim': 'rim click + shaker',
+          'ska': 'ska (snare, hi-hat, mõ)', 'samba': 'samba (surdo, tamborim, agogô, ganzá)', 'disco': 'disco (kick 4 phách, vỗ tay, hi-hat mở)',
+          'second': 'kèn đồng diễu phố (snare lệch phách, lục lạc)'}
 ROLE_G = {'kick': .7, 'back': .5, 'hat': .62, 'perc': .45, 'bass': 1.1, 'comp': .42, 'arp': .36, 'lead': .42}
 UNDER = {'kick': .8, 'back': .3, 'comp': .6, 'arp': .65}            # dưới lời: tiếng đệm nhỏ lại, giai điệu im
 LOW_KICK = .55                                                      # dưới giọng trầm: kick nhỏ hơn nữa, bass bỏ hẳn
@@ -176,21 +191,56 @@ STYLES = {
                 'arp': [(s, .65 if s == 0 else .5, i, .4) for s, i in zip((0, 3, 6, 8, 11, 14), (2, 3, 1, 2, 0, 1))]},
     'stab': {'kick': [(0, 1), (6, .8)], 'bass': [(0, .95, 'R', .3), (6, .8, 'R', .2)],                                  # dừng nhịp: hai cú chặn rồi để trống cho bất ngờ
              'comp': [(0, 1., None, .25), (6, .85, None, .18)], 'hat': [(12, .4), (14, .4)]},
+    # ---- lượt "chống trùng giữa các tập" (11/2026, lượt 2): mỗi điệu dưới đây là điệu riêng của đúng một tập (SIGNATURE) ----
+    'jig': {'swing': 'trip', 'kick': [(0, 1), (8, .8)], 'back': [(4, .5), (12, .5)],                                 # jig 12/8: mỗi phách của phim chia ba móc đơn,
+            'hat': [(4 * b + k, .55 if k == 0 else .32) for b in range(4) for k in range(3)],                       # "oom-cha-cha" — hình vẫn nhún đúng phách
+            'perc': [(4 * b + 2, .3) for b in range(4)],
+            'bass': [(0, .95, 'R', .4), (4, .7, '5', .3), (8, .85, '8', .4), (12, .7, '5', .3)],
+            'comp': [(4 * b + k, .65 if k == 1 else .5, None, .08) for b in range(4) for k in (1, 2)]},
+    'bossa': {'kick': [(0, .8), (6, .5), (8, .8), (14, .5)],                                                        # bossa nova: rim clave 3-2 (hai ô), bass gốc – năm
+              'back': [(0, .8), (6, .8), (12, .8), (20, .8), (26, .8)], 'hat': [(s, .5 if s % 4 == 0 else .32) for s in O8],
+              'bass': [(0, .9, 'R', .35), (6, .55, '5', .12), (8, .85, '5', .35), (14, .55, 'R', .12)],
+              'comp': [(0, .7, None, .18), (3, .55, None, .12), (6, .65, None, .14), (10, .6, None, .12), (12, .65, None, .16)]},
+    'ska': {'kick': [(0, .9), (8, .85)], 'back': [(4, .9), (12, .9)], 'hat': [(s, .5) for s in O8],                  # ska: đệm chặn ở mọi phách lẻ, bass đi bộ thẳng
+            'perc': [(7, .4), (15, .4)],
+            'bass': [(0, .9, 'R', .4), (4, .7, '3', .4), (8, .85, '5', .4), (12, .7, 'A', .4)],
+            'comp': [(2, .9, None, .06), (6, .9, None, .06), (10, .9, None, .06), (14, .9, None, .06), (15, .45, None, .04)]},
+    'samba': {'kick': [(0, .5), (4, 1), (8, .5), (12, 1)],                                                          # samba: surdo mạnh ở phách 2, tamborim lệch phách
+              'back': [(0, .7), (3, .6), (6, .7), (8, .6), (10, .7), (13, .6)],
+              'hat': [(s, .55 if s % 4 == 3 else .32) for s in range(16)], 'perc': [(0, .7), (2, .45), (6, .7), (10, .45), (12, .7)],
+              'bass': [(0, .8, 'R', .18), (3, .55, 'R', .1), (4, .95, '5', .25), (8, .8, 'R', .18), (11, .55, 'R', .1), (12, .95, '5', .25)],
+              'comp': [(2, .7, None, .08), (5, .6, None, .08), (7, .65, None, .08), (10, .7, None, .08), (13, .6, None, .08), (15, .55, None, .07)]},
+    'disco': {'kick': [(0, 1), (4, .9), (8, 1), (12, .9)], 'back': [(4, .9), (12, .9)],                             # disco: kick bốn phách, hi-hat mở phách lẻ, bass quãng tám
+              'hat': [(2, .8), (6, .8), (10, .8), (14, .8)], 'perc': [(s, .3) for s in range(16) if s % 4 != 2],
+              'bass': [(s, .85 if s % 4 == 0 else .7, 'R' if s % 4 == 0 else '8', .14) for s in O8],
+              'comp': [(0, .6, None, .35), (6, .7, None, .1), (10, .7, None, .1)]},
+    'secondline': {'kick': [(0, .9), (6, .6), (10, .75)],                                                            # second-line: kèn đồng diễu phố New Orleans
+                   'back': [(2, .35), (4, .9), (7, .5), (10, .4), (12, .9), (14, .35), (15, .5)], 'hat': [(s, .4) for s in O8],
+                   'bass': [(0, .9, 'R', .3), (3, .6, '5', .15), (6, .8, '8', .25), (8, .85, '5', .3), (11, .6, 'R', .15), (14, .7, 'A', .2)],
+                   'comp': [(4, .7, None, .12), (7, .6, None, .1), (12, .7, None, .12)]},
 }
 STYLE_VI = {'bounce': 'pop nảy', 'skip': 'shuffle nhảy chân sáo', 'march': 'diễu hành', 'polka': 'polka', 'calypso': 'calypso',
             'swing': 'swing', 'sway': 'nửa nhịp đung đưa', 'gallop': 'phi ngựa (nhịp kép)', 'tiptoe': 'rón rén', 'float': 'rải lơ lửng',
             'country': 'đồng quê', 'tension': 'nhịp tim hồi hộp', 'hush': 'lắng nghe', 'waltz': 'valse 3/4', 'waltzfloat': 'valse lơ lửng',
             'break': 'khựng', 'jingle': 'nhạc hiệu', 'stride': 'ragtime piano', 'hero': 'cao trào anh hùng', 'quest': 'phiêu lưu nước kiệu',
             'sneak': 'rình rập hài', 'sunny': 'ukulele nắng', 'hop': 'nảy lệch phách', 'twinkle': 'hộp nhạc lấp lánh', 'stab': 'dừng nhịp',
-            'lilt': 'lơi 3+3+2'}
+            'lilt': 'lơi 3+3+2', 'jig': 'jig 12/8', 'bossa': 'bossa nova', 'ska': 'ska phách lẻ', 'samba': 'samba lễ hội',
+            'disco': 'disco', 'secondline': 'second-line kèn đồng'}
 STYLE_FEEL = {'sway': .5, 'hush': .5, 'gallop': 2.}                  # nhịp cảm nhận = BPM × hệ số
+# ---------- điệu riêng của từng tập (QUALITY.md §4, chống trùng giữa các tập) ----------
+# Một điệu ở đây chỉ được dùng trong đúng tập đó; mỗi Short có ≥ 1 điệu riêng, chiếm ≥ 20 % thời lượng nhạc (qa.py).
+# Tập mới: thêm một điệu mới vào STYLES rồi ghi vào đây, không mượn điệu riêng của tập khác.
+SIGNATURE = {'jig': 'short-001', 'calypso': 'short-002', 'swing': 'short-003', 'march': 'short-004', 'secondline': 'short-004',
+             'waltz': 'short-005', 'waltzfloat': 'short-005', 'country': 'short-006', 'bossa': 'short-007', 'disco': 'short-008',
+             'ska': 'short-009', 'samba': 'short-010'}
 # ---------- phong cách nhạc (Sound Design Plan) ----------
 MOODS = {'playful': 'Playful Cartoon', 'happy': 'Happy Kids', 'funny': 'Funny Comedy', 'magic': 'Magical Adventure',
          'cute': 'Cute & Sweet', 'bouncy': 'Bouncy Rhythm', 'suspense': 'Suspense & Surprise', 'epic': 'Epic Cartoon'}
 STYLE_MOOD = {'bounce': 'happy', 'skip': 'playful', 'march': 'epic', 'polka': 'funny', 'calypso': 'bouncy', 'swing': 'playful',
               'sway': 'cute', 'gallop': 'bouncy', 'tiptoe': 'suspense', 'float': 'magic', 'country': 'happy', 'tension': 'suspense',
               'hush': 'suspense', 'waltz': 'cute', 'waltzfloat': 'magic', 'stride': 'funny', 'hero': 'epic', 'quest': 'magic',
-              'sneak': 'suspense', 'sunny': 'happy', 'hop': 'bouncy', 'twinkle': 'cute', 'stab': 'suspense', 'lilt': 'magic', 'jingle': 'epic'}
+              'sneak': 'suspense', 'sunny': 'happy', 'hop': 'bouncy', 'twinkle': 'cute', 'stab': 'suspense', 'lilt': 'magic', 'jingle': 'epic',
+              'jig': 'playful', 'bossa': 'cute', 'ska': 'bouncy', 'samba': 'bouncy', 'disco': 'happy', 'secondline': 'funny'}
 ARCS = {'open': 'Mở đầu', 'build': 'Diễn biến', 'peak': 'Cao trào', 'end': 'Kết'}
 TRANS = {'fill': 'trống dồn', 'riser': 'riser + chũm chọe ngược', 'pickup': 'nốt mồi của nhạc cụ mới', 'run': 'chuỗi nốt đi xuống',
          'gliss': 'vuốt đàn hạc', 'swell': 'dâng lấp lánh', 'drop': 'còi trượt xuống "bwomp"', 'tail': 'ngân đuôi, cảnh sau vào mềm',
@@ -304,7 +354,8 @@ class Groove:
     def _step_t(self, s, swing, spb, beat=None, origin=0.):
         beat = beat or self.beat
         b, sub = divmod(s % spb, 4); base = (s // spb) * spb // 4 + b
-        frac = {0: 0, 1: .25, 2: 2 / 3 if swing else .5, 3: 5 / 6 if swing else .75}[sub]
+        if swing == 'trip': frac = (0, 1 / 3, 2 / 3, 5 / 6)[sub]           # chia ba (jig 12/8): móc kép 0, 1, 2 = ba móc đơn của phách
+        else: frac = {0: 0, 1: .25, 2: 2 / 3 if swing else .5, 3: 5 / 6 if swing else .75}[sub]
         return origin + (base + frac) * beat
     def _chord_at(self, S, t):
         """Hợp âm đang chơi lúc t và hợp âm của ô nhịp sau. Hợp âm thứ k của chuỗi thuộc ô nhịp thứ k tính từ ô chứa t0."""

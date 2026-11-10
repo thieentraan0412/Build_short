@@ -262,6 +262,22 @@ if MS:
             row(G_, 'Bảng Sound Design Plan', OK if sp_ok and rows_ == len(MS) and not nowhy else WARN,
                 ('SOUND-PLAN.md ' + (f'{rows_}/{len(MS)} cảnh' if sp_ok else 'chưa có')) + (f"; thiếu nội dung / cảm xúc / lý do: {', '.join(nowhy)}" if nowhy else ''),
                 'SOUND-PLAN.md (python _shared/tools/soundplan.py) có đủ mọi cảnh nhạc; mỗi cảnh ghi what, emo, why')
+            # ---- chống trùng giữa các tập (11/2026, lượt 2; QUALITY.md §4): so với music-plan.json của các Short khác ----
+            from channel import check as _cross
+            from groove import STYLE_VI, INST_VI
+            X = _cross(FILM, MS, DUR); sv = lambda k: STYLE_VI.get(k, k); iv_ = lambda k: INST_VI.get(k, k)
+            row(G_, 'Điệu riêng của tập', OK if X['sig_ok'] else WARN,
+                (', '.join(sv(s) for s in X['own']) or 'chưa có điệu nào trong SIGNATURE') + f" · {X['sig_share']:.0%} thời lượng"
+                + (f"; mượn điệu riêng của: {', '.join(sv(s['style']) + ' (' + ep + ')' for s, ep in X['foreign'])}" if X['foreign'] else ''),
+                '≥ 1 điệu riêng (SIGNATURE trong groove.py) chiếm ≥ 20 % thời lượng; không dùng điệu riêng của tập khác')
+            dd_ = [f"{s['name']} = {n.replace('short-', '')} {o['name']}" for s, n, o in X['dups']]
+            cc_ = [f"{sv(k[0])} + {iv_(k[1])} ({len(v)} tập)" for k, v in X['common'].items()]
+            row(G_, 'Không trùng cảnh nhạc của Short khác', OK if X['dup_ok'] else WARN,
+                f"so với {len(X['compared'])} Short; " + ('; '.join(x for x in (f"trùng công thức: {', '.join(dd_[:4])}" + (f' (+{len(dd_) - 4})' if len(dd_) > 4 else '') if dd_ else '',
+                                                                                  f"quá quen: {', '.join(cc_)}" if cc_ else '') if x) or 'không cảnh nào trùng'),
+                'không cảnh nào cùng điệu + nhạc cụ hát chính + đệm + bộ gõ với một cảnh của Short khác; cặp điệu + nhạc cụ chính ở < 3 Short khác (music-plan.json)')
+            row(G_, 'Nhạc vui nhộn (hồi hộp, giọng thứ)', OK if X['cheer_ok'] else WARN,
+                f"hồi hộp + khựng {X['sus_share']:.0%}, giọng thứ {X['minor_share']:.0%} thời lượng", '≤ 20 % mỗi mục: phần lớn tập là nhạc vui, giọng trưởng')
 else:
     row('4 Âm thanh', 'Nhạc đổi theo cảnh', WARN, 'không có out/music.json', 'dựng nhạc bằng _shared/audio/groove.py (hoặc ghi bảng cảnh bằng Groove.mark) để kiểm')
 from scipy.signal import stft as _stft

@@ -168,6 +168,7 @@ Tập A đọc ở tốc độ chuẩn (`PACE = 1`).
 ## 8. Nhạc, tiếng động, chữ
 
 - **Màu nhạc riêng: "Glow-Code Bossa"** (Si giáng trưởng, 120 BPM). Chi tiết: [MUSIC.md](MUSIC.md).
+  - **Điệu riêng của tập (11/2026 lượt 2, chống trùng giữa các tập): bossa nova.** Không dùng điệu riêng của tập khác; cảnh sổ, gag và cao trào phối theo điệu của tập. Chi tiết: [MUSIC.md](MUSIC.md), [SOUND-PLAN.md](SOUND-PLAN.md), [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
   - Sáo hát giai điệu; đàn hạc và marimba rải; bass gảy; bộ gõ latin (phách gỗ, shaker).
   - Mỗi cú nháy của đom đóm là một nốt glockenspiel: mật mã ánh sáng cũng là một câu nhạc.
   - Ở cảnh đặc trưng, tiếng dế của Chirp làm bộ gõ và cả ban nhạc vào.

@@ -49,14 +49,14 @@ AVOID = [(S0 - .05, S1 + .1), (HIT['ask'] - .05, HIT['ask'] + .6), (HIT['clack']
 # Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển.
 # Giữ 120 BPM ở móc (vòng lặp), ở cảnh cả vườn (Chirp gáy và mọi người nhún đúng phách của hình) và ở cảnh kết nối về khung đầu.
 G = Groove(M, BEAT, LINES, meter=4, seed=7, avoid=AVOID, plan=True)
-G.sec('móc · đêm lấp lánh', 0, S0, 'bounce', 'Bb', 'Bb F', bass='bassn', comp='marimba', lead='glock', kit='latin', energy=2, cue=False,
+G.sec('móc · bossa lấp lánh', 0, S0, 'bossa', 'Bb', 'Bbmaj7 F', bass='bassn', comp='rhodes', lead='glock', kit='rim', energy=2, cue=False,
       bpm=120, mood='playful', arc='open', what='Blink vụt qua kính, Miss Loupe giật nảy; "Could your tummy glow?" – "My tummy can!", đuôi bùng sáng',
-      emo='bất ngờ, tò mò', why='Pop nảy latin vào ngay giây 0 cho cú giật mình; glockenspiel là "tiếng của ánh sáng" xuyên suốt tập, nên móc giới thiệu nó trước.')
+      emo='bất ngờ, tò mò', why='Điệu riêng của tập: bossa nova vào ngay giây 0 (rim clave, phím điện, bass gốc – năm) cho đêm vườn lấp lánh; glockenspiel là "tiếng của ánh sáng" xuyên suốt tập, nên móc giới thiệu nó trước.')
 G.mark('logo · nhạc hiệu 0,8 s', S0, S1, 'jingle', 'Bb', 'horn marimba bell', 3, mood='epic', arc='open', what='Máy lao vào mặt kính, logo bật lên',
        emo='phấn khích', why='Nhạc hiệu 0,8 s của kênh (kèn đồ chơi, marimba tí hon, chuông) ở nốt chủ Si giáng, nối thẳng vào cảnh sau.')
-G.sec('bí mật 1 · ánh sáng lạnh', S1, HIT['hold'][0] + 1.1, 'float', 'Gm', 'Gm7 Ebmaj7', bass='upright', arp='harp', lead='flute', energy=1,
+G.sec('bí mật 1 · ánh sáng lạnh', S1, HIT['hold'][0] + 1.1, 'float', 'Bb', 'Bbmaj7 Ebmaj7', bass='upright', arp='celesta', lead='flute', energy=1,
       bpm=100, mood='magic', arc='build', what='"Let\'s zoom in!" Trong kính lớn, đèn đuôi của Blink sáng nhịp nhàng: "Fireflies make cold light!"',
-      emo='kỳ diệu, tò mò', why='Lần đầu nhìn vào trong kính: chậm lại 100 BPM, đàn hạc rải lơ lửng, sáo hát trong khoảng nghỉ lời, Sol thứ cho màu đêm huyền bí.')
+      emo='kỳ diệu, tò mò', why='Lần đầu nhìn vào trong kính: chậm lại 100 BPM, celesta rải lơ lửng như ánh sáng lạnh, sáo hát trong khoảng nghỉ lời; Si giáng trưởng màu maj7 cho đêm kỳ diệu mà vẫn vui.')
 G.sec('kẹo dẻo · tíc tắc', HIT['hold'][0] + 1.1, HIT['snap1'], 'tiptoe', 'Bb', 'Bb Gm', bass='pizzbass', comp='pizz', lead='bassoon', kit='wood', energy=1,
       bpm=108, mood='funny', arc='build', what='Crumb hơ kẹo dẻo lên bụng Blink, chờ tíc tắc… "Look! No fire!" rồi nhồm nhoàm ăn',
       emo='hài hước, chờ đợi', why='Trò thử kẹo dẻo là gag nhỏ: pizzicato rón rén theo tiếng tíc tắc, bassoon trầm "bùm-bùm" đáp sau "No fire!", mõ gỗ giữ nhịp chờ.')
@@ -65,31 +65,33 @@ G.sec('đom đóm là ruồi? · hồi hộp', HIT['snap1'], HIT['hush'][0], 'te
       emo='hồi hộp, thắc mắc', why='Câu hỏi đánh đố: nhịp tim 96 BPM, trống tom và vibraphone run run giữ hồi hộp tới chỗ khựng ngay trước đáp án.')
 G.mark('khựng trước "Nope!"', HIT['hush'][0], HIT['hush'][1], 'break', 'Gm', '', 1, mood='suspense', arc='build', what='Bong bóng nghĩ phồng lên… khựng',
        emo='nín thở', why='Khoảng lặng có chủ đích 0,6 s (chỉ còn hợp âm rất nhỏ và trống lăn thì thầm) để "Nope!" bật ra rõ.')
-G.sec('họ bọ cánh cứng · đồng diễn', HIT['hush'][1], HIT['snap2'], 'hop', 'Bb', 'Bb Eb F Bb', bass='bassn', comp='piano', lead='xylo', kit='bongo', energy=3,
+G.sec('họ bọ cánh cứng · đồng diễn', HIT['hush'][1], HIT['snap2'], 'hop', 'Bb', 'Bb Eb F Bb', bass='bassn', comp='marimba', lead='mute', kit='bongo', energy=3,
       bpm=126, mood='bouncy', arc='build', what='"Nope!" Dot lăn vào: "I\'m a little beetle!" – Blink và Dot cùng bật tấm cánh tách tách',
-      emo='bất ngờ, vui', why='Đáp án bật ra thành màn đồng diễn: nhảy lệch phách 126 BPM, piano chặn hợp âm, bongo, xylophone đáp theo mỗi cú bật cánh.')
+      emo='bất ngờ, vui', why='Đáp án bật ra thành màn đồng diễn: nhảy lệch phách 126 BPM, marimba chặn hợp âm, bongo, trumpet bịt "wah" đáp theo mỗi cú bật cánh.')
 G.sec('"No!" · lén lút', HIT['snap2'], HIT['code'][0] - .5, 'sneak', 'Eb', 'Eb Cm', bass='tuba', comp='accordion', lead='kazoo', kit='jazz', energy=1,
       bpm=104, mood='funny', arc='build', what='"Blink, any more secrets?" – "No!" nhưng đuôi nháy lộ… "Okay, yes."',
       emo='tinh nghịch, hài', why='Tật chối "No!… okay, yes" là gag tính cách: điệu rình rập 104 BPM, tuba staccato, accordion búng nhẹ, kazoo "vè vè" như cười trộm.')
-G.sec('mật mã · lấp lánh', HIT['code'][0] - .5, HIT['wide'][0], 'twinkle', 'Bb', 'Bbmaj7 Gm7', bass='bassn', arp='glock', lead='celesta', kit='tri', energy=1,
+G.sec('mật mã · lấp lánh', HIT['code'][0] - .5, HIT['wide'][0], 'twinkle', 'Bb', 'Bbmaj7 Gm7', bass='bassn', arp='rhodes', lead='celesta', kit='rim', energy=1,
       bpm=112, mood='magic', arc='build', what='"Some fireflies flash a secret code!" Blink nháy ngắn-ngắn-dài, một bạn ở xa nháy đáp',
-      emo='kỳ diệu, bí ẩn', why='Mật mã ánh sáng là một câu nhạc: hộp nhạc 3+3+2 ở dải cao, triangle, celesta đáp đúng lúc bạn ở xa nháy lại.')
-G.sec('cả vườn · ban nhạc đêm', HIT['wide'][0], HIT['snap3'], 'hero', 'Bb', 'Bb F Gm Eb', bass='tuba', comp='piano', lead='trumpet', arp='strings', kit='epic', energy=3,
+      emo='kỳ diệu, bí ẩn', why='Mật mã ánh sáng là một câu nhạc: hộp nhạc 3+3+2 trên phím điện, rim click của bossa, celesta đáp đúng lúc bạn ở xa nháy lại.')
+G.sec('cả vườn · ban nhạc đêm', HIT['wide'][0], HIT['snap3'], 'hero', 'Bb', 'Bb F Gm Eb', bass='tuba', comp='piano', lead='horn', arp='strings', kit='epic', energy=3,
       bpm=120, mood='epic', arc='peak', what='"Light up, everyone!" Cả vườn nháy theo nhịp dế của Chirp; Rollo lăn trên mặt trăng',
-      emo='phấn khích, vỡ oà', why='Cao trào duy nhất của tập: dàn dây spiccato, trumpet, timpani và tiếng dế mỗi phách. Giữ 120 BPM vì mọi người nhún đúng phách của hình.')
-G.sec('sổ · ukulele nắng', HIT['snap3'], HIT['flip'][0], 'sunny', 'F', 'F Bb', bass='bassn', comp='pluck', lead='toypiano', kit='clap', energy=2,
+      emo='phấn khích, vỡ oà', why='Cao trào duy nhất của tập: dàn dây spiccato, kèn đồ chơi hát (không dùng trumpet như cao trào của 003), timpani và tiếng dế mỗi phách. Giữ 120 BPM vì mọi người nhún đúng phách của hình.')
+G.sec('sổ · bossa sáo', HIT['snap3'], HIT['flip'][0], 'bossa', 'F', 'Fmaj7 Bbmaj7', bass='bassn', comp='pluck', lead='flute', kit='rim', energy=2,
       bpm=116, mood='happy', arc='end', what='Sticker thứ ba dán vào sổ; Albie đếm "1 2 3": "Six legs? In you go!", Blink lao vào trang',
-      emo='vui, thoả mãn', why='Sau cao trào là niềm vui thu hoạch: ukulele quạt, vỗ tay, piano đồ chơi; dưới giọng trầm của Albie lớp nhịp tự bỏ bass.')
+      emo='vui, thoả mãn', why='Sau cao trào là niềm vui thu hoạch: bossa nova của tập trở lại, ukulele gảy kiểu guitar bossa, sáo đáp sau câu cửa miệng; dưới giọng trầm của Albie lớp nhịp tự bỏ bass.')
 G.sec('gag · đêm thì thầm', HIT['flip'][0], HIT['wink'], 'tiptoe', 'Gm', 'Gm Cm', bass='pizzbass', comp='pizz', lead='reed', kit='comic', energy=1,
       bpm=100, mood='suspense', arc='end', what='Ánh lóe trên kính nháy… "Is it winking at me?"',
       emo='ngờ vực, buồn cười', why='Gag cần im để nghe từng cú lóe: rón rén 100 BPM, mõ hai cao độ, clarinet hỏi "hử?" giữa các cú lóe.')
-G.sec('nháy đáp · vui', HIT['wink'], HIT['recall'], 'calypso', 'Bb', 'Bb Eb', bass='bassn', comp='marimba', lead='steel', kit='latin', energy=3,
+G.sec('nháy đáp · vui', HIT['wink'], HIT['recall'], 'bossa', 'Bb', 'Bbmaj7 Eb', bass='bassn', comp='rhodes', lead='marimba', kit='rim', energy=3,
       bpm=132, mood='bouncy', arc='end', what='Miss Loupe nháy mắt, đốm sáng nhỏ nháy đáp ba lần; Blink vui sướng',
-      emo='vui, ấm áp', why='Gag được giải: calypso nhanh nhất tập (132 BPM), trống thép reo theo ba cú nháy đáp, màu latin của tập trở lại.')
+      emo='vui, ấm áp', why='Gag được giải: bossa nhanh nhất tập (132 BPM), marimba reo theo ba cú nháy đáp, màu bossa của tập trở lại. (11/2026 lượt 2: thay calypso, điệu riêng của 002.)')
 G.sec('câu hỏi · về khung đầu', HIT['recall'], DUR, 'bounce', 'Bb', 'Bb F', bass='bassn', comp='harp', lead='glock', kit='pop', energy=2,
       bpm=120, mood='happy', arc='end', reprise=True, what='Chữ móc trở lại: "Can YOU blink a secret code?" rồi về khung đầu',
       emo='háo hức, mời gọi', why='Lặp có chủ đích hoà âm Si giáng của móc ở 120 BPM để vòng lặp liền, nhưng đổi đệm sang đàn hạc và bộ gõ pop cho khác mở đầu.')
 G.answer(L['L05']['t'] + L['L05']['dur'] + .1, L['L12']['t'] + L['L12']['dur'] + .08, HIT['hush'][1] + .66)   # câu đáp viết tay bên dưới ("ha-ha", "hì", "bwomp")
+# v2 (11/2026, lượt 2: chống trùng giữa các tập): bossa nova là điệu riêng của tập (móc, sổ, nháy đáp); bỏ calypso (điệu riêng của 002);
+# đổi nhạc cụ ở các cảnh trùng công thức với 003, 004, 005; cảnh "ánh sáng lạnh" sang Si giáng trưởng.
 G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Glow-Code Bossa" (Si giáng trưởng)')
 
 # — Hook 0–3 s: hợp âm Si giáng ở giây 0; đuôi bùng sáng: marimba chạy lên —
