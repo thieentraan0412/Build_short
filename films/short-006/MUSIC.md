@@ -1,5 +1,17 @@
 # SHORT-006 · Soundtrack Timeline
 
+## Lượt Sound Design Plan (11/2026) · bản hiện hành
+
+Nhạc của tập được dựng lại theo Sound Design Plan ([`QUALITY.md`](../../_shared/QUALITY.md) §4, các mục *(SDP)*): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển cảnh. **Bảng đầy đủ 7 cột, lý do chọn nhạc từng cảnh và các chỗ chuyển cảnh: [`SOUND-PLAN.md`](SOUND-PLAN.md)** (sinh từ `mix.py` bằng `_shared/tools/soundplan.py`).
+
+- **Phong cách nhạc (4):** Happy Kids ×3, Bouncy Rhythm ×2, Suspense & Surprise ×1, Funny Comedy ×1.
+- **BPM (6 mức):** 100, 112, 116, 120, 132, 136. Trước lượt này cả tập chạy 120 BPM. Giữ 120 BPM ở: móc · đồng quê, câu hỏi · về khung đầu (hình nhún theo phách, nốt viết tay theo lưới phim, hoặc nối vòng lặp).
+- **Nhạc cụ hát chính (6):** xylophone, trumpet bịt, celesta, kazoo, piano đồ chơi, clarinet. Hai cảnh kề nhau không cùng nhạc cụ.
+- **Nhạc cụ và bộ gõ mới của lượt này:** accordion, kazoo, mõ hai cao độ, piano đồ chơi, trumpet bịt, vỗ tay + lục lạc.
+- **Giữ nguyên:** màu nhạc và giọng của tập, mô-típ bí mật, nhạc hiệu, các điểm nhấn viết tay, cường độ theo cảnh (`LEVEL`), tiếng động và giọng.
+
+Các bảng cảnh nhạc bên dưới là của các lượt trước, giữ lại để so sánh.
+
 ## Màu nhạc của tập: "Barnyard Hoedown"
 
 Tập này kể về một "trại bò" tí hon, nên nhạc là một điệu đồng quê ở Mi trưởng:
@@ -26,7 +38,7 @@ Banjo cũng có ở SHORT-004, nhưng ở đó nó nằm trong điệu diễu h�
 
 Không thêm nhạc cụ mới vào `band.py`.
 
-## Bảng cảnh nhạc (lớp nhịp theo cảnh, `_shared/audio/groove.py`)
+## Bảng cảnh nhạc (lớp nhịp theo cảnh, `_shared/audio/groove.py`) · bản trước Sound Design Plan
 
 `mix.py` gọi `G.sec` cho từng cảnh; `G.save` ghi `out/music.json` để `qa.py` kiểm.
 

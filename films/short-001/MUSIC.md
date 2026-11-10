@@ -1,9 +1,21 @@
 # SHORT-001 · Soundtrack Timeline
 
-> **Bản hiện hành:** lượt nhạc nền sinh động (11/2026), ở [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-hiện-hành). Lớp đệm của các bảng dưới đây đã được thay bằng lớp nhịp theo cảnh; các điểm nhấn viết tay giữ nguyên.
+> **Bản hiện hành:** lượt Sound Design Plan (11/2026), ngay bên dưới; bảng đầy đủ ở [`SOUND-PLAN.md`](SOUND-PLAN.md). Lượt nhạc nền sinh động (11/2026, [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-trước-sound-design-plan)) và các bảng cũ hơn giữ lại để so sánh; các điểm nhấn viết tay vẫn dùng.
 
 Lượt nhạc nền theo `Task.md` (*Điều chỉnh nhạc nền sinh động*). Hình, lời, thời lượng 52,0 s và tiếng động giữ nguyên. Chỉ phần nhạc trong [mix.py](mix.py) được viết lại.
 Bản trước: `out/short-001-v3.mp4`, `out/mix-v3.py`.
+
+## Lượt Sound Design Plan (11/2026) · bản hiện hành
+
+Nhạc của tập được dựng lại theo Sound Design Plan ([`QUALITY.md`](../../_shared/QUALITY.md) §4, các mục *(SDP)*): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển cảnh. **Bảng đầy đủ 7 cột, lý do chọn nhạc từng cảnh và các chỗ chuyển cảnh: [`SOUND-PLAN.md`](SOUND-PLAN.md)** (sinh từ `mix.py` bằng `_shared/tools/soundplan.py`).
+
+- **Phong cách nhạc (7):** Suspense & Surprise ×3, Magical Adventure ×3, Happy Kids ×2, Funny Comedy ×1, Playful Cartoon ×1, Epic Cartoon ×1, Cute & Sweet ×1.
+- **BPM (4 mức):** 104, 112, 120, 126. Trước lượt này cả tập chạy 120 BPM. Giữ 120 BPM ở: rình · rón rén, giẫm · polka, bướm bay · đàn hạc 3+3+2, dế · rón rén trong đêm, tai ở chân · bừng sáng, ong · swing "bee bop", bản đồ · phiêu lưu, nhón chân (hình nhún theo phách, nốt viết tay theo lưới phim, hoặc nối vòng lặp).
+- **Nhạc cụ hát chính (8):** xylophone, dây pizzicato, sáo, celesta, marimba, clarinet, kèn đồ chơi, piano đồ chơi. Hai cảnh kề nhau không cùng nhạc cụ.
+- **Nhạc cụ và bộ gõ mới của lượt này:** piano đồ chơi, triangle.
+- **Giữ nguyên:** màu nhạc và giọng của tập, mô-típ bí mật, nhạc hiệu, các điểm nhấn viết tay, cường độ theo cảnh (`LEVEL`), tiếng động và giọng.
+
+Các bảng cảnh nhạc bên dưới là của các lượt trước, giữ lại để so sánh.
 
 ## Màu nhạc của tập: "Tổ khúc khu vườn"
 
@@ -78,7 +90,7 @@ Cảnh bản đồ không có lời nên nhạc đầy nhất ở đó; các c�
 - **Chỗ hụt tiếng:** không có chỗ tụt quá 24 dB trong 50 ms.
 - **Phổ:** phần trên 6 kHz chiếm 3,7% năng lượng (bản trước 3,5%), không chói hơn.
 
-## Lượt nhạc nền sinh động (11/2026) · bản hiện hành
+## Lượt nhạc nền sinh động (11/2026) · bản trước Sound Design Plan
 
 Theo `Task.md`: *"Cần thêm nhiều nhạc nền sinh động, trong 1 short nhạc nền đang không có sự thay đổi."* Hình, lời, tiếng động và các điểm nhấn nhạc viết tay (mô-típ bí mật, stinger, khựng, nhạc hiệu, nối vòng lặp) giữ nguyên. Lớp đệm đứng yên được thay bằng **lớp nhịp theo cảnh** ([`_shared/audio/groove.py`](../../_shared/audio/groove.py)):
 - **Mỗi cảnh một điệu.** Mỗi cảnh có điệu, vòng hoà âm, bộ nhạc cụ, bộ trống và mức năng lượng riêng. Hai cảnh kề nhau khác nhau ở ít nhất hai trong năm thứ đó.

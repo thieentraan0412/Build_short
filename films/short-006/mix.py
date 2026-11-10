@@ -43,16 +43,32 @@ def strum(inst, ns, t, g=.4, d=None, spread=.012):
 
 AVOID = [(2.05, 2.3), (HIT['lensIn'][0] - .05, HIT['lensIn'][0] + .4), (HIT['pop'] - .05, HIT['pop'] + .6), (HIT['clonk'] - .05, HIT['clonk'] + .3),
          (HIT['splash'] - .05, HIT['splash'] + .5), (HIT['hitLens'] - .05, HIT['hitLens'] + .6), (HIT['recall'], DUR)]
-G = Groove(M, BEAT, LINES, meter=4, seed=6, avoid=AVOID)
-G.sec('móc · đồng quê', 0, HIT['lensIn'][0], 'country', 'E', 'E B7', bass='tuba', comp='banjo', lead='xylo', kit='wood', energy=2, cue=False)
-G.sec('Miss Loupe vào · phi ngựa', HIT['lensIn'][0], HIT['zoom'][0], 'gallop', 'E', 'A E', bass='tuba', comp='pluck', lead='reed', kit='toy', energy=3)
-G.sec('kính lớn · rón rén', HIT['zoom'][0], HIT['pop'], 'tiptoe', 'C#m', 'C#m A', bass='pizzbass', comp='pizz', lead='celesta', kit='wood', energy=1)
-G.sec('pop · đồng quê sáng', HIT['pop'], HIT['snap'], 'country', 'E', 'E A B7', bass='tuba', comp='banjo', lead='reed', kit='toy', energy=3)
-G.sec('sổ · nhảy chân sáo', HIT['snap'], HIT['flip'][0], 'skip', 'A', 'A E', bass='bassn', comp='marimba', lead='xylo', kit='brush', energy=2)
-G.sec('giọt nảy · polka', HIT['flip'][0], HIT['laugh'], 'polka', 'E', 'E B7', bass='tuba', comp='pluck', lead='xylo', kit='toy', energy=3)
-G.sec('câu hỏi · về khung đầu', HIT['laugh'], DUR, 'bounce', 'E', 'E A', bass='bassn', comp='banjo', lead='reed', kit='pop', energy=2, no=('comp',))   # câu hỏi kết phải rõ
+# Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển.
+# Giữ 120 BPM ở móc và ở cảnh kết về khung đầu (vòng lặp); các cảnh giữa đổi BPM theo nội dung.
+G = Groove(M, BEAT, LINES, meter=4, seed=6, avoid=AVOID, plan=True)
+G.sec('móc · đồng quê', 0, HIT['lensIn'][0], 'country', 'E', 'E B7', bass='tuba', comp='banjo', lead='xylo', kit='wood', energy=2, cue=False,
+      bpm=120, mood='happy', arc='open', what='Crumb ôm con rệp: "What if your pet made you sweets?" – "My pet does!"', emo='tò mò, vui',
+      why='"Barnyard Hoedown": banjo, tuba "oom-pah", phách gỗ như vó ngựa; xylophone "ta-da" giữa hai câu.')
+G.sec('Miss Loupe vào · phi ngựa', HIT['lensIn'][0], HIT['zoom'][0], 'gallop', 'E', 'A E', bass='tuba', comp='pluck', lead='mute', kit='toy', energy=3,
+      bpm=116, mood='bouncy', arc='open', what='Miss Loupe nhảy vào: "Let\'s zoom in!"', emo='háo hức',
+      why='Phi ngựa (nhịp kép) cho cú nhảy vào, banjo chạy lên (viết tay), trumpet bịt "wah" đáp sau "zoom in".')
+G.sec('kính lớn · rón rén', HIT['zoom'][0], HIT['pop'], 'tiptoe', 'C#m', 'C#m A', bass='pizzbass', comp='pizz', lead='celesta', kit='wood', energy=1,
+      bpm=100, mood='suspense', arc='build', what='Trong kính: Crumb gõ nhẹ con rệp, giọt ngọt phồng dần: "Some ants tap aphids for sweet drops!"', emo='hồi hộp, chờ đợi',
+      why='Rón rén 100 BPM ở Đô♯ thứ, pizzicato đi lên từng nốt theo giọt ngọt phồng (viết tay), celesta chờ.')
+G.sec('pop · tiny cows', HIT['pop'], HIT['snap'], 'country', 'E', 'E A B7', bass='tuba', comp='banjo', lead='kazoo', kit='comic', energy=3,
+      bpm=132, mood='funny', arc='peak', what='Giọt ngọt "pop!", Crumb uống: "Like milking tiny cows!" – con rệp "clonk"', emo='phấn khích, buồn cười',
+      why='Cao trào: đồng quê nhanh 132 BPM, kazoo "vè vè" như tiếng cười, mõ hai cao độ cho tiếng "clonk"; "pop!" là mô-típ bí mật Mi–Sol♯–Si (viết tay).')
+G.sec('sổ · ukulele nắng', HIT['snap'], HIT['flip'][0], 'sunny', 'A', 'A E', bass='bassn', comp='pluck', lead='toypiano', kit='clap', energy=2,
+      bpm=112, mood='happy', arc='end', what='Sticker dán vào sổ; Albie: "Six legs? In you go!" – Crumb nhảy ùm vào trang', emo='vui, tự hào',
+      why='Ukulele quạt 112 BPM, vỗ tay, piano đồ chơi; xylophone trượt xuống khi Crumb nhảy ùm (viết tay).')
+G.sec('giọt nảy · polka', HIT['flip'][0], HIT['laugh'], 'polka', 'E', 'E B7', bass='tuba', comp='accordion', lead='xylo', kit='toy', energy=3,
+      bpm=136, mood='bouncy', arc='end', what='Giọt ngọt nảy khỏi trang, Crumb đuổi theo: "Wait! Come back!" – giọt trúng mặt kính', emo='tinh nghịch, náo nhiệt',
+      why='Polka 136 BPM, accordion, mỗi cú nảy một nốt xylophone cao dần (viết tay), khựng khi giọt trúng kính.')
+G.sec('câu hỏi · về khung đầu', HIT['laugh'], DUR, 'bounce', 'E', 'E A', bass='bassn', comp='banjo', lead='reed', kit='pop', energy=2, no=('comp',),
+      bpm=120, mood='happy', arc='end', what='Mọi người cười: "What would YOUR pet make?" – về khung đầu', emo='vui, mời gọi',
+      why='Pop nảy nhẹ ở 120 BPM dẫn về hợp âm Mi của khung đầu; bỏ đệm để câu hỏi kết rõ, clarinet đáp.')
 G.answer(2.1, HIT['gulp'][1] + .05, HIT['hitLens'] + .35)       # câu đáp viết tay bên dưới ("ta-da" nhỏ, "ực", "hả?")
-G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Barnyard Hoedown" (Mi trưởng)')
 
 # — Hook 0–3 s: hợp âm Mi ở giây 0 (tuba, banjo); "ta-da" giữa câu móc và câu của Crumb —
 M(tuba(40, .5), 0., 1.0); strum(banjo, (64, 68, 71, 76), 0., .35, .5); M(T._ting(mf(100), .5), 0., .14, .4)

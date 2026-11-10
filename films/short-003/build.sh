@@ -18,6 +18,7 @@ node core/render/events.mjs "$HERE" --size 1080x1920
 node core/render/readcheck.mjs "$HERE" --size 1080x1920
 node core/render/video.mjs "$HERE" --fps 30 --workers 4 --size 1080x1920 --out "$HERE/out/video.mp4"
 "$PY" "$HERE/mix.py"
+"$PY" _shared/tools/soundplan.py "$HERE"                                    # bảng Sound Design Plan → SOUND-PLAN.md (QUALITY.md §4)
 sh core/render/mux.sh "$HERE/out/video.mp4" "$HERE/out/mix.wav" "$HERE/short-003.mp4" 30 0
 "$PY" core/render/srt.py "$HERE/cards.json" "$HERE/short-003.srt"
 ffmpeg -v error -y -ss 0 -i "$HERE/short-003.mp4" -frames:v 1 -q:v 2 "$HERE/poster.jpg"

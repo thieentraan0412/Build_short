@@ -49,19 +49,41 @@ MEL = {                                         # giai điệu hộp nhạc (ch�
 # — lớp nhịp theo cảnh (v3): bảng ở MUSIC.md. Ô nhịp valse 1,5 s (ba phách); các điệu bốn phách (rón rén, polka, lắng) dùng ô 2 s —
 AVOID = [(2.25, 2.62), (HIT['lensIn'] - .05, HIT['lensIn'] + .4), (HIT['match'] - .05, HIT['match'] + .6), (HIT['nuzzle'][0] + .05, HIT['nuzzle'][0] + .65),
          (16.6, 16.95), (HIT['glass'][1] + .5, HIT['glass'][1] + 1.0), (HIT['laugh'], DUR)]
-G = Groove(M, BEAT, LINES, meter=3, seed=5, avoid=AVOID)
-G.sec('chạm râu · valse', 0, at(2), 'waltz', 'A', 'A E7', bass='pizzbass', comp='harp', lead='celesta', kit='toy', energy=2, cue=False)
-G.sec('Miss Loupe vào · valse đầy', at(2), HIT['zoom'], 'waltz', 'D', 'D E7', bass='bassn', comp='pluck', lead='xylo', kit='toy', energy=3)
-G.sec('kính ngửi · mơ màng', HIT['zoom'], HIT['match'], 'waltzfloat', 'A', 'A A D', bass='pizzbass', arp='celesta', lead='flute', energy=1)
-G.sec('cùng mùi · phong cầm', HIT['match'], HIT['stranger'][0], 'waltz', 'A', 'A A D', bass='pizzbass', comp='reed', lead='celesta', kit='brush', energy=2)
-G.sec('chú kiến lạ · rón rén', HIT['stranger'][0], HIT['clash'], 'tiptoe', 'F#m', 'F#m Bm', bass='pizzbass', comp='pizz', lead='reed', kit='wood', energy=1)
-G.sec('khác mùi · khựng', HIT['clash'], HIT['stamp'], 'break', 'F#m', 'F#m', cue=False)
-G.sec('sổ · valse marimba', HIT['stamp'], HIT['flip'][0], 'waltz', 'A', 'A D E7', bass='pizzbass', comp='marimba', lead='xylo', kit='brush', energy=2)
-G.sec('lật trang · polka lon ton', HIT['flip'][0], HIT['glass'][0], 'polka', 'A', 'A E7', bass='pizzbass', comp='pizz', lead='xylo', kit='toy', energy=2)
-G.sec('squeak · lắng', HIT['glass'][0], HIT['laugh'], 'hush', 'Bm', 'Bm E7', arp='celesta', energy=1, cue=False)
-G.sec('cười · về khung đầu', HIT['laugh'], DUR, 'waltz', 'A', 'E7', bass='pizzbass', comp='harp', lead='celesta', kit='toy', energy=3, no=('comp',))   # câu hỏi kết phải rõ: "pa-pa" chỉ còn phách gỗ
+# Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển.
+# Giữ 120 BPM ở móc (hai cú chạm râu rơi đúng phách "pa-pa") và ở cảnh kết về khung đầu.
+G = Groove(M, BEAT, LINES, meter=3, seed=5, avoid=AVOID, plan=True)
+G.sec('chạm râu · valse', 0, at(2), 'waltz', 'A', 'A E7', bass='pizzbass', comp='harp', lead='celesta', kit='toy', energy=2, cue=False,
+      bpm=120, mood='cute', arc='open', what='Hai chú kiến chạm râu "tách, tách": "What if you said hello with a sniff?" – Crumb: "That\'s how I say hi!"',
+      emo='tò mò, dễ thương', why='Valse 3/4 là màu của tập: hai cú chạm râu rơi đúng hai phách "pa-pa"; celesta "ta-da" nhỏ giữa hai câu.')
+G.sec('Miss Loupe vào · nảy', at(2), HIT['zoom'], 'hop', 'D', 'D E7', bass='bassn', comp='piano', lead='xylo', kit='bongo', energy=3,
+      bpm=132, mood='bouncy', arc='open', what='Miss Loupe nhảy vào: "Let\'s zoom in!"', emo='háo hức',
+      why='Rời valse một lúc: nảy lệch phách 4/4, 132 BPM, piano chặn hợp âm và bongo cho cú nhảy vào; đàn hạc vuốt lên (viết tay) khi kính vào.')
+G.sec('kính ngửi · mơ màng', HIT['zoom'], HIT['match'], 'waltzfloat', 'A', 'A A D', bass='pizzbass', arp='celesta', lead='flute', energy=1,
+      bpm=108, mood='magic', arc='build', what='Trong kính: mây mùi bay ra từ râu: "Their antennae are like noses!"', emo='kỳ diệu, mơ màng',
+      why='Valse lơ lửng 108 BPM, hộp nhạc rải như mây mùi, sáo đáp trong khoảng nghỉ lời.')
+G.sec('cùng mùi · phong cầm', HIT['match'], HIT['stranger'][0], 'waltz', 'A', 'A A D', bass='pizzbass', comp='accordion', lead='vibes', kit='brush', energy=3,
+      bpm=126, mood='cute', arc='peak', what='Hai mây mùi hoà vào nhau, tim bay: "Same smell? Same home!"', emo='ấm áp, vui sướng',
+      why='Cao trào ấm của tập: valse trở lại, phong cầm 126 BPM, vibraphone đáp, mô-típ bí mật La–Đô♯–Mi trên hộp nhạc (viết tay) đúng lúc hai mùi hoà.')
+G.sec('chú kiến lạ · rình rập', HIT['stranger'][0], HIT['clash'], 'sneak', 'F#m', 'F#m Bm', bass='tuba', comp='pizz', lead='bassoon', kit='wood', energy=1,
+      bpm=96, mood='suspense', arc='end', what='Một chú kiến lạ bước tới: "Hey, who\'s that?"', emo='ngờ vực, hồi hộp',
+      why='Sang Pha♯ thứ, rình rập 96 BPM: tuba staccato, bassoon dò hỏi, pizzicato rón rén (viết tay).')
+G.sec('khác mùi · khựng', HIT['clash'], HIT['stamp'], 'break', 'F#m', 'F#m', cue=False, mood='suspense', arc='end',
+      what='Hai mây mùi đụng nhau: "Nope!" – chú kiến lạ nhún vai bỏ đi', emo='bất ngờ, buồn cười',
+      why='Khựng nhạc khi khác mùi; tuba "bwomp", kèn dăm "wah-wah", pizzicato "thôi vậy" (viết tay).')
+G.sec('sổ · ukulele nắng', HIT['stamp'], HIT['flip'][0], 'sunny', 'A', 'A D E7', bass='pizzbass', comp='pluck', lead='toypiano', kit='clap', energy=2,
+      bpm=116, mood='happy', arc='end', what='Sticker dán vào sổ; Albie: "Six legs? In you go!"', emo='vui, tự hào',
+      why='Ukulele quạt 4/4, 116 BPM, vỗ tay, piano đồ chơi đáp; không bass dưới giọng trầm của Albie.')
+G.sec('lật trang · polka lon ton', HIT['flip'][0], HIT['glass'][0], 'polka', 'A', 'A E7', bass='pizzbass', comp='pizz', lead='xylo', kit='comic', energy=2,
+      bpm=132, mood='funny', arc='end', what='Lật trang, Crumb lon ton tới cái kính: "Hello, lens!"', emo='tinh nghịch',
+      why='Đổi hẳn sang 4/4: polka lon ton 132 BPM, mõ hai cao độ, xylophone theo bước Crumb.')
+G.sec('squeak · lắng', HIT['glass'][0], HIT['laugh'], 'hush', 'Bm', 'Bm E7', arp='glock', energy=1, cue=False,
+      bpm=100, mood='suspense', arc='end', what='Crumb ngửi cái kính "squeak", râu xoăn tít: "You don\'t smell like home!"', emo='ngơ ngác, buồn cười',
+      why='Lắng gần hết để tiếng "squeak" của kính và câu thoại rõ; chỉ còn glockenspiel thưa; pizzicato "hả?" (viết tay).')
+G.sec('cười · về khung đầu', HIT['laugh'], DUR, 'waltz', 'A', 'E7', bass='pizzbass', comp='harp', lead='celesta', kit='tri', energy=3, no=('comp',), reprise=True,
+      bpm=120, mood='cute', arc='end', what='Cười: "How do YOU say hi?" – về khung đầu', emo='vui, mời gọi',
+      why='Valse của móc trở lại ở 120 BPM để vòng lặp liền; triangle thay phách gỗ và không có đệm để câu hỏi kết rõ.')
 G.answer(2.3, HIT['shrug'] + .02, HIT['nope'] + .66, HIT['glass'][1] + .55)   # câu đáp viết tay bên dưới ("ta-da" nhỏ, "thôi vậy", "wah-wah", "hả?")
-G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Tap-Tap Waltz" (La trưởng)')
 
 # — Hook 0–3 s: valse chạy từ giây 0 (lớp nhịp); hai cú "tách" của râu nằm đúng phách pa-pa —
 M(pizz(45, .6), 0., 1.1); M(bassn(45, .4), 0., .5); M(celesta(88, .8), 0., .22, .3); M(T._ting(mf(100), .5), 0., .14, .4)

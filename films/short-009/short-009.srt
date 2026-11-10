@@ -1,0 +1,31 @@
+1
+00:00:00,100 --> 00:00:03,752
+Which one is a fly? Me! I'm a firefly!
+
+2
+00:00:03,760 --> 00:00:06,349
+Nope! Let's zoom in!
+
+3
+00:00:06,500 --> 00:00:09,029
+A fly has two wings.
+
+4
+00:00:09,100 --> 00:00:12,112
+Blink has wing cases on top!
+
+5
+00:00:12,200 --> 00:00:14,000
+So I'm a beetle!
+
+6
+00:00:14,600 --> 00:00:17,497
+Six legs? In you go!
+
+7
+00:00:19,300 --> 00:00:21,474
+Nice try, Fizz!
+
+8
+00:00:21,500 --> 00:00:23,700
+How many wings does a fly have?

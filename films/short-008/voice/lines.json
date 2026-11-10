@@ -1,0 +1,58 @@
+[
+ {
+  "id": "L01",
+  "text": "Could you glow without getting hot?",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L02",
+  "text": "Watch this!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L03",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L04",
+  "text": "Tiny bits mix together and make light!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L05",
+  "text": "Light with almost no heat!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L06",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L07",
+  "text": "You're so bright, Blink!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L08",
+  "text": "I'm not glowing!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L09",
+  "text": "What would YOU light up?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

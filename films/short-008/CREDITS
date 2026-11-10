@@ -1,0 +1,35 @@
+Big Secrets of Tiny Bugs · SHORT-008 "A Light That Doesn't Get Hot?!" — third-party material and licences
+
+FONTS (both under the SIL Open Font License 1.1; full texts in _shared/fonts/)
+  Baloo 2 — Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)
+    source: https://github.com/google/fonts/tree/main/ofl/baloo2 — _shared/fonts/OFL-Baloo2.txt
+  Paytone One — Copyright 2011 The Paytone Project Authors (https://github.com/googlefonts/paytoneFont)
+    source: https://github.com/google/fonts/tree/main/ofl/paytoneone — _shared/fonts/OFL-PaytoneOne.txt
+
+VOICE
+  Miss Loupe (af_heart), Albie (bm_lewis) and Blink (bf_lily, pitched up 8 semitones by _shared/voicefx.py): Kokoro-82M text-to-speech by hexgrad, Apache License 2.0
+    model: https://huggingface.co/hexgrad/Kokoro-82M · runtime: kokoro-onnx (MIT), https://github.com/thewh1teagle/kokoro-onnx
+    phonemes: espeak-ng (GPL-3.0), used as a tool; no espeak-ng output is distributed.
+
+MUSIC AND SOUND EFFECTS
+  Original. Every note and every effect are synthesized in mix.py,
+  _shared/audio/band.py, the scene-by-scene groove layer _shared/audio/groove.py and the cartoon effects of
+  _shared/audio/toon.py (numpy/scipy), with the procedural helpers of core/audio/sfx.py. The score (MUSIC.md and
+  SOUND-PLAN.md, "Campfire Glow") uses the synthesized bassoon, pizzicato, trumpet, timpani, piano, marimba, celesta,
+  harp, clarinet, glockenspiel, vibraphone, toy piano, flute, spiccato strings, tuba, ukulele and percussion voices of
+  band.py / groove.py.
+  No samples, loops or recordings by third parties.
+
+PICTURE
+  Original. Every frame and both cover images (poster-shorts-9x16.jpg, thumbnail-16x9.jpg) are drawn
+  in code (film.js, poster.js, props.js) with the channel's character rigs in _shared/characters/.
+  No images, footage or generated video.
+
+TOOLS (used to make the film, not part of it)
+  Speech check: faster-whisper with the Whisper small.en / base.en models (MIT).
+  Rendering and mux: Chrome Headless Shell via playwright-core (Apache-2.0), ffmpeg.
+
+FACTS
+  Every claim in the narration and on screen, with its source and quoted wording: FACTS.md.
+  Sources: U.S. National Park Service, "Synchronous Fireflies" (public domain, quoted); Wikipedia "Firefly" and
+  "Bioluminescence" (CC BY-SA 4.0, quoted only).

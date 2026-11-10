@@ -1,5 +1,17 @@
 # SHORT-007 · Soundtrack Timeline
 
+## Lượt Sound Design Plan (11/2026) · bản hiện hành
+
+Nhạc của tập được dựng lại theo Sound Design Plan ([`QUALITY.md`](../../_shared/QUALITY.md) §4, các mục *(SDP)*): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển cảnh. **Bảng đầy đủ 7 cột, lý do chọn nhạc từng cảnh và các chỗ chuyển cảnh: [`SOUND-PLAN.md`](SOUND-PLAN.md)** (sinh từ `mix.py` bằng `_shared/tools/soundplan.py`).
+
+- **Phong cách nhạc (7):** Magical Adventure ×2, Funny Comedy ×2, Suspense & Surprise ×2, Bouncy Rhythm ×2, Happy Kids ×2, Playful Cartoon ×1, Epic Cartoon ×1.
+- **BPM (9 mức):** 96, 100, 104, 108, 112, 116, 120, 126, 132. Trước lượt này cả tập chạy 120 BPM. Giữ 120 BPM ở: móc · đêm lấp lánh, cả vườn · ban nhạc đêm, câu hỏi · về khung đầu (hình nhún theo phách, nốt viết tay theo lưới phim, hoặc nối vòng lặp).
+- **Nhạc cụ hát chính (11):** glockenspiel, sáo, bassoon, vibraphone, xylophone, kazoo, celesta, trumpet, piano đồ chơi, clarinet, trống thép. Hai cảnh kề nhau không cùng nhạc cụ.
+- **Nhạc cụ và bộ gõ mới của lượt này:** accordion, bassoon, bongo, dàn dây spiccato, kazoo, mõ hai cao độ, piano, piano đồ chơi, timpani, triangle, trumpet, vỗ tay + lục lạc.
+- **Giữ nguyên:** màu nhạc và giọng của tập, mô-típ bí mật, nhạc hiệu, các điểm nhấn viết tay, cường độ theo cảnh (`LEVEL`), tiếng động và giọng.
+
+Các bảng cảnh nhạc bên dưới là của các lượt trước, giữ lại để so sánh.
+
 ## Màu nhạc của tập: "Glow-Code Bossa"
 
 Tập này kể về những con đom đóm "nói chuyện" bằng ánh sáng, nên mỗi cú nháy là một nốt nhạc:
@@ -17,7 +29,7 @@ Tập này kể về những con đom đóm "nói chuyện" bằng ánh sáng, n
 | Giai điệu | Vibraphone | Kèn dăm | **Sáo, glockenspiel** |
 | Bộ gõ | Jazz (búng tay, chổi) | Gỗ, đồ chơi | **Latin (phách gỗ, shaker), tiếng dế** |
 
-## Bảng cảnh nhạc
+## Bảng cảnh nhạc · bản trước Sound Design Plan
 
 Dựng bằng lớp nhịp theo cảnh [`_shared/audio/groove.py`](../../_shared/audio/groove.py) (`G.sec`); nhạc hiệu ghi bằng `G.mark`. `out/music.json` là bảng `qa.py` đọc.
 

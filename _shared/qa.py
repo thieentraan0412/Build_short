@@ -132,6 +132,19 @@ worst = min(snr, key=lambda s: s[1]) if snr else ('-', 99)
 row('4 Âm thanh', 'Lời rõ hơn nhạc + tiếng động', OK if worst[1] >= 10 else WARN if worst[1] >= 7 else FAIL, f'thấp nhất {worst[1]:.1f} dB ({worst[0]})', '≥ 10 dB mỗi câu (dải 300–4000 Hz, trung vị)')
 per10 = len(EV) / DUR * 10
 row('4 Âm thanh', 'Mật độ tiếng động', OK if per10 >= 4 else WARN, f'{per10:.1f} cue / 10 s ({len(EV)} cue)', '≥ 4 cue / 10 s')
+# tiếng động không lạm dụng, không lấn lời (Sound Design Plan 11/2026). Hiệu chỉnh trên SHORT-001..007: dày nhất 8 cue/1 s sau móc, lời hơn SFX 11,6–22 dB
+# (tiếng động dùng nhiễu ngẫu nhiên của core/audio/sfx.py nên số đo lệch khoảng ±1 dB giữa các lần dựng; ngưỡng 11 dB chừa phần đó)
+ts_ = sorted(e['t'] for e in EV); dense = max([sum(1 for u in ts_ if t <= u < t + 1) for t in ts_ if t >= 3] or [0])
+fb_ = sosfilt(band, fx); vfx = []
+for l in LINES:
+    i, j, w = int(l['t'] * sr), int((l['t'] + l['dur']) * sr), int(.05 * sr); r = []
+    for q in range(i, j - w, w):
+        a = rms(vb[q:q + w])
+        if a > .02: r.append(db(a) - db(rms(fb_[q:q + w])))
+    if r: vfx.append((l['id'], float(np.median(r))))
+wf = min(vfx, key=lambda s: s[1]) if vfx else ('-', 99)
+row('4 Âm thanh', 'Tiếng động không lạm dụng, không lấn lời', OK if dense <= 8 and wf[1] >= 11 else WARN,
+    f'dày nhất {dense} cue / 1 s (sau 3 s); lời hơn tiếng động thấp nhất {wf[1]:.1f} dB ({wf[0]})', '≤ 8 cue trong 1 s sau móc; mỗi câu lời hơn riêng tiếng động ≥ 11 dB (300–4000 Hz)')
 hi = np.abs(np.fft.rfft(mix[:sr * 20])) if len(mix) > sr * 20 else np.abs(np.fft.rfft(mix)); fr = np.fft.rfftfreq((len(mix[:sr * 20]) if len(mix) > sr * 20 else len(mix)), 1 / sr)
 share = float((hi[fr > 6000] ** 2).sum() / (hi ** 2).sum() * 100)
 row('4 Âm thanh', 'Độ chói (năng lượng > 6 kHz)', OK if share <= 6 else WARN, f'{share:.1f} %', '≤ 6 % (không chói tai)')
@@ -172,6 +185,83 @@ if MS:
     same = [f"{a['name']}→{b['name']}" for a, b in zip(MS, MS[1:]) if a['style'] not in PAUSE and b['style'] not in PAUSE and differs(a, b) < 2]
     row('4 Âm thanh', 'Hai cảnh nhạc kề nhau khác rõ', OK if not same else WARN, ', '.join(same) or 'mọi cặp khác nhau ≥ 2 điểm', 'khác ≥ 2 trong: điệu, hoà âm, nhạc cụ, bộ trống, năng lượng')
     row('4 Âm thanh', 'Câu đáp của nhạc giữa các câu thoại', OK if FILLS + HAND >= DUR / 10 else WARN, f'{FILLS + HAND} câu đáp ({FILLS} tự động, {HAND} viết tay)', f'≥ 1 / 10 s (nhạc cụ hát chính chen vào khoảng không lời)')
+    # ---- Sound Design Plan (11/2026, QUALITY.md §4): phong cách, nhạc cụ, BPM, cung bậc, chuyển cảnh, chống trùng lặp. Chỉ Short. ----
+    if not LONG:
+        sys.path.insert(0, os.path.join(LIB, '_shared', 'audio'))
+        from groove import MOODS, FAMILY
+        G_ = 'Sound Design Plan'
+        BODY = [s for s in MS if s['style'] not in PAUSE]
+        short_ = DUR < 25
+        if not MJ.get('plan'):
+            row(G_, 'Bảng Sound Design Plan', WARN, 'music.json chưa có phong cách, BPM, cung bậc (Groove(..., plan=True))', 'mỗi cảnh nhạc khai báo mood, arc, bpm, what, emo, why')
+        else:
+            lead_of = lambda s: s.get('lead') or s.get('arp') or s.get('comp')
+            ms_ = [s.get('mood') for s in BODY]; bad_m = [s['name'] for s in BODY if s.get('mood') not in MOODS]
+            nm = len(set(ms_) - {None}); need_m = 3 if short_ else 4
+            row(G_, 'Phong cách nhạc theo cảnh', OK if nm >= need_m and not bad_m else WARN,
+                f"{nm}: " + ', '.join(sorted(MOODS.get(m, str(m)) for m in set(ms_) - {None})) + (f"; chưa rõ phong cách: {', '.join(bad_m)}" if bad_m else ''),
+                f'≥ {need_m} trong 8 phong cách (Playful, Happy Kids, Funny, Magical, Cute & Sweet, Bouncy, Suspense & Surprise, Epic)')
+            ld = [lead_of(s) for s in BODY]; same_l = [f"{a['name']}→{b['name']} ({lead_of(a)})" for a, b in zip(BODY, BODY[1:]) if lead_of(a) and lead_of(a) == lead_of(b)]
+            cnt = {k: ld.count(k) for k in set(ld) - {None}}; top = max(cnt.items(), key=lambda kv: kv[1]) if cnt else ('-', 0)
+            share = top[1] / max(1, len(BODY)); need_l = 3 if short_ else 4
+            row(G_, 'Nhạc cụ hát chính luân phiên', OK if not same_l and share <= .4 and len(cnt) >= need_l else WARN,
+                f"{len(cnt)} nhạc cụ; nhiều nhất {top[0]} {top[1]}/{len(BODY)} cảnh" + (f"; kề nhau trùng: {', '.join(same_l)}" if same_l else ''),
+                f'≥ {need_l} nhạc cụ hát chính; hai cảnh kề nhau khác nhạc cụ; không nhạc cụ nào quá 40 % số cảnh')
+            fams = {FAMILY.get(s.get(k)) for s in MS for k in ('lead', 'comp', 'arp', 'bass')} - {None, 'bass'}
+            if any(s.get('kit') not in (None, '', 'none') for s in MS): fams.add('bộ gõ')
+            need_f = 5 if short_ else 6
+            row(G_, 'Luân phiên họ nhạc cụ', OK if len(fams) >= need_f else WARN, f"{len(fams)}: {', '.join(sorted(fams))}",
+                f'≥ {need_f} họ (piano, ukulele, marimba, xylophone, dây pizzicato, kèn gỗ, kèn đồng, bộ gõ, nhạc cụ hoạt hình…)')
+            bp_ = sorted({round(s.get('bpm') or MJ.get('bpm', 120)) for s in BODY}); need_b = 2 if short_ else 3
+            rng_ = (bp_[-1] - bp_[0]) if bp_ else 0
+            row(G_, 'BPM đổi theo nội dung', OK if len(bp_) >= need_b and rng_ >= 16 else WARN, f"{len(bp_)} mức: {', '.join(map(str, bp_))} (chênh {rng_})",
+                f'≥ {need_b} mức BPM, chênh ≥ 16 BPM giữa cảnh chậm nhất và nhanh nhất')
+            sig = lambda s: (s['style'], s['chords'], lead_of(s), s.get('comp') or s.get('arp'), s.get('kit'))
+            seen, dup, speed = {}, [], []
+            for s in BODY:
+                k = sig(s)
+                if k in seen and not s.get('reprise'): dup.append(f"{seen[k]['name']} = {s['name']}")
+                seen.setdefault(k, s)
+            for i, a in enumerate(BODY):
+                for b in BODY[i + 1:]:
+                    if (a['style'], lead_of(a), a.get('comp') or a.get('arp')) == (b['style'], lead_of(b), b.get('comp') or b.get('arp')) and round(a.get('bpm') or 0) != round(b.get('bpm') or 0):
+                        speed.append(f"{a['name']} ~ {b['name']}")
+            stc = {k: [s['style'] for s in BODY].count(k) for k in {s['style'] for s in BODY}}; st_top = max(stc.items(), key=lambda kv: kv[1]) if stc else ('-', 0)
+            st_bad = len(BODY) >= 5 and st_top[1] / len(BODY) > .4
+            row(G_, 'Không lặp một bản nhạc', OK if not dup and not speed and not st_bad else WARN,
+                '; '.join(x for x in (f"lặp nguyên: {', '.join(dup)}" if dup else '', f"cùng bản đổi tốc độ: {', '.join(speed)}" if speed else '',
+                                       f"điệu {st_top[0]} ở {st_top[1]}/{len(BODY)} cảnh" if st_bad else '') if x) or f"điệu dùng nhiều nhất: {st_top[0]} {st_top[1]}/{len(BODY)} cảnh",
+                'không cảnh nào lặp nguyên điệu + hoà âm + nhạc cụ của cảnh khác (trừ reprise=True); không cảnh nào là cảnh khác đổi tốc độ; một điệu ≤ 40 % số cảnh')
+            arcs = {}
+            for s in BODY:
+                if s.get('arc'): arcs.setdefault(s['arc'], []).append(s)
+            miss = [a for a in ('open', 'build', 'peak', 'end') if a not in arcs]
+            note = []
+            if 'peak' in arcs and max(s['energy'] for s in arcs['peak']) < 3: note.append('cao trào chưa có năng lượng 3')
+            if 'open' in arcs and 'end' in arcs:
+                o, e = arcs['open'][0], arcs['end'][-1]
+                dd = sum(x != y for x, y in ((o['style'], e['style']), (lead_of(o), lead_of(e)), (o.get('comp'), e.get('comp')), (o.get('kit'), e.get('kit')), (o['energy'], e['energy']), (round(o['bpm']), round(e['bpm']))))
+                if dd < 2: note.append('kết giống mở đầu (khác < 2 điểm)')
+            if 'open' in arcs and 'peak' in arcs:
+                o, p = arcs['open'][0], arcs['peak'][0]
+                if o['style'] == p['style'] and lead_of(o) == lead_of(p): note.append('cao trào cùng điệu và nhạc cụ với mở đầu')
+            row(G_, 'Mở đầu · diễn biến · cao trào · kết', OK if not miss and not note else WARN,
+                ', '.join('%s %.1f–%.1f s' % (a, arcs[a][0]['t0'], arcs[a][-1]['t1']) for a in ('open', 'build', 'peak', 'end') if a in arcs)
+                + (f"; thiếu: {', '.join(miss)}" if miss else '') + (f"; {'; '.join(note)}" if note else ''),
+                'đủ bốn phần; cao trào năng lượng 3, khác mở đầu; kết khác mở đầu ≥ 2 điểm (điệu, nhạc cụ, đệm, bộ gõ, năng lượng, BPM)')
+            TR_ = MJ.get('transitions', []); auto = [t['type'] for t in TR_ if t['type'] != 'tay']
+            tc = {k: auto.count(k) for k in set(auto)}; tt_ = max(tc.items(), key=lambda kv: kv[1]) if tc else ('-', 0)
+            bump = [f"{t['t']:.1f} s" for t in TR_ if round(t['bpm'][0]) != round(t['bpm'][1]) and t['type'] in ('soft',)]
+            row(G_, 'Chuyển cảnh âm thanh mềm, đa dạng', OK if (len(auto) < 4 or tt_[1] / len(auto) <= .5) and not bump else WARN,
+                f"{len(TR_)} chỗ chuyển: " + ', '.join(f'{k} ×{n}' for k, n in sorted(tc.items(), key=lambda kv: -kv[1])) + (f", viết tay ×{len(TR_) - len(auto)}" if len(TR_) > len(auto) else '')
+                + (f"; đổi BPM không có cầu nối: {', '.join(bump)}" if bump else ''),
+                'mỗi chỗ đổi cảnh một cách chuyển (trống dồn, riser, nốt mồi, vuốt đàn hạc, ngân đuôi…); không cách nào quá 50 %; đổi BPM phải có cầu nối')
+            nowhy = [s['name'] for s in BODY if not (s.get('what') and s.get('emo') and s.get('why'))]
+            sp_ = os.path.join(FILM, 'SOUND-PLAN.md'); sp_ok = os.path.exists(sp_)
+            rows_ = sum(1 for l in open(sp_, encoding='utf-8') if l.startswith('| ') and ' s' in l.split('|')[1]) if sp_ok else 0
+            row(G_, 'Bảng Sound Design Plan', OK if sp_ok and rows_ == len(MS) and not nowhy else WARN,
+                ('SOUND-PLAN.md ' + (f'{rows_}/{len(MS)} cảnh' if sp_ok else 'chưa có')) + (f"; thiếu nội dung / cảm xúc / lý do: {', '.join(nowhy)}" if nowhy else ''),
+                'SOUND-PLAN.md (python _shared/tools/soundplan.py) có đủ mọi cảnh nhạc; mỗi cảnh ghi what, emo, why')
 else:
     row('4 Âm thanh', 'Nhạc đổi theo cảnh', WARN, 'không có out/music.json', 'dựng nhạc bằng _shared/audio/groove.py (hoặc ghi bảng cảnh bằng Groove.mark) để kiểm')
 from scipy.signal import stft as _stft

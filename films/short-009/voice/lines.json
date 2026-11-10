@@ -1,0 +1,65 @@
+[
+ {
+  "id": "L01",
+  "text": "Which one is a fly?",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L02",
+  "text": "Me! I'm a fire-fly!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8,
+  "asr": "Me! I'm a firefly!"
+ },
+ {
+  "id": "L03",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L04",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L05",
+  "text": "A fly has two wings.",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L06",
+  "text": "Blink has wing cases on top!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L07",
+  "text": "So I'm a beetle!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L08",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L09",
+  "text": "Nice try, Fizz!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L10",
+  "text": "How many wings does a fly have?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

@@ -217,3 +217,79 @@ def banjo(m, d=.45, v=1.):                      # banjo: gảy sáng, tắt nhan
     x = sum(np.sin(2 * np.pi * f * k * tt * (1 + .002 * k)) * np.exp(-tt * (6 + 5 * k)) / k ** .8 for k in range(1, 9) if f * k < 9000)
     x = x + hp(noise(d), 3000) * env_exp(d, .004) * .25
     return fade(lp(x, 6000), .001, .03) * v * .3
+
+
+# ---------- nhạc cụ của lượt "Sound Design Plan" (11/2026, QUALITY.md §4): luân phiên piano · ukulele · marimba · xylophone ·
+# dây pizzicato · kèn gỗ · kèn đồng · bộ gõ · nhạc cụ hoạt hình, để mỗi cảnh một màu và không cảnh nào nghe như cảnh trước đổi tốc độ ----------
+def piano(m, d=.9, v=1.):                       # piano hoạt hình: dây hơi lệch (bội âm giãn), búa gõ, tắt hai tầng; nốt cao tắt nhanh hơn
+    f = mf(m); tt = t_(d); kh = (f / 262) ** .5; x = np.zeros_like(tt)
+    for k in range(1, 11):
+        fk = f * k * np.sqrt(1 + .00035 * k * k)
+        if fk > 9000: break
+        dec = (.9 + .55 * k) * kh; e = .75 * np.exp(-tt * dec) + .25 * np.exp(-tt * dec * 6)
+        s = np.sin(2 * np.pi * fk * tt + .3 * k) + (.5 * np.sin(2 * np.pi * fk * 1.0012 * tt) if k <= 3 else 0)
+        x += s * e / k ** 1.15 * (1. if k < 6 else .6)
+    x = x + bp(noise(d), 1200, 5000) * env_exp(d, .003) * .12                  # tiếng búa
+    return fade(x * np.minimum(1, tt / .0015), .001, .06) * v * .22
+def toypiano(m, d=.6, v=1.):                    # piano đồ chơi: thanh kim loại gõ, sáng, hơi lệch, tắt nhanh (dễ thương, tinh nghịch)
+    f = mf(m); tt = t_(d)
+    x = (np.sin(2 * np.pi * f * tt) * np.exp(-tt * 4.5) + .3 * np.sin(2 * np.pi * f * 1.004 * tt) * np.exp(-tt * 5)
+         + .45 * np.sin(2 * np.pi * f * 3.03 * tt) * np.exp(-tt * 10) + .2 * np.sin(2 * np.pi * f * 5.8 * tt) * np.exp(-tt * 22))
+    x = x + hp(noise(d), 3000) * env_exp(d, .002) * .08
+    return fade(x * np.minimum(1, tt / .001), .001, .03) * v * .3
+def trumpet(m, d=.35, v=1., mute=0.):           # trumpet hoạt hình: tiếng đồng "mở" ra theo hơi thổi, rung nhẹ khi ngân; mute 0..1: kèn bịt "wah"
+    f = mf(m); tt = t_(d)
+    ph = 2 * np.pi * np.cumsum(f * (1 + .006 * np.sin(2 * np.pi * 5.5 * tt) * np.clip((tt - .15) / .1, 0, 1))) / SR
+    br = .25 + .55 * np.minimum(1, tt / .05)
+    x = lp(sum(np.sin(k * ph) / k ** .9 * br ** (k - 1) for k in range(1, 13) if f * k < 9000), 4500)
+    if mute: x = (1 - mute) * x + mute * bp(x, 900, 2400) * 2.2
+    return fade(x * np.minimum(1, tt / .025) * np.minimum(1, (d - tt) / .05) * (1 - .15 * tt / d), .004, .03) * v * .2
+def trombone(m, d=.45, v=1., bend=0.):          # trombone: đồng trầm, ấm; bend: trượt bao nhiêu nửa cung (âm: "wah-wah" đi xuống, hài)
+    tt = t_(d); f = mf(m) * 2 ** (bend * np.clip((tt - .05) / max(d - .05, .01), 0, 1) ** 1.3 / 12)
+    ph = 2 * np.pi * np.cumsum(f) / SR; br = .2 + .45 * np.minimum(1, tt / .07)
+    x = lp(sum(np.sin(k * ph) / k ** 1.05 * br ** (k - 1) for k in range(1, 10)), 2600)
+    return fade(x * np.minimum(1, tt / .03) * np.minimum(1, (d - tt) / .06), .005, .04) * v * .21
+def bassoon(m, d=.4, v=1.):                     # bassoon: kèn dăm kép trầm, giọng mũi tròn (rón rén, hài)
+    f = mf(m); tt = t_(d); ph = 2 * np.pi * f * tt + .06 * np.sin(2 * np.pi * 5 * tt) * np.clip((tt - .12) / .1, 0, 1)
+    x = sum(a * np.sin(k * ph) for k, a in ((1, 1), (2, .8), (3, .55), (4, .45), (5, .3), (6, .2), (7, .12)))
+    x = lp(x, 1600) + .35 * bp(x, 400, 700)
+    return fade(x * np.minimum(1, tt / .02) * np.minimum(1, (d - tt) / .05), .004, .03) * v * .15
+def kazoo(m, d=.35, v=1.):                      # kazoo: tiếng hát qua màng rung "vè vè" (hài; chỉ chơi trong khoảng không lời)
+    tt = t_(d); f = mf(m) * (1 + .012 * np.sin(2 * np.pi * 6 * tt)) * (1 + .03 * np.exp(-tt / .03))
+    ph = np.cumsum(f) / SR; buzz = np.tanh(3 * (2 * (ph % 1) - 1))
+    x = bp(buzz, 500, 900) + .8 * bp(buzz, 1100, 1700) + .45 * bp(buzz, 2300, 3200) + bp(noise(d), 2000, 6000) * .04
+    return fade(x * np.minimum(1, tt / .02) * np.minimum(1, (d - tt) / .04), .004, .03) * v * .45
+def accordion(m, d=.5, v=1.):                   # phong cầm: hai lưỡi gà lệch nhau (musette), hơi kéo vào mềm
+    f = mf(m); tt = t_(d)
+    def rd(fr):
+        ph = fr * tt; return np.sign(np.sin(2 * np.pi * ph)) * .6 + (2 * (ph % 1) - 1) * .4
+    x = lp(rd(f) + rd(f * 1.004) + .5 * rd(f * 1.996), 2800)
+    return fade(x * np.minimum(1, tt / .035) * np.minimum(1, (d - tt) / .05), .005, .03) * v * .2
+def strings(m, d=.22, v=1.):                    # dàn dây spiccato (nảy cung): bốn dây hơi lệch, ngắn (phiêu lưu, cao trào)
+    f = mf(m); tt = t_(d); x = np.zeros_like(tt)
+    for k, det in enumerate((0, -.006, .007, .003)):
+        ph = f * (1 + det) * tt + k * .25; x += 2 * (ph % 1) - 1
+    x = lp(x, min(5000., f * 7)) + bp(noise(d), 2000, 6000) * env_exp(d, .01) * .15
+    return fade(x * np.minimum(1, tt / .012) * np.exp(-tt * 9), .002, .03) * v * .22
+def timpani(m=41, v=1., d=1.):                  # trống định âm: cao độ rõ, rơi nhẹ lúc đánh, ngân (cao trào hoạt hình)
+    f = mf(m); tt = t_(d); ph = 2 * np.pi * np.cumsum(f * (1 + .06 * np.exp(-tt / .03))) / SR
+    x = np.sin(ph) * np.exp(-tt * 2.5) + .5 * np.sin(1.5 * ph) * np.exp(-tt * 4) + .3 * np.sin(1.99 * ph) * np.exp(-tt * 5) + .15 * np.sin(2.44 * ph) * np.exp(-tt * 7)
+    return fade(x + lp(noise(d), 600) * env_exp(d, .015) * .6, .001, .1) * v * .5
+def bongo(v=1., hi=True):                       # bongo: trống tay nhỏ, "bóc" cao (hi) hoặc trầm hơn
+    d = .18; tt = t_(d); f = (420 if hi else 300) * (1 + .25 * np.exp(-tt / .01))
+    return fade(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 22) + bp(noise(d), 800, 3000) * env_exp(d, .006) * .4, .0005, .02) * v * .45
+def triangle(v=1., d=1.):                       # kẻng tam giác: "ting" mỏng, ngân (phách đầu cảnh dễ thương)
+    tt = t_(d)
+    x = sum(a * np.sin(2 * np.pi * 1250 * r * tt + r) * np.exp(-tt * k) for r, a, k in ((1, .5, 3.5), (2.76, .6, 4), (5.4, .4, 6), (7.1, .25, 8)))
+    return fade(x * np.minimum(1, tt / .001), .001, .1) * v * .12
+def tada(root=72, v=1.):                        # "ta-da!": nốt mồi ngắn rồi hợp âm trưởng của kèn trumpet ngân, timpani + chũm chọe mềm (stereo)
+    d = 1.5; out = np.zeros((int(d * SR), 2)); J = lambda x, t, g=1., pan=0.: add(out, x, t, g, pan)
+    J(trumpet(root - 5, .13), 0, .75, -.1); J(trumpet(root + 7 - 12, .13), 0, .4, .1)
+    for k, n in enumerate((0, 4, 7)): J(trumpet(root + n, .95), .16 + k * .008, .55, -.25 + .25 * k)
+    tm = root - 24
+    while tm > 53: tm -= 12
+    while tm < 38: tm += 12
+    J(timpani(tm, 1., 1.1), .16, .7)
+    cy = hp(noise(1.2), 5000) * env_exp(1.2, .3) + bp(noise(1.2), 3000, 9000) * env_exp(1.2, .08) * .6
+    J(lp(cy, 12000) * .12, .16, 1., .15)
+    return out * v

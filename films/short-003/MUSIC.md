@@ -1,6 +1,18 @@
 # SHORT-003 · Soundtrack Timeline
 
-> **Bản hiện hành:** lượt nhạc nền sinh động (11/2026), ở [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-hiện-hành). Lớp đệm của các bảng dưới đây đã được thay bằng lớp nhịp theo cảnh; các điểm nhấn viết tay giữ nguyên.
+> **Bản hiện hành:** lượt Sound Design Plan (11/2026), ngay bên dưới; bảng đầy đủ ở [`SOUND-PLAN.md`](SOUND-PLAN.md). Lượt nhạc nền sinh động (11/2026, [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-trước-sound-design-plan)) và các bảng cũ hơn giữ lại để so sánh; các điểm nhấn viết tay vẫn dùng.
+
+## Lượt Sound Design Plan (11/2026) · bản hiện hành
+
+Nhạc của tập được dựng lại theo Sound Design Plan ([`QUALITY.md`](../../_shared/QUALITY.md) §4, các mục *(SDP)*): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển cảnh. **Bảng đầy đủ 7 cột, lý do chọn nhạc từng cảnh và các chỗ chuyển cảnh: [`SOUND-PLAN.md`](SOUND-PLAN.md)** (sinh từ `mix.py` bằng `_shared/tools/soundplan.py`).
+
+- **Phong cách nhạc (5):** Playful Cartoon ×3, Suspense & Surprise ×2, Cute & Sweet ×2, Magical Adventure ×1, Epic Cartoon ×1.
+- **BPM (6 mức):** 96, 100, 104, 112, 120, 132. Trước lượt này cả tập chạy 120 BPM. Giữ 120 BPM ở: móc · hồi hộp, mặt trống · timpani, chữ móc trở lại (hình nhún theo phách, nốt viết tay theo lưới phim, hoặc nối vòng lặp).
+- **Nhạc cụ hát chính (7):** dây pizzicato, vibraphone, celesta, trumpet, piano đồ chơi, xylophone, bassoon. Hai cảnh kề nhau không cùng nhạc cụ.
+- **Nhạc cụ và bộ gõ mới của lượt này:** bassoon, dàn dây spiccato, piano, piano đồ chơi, timpani, triangle, trumpet.
+- **Giữ nguyên:** màu nhạc và giọng của tập, mô-típ bí mật, nhạc hiệu, các điểm nhấn viết tay, cường độ theo cảnh (`LEVEL`), tiếng động và giọng.
+
+Các bảng cảnh nhạc bên dưới là của các lượt trước, giữ lại để so sánh.
 
 ## Màu nhạc của tập: "Night Band swing"
 
@@ -69,7 +81,7 @@ Soundtrack Timeline đầy đủ của bản mới nằm ở mục C của RETEN
 - **Cường độ theo cảnh:** 0,85 · 0,95 · 0,8 · 0,85 · 0,72 · 0,85 · 0,9 (chụp) · 0,82 (dán) · 0,9 · 0,72 · 0,85 · 0,55 (lắng nghe) · 0,9 (vòng lặp).
 - **Bản cuối:** −13,9 LUFS, đỉnh thật −1,5 dBTP; giọng so với nhạc + tiếng động thấp nhất 11,5 dB.
 
-## Lượt nhạc nền sinh động (11/2026) · bản hiện hành
+## Lượt nhạc nền sinh động (11/2026) · bản trước Sound Design Plan
 
 Theo `Task.md`: *"Cần thêm nhiều nhạc nền sinh động, trong 1 short nhạc nền đang không có sự thay đổi."* Hình, lời, tiếng động và các điểm nhấn nhạc viết tay (mô-típ bí mật, stinger, khựng, nhạc hiệu, nối vòng lặp) giữ nguyên. Lớp đệm đứng yên được thay bằng **lớp nhịp theo cảnh** ([`_shared/audio/groove.py`](../../_shared/audio/groove.py)):
 - **Mỗi cảnh một điệu.** Mỗi cảnh có điệu, vòng hoà âm, bộ nhạc cụ, bộ trống và mức năng lượng riêng. Hai cảnh kề nhau khác nhau ở ít nhất hai trong năm thứ đó.
