@@ -295,3 +295,60 @@ def verb(send, d=1.1, tone=5000):
     """Đường vang stereo từ một bus gửi mono: hai đáp ứng xung khác nhau cho trái/phải."""
     L = fftconvolve(send, room(d, 1, tone))[:len(send)]; R = fftconvolve(send, room(d, 2, tone))[:len(send)]
     return np.stack([L, R], 1)
+
+
+# ---------- tiếng động của lượt "Sound Design Plan" (11/2026): va chạm nhẹ · bước chân · chạy · cười · ngạc nhiên · reo vui ----------
+def bonk(v=1., m=76):
+    """Cú va hoạt hình nhẹ "bonk": gõ gỗ rỗng + cao độ rơi nhanh + ngân ngắn (đụng đầu, va kính). Không đau, không gắt."""
+    d = .35; tt = t_(d); f = mf(m) * (1 + 1.2 * np.exp(-tt / .012)) * (1 - .25 * np.minimum(1, tt / .2))
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt / .06) + bp(noise(d), 600, 2500) * env_exp(d, .006) * .7 \
+        + np.sin(2 * np.pi * mf(m + 19) * tt) * np.exp(-tt / .09) * .15
+    return fade(norm(x), .0008, .04) * v
+
+
+def footsteps(n=6, step=.16, v=1., m=88, seed=0, soft=False):
+    """Bước chân tí hon "típ-táp": mỗi bước một tiếng gõ nhỏ, xen hai cao độ, kèm chút sột soạt; soft: rón rén (nhỏ hơn, mềm hơn)."""
+    r = np.random.default_rng(seed); x = np.zeros(int((n * step + .2) * SR))
+    for k in range(n):
+        tap = block(m + (0 if k % 2 == 0 else -5) + int(r.integers(-1, 2)), .5 if soft else .8) * .6
+        tap[:int(.04 * SR)] += bp(noise(.04), 2500, 7000) * env_exp(.04, .006) * (.2 if soft else .35)
+        _at(x, tap, max(0., k * step + r.uniform(-.008, .008)))
+    return norm(x) * v * (.6 if soft else 1.)
+
+
+def scurry(d=.6, v=1., m=91, seed=0):
+    """Chạy lon ton: bước chân dồn nhanh dần + một luồng gió ngắn theo hướng chạy."""
+    n = max(4, int(d / .07)); r = np.random.default_rng(seed); x = np.zeros(int((d + .2) * SR))
+    for k in range(n): _at(x, block(m + (0 if k % 2 else -4), .45 + .4 * k / n) * .5, max(0., d * (k / n) ** .85 + r.uniform(-.004, .004)))
+    w = swish(d, .35, 700, 3200, True); x[:len(w)] += w * .5
+    return norm(x) * v
+
+
+def giggle(n=4, v=1., m=84, step=.105, seed=0):
+    """Cười khúc khích "hi-hi-hi-hi": những tiếng ngắn có nguyên âm "i" (F1 ≈ 300 Hz, F2 ≈ 2,4 kHz), đi xuống dần (nhân vật không lời)."""
+    r = np.random.default_rng(seed); x = np.zeros(int((n * step + .25) * SR))
+    for k in range(n):
+        d = .075 + .02 * (k == n - 1); tt = t_(d); f0 = mf(m - 1.5 * k + r.uniform(-.3, .3)) * (1 + .05 * np.sin(np.pi * tt / d))
+        ph = 2 * np.pi * np.cumsum(f0) / SR; src = sum(np.sin(j * ph) / j for j in range(1, 12))
+        y = bp(src, 250, 420) * .7 + bp(src, 2100, 2800) + bp(noise(d), 2500, 6000) * .08
+        _at(x, fade(y * np.sin(np.pi * tt / d) ** .8, .003, .01), k * step * (1 - .06 * k))
+    return norm(x) * v
+
+
+def surprise(v=1.):
+    """Ngạc nhiên "ồ!": còi trượt vút lên + boing nhỏ + một ting sáng (mắt tròn xoe)."""
+    x = np.zeros(int(.7 * SR)); _at(x, whistle(520, 1500, .22, 1., .02) * .7, 0); _at(x, boing(260, .3, .45, 2.4, 16.), .08)
+    _at(x, _ting(mf(96), .4, .35), .2)
+    return norm(x) * v
+
+
+def cheer(d=.9, v=1., seed=0):
+    """Reo vui "yay!": kèn giấy thổi vút lên (party horn) + pháo giấy lấp lánh + vỗ tay lấm tấm (không có giọng người)."""
+    r = np.random.default_rng(seed); x = np.zeros(int((d + .6) * SR))
+    hd = min(.45, d * .5); tt = t_(hd); f = 620 * (1.5 ** np.minimum(1, tt / (hd * .6))); ph = np.cumsum(f) / SR
+    buzz = np.tanh(3 * (2 * (ph % 1) - 1)); hornx = bp(buzz, 500, 1000) + .7 * bp(buzz, 1200, 2200)
+    _at(x, fade(hornx * np.minimum(1, tt / .02) * np.minimum(1, (hd - tt) / .05), .004, .03) * .45, 0)
+    _at(x, sparkle(d * .8, .6, 88, 105, 10, seed, 'up'), .12)
+    for k in range(int(d * 14)):
+        c = bp(noise(.03), 1000, 3500) * env_exp(.03, .006) * r.uniform(.25, .6); _at(x, c, .1 + r.uniform(0, d * .85))
+    return fade(norm(x), .002, .05) * v

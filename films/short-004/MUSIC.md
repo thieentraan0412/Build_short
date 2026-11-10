@@ -1,6 +1,18 @@
 # SHORT-004 · Soundtrack Timeline
 
-> **Bản hiện hành:** lượt nhạc nền sinh động (11/2026), ở [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-hiện-hành). Lớp đệm của các bảng dưới đây đã được thay bằng lớp nhịp theo cảnh; các điểm nhấn viết tay giữ nguyên.
+> **Bản hiện hành:** lượt Sound Design Plan (11/2026), ngay bên dưới; bảng đầy đủ ở [`SOUND-PLAN.md`](SOUND-PLAN.md). Lượt nhạc nền sinh động (11/2026, [mục cuối](#lượt-nhạc-nền-sinh-động-112026--bản-trước-sound-design-plan)) và các bảng cũ hơn giữ lại để so sánh; các điểm nhấn viết tay vẫn dùng.
+
+## Lượt Sound Design Plan (11/2026) · bản hiện hành
+
+Nhạc của tập được dựng lại theo Sound Design Plan ([`QUALITY.md`](../../_shared/QUALITY.md) §4, các mục *(SDP)*): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển cảnh. **Bảng đầy đủ 7 cột, lý do chọn nhạc từng cảnh và các chỗ chuyển cảnh: [`SOUND-PLAN.md`](SOUND-PLAN.md)** (sinh từ `mix.py` bằng `_shared/tools/soundplan.py`).
+
+- **Phong cách nhạc (7):** Playful Cartoon ×3, Funny Comedy ×3, Magical Adventure ×3, Happy Kids ×3, Suspense & Surprise ×2, Epic Cartoon ×1, Cute & Sweet ×1.
+- **BPM (8 mức):** 96, 100, 104, 108, 112, 116, 120, 132. Trước lượt này cả tập chạy 120 BPM. Giữ 120 BPM ở: móc · diễu hành, Ants can! · polka, theo đường mùi · phiêu lưu, về khung đầu · diễu hành (hình nhún theo phách, nốt viết tay theo lưới phim, hoặc nối vòng lặp).
+- **Nhạc cụ hát chính (10):** glockenspiel, xylophone, trumpet, sáo, bassoon, celesta, clarinet, piano đồ chơi, vibraphone, trumpet bịt. Hai cảnh kề nhau không cùng nhạc cụ.
+- **Nhạc cụ và bộ gõ mới của lượt này:** accordion, bassoon, bassoon trầm, dàn dây spiccato, piano, piano đồ chơi, triangle, trumpet, trumpet bịt, vỗ tay + lục lạc.
+- **Giữ nguyên:** màu nhạc và giọng của tập, mô-típ bí mật, nhạc hiệu, các điểm nhấn viết tay, cường độ theo cảnh (`LEVEL`), tiếng động và giọng.
+
+Các bảng cảnh nhạc bên dưới là của các lượt trước, giữ lại để so sánh.
 
 ## Màu nhạc của tập: "Ant Parade"
 
@@ -62,7 +74,7 @@ Hai nhạc cụ mới trong [band.py](../../_shared/audio/band.py): `snare`, `ba
 
 Nhạc hiệu giữ nguyên nốt và âm sắc, chỉ nhỏ hơn để câu "Big secrets of tiny bugs!" đọc cùng lúc vẫn rõ.
 
-## Lượt nhạc nền sinh động (11/2026) · bản hiện hành
+## Lượt nhạc nền sinh động (11/2026) · bản trước Sound Design Plan
 
 Theo `Task.md`: *"Cần thêm nhiều nhạc nền sinh động, trong 1 short nhạc nền đang không có sự thay đổi."* Hình, lời, tiếng động và các điểm nhấn nhạc viết tay (mô-típ bí mật, stinger, khựng, nhạc hiệu, nối vòng lặp) giữ nguyên. Lớp đệm đứng yên được thay bằng **lớp nhịp theo cảnh** ([`_shared/audio/groove.py`](../../_shared/audio/groove.py)):
 - **Mỗi cảnh một điệu.** Mỗi cảnh có điệu, vòng hoà âm, bộ nhạc cụ, bộ trống và mức năng lượng riêng. Hai cảnh kề nhau khác nhau ở ít nhất hai trong năm thứ đó.

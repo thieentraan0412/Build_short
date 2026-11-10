@@ -126,6 +126,20 @@ Làm trong tập đầu tiên dùng tới, kiểm bằng khung tĩnh của tập
 - Ở 007, câu cửa miệng có hành động bằng `albumGulp()`: trang giấy của Albie đếm chân Blink, Albie há miệng rồi "đớp" đúng chữ "go!" khi Blink lao vào trang (đo được 3,60, ngưỡng 2,0).
 - Cảnh sổ 4,45 s; logo 0,8 s ở 3,0–3,8 s; ô "1 2 3" từ 2,75 s.
 
+**Trạng thái ngày 10/11:** [SHORT-008](../films/short-008/TREATMENT.md) (bản B, 22 s) đã dựng xong. `qa.py` cho 50/50 mục đạt, 0 cảnh báo, gồm cả 8 mục Sound Design Plan.
+- Ghi chú 008 ở mục 7: móc là hành động (Miss Loupe hơ tay bên "lửa trại" Blink, băng mọc trên tay); bí mật "các chất trộn lại tạo ánh sáng" xảy ra trong kính lớn thành tám cú "pop" có tiếng, buồng sáng bừng lên.
+- Câu cửa miệng có hành động bằng `albumGulp()` (Blink lao vào trang đúng "go!"; đo được 2,83).
+
+**Trạng thái ngày 10/11 (chiều):** [SHORT-009](../films/short-009/TREATMENT.md) (bản B, 24 s) đã dựng xong. `qa.py` cho 50/50 mục đạt, 0 cảnh báo.
+- Ghi chú 009 ở mục 7: ruồi (Fizz) đáp xuống cạnh Blink ở khung 0 và là đạo cụ của gag; Fizz khác hẳn Blink ở hình (xanh than, mắt đỏ, hai cánh trong).
+- Fizz được thiết kế và thêm vào thư viện nhân vật ([`cast/fizz.js`](../_shared/characters/cast/fizz.js), nhóm khách mời `GUESTS`).
+- Không trùng bí mật 2 của 007: móc mới ("Which one is a fly?"), bí mật là trò đếm cánh (ruồi 2, Blink 4) trong kính lớn.
+
+**Trạng thái ngày 10/11 (tối):** [SHORT-010](../films/short-010/TREATMENT.md) (tập A, 44 s) đã dựng xong. `qa.py` cho 51/51 mục đạt, 0 cảnh báo, gồm cả 8 mục Sound Design Plan.
+- Ghi chú 010 ở mục 7: móc là hành động (Crumb đang rón rén ở khung 0; Zip thấy Crumb dù Crumb ở sau lưng nó, vụt lên). Cảnh mắt kép phủ cả khung: kính đẩy vào vòm mắt rồi phình ra, hàng trăm ô thấy được, mỗi ô phản chiếu một Crumb tí hon. Lời chỉ nói "thousands".
+- Zip được thiết kế và thêm vào thư viện nhân vật ([`cast/zip.js`](../_shared/characters/cast/zip.js), nhóm khách mời `GUESTS`).
+- Không trùng SHORT-011 (khung chia đôi tầm nhìn): tập này không vẽ góc nhìn của chuồn chuồn; bay lùi chỉ là câu trả lời cho "Nope!" và gag.
+
 ## 7. Ghi chú cho các tập sắp tới
 
 Lấy từ [`DE-CUONG-CAC-BO.md`](../DE-CUONG-CAC-BO.md), đối chiếu với quy tắc mới. Đây là đầu vào cho `TREATMENT.md` của từng tập, chưa phải kịch bản. Dữ kiện của các tập này đang ở mức **[Cao – chưa kiểm]**, nên phải qua `FACTS.md` trước khi viết lời.

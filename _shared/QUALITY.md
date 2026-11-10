@@ -14,15 +14,19 @@ Một video chỉ được giao khi:
 - Quy tắc áp dụng từ SHORT-006.
 - SHORT-001 đến 005 giữ nguyên làm mốc so sánh, nên `qa.py` vẫn báo CẢNH BÁO ở các tập này.
 
+**Lượt Sound Design Plan 11/2026.** Các quy tắc ghi *(SDP)* ở §4 đến từ yêu cầu phân tích và đề xuất nhạc nền theo từng phân cảnh (`Task.md`, 10/11/2026): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển; chống trùng lặp; bảng Sound Design Plan 7 cột.
+- Áp dụng cho mọi Short, kể cả SHORT-001 đến 007 (đã dựng lại nhạc theo quy tắc này).
+- Video dài chưa áp dụng (LONG-001 giữ lớp nhịp cũ, `plan=False`); `qa.py` chỉ đo nhóm "Sound Design Plan" ở Short.
+
 ## Quy trình
 
 | Bước | Việc phải làm theo bộ tiêu chí này |
 |---|---|
-| 1. Treatment (`TREATMENT.md`) | Viết rõ: nhịp móc 0–1 / 1–2 / 2–3 s; ba cấu trúc và lựa chọn; mỗi 3–5 s có chuyện gì mới (bảng cảnh); gag hoặc bất ngờ; thông điệp; chi tiết để xem lại (trứng phục sinh, vòng lặp); màu nhạc riêng của tập. *(11/2026)* Thêm: **khoảnh khắc wow** (bí mật xảy ra thành chuyển động gì, kính cỡ nào); **người nói của từng câu** có trên hình không; **đạo cụ của gag** được gài ở đâu; tập A theo khung 45 s ([kế hoạch nâng cấp](../PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md#3-công-thức-mới-của-tập-a-khoảng-45-s)) |
+| 1. Treatment (`TREATMENT.md`) | Viết rõ: nhịp móc 0–1 / 1–2 / 2–3 s; ba cấu trúc và lựa chọn; mỗi 3–5 s có chuyện gì mới (bảng cảnh); gag hoặc bất ngờ; thông điệp; chi tiết để xem lại (trứng phục sinh, vòng lặp); màu nhạc riêng của tập. *(SDP)* Phác **bảng Sound Design Plan** theo bảng cảnh: phong cách nhạc, BPM, nhạc cụ hát chính của từng cảnh, đâu là mở đầu / diễn biến / cao trào / kết. *(11/2026)* Thêm: **khoảnh khắc wow** (bí mật xảy ra thành chuyển động gì, kính cỡ nào); **người nói của từng câu** có trên hình không; **đạo cụ của gag** được gài ở đâu; tập A theo khung 45 s ([kế hoạch nâng cấp](../PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md#3-công-thức-mới-của-tập-a-khoảng-45-s)) |
 | 2. Giọng | Mỗi nhân vật có lời phải có trong [`voices.js`](voices.js). Nhân vật mới phải thử A/B. Mọi câu qua Whisper `small.en` và `base.en` (`build.sh` chạy cả hai) |
 | 3. Hình | Dựng khung tĩnh của mọi cảnh trước khi render; soi lỗi che khuất, chữ đè, nhân vật lơ lửng, cắt mép. *(11/2026)* Soi cả vùng giao diện Shorts: `node _shared/tools/safezone.mjs films/<tập>` (số đo) và `python _shared/tools/safesheet.py films/<tập>` (khung có phủ vùng che) |
-| 4. Âm thanh | Bảng Soundtrack Timeline (`MUSIC.md`) có **bảng cảnh nhạc** (mỗi cảnh một điệu, dựng bằng [`audio/groove.py`](audio/groove.py)) và bảng cue (`SOUND.md`) trước khi trộn |
-| 5. Dựng | `build.sh` chạy readcheck, Whisper và **`qa.py`** ở cuối (`qa.py` tự chạy `safezone.mjs` với Short 1080×1920) |
+| 4. Âm thanh | Bảng Soundtrack Timeline (`MUSIC.md`: màu nhạc, nhạc cụ, điểm nhấn viết tay) và bảng cue (`SOUND.md`) trước khi trộn. *(SDP)* Bảng cảnh nhạc khai báo trong `mix.py`: `Groove(..., plan=True)`, mỗi cảnh một `G.sec` / `G.mark` có `mood`, `arc`, `bpm`, `what`, `emo`, `why` ([`audio/groove.py`](audio/groove.py)); `python _shared/tools/soundplan.py films/<tập>` viết **`SOUND-PLAN.md`** (bảng 7 cột) |
+| 5. Dựng | `build.sh` chạy readcheck, Whisper, `soundplan.py` ngay sau `mix.py`, và **`qa.py`** ở cuối (`qa.py` tự chạy `safezone.mjs` với Short 1080×1920) |
 | 6. Giao | Báo cáo gồm bảng `qa.py` (hoặc `out/qa.json`) và checklist thủ công, ghi rõ mục nào chưa đạt và lý do |
 
 ## 1. Hook: 3 giây đầu
@@ -89,7 +93,16 @@ Một video chỉ được giao khi:
 | **Nhạc có nhịp liền, kể cả dưới lời**: dưới lời còn bass, kick, hat/shaker và tiếng đệm ngắn ở dải cao (giai điệu im); dưới giọng trầm (Albie) bỏ bass. Không để nhạc đứng thành pad ngân dài: chỗ khám phá dùng điệu rải (`float`), không dùng pad trơn | `qa.py`: ≥ 85 % số giây có ≥ 3 nốt |
 | **Nhạc đáp lời**: khoảng không lời giữa hai câu có một câu đáp ngắn của nhạc cụ hát chính (lớp nhịp tự chen; câu đáp viết tay ghi bằng `G.answer`), ≥ 1 câu / 10 s | `qa.py` |
 | **Đổi cảnh nhạc có dấu**: trước cảnh mạnh hơn có trống dồn, trước cảnh nhẹ hơn có chuỗi nốt đi xuống; phách đầu cảnh mới có kick + chũm chọe mềm (lớp nhịp tự làm); chỗ khựng, stinger viết tay | `MUSIC.md` + nghe lại |
-| Có tiếng động cho mọi chuyển động chính: nhân vật (nhảy, giật mình, khoe), kính (chụp, lao vào, lùi ra), sổ (lật, dán), gag | `SOUND.md` |
+| *(SDP)* **Bảng Sound Design Plan** (`SOUND-PLAN.md`, sinh từ `out/music.json`): mỗi cảnh nhạc một dòng `Thời gian · Nội dung cảnh · Cảm xúc (kèm nhịp độ chậm / vừa / nhanh / cao trào) · Phong cách nhạc · Nhạc cụ · BPM · SFX`, kèm lý do chọn nhạc, các chỗ chuyển cảnh và tóm tắt chống trùng lặp. Không sửa tay: sửa `G.sec` trong `mix.py` rồi chạy lại | `qa.py`: đủ mọi cảnh, mỗi cảnh có `what`, `emo`, `why` |
+| *(SDP)* **Mỗi cảnh một phong cách nhạc** trong 8 phong cách: Playful Cartoon, Happy Kids, Funny Comedy, Magical Adventure, Cute & Sweet, Bouncy Rhythm, Suspense & Surprise, Epic Cartoon (`MOODS` trong `groove.py`). Một Short có ≥ 4 phong cách (dưới 25 s: ≥ 3) | `qa.py` |
+| *(SDP)* **Luân phiên nhạc cụ**: hai cảnh kề nhau khác nhạc cụ hát chính; không nhạc cụ nào hát chính quá 40 % số cảnh; ≥ 4 nhạc cụ hát chính (dưới 25 s: ≥ 3); ≥ 6 họ nhạc cụ trong cả tập (dưới 25 s: ≥ 5) xoay giữa piano, ukulele, marimba, xylophone, dây pizzicato, kèn gỗ, kèn đồng, bộ gõ và nhạc cụ hoạt hình (kazoo, accordion, trống thép…) | `qa.py` |
+| *(SDP)* **BPM đổi theo nội dung** (`bpm=` của `G.sec`): ≥ 3 mức (dưới 25 s: ≥ 2), cảnh chậm nhất và nhanh nhất chênh ≥ 16 BPM. Gợi ý: hồi hộp, rón rén 96–104 · phép thuật, dễ thương 100–112 · vui, tinh nghịch 112–128 · nảy, cao trào 126–138. Giữ BPM của phim (120) ở cảnh mà hình nhún theo phách, cảnh có nốt viết tay theo lưới phim và cảnh nối vòng lặp | `qa.py` |
+| *(SDP)* **Không lặp một bản nhạc**: không cảnh nào lặp nguyên điệu + hoà âm + nhạc cụ + bộ gõ của cảnh khác; không cảnh nào nghe như cảnh khác chỉ đổi tốc độ (cùng điệu, cùng nhạc cụ, khác BPM); một điệu ≤ 40 % số cảnh. Chỉ giữ lại nhạc của một cảnh trước khi cùng mạch cảm xúc hoặc để nối vòng lặp, và ghi `reprise=True` | `qa.py` |
+| *(SDP)* **Mở đầu · diễn biến · cao trào · kết** khác nhau rõ (`arc=`): có đủ bốn phần; cao trào năng lượng 3 và khác điệu hoặc nhạc cụ của mở đầu; cảnh kết khác cảnh mở đầu ≥ 2 điểm (điệu, nhạc cụ, đệm, bộ gõ, năng lượng, BPM), kể cả khi kết nối vòng lặp về hoà âm của móc | `qa.py` |
+| *(SDP)* **Chuyển cảnh âm thanh tự nhiên** (`plan=True` tự làm, ghi vào `music.json`): mỗi chỗ đổi cảnh một cách chuyển (trống dồn, riser, nốt mồi của nhạc cụ mới, chuỗi nốt đi xuống, vuốt đàn hạc, dâng lấp lánh, còi trượt "bwomp", ngân đuôi để cảnh sau vào mềm), không cách nào quá 50 % số chỗ chuyển tự động; khi có lời ở điểm cắt thì chỉ dùng cách không chạm dải giọng; phách đầu cảnh mới được nhấn theo phong cách (timpani cho cao trào, triangle cho dễ thương, mõ cho hài) | `qa.py` + nghe lại |
+| *(SDP)* **Nhạc không lời, tích cực**: không có giọng hát trong nhạc nền; hồi hộp chỉ ở mức hoạt hình (rón rén, nhịp tim), không nhạc buồn hay đáng sợ; nhạc đỡ câu chuyện, không giành chú ý với lời | checklist |
+| Có tiếng động cho mọi chuyển động chính: nhân vật (nhảy, giật mình, khoe), kính (chụp, lao vào, lùi ra), sổ (lật, dán), gag. *(SDP)* Bảng tiếng động theo hành động trong [`audio/toon.py`](audio/toon.py): boing, pop, whoosh (`swish`, `zip_`), va chạm nhẹ (`bonk`), bước chân (`footsteps`), chạy (`scurry`), nhảy (`boing` + `swish`), cười (`giggle`), ngạc nhiên (`surprise`), reo vui (`cheer`), chuyển cảnh (`swirl`, `revcymbal`), "ta-da" (`band.tada`) | `SOUND.md` + cột SFX của `SOUND-PLAN.md` |
+| *(SDP)* **Tiếng động không lạm dụng, không lấn lời**: ≤ 8 cue trong 1 s bất kỳ sau móc; mỗi câu lời hơn riêng tiếng động ≥ 11 dB (dải 300–4000 Hz) | `qa.py` |
 | Nền (ambience) theo bối cảnh: đêm (gió, dế xa), vườn (chim xa, gió lá)…, nhường giọng như nhạc | `mix.py` |
 
 ## 5. Hình ảnh và chuyển động
@@ -161,6 +174,10 @@ LONG-001 không có mục mới nào bị CẢNH BÁO. Hai mục "hình gần đ
 - "Người nói có trên hình" chỉ nhận ra mặt nhân vật vẽ bằng rig dùng chung (`drawChar`).
 - Sau khi đăng, đối chiếu với biểu đồ giữ chân thật rồi chỉnh ngưỡng ([kế hoạch nâng cấp, mục 9](../PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md#9-đo-sau-khi-đăng)).
 
+### Hiệu chỉnh nhóm "Sound Design Plan" (11/2026)
+
+Trước lượt này (nhạc dựng bằng lớp nhịp cũ), cả 7 Short đều chạy 120 BPM suốt phim, nên mục "BPM đổi theo nội dung" không đạt ở mọi tập, và một nhạc cụ hát chính thường giữ 3–5 cảnh (sáo ở SHORT-007: 5/12 cảnh; glockenspiel ở SHORT-004: 9/16). Hai mục tiếng động mới đã đạt sẵn ở cả 7 tập (dày nhất 5–8 cue / 1 s sau móc; lời hơn riêng tiếng động 11,6–22,1 dB), nên chúng chỉ chặn việc thêm tiếng động quá tay ở các tập sau. Tiếng động dùng nhiễu ngẫu nhiên, nên số đo lời / tiếng động lệch khoảng ±1 dB mỗi lần dựng lại; ngưỡng 11 dB chừa phần đó.
+
 ## Checklist thủ công (điền vào báo cáo giao)
 
 - [ ] 0–1 s gây chú ý · 1–2 s nhân vật phản ứng · 2–3 s câu hỏi hoặc bí ẩn chưa giải
@@ -171,6 +188,7 @@ LONG-001 không có mục mới nào bị CẢNH BÁO. Hai mục "hình gần đ
 - [ ] Biểu cảm đọc được ở cỡ điện thoại; không che, không cắt mép, không lơ lửng
 - [ ] Nhạc đổi theo cảnh, khớp hành động; màu nhạc khác các tập trước
 - [ ] Nghe lại cả phim: mỗi cảnh nhạc nghe ra khác cảnh trước; dưới lời vẫn còn nhịp; có câu đáp giữa các câu; không đoạn nào nghe như một vòng lặp đều
+- [ ] *(SDP)* Đọc `SOUND-PLAN.md`: phong cách, nhạc cụ và BPM của từng cảnh hợp với hành động và cảm xúc; mở đầu, diễn biến, cao trào, kết nghe khác nhau; chỗ đổi tốc độ không bị giật (có cầu nối); không cảnh nào nghe như cảnh khác chỉ đổi tốc độ; nhạc không lời, vui, không buồn hay đáng sợ
 - [ ] Kết có điểm nhấn và nối về đầu (vòng lặp hoặc câu cuối)
 - [ ] Không kêu gọi bình luận hay đăng ký (Made for Kids); câu hỏi kết là câu trẻ trả lời to
 - [ ] Tựa móc nảy ở khung đầu có tiếng; nhân vật phản ứng bất ngờ trong 1 s

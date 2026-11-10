@@ -1,0 +1,103 @@
+[
+ {
+  "id": "L01",
+  "text": "Could you see behind your head?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L02",
+  "text": "Hey! How did it see me?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L03",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L04",
+  "text": "Its eyes cover most of its head!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L05",
+  "text": "So it sees almost all around!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L06",
+  "text": "Can I sneak up on it?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L07",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L08",
+  "text": "It can even fly backwards!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L09",
+  "text": "Each eye has thousands of tiny eyes!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L10",
+  "text": "Hi, everybody!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L11",
+  "text": "That's a lot of Crumbs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L12",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L13",
+  "text": "Can I hold the lens now?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L14",
+  "text": "Not yet!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L15",
+  "text": "One, two, three, boo!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L16",
+  "text": "Can YOU see who's behind me?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

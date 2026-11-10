@@ -52,20 +52,42 @@ LINES = TL['lines']
 AVOID = [(HIT['sproing'] - .05, 1.25), (1.4, 2.3), (at(2) - .45, at(2)), (HIT['tap'] - .05, HIT['tap'] + .7), (HIT['sweet'] - .05, HIT['sweet'] + .5),
          (HIT['sigA'] - .05, HIT['sigA'] + 1.0), (HIT['straw'] - .05, HIT['straw'] + .5), (HIT['shrug'] - .05, HIT['shrug'] + .6),
          (HIT['fly'], HIT['land'] + .2), (HIT['land'] + .15, HIT['land'] + .6), (11.1, 11.7), (HIT['mmm'] - .05, HIT['mmm'] + .65), (HIT['recall'] - .05, DUR)]   # sáo viết tay sau "straw"; "Mmm!" đứng một mình
-G = Groove(M, BEAT, LINES, seed=2, avoid=AVOID)
-G.mark('nối vòng lặp', 0, HIT['stomp'], 'break', 'D')
-G.sec('dậm chân · calypso', HIT['stomp'], HIT['pull'], 'calypso', 'G', 'G', bass='bassn', comp='steel', lead='xylo', kit='latin', energy=2, cue=False)
-G.sec('kéo xa · pop nảy', HIT['pull'], HIT['tap'], 'bounce', 'G', 'G', bass='bassn', comp='pluck', lead='xylo', kit='toy', energy=3)
-G.sec('soi · trống thép rải', HIT['tap'], HIT['sigA'], 'float', 'G', 'G,C Em,C', bass='bassn', arp='steel', lead='celesta', kit='latin', energy=2)
-G.sec('tia ngọt · calypso đầy', HIT['sigA'], HIT['lensOut'], 'calypso', 'G', 'D G', bass='bassn', comp='steel', lead='flute', kit='latin', energy=3, g=.85)
-G.sec('Wow · nửa nhịp ấm', HIT['lensOut'], 12.4, 'sway', 'G', 'G Em', bass='bassn', comp='pluck', lead='flute', kit='brush', energy=1)
-G.sec('giày · chụp sticker', 12.4, HIT['stamp'], 'break', 'C', 'C', cue=False)
-G.sec('sổ · shuffle ukulele', HIT['stamp'], HIT['fly'], 'skip', 'G', 'G C', bass='bassn', comp='pluck', lead='steel', kit='toy', energy=2)
-G.sec('Flutter bay vào', HIT['fly'], HIT['land'], 'calypso', 'D', 'D', bass='bassn', comp='steel', lead='flute', kit='latin', energy=3, fills=False)
-G.sec('gag · rón rén', HIT['land'], 20.4, 'tiptoe', 'Em', 'Em C', bass='pizzbass', comp='pizz', lead='xylo', kit='wood', energy=1, cue=False)
-G.sec('câu hỏi · về khung đầu', 20.4, DUR, 'calypso', 'G', 'G', bass='bassn', comp='steel', lead='steel', kit='latin', energy=2)
+# Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển.
+# Giữ 120 BPM ở cú dậm chân (nối vòng lặp, các nốt viết tay theo lưới phim) và ở cảnh kết về khung đầu; các cảnh giữa đổi BPM theo nội dung.
+G = Groove(M, BEAT, LINES, seed=2, avoid=AVOID, plan=True)
+G.mark('nối vòng lặp', 0, HIT['stomp'], 'break', 'D', '', 1, mood='suspense', arc='open', what='Khung 0: chân Flutter nhấc lên, chữ móc nảy',
+       emo='tò mò', why='Nửa giây đầu chỉ có hợp âm Rê nối từ cuối phim và tiếng pop của chữ, để cú dậm chân sau đó bật ra.')
+G.sec('dậm chân · calypso', HIT['stomp'], HIT['pull'], 'calypso', 'G', 'G', bass='bassn', comp='steel', lead='xylo', kit='latin', energy=2, cue=False,
+      bpm=120, mood='playful', arc='open', what='Flutter dậm chân lên bánh, vòi bật ra "sproing": "What if your socks could taste your snack?"',
+      emo='bất ngờ, buồn cười', why='Calypso trống thép là màu picnic của tập; xylophone vút theo cái vòi bật ra, khựng một móc đơn khi mắt Flutter phồng to.')
+G.sec('kéo xa · pop nảy', HIT['pull'], HIT['tap'], 'bounce', 'G', 'G', bass='bassn', comp='pluck', lead='pianohi', kit='toy', energy=3,
+      bpm=128, mood='happy', arc='open', what='Máy kéo xa, Miss Loupe giơ kính: "Let\'s zoom in!"', emo='háo hức',
+      why='Nhanh lên 128 BPM, ukulele và piano sáng cho lời mời "zoom in" vui như mở quà.')
+G.sec('soi · trống thép rải', HIT['tap'], HIT['sigA'], 'float', 'G', 'G,C Em,C', bass='bassn', arp='steel', lead='celesta', kit='latin', energy=2,
+      bpm=104, mood='magic', arc='build', what='Trong kính: bàn chân chạm bánh, điểm nếm sáng lên: "Its feet have tiny taste spots." – "It\'s sweet!"',
+      emo='kỳ diệu, khám phá', why='Chậm lại 104 BPM để nhìn kỹ: trống thép rải như giọt sáng, celesta chơi mô-típ bí mật đúng lúc điểm nếm bừng lên.')
+G.sec('tia ngọt · calypso đầy', HIT['sigA'], HIT['lensOut'], 'calypso', 'G', 'D G', bass='bassn', comp='steel', lead='flute', kit='bongo', energy=3, g=.85,
+      bpm=126, mood='bouncy', arc='peak', what='Tia "ngọt" chạy từ chân lên đầu: "So out comes its curly straw!" – cái vòi duỗi ra hút',
+      emo='phấn khích', why='Cao trào của bí mật: calypso đầy 126 BPM, bongo và bass móc đơn dồn theo tia ngọt chạy lên, sáo bay theo cái vòi duỗi ra.')
+G.sec('Wow · nửa nhịp ấm', HIT['lensOut'], 12.4, 'sway', 'G', 'G Em', bass='bassn', comp='harp', lead='vibes', kit='tri', energy=1,
+      bpm=108, mood='cute', arc='end', what='Kính lùi ra, Miss Loupe: "Wow!" – Flutter nhún vai', emo='ấm áp, thán phục',
+      why='Sau cao trào là một hơi thở: nửa nhịp đung đưa, đàn hạc và vibraphone mềm, triangle nhẹ cho chữ "Wow" đáng yêu.')
+G.sec('giày · chụp sticker', 12.4, HIT['stamp'], 'break', 'C', 'C', cue=False, mood='suspense', arc='end', what='Đôi giày "nếm" thử, kính chụp, sticker bay vào sổ',
+      emo='bất ngờ', why='Gần như ngắt nhạc để nghe tiếng giày và cú chụp; marimba chạy lên và đàn hạc vuốt (viết tay) đưa máy xuyên qua kính.')
+G.sec('sổ · ukulele nắng', HIT['stamp'], HIT['fly'], 'sunny', 'G', 'G C', bass='bassn', comp='pluck', lead='toypiano', kit='clap', energy=2,
+      bpm=116, mood='happy', arc='end', what='Sticker dán vào sổ; Albie: "Six legs? In you go!"', emo='vui, tự hào',
+      why='Ukulele quạt và vỗ tay cho niềm vui sưu tầm; piano đồ chơi đáp sau câu của Albie; dưới giọng trầm của Albie không có bass.')
+G.sec('Flutter bay vào', HIT['fly'], HIT['land'], 'gallop', 'D', 'D', bass='bassn', comp='marimba', lead='flute', kit='latin', energy=3, fills=False,
+      bpm=132, mood='bouncy', arc='end', what='Flutter bay vụt vào trang sổ', emo='háo hức',
+      why='Phi ngựa 132 BPM trong 0,8 s, sáo vút lên láy theo cánh bướm (viết tay).')
+G.sec('gag · rình rập', HIT['land'], 20.4, 'sneak', 'Em', 'Em C', bass='tuba', comp='pizz', lead='bassoon', kit='comic', energy=1, cue=False,
+      bpm=108, mood='funny', arc='end', what='Flutter đậu lên trang, hút thử: Albie "Not my pages!" – Flutter "Mmm!"',
+      emo='hài hước, tinh nghịch', why='Rình rập hài 108 BPM: tuba staccato, mõ hai cao độ, bassoon "bùm" sau "Not my pages!", rồi để "Mmm!" đứng một mình.')
+G.sec('câu hỏi · về khung đầu', 20.4, DUR, 'calypso', 'G', 'G', bass='bassn', comp='pluck', lead='marimba', kit='pop', energy=2, reprise=True,
+      bpm=120, mood='happy', arc='end', what='"What would YOUR feet taste?" – Flutter bay lên, về khung đầu', emo='háo hức, mời gọi',
+      why='Calypso của móc trở lại ở 120 BPM cho vòng lặp liền; giai điệu sang marimba, đệm ukulele, bộ gõ pop để khác cú dậm chân mở đầu.')
 G.answer(1.45, HIT['curl'], at(2) - .38, 11.15, HIT['shrug'], HIT['fly'] + .1, HIT['land'] + .19, at(10, 2))   # câu đáp viết tay bên dưới ("hm?", "hử?", sáo bay vào…)
-G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Calypso picnic" (Sol trưởng)')
 
 # — Hook 0–2,45 s: dậm chân → tò mò, khựng khi mắt phồng to → "hả?" —
 M(kick(.8), 0., .35); M(bassn(50, .3), 0., .6); M(T._ting(mf(98), .5), 0., .16, .4); M(steel(74, .5), 0., .3, .2)   # nốt đầu phim (D) nối từ cuối phim

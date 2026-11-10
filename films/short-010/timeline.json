@@ -1,0 +1,399 @@
+{
+ "bpm": 120,
+ "dur": 44,
+ "secs": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 3
+  },
+  {
+   "id": "title",
+   "t0": 3,
+   "t1": 3.8
+  },
+  {
+   "id": "eyes",
+   "t0": 3.8,
+   "t1": 10.6
+  },
+  {
+   "id": "backwards",
+   "t0": 10.6,
+   "t1": 17.7
+  },
+  {
+   "id": "facets",
+   "t0": 17.7,
+   "t1": 28.4
+  },
+  {
+   "id": "album",
+   "t0": 28.4,
+   "t1": 32.85
+  },
+  {
+   "id": "gag",
+   "t0": 32.85,
+   "t1": 44
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.05,
+   "dur": 1.541,
+   "card": 1,
+   "text": "Could you see behind your head?"
+  },
+  {
+   "id": "L02",
+   "who": "crumb",
+   "t": 1.66,
+   "dur": 1.269,
+   "card": 1,
+   "text": "Hey! How did it see me?"
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 3.9,
+   "dur": 0.999,
+   "card": 2,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 5.1,
+   "dur": 1.884,
+   "card": 3,
+   "text": "Its eyes cover most of its head!"
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 7.3,
+   "dur": 1.751,
+   "card": 4,
+   "text": "So it sees almost all around!"
+  },
+  {
+   "id": "L06",
+   "who": "crumb",
+   "t": 10.75,
+   "dur": 1.368,
+   "card": 5,
+   "text": "Can I sneak up on it?"
+  },
+  {
+   "id": "L07",
+   "who": "loupe",
+   "t": 12.85,
+   "dur": 0.628,
+   "card": 5,
+   "text": "Nope!",
+   "catch": true
+  },
+  {
+   "id": "L08",
+   "who": "loupe",
+   "t": 13.95,
+   "dur": 1.678,
+   "card": 6,
+   "text": "It can even fly backwards!"
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 17.85,
+   "dur": 2.222,
+   "card": 7,
+   "text": "Each eye has thousands of tiny eyes!"
+  },
+  {
+   "id": "L10",
+   "who": "crumb",
+   "t": 21.4,
+   "dur": 1.094,
+   "card": 8,
+   "text": "Hi, everybody!"
+  },
+  {
+   "id": "L11",
+   "who": "loupe",
+   "t": 25.55,
+   "dur": 1.343,
+   "card": 9,
+   "text": "That's a lot of Crumbs!"
+  },
+  {
+   "id": "L12",
+   "who": "albie",
+   "t": 29.55,
+   "dur": 2.297,
+   "card": 10,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L13",
+   "who": "crumb",
+   "t": 33.1,
+   "dur": 1.478,
+   "card": 11,
+   "text": "Can I hold the lens now?"
+  },
+  {
+   "id": "L14",
+   "who": "loupe",
+   "t": 34.8,
+   "dur": 0.828,
+   "card": 11,
+   "text": "Not yet!"
+  },
+  {
+   "id": "L15",
+   "who": "crumb",
+   "t": 38.85,
+   "dur": 1.172,
+   "card": 12,
+   "text": "One, two, three, boo!"
+  },
+  {
+   "id": "L16",
+   "who": "loupe",
+   "t": 41.45,
+   "dur": 1.592,
+   "card": 13,
+   "text": "Can YOU see who's behind me?"
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "tip": [
+   -0.4,
+   0,
+   0.4,
+   0.8
+  ],
+  "peek": 1,
+  "zipUp": [
+   1.38,
+   1.85
+  ],
+  "startle": 1.42,
+  "sit": 1.72,
+  "turn": [
+   1.95,
+   2.3
+  ],
+  "titleOut": [
+   2.55,
+   2.85
+  ],
+  "slots": 2.75,
+  "raise": 2.7,
+  "sting": [
+   3,
+   3.8
+  ],
+  "eyesGlow": [
+   5.15,
+   6.7
+  ],
+  "seam": [
+   6,
+   6.6
+  ],
+  "ring": [
+   7.2,
+   7.95
+  ],
+  "walk": [
+   7.45,
+   9.45
+  ],
+  "caught": 9.5,
+  "snap1": 9.95,
+  "fly1": [
+   10.05,
+   10.55
+  ],
+  "stamp1": 10.6,
+  "sneak": [
+   10.7,
+   12.1
+  ],
+  "hush": [
+   12.15,
+   12.8
+  ],
+  "pounce": 12.75,
+  "back1": [
+   12.85,
+   13.35
+  ],
+  "flop": 13.1,
+  "fwd": [
+   14.05,
+   14.5
+  ],
+  "back2": [
+   14.65,
+   15.1
+  ],
+  "hover": [
+   15.35,
+   17.1
+  ],
+  "reach": 16.2,
+  "settle": [
+   17.15,
+   17.6
+  ],
+  "snap2": 16.95,
+  "fly2": [
+   17.05,
+   17.6
+  ],
+  "stamp2": 17.7,
+  "dive": [
+   17.85,
+   19.6
+  ],
+  "grid": [
+   18.5,
+   19.4
+  ],
+  "k1000": [
+   19.25,
+   21.3
+  ],
+  "crumbUp": [
+   20.2,
+   20.75
+  ],
+  "refl": [
+   20.4,
+   21.4
+  ],
+  "wave": [
+   21.4,
+   23.3
+  ],
+  "side": [
+   23.35,
+   24.55
+  ],
+  "tongue": [
+   24.55,
+   25.35
+  ],
+  "out": [
+   25.15,
+   26.1
+  ],
+  "laugh": [
+   26.9,
+   28.1
+  ],
+  "snap3": 28.3,
+  "zoomIn": [
+   28.4,
+   28.7
+  ],
+  "zoomOut": [
+   28.7,
+   29.05
+  ],
+  "stamp3": 29.2,
+  "slotsDown": [
+   29.05,
+   29.45
+  ],
+  "zipIn": [
+   29.45,
+   30
+  ],
+  "counts": [
+   30,
+   30.2,
+   30.4
+  ],
+  "plunge": [
+   31.05,
+   31.5
+  ],
+  "gulp": 31.5,
+  "mini": 31.65,
+  "flip": [
+   32.35,
+   32.85
+  ],
+  "lensUp": [
+   34.75,
+   35.1
+  ],
+  "pout": [
+   35.6,
+   36.3
+  ],
+  "notice": 36.3,
+  "tiptoe": [
+   36.5,
+   38
+  ],
+  "zipOut": [
+   37.7,
+   38.2
+  ],
+  "puzzled": [
+   38.2,
+   38.8
+  ],
+  "count3": [
+   38.9,
+   39.25,
+   39.55
+  ],
+  "boo": 39.8,
+  "zipBack": [
+   39.3,
+   39.8
+  ],
+  "tap": 40.02,
+  "jump": 40.08,
+  "fall": 40.5,
+  "giggle": [
+   40.6,
+   41.3
+  ],
+  "home": [
+   41.2,
+   42.85
+  ],
+  "land": [
+   42.6,
+   43.45
+  ],
+  "recall": 42.9,
+  "loop": [
+   43.3,
+   44
+  ],
+  "waggle": [
+   33,
+   37.4
+  ],
+  "rollo": [
+   36.4,
+   39.2
+  ]
+ }
+}

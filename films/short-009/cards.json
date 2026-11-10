@@ -1,0 +1,42 @@
+[
+ {
+  "t0": 0.1,
+  "t1": 3.7520000000000002,
+  "text": "Which one is a fly? Me! I'm a firefly!"
+ },
+ {
+  "t0": 3.76,
+  "t1": 6.348999999999999,
+  "text": "Nope! Let's zoom in!"
+ },
+ {
+  "t0": 6.5,
+  "t1": 9.029,
+  "text": "A fly has two wings."
+ },
+ {
+  "t0": 9.1,
+  "t1": 12.112,
+  "text": "Blink has wing cases on top!"
+ },
+ {
+  "t0": 12.2,
+  "t1": 14,
+  "text": "So I'm a beetle!"
+ },
+ {
+  "t0": 14.6,
+  "t1": 17.497,
+  "text": "Six legs? In you go!"
+ },
+ {
+  "t0": 19.3,
+  "t1": 21.474000000000004,
+  "text": "Nice try, Fizz!"
+ },
+ {
+  "t0": 21.5,
+  "t1": 23.7,
+  "text": "How many wings does a fly have?"
+ }
+]

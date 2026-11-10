@@ -47,20 +47,42 @@ LINES = TL['lines']; L9 = next(l for l in LINES if l['id'] == 'L09')
 AVOID = [(HIT['hear'] - .05, HIT['answerEnd'] + .1), (HIT['listen2'] - .05, HIT['pull'] - .05), (HIT['glow'] - .05, HIT['glow'] + .75),   # giai điệu của lớp nhịp nhường điểm nhấn
          (HIT['drumHit'][2] - .05, HIT['drumHit'][2] + .9), (HIT['giggle'] - .1, HIT['stamp'] + .5), (HIT['hop'] - .1, HIT['hopLand'] + .2),
          (HIT['peek'] - .05, HIT['peek'] + .4), (HIT['show'] - .05, HIT['show'] + .6), (HIT['ring'] - .05, DUR)]
-G = Groove(M, BEAT, LINES, seed=3, avoid=AVOID)
-G.sec('móc · hồi hộp', 0, HIT['pull'], 'tension', 'Dm', 'Dm', bass='upright', arp='pizz', kit='jazz', energy=1, cue=False)
-G.sec('kéo xa · swing đầy', HIT['pull'], HIT['glow'], 'swing', 'Dm', 'Dm Bb', bass='upright', comp='rhodes', lead='vibes', kit='jazz', energy=3)
-G.sec('soi · khám phá', HIT['glow'], HIT['drumIn'], 'float', 'F', 'F Dm', bass='upright', arp='harp', lead='vibes', kit='jazz', energy=2)
-G.sec('mặt trống', HIT['drumIn'], HIT['lensOut'], 'bounce', 'F', 'Dm F', bass='upright', comp='pluck', lead='xylo', kit='tom', energy=2)
-G.sec('ồ · đáng yêu', HIT['lensOut'], HIT['snap'], 'sway', 'Bb', 'Bb F', bass='upright', comp='vibes', lead='celesta', kit='brush', energy=1)
-G.sec('chụp sticker', HIT['snap'], HIT['stamp'], 'break', 'F', 'F', cue=False)
-G.sec('sổ · shuffle vui', HIT['stamp'], HIT['hop'], 'skip', 'F', 'F Bb', bass='upright', comp='pluck', lead='vibes', kit='jazz', energy=2)
-G.sec('rón rén', HIT['hop'], HIT['nope'], 'tiptoe', 'Dm', 'Dm Gm', bass='pizzbass', comp='pizz', lead='pizz', kit='wood', energy=1)
-G.sec('NOPE! · khựng', HIT['nope'], L9['t'], 'break', 'Dm', 'Dm', cue=False)
-G.sec('aww · câu hỏi', L9['t'], HIT['recall'], 'sway', 'Dm', 'Dm Bb', bass='upright', comp='rhodes', lead='vibes', kit='brush', energy=2)
-G.sec('chữ móc trở lại', HIT['recall'], DUR, 'swing', 'Dm', 'Dm', bass='upright', comp='rhodes', lead='vibes', kit='jazz', energy=3)
+# Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển.
+# Giữ 120 BPM ở móc (vòng lặp), ở mặt trống (các cú "bum" viết tay theo lưới phim) và ở cảnh chữ móc trở lại.
+G = Groove(M, BEAT, LINES, seed=3, avoid=AVOID, plan=True)
+G.sec('móc · hồi hộp', 0, HIT['pull'], 'tension', 'Dm', 'Dm', bass='upright', arp='pizz', kit='jazz', energy=1, cue=False,
+      bpm=120, mood='suspense', arc='open', what='Chirp ngó xuống đầu gối mình: "What if your ears were on your knees?" – tiếng gáy xa chạm tai',
+      emo='tò mò, hồi hộp', why='Nhịp tim và pizzicato lắng nghe ngay từ giây 0; phím điện đáp lại tiếng gáy của Chirp như hỏi – đáp.')
+G.sec('kéo xa · swing đầy', HIT['pull'], HIT['glow'], 'swing', 'Dm', 'Dm Bb', bass='upright', comp='rhodes', lead='vibes', kit='jazz', energy=3,
+      bpm=132, mood='playful', arc='open', what='Máy kéo xa, Miss Loupe giơ kính: "Let\'s zoom in!"', emo='háo hức',
+      why='Night Band vào đủ: swing 132 BPM, contrabass đi bộ, phím điện Charleston, vibraphone đáp sau "zoom in".')
+G.sec('soi · khám phá', HIT['glow'], HIT['drumIn'], 'float', 'F', 'F Dm', bass='upright', arp='harp', lead='celesta', kit='jazz', energy=2,
+      bpm=100, mood='magic', arc='build', what='Trong kính, cái tai trên chân trước sáng lên: "Its ears are on its front legs!"',
+      emo='kỳ diệu, ngạc nhiên', why='Chậm lại 100 BPM và sang Fa trưởng khi cái tai sáng lên; đàn hạc rải, mô-típ bí mật trên vibraphone (viết tay), celesta đáp.')
+G.sec('mặt trống · timpani', HIT['drumIn'], HIT['lensOut'], 'hero', 'F', 'Dm F', bass='upright', comp='piano', lead='trumpet', arp='strings', kit='epic', energy=3,
+      bpm=120, mood='epic', arc='peak', what='Mặt tai rung "bum, bum": "Each one is like a tiny drum!"', emo='phấn khích, thán phục',
+      why='Cao trào: cái tai là một cái trống thật, nên timpani, dàn dây spiccato và trumpet; giữ 120 BPM để ba cú "bum" viết tay rơi đúng phách.')
+G.sec('ồ · đáng yêu', HIT['lensOut'], HIT['snap'], 'sway', 'Bb', 'Bb F', bass='upright', comp='vibes', lead='toypiano', kit='tri', energy=1,
+      bpm=96, mood='cute', arc='end', what='Miss Loupe cúi xuống: "Hello, little ears!" – Chirp khúc khích', emo='dễ thương, ấm áp',
+      why='Nửa nhịp 96 BPM, vibraphone và triangle mềm, piano đồ chơi chen một câu nhỏ sau "Hello", vibraphone láy theo tiếng khúc khích.')
+G.sec('chụp sticker', HIT['snap'], HIT['stamp'], 'break', 'F', 'F', cue=False, mood='suspense', arc='end', what='Kính chụp, máy lao xuyên kính, sticker hiện ra',
+      emo='bất ngờ', why='Marimba chạy lên và đàn hạc vuốt lên / xuống (viết tay) là tiếng của cú chụp; lớp nhịp nhường chỗ.')
+G.sec('sổ · shuffle piano', HIT['stamp'], HIT['hop'], 'skip', 'F', 'F Bb', bass='upright', comp='piano', lead='xylo', kit='jazz', energy=2,
+      bpm=112, mood='playful', arc='end', what='Sticker dán vào sổ; Albie: "Six legs? In you go!"', emo='vui, tự hào',
+      why='Shuffle 112 BPM với piano và búng tay cho trang sổ; xylophone đáp sau câu của Albie (không bass dưới giọng trầm).')
+G.sec('rón rén · rình rập', HIT['hop'], HIT['nope'], 'sneak', 'Dm', 'Dm Gm', bass='upright', comp='pizz', lead='bassoon', kit='wood', energy=1,
+      bpm=96, mood='suspense', arc='end', what='Chirp nhảy tới; Albie hỏi: "Ears on its head?"', emo='hồi hộp, chờ đợi',
+      why='Rình rập 96 BPM, bass đi nửa cung vào gốc, bassoon dò dẫm và pizzicato đi lên (viết tay) dồn tới tiếng hét "NOPE!".')
+G.sec('NOPE! · khựng', HIT['nope'], L9['t'], 'break', 'Dm', 'Dm', cue=False, mood='suspense', arc='end', what='Miss Loupe hét "NOPE!", Chirp bịt tai run run',
+      emo='bất ngờ, buồn cười', why='Cả ban nhạc khựng một phát, chỉ còn vibraphone run run theo Chirp (khoảng lặng có chủ đích, không im hẳn).')
+G.sec('aww · câu hỏi', L9['t'], HIT['recall'], 'twinkle', 'Dm', 'Dm Bb', bass='upright', arp='glock', lead='celesta', kit='tri', energy=2,
+      bpm=104, mood='cute', arc='end', what='"Oops! Sorry!" – Chirp hé mắt; "Where are YOUR ears?"', emo='ân hận dễ thương, mời gọi',
+      why='Hộp nhạc lấp lánh 104 BPM, celesta "aww" đi xuống sau lời xin lỗi; lớp nhịp nhẹ để câu hỏi kết rõ.')
+G.sec('chữ móc trở lại', HIT['recall'], DUR, 'swing', 'Dm', 'Dm', bass='upright', comp='piano', lead='vibes', kit='jazz', energy=3, reprise=True,
+      bpm=120, mood='playful', arc='end', what='Chữ móc trở lại, Chirp lắng nghe tiếng gáy xa, vòng sóng về khung đầu', emo='vui, tò mò',
+      why='Swing trở lại ở 120 BPM để nối vào nhịp tim của khung đầu; đệm piano thay phím điện cho khác cảnh kéo xa.')
 G.answer(HIT['answer'] + .125, HIT['listen2'], HIT['giggle'], L9['t'] + L9['dur'] + .02, HIT['show'])   # câu đáp viết tay bên dưới (phím điện đáp tiếng gáy, "aww"…)
-G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Night Band" (Rê thứ → Fa trưởng)')
 
 DM, F_, BB, C_, A7 = triad(62, MIN), triad(65), triad(58, inv=1), triad(60), [61, 64, 67]
 # vòng hoà âm: Rê thứ · Si♭ (mở) → Fa · Rê thứ (khi cái tai sáng lên) → Si♭ · Fa (nhịp "ồ") → Fa · Si♭ (sổ) → Rê thứ · Sol thứ (rón rén) → Rê thứ

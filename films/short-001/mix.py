@@ -159,28 +159,61 @@ secret(M, lambda n: horn(n, .9, .7), 72, tf, .1, .5, .1, last=12)         # "ta-
 M(bell(84, .8, 1.4), tf + .3, .6); M(bassn(36, 1.4), tf, 1.); M(kick(), tf, .9); M(T.cymbal(1.8, 1.), tf, .28, -.15)
 
 # — lớp nhịp theo cảnh (v5) + bảng cảnh nhạc của cả tổ khúc (MUSIC.md); các đoạn viết tay ở trên ghi bằng G.mark —
-G = Groove(M, BEAT, TL['lines'], seed=1, avoid=[(HIT['bfGlow'] - .05, HIT['bfGlow'] + .7), (tsw - .05, tsw + .4), (44.25, 45.0)])
-G.mark('rình · rón rén', 0, HIT['stomp'], 'tiptoe', 'C', 'pizz xylo tom')
-G.mark('giẫm · polka', HIT['stomp'], at(2), 'polka', 'C', 'tuba pizz xylo', energy=3)
-G.mark('nhạc hiệu', at(2), at(3), 'jingle', 'C', 'horn marimba bell')
-G.mark('bướm bay · đàn hạc 3+3+2', at(3), HIT['bfZoom'], 'lilt', 'F', 'harp flute pizz')
-G.sec('kính phóng to · marimba rải', HIT['bfZoom'], 13.0, 'float', 'F', 'C Dm Bb', bass='pizzbass', arp='marimba', lead='flute', energy=1, cue=False)
-G.mark('dồn vào SWEET', 13.0, tsw, 'break', 'F', 'pizz')
-G.sec('SWEET · pop nảy', tsw, at(8, 2), 'bounce', 'F', 'F C', bass='bassn', comp='pluck', lead='marimba', kit='toy', energy=3, cue=False, g=.6)   # câu "Sweet! Time to eat!" vẫn phải rõ
-G.mark('ngày → đêm', at(8, 2), at(9), 'break', 'Am', 'harp reed')
-G.mark('dế · rón rén trong đêm', at(9), at(11, 2), 'tiptoe', 'Am', 'pizz reed chirp', energy=1)
-G.mark('khựng trước đáp án', at(11, 2), at(12), 'break', 'Am')
-G.mark('tai ở chân · bừng sáng', at(12), at(14), 'tiptoe', 'C', 'pizz celesta chirp', energy=3)
-G.mark('ong · ú ớ', at(14), HIT['dance'], 'break', 'F', 'buzz')
-G.mark('ong · swing "bee bop"', HIT['dance'], at(17), 'swing', 'F', 'buzz pluck xylo', energy=3)
-G.mark('bản đồ · phiêu lưu', at(17), at(20), 'gallop', 'C', 'pizz horn bell', energy=3)
-G.mark('sổ · ba sticker', at(20), at(21), 'break', 'C', 'pizz xylo')
-G.sec('Albie · shuffle ukulele', at(21), 44.3, 'skip', 'C', 'C,Am', bass='bassn', comp='pluck', lead='xylo', kit='toy', energy=2, cue=False)
-G.sec('lời dặn · nửa nhịp ấm', 44.3, at(23, 3), 'sway', 'C', 'C,Am F,G', bass='pizzbass', comp='pluck', lead='flute', kit='brush', energy=2)
-G.mark('nhón chân', at(23, 3), at(24, 2), 'tiptoe', 'C', 'pizz reed xylo', energy=1)
-G.mark('khựng · ta-da', at(24, 2), DUR, 'break', 'C', 'horn bell pluck')
+# Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): tổ khúc viết tay giữ nguyên ở 120 BPM vì hình khớp theo phách (dế gáy, ong nhảy,
+# bản đồ); bốn cảnh của lớp nhịp đổi BPM theo nội dung (kính phóng to 104, SWEET 126, Albie 112, lời dặn 112 nửa nhịp) và đổi nhạc cụ hát chính.
+G = Groove(M, BEAT, TL['lines'], seed=1, avoid=[(HIT['bfGlow'] - .05, HIT['bfGlow'] + .7), (tsw - .05, tsw + .4), (44.25, 45.0)], plan=True)
+G.mark('rình · rón rén', 0, HIT['stomp'], 'tiptoe', 'C', 'pizz xylo tom', mood='suspense', arc='open',
+       what='Bàn chân rình trên hoa: "Can you taste with your feet?"', emo='tò mò, hồi hộp',
+       why='Pizzicato trầm đi lên từng nửa cung như bàn chân đang rình, kick mỗi phách, trống dồn khi chân lấy đà; xylophone "hỏi" đi lên.')
+G.mark('giẫm · polka', HIT['stomp'], at(2), 'polka', 'C', 'tuba pizz xylo', energy=3, mood='funny', arc='open',
+       what='Bàn chân giẫm "bẹp!", bướm bay ra: "Butterflies can!"', emo='bất ngờ, hài hước',
+       why='Cú giẫm là cú đánh của cả dàn (tuba, pizzicato, kèn đồ chơi, chũm chọe), rồi polka "oom-pah" nảy; xylophone tíu tít sau chữ "can".')
+G.mark('nhạc hiệu', at(2), at(3), 'jingle', 'C', 'horn marimba bell', 3, mood='epic', arc='open', what='"Big secrets of tiny bugs!" – logo',
+       emo='phấn khích', why='Nhạc hiệu 2 s của kênh (tập trước 11/2026), giống hệt mọi tập.')
+G.mark('bướm bay · đàn hạc 3+3+2', at(3), HIT['bfZoom'], 'lilt', 'F', 'harp flute pizz', mood='magic', arc='build',
+       what='"A butterfly lands on a flower." – "Let\'s zoom in!"', emo='nhẹ nhàng, kỳ diệu',
+       why='Sang Fa, đàn hạc rải lơi 3+3+2 như cánh bướm, sáo láy vỗ cánh khi Flutter bay vào và đáp khi đậu lên hoa.')
+G.sec('kính phóng to · marimba rải', HIT['bfZoom'], 13.0, 'float', 'F', 'C Dm Bb', bass='pizzbass', arp='marimba', lead='celesta', energy=1, cue=False,
+      bpm=104, mood='magic', arc='build', what='Kính phóng to bàn chân bướm: "Tiny taste spots on its feet tell it right away:"',
+      emo='kỳ diệu, tập trung', why='Chậm lại 104 BPM, marimba rải bí ẩn; mô-típ bí mật lơ lửng trên celesta (viết tay) đúng lúc điểm nếm sáng.')
+G.mark('dồn vào SWEET', 13.0, tsw, 'break', 'F', 'pizz', 2, mood='suspense', arc='build', what='Chờ đáp án', emo='nín thở',
+       why='Pizzicato dồn đi lên tám nốt, to dần vào chữ SWEET.')
+G.sec('SWEET · pop nảy', tsw, at(8, 2), 'bounce', 'F', 'F C', bass='bassn', comp='pluck', lead='marimba', kit='toy', energy=3, cue=False, g=.6,   # câu "Sweet! Time to eat!" vẫn phải rõ
+      bpm=126, mood='happy', arc='build', what='"Sweet! Time to eat!" – Flutter cuộn vòi', emo='vui sướng',
+      why='Đáp án bừng lên thành pop nảy 126 BPM ở màu ban nhạc kênh (ukulele, marimba, kick, vỗ tay); marimba đáp sau câu.')
+G.mark('ngày → đêm', at(8, 2), at(9), 'break', 'Am', 'harp reed', 1, mood='magic', arc='build', what='Trời tối dần, sang khu cỏ đêm', emo='lắng lại',
+       why='Đàn hạc rơi xuống chậm dần, kèn dăm trầm: chuyển sang đêm không cắt cụt.')
+G.mark('dế · rón rén trong đêm', at(9), at(11, 2), 'tiptoe', 'Am', 'pizz reed chirp', energy=1, mood='suspense', arc='build',
+       what='Chirp trong cỏ đêm: "What about crickets?" – "Where are its ears?" – "On its head?" – "Nope!"', emo='tò mò, hồi hộp',
+       why='La thứ, pizzicato staccato rón rén, tiếng dế làm bộ gõ đúng phách của hình; kèn dăm "hử?" sau câu hỏi, tuba "bwomp" sau "Nope!".')
+G.mark('khựng trước đáp án', at(11, 2), at(12), 'break', 'Am', '', 1, mood='suspense', arc='build', what='Khựng một nhịp trước đáp án', emo='nín thở',
+       why='Khoảng lặng có chủ đích ≤ 1 s để đáp án bật ra.')
+G.mark('tai ở chân · bừng sáng', at(12), at(14), 'tiptoe', 'C', 'pizz celesta chirp', energy=3, mood='magic', arc='build',
+       what='"A cricket\'s ears are on its front legs!" – Chirp nhấc chân "nghe"', emo='ngạc nhiên, vui',
+       why='La thứ bừng sang Đô trưởng, mô-típ bí mật trên celesta, chuông; pizzicato hỏi – đáp với tiếng dế khi Chirp nhấc chân.')
+G.mark('ong · ú ớ', at(14), HIT['dance'], 'break', 'F', 'buzz', 1, mood='funny', arc='build', what='"Honeybees can\'t talk," – Waggle ú ớ', emo='buồn cười',
+       why='Gần như ngắt nhạc: chỉ còn ong vo ve trầm và hợp âm mỏng chờ "so they dance!".')
+G.mark('ong · swing "bee bop"', HIT['dance'], at(17), 'swing', 'F', 'pluck xylo buzz', energy=3, mood='playful', arc='build',
+       what='"so they dance!" – Waggle nhảy điệu lắc', emo='vui nhộn',
+       why='Swing "bee bop": bass vo ve đi bộ, ukulele Charleston, hi-hat "ding – da-ding"; xylophone chơi mô-típ bí mật kiểu swing giữa hai câu.')
+G.mark('bản đồ · phiêu lưu', at(17), at(20), 'gallop', 'C', 'pizz horn bell', energy=3, mood='epic', arc='peak',
+       what='Bản đồ điệu nhảy: đường bay dẫn tới bông hoa đích nở trùm màn hình; Rollo lăn qua', emo='phiêu lưu, vỡ oà',
+       why='Cao trào của tập (cảnh không lời): pizzicato chạy liên tục, tom và kick, mô-típ bí mật dãn dài trên kèn, chuông rải khi hoa nở, riser vào sổ.')
+G.mark('sổ · ba sticker', at(20), at(21), 'break', 'C', 'pizz xylo', 2, mood='happy', arc='end', what='Albie còn ngủ; ba sticker dán lên trang',
+       emo='hài lòng', why='Hộp nhạc cho Albie ngủ, ba hợp âm Đô – Fa – Sol cao dần theo ba sticker.')
+G.sec('Albie · shuffle ukulele', at(21), 44.3, 'skip', 'C', 'C,Am', bass='bassn', comp='pluck', lead='toypiano', kit='toy', energy=2, cue=False,
+      bpm=112, mood='happy', arc='end', what='Albie: "Six legs? In you go!"', emo='vui, tự hào',
+      why='Shuffle ukulele 112 BPM, không bè trầm dưới giọng trầm của Albie; piano đồ chơi đáp sau câu cửa miệng.')
+G.sec('lời dặn · nửa nhịp ấm', 44.3, at(23, 3), 'sway', 'C', 'C,Am F,G', bass='pizzbass', comp='pluck', lead='flute', kit='tri', energy=2,
+      bpm=112, mood='cute', arc='end', what='"Go outside with a grown-up, and look closely!"', emo='ấm áp, dặn dò',
+      why='Nửa nhịp ấm 112 BPM (cảm giác 56) dưới lời dặn, triangle ở phách ba; sáo chơi mô-típ bí mật ngay trước câu (viết tay).')
+G.mark('nhón chân', at(23, 3), at(24, 2), 'tiptoe', 'C', 'pizz reed xylo', energy=1, mood='suspense', arc='end', what='Kính nở, Flutter nhón chân bước vào',
+       emo='tò mò', why='Bốn nốt xylophone đi xuống như nhón chân bước vào, pizzicato và kèn dăm nhỏ dần.')
+G.mark('khựng · ta-da', at(24, 2), DUR, 'break', 'C', 'horn bell pluck', 3, mood='funny', arc='end',
+       what='Flutter đậu lên kính: "Hey... is it tasting me?" – cười, chữ móc trở lại', emo='bất ngờ, buồn cười',
+       why='Ngắt nhạc cho gag (chỉ còn hộp nhạc rón rén), rồi "ta-da": kèn chơi mô-típ bí mật, ukulele, chuông, chũm chọe.')
 G.answer(3.25, 8.28, 20.78, 22.95, 26.0, 26.7, 31.0, 33.32, 44.32)          # câu đáp viết tay ở trên (xylophone tíu tít, sáo, "hử?", "bwomp", hỏi–đáp với tiếng dế…)
-G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'))
+G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Tổ khúc khu vườn" (Đô trưởng, mỗi cảnh một giọng)')
 
 # — cường độ theo cảnh (chuyển mềm 0,3 s), trước khi chuẩn hoá và nhường giọng —
 LEVEL = ((0, .75), (at(2), .52), (at(3), .9), (HIT['sweet'], 1.), (at(8, 2), .9), (at(9), .85), (HIT['ckEar'], 1.), (26., .9), (at(14), .7), (HIT['dance'], .95),

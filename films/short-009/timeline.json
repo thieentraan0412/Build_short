@@ -1,0 +1,214 @@
+{
+ "bpm": 120,
+ "dur": 24,
+ "secs": [
+  {
+   "id": "leaf",
+   "t0": 0,
+   "t1": 13.5
+  },
+  {
+   "id": "album",
+   "t0": 13.5,
+   "t1": 18.1
+  },
+  {
+   "id": "gag",
+   "t0": 18.1,
+   "t1": 24
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.1,
+   "dur": 1.555,
+   "card": 1,
+   "text": "Which one is a fly?"
+  },
+  {
+   "id": "L02",
+   "who": "blink",
+   "t": 2,
+   "dur": 1.152,
+   "card": 1,
+   "text": "Me! I'm a firefly!",
+   "say": "Me! I'm a fire-fly!",
+   "pace": 1
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 3.76,
+   "dur": 0.628,
+   "card": 2,
+   "text": "Nope!",
+   "catch": true
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 4.75,
+   "dur": 0.999,
+   "card": 2,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 6.5,
+   "dur": 1.929,
+   "card": 3,
+   "text": "A fly has two wings."
+  },
+  {
+   "id": "L06",
+   "who": "loupe",
+   "t": 9.1,
+   "dur": 2.412,
+   "card": 4,
+   "text": "Blink has wing cases on top!"
+  },
+  {
+   "id": "L07",
+   "who": "blink",
+   "t": 12.2,
+   "dur": 0.945,
+   "card": 5,
+   "text": "So I'm a beetle!",
+   "pace": 1
+  },
+  {
+   "id": "L08",
+   "who": "albie",
+   "t": 14.6,
+   "dur": 2.297,
+   "card": 6,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 19.3,
+   "dur": 1.574,
+   "card": 7,
+   "text": "Nice try, Fizz!"
+  },
+  {
+   "id": "L10",
+   "who": "loupe",
+   "t": 21.5,
+   "dur": 1.903,
+   "card": 8,
+   "text": "How many wings does a fly have?",
+   "pace": 1
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "land": 0.08,
+  "rub": [
+   0.75,
+   1.5
+  ],
+  "copy": [
+   1,
+   1.7
+  ],
+  "claim": 2,
+  "titleOut": [
+   2.85,
+   3.2
+  ],
+  "hush": [
+   3.15,
+   3.72
+  ],
+  "hopIn": [
+   3.22,
+   3.66
+  ],
+  "deflate": 3.85,
+  "zoom": [
+   5.75,
+   6.25
+  ],
+  "spread": 6.45,
+  "count2": [
+   7,
+   7.35
+  ],
+  "pan": [
+   8.5,
+   9.05
+  ],
+  "cases": 9.7,
+  "count4": [
+   9.75,
+   10,
+   10.65,
+   10.9
+  ],
+  "wings": 10.45,
+  "proud": 12.2,
+  "snap": 13.4,
+  "zoomIn": [
+   13.5,
+   13.8
+  ],
+  "zoomOut": [
+   13.8,
+   14.15
+  ],
+  "stamp": 14.3,
+  "blinkIn": [
+   14.6,
+   15.2
+  ],
+  "counts": [
+   14.85,
+   15.1,
+   15.35
+  ],
+  "dive2": [
+   16.45,
+   16.85
+  ],
+  "gulp": 16.85,
+  "mini": 17.05,
+  "flip": [
+   17.6,
+   18.1
+  ],
+  "lift": [
+   18.25,
+   18.55
+  ],
+  "strain": [
+   18.55,
+   19.05
+  ],
+  "fizzle": 19.08,
+  "shrug": 20.35,
+  "rub2": [
+   20.6,
+   21.3
+  ],
+  "takeoff": 22.4,
+  "recall": 23,
+  "exit": [
+   23.45,
+   23.9
+  ],
+  "loop": [
+   23.4,
+   24
+  ]
+ }
+}
