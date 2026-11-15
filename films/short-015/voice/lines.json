@@ -1,0 +1,56 @@
+[
+ {
+  "id": "L01",
+  "text": "Could you sing with your legs?",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L02",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L03",
+  "text": "Watch Hop's back leg!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L04",
+  "text": "Look! A row of tiny pegs!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L05",
+  "text": "Each peg scrapes the wing!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L06",
+  "text": "It's like a violin bow!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L07",
+  "text": "Let me try!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L08",
+  "text": "Oops! No pegs!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L09",
+  "text": "Can YOU make music with your legs?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

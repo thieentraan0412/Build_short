@@ -2,6 +2,7 @@
 import { C } from '../../kit.js';
 import { V, rotX, rotZ, mmul, mvec } from '../rig.js';
 import { eye, mouth, cheek, eyeOpts, fx } from '../face.js';
+import { LOOK, PASS, devStroke } from '../look.js';
 const TAU = Math.PI * 2;
 export const GLASS = '#DFF9FF';
 
@@ -31,10 +32,11 @@ export function lensRing(r, LC, M, o = {}) {
   });
   r.plane(front, U, W, (c, f) => {
     if (glass) { c.fillStyle = glass; c.beginPath(); c.arc(0, 0, .86, 0, TAU); c.fill(); }
-    if (inside) { c.save(); c.beginPath(); c.arc(0, 0, .86, 0, TAU); c.clip(); inside(c, f); c.restore(); }
-    if (smudge) smudge(c, f);
+    if (inside && !PASS.sil) { c.save(); c.beginPath(); c.arc(0, 0, .86, 0, TAU); c.clip(); inside(c, f); c.restore(); }
+    if (smudge && !PASS.sil) smudge(c, f);
     ring(c, rim);
     c.fillStyle = rimD; c.beginPath(); c.arc(0, 0, 1, .2, 1.8); c.arc(0, 0, .9, 1.8, .2, true); c.closePath(); c.fill();
+    if (LOOK.v >= 2 && !PASS.sil) { c.beginPath(); c.arc(0, 0, 1, 0, TAU); devStroke(c, PASS.W); c.beginPath(); c.arc(0, 0, .85, 0, TAU); devStroke(c, PASS.W); }
     if (!glass) return;                                   // vệt sáng chỉ có trên mặt kính
     c.strokeStyle = 'rgba(255,255,255,.78)'; c.lineCap = 'round'; c.lineWidth = .07;
     const s = f >= 0 ? 1 : -1; c.scale(s, 1);
@@ -72,15 +74,15 @@ export const LOUPE = {
     }
     // thân là cán kính
     r.cap([0, -1.53, 0], [0, -.53, 0], .78, body, { shade: { col: dark, k: .34, dx: -1, dy: -.12 } });
-    r.flat(r.Z([0, 0, 0]) + .01, c => { c.fillStyle = acc; c.beginPath(); c.roundRect(r.X([0, 0, 0]) - .36, -1.79, .72, .17, .08); c.fill(); });
+    r.flat(r.Z([0, 0, 0]) + .01, c => { c.fillStyle = acc; c.beginPath(); c.roundRect(r.X([0, 0, 0]) - .36, -1.79, .72, .17, .08); c.fill(); }, { line: 'first' });
     if (P.scarf) {
-      r.flat(r.Z([0, 0, 0]) + .015, c => { c.fillStyle = C.sky; c.beginPath(); c.roundRect(r.X([0, 0, 0]) - .44, -1.62, .88, .2, .1); c.fill(); });
+      r.flat(r.Z([0, 0, 0]) + .015, c => { c.fillStyle = C.sky; c.beginPath(); c.roundRect(r.X([0, 0, 0]) - .44, -1.62, .88, .2, .1); c.fill(); }, { line: 'first' });
       r.cap([.16, -1.5, .3], [.26, -1.05, .36], .16, C.skyL, { bias: .02 });
     }
     // mặt: trên một trụ ảo đặt lùi sau mặt thân để mắt to vẫn tròn khi nhìn thẳng
     const FC = [0, -1.31, -.21], RV = .6, phi = Math.asin(.25 / RV);
     for (const sd of [-1, 1]) {
-      const eo = eyeOpts(E, sd, { lid: body });
+      const eo = eyeOpts(E, sd, { lid: body, browY: .28, browW: .9 });
       r.feat(FC, RV, [Math.sin(sd * phi), 0, Math.cos(sd * phi)], .235, c => eye(c, eo));
       const cp = Math.asin(.32 / RV);
       if (!(E.fx === 'blush')) r.feat([0, -.95, -.21], RV, [Math.sin(sd * cp), 0, Math.cos(sd * cp)], .09, c => cheek(c), { bias: .001, cullAt: -.1 });

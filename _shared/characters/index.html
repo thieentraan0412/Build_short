@@ -8,6 +8,9 @@ html,body{margin:0;background:#1E1B3A}canvas{display:block;max-width:100vw;heigh
 <script type="module">
 import { SHEETS as PER, drawSheet } from './sheets.js';
 import { ENSEMBLE } from './ensemble.js';
+import { LOOK } from './look.js';
+const q = new URLSearchParams(location.search);
+LOOK.v = q.get('look') === '1' ? 1 : 2;   // bảng hình dựng bằng phong cách v2 (Kẹo Phẳng Viền); ?look=1 để xem bản v1 cũ
 const SHEETS = [...ENSEMBLE.filter(s => s.first), ...PER, ...ENSEMBLE.filter(s => !s.first)];
 await Promise.all(['800 40px "Baloo 2"', '600 40px "Baloo 2"', '40px "Paytone One"'].map(f => document.fonts.load(f, 'Big Secrets ẢĐơ 0123')));
 const cv = document.getElementById('cv'), c = cv.getContext('2d');
@@ -16,12 +19,11 @@ window.SHEETS = SHEETS.map(s => ({ id: s.id, file: s.file, w: s.w, h: s.h, clean
 window.renderSheet = (id, clean = false, scale = 2) => {
   const s = SHEETS.find(x => x.id === id);
   cv.width = s.w * scale; cv.height = s.h * scale;
-  c.setTransform(scale, 0, 0, scale, 0, 0);
+  c.setTransform(scale, 0, 0, scale, 0, 0); LOOK.norm = scale;
   drawSheet(c, s, { clean });
   return cv.toDataURL('image/png');
 };
 window.render = () => {};
-const q = new URLSearchParams(location.search);
 if (q.get('sheet')) window.renderSheet(q.get('sheet'), q.get('clean') === '1', 1);
 window.READY = true;
 </script></body></html>

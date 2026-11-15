@@ -7,6 +7,7 @@ import { EXPR10, EXPR_VI } from './face.js';
 import { CAST, BY } from './cast/index.js';
 import { POSES, POSE_KEYS, POSE_LABEL } from './poses.js';
 import { BIBLE } from './bible.js';
+import { LOOK } from './look.js';
 import { lensFrame, circ } from './props.js';
 const TAU = Math.PI * 2;
 export const PAGE = C.cream, PANEL = '#EFE9DD', PANEL2 = '#E4DCCB', GUIDE = '#D6CAB2', NIGHT_PANEL = '#2A2650';
@@ -21,7 +22,7 @@ export function header(c, o, name, kind, num) {
   if (o.clean) return;
   const w = title(c, name, 34, 66, 48, C.ink);
   label(c, kind, 34 + w + 22, 52, 26, C.berry, 'left');
-  label(c, `Big Secrets of Tiny Bugs · Character Design System v1 · ${num}`, (o.W || 1920) - 34, 52, 20, '#8C826F', 'right', 700);
+  label(c, `Big Secrets of Tiny Bugs · Character Design System v${LOOK.v >= 2 ? 2 : 1} · ${num}`, (o.W || 1920) - 34, 52, 20, '#8C826F', 'right', 700);
 }
 const ground = (c, x, y, w) => { c.fillStyle = 'rgba(30,27,58,.1)'; c.beginPath(); c.ellipse(x, y, w, w * .12, 0, 0, TAU); c.fill(); };
 

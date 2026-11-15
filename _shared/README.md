@@ -4,10 +4,11 @@ Mọi tập sau đều lấy nhân vật, bảng màu và font từ đây. Đừ
 
 | Thư mục / file | Là gì |
 |---|---|
-| [`characters/`](characters/) | Character Design System: rig code của 13 nhân vật định kỳ và khách mời (`GUESTS` trong `cast/index.js`: Fizz, ruồi, từ SHORT-009), biểu cảm, tư thế, đạo cụ, bảng thiết kế. Crumb có thêm tư thế `reach` (0..1, hoặc `[trái, phải]`): râu nghiêng về phía trước để chạm đầu râu với kiến khác (SHORT-005); mặc định 0 nên các tập cũ không đổi |
-| [`characters/CHARACTER-BIBLE.md`](characters/CHARACTER-BIBLE.md) | Tài liệu nhân vật: đặc điểm khóa, bảng màu, prompt cho AI |
-| [`characters/out/sheets/`](characters/out/sheets/) | 62 bảng thiết kế có chữ, dành cho người |
-| [`characters/out/clean/`](characters/out/clean/) | 61 bảng không chữ, dành cho AI tạo video |
+| [`characters/`](characters/) | Character Design System: rig code của 13 nhân vật định kỳ và khách mời (`GUESTS` trong `cast/index.js`: Fizz, ruồi, từ SHORT-009; Zip, chuồn chuồn, từ SHORT-010; **Hop, châu chấu, từ SHORT-013**: tai ở hai bên bụng, đùi sau có hàng gai, dáng `fiddle`/`bow`, `ear`, `earCover`, `lift`, `crouch`), biểu cảm, tư thế, đạo cụ, bảng thiết kế. Crumb có thêm tư thế `reach` (0..1, hoặc `[trái, phải]`): râu nghiêng về phía trước để chạm đầu râu với kiến khác (SHORT-005); mặc định 0 nên các tập cũ không đổi |
+| [`characters/look.js`](characters/look.js) | **(11/2026) Công tắc phong cách nhân vật** `LOOK.v`: 1 = "Khối Kẹo Phẳng" (mặc định, các tập đã giao dựng lại y hệt), 2 = **"Kẹo Phẳng Viền"**: viền mực đồng nhất, bóng cel mềm, mắt có mống mắt và hai điểm sáng, lông mày, miệng có răng lưỡi. Tập mới đặt `LOOK.v = 2`. Chi tiết ở mục 7 và 10 của CHARACTER-BIBLE |
+| [`characters/CHARACTER-BIBLE.md`](characters/CHARACTER-BIBLE.md) | Tài liệu nhân vật: đặc điểm khóa, bảng màu, bộ phận điều khiển được của rig, prompt cho AI (phong cách v2 và v1) |
+| [`characters/out/sheets/`](characters/out/sheets/) | 64 bảng thiết kế có chữ (phong cách v2), dành cho người; gồm bảng 22 (5 biểu cảm thương hiệu) và 23 (so sánh trước/sau) |
+| [`characters/out/clean/`](characters/out/clean/) | 62 bảng không chữ (v2), dành cho AI tạo video |
 | [`kit.js`](kit.js) | Bảng màu `C` và các hàm vẽ khối phẳng của style "Khối Kẹo Phẳng" |
 | [`fonts/`](fonts/) | Baloo 2 và Paytone One, kèm giấy phép OFL |
 | [`voices.js`](voices.js) | Giọng Kokoro và tốc độ của từng nhân vật có lời (Miss Loupe `af_heart` 0,9 · Albie `bm_lewis` 0,8), câu cửa miệng viết chuẩn. `tools/lines.mjs` của mỗi tập đọc bảng này |
@@ -32,6 +33,9 @@ Tập mới đặt ở `films/<tên-tập>/`. Công cụ render lấy thư mục
 import { C } from '/_shared/kit.js';
 import { drawChar } from '/_shared/characters/stage.js';
 import { BY } from '/_shared/characters/cast/index.js';
+import { LOOK } from '/_shared/characters/look.js';
+LOOK.v = 2;   // (11/2026) tập mới dùng phong cách nhân vật v2 "Kẹo Phẳng Viền"
+LOOK.cheer = true;   // (14/11/2026) mặt nhân vật luôn vui tươi; nhạc cũng luôn vui tươi (QUALITY.md, mục "Vui tươi")
 
 drawChar(c, BY.loupe, { x: 540, y: 1600, h: 600, yaw: .35, expr: 'explaining' });
 ```
@@ -42,7 +46,7 @@ Tham số `drawChar`, biểu cảm, tư thế mẫu và cách thêm khách mời
 
 1. Sửa trong `characters/cast/`, hoặc trong `characters/bible.js` nếu đổi chữ và đặc điểm khóa.
 2. Dựng lại bảng hình, chạy từ thư mục gốc của thư viện:
-   `node _shared/characters/tools/render.mjs`
+   `node _shared/characters/tools/render.mjs` (phong cách v2; thêm `--look 1` để có bản v1 trong `out/v1/`)
 3. Nếu đã sửa `bible.js`, cập nhật tài liệu: `node _shared/characters/tools/bible.mjs`
 4. Dựng lại các tập đang làm dở để thấy thay đổi.
 
@@ -68,7 +72,7 @@ Nhạc nền của tập mới dựng bằng lớp nhịp theo cảnh [`audio/gr
 1. `G = Groove(M, BEAT, LINES, ..., plan=True)`. Mỗi cảnh một `G.sec`: điệu, nhạc cụ theo màu nhạc của tập, và `bpm`, `mood`, `arc`, `what`, `emo`, `why`. Hai cảnh kề nhau khác nhạc cụ hát chính; giữ 120 BPM ở cảnh nhún theo phách của hình và cảnh nối vòng lặp.
 2. Đặt tay các điểm nhấn lên trên (mô-típ bí mật, stinger, khựng), khai báo vùng của chúng trong `avoid`, và ghi các đoạn viết tay bằng `G.mark` (cũng có `mood`, `arc`, `what`…).
 3. Gọi `G.save(path, color='<màu nhạc>')` để ghi `out/music.json`, rồi `python _shared/tools/soundplan.py films/<tập>` để có `SOUND-PLAN.md` và `music-plan.json`.
-4. *(Chống trùng giữa các tập, 11/2026 lượt 2)* Thêm một điệu mới làm điệu riêng của tập (`STYLES` và `SIGNATURE` trong `groove.py`), dùng ≥ 20 % thời lượng; cảnh sổ, gag và cao trào phối theo điệu của tập. Không mượn điệu riêng của tập khác. Commit cả `music-plan.json` để các tập sau so được.
+4. *(Chống trùng giữa các tập, 11/2026 lượt 2)* Điệu riêng đã giữ chỗ cho SHORT-011…015: `chacha` (bộ gõ `cha`), `reggae` (`dub`), `cumbia` (`guira`), `funk` (`funk`), `tango` (`tango`). Tập sau đó: thêm một điệu mới làm điệu riêng của tập (`STYLES` và `SIGNATURE` trong `groove.py`), dùng ≥ 20 % thời lượng; cảnh sổ, gag và cao trào phối theo điệu của tập. Không mượn điệu riêng của tập khác. Commit cả `music-plan.json` để các tập sau so được.
 
 Mẫu: `mix.py` của SHORT-007 (44 s, tập A, 12 cảnh nhạc, 7 phong cách, BPM 96–132) và SHORT-003 (24 s, vòng lặp).
 

@@ -1,11 +1,13 @@
-# Big Secrets of Tiny Bugs — Character Design System v1
+# Big Secrets of Tiny Bugs — Character Design System v2
 
-Bộ hình tham chiếu cố định cho cả series: 13 nhân vật định kỳ, mỗi nhân vật 4 bảng (thiết kế, biểu cảm, tư thế, atlas), cộng 10 bảng chung cho cả dàn. Mọi hình đều vẽ bằng code từ **một rig duy nhất cho mỗi nhân vật**, nên mọi góc nhìn, biểu cảm và tư thế đều là cùng một nhân vật, đúng tỷ lệ, đúng màu.
+Bộ hình tham chiếu cố định cho cả series: 13 nhân vật định kỳ, mỗi nhân vật 4 bảng (thiết kế, biểu cảm, tư thế, atlas), cộng 12 bảng chung cho cả dàn. Mọi hình đều vẽ bằng code từ **một rig duy nhất cho mỗi nhân vật**, nên mọi góc nhìn, biểu cảm và tư thế đều là cùng một nhân vật, đúng tỷ lệ, đúng màu.
 
-- **Ảnh có chữ** (cho người): [`out/sheets/`](out/sheets/), 62 ảnh PNG, 3840×2160 (lineup và bảng kích thước 5120×2160, bảng đặc điểm khóa 3840×3160, bảng tham chiếu chính 3840×3840, cảnh dọc 2160×3840).
-- **Ảnh sạch, không chữ** (cho AI tạo video): [`out/clean/`](out/clean/), 61 ảnh cùng bố cục.
+**Từ 11/2026, bảng hình dựng theo phong cách v2 "Kẹo Phẳng Viền"** (mục 10): viền mực đồng nhất, đổ bóng cel mềm, mắt có mống mắt và hai điểm sáng, lông mày, miệng có răng lưỡi. Nhân vật, màu, tỷ lệ, đặc điểm khoá và bố cục mọi bảng giữ nguyên. So sánh trước/sau: [bảng 23](out/sheets/23-before-after-v1-v2.png).
+
+- **Ảnh có chữ** (cho người): [`out/sheets/`](out/sheets/), 64 ảnh PNG, 3840×2160 (lineup và bảng kích thước 5120×2160, bảng đặc điểm khóa 3840×3160, bảng tham chiếu chính và bảng 5 biểu cảm 3840×3840, cảnh dọc 2160×3840, so sánh 5120×2460).
+- **Ảnh sạch, không chữ** (cho AI tạo video): [`out/clean/`](out/clean/), 62 ảnh cùng bố cục.
 - **Ảnh tham chiếu chính cho AI:** [`out/clean/21-MASTER-CHARACTER-REFERENCE.png`](out/clean/21-MASTER-CHARACTER-REFERENCE.png).
-- **Dựng lại toàn bộ** (khoảng 30 giây): `node _shared/characters/tools/render.mjs` từ thư mục gốc của thư viện.
+- **Dựng lại toàn bộ** (khoảng 30 giây): `node _shared/characters/tools/render.mjs` từ thư mục gốc của thư viện. Thêm `--look 1` để dựng bản v1 cũ vào `out/v1/`.
 
 ---
 
@@ -50,6 +52,8 @@ Danh sách lấy từ §2.2–2.3 của [`KE-HOACH-PHAT-TRIEN-KENH.md`](../../KE
 
 ## 3. Hệ thống chung (xem [bảng 00](out/sheets/00-master-art-style-sheet.png))
 
+- **Phong cách v2 "Kẹo Phẳng Viền"** (chi tiết ở mục 10): khối bo tròn; viền mực `#1E1B3A` đồng nhất trên mọi bộ phận, viền ngoài ≈ 1,7× nét trong; bóng cel mềm 4 tông (gốc, bán tối, tối ở mép khuất, vành sáng mảnh ở trên-trái); mắt tròng trắng có viền, mống mắt theo màu thân, con ngươi mực, hai điểm sáng, bóng mí; lông mày nổi theo cảm xúc; miệng nét thon, miệng mở có răng trên và lưỡi; má hồng có đốm bóng. Không gradient mượt, không texture, không chất liệu 3D.
+
 - **Bảng màu:** bảng `C` của `kit.js`. Các sắc tối/sáng thêm vào (`nightD`, `tangD`, `mintD`, `pinkD`, `grapeD`, `inkL`, `skinL`, `leafL`, `wing`…) chỉ là mảng tối/sáng của chính màu đó, giống `berryD`, `leafD` của pilot. Toàn bộ nằm trong `X` của [`parts.js`](parts.js).
 - **Màu chủ đạo, không trùng nhau:** Miss Loupe `berry` · Albie `grape` · Crumb `honey` · Flutter `night` · Chirp `lime` · Waggle `lemon` · Blink `mint` · Dot `tang` · Spindle `pink` · Mr. Rollo `ink` · Uncle Telly `leaf` · The Giant `skin` · Smudge khói trong suốt ([bảng 16](out/sheets/16-character-color-palette.png)).
 - **10 biểu cảm chuẩn** (cùng ngữ pháp cho mọi nhân vật): vui vẻ, ngạc nhiên, tò mò, lo lắng, buồn, tự tin, bối rối, phấn khích, đang suy nghĩ, giải thích bí mật; mỗi nhân vật thêm 2 biểu cảm riêng theo tính cách trong kế hoạch.
@@ -74,6 +78,8 @@ Danh sách lấy từ §2.2–2.3 của [`KE-HOACH-PHAT-TRIEN-KENH.md`](../../KE
 | Nhóm nhân vật trong Backyard Garden (§3 Task) | `19-backyard-garden-group` (16:9) và `19b-…-vertical` (9:16 cho Shorts) |
 | Bảng chi tiết không được thay đổi (§3 Task) | `20-locked-features` (chỉ có bản có chữ) |
 | 10. Master Character Reference Sheet | `21-MASTER-CHARACTER-REFERENCE` |
+| 5 gương mặt thương hiệu (v2, 11/2026) | `22-brand-expressions`: 13 nhân vật × vui vẻ, ngạc nhiên, tò mò, phấn khích, buồn cười |
+| So sánh trước / sau (v2, 11/2026) | `23-before-after-v1-v2`: cảnh vườn 19 ở hai phong cách cạnh nhau + cận mặt 6 nhân vật (chỉ có bản có chữ) |
 
 Số thứ tự nhân vật: 01 Miss Loupe, 02 Albie, 03 Crumb, 04 Flutter, 05 Chirp, 06 Waggle, 07 Blink, 08 Dot, 09 Spindle, 10 Mr. Rollo, 11 Uncle Telly, 12 The Giant, 13 Smudge.
 
@@ -114,6 +120,8 @@ Nhân vật chính · kính lúp biết đi, người dẫn chuyện.
 5. Tay chân là ống mảnh berryD, không ngón (chỉ thêm ngón trỏ khi chỉ).
 6. Kính chiếm khoảng 54% chiều cao; mắt rộng hơn thân một chút.
 
+**Bộ phận điều khiển được (rig):** tay trái/phải: vai → khuỷu (elbowL/R) → bàn tay tròn (handL/R), ngón trỏ khi chỉ (pointL/R), ngón cái (thumbL/R) · chân: hông → bàn chân (footL/R) + giày · kính: chúc (lensPitch), nghiêng (lensRoll), cảnh trong kính (inside), Smudge trên kính (smudge) · khăn (scarf); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/01-loupe-1-design-sheet.png) · [biểu cảm](out/sheets/01-loupe-2-expression-sheet.png) · [tư thế](out/sheets/01-loupe-3-pose-action-sheet.png) · [atlas](out/sheets/01-loupe-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/01-loupe-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
@@ -153,6 +161,8 @@ Cuốn sổ sưu tầm biết nói, người giữ luật "6 chân".
 5. Góc bọc vàng mật ở hai góc ngoài; đuôi ruy băng berry thò ra ở đáy.
 6. Không tay chân: cử chỉ bằng một trang giấy thò ra từ mép phải; đi bằng cách lắc trên hai góc đáy.
 
+**Bộ phận điều khiển được (rig):** nhún cả quyển (hop), lắc trên góc đáy khi đi (tilt), trang giấy làm tay (page [dài, cao, nghiêng], pageCurl), mép sticker bay (tabsUp), bìa hé = miệng, khóc ướt trang (wet), trang mới (newPage), khăn (scarf); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/02-albie-1-design-sheet.png) · [biểu cảm](out/sheets/02-albie-2-expression-sheet.png) · [tư thế](out/sheets/02-albie-3-pose-action-sheet.png) · [atlas](out/sheets/02-albie-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/02-albie-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
@@ -191,6 +201,8 @@ Kiến con hay hỏi, người xem đại diện.
 5. Luôn vác một vật to hơn mình (mặc định là vụn bánh).
 6. Từ sau tập 12: có kính lúp tí hon riêng.
 
+**Bộ phận điều khiển được (rig):** 4 chân đứng (feet), 2 chân trước làm tay (armL/R), nhấc người (lift), nghiêng thân (bodyLean), râu cuộn dấu hỏi (q 0..1), râu chạm râu (reach), đồ vác (carry, prop); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/03-crumb-1-design-sheet.png) · [biểu cảm](out/sheets/03-crumb-2-expression-sheet.png) · [tư thế](out/sheets/03-crumb-3-pose-action-sheet.png) · [atlas](out/sheets/03-crumb-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/03-crumb-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
@@ -227,6 +239,8 @@ Bướm ham ăn, nếm mọi thứ bằng chân.
 3. Vòi cam cuộn ốc dưới mặt, duỗi ra khi nếm.
 4. Râu mực, đầu râu tròn xoài.
 5. Không vẽ miệng: cảm xúc nằm ở mắt, râu, vòi và cánh.
+
+**Bộ phận điều khiển được (rig):** cánh: vỗ lên xuống (beta), xoè trước sau (alpha) · bay (lift) · 6 chân (feet, legsUp) · râu vểnh/cụp (antL/R) · vòi cuộn ↔ duỗi (tongue 0..1); cộng phần mặt dùng chung (cuối mục này).
 
 **Bảng hình:** [thiết kế](out/sheets/04-flutter-1-design-sheet.png) · [biểu cảm](out/sheets/04-flutter-2-expression-sheet.png) · [tư thế](out/sheets/04-flutter-3-pose-action-sheet.png) · [atlas](out/sheets/04-flutter-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/04-flutter-4-expression-pose-atlas.png)
 
@@ -266,6 +280,8 @@ Dế nhạc công rụt rè, tai rất thính.
 5. TAI nằm ở ống chân TRƯỚC (đốm tròn chỉ rõ trong kính); trên đầu không có tai.
 6. Đủ 3 phần thân (ngực có tấm khiên), 6 chân.
 
+**Bộ phận điều khiển được (rig):** nhảy (lift), rung cánh kêu (chirp), chân trước (frontL/R), tai ở chân trước sáng (earGlow), đùi sau co duỗi (hindUp), râu gợn (ant); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/05-chirp-1-design-sheet.png) · [biểu cảm](out/sheets/05-chirp-2-expression-sheet.png) · [tư thế](out/sheets/05-chirp-3-pose-action-sheet.png) · [atlas](out/sheets/05-chirp-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/05-chirp-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
@@ -304,6 +320,8 @@ Ong mật không nói, chỉ nhảy để "nói".
 5. Râu mực gãy khúc, đầu tròn.
 6. Không lời; "nói" bằng điệu nhảy.
 
+**Bộ phận điều khiển được (rig):** bay (lift), vỗ cánh (wing), lắc mông khi nhảy (wag), chúc đầu (pitch), 6 chân (legsUp), chớp 3 mắt đơn (ocelliBlink); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/06-waggle-1-design-sheet.png) · [biểu cảm](out/sheets/06-waggle-2-expression-sheet.png) · [tư thế](out/sheets/06-waggle-3-pose-action-sheet.png) · [atlas](out/sheets/06-waggle-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/06-waggle-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
@@ -340,6 +358,8 @@ Ong mật không nói, chỉ nhảy để "nói".
 3. Đèn đuôi vàng chanh + quầng sáng tròn; sáng lên khi biết bí mật, hồi hộp, xấu hổ (chối thì càng sáng).
 4. 6 chân mực ngắn, râu mực đầu tròn.
 5. Đom đóm là bọ cánh cứng: không vẽ như ruồi.
+
+**Bộ phận điều khiển được (rig):** độ sáng đèn đuôi (glow), bay: mở áo choàng + cánh trong (fly 0..1), nhấc (lift), chân (legsUp), vểnh đuôi (tailUp); cộng phần mặt dùng chung (cuối mục này).
 
 **Bảng hình:** [thiết kế](out/sheets/07-blink-1-design-sheet.png) · [biểu cảm](out/sheets/07-blink-2-expression-sheet.png) · [tư thế](out/sheets/07-blink-3-pose-action-sheet.png) · [atlas](out/sheets/07-blink-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/07-blink-4-expression-pose-atlas.png)
 
@@ -379,6 +399,8 @@ Bọ rùa lịch sự, đếm to mọi thứ.
 5. 6 chân mực.
 6. Khăn len xanh trời chỉ xuất hiện ở tập mùa đông.
 
+**Bộ phận điều khiển được (rig):** nhấc (lift), 6 chân, giơ chân đếm (legsUp), khăn (scarf); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/08-dot-1-design-sheet.png) · [biểu cảm](out/sheets/08-dot-2-expression-sheet.png) · [tư thế](out/sheets/08-dot-3-pose-action-sheet.png) · [atlas](out/sheets/08-dot-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/08-dot-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
@@ -415,6 +437,8 @@ Nhện nghệ sĩ, muốn được vào sổ.
 3. Đúng 8 mắt: hàng dưới 4 (2 mắt giữa to), hàng trên 4 mắt nhỏ.
 4. Không lông, không răng nanh, không vẽ chân xúc giác (để trẻ đếm đúng 8).
 5. Vào cảnh từ trên xuống, treo trên sợi tơ kem.
+
+**Bộ phận điều khiển được (rig):** 8 chân (legs), giấu 2 chân để giả côn trùng (hidden), nhấc (lift), sợi tơ (thread), cánh giấy (wings), áo len (sweater); cộng phần mặt dùng chung (cuối mục này).
 
 **Bảng hình:** [thiết kế](out/sheets/09-spindle-1-design-sheet.png) · [biểu cảm](out/sheets/09-spindle-2-expression-sheet.png) · [tư thế](out/sheets/09-spindle-3-pose-action-sheet.png) · [atlas](out/sheets/09-spindle-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/09-spindle-4-expression-pose-atlas.png)
 
@@ -453,6 +477,8 @@ Bọ hung già điềm tĩnh, trốn trong mọi tập.
 4. 6 chân, chân trước có răng.
 5. Luôn đi cùng viên tròn nâu; đi thẳng tắp, không bao giờ rẽ.
 
+**Bộ phận điều khiển được (rig):** viên tròn: vị trí (ball), cỡ (ballR), lăn (ballSpin), ẩn/hiện (showBall) · 6 chân (legsUp) · nhấc (lift); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/10-rollo-1-design-sheet.png) · [biểu cảm](out/sheets/10-rollo-2-expression-sheet.png) · [tư thế](out/sheets/10-rollo-3-pose-action-sheet.png) · [atlas](out/sheets/10-rollo-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/10-rollo-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
@@ -490,6 +516,8 @@ Bọ hung già điềm tĩnh, trốn trong mọi tập.
 4. Cao hơn Miss Loupe khoảng 13%, thân to hơn, miệng rộng.
 5. Bánh xe chỉnh nét vàng chanh trên cầu nối.
 
+**Bộ phận điều khiển được (rig):** tay trái/phải (handL/R, elbowL/R, pointL/R, thumbL/R), chân (footL/R), ngửa hai ống kính (lensPitch), lóe sáng tròng kính (glint); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/11-telly-1-design-sheet.png) · [biểu cảm](out/sheets/11-telly-2-expression-sheet.png) · [tư thế](out/sheets/11-telly-3-pose-action-sheet.png) · [atlas](out/sheets/11-telly-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/11-telly-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
@@ -525,6 +553,8 @@ Bàn tay, bàn chân của một bạn nhỏ — "thời tiết" của khu vư�
 3. Bàn chân 5 ngón tròn, đúng dáng ở pilot.
 4. Không bao giờ bắt, cầm hay đè côn trùng: chỉ chỉ, vẫy, đặt nhẹ, mở cửa sổ.
 5. Bóng đổ là màu mực trong suốt, mềm, không đáng sợ.
+
+**Bộ phận điều khiển được (rig):** bàn tay hoặc bàn chân (part), 11 cử chỉ tay (gesture: open, point, thumbs, wave, fist, soft, peace, count1, spread, curl, tap), xoay 3 trục (rot), lòng/mu bàn tay (palm), nhón chân (foot), ngọ nguậy ngón chân (toeWiggle).
 
 **Bảng hình:** [thiết kế](out/sheets/12-giant-1-design-sheet.png) · [biểu cảm](out/sheets/12-giant-2-expression-sheet.png) · [tư thế](out/sheets/12-giant-3-pose-action-sheet.png) · [atlas](out/sheets/12-giant-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/12-giant-4-expression-pose-atlas.png)
 
@@ -562,23 +592,33 @@ Vết dấu tay trên kính, phản diện vô hại.
 4. Mắt và miệng theo ngữ pháp chung; nhìn từ sau kính không thấy mặt.
 5. Không lời, vô hại; biến mất bằng một cú lau chuyển cảnh.
 
+**Bộ phận điều khiển được (rig):** co giãn (sx, sy), méo mép (wob, ph), vệt bị lau (streak), mờ dần (fade), nhỏ giọt (drip), nâng trên kính (lift), cảnh dưới kính (under); cộng phần mặt dùng chung (cuối mục này).
+
 **Bảng hình:** [thiết kế](out/sheets/13-smudge-1-design-sheet.png) · [biểu cảm](out/sheets/13-smudge-2-expression-sheet.png) · [tư thế](out/sheets/13-smudge-3-pose-action-sheet.png) · [atlas](out/sheets/13-smudge-4-expression-pose-atlas.png) · bản sạch cho AI: [atlas](out/clean/13-smudge-4-expression-pose-atlas.png)
 
 **Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**
 
 > Smudge, a harmless fingerprint smudge living on a glass lens: a soft rounded translucent smoky-lilac blob with five concentric fingerprint ridge lines, two small round white eyes and a cheeky small smirk; completely flat on the glass, no outline, the scene behind stays visible through it.
 
-#### Prompt phong cách dùng chung
+#### Prompt phong cách dùng chung (v2, hiện hành)
+
+> Premium 2D vector cartoon for a preschool educational series. Simple rounded shapes (circles, capsules, rounded rectangles, ellipses). Clean, smooth, uniform dark navy (#1E1B3A) outlines on every body part, the outer silhouette line slightly thicker than the inner lines. Soft cel shading: bright flat base color, a narrow mid-tone band and a thin darker rim on the lower-right of each shape, a thin light rim on the upper-left (light from upper-left); hard-edged shade shapes, no smooth gradients, no textures, no 3D or realistic materials. Big glossy eyes: white eyeball with a thin outline, colored iris tinted from the body color, navy pupil, two white catchlights, a soft lid shadow; expressive floating eyebrows; tapered mouth lines, open mouths show top teeth and a pink tongue; small pink cheeks with a tiny shine. Bright, vivid, harmonious candy palette, clean simple background.
+
+#### Prompt phong cách v1 (chỉ cho các tập đã giao trước 11/2026)
 
 > Flat 2D vector cartoon for preschool kids, built only from simple geometric shapes (circles, capsules, rounded rectangles, ellipses). Flat solid colors, NO outlines, NO gradients, NO textures, NO blur. Depth only from one flat darker shade patch on the lower-right of a shape (light from upper-left). Big round white eyes with dark navy (#1E1B3A) pupils and one white glint, pink oval cheeks, no eyebrows. Bright candy palette, clean simple background.
+
+#### Phần mặt dùng chung của rig
+
+Mắt (look hướng nhìn, open nhắm mở, pupil cỡ con ngươi, scale cỡ mắt), mí (lidTop, lidTilt, lidBot), lông mày v2 (brow: lift nhướng, tilt đầu trong lên/xuống, arch độ vồng; browL/browR riêng từng bên), miệng (13 dáng + talk 0..1 khi nói), nghiêng đầu (tilt), ký hiệu cảm xúc (fx).
 
 <!-- CAST:END -->
 
 ## 6. Dùng với AI tạo video
 
 1. Luôn đính kèm **`out/clean/21-MASTER-CHARACTER-REFERENCE.png`** và **atlas sạch** của từng nhân vật xuất hiện trong cảnh (`out/clean/NN-<tên>-4-expression-pose-atlas.png`). Cần bối cảnh thì thêm `out/clean/19-backyard-garden-group.png` hoặc bản dọc `19b`.
-2. Prompt = **prompt phong cách** (cuối mục 5) + prompt mô tả của từng nhân vật có mặt + hành động của cảnh.
-3. Prompt phủ định nên có: *outlines, gradients, 3D render, realistic, fur, fangs, extra legs, eyebrows, text, watermark*.
+2. Prompt = **prompt phong cách v2** (cuối mục 5) + prompt mô tả của từng nhân vật có mặt + hành động của cảnh. Prompt mô tả ghi "big round white eyes": với v2 hiểu là mắt trắng có mống mắt màu và hai điểm sáng như bảng 22.
+3. Prompt phủ định nên có: *smooth gradients, airbrush, 3D render, realistic, glossy plastic, fur, fangs, extra legs, sketchy or uneven lines, text, watermark*. (Bản v1 cũ còn phủ định thêm *outlines, eyebrows*; v2 thì có cả hai.)
 4. Sau khi tạo, so với bảng `20-locked-features`: đếm chân, mắt, chấm, cánh; kiểm tra màu chủ đạo.
 5. AI hay sai nhất ở: số chân côn trùng, 8 mắt của Spindle, 7 chấm của Dot, tai của Chirp (hay bị vẽ lên đầu), mặt Miss Loupe (hay bị đặt vào trong kính). Mấy chỗ này nên kiểm tra kỹ từng cảnh.
 
@@ -594,6 +634,12 @@ import { C } from '/_shared/kit.js';   // bảng màu dùng chung
 drawChar(c, BY.crumb, { x: 540, y: 1500, h: 260, yaw: .5, expr: 'curious', pose: { carry: 'crumb' } });
 ```
 
+- **Phong cách:** mặc định vẫn là v1 để các tập đã giao dựng lại ra y hệt. Tập mới bật v2 một lần ở đầu `film.js`:
+  ```js
+  import { LOOK } from '/_shared/characters/look.js';
+  LOOK.v = 2;   // Kẹo Phẳng Viền: viền, bóng cel mềm, mắt long lanh, lông mày
+  ```
+  Độ dày viền tự tính theo chiều cao nhân vật trên khung (mũ 0,3 nên nhân vật đứng cạnh nhau có nét gần nhau). Muốn mọi nhân vật trong một cảnh cùng đúng một độ dày thì truyền `line` (px logic, tổng viền ngoài) cho `drawChar`; `LOOK.lineK` nhân cả loạt. Biểu cảm có thể ghi lông mày `brow: { lift, tilt, arch }` (hoặc `browL` / `browR`); không ghi thì lông mày tự suy ra từ mí, cỡ mắt, mắt nhắm. Biểu cảm mới `silly` (nháy mắt, lè lưỡi) và miệng mới `tongue`.
 - Tư thế mẫu nằm trong [`poses.js`](poses.js); biểu cảm trong `EXPR` của [`face.js`](face.js); tham số rig ở đầu mỗi file trong [`cast/`](cast/).
 - `detail: 1` bật chi tiết chỉ thấy trong kính (tai Chirp, điểm nếm ở chân Flutter).
 - Thêm khách mời mới: tạo một file trong `cast/` theo mẫu của nhân vật gần nhất, thêm vào `cast/index.js`, `bible.js`, `poses.js`, rồi chạy lại `tools/render.mjs` và `tools/bible.mjs`.
@@ -615,5 +661,23 @@ drawChar(c, BY.crumb, { x: 540, y: 1500, h: 260, yaw: .5, expr: 'curious', pose:
 - **Khách mời** (Zip, Hop, Fizz, Skip, Glimmer…) thiết kế khi làm tập tương ứng, theo cùng hệ thống. Khách mời nằm trong `GUESTS` của [`cast/index.js`](cast/index.js) (có trong `BY`, không nằm trong 13 nhân vật định kỳ của `CAST`, nên các bảng hình tổng hợp không đổi).
   - **Fizz** (ruồi nhà, không lời) — thiết kế ngày 10/11/2026 cho [SHORT-009](../../films/short-009/TREATMENT.md), rig ở [`cast/fizz.js`](cast/fizz.js), bảng hình ở [`films/short-009/modelsheet.jpg`](../../films/short-009/modelsheet.jpg). Đặc điểm khoá: thân xanh than `#3D4470` có hai sọc xám ở bụng; **hai vòm mắt kép đỏ** (berry) to, mỗi vòm một con mắt hoạt hình; **đúng hai cánh trong** và hai núm thăng bằng màu kem sau cánh (ruồi là "Diptera", một cặp cánh); vòi ngắn; râu cụt; sáu chân mảnh. Tật: cọ hai chân trước (`pose.rub`), hay bắt chước người khác. Khác Blink ở màu (xanh than so với bạc hà), mắt (đỏ so với trắng) và cánh (hai cánh trong so với tấm cánh + đèn đuôi).
   - **Zip** (chuồn chuồn, không lời, chỉ tiếng "zip!") — thiết kế ngày 10/11/2026 cho [SHORT-010](../../films/short-010/TREATMENT.md), rig ở [`cast/zip.js`](cast/zip.js), bảng hình ở [`films/short-010/modelsheet.jpg`](../../films/short-010/modelsheet.jpg). Đặc điểm khoá: thân xanh trời (`sky`) rất dài, đuôi có vòng chanh; **hai vòm mắt kép xanh cốm (lime) khổng lồ chiếm gần hết đầu và chạm nhau ở đỉnh đầu**, mỗi vòm một con mắt hoạt hình; **bốn cánh dài trong suốt xoè ngang**, chấm sẫm ở đầu cánh; sáu chân ngắn gom dưới ngực; miệng nhỏ dưới hai vòm mắt. Dáng riêng: `pose.peek` (hai mắt hoạt hình trượt quanh vòm mắt để cho thấy Zip đang nhìn ra sau), `pose.blur` (cánh mờ nhoè khi đứng yên giữa trời), `pose.curl` (đuôi cong), `pose.beat`/`flap` (đập cánh). Tật: bay lùi, đứng yên giữa trời. Khác Blink (bạc hà, tròn) và Fizz (xanh than, mắt đỏ) ở màu, thân dài và bốn cánh.
+  - **Hop** (châu chấu, không lời, chỉ tiếng nảy "boing" và tiếng cọ chân) — thiết kế ngày 14/11/2026 cho SHORT-013 (ra mắt), SHORT-014, SHORT-015; rig ở [`cast/hop.js`](cast/hop.js). Cố ý cùng "họ hình" với Chirp để SHORT-013 mở bằng "trông khá giống nhau", nhưng khác ở hình: **thân xanh lá đậm** (`leaf`) có sọc chanh dọc bụng dưới (Chirp: xanh chanh `lime`); **râu ngắn, dày, chĩa về trước** (Chirp: râu rất dài vắt ra sau); **cánh nâu vàng** `#C9A050` gấp như mái nhà trên lưng (Chirp: cánh xanh lá); **tai là hai màng nghe tròn ở hai bên đốt bụng đầu** (`HOP.ear(sd)` cho vị trí; Chirp: tai ở ống chân trước); **đùi sau có sọc chữ V và một hàng gai nhỏ ở mặt trong** (chỉ rõ khi `detail` hoặc `pose.pegs`), cọ vào mép cánh để "hát"; lưng có tấm yên ngựa sẫm; không có đuôi hai gai. Dáng riêng: `lift` (nhảy: chân sau duỗi ra sau), `crouch` (co chân lấy đà), `fiddle` + `bow` (đùi sau kéo lên xuống như vĩ cầm), `ear` (màng nghe sáng, gợn sóng), `earCover` (hai chân trước bịt hai bên bụng), `hindUp`, `wingOpen`, `ant`, `frontL`/`frontR`.
 - **Màu da của The Giant:** pilot dùng `skin` #FFC9A3. Vì tập 12 nói "người khổng lồ chính là bạn", có thể cân nhắc vài tông da thay đổi theo tập. Đây chỉ là đề xuất; bộ này giữ đúng màu pilot.
 - **Tra nhãn hiệu tên nhân vật** trước khi làm sản phẩm (§13 kế hoạch).
+- **Các tập đã giao** (SHORT-001…010, LONG-001) vẫn ở v1. Chuyển một tập sang v2 chỉ cần `LOOK.v = 2` rồi dựng lại, nhưng phải chạy lại `qa.py` và xem lại khung hình (viền làm nhân vật nhỏ trông đậm hơn, phụ đề và vùng an toàn không đổi).
+
+## 10. Nâng cấp v2 "Kẹo Phẳng Viền" (11/2026)
+
+Yêu cầu: nâng cả dàn lên hoạt hình 2D vector cao cấp cho phim giáo dục thiếu nhi, giữ nguyên nhận diện, dùng lâu dài cho series. Cách làm: nâng **một lần trong rig dùng chung** (`look.js`, `rig.js`, `face.js`, `stage.js`), nên 13 nhân vật định kỳ, 2 khách mời và mọi bảng hình đổi cùng lúc, cùng một độ dày nét, cùng kỹ thuật bóng, cùng mức chi tiết.
+
+| Yêu cầu | Đã làm |
+|---|---|
+| 1. Giữ nhận diện | Không đổi loài, khối, tỷ lệ, màu chủ đạo, số chân, số mắt, số chấm, phụ kiện. Mọi bảng giữ nguyên bố cục, vị trí nhân vật và bối cảnh (cảnh vườn 19 dựng lại y bố cục, xem bảng 23). Không thêm nhân vật. |
+| 2. Ngoại hình | Nét viền mượt đều; mắt to có mống mắt theo màu thân, con ngươi rõ, hai điểm sáng và bóng mí; **thêm lông mày** (mỗi biểu cảm một dáng, tự suy ra nếu không ghi); miệng nét thon, miệng mở có răng trên và lưỡi; má có đốm bóng; biểu cảm mới `silly` (buồn cười: nháy mắt, lè lưỡi). Bảng 22 cho 5 biểu cảm vui vẻ, ngạc nhiên, tò mò, phấn khích, buồn cười của cả dàn. |
+| 3. Phong cách | 2D vector, khối bo tròn, viền mực đồng nhất (viền ngoài dày hơn nét trong), bóng cel mềm 4 tông có mép gọn, không gradient mượt, không texture, không 3D. Bảng màu giữ nguyên. |
+| 4. Dễ làm hoạt hình | Mỗi bộ phận (tay, chân, râu, cánh, mắt, mí, lông mày, miệng, đồ vác) là một khối riêng có nét riêng và tham số rig riêng (mục 5, dòng "Bộ phận điều khiển được"). Viền vẽ lại mỗi khung từ hình khối nên không vỡ khi đi, chạy, nhảy, nói (bảng 03 của từng nhân vật). Chỗ nối da liền khối (cổ tay The Giant) không kẻ nét để không bị đứt khi xoay. |
+| 5. Đồng nhất | Một hàm viền, một hàm bóng, một ngữ pháp mặt cho cả dàn; độ dày viền theo cỡ nhân vật trên khung (mũ 0,3). |
+
+**Cách viền được vẽ:** lượt 1 vẽ một vòng mực rộng quanh mọi khối đặc của nhân vật, nằm dưới cả nhân vật, nên chỉ lộ ra ở mép bóng ngoài (viền ngoài); lượt 2 vẽ từng khối với bóng cel và một nét mực mảnh quanh khối (nét trong, tách các bộ phận). Khối trong suốt (quầng sáng Blink, khói Smudge, bóng mờ cánh) không vào lượt 1; cánh trong của Fizz, Zip chỉ có nét viền, không bị tô mực bên dưới.
+
+**Giới hạn đã biết:** nhân vật rất nhỏ trên khung (dưới khoảng 60 px) trông đậm nét hơn v1; Smudge giữ viền khói mờ thay vì viền mực để vẫn là vết trong suốt; Flutter vẫn không vẽ miệng (biểu cảm nằm ở vòi, râu, mắt, lông mày).

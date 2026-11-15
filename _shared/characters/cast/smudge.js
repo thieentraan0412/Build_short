@@ -3,6 +3,7 @@
 import { C } from '../../kit.js';
 import { eye, mouth, eyeOpts } from '../face.js';
 import { GLASS } from './loupe.js';
+import { LOOK, PASS, devStroke } from '../look.js';
 const TAU = Math.PI * 2;
 export const SMUDGE_COL = { body: 'rgba(58,53,102,.30)', ridge: 'rgba(58,53,102,.32)', edge: 'rgba(58,53,102,.16)' };
 
@@ -27,6 +28,7 @@ export const SMUDGE = {
       if (P.streak) { c.fillStyle = SMUDGE_COL.edge; for (let i = -2; i <= 2; i++) { c.beginPath(); c.roundRect(-1.1 + P.streak * .4, i * .26 - .07, 2.2 + P.streak * 1.6, .14, .07); c.fill(); } }
       c.fillStyle = SMUDGE_COL.edge; blob(c, P.sx * 1.08, P.sy * 1.08, P.wob, P.ph); c.fill();
       c.fillStyle = SMUDGE_COL.body; blob(c, P.sx, P.sy, P.wob, P.ph); c.fill();
+      if (LOOK.v >= 2 && !PASS.sil) devStroke(c, PASS.W, 'rgba(58,53,102,.55)');   // v2: mép khói mờ, cùng độ dày nét trong
       if (P.drip) { c.fillStyle = SMUDGE_COL.body; c.beginPath(); c.roundRect(.3 * P.sx, .4 * P.sy, .16, .5 + P.drip * .6, .08); c.fill(); c.beginPath(); c.arc(.38 * P.sx, .9 * P.sy + P.drip * .6, .12, 0, TAU); c.fill(); }
       // vân tay: các vòng xoáy lồng nhau
       c.save(); c.scale(P.sx, P.sy); c.strokeStyle = SMUDGE_COL.ridge; c.lineWidth = .07; c.lineCap = 'round';

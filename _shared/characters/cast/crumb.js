@@ -22,7 +22,7 @@ function antennaQ(r, base, elbow, sd, q, col, reach = 0) {
     else { c.moveTo(0, 0); c.quadraticCurveTo(.1, -.9, .62, -1.05); c.quadraticCurveTo(1.0, -1.1, 1.0, -.72); }   // móc nhẹ
     c.stroke();
     if (q > .5) { c.fillStyle = col; c.beginPath(); c.arc(1.02, -.6, .12, 0, TAU); c.fill(); }
-  }, { bias: .061 });
+  }, { bias: .061, line: 'all' });
 }
 
 export const CRUMB_POSE = {

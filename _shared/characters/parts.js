@@ -45,7 +45,7 @@ export function glassWing(r, base, U, W, o = {}) {
   r.plane(base, U, W, c => {
     c.fillStyle = col; c.beginPath(); c.ellipse(len * .5, 0, len * .5, wid, 0, 0, TAU); c.fill();
     c.fillStyle = vein; c.beginPath(); c.ellipse(len * .52, 0, len * .32, wid * .52, 0, 0, TAU); c.fill();
-  }, { bias });
+  }, { bias, line: 'first' });
 }
 
 // vòng sáng phẳng (đuôi đom đóm): các vòng tròn đồng tâm trong suốt

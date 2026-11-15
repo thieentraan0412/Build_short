@@ -1,0 +1,59 @@
+[
+ {
+  "id": "L01",
+  "text": "Can you sneak up on a dragonfly?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L02",
+  "text": "From behind, it can't see me!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L03",
+  "text": "Crumb only sees its back.",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L04",
+  "text": "But Zip can see Crumb!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L05",
+  "text": "Oh no!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L06",
+  "text": "Its big eyes see almost all around!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L07",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L08",
+  "text": "Oh! I scared myself!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L09",
+  "text": "Can YOU sneak up on Zip?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

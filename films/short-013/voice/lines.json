@@ -1,0 +1,109 @@
+[
+ {
+  "id": "L01",
+  "text": "Where does a grasshopper hide its ears?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L02",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L03",
+  "text": "Are they on its legs, like Chirp?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L04",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L05",
+  "text": "Its ears are on its tummy!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L06",
+  "text": "But WHY on its tummy?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L07",
+  "text": "To hear other grasshoppers sing!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L08",
+  "text": "Many grasshoppers sing with their legs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L09",
+  "text": "They rub a back leg on a wing!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L10",
+  "text": "And its back legs are like springs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L11",
+  "text": "Look at it go!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L12",
+  "text": "A bug band!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L13",
+  "text": "The notes make a heart!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L14",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L15",
+  "text": "Play it again! Louder!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L16",
+  "text": "Oops! Too loud!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L17",
+  "text": "Where are YOUR ears?",
+  "voice": "af_heart",
+  "speed": 0.9
+ }
+]

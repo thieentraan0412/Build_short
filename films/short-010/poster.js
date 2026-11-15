@@ -3,6 +3,8 @@
 // Khác ảnh bìa 007 (Blink bay đêm), 008 (lửa trại), 009 (Fizz và Blink trên lá).
 import { C, popText, circle } from '/_shared/kit.js';
 import { drawChar } from '/_shared/characters/stage.js';
+import { LOOK } from '/_shared/characters/look.js';
+LOOK.cheer = true;   // (14/11/2026) mặt nhân vật luôn vui tươi
 import { BY } from '/_shared/characters/cast/index.js';
 import { ex, shadow } from '/_shared/episode.js';
 import { pondSky, pondBank, groundY, facets } from './props.js';

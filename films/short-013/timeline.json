@@ -1,0 +1,407 @@
+{
+ "bpm": 120,
+ "dur": 44,
+ "secs": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 3
+  },
+  {
+   "id": "title",
+   "t0": 3,
+   "t1": 3.8
+  },
+  {
+   "id": "ears",
+   "t0": 3.8,
+   "t1": 14.5
+  },
+  {
+   "id": "sing",
+   "t0": 14.5,
+   "t1": 20.3
+  },
+  {
+   "id": "springs",
+   "t0": 20.3,
+   "t1": 28.65
+  },
+  {
+   "id": "album",
+   "t0": 28.65,
+   "t1": 33.1
+  },
+  {
+   "id": "gag",
+   "t0": 33.1,
+   "t1": 44
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.45,
+   "dur": 1.968,
+   "card": 1,
+   "text": "Where does a grasshopper hide its ears?"
+  },
+  {
+   "id": "L02",
+   "who": "loupe",
+   "t": 3.9,
+   "dur": 0.999,
+   "card": 2,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L03",
+   "who": "crumb",
+   "t": 4.95,
+   "dur": 1.551,
+   "card": 3,
+   "text": "Are they on its legs, like Chirp?"
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 7.25,
+   "dur": 0.628,
+   "card": 3,
+   "text": "Nope!",
+   "catch": true
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 8.05,
+   "dur": 1.517,
+   "card": 4,
+   "text": "Its ears are on its tummy!"
+  },
+  {
+   "id": "L06",
+   "who": "crumb",
+   "t": 10.4,
+   "dur": 1.219,
+   "card": 5,
+   "text": "But WHY on its tummy?"
+  },
+  {
+   "id": "L07",
+   "who": "loupe",
+   "t": 12,
+   "dur": 1.72,
+   "card": 6,
+   "text": "To hear other grasshoppers sing!"
+  },
+  {
+   "id": "L08",
+   "who": "loupe",
+   "t": 14.65,
+   "dur": 2.129,
+   "card": 7,
+   "text": "Many grasshoppers sing with their legs!"
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 16.9,
+   "dur": 1.641,
+   "card": 8,
+   "text": "They rub a back leg on a wing!"
+  },
+  {
+   "id": "L10",
+   "who": "loupe",
+   "t": 20.4,
+   "dur": 1.916,
+   "card": 9,
+   "text": "And its back legs are like springs!"
+  },
+  {
+   "id": "L11",
+   "who": "crumb",
+   "t": 23.05,
+   "dur": 1.011,
+   "card": 10,
+   "text": "Look at it go!"
+  },
+  {
+   "id": "L12",
+   "who": "crumb",
+   "t": 24.6,
+   "dur": 0.867,
+   "card": 11,
+   "text": "A bug band!"
+  },
+  {
+   "id": "L13",
+   "who": "loupe",
+   "t": 25.75,
+   "dur": 1.351,
+   "card": 12,
+   "text": "The notes make a heart!"
+  },
+  {
+   "id": "L14",
+   "who": "albie",
+   "t": 29.8,
+   "dur": 2.297,
+   "card": 13,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L15",
+   "who": "crumb",
+   "t": 33.35,
+   "dur": 1.185,
+   "card": 14,
+   "text": "Play it again! Louder!"
+  },
+  {
+   "id": "L16",
+   "who": "loupe",
+   "t": 37.45,
+   "dur": 1.162,
+   "card": 15,
+   "text": "Oops! Too loud!"
+  },
+  {
+   "id": "L17",
+   "who": "loupe",
+   "t": 39.35,
+   "dur": 1,
+   "card": 16,
+   "text": "Where are YOUR ears?"
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "whistle": [
+   0,
+   0.34
+  ],
+  "rings": [
+   0.04,
+   0.5
+  ],
+  "startle": 0.4,
+  "hopUp": [
+   0.4,
+   0.82
+  ],
+  "lensRing": [
+   0.4,
+   1.35
+  ],
+  "chirpLeg": [
+   1,
+   1.4
+  ],
+  "hopTurn": [
+   1.15,
+   1.6
+  ],
+  "giggle": 1.75,
+  "puzzle": [
+   2.05,
+   2.7
+  ],
+  "titleOut": [
+   2.55,
+   2.85
+  ],
+  "slots": 2.75,
+  "raise": 2.7,
+  "sting": [
+   3,
+   3.8
+  ],
+  "kneeGlow": [
+   4.95,
+   6.5
+  ],
+  "slide": [
+   6.55,
+   7.15
+  ],
+  "hush": [
+   6.6,
+   7.2
+  ],
+  "xmark": 7.25,
+  "footWag": [
+   7.3,
+   7.95
+  ],
+  "sweep": [
+   8.05,
+   8.95
+  ],
+  "wing": [
+   8.4,
+   8.95
+  ],
+  "earOn": 8.95,
+  "chirps": [
+   9.62,
+   9.95
+  ],
+  "walk": [
+   8.3,
+   10.2
+  ],
+  "tummyPat": [
+   10.5,
+   11.6
+  ],
+  "far": [
+   12,
+   13.85
+  ],
+  "farRings": [
+   12.35,
+   12.95,
+   13.45
+  ],
+  "snap1": 13.85,
+  "fly1": [
+   13.95,
+   14.45
+  ],
+  "stamp1": 14.5,
+  "legUp": [
+   15,
+   15.45
+  ],
+  "saw": [
+   15.5,
+   19.55
+  ],
+  "edge": [
+   16.9,
+   18.6
+  ],
+  "solo": [
+   18.7,
+   18.95,
+   19.2,
+   19.45
+  ],
+  "snap2": 19.65,
+  "fly2": [
+   19.75,
+   20.25
+  ],
+  "stamp2": 20.3,
+  "crouch": [
+   21.2,
+   22.35
+  ],
+  "launch": 22.4,
+  "exit": [
+   22.4,
+   24.1
+  ],
+  "pull": [
+   22.75,
+   23.35
+  ],
+  "land": 24.1,
+  "duet": [
+   24.35,
+   28.4
+  ],
+  "heart": [
+   25.55,
+   26.75
+  ],
+  "star": [
+   26.75,
+   27.6
+  ],
+  "smile": [
+   27.6,
+   28.45
+  ],
+  "finale": 28.05,
+  "lensUp": [
+   27.9,
+   28.45
+  ],
+  "snap3": 28.55,
+  "zoomIn": [
+   28.65,
+   28.95
+  ],
+  "zoomOut": [
+   28.95,
+   29.3
+  ],
+  "stamp3": 29.45,
+  "slotsDown": [
+   29.3,
+   29.7
+  ],
+  "hopIn": [
+   29.55,
+   30.15
+  ],
+  "counts": [
+   30.25,
+   30.45,
+   30.65
+  ],
+  "plunge": [
+   31.3,
+   31.75
+  ],
+  "gulp": 31.75,
+  "mini": 31.9,
+  "flip": [
+   32.6,
+   33.1
+  ],
+  "encore": [
+   34.6,
+   36.25
+  ],
+  "lensRing2": [
+   35.05,
+   36.3
+  ],
+  "loud": [
+   35.45,
+   36.25
+  ],
+  "chirpCover": 36.3,
+  "hopCover": 36.65,
+  "loupeCover": 37.05,
+  "giggle2": 38.75,
+  "uncover": [
+   40.55,
+   40.75,
+   40.95
+  ],
+  "home": [
+   41.2,
+   42.85
+  ],
+  "recall": 42.6,
+  "loop": [
+   43.1,
+   44
+  ],
+  "rollo": [
+   36.8,
+   41.4
+  ]
+ }
+}

@@ -308,3 +308,10 @@ Câu mới tốt hơn câu cũ: "How did it see me?" nói thành lời câu hỏ
 - [x] *(11/2026)* "Six legs? In you go!" có hành động (đo được 3,00); cảnh sổ 4,5 s; vòng mở "1 2 3" từ 2,75 s.
 - [x] *(11/2026)* Người nói có trên hình ở mọi câu sau 3 s; đạo cụ của gag (Zip bay lùi) đã gài từ bí mật 2 và từ móc.
 - [x] *(11/2026)* Phụ đề, chữ và mặt nhân vật ngoài vùng giao diện Shorts; phụ đề không che mặt; nền trời kem ấm tương phản với Zip xanh trời.
+
+## Cập nhật 14/11/2026: mặt luôn vui, nhạc luôn tươi
+
+Theo yêu cầu "hãy luôn làm khuôn mặt của các nhân vật và nhạc vui tươi" (QUALITY.md, mục *Vui tươi*).
+- **Mặt:** bật `LOOK.cheer = true`; rig dùng chung đổi biểu cảm buồn, lo, cáu, nhăn, hét, lác mắt sang dạng vui, bất ngờ thành mắt to miệng cười, lúc nói miệng cười há.
+- **Nhạc:** tiptoe → skip (móc, gag, nối vòng); sneak → bounce 116; tension Đô thứ 96 → gallop Mi giáng trưởng 120; khựng trước "Nope!" sang giọng trưởng; float 96 → 108; twinkle 104 → 108; sway → sunny 112; stab Đô thứ → hero Mi giáng trưởng (dây spiccato); cú chặn "boo!" thành hợp âm trưởng; trombone "wah-WAH" đi lên. Hình: kính nhún theo phách ở 4,9–9,7 s (hết đoạn gần đứng yên).
+- **qa.py sau khi dựng lại:** 56 ĐẠT · 0 CẢNH BÁO · 0 CHƯA ĐẠT (gồm hai mục mới "Mặt nhân vật vui tươi" và "Nhạc vui tươi"). Bảng qa ở trên là của lần dựng trước.

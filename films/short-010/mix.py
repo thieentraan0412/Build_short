@@ -48,10 +48,11 @@ AVOID = [(0, .3), (S0 - .05, S1 + .1), (HIT['zipUp'][0] - .05, HIT['zipUp'][0] +
 # Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển.
 # Cảnh "rón rén" ở móc, ở gag và ở 1,2 s cuối là một bản (reprise, cùng 112 BPM): cùng mạch cảm xúc "Crumb đi rình", và nối vòng lặp liền.
 G = Groove(M, BEAT, LINES, meter=4, seed=10, avoid=AVOID, plan=True)
-TIP = dict(bass='pizzbass', comp='bassoon', lead='pizz', kit='wood', energy=1, bpm=112, mood='funny')   # 11/2026 lượt 2: pizzicato hát, bassoon đệm (007 giữ bassoon hát); rón rén hài, không hồi hộp
-G.sec('móc · Crumb rón rén', 0, HIT['startle'] - .05, 'tiptoe', 'Eb', 'Eb Bb', **TIP, cue=False, arc='open',
-      what='Crumb nhón chân rón rén sau lưng Miss Loupe định hù; cô hỏi trẻ: "Could you see behind your head?"', emo='hồi hộp, tinh nghịch',
-      why='Rón rén hài 112 BPM: pizzicato hát nhón từng bước, bassoon đệm như đang nín cười. Trẻ thấy Crumb, Miss Loupe thì không, nên nhạc "rình" cùng trẻ.')
+TIP = dict(bass='pizzbass', comp='bassoon', lead='pizz', kit='wood', energy=2, bpm=112, mood='funny')   # (14/11/2026) vui tươi: nhón chân bằng điệu nhảy chân sáo, năng lượng 2
+# trước 14/11/2026: 11/2026 lượt 2: pizzicato hát, bassoon đệm (007 giữ bassoon hát); rón rén hài, không hồi hộp
+G.sec('móc · Crumb rón rén', 0, HIT['startle'] - .05, 'skip', 'Eb', 'Eb Bb', **TIP, cue=False, arc='open',
+      what='Crumb nhón chân rón rén sau lưng Miss Loupe định hù; cô hỏi trẻ: "Could you see behind your head?"', emo='tinh nghịch, vui',
+      why='Nhảy chân sáo 112 BPM (14/11/2026: nhạc luôn vui tươi, không dùng điệu rón rén): pizzicato hát nhón từng bước, bassoon đệm như đang nín cười. Trẻ thấy Crumb, Miss Loupe thì không, nên nhạc "rình" cùng trẻ.')
 G.sec('Zip vụt lên · "How did it see me?"', HIT['startle'] - .05, S0, 'hop', 'Eb', 'Eb Ab', bass='bassn', comp='pluck', lead='flute', kit='bongo', energy=2,
       bpm=126, mood='funny', arc='open', what='Con ngươi của Zip trượt ra sau, Zip vụt lên, Crumb giật mình ngã ngồi: "Hey! How did it see me?"', emo='bất ngờ, buồn cười',
       why='Nảy lệch phách 126 BPM ngay cú vụt; sáo chạy motif bốn nốt đi lên của Zip (viết tay), bongo cho cú ngã.')
@@ -60,23 +61,23 @@ G.mark('logo · nhạc hiệu 0,8 s', S0, S1, 'jingle', 'Eb', 'horn marimba bell
 G.sec('bí mật 1 · mắt chiếm gần hết đầu', S1, HIT['ring'][0], 'quest', 'Eb', 'Eb Cm Ab Bb', bass='upright', comp='harp', lead='glock', kit='tri', energy=2,
       bpm=108, mood='magic', arc='build', what='"Let\'s zoom in!" — kính soi đầu Zip: hai vòm mắt sáng viền, tia lấp lánh trên đỉnh đầu: "Its eyes cover most of its head!"',
       emo='kỳ diệu, tò mò', why='Phiêu lưu 108 BPM, đàn hạc đệm, glockenspiel hát như tia lấp lánh trên mắt; đàn hạc vuốt lên đúng lúc vòm mắt sáng viền (viết tay).')
-G.sec('Crumb đi một vòng, mắt theo mãi', HIT['ring'][0], HIT['stamp1'], 'sneak', 'Eb', 'Eb Ab', bass='tuba', comp='pizz', lead='reed', kit='comic', energy=2,
-      bpm=100, mood='funny', arc='build', what='Vòng nhìn loang quanh Zip; Crumb rón rén đi một vòng, con ngươi của Zip theo mãi: "So it sees almost all around!"',
-      emo='buồn cười, bị bắt quả tang', why='Rình rập hài 100 BPM ở Mi giáng trưởng (vui, không u ám): mỗi lần con ngươi trượt theo là một nốt marimba (viết tay); clarinet cười khúc khích khi Crumb bị bắt gặp.')
-G.sec('bí mật 2 · "Can I sneak up on it?"', HIT['stamp1'], HIT['hush'][0], 'tension', 'Cm', 'Cm G', bass='upright', comp='pizzbass', lead='bassoonlo', kit='brush', energy=1,
-      bpm=96, mood='suspense', arc='build', what='Crumb thì thầm: "Can I sneak up on it?" rồi rón rén tới gần Zip từ phía sau', emo='hồi hộp',
-      why='Nhịp tim hồi hộp 96 BPM, chỉ còn bass và chổi trống, để câu hỏi thì thầm nổi lên và trẻ đoán.')
-G.mark('khựng trước "Nope!"', HIT['hush'][0], L['L07']['t'], 'break', 'Cm', '', 1, mood='suspense', arc='build', what='Crumb nhún xuống, sắp vồ… khựng',
-       emo='nín thở', why='Khoảng lặng có chủ đích 0,6 s (trống lăn thì thầm) để "Nope!" bật ra rõ.')
+G.sec('Crumb đi một vòng, mắt theo mãi', HIT['ring'][0], HIT['stamp1'], 'bounce', 'Eb', 'Eb Ab', bass='tuba', comp='pizz', lead='reed', kit='comic', energy=2,
+      bpm=116, mood='funny', arc='build', what='Vòng nhìn loang quanh Zip; Crumb rón rén đi một vòng, con ngươi của Zip theo mãi: "So it sees almost all around!"',
+      emo='buồn cười, bị bắt quả tang', why='Pop nảy 116 BPM ở Mi giáng trưởng (vui tươi, không rình rập): mỗi lần con ngươi trượt theo là một nốt marimba (viết tay); clarinet cười khúc khích khi Crumb bị bắt gặp.')
+G.sec('bí mật 2 · "Can I sneak up on it?"', HIT['stamp1'], HIT['hush'][0], 'gallop', 'Eb', 'Eb Bb', bass='upright', comp='pizzbass', lead='bassoonlo', kit='brush', energy=2,
+      bpm=120, mood='bouncy', arc='build', what='Crumb thì thầm: "Can I sneak up on it?" rồi rón rén tới gần Zip từ phía sau', emo='tinh nghịch, háo hức',
+      why='Phi ngựa nhịp kép 120 BPM ở giọng trưởng, bass và chổi trống nhỏ dưới lời (14/11/2026: không nhịp tim hồi hộp): câu hỏi thì thầm vẫn nổi lên và trẻ háo hức đoán.')
+G.mark('khựng trước "Nope!"', HIT['hush'][0], L['L07']['t'], 'break', 'Eb', '', 1, mood='funny', arc='build', what='Crumb nhún xuống, sắp vồ… khựng hài',
+       emo='tinh nghịch, chờ', why='Khựng hài 0,6 s ở giọng trưởng (trống lăn thì thầm) để "Nope!" bật ra rõ; không hồi hộp, không giọng thứ.')
 G.sec('"Nope!" · Zip bay lùi', L['L07']['t'], HIT['hover'][0], 'samba', 'Eb', 'Eb Bb', bass='bassn', comp='marimba', lead='xylo', kit='samba', energy=3,
       bpm=132, mood='bouncy', arc='build', what='"Nope!" — Zip bay lùi vụt đi, Crumb vồ trượt; "It can even fly backwards!" Zip bay tới, bay lùi lần nữa',
       emo='bất ngờ, phấn khích', why='Điệu riêng của tập vào lần đầu: samba 132 BPM (surdo, tamborim, agogô) cho màn bay tới – bay lùi; motif của Zip chạy NGƯỢC xuống mỗi lần Zip bay lùi và đi lên khi bay tới (viết tay), nghe ra "tua ngược".')
-G.sec('đứng yên giữa trời', HIT['hover'][0], HIT['stamp2'], 'float', 'Ab', 'Ab Fm', bass='bassn', comp='harp', lead='vibes', kit='none', energy=1,
-      bpm=96, mood='magic', arc='build', what='Zip đứng yên giữa trời trên đầu Crumb, cánh mờ nhoè; Crumb nhảy với', emo='ngạc nhiên, lơ lửng',
-      why='Rải lơ lửng 96 BPM, không trống: nhạc "đứng yên" cùng Zip; vibraphone ngân như cánh rung.')
+G.sec('đứng yên giữa trời', HIT['hover'][0], HIT['stamp2'], 'float', 'Ab', 'Ab Fm', bass='bassn', comp='harp', lead='vibes', kit='none', energy=2,
+      bpm=108, mood='magic', arc='build', what='Zip đứng yên giữa trời trên đầu Crumb, cánh mờ nhoè; Crumb nhảy với', emo='ngạc nhiên, lơ lửng',
+      why='Rải lơ lửng 108 BPM, không trống: nhạc "đứng yên" cùng Zip; vibraphone ngân như cánh rung.')
 G.sec('vào mắt kép', HIT['stamp2'], HIT['crumbUp'][0], 'twinkle', 'Eb', 'Eb Ab Eb Bb', bass='bassn', comp='celesta', lead='toypiano', kit='tri', energy=2,
-      bpm=104, mood='cute', arc='peak', what='Kính đẩy vào vòm mắt và phình ra phủ cả khung: tổ ong hàng nghìn ô, "Each eye has thousands of tiny eyes!"',
-      emo='kinh ngạc', why='Hộp nhạc lấp lánh 104 BPM: toy piano và celesta nhỏ như từng ô mắt; đàn hạc vuốt lên dài theo cú đẩy vào mắt (viết tay).')
+      bpm=108, mood='cute', arc='peak', what='Kính đẩy vào vòm mắt và phình ra phủ cả khung: tổ ong hàng nghìn ô, "Each eye has thousands of tiny eyes!"',
+      emo='kinh ngạc', why='Hộp nhạc lấp lánh 108 BPM: toy piano và celesta nhỏ như từng ô mắt; đàn hạc vuốt lên dài theo cú đẩy vào mắt (viết tay).')
 G.sec('hàng nghìn Crumb tí hon', HIT['crumbUp'][0], HIT['out'][0], 'samba', 'Eb', 'Eb Ab Bb Eb', bass='bassn', comp='pluck', lead='marimba', kit='samba', energy=3,
       bpm=120, mood='happy', arc='peak', what='Crumb ló vào, mỗi ô mắt hiện một Crumb tí hon: "Hi, everybody!" — nghìn Crumb vẫy theo, rón rén theo, lè lưỡi theo',
       emo='vui sướng, buồn cười', why='Cao trào của tập: samba lễ hội 120 BPM (surdo, tamborim, agogô, ukulele chặn như cavaquinho), marimba hát, như một lễ hội nghìn Crumb; làn mưa nốt toy piano lan từ giữa ra khi các hình phản chiếu hiện lên (viết tay).')
@@ -88,19 +89,19 @@ G.mark('chụp → sổ', HIT['snap3'], HIT['stamp3'], 'break', 'Eb', 'marimba h
 G.sec('sổ · samba', HIT['stamp3'], HIT['flip'][0], 'samba', 'Eb', 'Eb Bb', bass='bassn', comp='marimba', lead='horn', kit='samba', energy=2, cue=False,
       bpm=116, mood='epic', arc='end', what='Đủ ba sticker; Zip bay lùi vào; Albie: "Six legs? In you go!", Zip lao vào trang đúng "go!"', emo='tự hào, vui',
       why='Samba của tập trở lại ở sổ, 116 BPM, kèn đồ chơi đáp: đủ ba bí mật là một lễ hội nhỏ (diễu hành là điệu riêng của 004); dưới giọng trầm của Albie lớp nhịp tự bỏ bass.')
-G.sec('gag · "Can I hold the lens now?"', HIT['flip'][1], HIT['notice'], 'sway', 'Ab', 'Ab Db Ab Eb', bass='bassn', comp='pluck', lead='accordion', kit='brush', energy=1,
-      bpm=104, mood='cute', arc='end', what='Crumb xin cầm kính; Miss Loupe nháy mắt: "Not yet!"; Crumb xìu', emo='nũng nịu, thương',
-      why='Đung đưa nửa nhịp ở La giáng, accordion hiền như một lời dỗ; trombone "wah-wah" đi xuống khi Crumb xìu (viết tay).')
-G.sec('gag · lại rón rén', HIT['notice'], L['L15']['t'], 'tiptoe', 'Eb', 'Eb Bb', **TIP, cue=False, arc='end', reprise=True,
-      what='Crumb thấy Zip trên ngọn cỏ nến, lại rón rén tới; Zip bay lùi vụt ra khỏi khung phải', emo='tinh nghịch, hồi hộp',
+G.sec('gag · "Can I hold the lens now?"', HIT['flip'][1], HIT['notice'], 'sunny', 'Ab', 'Ab Db Ab Eb', bass='bassn', comp='pluck', lead='accordion', kit='brush', energy=2,
+      bpm=112, mood='happy', arc='end', what='Crumb xin cầm kính; Miss Loupe nháy mắt: "Not yet!"; Crumb cười trừ', emo='nũng nịu, vui',
+      why='Ukulele nắng 112 BPM ở La giáng, accordion hát vui (14/11/2026: không đung đưa chậm); trombone "wah-WAH" đi lên tinh nghịch khi Crumb cười trừ (viết tay).')
+G.sec('gag · lại rón rén', HIT['notice'], L['L15']['t'], 'skip', 'Eb', 'Eb Bb', **TIP, cue=False, arc='end', reprise=True,
+      what='Crumb thấy Zip trên ngọn cỏ nến, lại rón rén tới; Zip bay lùi vụt ra khỏi khung phải', emo='tinh nghịch, vui',
       why='Nhạc rón rén của móc trở lại y nguyên (reprise): cùng mạch "Crumb đi rình". Motif của Zip chạy ngược xuống khi Zip bay lùi ra (viết tay).')
-G.sec('"One, two, three, boo!"', L['L15']['t'], HIT['giggle'][0], 'stab', 'Cm', 'Cm Ab G', bass='upright', comp='piano', lead='trumpet', kit='epic', energy=3,
-      bpm=120, mood='suspense', arc='end', what='Crumb đếm và hét "boo!" vào chỗ trống; đúng lúc đó Zip vào lại từ khung trái, đuôi chạm Crumb; Crumb giật bắn',
-      emo='hồi hộp → bất ngờ', why='Dừng nhịp 120 BPM: mỗi số đếm một cú chặn, "boo!" là cú chặn cả dàn (viết tay); còi trượt lên khi Crumb giật bắn.')
+G.sec('"One, two, three, boo!"', L['L15']['t'], HIT['giggle'][0], 'hero', 'Eb', 'Eb Ab Bb', bass='upright', comp='strings', lead='trumpet', kit='epic', energy=3,
+      bpm=120, mood='epic', arc='end', what='Crumb đếm và hét "boo!" vào chỗ trống; đúng lúc đó Zip vào lại từ khung trái, đuôi chạm Crumb; Crumb giật bắn',
+      emo='háo hức → bất ngờ vui', why='Cao trào anh hùng 120 BPM ở Mi giáng trưởng (14/11/2026: không dừng nhịp, không giọng thứ): "boo!" là cú chặn cả dàn hợp âm trưởng (viết tay); còi trượt lên khi Crumb giật bắn.')
 G.sec('cười · "Can YOU see who\'s behind me?"', HIT['giggle'][0], HIT['home'][1] - .05, 'polka', 'Eb', 'Eb Bb Eb Bb', bass='tuba', comp='pluck', lead='kazoo', kit='toy', energy=2,
       bpm=124, mood='playful', arc='end', what='Zip và Crumb cười; Crumb chạy ra sau lưng Miss Loupe; cô hỏi trẻ: "Can YOU see who\'s behind me?"; Zip về đậu trên vành kính',
       emo='vui, mời gọi', why='Polka 124 BPM, kazoo cười; dưới câu hỏi kết nhạc nhỏ lại để trẻ trả lời; chữ móc trở lại với hợp âm Mi giáng.')
-G.sec('lại rón rén (nối vòng lặp)', HIT['home'][1] - .05, DUR, 'tiptoe', 'Eb', 'Eb Bb', **TIP, cue=False, arc='open', reprise=True,
+G.sec('lại rón rén (nối vòng lặp)', HIT['home'][1] - .05, DUR, 'skip', 'Eb', 'Eb Bb', **TIP, cue=False, arc='open', reprise=True,
       what='Crumb lại nhón chân rón rén sau lưng Miss Loupe (đúng khung đầu)', emo='tinh nghịch',
       why='Mở đầu của vòng sau: nhạc rón rén của móc bắt đầu lại 1,2 s trước điểm lặp, cùng 112 BPM, nên vòng lặp nghe liền một mạch. Phần kết của tập là polka ở cảnh trước.')
 G.answer(HIT['peek'], HIT['caught'], HIT['pout'][0], HIT['giggle'][0] + .05)
@@ -142,10 +143,10 @@ seq(xylo, (94, 91, 87, 82, 79), HIT['gulp'] + .02, .05, .35, .1, d=.2)
 M(celesta(99, .8), HIT['mini'] + .02, .3, .4)
 M(T.gliss(77, 101, .45, .3, 'harp'), HIT['flip'][0] + .02, .7)
 # — Gag: Crumb xìu: trombone "wah-wah"; Zip bay lùi ra khung phải: motif ngược; "boo!": cú chặn cả dàn; giật bắn: còi trượt lên —
-M(trombone(56, .55, 1., -3.), HIT['pout'][0] + .02, .45, .1)
+M(trombone(56, .55, 1., 3.), HIT['pout'][0] + .02, .45, .1)      # (14/11/2026) "wah-WAH" đi lên, tinh nghịch (không còn "wah-wah" buồn đi xuống)
 seq(xylo, MOTIF[::-1], HIT['zipOut'][0] + .02, .08, .4, .6, d=.25)
-for m in (60, 63, 67, 72): M(trumpet(m + 12, .35), HIT['boo'] + .01, .16, .1)
-M(trombone(48, .35, 1.), HIT['boo'] + .01, .3, -.1); M(T.whistle(500, 1700, .32, 1., .02), HIT['jump'], .1, .2)
+for m in (63, 67, 70, 75): M(trumpet(m + 12, .35), HIT['boo'] + .01, .16, .1)      # (14/11/2026) cú chặn "boo!" = hợp âm Mi giáng trưởng (trước: Đô thứ)
+M(trombone(51, .35, 1.), HIT['boo'] + .01, .3, -.1); M(T.whistle(500, 1700, .32, 1., .02), HIT['jump'], .1, .2)
 # — Chữ móc trở lại: hợp âm Mi giáng nhỏ; nốt dẫn Si giáng → Mi giáng ở 0,0 —
 strum(pluck, (63, 67, 70, 75), HIT['recall'], .28, .8)
 M(bassn(46, .3), DUR - BEAT / 2, .9)

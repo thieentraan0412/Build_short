@@ -11,6 +11,9 @@ import os, sys, json, glob, subprocess, tempfile, numpy as np, soundfile as sf
 from scipy.ndimage import median_filter
 
 FILM = os.path.abspath(sys.argv[1]); NAME = os.path.basename(FILM)
+import re as _re
+EP = int(_re.search(r'short-(\d+)', NAME).group(1)) if _re.search(r'short-(\d+)', NAME) else 0
+CHEER_FROM = 11            # (11/2026) "mặt luôn vui, nhạc luôn tươi" bắt buộc từ SHORT-011 (CHƯA ĐẠT); tập trước chỉ CẢNH BÁO
 LIB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TL = json.load(open(os.path.join(FILM, 'timeline.json'), encoding='utf-8'))
 EV = json.load(open(os.path.join(FILM, 'events.json'), encoding='utf-8'))['ev']
@@ -278,6 +281,22 @@ if MS:
                 'không cảnh nào cùng điệu + nhạc cụ hát chính + đệm + bộ gõ với một cảnh của Short khác; cặp điệu + nhạc cụ chính ở < 3 Short khác (music-plan.json)')
             row(G_, 'Nhạc vui nhộn (hồi hộp, giọng thứ)', OK if X['cheer_ok'] else WARN,
                 f"hồi hộp + khựng {X['sus_share']:.0%}, giọng thứ {X['minor_share']:.0%} thời lượng", '≤ 20 % mỗi mục: phần lớn tập là nhạc vui, giọng trưởng')
+            # ---- (11/2026) nhạc luôn vui tươi: giọng trưởng, không hồi hộp / rình rập, nhịp tươi (≥ 108 BPM, năng lượng ≥ 2), khựng hài ≤ 1,2 s ----
+            GLOOM = ('sneak', 'tension', 'hush', 'tiptoe', 'stab')
+            def _gloom(sc):
+                why = []
+                if sc.get('mood') == 'suspense': why.append('hồi hộp')
+                if sc['style'] in GLOOM: why.append(sv(sc['style']))
+                if (sc.get('key') or '').endswith('m'): why.append('giọng thứ ' + sc['key'])
+                if sc['style'] not in PAUSE:
+                    if (sc.get('bpm') or 120) < 108: why.append(f"{sc.get('bpm'):.0f} BPM")
+                    if (sc.get('energy') or 2) < 2: why.append('năng lượng 1')
+                elif sc['style'] == 'break' and sc['t1'] - sc['t0'] > 1.21: why.append(f"khựng {sc['t1'] - sc['t0']:.1f} s")
+                return why
+            gl = [(sc, _gloom(sc)) for sc in MS]; gl = [(sc, w) for sc, w in gl if w]
+            row(G_, 'Nhạc vui tươi', OK if not gl else (FAIL if EP >= CHEER_FROM else WARN),
+                '; '.join(f"{sc['t0']:.1f}–{sc['t1']:.1f} s {', '.join(w)}" for sc, w in gl[:5]) + (f' (+{len(gl) - 5})' if len(gl) > 5 else '') if gl else 'mọi cảnh',
+                'mọi cảnh giọng trưởng, phong cách vui (không hồi hộp, không điệu rình rập / nhịp tim / dừng nhịp), ≥ 108 BPM và năng lượng ≥ 2; khựng hài ≤ 1,2 s (bắt buộc từ SHORT-011)')
 else:
     row('4 Âm thanh', 'Nhạc đổi theo cảnh', WARN, 'không có out/music.json', 'dựng nhạc bằng _shared/audio/groove.py (hoặc ghi bảng cảnh bằng Groove.mark) để kiểm')
 from scipy.signal import stft as _stft
@@ -329,6 +348,16 @@ if (vw, vh) == (1080, 1920):
             if fr and sum(any(f['who'] == l['who'] for f in F['faces']) for F in fr) / len(fr) < .5: miss.append(l)
         row('3 Nội dung', 'Người nói có trên hình', OK if not miss else WARN, '; '.join(f"{l['t']:.1f} s {l['who']} \"{l['text']}\"" for l in miss) or 'mọi câu sau 3 s',
             'sau 3 s, mặt người nói hiện ≥ 50 % thời gian câu (kể cả trong kính); lời dẫn ngoài hình ghi off: "<lý do>" trong timeline.js')
+        # ---- (11/2026) mặt nhân vật luôn vui tươi: không miệng mếu / hét, mắt nhắm buồn, mí xếch, nước mắt, mồ hôi (stage.js sadFace) ----
+        sadT = [F['t'] for F in SZ['frames'] if any(f.get('sad') and f['r'] >= 20 for f in F['faces'])]
+        sadS = []
+        for t_ in sadT:
+            if sadS and t_ - sadS[-1][1] <= .3: sadS[-1][1] = t_
+            else: sadS.append([t_, t_])
+        whoS = sorted({f['who'] for F in SZ['frames'] for f in F['faces'] if f.get('sad')})
+        row('5 Hình ảnh', 'Mặt nhân vật vui tươi', OK if not sadS else (FAIL if EP >= CHEER_FROM else WARN),
+            ('; '.join(f'{a:.1f}–{b + .25:.1f} s' for a, b in sadS[:6]) + (f' (+{len(sadS) - 6})' if len(sadS) > 6 else '') + f" ({', '.join(whoS)})") if sadS else 'mọi khung',
+            'mặt luôn vui: không mếu, hét, nhắm buồn / nhăn, mí xếch lo âu, nước mắt, mồ hôi (bật LOOK.cheer = true; bắt buộc từ SHORT-011)')
 flash = np.abs(np.diff(luma)) > 40; fl_rate = max((np.convolve(flash, np.ones(FPS), 'same')).max() if len(flash) else 0, 0)
 row('5 Hình ảnh', 'Chớp sáng mạnh', OK if fl_rate <= 3 else FAIL, f'tối đa {int(fl_rate)} lần/giây', '≤ 3 lần/giây (an toàn cho trẻ)')
 sat = []

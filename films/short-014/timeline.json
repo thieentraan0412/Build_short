@@ -1,0 +1,223 @@
+{
+ "bpm": 120,
+ "dur": 22,
+ "secs": [
+  {
+   "id": "stone",
+   "t0": 0,
+   "t1": 12.35
+  },
+  {
+   "id": "album",
+   "t0": 12.35,
+   "t1": 16.8
+  },
+  {
+   "id": "gag",
+   "t0": 16.8,
+   "t1": 22
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "crumb",
+   "t": 0.1,
+   "dur": 1.319,
+   "card": 1,
+   "text": "Could you hear with your tummy?",
+   "pace": 1.06
+  },
+  {
+   "id": "L02",
+   "who": "loupe",
+   "t": 2.45,
+   "dur": 1.358,
+   "card": 2,
+   "text": "Well, Hop can!"
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 3.88,
+   "dur": 0.999,
+   "card": 2,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 5.5,
+   "dur": 2.093,
+   "card": 3,
+   "text": "Hop's ears are on its tummy!"
+  },
+  {
+   "id": "L05",
+   "who": "crumb",
+   "t": 8.2,
+   "dur": 0.913,
+   "card": 4,
+   "text": "Hello in there!",
+   "pace": 1
+  },
+  {
+   "id": "L06",
+   "who": "loupe",
+   "t": 9.25,
+   "dur": 2.865,
+   "card": 4,
+   "text": "It's an eardrum. Sound makes it wiggle!"
+  },
+  {
+   "id": "L07",
+   "who": "albie",
+   "t": 13.4,
+   "dur": 2.297,
+   "card": 5,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L08",
+   "who": "crumb",
+   "t": 18.95,
+   "dur": 1.044,
+   "card": 6,
+   "text": "Sorry! My tummy!",
+   "pace": 1
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 20.1,
+   "dur": 1.464,
+   "card": 6,
+   "text": "Can YOUR tummy hear things?",
+   "say": "Can your tummy hear things?",
+   "pace": 1
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "press": [
+   -0.4,
+   0.1
+  ],
+  "tickle": 1.05,
+  "jiggle": [
+   1.05,
+   1.6
+  ],
+  "bump": [
+   1.18,
+   1.68
+  ],
+  "qmark": 1.9,
+  "titleOut": [
+   2.35,
+   2.7
+  ],
+  "hopIn": [
+   1.98,
+   2.38
+  ],
+  "raise": 3.93,
+  "zoom": [
+   5,
+   5.45
+  ],
+  "glide": [
+   5.45,
+   6.4
+  ],
+  "glow": 6.35,
+  "tag": 6.4,
+  "lean": [
+   7.75,
+   8.15
+  ],
+  "hello": [
+   8.25,
+   8.52,
+   8.79
+  ],
+  "tag2": 9.15,
+  "snap": 12.25,
+  "zoomIn": [
+   12.35,
+   12.65
+  ],
+  "zoomOut": [
+   12.65,
+   13
+  ],
+  "stamp": 13.15,
+  "hopIn2": [
+   13.4,
+   13.9
+  ],
+  "counts": [
+   13.65,
+   13.9,
+   14.15
+  ],
+  "dive2": [
+   15.25,
+   15.65
+  ],
+  "gulp": 15.65,
+  "mini": 15.85,
+  "flip": [
+   16.3,
+   16.8
+  ],
+  "glance": 16.9,
+  "lick": [
+   17.05,
+   17.3
+  ],
+  "rumble": [
+   17.33,
+   17.67
+  ],
+  "crashIn": [
+   17.43,
+   17.57
+  ],
+  "crashOut": [
+   18.13,
+   18.29
+  ],
+  "startle": 18.29,
+  "crouch": [
+   18.33,
+   18.51
+  ],
+  "leap": [
+   18.51,
+   18.87
+  ],
+  "recall": 21,
+  "fall": [
+   21.45,
+   21.95
+  ],
+  "back": [
+   21.5,
+   22.1
+  ],
+  "exit": [
+   21.55,
+   21.95
+  ],
+  "loop": [
+   21.3,
+   22
+  ]
+ }
+}

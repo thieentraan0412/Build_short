@@ -24,7 +24,7 @@ export const FIZZ = {
         c.fillStyle = K.wing; c.beginPath(); c.ellipse(.5, 0, .5, .42, 0, 0, Math.PI * 2); c.fill();
         c.strokeStyle = K.vein; c.lineWidth = .045; c.lineCap = 'round';
         for (const k of [-.18, .06, .26]) { c.beginPath(); c.moveTo(.04, 0); c.quadraticCurveTo(.5, k * .7, .96, k); c.stroke(); }
-      }, { bias: -.25 });
+      }, { bias: -.25, line: 'first' });
     };
     for (const sd of [-1, 1]) {
       wingAt(sd, P.flap, 1);

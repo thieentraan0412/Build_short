@@ -1,1 +1,1 @@
-hãy phân tích short cho video thiếu nhi và nâng cấp nhạc 
+push code github, push thẳng vào nhánh main

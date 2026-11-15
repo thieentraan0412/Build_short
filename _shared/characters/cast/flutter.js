@@ -44,13 +44,13 @@ export const FLUTTER = {
       r.plane(V.add(hinge, [0, 0, -.06]), Uh, up, c => {
         c.fillStyle = far ? K.hindD : K.hind; c.beginPath(); c.ellipse(.42, .3, .5, .42, -.35, 0, TAU); c.fill();
         c.fillStyle = K.spot; c.beginPath(); c.arc(.55, .38, .15, 0, TAU); c.fill();
-      }, { bias: -.32 + (far ? -.05 : 0) });
+      }, { bias: -.32 + (far ? -.05 : 0), line: 'first' });
       r.plane(hinge, Uf, up, c => {
         c.fillStyle = far ? K.foreD : K.fore; c.beginPath(); c.ellipse(.16, .86, .58, .86, .3, 0, TAU); c.fill();
         c.fillStyle = K.spot; c.beginPath(); c.arc(.22, 1.18, .24, 0, TAU); c.fill();
         c.fillStyle = K.spot2; c.beginPath(); c.arc(.22, 1.18, .1, 0, TAU); c.fill();
         c.beginPath(); c.arc(.3, .62, .13, 0, TAU); c.fill();
-      }, { bias: -.3 + (far ? -.05 : 0) });
+      }, { bias: -.3 + (far ? -.05 : 0), line: 'first' });
     }
     // thân 3 phần
     r.ell([0, Y(-.6), -.38], [.13, .13, .4], C.ink, { rot: [[1, 0, 0], [0, .99, .1], [0, -.1, .99]] });
@@ -79,12 +79,12 @@ export const FLUTTER = {
     }
     // vòi
     const kind = MOUTH2PROB[E.mouth] || 'coil', tg = P.tongue;
-    r.feat(H, .23, dirA(0, .62), .075, c => proboscisPath(c, tg, kind), { cullAt: -.45, bias: .004 });
+    r.feat(H, .23, dirA(0, .62), .075, c => proboscisPath(c, tg, kind), { cullAt: -.45, bias: .004, line: 'all' });
   },
   exprPose: {
     happy: {}, surprised: { beta: .5, antL: .8, antR: .8, lift: .08 }, curious: { antL: .5, antR: -.2 },
     worried: { beta: .12, antL: -.6, antR: -.6 }, sad: { beta: .05, antL: -1, antR: -1 }, confident: { beta: .45, antL: .4, antR: .4 },
     confused: { antL: .8, antR: -.8 }, excited: { beta: .7, lift: .25, antL: 1, antR: 1, tongue: .5 }, thinking: { antL: -.3, antR: .5 },
-    explaining: { legsUp: [[-.28, -1.0, .78], 0, 0, 0, 0, 0], antL: .4, antR: .4 },
+    explaining: { legsUp: [[-.28, -1.0, .78], 0, 0, 0, 0, 0], antL: .4, antR: .4 }, silly: { tongue: .7, antL: 1, antR: -.5, beta: .5 },
   },
 };

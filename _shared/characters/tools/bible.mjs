@@ -1,7 +1,7 @@
 // Sinh phần "từng nhân vật" của CHARACTER-BIBLE.md từ bible.js (cùng nguồn với chữ trên các bảng hình).
 // node _shared/characters/tools/bible.mjs  → thay nội dung giữa <!-- CAST:START --> và <!-- CAST:END -->
 import fs from 'fs'; import path from 'path'; import { fileURLToPath } from 'url';
-import { BIBLE, STYLE_PROMPT } from '../bible.js';
+import { BIBLE, STYLE_PROMPT, STYLE_PROMPT_V2, RIG, RIG_FACE } from '../bible.js';
 const here = path.dirname(fileURLToPath(import.meta.url)), dir = path.resolve(here, '..');
 const ORDER = [['loupe', 'Miss Loupe', 1.0], ['albie', 'Albie', .55], ['crumb', 'Crumb', .12], ['flutter', 'Flutter', .24], ['chirp', 'Chirp', .2], ['waggle', 'Waggle', .15], ['blink', 'Blink', .1],
   ['dot', 'Dot', .09], ['spindle', 'Spindle', .2], ['rollo', 'Mr. Rollo', .12], ['telly', 'Uncle Telly', 1.13], ['giant', 'The Giant', null], ['smudge', 'Smudge', .15]];
@@ -16,10 +16,13 @@ ORDER.forEach(([id, name, h], i) => {
   md += `| **Phân biệt** | ${B.distinct} |\n| **Kiểu di chuyển** | ${B.move} |\n\n`;
   md += `**Bảng màu**\n\n| Token | Mã | Dùng cho |\n|---|---|---|\n` + B.pal.map(([t, hex, u]) => `| \`${t}\` | \`${hex}\` | ${u} |`).join('\n') + '\n\n';
   md += `**Đặc điểm khóa (không được thay đổi)**\n\n` + B.locked.map((s, j) => `${j + 1}. ${s}.`).join('\n') + '\n\n';
+  if (RIG[id]) md += `**Bộ phận điều khiển được (rig):** ${RIG[id]}${id === 'giant' ? '' : '; cộng phần mặt dùng chung (cuối mục này)'}.\n\n`;
   md += `**Bảng hình:** ` + SHEET.map((s, j) => `[${['thiết kế', 'biểu cảm', 'tư thế', 'atlas'][j]}](out/sheets/${n}-${id}-${s}.png)`).join(' · ') + ` · bản sạch cho AI: [atlas](out/clean/${n}-${id}-4-expression-pose-atlas.png)\n\n`;
   md += `**Prompt mô tả (tiếng Anh, dán kèm prompt phong cách):**\n\n> ${B.prompt}\n\n`;
 });
-md += `#### Prompt phong cách dùng chung\n\n> ${STYLE_PROMPT}\n`;
+md += `#### Prompt phong cách dùng chung (v2, hiện hành)\n\n> ${STYLE_PROMPT_V2}\n\n`;
+md += `#### Prompt phong cách v1 (chỉ cho các tập đã giao trước 11/2026)\n\n> ${STYLE_PROMPT}\n\n`;
+md += `#### Phần mặt dùng chung của rig\n\n${RIG_FACE[0].toUpperCase() + RIG_FACE.slice(1)}.\n`;
 const f = path.join(dir, 'CHARACTER-BIBLE.md'), t = fs.readFileSync(f, 'utf8');
 const a = t.indexOf('<!-- CAST:START -->'), b = t.indexOf('<!-- CAST:END -->');
 if (a < 0 || b < 0) { console.error('thiếu dấu CAST:START / CAST:END'); process.exit(1); }

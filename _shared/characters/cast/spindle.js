@@ -24,7 +24,7 @@ export const SPINDLE = {
     [[[0, -.7, .3], .17], [[-.55, -.5, .1], .14], [[.55, -.5, .1], .14], [[0, -.5, -.7], .15], [[-.5, -.2, -.6], .12], [[.5, -.2, -.6], .12], [[0, .1, -1], .13]].forEach(([d, s]) =>
       r.decal(AC, AR, d, s, c => { c.fillStyle = C.grape; c.beginPath(); c.arc(0, 0, 1, 0, TAU); c.fill(); }));
     if (P.sweater) { r.lathe(AC, [0, 0, 1], .6, .58, .56, t => Math.floor((t + 1) * 3.2) % 2 ? C.ink : C.lemon, { bias: .005, n: 30 }); }
-    if (P.thread) { const top = r.P(V.add(AC, [0, -AR[1] + .05, 0])); r.flat(top[2] - .2, c => { c.strokeStyle = C.cream; c.lineWidth = .04; c.beginPath(); c.moveTo(top[0], top[1]); c.lineTo(top[0], -14); c.stroke(); }); }
+    if (P.thread) { const top = r.P(V.add(AC, [0, -AR[1] + .05, 0])); r.flat(top[2] - .2, c => { c.strokeStyle = C.cream; c.lineWidth = .04; c.beginPath(); c.moveTo(top[0], top[1]); c.lineTo(top[0], -14); c.stroke(); }, { sil: false }); }
     // eo + đầu-ngực
     r.ball([0, Y(-.82), -.06], .12, body, { bias: .01 });
     const H = [0, Y(-.8), .34], HR = .5;
@@ -45,13 +45,13 @@ export const SPINDLE = {
     for (const sd of [-1, 1]) {
       const eo = eyeOpts(E, sd, { lid: body });
       r.feat(H, HR, dirA(sd * .24, -.06), .2, c => eye(c, eo), { cullAt: -.1 });
-      r.feat(H, HR, dirA(sd * .6, .04), .085, c => eye(c, { ...eo, scale: 1, pupil: .55, lidTop: Math.min(eo.lidTop || 0, .4), lidBot: 0, closed: eo.closed ? 'flat' : null }), { cullAt: -.05 });
-      for (const [a, el] of [[.15, -.5], [.42, -.42]]) r.feat(H, HR, dirA(sd * a, el), .07, c => eye(c, { ...eo, scale: 1, pupil: .55, lidTop: Math.min(eo.lidTop || 0, .4), lidBot: 0, closed: eo.closed ? 'flat' : null }), { cullAt: -.1 });
+      r.feat(H, HR, dirA(sd * .6, .04), .085, c => eye(c, { ...eo, scale: 1, pupil: .55, lidTop: Math.min(eo.lidTop || 0, .4), lidBot: 0, closed: eo.closed ? 'flat' : null, brow: false }), { cullAt: -.05 });
+      for (const [a, el] of [[.15, -.5], [.42, -.42]]) r.feat(H, HR, dirA(sd * a, el), .07, c => eye(c, { ...eo, scale: 1, pupil: .55, lidTop: Math.min(eo.lidTop || 0, .4), lidBot: 0, closed: eo.closed ? 'flat' : null, brow: false }), { cullAt: -.1 });
       r.feat(H, HR, dirA(sd * .66, .4), .06, c => cheek(c, X.pinkD), { cullAt: -.05 });
     }
     r.feat(H, HR, dirA(0, .42), .11, c => mouth(c, E.mouth || 'smile', { talk: E.talk ?? .6 }), { cullAt: -.3 });
     // cải trang: cánh giấy
-    if (P.wings) for (const sd of [-1, 1]) r.plane([sd * .2, Y(-1.42), -.55], V.mul(V.norm([sd, -.6, .1]), .8), V.mul([0, 0, -1], .55), c => { c.fillStyle = C.cream; c.beginPath(); c.ellipse(.5, 0, .5, .5, 0, 0, TAU); c.fill(); c.fillStyle = X.creamD; c.beginPath(); c.ellipse(.55, 0, .3, .26, 0, 0, TAU); c.fill(); }, { bias: -.3 });
+    if (P.wings) for (const sd of [-1, 1]) r.plane([sd * .2, Y(-1.42), -.55], V.mul(V.norm([sd, -.6, .1]), .8), V.mul([0, 0, -1], .55), c => { c.fillStyle = C.cream; c.beginPath(); c.ellipse(.5, 0, .5, .5, 0, 0, TAU); c.fill(); c.fillStyle = X.creamD; c.beginPath(); c.ellipse(.55, 0, .3, .26, 0, 0, TAU); c.fill(); }, { bias: -.3, line: 'first' });
   },
   exprPose: {
     surprised: { lift: .1 }, excited: { lift: .15 }, explaining: { legs: [0, 0, 0, 0, [.5, -1.55, 1.15], 0, 0, 0] },

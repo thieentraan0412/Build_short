@@ -27,7 +27,7 @@ export const ZIP = {
         c.strokeStyle = K.vein; c.lineWidth = .02; c.lineCap = 'round';
         for (const k of [-.22, 0, .22]) { c.beginPath(); c.moveTo(.03, k * .5); c.lineTo(.95, k * .8); c.stroke(); }
         c.fillStyle = K.spot; c.beginPath(); c.ellipse(.86, -.18, .055, .12, 0, 0, Math.PI * 2); c.fill();
-      }, { bias: -.2 });
+      }, { bias: -.2, line: 'first' });
     };
     for (const sd of [-1, 1]) {
       if (P.blur > 0) for (const da of [-.42, .42]) { wing(sd, false, -da, .3 * P.blur); wing(sd, true, da, .3 * P.blur); }   // cánh đập nhanh (đứng yên giữa trời): hai bóng mờ

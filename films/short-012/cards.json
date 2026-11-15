@@ -1,0 +1,47 @@
+[
+ {
+  "t0": 0.1,
+  "t1": 2.0620000000000003,
+  "text": "Could you fly backwards?"
+ },
+ {
+  "t0": 3.3,
+  "t1": 4.8,
+  "text": "Let's zoom in!"
+ },
+ {
+  "t0": 4.85,
+  "t1": 7,
+  "text": "Dragonflies can fly backwards!"
+ },
+ {
+  "t0": 7.05,
+  "t1": 9.299999999999999,
+  "text": "And stay still in the air!"
+ },
+ {
+  "t0": 9.35,
+  "t1": 12.456999999999999,
+  "text": "Front wings up, back wings down!"
+ },
+ {
+  "t0": 13.75,
+  "t1": 16.647000000000002,
+  "text": "Six legs? In you go!"
+ },
+ {
+  "t0": 16.95,
+  "t1": 19.399,
+  "text": "I can go backwards too!"
+ },
+ {
+  "t0": 20,
+  "t1": 21.849999999999998,
+  "text": "Watch the corners!"
+ },
+ {
+  "t0": 21.9,
+  "t1": 23.7,
+  "text": "Which way is Zip flying?"
+ }
+]

@@ -1,0 +1,60 @@
+[
+ {
+  "id": "L01",
+  "text": "Could you hear with your tummy?",
+  "voice": "af_jessica",
+  "speed": 0.901,
+  "pitch": 5
+ },
+ {
+  "id": "L02",
+  "text": "Well, Hop can!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L03",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L04",
+  "text": "Hop's ears are on its tummy!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L05",
+  "text": "Hello in there!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L06",
+  "text": "It's an eardrum. Sound makes it wiggle!",
+  "voice": "af_heart",
+  "speed": 0.765
+ },
+ {
+  "id": "L07",
+  "text": "Six legs? In you go!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L08",
+  "text": "Sorry! My tummy!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L09",
+  "text": "Can your tummy hear things?",
+  "voice": "af_heart",
+  "speed": 0.9,
+  "asr": "Can YOUR tummy hear things?"
+ }
+]

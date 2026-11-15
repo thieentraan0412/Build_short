@@ -4,6 +4,7 @@
 import { C } from '../../kit.js';
 import { V, rotZ, rotY, mvec, mmul } from '../rig.js';
 import { X } from '../parts.js';
+import { LOOK, mix } from '../look.js';
 import { eye, cheek, eyeOpts } from '../face.js';
 const TAU = Math.PI * 2;
 const W = 1.5, H = 2.0, T = .44, CV = .06;          // rộng, cao, dày, độ dày bìa
@@ -13,6 +14,13 @@ function albieMouth(c, kind, talk = .6) {
   const ink = C.nightD || '#2A1478';
   c.lineCap = c.lineJoin = 'round';
   const open = { talk: .25 + .45 * talk, o: .55, grin: .7, shout: .95 }[kind];
+  if (open && LOOK.cheer) {   // (11/2026) vui tươi: bìa hé thành miệng cười hình chữ D (mép trên phẳng, đáy tròn), thấy mép giấy kem và ruy băng lưỡi
+    const w = kind === 'o' ? .62 : .95, h = open * .9 + .1, D = (k, dy = 0) => { c.beginPath(); c.moveTo(-w * k, -.15 + dy); c.quadraticCurveTo(0, -.05 + dy, w * k, -.15 + dy); c.ellipse(0, -.15 + dy, w * k, h * k, 0, 0, Math.PI); c.closePath(); };
+    c.fillStyle = C.cream; D(1.12, -.04); c.fill();
+    c.fillStyle = X.nightD; D(.9); c.fill();
+    c.save(); c.clip(); c.fillStyle = C.berry; c.beginPath(); c.ellipse(.08, -.15 + h * .85, w * .42, h * .42, 0, 0, TAU); c.fill(); c.restore();
+    return;
+  }
   if (open) {
     const w = kind === 'o' ? .42 : 1, h = open;
     c.fillStyle = C.cream; c.beginPath(); c.ellipse(0, 0, w, h * .62 + .12, 0, 0, TAU); c.fill();
@@ -22,6 +30,10 @@ function albieMouth(c, kind, talk = .6) {
     return;
   }
   // miệng khép: nếp bìa đậm
+  if (kind === 'tongue') {   // tinh nghịch: ruy băng berry thè ra như cái lưỡi
+    c.fillStyle = C.berry; c.beginPath(); c.roundRect(.05, -.1, .36, .62, [0, 0, .18, .18]); c.fill();
+    c.strokeStyle = X.nightD; c.lineWidth = .05; c.beginPath(); c.moveTo(.23, .02); c.lineTo(.23, .42); c.stroke();
+  }
   c.strokeStyle = X.nightD; c.lineWidth = .2; c.beginPath();
   if (kind === 'frown') c.arc(0, .7, .8, Math.PI + .6, TAU - .6);
   else if (kind === 'flat') { c.moveTo(-.5, 0); c.lineTo(.5, 0); }
@@ -44,7 +56,7 @@ export const ALBIE = {
     // khung quay của sách: nghiêng trên một góc đáy khi đi
     const piv = [P.tilt > 0 ? W / 2 : -W / 2, -P.hop, 0], R = rotZ(P.tilt);
     const Tf = p => V.add(piv, mvec(R, V.sub(p, [piv[0], 0, 0])));
-    const face = (O, U, Vv, fn, bias = 0) => r.plane(Tf(O), mvec(R, U), mvec(R, Vv), fn, { cull: true, bias });
+    const face = (O, U, Vv, fn, bias = 0) => r.plane(Tf(O), mvec(R, U), mvec(R, Vv), fn, { cull: true, bias, line: 'first' });
     const yC = -H / 2;
     // ruột giấy (kem) giữa hai bìa
     face([W / 2 - .02, yC, 0], [0, 0, -(T / 2 - CV)], [0, H / 2 - .04, 0], c => { c.fillStyle = C.cream; c.fillRect(-1, -1, 2, 2); c.fillStyle = X.creamD; for (let i = -3; i <= 3; i++) c.fillRect(i * .27 - .02, -1, .04, 2); });   // mép trước (phải)
@@ -66,6 +78,11 @@ export const ALBIE = {
     // bìa trước: mắt, má, miệng, góc bọc
     face([0, yC, T / 2], [W / 2, 0, 0], [0, H / 2, 0], (c, f) => {
       c.fillStyle = C.grape; c.fillRect(-1, -1, 2, 2);
+      if (LOOK.v >= 2) {   // v2: bóng cel mềm trên bìa: dải bán tối + mép tối ở phải-dưới, vành sáng ở trên
+        c.fillStyle = mix(C.grape, X.grapeD, .5); c.fillRect(.8, -1, .2, 2); c.fillRect(-1, .86, 2, .14);
+        c.fillStyle = X.grapeD; c.fillRect(.92, -1, .08, 2); c.fillRect(-1, .95, 2, .05);
+        c.fillStyle = mix(C.grape, '#FFFDF4', .3); c.fillRect(-1, -1, 2, .06);
+      }
       c.fillStyle = X.grapeD; c.fillRect(-1, -1, .1, 2);
       c.fillStyle = C.honey; for (const [x, y] of [[1, -1], [1, 1]]) { c.beginPath(); c.moveTo(x, y); c.lineTo(x - .34, y); c.lineTo(x, y - Math.sign(y) * .26); c.fill(); }
       if (P.wet) { c.fillStyle = C.skyL; for (const [x, y] of [[-.5, .3], [.5, .3]]) { c.beginPath(); c.ellipse(x, y + .2, .08, .3 * P.wet, 0, 0, TAU); c.fill(); } }
@@ -78,9 +95,9 @@ export const ALBIE = {
     }, .002);
     // mép sticker thò lên như tóc
     const tabs = [[-.42, C.sky, -.25], [-.12, C.lemon, .08], [.18, C.mint, -.05], [.44, C.pink, .22]];
-    tabs.forEach(([x, col, a], i) => { const R2 = mmul(R, rotZ(a + P.tabsUp * (i % 2 ? .3 : -.3))); r.plane(Tf([x, -H - .04, -.04 + i * .02]), mvec(R2, [.12, 0, 0]), mvec(R2, [0, .2, 0]), c => { c.fillStyle = col; c.beginPath(); c.roundRect(-1, -1.2, 2, 1.8, .6); c.fill(); }, { bias: -.01 }); });
+    tabs.forEach(([x, col, a], i) => { const R2 = mmul(R, rotZ(a + P.tabsUp * (i % 2 ? .3 : -.3))); r.plane(Tf([x, -H - .04, -.04 + i * .02]), mvec(R2, [.12, 0, 0]), mvec(R2, [0, .2, 0]), c => { c.fillStyle = col; c.beginPath(); c.roundRect(-1, -1.2, 2, 1.8, .6); c.fill(); }, { bias: -.01, line: 'first' }); });
     // ruy băng đuôi (berry), thò ra ở đáy
-    r.plane(Tf([.12, .04, .02]), mvec(R, [.07, 0, 0]), mvec(R, [0, .16, 0]), c => { c.fillStyle = C.berry; c.fillRect(-1, -1, 2, 1.9); c.beginPath(); c.moveTo(-1, .9); c.lineTo(-1, 1.6); c.lineTo(0, 1.05); c.lineTo(1, 1.6); c.lineTo(1, .9); c.fill(); }, { bias: -.03 });
+    r.plane(Tf([.12, .04, .02]), mvec(R, [.07, 0, 0]), mvec(R, [0, .16, 0]), c => { c.fillStyle = C.berry; c.fillRect(-1, -1, 2, 1.9); c.beginPath(); c.moveTo(-1, .9); c.lineTo(-1, 1.6); c.lineTo(0, 1.05); c.lineTo(1, 1.6); c.lineTo(1, .9); c.fill(); }, { bias: -.03, line: 'all' });
     // trang giấy làm tay: thò ra từ mép trước
     if (P.page) {
       const base = Tf([W / 2 - .05, P.page[1] ?? -1.1, .05]), tip = Tf([W / 2 + P.page[0], (P.page[1] ?? -1.1) + (P.page[2] ?? 0), .12]);
@@ -90,10 +107,10 @@ export const ALBIE = {
         c.translate(q0[0], q0[1]); c.rotate(a);
         c.fillStyle = C.cream; c.beginPath(); c.moveTo(0, -.22); c.lineTo(L * .82, -.2); c.quadraticCurveTo(L * 1.05, -.18, L, .05 + P.pageCurl * .1); c.quadraticCurveTo(L * .8, .2, 0, .22); c.closePath(); c.fill();
         c.fillStyle = X.creamD; c.beginPath(); c.ellipse(L * .9, .02, L * .1, .12, 0, 0, TAU); c.fill();
-      });
+      }, { line: 'first' });
     }
     if (P.newPage) face([W / 2 + .1, -1.0, .12], [.3, 0, 0], [0, .5, 0], c => { c.fillStyle = C.mintL; c.beginPath(); c.roundRect(-1, -1, 2, 2, .2); c.fill(); }, .2);
-    if (P.scarf) { const q = r.P(Tf([0, -1.82, T / 2 + .02])); r.flat(q[2] + .3, c => { c.fillStyle = C.sky; c.beginPath(); c.roundRect(q[0] - .8, q[1] - .1, 1.6, .2, .1); c.fill(); c.fillStyle = C.skyL; c.beginPath(); c.roundRect(q[0] + .3, q[1], .18, .5, .09); c.fill(); }); }
+    if (P.scarf) { const q = r.P(Tf([0, -1.82, T / 2 + .02])); r.flat(q[2] + .3, c => { c.fillStyle = C.sky; c.beginPath(); c.roundRect(q[0] - .8, q[1] - .1, 1.6, .2, .1); c.fill(); c.fillStyle = C.skyL; c.beginPath(); c.roundRect(q[0] + .3, q[1], .18, .5, .09); c.fill(); }, { line: 'all' }); }
   },
   exprPose: {
     surprised: { hop: .18, tabsUp: 1 }, excited: { hop: .3, tabsUp: 1, page: [.75, -1.6, -.35] }, sad: { tilt: -.04 }, worried: { tilt: .03 },

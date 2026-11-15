@@ -1,6 +1,8 @@
 // Rig phẳng 3D: mỗi nhân vật dựng một lần bằng khối phẳng đặt trong không gian 3D,
 // chiếu vuông góc theo góc xoay (yaw) nên mọi góc nhìn giữ đúng tỷ lệ. Không viền, không gradient.
 // Toạ độ nhân vật: x sang phải, y xuống dưới (mặt đất y = 0), z hướng về người xem. yaw > 0: quay sang phải khung.
+// Bản v2 (LOOK.v = 2, xem look.js): thêm viền mực, đổ bóng cel hai tông và vành sáng; nhánh v1 giữ nguyên từng nét.
+import { LOOK, PASS, alphaOf, mix, shadeOf, lightOf, lum, devStroke, devScale, lineCtx } from './look.js';
 const TAU = Math.PI * 2;
 export const V = {
   add: (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]],
@@ -44,17 +46,58 @@ function shaded(c, pathFn, col, sh, size) {
   c.restore();
 }
 
+// ---- v2: đường bao nối tiếp được (không beginPath) để ghép hai hình bằng evenodd ----
+function ellAdd(c, x, y, rx, ry, a) { rx = Math.max(0, rx); ry = Math.max(0, ry); c.moveTo(x + rx * Math.cos(a), y + rx * Math.sin(a)); c.ellipse(x, y, rx, ry, a, 0, TAU); c.closePath(); }
+function capAdd(c, A, B, w) {
+  const r = w / 2, a = Math.atan2(B[1] - A[1], B[0] - A[0]);
+  c.moveTo(B[0] + r * Math.cos(a - Math.PI / 2), B[1] + r * Math.sin(a - Math.PI / 2));
+  c.arc(B[0], B[1], r, a - Math.PI / 2, a + Math.PI / 2); c.arc(A[0], A[1], r, a + Math.PI / 2, a + Math.PI * 1.5); c.closePath();
+}
+function polyAdd(c, H, dx = 0, dy = 0) { H.forEach((p, i) => i ? c.lineTo(p[0] + dx, p[1] + dy) : c.moveTo(p[0] + dx, p[1] + dy)); c.closePath(); }
+// Đổ bóng cel mềm: tô màu gốc; trong khối: dải bán tối + vành tối ở phía khuất sáng, vành sáng mảnh ở phía nhận sáng (trên-trái); rồi nét trong.
+// add(c, dx, dy) nối đường bao của khối (dời dx, dy) vào path hiện tại. sh: { col, k, dx, dy } như bản v1; auto: tự tạo sắc tối khi không có sh
+function cel(c, add, col, sh, size, auto, line = true) {
+  c.save(); c.beginPath(); add(c, 0, 0); c.fillStyle = col; c.fill();
+  const dark = sh && sh.col ? sh.col : (auto ? shadeOf(col) : null);
+  if (dark && alphaOf(col) > .95) {
+    const k = (sh?.k ?? .2) * size, ux = sh?.dx ?? -.7, uy = sh?.dy ?? -.7, dx = ux * k, dy = uy * k, ul = Math.hypot(ux, uy) || 1, L = size * .1;
+    c.beginPath(); add(c, 0, 0); c.clip();
+    // phần khối trừ đi chính nó dời về phía sáng = lưỡi liềm ở phía khuất
+    c.fillStyle = mix(col, dark, .5); c.beginPath(); add(c, 0, 0); add(c, dx, dy); c.fill('evenodd');
+    c.fillStyle = dark; c.beginPath(); add(c, 0, 0); add(c, dx * .42, dy * .42); c.fill('evenodd');
+    c.fillStyle = lightOf(col); c.beginPath(); add(c, 0, 0); add(c, -ux / ul * L, -uy / ul * L); c.fill('evenodd');
+  }
+  c.restore();
+  if (line) {
+    c.beginPath(); add(c, 0, 0); devStroke(c, PASS.W);
+    // khối tối lớn (mực, xanh than): thêm vành sáng mảnh sát trong mép để các khối tối chồng nhau vẫn tách được (đầu, ngực, cánh cứng)
+    if (dark && lum(col) < .2) { c.save(); c.beginPath(); add(c, 0, 0); c.clip(); c.beginPath(); add(c, 0, 0); devStroke(c, PASS.W * 1.9, mix(col, '#9A93D8', .4)); c.beginPath(); add(c, 0, 0); devStroke(c, PASS.W * 1.0); c.restore(); }
+  }
+}
+// lượt viền ngoài của một khối đặc
+function silRing(c, add) { c.beginPath(); add(c, 0, 0); devStroke(c, 2 * PASS.Lo); }
+
 export class Rig {
   constructor(yaw = 0, o = {}) {
     this.yaw = yaw; this.cs = Math.cos(yaw); this.sn = Math.sin(yaw); this.items = []; this.detail = o.detail || 0;
+    this.v2 = LOOK.v >= 2; this.unit = o.unit || 3;   // unit = chiều cao nhân vật (đơn vị rig): khối đủ lớn mới tự đổ bóng
     this.Yaw = [[this.cs, 0, this.sn], [0, 1, 0], [-this.sn, 0, this.cs]];
   }
   X(p) { return p[0] * this.cs + p[2] * this.sn; }
   Z(p) { return -p[0] * this.sn + p[2] * this.cs; }
   P(p) { return [this.X(p), p[1], this.Z(p)]; }
-  add(z, fn) { this.items.push({ z, fn, i: this.items.length }); return this; }
+  // sil (v2): hàm vẽ vòng viền ngoài của khối; false / không có = không góp vào viền ngoài
+  add(z, fn, sil) { this.items.push({ z, fn, sil, i: this.items.length }); return this; }
+  // v2: khối đặc (ball, ell, cap) = bóng cel + nét trong + vòng viền ngoài
+  solid(z, add, col, o, size) {
+    return this.add(z, c => cel(c, add, col, o.shade, size, o.auto ?? size >= this.unit * .07, o.line !== false), alphaOf(col) >= .5 && o.sil !== false && (c => silRing(c, add)));
+  }
   // khối cầu
-  ball(p, r, col, o = {}) { const [x, y, z] = this.P(p); return this.add(z + (o.bias || 0), c => shaded(c, (dx, dy) => ellPath(c, x + dx, y + dy, r, r, 0), col, o.shade, r)); }
+  ball(p, r, col, o = {}) {
+    const [x, y, z] = this.P(p);
+    if (this.v2) return this.solid(z + (o.bias || 0), (c, dx, dy) => ellAdd(c, x + dx, y + dy, r, r, 0), col, o, r);
+    return this.add(z + (o.bias || 0), c => shaded(c, (dx, dy) => ellPath(c, x + dx, y + dy, r, r, 0), col, o.shade, r));
+  }
   // khối elip với bán trục rad = [a, b, c] theo trục cục bộ, có thể nghiêng bằng o.rot (ma trận cục bộ)
   ell(p, rad, col, o = {}) {
     const M = mmul(this.Yaw, o.rot || I3), D = rad.map(r => 1 / (r * r));
@@ -63,20 +106,30 @@ export class Rig {
     const phi = .5 * Math.atan2(2 * q01, q00 - q11), m = (q00 + q11) / 2, d = Math.sqrt(((q00 - q11) / 2) ** 2 + q01 * q01);
     const r1 = 1 / Math.sqrt(m + d), r2 = 1 / Math.sqrt(Math.max(1e-9, m - d));
     const [x, y, z] = this.P(p);
+    if (this.v2) return this.solid(z + (o.bias || 0), (c, dx, dy) => ellAdd(c, x + dx, y + dy, r1, r2, phi), col, o, Math.min(r1, r2));
     return this.add(z + (o.bias || 0), c => shaded(c, (dx, dy) => ellPath(c, x + dx, y + dy, r1, r2, phi), col, o.shade, Math.min(r1, r2)));
   }
   // viên nang (thân, chi) bề rộng w
   cap(a, b, w, col, o = {}) {
     const A = this.P(a), B = this.P(b);
+    if (this.v2) return this.solid((o.z ?? (A[2] + B[2]) / 2) + (o.bias || 0), (c, dx, dy) => capAdd(c, [A[0] + dx, A[1] + dy], [B[0] + dx, B[1] + dy], w), col, o, w / 2);
     return this.add((o.z ?? (A[2] + B[2]) / 2) + (o.bias || 0), c => shaded(c, (dx, dy) => capPath(c, [A[0] + dx, A[1] + dy], [B[0] + dx, B[1] + dy], w), col, o.shade, w / 2));
   }
   // chi mềm nhiều khớp (nét tròn đầu, tròn khớp)
   limb(pts, w, col, o = {}) {
     const Q = pts.map(p => this.P(p)), z = o.z ?? Q.reduce((s, q) => s + q[2], 0) / Q.length;
-    return this.add(z + (o.bias || 0), c => {
-      c.strokeStyle = col; c.lineWidth = w; c.lineCap = c.lineJoin = 'round'; c.beginPath();
+    const path = c => {
       if (o.smooth && Q.length > 2) { c.moveTo(Q[0][0], Q[0][1]); for (let i = 1; i < Q.length - 1; i++) { const mx = (Q[i][0] + Q[i + 1][0]) / 2, my = (Q[i][1] + Q[i + 1][1]) / 2; c.quadraticCurveTo(Q[i][0], Q[i][1], i === Q.length - 2 ? Q[i + 1][0] : mx, i === Q.length - 2 ? Q[i + 1][1] : my); } }
       else Q.forEach((q, i) => i ? c.lineTo(q[0], q[1]) : c.moveTo(q[0], q[1]));
+    };
+    if (this.v2) return this.add(z + (o.bias || 0), c => {
+      c.beginPath(); path(c);
+      if (o.line !== false) devStroke(c, w * devScale(c) + PASS.W);
+      c.strokeStyle = col; c.lineWidth = w; c.lineCap = c.lineJoin = 'round'; c.stroke();
+    }, alphaOf(col) >= .5 && o.sil !== false && (c => { c.beginPath(); path(c); devStroke(c, w * devScale(c) + 2 * PASS.Lo); }));
+    return this.add(z + (o.bias || 0), c => {
+      c.strokeStyle = col; c.lineWidth = w; c.lineCap = c.lineJoin = 'round'; c.beginPath();
+      path(c);
       c.stroke();
     });
   }
@@ -85,6 +138,10 @@ export class Rig {
     const N = V.cross(U, V2), f = this.Z(N) / (V.len(N) || 1);
     if (o.cull && f <= (o.cullAt ?? .01)) return this;
     const Op = this.P(O);
+    if (this.v2) {   // o.line: 'first' | 'all' = nét mực quanh lần tô đầu / mọi lần tô; o.sil === false: không góp vào viền ngoài
+      const tf = c => c.transform(this.X(U), U[1], this.X(V2), V2[1], Op[0], Op[1]);
+      return this.add(Op[2] + (o.bias || 0), c => { tf(c); fn(o.line ? lineCtx(c, o.line) : c, f); }, o.sil !== false && (c => { tf(c); fn(lineCtx(c, 'sil'), f); }));
+    }
     return this.add(Op[2] + (o.bias || 0), c => { c.transform(this.X(U), U[1], this.X(V2), V2[1], Op[0], Op[1]); fn(c, f); });
   }
   // chi tiết dán trên mặt khối (mắt, miệng, má): luôn đứng thẳng, bẹt ngang theo độ quay, mất khi quay đi
@@ -92,6 +149,10 @@ export class Rig {
     const d = V.norm(dir), pos = V.add(center, V.mul(d, R)), dz = this.Z(d);
     if (dz < (o.cullAt ?? .06)) return this;
     const sq = o.flat ? Math.max(.08, dz) : .5 + .5 * Math.min(1, dz / .8), x = this.X(pos);
+    if (this.v2) {
+      const tf = c => { c.translate(x, pos[1]); c.scale(size * sq, size); };
+      return this.add(this.Z(pos) + (o.bias ?? .002), c => { tf(c); fn(o.line ? lineCtx(c, o.line) : c, dz); }, o.sil !== false && (c => { tf(c); fn(lineCtx(c, 'sil'), dz); }));
+    }
     return this.add(this.Z(pos) + (o.bias ?? .002), c => { c.translate(x, pos[1]); c.scale(size * sq, size); fn(c, dz); });
   }
   // hình dán phối cảnh thật trên mặt elip (chấm bọ rùa, sọc ong)
@@ -101,7 +162,7 @@ export class Rig {
     const ref = Math.abs(n[1]) > .95 ? [1, 0, 0] : [0, -1, 0];
     const U = V.norm(V.cross(n, ref)), W = V.norm(V.cross(n, U));
     const s = o.flip ? -1 : 1;
-    return this.plane(pos, V.mul(U, size * s * (Math.abs(n[1]) > .95 ? -1 : 1)), V.mul(W, size), fn, { cull: true, cullAt: o.cullAt ?? .02, bias: o.bias ?? .003 });
+    return this.plane(pos, V.mul(U, size * s * (Math.abs(n[1]) > .95 ? -1 : 1)), V.mul(W, size), fn, { cull: true, cullAt: o.cullAt ?? .02, bias: o.bias ?? .003, sil: false, line: o.line });
   }
   // khối tròn xoay theo trục cục bộ (sọc ong, đốt bụng): xếp các lát cắt từ xa tới gần, mỗi lát một màu theo colFn(t), t ∈ [-1, 1]
   lathe(center, axis, half, rx, ry, colFn, o = {}) {
@@ -115,9 +176,36 @@ export class Rig {
     const segs = []; for (let i = 0; i < n; i++) segs.push({ z: (slices[i].z + slices[i + 1].z) / 2, pts: slices[i].pts.concat(slices[i + 1].pts), col: colFn((slices[i].t + slices[i + 1].t) / 2) });
     segs.sort((p, q) => p.z - q.z);
     const zc = this.Z(center) + (o.bias || 0);
-    return this.add(zc, c => { for (const s of segs) { const H = hull2(s.pts); c.fillStyle = c.strokeStyle = s.col; c.lineWidth = .012; c.lineJoin = 'round'; c.beginPath(); H.forEach((p, i) => i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])); c.closePath(); c.fill(); c.stroke(); } });
+    const draw = c => { for (const s of segs) { const H = hull2(s.pts); c.fillStyle = c.strokeStyle = s.col; c.lineWidth = .012; c.lineJoin = 'round'; c.beginPath(); H.forEach((p, i) => i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])); c.closePath(); c.fill(); c.stroke(); } };
+    if (this.v2) {   // bóng và nét trên bao ngoài của cả khối (các sọc là màu trên cùng một khối: không kẻ nét giữa sọc)
+      const HA = hull2(slices.flatMap(s => s.pts)), size = Math.min(rx, ry);
+      return this.add(zc, c => {
+        draw(c);
+        if (o.shade !== false) {
+          const k = .22 * size; c.save(); c.beginPath(); polyAdd(c, HA); c.clip();
+          c.fillStyle = 'rgba(46,28,110,.16)'; c.beginPath(); polyAdd(c, HA); polyAdd(c, HA, -.7 * k, -.7 * k); c.fill('evenodd');
+          c.fillStyle = 'rgba(46,28,110,.2)'; c.beginPath(); polyAdd(c, HA); polyAdd(c, HA, -.3 * k, -.3 * k); c.fill('evenodd');
+          c.fillStyle = 'rgba(255,253,244,.32)'; c.beginPath(); polyAdd(c, HA); polyAdd(c, HA, .07 * size, .07 * size); c.fill('evenodd');
+          c.restore();
+        }
+        if (o.line !== false) { c.beginPath(); polyAdd(c, HA); devStroke(c, PASS.W); }
+      }, c => { c.beginPath(); polyAdd(c, HA); devStroke(c, 2 * PASS.Lo); });
+    }
+    return this.add(zc, draw);
   }
   // vẽ 2D tự do ở độ sâu z (toạ độ đã chiếu)
-  flat(z, fn) { return this.add(z, fn); }
-  draw(c) { this.items.sort((a, b) => a.z - b.z || a.i - b.i); for (const it of this.items) { c.save(); it.fn(c); c.restore(); } }
+  // o (v2): { line: 'first' | 'all', sil: false }; khối vẽ tay mặc định có góp vào viền ngoài
+  flat(z, fn, o = {}) {
+    if (this.v2) return this.add(z, c => fn(o.line ? lineCtx(c, o.line) : c), o.sil !== false && (c => fn(lineCtx(c, 'sil'))));
+    return this.add(z, fn);
+  }
+  draw(c) {
+    this.items.sort((a, b) => a.z - b.z || a.i - b.i);
+    if (this.v2 && PASS.Lo > 0) {   // lượt 1 (v2): vòng viền ngoài của mọi khối đặc, nằm dưới cả nhân vật nên chỉ lộ ra ở mép bóng
+      PASS.sil = true;
+      for (const it of this.items) if (it.sil) { c.save(); it.sil(c); c.restore(); }
+      PASS.sil = false;
+    }
+    for (const it of this.items) { c.save(); it.fn(c); c.restore(); }
+  }
 }

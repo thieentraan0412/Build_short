@@ -18,6 +18,10 @@ Một video chỉ được giao khi:
 - Áp dụng cho mọi Short, kể cả SHORT-001 đến 007 (đã dựng lại nhạc theo quy tắc này).
 - Video dài chưa áp dụng (LONG-001 giữ lớp nhịp cũ, `plan=False`); `qa.py` chỉ đo nhóm "Sound Design Plan" ở Short.
 
+**Lượt "luôn vui tươi" 14/11/2026.** Các quy tắc ghi *(Vui tươi)* ở §4 và §5 đến từ yêu cầu "hãy luôn làm khuôn mặt của các nhân vật và nhạc vui tươi" (`Task.md`, 14/11/2026).
+- Bắt buộc từ SHORT-011: `qa.py` báo **CHƯA ĐẠT** nếu có mặt không vui hoặc cảnh nhạc không vui; các tập trước chỉ CẢNH BÁO.
+- Mặt: bật `LOOK.cheer = true` ngay sau `LOOK.v = 2` ở đầu `film.js` (và `poster.js`, `sheets.js` nếu các file này tự đặt `LOOK`). Rig dùng chung tự đổi biểu cảm buồn, lo, cáu, nhăn sang dạng vui (`cheerExpr` trong `characters/stage.js`); đang nói thì miệng cười há.
+
 **Lượt chống trùng giữa các tập 11/2026 (lượt 2).** Các quy tắc ghi *(Kênh)* ở §4 đến từ yêu cầu "kiểm tra nhạc nền, đề xuất nhạc nền vui nhộn, tránh trùng lặp các short" (`Task.md`, 10/11/2026). Kết quả kiểm tra và đề xuất từng tập: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
 - Áp dụng cho mọi Short dựng hoặc dựng lại nhạc từ nay. SHORT-001, 004, 006–010 đã dựng lại nhạc theo các quy tắc này.
 - SHORT-002, 003, 005 đã đăng nên giữ nguyên; chạy lại `qa.py` ở các tập này thì các mục *(Kênh)* có thể là CẢNH BÁO.
@@ -108,6 +112,7 @@ Một video chỉ được giao khi:
 | *(Kênh)* **Điệu riêng của tập**: mỗi Short có ≥ 1 điệu chỉ tập đó dùng (`SIGNATURE` trong [`audio/groove.py`](audio/groove.py)), chiếm ≥ 20 % thời lượng, tính cả đoạn viết tay ghi bằng `G.mark`. Không dùng điệu riêng của tập khác. Tập mới thì thêm một điệu mới vào `STYLES` rồi ghi vào `SIGNATURE` | `qa.py` (`music-plan.json`) |
 | *(Kênh)* **Không trùng cảnh nhạc của Short khác**: không cảnh nào cùng điệu + nhạc cụ hát chính + đệm + bộ gõ với một cảnh của Short khác. Một cặp điệu + nhạc cụ hát chính đã có ở ≥ 3 Short khác là quá quen. Tập đăng trước được giữ công thức; tập sau đổi nhạc cụ hoặc điệu. Các cảnh lặp lại ở mọi tập (sổ, gag rình rập, cao trào, phép thuật trong kính) phối theo thể loại riêng của tập, không dùng cách phối mặc định. Tiếng "chụp" (marimba chạy lên + đàn hạc vuốt) và nhạc hiệu là tiếng của kênh, cố ý giống nhau. `soundplan.py` ghi `<tập>/music-plan.json` (được commit) để các tập so với nhau | `qa.py` + mục "Chống trùng lặp giữa các tập" trong `SOUND-PLAN.md` |
 | *(Kênh)* **Nhạc vui nhộn**: hồi hộp + khựng ≤ 20 % thời lượng; cảnh nhạc ở giọng thứ ≤ 20 % thời lượng. Cảnh rình rập, rón rén ưu tiên giọng trưởng và phong cách hài (`mood='funny'`) | `qa.py` |
+| *(Vui tươi)* **Nhạc luôn vui tươi** (từ SHORT-011, thay cho mục trên): mọi cảnh nhạc ở **giọng trưởng**; **không** phong cách hồi hộp (`mood='suspense'`), **không** điệu rình rập / rón rén / nhịp tim / lắng nghe / dừng nhịp (`sneak`, `tiptoe`, `tension`, `hush`, `stab`); mọi cảnh có điệu **≥ 108 BPM, năng lượng ≥ 2**. Chỗ khựng cho gag là khựng hài ≤ 1,2 s, giọng trưởng. Cảnh rình rập dùng điệu nảy, vui (`skip`, `hop`, `stride`, điệu riêng của tập); cảnh khám phá trong kính dùng `float` / `twinkle` ≥ 108 BPM; cảnh kết luôn vui (không bài ru) | `qa.py`: "Nhạc vui tươi" |
 | Có tiếng động cho mọi chuyển động chính: nhân vật (nhảy, giật mình, khoe), kính (chụp, lao vào, lùi ra), sổ (lật, dán), gag. *(SDP)* Bảng tiếng động theo hành động trong [`audio/toon.py`](audio/toon.py): boing, pop, whoosh (`swish`, `zip_`), va chạm nhẹ (`bonk`), bước chân (`footsteps`), chạy (`scurry`), nhảy (`boing` + `swish`), cười (`giggle`), ngạc nhiên (`surprise`), reo vui (`cheer`), chuyển cảnh (`swirl`, `revcymbal`), "ta-da" (`band.tada`) | `SOUND.md` + cột SFX của `SOUND-PLAN.md` |
 | *(SDP)* **Tiếng động không lạm dụng, không lấn lời**: ≤ 8 cue trong 1 s bất kỳ sau móc; mỗi câu lời hơn riêng tiếng động ≥ 11 dB (dải 300–4000 Hz) | `qa.py` |
 | Nền (ambience) theo bối cảnh: đêm (gió, dế xa), vườn (chim xa, gió lá)…, nhường giọng như nhạc | `mix.py` |
@@ -120,6 +125,7 @@ Một video chỉ được giao khi:
 | Không chớp sáng mạnh quá 3 lần/giây (an toàn cho trẻ) | `qa.py` |
 | Màu rực, đúng bảng màu của phong cách (độ rực ≥ 0,35) | `qa.py` |
 | Biểu cảm rõ ở cỡ điện thoại: mắt to khi ngạc nhiên, phản ứng kéo dài ≥ 0,4 s | khung tĩnh + checklist |
+| *(Vui tươi)* **Mặt nhân vật luôn vui tươi** (từ SHORT-011): không mếu, không hét, không nhắm buồn / nhắm nhăn, không mí xếch lo âu hay cau có, không nước mắt, mồ hôi. Bất ngờ = mắt to + miệng cười (không miệng tròn sợ hãi); bị giật mình, va chạm, "too loud" vẫn cười. Đang nói thì miệng cười há. Làm bằng `LOOK.cheer = true` (đổi tên biểu cảm: worried → curious, sad → hopeful, cry → laugh, strain / shout → excited, annoyed / sleepy → happy, confused → curious, crosseyed → silly; và đổi miệng, mắt, lông mày, ký hiệu của biểu cảm tự viết) | `qa.py`: "Mặt nhân vật vui tươi" (đo mọi mặt vẽ bằng `drawChar`, qua `tools/safezone.mjs`) + khung tĩnh |
 | Không biến dạng nhân vật, không che mặt hay chữ, không lơ lửng, không cắt mép | khung tĩnh (bước 3) + checklist |
 | Chuyển động có keyframe mượt (ease), có nhún hoặc vọt nhẹ khi dừng | checklist |
 | Máy quay có zoom, lia hoặc rung nhẹ ở các điểm nhấn (móc, tiếng chạm, phát hiện, gag, chữ móc trở lại); cảnh dài có máy trôi chậm | khung tĩnh + `qa.py` (đoạn đứng yên) |
@@ -193,6 +199,7 @@ Trước lượt này (nhạc dựng bằng lớp nhịp cũ), cả 7 Short đ�
 - [ ] Nội dung đúng `FACTS.md`, phù hợp 4–8 tuổi, không đáng sợ
 - [ ] Có thông điệp hoặc bài học nhỏ thấy được
 - [ ] Biểu cảm đọc được ở cỡ điện thoại; không che, không cắt mép, không lơ lửng
+- [ ] *(Vui tươi)* Xem lướt cả phim: mọi mặt nhân vật đều vui (kể cả lúc giật mình, va chạm, gag); nhạc nghe tươi từ đầu đến cuối, không đoạn nào chậm, buồn hay hồi hộp
 - [ ] Nhạc đổi theo cảnh, khớp hành động; màu nhạc khác các tập trước
 - [ ] *(Kênh)* Nghe tập này ngay sau tập đăng trước: điệu riêng nghe ra ngay; cảnh sổ, gag và cao trào không nghe như của tập trước; nhạc vui, phần lớn ở giọng trưởng
 - [ ] Nghe lại cả phim: mỗi cảnh nhạc nghe ra khác cảnh trước; dưới lời vẫn còn nhịp; có câu đáp giữa các câu; không đoạn nào nghe như một vòng lặp đều

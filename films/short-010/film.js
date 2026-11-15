@@ -4,6 +4,8 @@
 // (stickerSlots), kính lớn có máy trôi, cảnh đặc trưng phủ cả khung, câu cửa miệng có hành động (albumGulp), phụ đề ở vùng an toàn (SAFE.subY).
 import { C, REC, circle, ell, rrect, ground, popText, subFont, clamp, lerp, seg, back, eo, TAU } from '/_shared/kit.js';
 import { drawChar } from '/_shared/characters/stage.js';
+import { LOOK } from '/_shared/characters/look.js';
+LOOK.cheer = true;   // (14/11/2026) mặt nhân vật luôn vui tươi (QUALITY.md, mục "Vui tươi"); tập này giữ phong cách nét v1
 import { BY } from '/_shared/characters/cast/index.js';
 import { star } from '/_shared/characters/face.js';
 import { makeTalk, blinkAt, ex, rigPt, look, toScreen, loupe, ARM, badge, shadow, subtitle, LENS_UP, hookTitle, stickerMatchCut, snapFlash, SAFE,
@@ -297,7 +299,9 @@ function reflPose(t, d, i, j) {
 /* ---------- máy và kính lớn ---------- */
 function lensBig(t) {
   const sh = decay(t, [HIT.flop, HIT.pounce], 10) * 4;
-  return { x: 540 + 12 * Math.sin(t * 1.3) + sh * Math.sin(t * 50), y: 690 + 10 * Math.sin(t * 1.7), r: 310 + 6 * Math.sin(t * 2.1) };
+  const bo = BAND(t, 4.9, 9.7, .4);   // (14/11/2026) bí mật 1 và vòng nhìn: kính nhún theo phách (120 BPM) và lắc nhẹ, để hình không đứng yên dưới lời
+  return { x: 540 + 12 * Math.sin(t * 1.3) + 18 * bo * Math.sin(t * Math.PI * 1.8) + sh * Math.sin(t * 50), y: 690 + 10 * Math.sin(t * 1.7) - 14 * bo * Math.abs(Math.sin(t * Math.PI * 2)),
+    r: 310 + 6 * Math.sin(t * 2.1) + 7 * bo * Math.sin(t * Math.PI * 4) };
 }
 const lensCam = t => ({ cx: BASE.cx + 8 * Math.sin(t * .4), cy: BASE.cy + 6 * Math.sin(t * .5), z: BASE.z });
 // điểm cảnh ở tâm kính và độ phóng (so với BASE.z), theo nhịp của bí mật

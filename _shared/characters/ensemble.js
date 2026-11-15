@@ -6,6 +6,9 @@ import { X } from './parts.js';
 import { CAST, BY } from './cast/index.js';
 import { POSES } from './poses.js';
 import { BIBLE, STYLE_PROMPT } from './bible.js';
+import { LOOK } from './look.js';
+import { styleSheet2, brandSheet } from './sheets2.js';
+const V2 = () => LOOK.v >= 2;
 import { sun, cloud, flower2, leaf2, sticker2, note2, nopeX, rings2, swirl2, pebble2, heart2, moon2, star2, lensFrame, circ, crumbBit } from './props.js';
 import { PAGE, PANEL, PANEL2, GUIDE, label, title, panel, wrapText, header, charCell, exprCell, silCell, fitK, TURN_W, NEUTRAL, SIL_POSE, BUST } from './sheets.js';
 const TAU = Math.PI * 2;
@@ -268,6 +271,27 @@ function gardenSheet(c, o, vertical) {
   drawChar(c, BY.giant, { x: P.giant[0], y: P.giant[1], h: P.giant[2], yaw: .2, lean: vertical ? -.3 : -.35, pose: { gesture: 'wave', rot: [0, .2, .1] } });
 }
 
+// ---------- 23 So sánh v1 / v2: chính cảnh vườn (hình tham chiếu), cùng bố cục, cùng vị trí; thêm một hàng cận mặt ----------
+function compareSheet(c, o) {
+  header(c, o, 'Before / After', 'Nâng cấp nhân vật 11/2026 · cùng nhân vật, cùng màu, cùng bố cục và vị trí trong cảnh', '23');
+  const v0 = LOOK.v, gw = (o.W - 70) / 2, s = (gw - 16) / 1920, gh = 1080 * s;
+  [[1, 'Trước · v1 Khối Kẹo Phẳng'], [2, 'Sau · v2 Kẹo Phẳng Viền']].forEach(([v, t], i) => {
+    const x = 30 + i * (gw + 10), y = 100;
+    panel(c, x, y, gw, gh + 48, i ? PANEL : PANEL2);
+    c.save(); c.beginPath(); c.roundRect(x + 8, y + 40, gw - 16, gh, 12); c.clip(); c.translate(x + 8, y + 40); c.scale(s, s);
+    LOOK.v = v; gardenSheet(c, { ...o, W: 1920, H: 1080, clean: true }, false); LOOK.v = v0; c.restore();
+    if (!o.clean) label(c, t, x + 20, y + 21, 22, i ? C.berry : SOFT, 'left');
+  });
+  const ids = ['loupe', 'albie', 'crumb', 'waggle', 'dot', 'blink'], y2 = 100 + gh + 58, h2 = o.H - y2 - 30, n = ids.length * 2, cw = (o.W - 76 - (n - 1) * 8) / n;
+  panel(c, 30, y2, o.W - 60, h2, PANEL2);
+  if (!o.clean) label(c, 'Cận mặt · mỗi cặp: trái v1, phải v2', 50, y2 + 21, 20, C.ink, 'left');
+  ids.forEach((id, i) => [1, 2].forEach((v, j) => {
+    const x = 38 + (i * 2 + j) * (cw + 8);
+    LOOK.v = v; exprCell(c, { x, y: y2 + 40, w: cw, h: h2 - 48 }, BY[id], 'happy', { panelCol: v === 2 ? PANEL : '#E8E0CF' }); LOOK.v = v0;
+    if (!o.clean) label(c, 'v' + v, x + 12, y2 + 56, 15, v === 2 ? C.berry : SOFT, 'left');
+  }));
+}
+
 // ---------- 20 Locked features ----------
 const CALL = {
   loupe: [[[0, -3.62, 0], 'Vành kính rỗng, 2 vệt sáng'], [[.3, -1.0, 0], 'Thân viên nang, mảng tối bên phải'], [[0, -1.3, .4], 'Mặt trên thân'], [[0, -1.7, .2], 'Cổ áo, tay, giày xoài'], [[-.6, -.95, 0], 'Tay chân ống mảnh']],
@@ -303,7 +327,10 @@ function lockedSheet(c, o) {
   const x = 30 + 1 * (cw + 10), y = 100 + 3 * (ch + 10), w = cw * 3 + 20;
   panel(c, x, y, w, ch, PANEL2);
   label(c, 'Quy tắc chung cho cả dàn', x + 20, y + 30, 24, C.berry);
-  ['Côn trùng: đúng 6 chân, 3 phần thân. Nhện: đúng 8 chân, 2 phần thân, 8 mắt. Bọ rùa Dot: đúng 7 chấm. Ong Waggle: 5 mắt, 4 cánh.', 'Mỗi nhân vật một màu chủ đạo trong bảng C, không trùng nhau; không đổi màu theo cảnh (chỉ đổi màu nền).', 'Không viền, không gradient, không texture; chiều sâu bằng một mảng tối phẳng ở dưới-phải.', 'Mắt: tròng trắng + con ngươi mực + 1 đốm sáng; KHÔNG lông mày; cảm xúc nằm ở mí, con ngươi, miệng.', 'The Giant không bao giờ lộ mặt, không bao giờ bắt/cầm/đè côn trùng. Spindle không nanh, không lông.', 'Không thêm phụ kiện ngoài danh sách (khăn len mùa đông cho Dot, Miss Loupe, Albie; kính tí hon của Crumb từ sau tập 12).']
+  ['Côn trùng: đúng 6 chân, 3 phần thân. Nhện: đúng 8 chân, 2 phần thân, 8 mắt. Bọ rùa Dot: đúng 7 chấm. Ong Waggle: 5 mắt, 4 cánh.', 'Mỗi nhân vật một màu chủ đạo trong bảng C, không trùng nhau; không đổi màu theo cảnh (chỉ đổi màu nền).',
+    V2() ? 'Viền mực #1E1B3A đồng nhất (viền ngoài ≈ 1,7× nét trong); bóng cel mềm 2 tông + vành sáng mảnh, ánh sáng trên-trái; không gradient mượt, không texture, không 3D.' : 'Không viền, không gradient, không texture; chiều sâu bằng một mảng tối phẳng ở dưới-phải.',
+    V2() ? 'Mắt: tròng trắng có viền + mống mắt theo màu thân + con ngươi mực + 2 điểm sáng; lông mày nổi theo cảm xúc; miệng nét thon, miệng mở có răng trên và lưỡi.' : 'Mắt: tròng trắng + con ngươi mực + 1 đốm sáng; KHÔNG lông mày; cảm xúc nằm ở mí, con ngươi, miệng.',
+    'The Giant không bao giờ lộ mặt, không bao giờ bắt/cầm/đè côn trùng. Spindle không nanh, không lông.', 'Không thêm phụ kiện ngoài danh sách (khăn len mùa đông cho Dot, Miss Loupe, Albie; kính tí hon của Crumb từ sau tập 12).']
     .forEach((s, i) => { circ(c, x + 32, y + 72 + i * 46, 6, C.berry); wrapText(c, s, w - 70, 18, 700).forEach((l, m) => label(c, l, x + 50, y + 72 + i * 46 + m * 21, 18, C.ink, 'left', 700)); });
 }
 
@@ -322,11 +349,11 @@ function masterSheet(c, o) {
     ['happy', 'surprised'].forEach((e, j) => charCell(c, { x: x + 10 + vw * 4 + j * (vw * 1.1 + 4), y: y + 8, w: vw * 1.1, h: ch - 16 }, CH, { yaw: BUST[CH.id].yaw, expr: e, pose: ro ? SIL_POSE.rollo : (NEUTRAL[CH.id] || {}) }, { panelCol: PANEL2 }));
     if (!o.clean) label(c, CH.name, x + 16, y + ch - 14, 18, C.ink, 'left');
   });
-  if (CAST.length % 2) { const x = 30 + cw + 10, y = top + 6 * (ch + 10); panel(c, x, y, cw, ch, PANEL2); if (!o.clean) { label(c, 'Phong cách', x + 20, y + 26, 20, C.berry); wrapText(c, 'Hoạt hình 2D phẳng, chỉ khối hình học, không viền, không gradient, không texture; một mảng tối phẳng ở dưới-phải; mắt tròn trắng, con ngươi mực, má hồng, không lông mày.', cw - 40, 16, 700).forEach((l, m) => label(c, l, x + 20, y + 54 + m * 20, 16, C.ink, 'left', 700)); } else { ['berry', 'grape', 'honey', 'night', 'tang', 'lime', 'lemon', 'mint', 'pink', 'ink', 'leaf', 'skin'].forEach((t, j) => { c.fillStyle = C[t]; c.beginPath(); c.roundRect(x + 20 + (j % 6) * (cw - 40) / 6, y + 20 + Math.floor(j / 6) * (ch / 2 - 10), (cw - 40) / 6 - 10, ch / 2 - 30, 12); c.fill(); }); } }
+  if (CAST.length % 2) { const x = 30 + cw + 10, y = top + 6 * (ch + 10); panel(c, x, y, cw, ch, PANEL2); if (!o.clean) { label(c, 'Phong cách', x + 20, y + 26, 20, C.berry); wrapText(c, V2() ? 'Hoạt hình 2D vector, khối bo tròn; viền mực đồng nhất (viền ngoài dày hơn nét trong); bóng cel mềm 2 tông + vành sáng, ánh sáng trên-trái; mắt to có mống mắt theo màu thân và 2 điểm sáng, lông mày theo cảm xúc, má hồng; không gradient mượt, không texture, không 3D.' : 'Hoạt hình 2D phẳng, chỉ khối hình học, không viền, không gradient, không texture; một mảng tối phẳng ở dưới-phải; mắt tròn trắng, con ngươi mực, má hồng, không lông mày.', cw - 40, 16, 700).forEach((l, m) => label(c, l, x + 20, y + 54 + m * 20, 16, C.ink, 'left', 700)); } else { ['berry', 'grape', 'honey', 'night', 'tang', 'lime', 'lemon', 'mint', 'pink', 'ink', 'leaf', 'skin'].forEach((t, j) => { c.fillStyle = C[t]; c.beginPath(); c.roundRect(x + 20 + (j % 6) * (cw - 40) / 6, y + 20 + Math.floor(j / 6) * (ch / 2 - 10), (cw - 40) / 6 - 10, ch / 2 - 30, 12); c.fill(); }); } }
 }
 
 export const ENSEMBLE = [
-  { id: '00-style', file: '00-master-art-style-sheet', w: 1920, h: 1080, first: true, draw: styleSheet },
+  { id: '00-style', file: '00-master-art-style-sheet', w: 1920, h: 1080, first: true, draw: (c, o) => V2() ? styleSheet2(c, o) : styleSheet(c, o) },
   { id: '14-lineup', file: '14-character-lineup', w: 2560, h: 1080, draw: lineupSheet },
   { id: '15-size', file: '15-character-size-comparison', w: 2560, h: 1080, draw: sizeSheet },
   { id: '16-palette', file: '16-character-color-palette', w: 1920, h: 1080, draw: paletteSheet },
@@ -336,4 +363,6 @@ export const ENSEMBLE = [
   { id: '19b-garden-vertical', file: '19b-backyard-garden-group-vertical', w: 1080, h: 1920, draw: (c, o) => gardenSheet(c, o, true) },
   { id: '20-locked', file: '20-locked-features', w: 1920, h: 1580, clean: false, draw: lockedSheet },
   { id: '21-master', file: '21-MASTER-CHARACTER-REFERENCE', w: 1920, h: 1920, draw: masterSheet },
+  { id: '22-brand', file: '22-brand-expressions', w: 1920, h: 1920, draw: brandSheet },
+  { id: '23-compare', file: '23-before-after-v1-v2', w: 2560, h: 1230, clean: false, draw: compareSheet },
 ];

@@ -8,7 +8,7 @@ html,body{margin:0;background:#1E1B3A;overflow:hidden}canvas{display:block}
 <script type="module">
 import { drawFilm, setEnv } from './film.js';
 import { modelSheet, storyboard } from './sheets.js';
-import { poster, thumb } from './poster.js';   // ảnh bìa: ?mode=thumb (1920x1080, chính) · ?mode=poster (1080x1920)
+import { poster, poster16, thumb } from './poster.js';   // ảnh bìa: ?mode=thumb (1920x1080, YouTube) · ?mode=poster16 (1920x1080, poster.jpg) · ?mode=poster (1080x1920)
 import { REC } from '/_shared/kit.js';
 import { DUR } from './timeline.js';
 import { EV } from './events.js';
@@ -26,6 +26,7 @@ window.render = t => {
   if (mode === 'model') return modelSheet(c, W, H);
   if (mode === 'poster') { c.setTransform(W / 1080, 0, 0, W / 1080, 0, 0); return poster(c); }
   if (mode === 'thumb') { c.setTransform(W / 1920, 0, 0, W / 1920, 0, 0); return thumb(c); }
+  if (mode === 'poster16') { c.setTransform(W / 1920, 0, 0, W / 1920, 0, 0); return poster16(c); }
   if (mode === 'board') return storyboard(c, W, H);
   c.setTransform(W / 1920, 0, 0, W / 1920, 0, 0); drawFilm(c, t);
 };

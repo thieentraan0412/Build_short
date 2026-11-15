@@ -26,7 +26,7 @@ const frames = await page.evaluate(async ({ STEP }) => {
     out.push({
       t: Math.round(t * 1000) / 1000,
       texts: texts.map(b => ({ text: String(b.text).slice(0, 40), x0: r1(b.x0), y0: r1(b.y0), x1: r1(b.x1), y1: r1(b.y1) })),
-      faces: S.FACES.list.filter(f => f.r >= 12 && f.x > -f.r && f.x < 1080 + f.r && f.y > -f.r && f.y < 1920 + f.r).map(f => ({ who: f.who, x: r1(f.x), y: r1(f.y), r: r1(f.r), ...(f.clip && { clip: true }) })),
+      faces: S.FACES.list.filter(f => f.r >= 12 && f.x > -f.r && f.x < 1080 + f.r && f.y > -f.r && f.y < 1920 + f.r).map(f => ({ who: f.who, x: r1(f.x), y: r1(f.y), r: r1(f.r), ...(f.clip && { clip: true }), ...(f.sad && { sad: true }) })),
       sub: E && E.SUB.box ? { x0: r1(E.SUB.box.x0), y0: r1(E.SUB.box.y0), x1: r1(E.SUB.box.x1), y1: r1(E.SUB.box.y1) } : null,
     });
   }

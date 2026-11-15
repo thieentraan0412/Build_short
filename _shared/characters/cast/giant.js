@@ -19,7 +19,8 @@ function hand(r, P) {
   const M = mmul(rotZ(P.rot[2]), mmul(rotY(P.rot[1]), rotX(P.rot[0])));
   const T = p => mvec(M, p), sk = C.skin, skd = C.skinD;
   // cổ tay đi ra khỏi khung (xuống dưới)
-  r.cap(T([0, .2, 0]), T([0, 3.5, 0]), 1.2, sk, { shade: { col: skd, k: .3, dx: -1, dy: 0 } });
+  // v2: cổ tay tô phẳng, không nét, nằm trên lòng bàn tay → liền một khối da với bàn tay (viền ngoài vẫn có)
+  r.cap(T([0, .2, 0]), T([0, 3.5, 0]), 1.2, sk, r.v2 ? { shade: null, auto: false, line: false } : { shade: { col: skd, k: .3, dx: -1, dy: 0 } });
   r.ell(T([0, -.55, 0]), [.95, .9, .34], sk, { rot: M, shade: { col: skd, k: .25 }, bias: .01 });
   // 4 ngón + ngón cái
   const xs = [-.62, -.21, .21, .6], lens = [1.0, 1.2, 1.12, .82], spread = G.spread || 1;
@@ -40,7 +41,7 @@ function foot(r, P) {
   const sk = C.skin, skd = C.skinD, w = P.toeWiggle;
   const lift = P.foot === 'tiptoe' ? 1 : 0, M = rotX(-lift * .5);
   const T = p => V.add(mvec(M, V.sub(p, [0, 0, 1.6])), [0, -lift * .3, 1.6]);
-  r.cap(T([0, -1.2, -.1]), [0, -9, -.1 - lift * .6], 1.6, sk, { shade: { col: skd, k: .32, dx: -1, dy: 0 } });
+  r.cap(T([0, -1.2, -.1]), [0, -9, -.1 - lift * .6], 1.6, sk, { shade: { col: skd, k: .32, dx: -1, dy: 0 }, line: false });
   r.ell(T([0, -.6, .55]), [.95, .6, 1.55], sk, { shade: { col: skd, k: .3 } });
   const toes = [[.62, .5, .3, 2.05], [.3, .38, .26, 2.12], [.0, .34, .23, 2.06], [-.28, .31, .21, 1.94], [-.52, .29, .19, 1.76]];
   toes.forEach(([x, rr, _, z], i) => {
@@ -64,14 +65,14 @@ export const GIANT = {
     happy: { gesture: 'wave', rot: [0, .2, .12] }, surprised: { gesture: 'spread', rot: [0, 0, 0] }, curious: { gesture: 'tap', rot: [.6, .3, -.5] },
     worried: { gesture: 'curl', rot: [.2, .3, .1] }, sad: { gesture: 'soft', rot: [.9, .3, .3] }, confident: { gesture: 'thumbs', rot: [0, -.2, 0], palm: -1 },
     confused: { gesture: 'soft', rot: [0, 1.0, .5] }, excited: { gesture: 'spread', rot: [0, 0, -.25] }, thinking: { gesture: 'tap', rot: [.3, .8, .2] },
-    explaining: { gesture: 'point', rot: [0, -.25, .45] },
+    explaining: { gesture: 'point', rot: [0, -.25, .45] }, silly: { gesture: 'peace', rot: [0, .15, -.2] },
   },
 };
 // dời toàn bộ toạ độ của một rig (để bàn tay đứng trong ô như các nhân vật khác)
 function wrapShift(r, off) {
   const S = p => V.add(p, off);
   return {
-    detail: r.detail, yaw: r.yaw, X: p => r.X(p), Z: p => r.Z(p), P: p => r.P(S(p)),
+    detail: r.detail, yaw: r.yaw, v2: r.v2, X: p => r.X(p), Z: p => r.Z(p), P: p => r.P(S(p)),
     ball: (p, ...a) => r.ball(S(p), ...a), ell: (p, ...a) => r.ell(S(p), ...a), cap: (a, b, ...x) => r.cap(S(a), S(b), ...x),
     limb: (pts, ...a) => r.limb(pts.map(S), ...a), plane: (O, ...a) => r.plane(S(O), ...a), feat: (c0, ...a) => r.feat(S(c0), ...a),
     decal: (c0, ...a) => r.decal(S(c0), ...a), flat: (z, fn) => r.flat(z, fn), lathe: (c0, ...a) => r.lathe(S(c0), ...a),

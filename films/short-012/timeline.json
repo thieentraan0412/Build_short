@@ -1,0 +1,211 @@
+{
+ "bpm": 120,
+ "dur": 24,
+ "secs": [
+  {
+   "id": "garden",
+   "t0": 0,
+   "t1": 12.65
+  },
+  {
+   "id": "album",
+   "t0": 12.65,
+   "t1": 16.85
+  },
+  {
+   "id": "gag",
+   "t0": 16.85,
+   "t1": 24
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "t": 0.1,
+   "dur": 1.362,
+   "card": 1,
+   "text": "Could you fly backwards?",
+   "pace": 1
+  },
+  {
+   "id": "L02",
+   "who": "loupe",
+   "t": 3.3,
+   "dur": 0.999,
+   "card": 2,
+   "text": "Let's zoom in!",
+   "catch": true
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "t": 4.85,
+   "dur": 2.005,
+   "card": 3,
+   "text": "Dragonflies can fly backwards!",
+   "pace": 1
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "t": 7.05,
+   "dur": 1.782,
+   "card": 4,
+   "text": "And stay still in the air!"
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 9.35,
+   "dur": 2.507,
+   "card": 5,
+   "text": "Front wings up, back wings down!"
+  },
+  {
+   "id": "L06",
+   "who": "albie",
+   "t": 13.75,
+   "dur": 2.297,
+   "card": 6,
+   "text": "Six legs? In you go!",
+   "catch": true
+  },
+  {
+   "id": "L07",
+   "who": "loupe",
+   "t": 16.95,
+   "dur": 1.849,
+   "card": 7,
+   "text": "I can go backwards too!"
+  },
+  {
+   "id": "L08",
+   "who": "albie",
+   "t": 20,
+   "dur": 1.537,
+   "card": 8,
+   "text": "Watch the corners!",
+   "pace": 1
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 21.9,
+   "dur": 1.511,
+   "card": 9,
+   "text": "Which way is Zip flying?",
+   "pace": 1
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "brake": 0.42,
+  "back1": [
+   0.62,
+   1.45
+  ],
+  "dash2": [
+   1.95,
+   2.2
+  ],
+  "brake2": 2.2,
+  "back2": [
+   2.32,
+   2.78
+  ],
+  "dizzy": [
+   2.45,
+   3.15
+  ],
+  "titleOut": [
+   2.85,
+   3.2
+  ],
+  "zoom": [
+   4.25,
+   4.75
+  ],
+  "lback": [
+   5.55,
+   6.95
+  ],
+  "lbrake": 6.95,
+  "still": 7.15,
+  "turn": [
+   7.3,
+   7.9
+  ],
+  "slow": [
+   8.85,
+   9.15
+  ],
+  "strokes": [
+   9.475,
+   10.1,
+   10.725,
+   11.35,
+   11.975
+  ],
+  "happy": 12,
+  "snap": 12.55,
+  "zoomIn": [
+   12.65,
+   12.95
+  ],
+  "zoomOut": [
+   12.95,
+   13.3
+  ],
+  "stamp": 13.45,
+  "zipIn": [
+   13.5,
+   14
+  ],
+  "counts": [
+   14,
+   14.25,
+   14.5
+  ],
+  "reverse": [
+   15.1,
+   15.55
+  ],
+  "gulp": 15.55,
+  "mini": 15.75,
+  "flip": [
+   16.35,
+   16.85
+  ],
+  "stepsBack": [
+   18.75,
+   19.8
+  ],
+  "beeps": [
+   18.85,
+   19.17,
+   19.49
+  ],
+  "notice": 18.95,
+  "bump": 19.8,
+  "glint": 20.75,
+  "giggle": 21.55,
+  "albieOut": [
+   21.7,
+   22.45
+  ],
+  "zipBack": [
+   21.75,
+   23.15
+  ],
+  "recall": 22.95,
+  "spin": 23.45,
+  "loop": [
+   23.45,
+   24
+  ]
+ }
+}

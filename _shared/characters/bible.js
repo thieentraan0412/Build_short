@@ -1,6 +1,26 @@
 // Nguồn dữ liệu duy nhất cho chữ trên các bảng và cho CHARACTER-BIBLE.md (tools/bible.mjs). Không import gì để Node đọc được.
 export const STYLE_PROMPT = 'Flat 2D vector cartoon for preschool kids, built only from simple geometric shapes (circles, capsules, rounded rectangles, ellipses). Flat solid colors, NO outlines, NO gradients, NO textures, NO blur. Depth only from one flat darker shade patch on the lower-right of a shape (light from upper-left). Big round white eyes with dark navy (#1E1B3A) pupils and one white glint, pink oval cheeks, no eyebrows. Bright candy palette, clean simple background.';
 
+// v2 "Kẹo Phẳng Viền" (11/2026): phong cách hiện hành của bảng hình. STYLE_PROMPT (v1) giữ cho các tập đã giao.
+export const STYLE_PROMPT_V2 = 'Premium 2D vector cartoon for a preschool educational series. Simple rounded shapes (circles, capsules, rounded rectangles, ellipses). Clean, smooth, uniform dark navy (#1E1B3A) outlines on every body part, the outer silhouette line slightly thicker than the inner lines. Soft cel shading: bright flat base color, a narrow mid-tone band and a thin darker rim on the lower-right of each shape, a thin light rim on the upper-left (light from upper-left); hard-edged shade shapes, no smooth gradients, no textures, no 3D or realistic materials. Big glossy eyes: white eyeball with a thin outline, colored iris tinted from the body color, navy pupil, two white catchlights, a soft lid shadow; expressive floating eyebrows; tapered mouth lines, open mouths show top teeth and a pink tongue; small pink cheeks with a tiny shine. Bright, vivid, harmonious candy palette, clean simple background.';
+// bộ phận điều khiển được của rig (tham số pose trong cast/*.js); mọi nhân vật có mặt thì dùng chung RIG_FACE
+export const RIG_FACE = 'mắt (look hướng nhìn, open nhắm mở, pupil cỡ con ngươi, scale cỡ mắt), mí (lidTop, lidTilt, lidBot), lông mày v2 (brow: lift nhướng, tilt đầu trong lên/xuống, arch độ vồng; browL/browR riêng từng bên), miệng (13 dáng + talk 0..1 khi nói), nghiêng đầu (tilt), ký hiệu cảm xúc (fx)';
+export const RIG = {
+  loupe: 'tay trái/phải: vai → khuỷu (elbowL/R) → bàn tay tròn (handL/R), ngón trỏ khi chỉ (pointL/R), ngón cái (thumbL/R) · chân: hông → bàn chân (footL/R) + giày · kính: chúc (lensPitch), nghiêng (lensRoll), cảnh trong kính (inside), Smudge trên kính (smudge) · khăn (scarf)',
+  albie: 'nhún cả quyển (hop), lắc trên góc đáy khi đi (tilt), trang giấy làm tay (page [dài, cao, nghiêng], pageCurl), mép sticker bay (tabsUp), bìa hé = miệng, khóc ướt trang (wet), trang mới (newPage), khăn (scarf)',
+  crumb: '4 chân đứng (feet), 2 chân trước làm tay (armL/R), nhấc người (lift), nghiêng thân (bodyLean), râu cuộn dấu hỏi (q 0..1), râu chạm râu (reach), đồ vác (carry, prop)',
+  flutter: 'cánh: vỗ lên xuống (beta), xoè trước sau (alpha) · bay (lift) · 6 chân (feet, legsUp) · râu vểnh/cụp (antL/R) · vòi cuộn ↔ duỗi (tongue 0..1)',
+  chirp: 'nhảy (lift), rung cánh kêu (chirp), chân trước (frontL/R), tai ở chân trước sáng (earGlow), đùi sau co duỗi (hindUp), râu gợn (ant)',
+  waggle: 'bay (lift), vỗ cánh (wing), lắc mông khi nhảy (wag), chúc đầu (pitch), 6 chân (legsUp), chớp 3 mắt đơn (ocelliBlink)',
+  blink: 'độ sáng đèn đuôi (glow), bay: mở áo choàng + cánh trong (fly 0..1), nhấc (lift), chân (legsUp), vểnh đuôi (tailUp)',
+  dot: 'nhấc (lift), 6 chân, giơ chân đếm (legsUp), khăn (scarf)',
+  spindle: '8 chân (legs), giấu 2 chân để giả côn trùng (hidden), nhấc (lift), sợi tơ (thread), cánh giấy (wings), áo len (sweater)',
+  rollo: 'viên tròn: vị trí (ball), cỡ (ballR), lăn (ballSpin), ẩn/hiện (showBall) · 6 chân (legsUp) · nhấc (lift)',
+  telly: 'tay trái/phải (handL/R, elbowL/R, pointL/R, thumbL/R), chân (footL/R), ngửa hai ống kính (lensPitch), lóe sáng tròng kính (glint)',
+  giant: 'bàn tay hoặc bàn chân (part), 11 cử chỉ tay (gesture: open, point, thumbs, wave, fist, soft, peace, count1, spread, curl, tap), xoay 3 trục (rot), lòng/mu bàn tay (palm), nhón chân (foot), ngọ nguậy ngón chân (toeWiggle)',
+  smudge: 'co giãn (sx, sy), méo mép (wob, ph), vệt bị lau (streak), mờ dần (fade), nhỏ giọt (drip), nâng trên kính (lift), cảnh dưới kính (under)',
+};
+
 export const BIBLE = {
   loupe: {
     vi: 'Nhân vật chính · kính lúp biết đi, người dẫn chuyện', species: 'Kính lúp', voice: 'Nữ, vui, rõ, chậm', debut: 'Pilot / Tập 1',

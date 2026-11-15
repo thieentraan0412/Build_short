@@ -43,7 +43,7 @@ export const ROLLO = {
     // đầu xẻng răng cưa
     const H = [0, Y(-.56), .82];
     r.ell(H, [.44, .26, .3], C.ink, { bias: .04 });
-    r.plane([0, Y(-.4), .98], [.52, 0, 0], [0, 0, .32], c => { c.fillStyle = C.ink; c.beginPath(); c.moveTo(-1, -.5); for (let i = 0; i <= 8; i++) { const x = -1 + i * .25; c.lineTo(x, i % 2 ? .62 : .2); } c.lineTo(1, -.5); c.closePath(); c.fill(); }, { bias: .041 });
+    r.plane([0, Y(-.4), .98], [.52, 0, 0], [0, 0, .32], c => { c.fillStyle = C.ink; c.beginPath(); c.moveTo(-1, -.5); for (let i = 0; i <= 8; i++) { const x = -1 + i * .25; c.lineTo(x, i % 2 ? .62 : .2); } c.lineTo(1, -.5); c.closePath(); c.fill(); }, { bias: .041, line: 'first' });
     bugFace(r, [0, Y(-.66), .8], .34, E, { eyeA: .5, eyeEl: -.38, eyeR: .5, lid: C.ink, line: C.cream, cheekA: .9, cheekEl: .2, mouthEl: .32, mouthW: .28, mouthInk: C.cream });
     for (const sd of [-1, 1]) antenna(r, [[sd * .2, Y(-.78), 1.0], [sd * .34, Y(-.9), 1.1], [sd * .44, Y(-.86), 1.16]], .05, C.ink, { club: .08, bias: .05 });
     if (P.showBall && P.ball) dungBall(r, V.add(P.ball, [0, -L, 0]), P.ballR, P.ballSpin);

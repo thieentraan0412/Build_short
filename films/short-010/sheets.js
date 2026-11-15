@@ -1,6 +1,8 @@
 // Trang kiểm tra: bảng nhân vật của tập (Zip ra mắt) và storyboard, vẽ bằng đúng code của phim (rig dùng chung _shared/characters).
 import { C, rrect, subFont, wrap, ground } from '/_shared/kit.js';
 import { drawChar } from '/_shared/characters/stage.js';
+import { LOOK } from '/_shared/characters/look.js';
+LOOK.cheer = true;   // (14/11/2026) mặt nhân vật luôn vui tươi
 import { BY } from '/_shared/characters/cast/index.js';
 import { drawFilm } from './film.js';
 import { BOARD } from './timeline.js';

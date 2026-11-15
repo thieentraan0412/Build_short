@@ -25,7 +25,7 @@ export const TELLY = {
       r.ell(V.add(f, [sx * .06, .07, .07]), [.23, .13, .28], acc, { bias: -.04 });
     }
     r.cap([0, -1.9, 0], [0, -.66, 0], 1.0, body, { shade: { col: dark, k: .34, dx: -1, dy: -.1 } });
-    r.flat(.01, c => { c.fillStyle = acc; c.beginPath(); c.roundRect(r.X([0, 0, 0]) - .46, -2.48, .92, .2, .1); c.fill(); });
+    r.flat(.01, c => { c.fillStyle = acc; c.beginPath(); c.roundRect(r.X([0, 0, 0]) - .46, -2.48, .92, .2, .1); c.fill(); }, { line: 'first' });
     // mặt to, miệng rộng
     const FC = [0, -1.62, -.3], RV = .8, phi = Math.asin(.3 / RV);
     for (const sd of [-1, 1]) {
@@ -49,8 +49,8 @@ export const TELLY = {
       r.lathe(c0, ax, .55, .62, .62, t => t > .86 ? X.leafL : body, { profile: () => 1, bias: .2, n: 14 });
       const fr = V.add(c0, V.mul(ax, .56)), bk = V.add(c0, V.mul(ax, -.62));
       const U = [.62, 0, 0], W = [0, .62 * pc, .62 * ps];
-      r.plane(fr, U, W, (c, f) => { if (f <= 0) return; c.fillStyle = dark; c.beginPath(); c.arc(0, 0, 1, 0, TAU); c.fill(); c.fillStyle = acc; c.beginPath(); c.arc(0, 0, .74, 0, TAU); c.fill(); c.strokeStyle = 'rgba(255,255,255,.8)'; c.lineWidth = .1; c.lineCap = 'round'; c.beginPath(); c.arc(0, 0, .5, Math.PI * 1.1, Math.PI * 1.4); c.stroke(); if (P.glint) { c.fillStyle = C.white; c.beginPath(); c.arc(-.25, -.25, .18, 0, TAU); c.fill(); } }, { bias: .21 });
-      r.plane(bk, U, W, (c, f) => { if (f >= 0) return; c.fillStyle = dark; c.beginPath(); c.arc(0, 0, 1, 0, TAU); c.fill(); c.fillStyle = C.ink; c.beginPath(); c.arc(0, 0, .55, 0, TAU); c.fill(); }, { bias: .21 });
+      r.plane(fr, U, W, (c, f) => { if (f <= 0) return; c.fillStyle = dark; c.beginPath(); c.arc(0, 0, 1, 0, TAU); c.fill(); c.fillStyle = acc; c.beginPath(); c.arc(0, 0, .74, 0, TAU); c.fill(); c.strokeStyle = 'rgba(255,255,255,.8)'; c.lineWidth = .1; c.lineCap = 'round'; c.beginPath(); c.arc(0, 0, .5, Math.PI * 1.1, Math.PI * 1.4); c.stroke(); if (P.glint) { c.fillStyle = C.white; c.beginPath(); c.arc(-.25, -.25, .18, 0, TAU); c.fill(); } }, { bias: .21, line: 'first' });
+      r.plane(bk, U, W, (c, f) => { if (f >= 0) return; c.fillStyle = dark; c.beginPath(); c.arc(0, 0, 1, 0, TAU); c.fill(); c.fillStyle = C.ink; c.beginPath(); c.arc(0, 0, .55, 0, TAU); c.fill(); }, { bias: .21, line: 'first' });
     }
     // cầu nối + bánh xe chỉnh nét
     r.cap([-.66, -3.38, 0], [.66, -3.38, 0], .5, dark, { bias: .205 });
