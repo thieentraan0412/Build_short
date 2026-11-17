@@ -1,6 +1,6 @@
 # Khung tập mới (chuẩn 11/2026b)
 
-Khung mã cho mọi Short từ SHORT-016 và video dài từ LONG-002 của *Big Secrets of Tiny Bugs*: chuẩn sản xuất mới và Musical Storytelling ([`Task.md`](../../Task.md) ngày 17/11/2026, [`QUALITY.md`](../QUALITY.md) §8). Ví dụ đã dựng trọn và qua `qa.py`: [`films/lab-musical/`](../../films/lab-musical/), bản thử dựng lại từ SHORT-015.
+Khung mã cho mọi Short từ SHORT-016 và video dài từ LONG-002 của *Big Secrets of Tiny Bugs*: chuẩn sản xuất mới và Musical Storytelling ([`Task.md`](../../Task.md) ngày 17/11/2026, [`QUALITY.md`](../QUALITY.md) §8). Ví dụ đã dựng trọn và qua `qa.py`: bản thử `films/lab-musical/` (SHORT-015 dựng lại theo chuẩn này), đã xoá khỏi thư mục; xem lại trong lịch sử git: `git show 137d621:films/lab-musical/timeline.js` (tương tự với `film.js`, `mix.py`, `TREATMENT.md`).
 
 ## Bắt đầu một tập
 

@@ -235,7 +235,7 @@ Một video chỉ được giao khi:
 
 | Tập | Ngày | Kết quả | Ghi chú |
 |---|---|---|---|
-| `films/lab-musical` (bản thử từ SHORT-015, không đăng) | 17/11/2026 | 67 đạt · 4 cảnh báo · 0 chưa đạt ([báo cáo](../films/lab-musical/TREATMENT.md#báo-cáo)) | Nhịp đổi hình đo được: khoảng dài nhất 1,3 s; 14/15 cú của `SHOTS` đo thấy. Ngưỡng "cắt vụn" đổi từ < 1,2 s sang < 1 s (hook đúng chuẩn có 3 nhịp trong 3 s). Duck: tập cũ 14–16 dB dưới câu nói (SHORT-006…015), lab 7,9 dB dưới câu nói (câu nói cạnh chỗ khựng) và 11,6 dB dưới câu hát: giữ ngưỡng, còn hiệu chỉnh. Tốc độ lời: lần lặp của điệp khúc không tính là lời mới (53 → 45 từ, 1,88 từ/s). Motif: câu hát mở bằng đúng motif tính là một lần dùng |
+| `films/lab-musical` (bản thử từ SHORT-015, không đăng; đã xoá, xem `git show 137d621:films/lab-musical/TREATMENT.md`) | 17/11/2026 | 67 đạt · 4 cảnh báo · 0 chưa đạt | Nhịp đổi hình đo được: khoảng dài nhất 1,3 s; 14/15 cú của `SHOTS` đo thấy. Ngưỡng "cắt vụn" đổi từ < 1,2 s sang < 1 s (hook đúng chuẩn có 3 nhịp trong 3 s). Duck: tập cũ 14–16 dB dưới câu nói (SHORT-006…015), lab 7,9 dB dưới câu nói (câu nói cạnh chỗ khựng) và 11,6 dB dưới câu hát: giữ ngưỡng, còn hiệu chỉnh. Tốc độ lời: lần lặp của điệp khúc không tính là lời mới (53 → 45 từ, 1,88 từ/s). Motif: câu hát mở bằng đúng motif tính là một lần dùng |
 
 ## Hiệu chỉnh các mục đo mới (11/2026)
 

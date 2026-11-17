@@ -1,6 +1,6 @@
 """Âm thanh của <TẬP> → out/mix.wav (48 kHz stereo) và stems (chuẩn 11/2026b, _shared/QUALITY.md §4, §8).
 python mix.py   (cần timeline.json + voice/*.wav từ tools/lines.mjs, tts.py, sing.py; events.json từ core/render/events.mjs)
-Khung tối thiểu: thay bảng cảnh nhạc (G.sec), phần viết tay, LEVEL và bảng tiếng động (SFX) bằng của tập. Ví dụ đầy đủ: films/lab-musical/mix.py.
+Khung tối thiểu: thay bảng cảnh nhạc (G.sec), phần viết tay, LEVEL và bảng tiếng động (SFX) bằng của tập. Ví dụ đầy đủ (bản thử đã xoá): git show 137d621:films/lab-musical/mix.py
 - Nhạc: lớp nhịp theo cảnh _shared/audio/groove.py với song=TL['song']: cảnh có câu hát dùng chords='song' và BPM của phần bài hát
   (sai thì ValueError); dưới câu hát hợp âm đủ nhịp, không arp; câu 'sing' được nhạc cụ hát chính đánh đôi; G.motif đặt giai điệu đặc trưng.
 - Nhạc lùi dưới giọng: dưới câu nói ≈ −15 dB ở dải giọng, dưới câu hát ≈ −10 dB (ve_m); LEVEL dưới câu hát ≈ 0,8.
