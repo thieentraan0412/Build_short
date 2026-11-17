@@ -770,6 +770,12 @@ Giọng TTS đọc theo nhịp được nhưng **không hát được**. Bản �
    - xem trọn tập một lần có tiếng.
 8. **Bản B:** dựng 2 bản theo khung §4.3, mỗi bản có câu móc, gag kết và ảnh bìa riêng.
 
+**Từ SHORT-016 và LONG-002: chuẩn 11/2026b** ([`Task.md`](Task.md) 17/11/2026, [`_shared/QUALITY.md`](_shared/QUALITY.md) §8). SHORT-010 đến 015 giữ nguyên làm mốc so sánh.
+- Bước 2 dùng [`_shared/TREATMENT-TEMPLATE.md`](_shared/TREATMENT-TEMPLATE.md): 10 đầu ra (đánh giá ý tưởng, hook tối ưu, kịch bản 6 nhịp, storyboard mỗi 2–4 s, chuyển động, chữ và phụ đề, voiceover, SFX và nhạc nền, CTA, checklist) và Music Direction A–F. Khi chủ kênh giao nội dung tập mới, trả về các mục này trước khi dựng.
+- Mã của tập chép từ [`_shared/template/`](_shared/template/). Bài hát của tập khai báo trong `timeline.js` (`SONG`, `sing` của từng câu), [`_shared/song.js`](_shared/song.js) giải ra nốt.
+- Bước 5 thêm **bài hát**: bản nói qua Whisper khớp từng chữ → [`_shared/sing.py`](_shared/sing.py) hát bằng chính giọng của nhân vật (60–80 % số từ, điệp khúc hát theo được) → [`_shared/tools/asr_sung.py`](_shared/tools/asr_sung.py) kiểm lời hát. Nhân vật hát lần đầu: chủ kênh nghe duyệt trước khi dựng hình.
+- Bước 7: `qa.py` chạy thêm nhóm "8 Chuẩn mới" ([`_shared/qa_musical.py`](_shared/qa_musical.py)); `SOUND-PLAN.md` có thêm Music Timeline, Sing-along, SFX Timeline, AI music prompts.
+
 **Ước lượng công sức:** pilot tốn nhiều công nhất vì phải dựng từ đầu. Khi đã có thư viện dựng tập, phần việc chính của mỗi tập mới là thiết kế côn trùng mới, cảnh đặc trưng riêng và timeline. Lịch ở §5 giả định 1 tập A mỗi tuần. Đo thời gian thật của tập 2 và tập 3 rồi mới giữ lịch này.
 
 ### 11.2 Thư viện nhân vật

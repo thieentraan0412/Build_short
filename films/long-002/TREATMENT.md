@@ -314,3 +314,18 @@ Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie b
   ```
 
   Bảng hình: thay bằng `--q mode=model --size 1920x1080`.
+
+## 15. Chuẩn 11/2026b (bổ sung trước khi duyệt storyboard)
+
+Video dài này dựng theo chuẩn mới ([`Task.md`](../../Task.md) 17/11/2026, [`QUALITY.md`](../../_shared/QUALITY.md) §8). Những điểm phải thêm vào kịch bản và storyboard ở trên:
+
+- **Bài hát chủ đề và điệp khúc:** *"Six for a bug, eight for a spider!"* (7 từ, đúng FACTS: côn trùng 6 chân, nhện 8 chân), giai điệu phác `5:.5 5:.5 3:.5 5:1 | 6:.5 6:.5 5:.5 3:.5 1':1` (Sol trưởng, nối với "Tiny Detective Swing" của mục 9). Hát ≥ 3 lần: cuối chương *Hiện trường* (Miss Loupe), sau *Hàng nghi phạm* (cả nhóm, Dot hát bè cao), và trong *Kết* trước câu hỏi (trẻ hát theo, chữ nảy từng từ). Motif của video = câu mở của điệp khúc.
+- **Kiểu hát theo chương:** manh mối và hàng nghi phạm: câu phát hiện half-sing, câu giải thích sing-talk (*"Spiders have no antennae!"*), trò đếm cùng Dot sing-talk theo phách; câu cửa miệng (*"Nope!"*, *"BZZT! Not a bug!"*, *"Rules are rules!"*) và lời thú nhận của Spindle nói thường để giữ cảm xúc.
+- **CTA cụ thể (≤ 3 s, 10 s cuối):** giữ câu hỏi kết *"So... is a spider a bug?"* → *"Nope!"*, rồi CTA *"Next bug you see, count its legs!"* (việc làm thật, có từ khoá "legs"; không comment / subscribe).
+
+- **Nhịp đổi hình:** `SHOTS` ≤ 5 s giữa hai thay đổi có mục đích (video dài). Bảng cảnh quay ở mục 7 có nhiều cú dài 6–12 s: khi dựng, chia mỗi cú dài thành các nhịp máy (đẩy vào người nói, lia theo hành động, cận biểu cảm, kính đổi độ phóng) và ghi từng nhịp vào `SHOTS` kèm `why`. Đoạn giải thích không đứng một khung quá 2,5 s.
+- **Chữ móc:** `hookStack(…, 'wide')` (khung 1920×1080, tâm y 480), không sát mép; không phụ đề khi chữ móc trên hình.
+- **Phụ đề:** ≤ 7 từ mỗi tấm (`cardsOf`), mỗi tấm một câu, từ khoá của bí mật được nhấn (`em`, `SECRET.kw`).
+- **Lời có nhịp hoặc giai điệu:** 60–80 % số từ, **hát trọn ≤ 30 %**; phần giải thích dài nói hoặc sing-talk; câu hỏi cho trẻ half-sing; trò đếm cùng Dot đọc theo nhịp (sing-talk); câu cửa miệng nói hoặc `CATCH_TUNE`. Nhân vật hát lần đầu (Dot, Albie, Blink…) cần chủ kênh nghe duyệt trước khi dựng hình.
+- **Âm thanh:** `Groove(…, song=TL['song'])`, mỗi chương một phần của bài (BPM ≥ 108, vòng hợp âm riêng); `G.motif` ở mở đầu và trước CTA; SFX không lặp máy móc (≤ 3 lần / phút cho một loại tiếng ngoài chuỗi có chủ đích).
+- **Khung mã:** chép `timeline.js`, `tools/lines.mjs`, `build.sh`, `mix.py` từ [`_shared/template/`](../../_shared/template/) (thêm `sing.py`, `asr_sung.py`); treatment bổ sung các mục còn thiếu của [`_shared/TREATMENT-TEMPLATE.md`](../../_shared/TREATMENT-TEMPLATE.md) (Music Timeline, AI prompts, SFX Timeline sinh tự động khi dựng).

@@ -40,8 +40,12 @@ export function rigPt(x, y, k, yaw, lean, p) {
   const X = p[0] * Math.cos(yaw) + p[2] * Math.sin(yaw), Y = p[1], cs = Math.cos(lean), sn = Math.sin(lean);
   return [x + k * (X * cs - Y * sn), y + k * (X * sn + Y * cs)];
 }
+// Ghi máy quay và kính của khung đang vẽ (Musical Storytelling 11/2026b, _shared/qa_musical.py đo nhịp đổi hình 2–4 s), cho
+// _shared/tools/safezone.mjs. Chỉ ghi khi CAM.on; không vẽ gì nên không đổi hình của tập nào. cam: lần look() đầu tiên của khung;
+// lens: mỗi kính có cảnh bên trong (toạ độ màn hình, bán kính).
+export const CAM = { on: false, cam: null, lens: [] };
 // máy quay "nhìn vào" (cx, cy) với độ phóng z; điểm cảnh → khung hình
-export const look = (c, cam, fn) => { c.save(); c.translate(540, 960); c.scale(cam.z, cam.z); c.translate(-cam.cx, -cam.cy); fn(); c.restore(); };
+export const look = (c, cam, fn) => { if (CAM.on && !CAM.cam) CAM.cam = { cx: cam.cx, cy: cam.cy, z: cam.z }; c.save(); c.translate(540, 960); c.scale(cam.z, cam.z); c.translate(-cam.cx, -cam.cy); fn(); c.restore(); };
 export const toScreen = (cam, x, y) => [540 + (x - cam.cx) * cam.z, 960 + (y - cam.cy) * cam.z];
 
 /* ---------- Miss Loupe: đặt theo TÂM KÍNH (lx, ly), bán kính kính r ----------
@@ -51,6 +55,7 @@ export const LENS_UP = 2.73;
 export function loupe(c, lx, ly, r, o = {}) {
   const E = o.E || ex(BY.loupe, 'happy'), lean = o.rot ?? -.14, th = lean + (E.tilt || 0);
   const T0 = c.getTransform(), pose = { ...(o.pose || {}) };
+  if (o.inside && CAM.on && !REC.mute) CAM.lens.push({ x: T0.a * lx + T0.c * ly + T0.e, y: T0.b * lx + T0.d * ly + T0.f, r: r * Math.hypot(T0.a, T0.b), ...(o.mag !== undefined && { mag: o.mag }), ...(o.pan !== undefined && { pan: o.pan }) });   // o.mag, o.pan: chỉ để ghi (độ phóng / lia trong kính)
   if (o.inside) pose.inside = cc => { cc.setTransform(T0); REC.mute++; o.inside(cc); REC.mute--; };
   return drawChar(c, BY.loupe, { x: lx - Math.sin(th) * LENS_UP * r, y: ly + Math.cos(th) * LENS_UP * r, k: r, yaw: o.yaw || 0, lean, expr: E, pose, showFx: !!o.fx });
 }
@@ -113,7 +118,7 @@ export function badge(c, x, y, r, fill, draw, rot = 0, s = 1) {
    o.gone 0..1: thu nhỏ biến mất (âm: phóng to quá đà khi chữ trở lại ở cuối phim); o.wob: lắc; o.cx, o.cy: tâm co giãn; o.rot: nghiêng */
 export function hookTitle(c, lines, t, o = {}) {
   const gone = o.gone || 0; if (gone >= 1) return;
-  const cx = o.cx ?? 540, cy = o.cy ?? 350;
+  const cx = o.cx ?? 540, cy = o.cy ?? 350, n0 = REC.list.length;
   c.save(); c.translate(cx, cy + (o.dy || 0)); c.scale(1 - gone, 1 - gone); c.rotate((o.rot ?? -.03) + (o.wob || 0)); c.translate(-cx, -cy);   // o.dy: nhích cả khối lên/xuống (ví dụ nhường chỗ cho cánh bướm)
   for (const L of lines) {
     const t0 = L.t0 ?? 0, u = seg(t, t0, t0 + .32), p = t < t0 ? 0 : Math.sin(Math.PI * u) * (1 - .35 * u), s = 1 + .17 * p, my = L.y - L.px * .34;
@@ -122,6 +127,24 @@ export function hookTitle(c, lines, t, o = {}) {
     c.restore();
   }
   c.restore();
+  if (HOOK.on && REC.on && REC.list.length > n0) {                  // khung chữ móc (toạ độ màn hình), cho qa_musical.py
+    const bs = REC.list.slice(n0);
+    HOOK.box = { x0: Math.min(...bs.map(b => b.x0)), y0: Math.min(...bs.map(b => b.y0)), x1: Math.max(...bs.map(b => b.x1)), y1: Math.max(...bs.map(b => b.y1)) };
+  }
+}
+// Ghi khung chữ móc đang vẽ (11/2026b). Chỉ ghi khi HOOK.on và REC.on; không đổi hình.
+export const HOOK = { on: false, box: null };
+/* ---------- (Musical Storytelling 11/2026b) chữ móc ở vùng giữa phía trên hoặc giữa khung (QUALITY.md §1, §8) ----------
+   Task.md: chữ móc to, ở trung tâm hoặc upper-middle, không sát mép trên / dưới. Khung 1080×1920 của Short:
+   'mid' tâm khối chữ ở y 700 (khối hai dòng 172 + 210 px nằm khoảng 497–943), 'center' tâm ở y 900. Khung 1920×1080 (video dài): 'wide' y 480.
+   Trong 3 s đầu, đặt mặt nhân vật ở y 1000–1350 (dưới chữ) và tắt phụ đề (cardsOf hide) để chữ móc không tranh chỗ.
+   hookStack(specs, 'mid') → { lines: [{ ...spec, y }], cy }: dùng hookTitle(c, H.lines, t, { cy: H.cy, ... }) */
+export const HOOK_POS = { mid: { cy: 700 }, center: { cy: 900 }, wide: { cy: 480 } };
+export function hookStack(specs, preset = 'mid', gap = .18) {
+  const cy = typeof preset === 'number' ? preset : HOOK_POS[preset].cy;
+  const H = specs.reduce((a, s, i) => a + s.px + (i ? gap * s.px : 0), 0); let top = cy - H / 2;
+  const lines = specs.map((s, i) => { if (i) top += gap * s.px; const y = top + .78 * s.px; top += s.px; return { ...s, y: Math.round(y) }; });
+  return { lines, cy };
 }
 /* ---------- chuyển cảnh kính → sổ (QUALITY.md §2): "chụp" rồi match cut qua sticker ----------
    t0–t1: máy lao xuyên qua mặt kính, hình trong kính hoá thành sticker (vành kính mỏng dần thành mép sticker);
@@ -159,6 +182,7 @@ export const SUB = { on: false, box: null };
 
 /* ---------- phụ đề: tấm giữ nguyên cỡ, chữ hiện theo câu đã nói (card = {t0, t1, text, parts}) ---------- */
 export function subtitle(c, card, t, cx = 510, y = 1545) {
+  if (card.em && card.em.length) return subtitleEm(c, card, t, cx, y);   // (11/2026b) tấm có từ nhấn
   const a = seg(t, card.t0, card.t0 + .14); if (a <= 0) return;
   c.save(); c.font = subFont(56); c.textAlign = 'left'; c.textBaseline = 'middle';
   const ls = wrap(c, card.text, 800), lh = 66, w = Math.max(...ls.map(l => c.measureText(l).width)) + 72, h = ls.length * lh + 34;
@@ -169,6 +193,36 @@ export function subtitle(c, card, t, cx = 510, y = 1545) {
   rrect(c, -w / 2, -h / 2, w, h, 30, C.cream);
   c.fillStyle = C.ink;
   ls.forEach((l, i) => { if (shown <= 0) return; const lw = c.measureText(l).width; c.fillText(l.slice(0, shown), -lw / 2, (i - (ls.length - 1) / 2) * lh + 3); shown -= l.length + 1; });
+  c.restore();
+}
+
+/* ---------- (Musical Storytelling 11/2026b) phụ đề có từ nhấn (QUALITY.md §8) ----------
+   card = { t0, t1, text, em: ['pegs', 'wing'], parts: [{ t, text }] } (từ _shared/song.js cardsOf: ≤ 7 từ, chữ hiện từng từ theo lúc hát / nói).
+   Từ trong em: to hơn (SUB_EM.emPx) và màu SUB_EM.color (C.berry); chữ khác giữ cỡ và màu của subtitle(). Ghi SUB.box như subtitle(). */
+export const SUB_EM = { px: 56, emPx: 64, lh: 72, color: C.berry, maxW: 800 };
+const bareW = w => w.toLowerCase().replace(/[^a-z0-9']/g, '');
+export function subtitleEm(c, card, t, cx = 510, y = SAFE.subY) {
+  const a = seg(t, card.t0, card.t0 + .14); if (a <= 0) return;
+  const em = new Set((card.em || []).map(bareW)), ws = card.text.split(/\s+/).filter(Boolean), isEm = w => em.has(bareW(w));
+  c.save(); c.textAlign = 'left'; c.textBaseline = 'middle';
+  const W = ws.map(w => { c.font = subFont(isEm(w) ? SUB_EM.emPx : SUB_EM.px); return c.measureText(w).width; });
+  c.font = subFont(SUB_EM.px); const sp = c.measureText(' ').width;
+  const rows = []; let cur = [], cw = 0;
+  ws.forEach((w, i) => { if (cur.length && cw + sp + W[i] > SUB_EM.maxW) { rows.push({ ix: cur, w: cw }); cur = []; cw = 0; } cw += (cur.length ? sp : 0) + W[i]; cur.push(i); });
+  if (cur.length) rows.push({ ix: cur, w: cw });
+  const lh = SUB_EM.lh, w = Math.max(...rows.map(r => r.w)) + 72, h = rows.length * lh + 30;
+  const shown = card.parts ? card.parts.filter(p => t >= p.t).reduce((n, p) => n + p.text.split(/\s+/).filter(Boolean).length, 0) : ws.length;
+  const s = back(a, 1.6); c.translate(cx, y); c.scale(s, s);
+  if (SUB.on && a >= 1) { const m = c.getTransform(), X = x => m.a * x + m.e, Y = y => m.d * y + m.f; SUB.box = { text: card.text, x0: X(-w / 2), y0: Y(-h / 2), x1: X(w / 2), y1: Y(h / 2) }; }
+  rrect(c, -w / 2 + 6, -h / 2 + 10, w, h, 30, 'rgba(30,27,58,.28)');
+  rrect(c, -w / 2, -h / 2, w, h, 30, C.cream);
+  rows.forEach((r, k) => {
+    let x = -r.w / 2; const yy = (k - (rows.length - 1) / 2) * lh + 3;
+    for (const i of r.ix) {
+      if (i < shown) { c.font = subFont(isEm(ws[i]) ? SUB_EM.emPx : SUB_EM.px); c.fillStyle = isEm(ws[i]) ? SUB_EM.color : C.ink; c.fillText(ws[i], x, yy); }
+      x += W[i] + sp;
+    }
+  });
   c.restore();
 }
 

@@ -1,0 +1,978 @@
+{
+ "bpm": 120,
+ "dur": 24,
+ "secs": [
+  {
+   "id": "stage",
+   "t0": 0,
+   "t1": 3.6
+  },
+  {
+   "id": "lens",
+   "t0": 3.6,
+   "t1": 6.6
+  },
+  {
+   "id": "macro",
+   "t0": 6.6,
+   "t1": 13.72
+  },
+  {
+   "id": "lens2",
+   "t0": 13.72,
+   "t1": 15.5
+  },
+  {
+   "id": "gag",
+   "t0": 15.5,
+   "t1": 24
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "loupe",
+   "text": "Could you sing with your legs?",
+   "em": [
+    "sing",
+    "legs"
+   ],
+   "card": 1,
+   "sing": {
+    "mode": "half-sing",
+    "at": 0.5,
+    "notes": "5:.5 5:.5 3:.5 5:.5 6:.5 1':1"
+   },
+   "t": 0.38,
+   "dur": 1.97,
+   "sung": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 56,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.25,
+      "m": 53,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.87,
+      "d": 0.25,
+      "m": 56,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 58,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.37,
+      "d": 0.5,
+      "m": 61,
+      "syl": 5,
+      "w": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "L02",
+   "who": "loupe",
+   "t": 2.8,
+   "dur": 0.999,
+   "text": "Let's zoom in!",
+   "em": [
+    "zoom"
+   ],
+   "catch": true
+  },
+  {
+   "id": "L03",
+   "who": "loupe",
+   "text": "Watch Hop's back leg!",
+   "em": [
+    "leg"
+   ],
+   "sing": {
+    "mode": "sing-talk",
+    "at": 4.156,
+    "notes": "5:.5 5:.5 6:.5 5:1"
+   },
+   "t": 4.036,
+   "dur": 1.609,
+   "sung": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6756,
+      "d": 0.2778,
+      "m": 58,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.9533,
+      "d": 0.5556,
+      "m": 56,
+      "syl": 3,
+      "w": 3
+     }
+    ]
+   }
+  },
+  {
+   "id": "L04",
+   "who": "loupe",
+   "text": "Look! A row of tiny pegs!",
+   "em": [
+    "pegs"
+   ],
+   "sing": {
+    "mode": "half-sing",
+    "at": 6.933,
+    "notes": "5:.5 3:.5 3:.5 5:.5 6:.5 5:.5 6:1"
+   },
+   "t": 6.813,
+   "dur": 2.442,
+   "sung": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.2778,
+      "m": 53,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6756,
+      "d": 0.2778,
+      "m": 53,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.9533,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.2311,
+      "d": 0.2778,
+      "m": 58,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.5089,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 5,
+      "w": 4
+     },
+     {
+      "t": 1.7867,
+      "d": 0.5556,
+      "m": 58,
+      "syl": 6,
+      "w": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "text": "Pegs on the leg, scrape on the wing!",
+   "em": [
+    "pegs",
+    "leg",
+    "wing"
+   ],
+   "sing": {
+    "mode": "sing",
+    "chorus": "pegs",
+    "notes": "3:.5 3:.25 5:.25 6:1 5:.5 3:.25 5:.25 1':.75",
+    "at": 10.80857142857143
+   },
+   "t": 10.689,
+   "dur": 2.006,
+   "sung": {
+    "mode": "sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": "pegs",
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2381,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3581,
+      "d": 0.119,
+      "m": 53,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.4771,
+      "d": 0.119,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.5962,
+      "d": 0.4762,
+      "m": 58,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.0724,
+      "d": 0.2381,
+      "m": 56,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.3105,
+      "d": 0.119,
+      "m": 53,
+      "syl": 5,
+      "w": 5
+     },
+     {
+      "t": 1.4295,
+      "d": 0.119,
+      "m": 56,
+      "syl": 6,
+      "w": 6
+     },
+     {
+      "t": 1.5486,
+      "d": 0.3571,
+      "m": 61,
+      "syl": 7,
+      "w": 7
+     }
+    ]
+   }
+  },
+  {
+   "id": "L06",
+   "who": "loupe",
+   "text": "It's like a violin bow!",
+   "em": [
+    "violin",
+    "bow"
+   ],
+   "sing": {
+    "mode": "half-sing",
+    "at": 13.756,
+    "lyr": "It's like a vi-o-lin bow",
+    "notes": "5:.5 5:.5 5:.5 6:.5 5:.5 3:.5 5:.5"
+   },
+   "t": 13.636,
+   "dur": 1.811,
+   "sung": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3473,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.5745,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.8018,
+      "d": 0.2273,
+      "m": 58,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.0291,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.2564,
+      "d": 0.2273,
+      "m": 53,
+      "syl": 5,
+      "w": 3
+     },
+     {
+      "t": 1.4836,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 6,
+      "w": 4
+     }
+    ]
+   }
+  },
+  {
+   "id": "L07",
+   "who": "loupe",
+   "t": 16.15,
+   "dur": 1.107,
+   "text": "Let me try!",
+   "em": [
+    "try"
+   ]
+  },
+  {
+   "id": "L08",
+   "who": "loupe",
+   "t": 18.4,
+   "dur": 1.43,
+   "text": "Oops! No pegs!",
+   "em": [
+    "pegs"
+   ]
+  },
+  {
+   "id": "L10",
+   "who": "loupe",
+   "text": "Pegs on the leg, scrape on the wing!",
+   "em": [
+    "pegs",
+    "leg",
+    "wing"
+   ],
+   "sing": {
+    "mode": "sing",
+    "chorus": "pegs",
+    "notes": "3:.5 3:.25 5:.25 6:1 5:.5 3:.25 5:.25 1':.75",
+    "at": 20.02857142857143
+   },
+   "t": 19.909,
+   "dur": 2.006,
+   "sung": {
+    "mode": "sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": "pegs",
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2381,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3581,
+      "d": 0.119,
+      "m": 53,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.4771,
+      "d": 0.119,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.5962,
+      "d": 0.4762,
+      "m": 58,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.0724,
+      "d": 0.2381,
+      "m": 56,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.3105,
+      "d": 0.119,
+      "m": 53,
+      "syl": 5,
+      "w": 5
+     },
+     {
+      "t": 1.4295,
+      "d": 0.119,
+      "m": 56,
+      "syl": 6,
+      "w": 6
+     },
+     {
+      "t": 1.5486,
+      "d": 0.3571,
+      "m": 61,
+      "syl": 7,
+      "w": 7
+     }
+    ]
+   }
+  },
+  {
+   "id": "L09",
+   "who": "loupe",
+   "t": 22.1,
+   "dur": 1.736,
+   "text": "Can YOU make music with your legs?",
+   "em": [
+    "you",
+    "legs"
+   ],
+   "pace": 1,
+   "cta": true
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "strokes0": [
+   -0.6,
+   -0.38,
+   -0.16,
+   0.06,
+   0.28,
+   0.6,
+   0.92,
+   1.24,
+   1.56,
+   1.88,
+   2.2,
+   2.34,
+   2.48,
+   2.62
+  ],
+  "strokes1": [
+   3.9,
+   4.3,
+   4.7,
+   5.1,
+   5.5,
+   5.9,
+   6.3,
+   6.7,
+   7.1
+  ],
+  "strokes2": [
+   13.55,
+   14,
+   14.45,
+   14.9,
+   15.35,
+   15.8
+  ],
+  "strokes3": [
+   20.029,
+   20.505,
+   20.981,
+   21.457,
+   21.933
+  ],
+  "loud0": [
+   -0.6,
+   -0.38,
+   -0.16,
+   0.06,
+   2.2,
+   2.34,
+   2.48
+  ],
+  "startle": [
+   0.08,
+   0.55
+  ],
+  "wiggle": [
+   1.15,
+   2
+  ],
+  "curious": [
+   2.2,
+   2.75
+  ],
+  "hopTo": [
+   2.9,
+   3.35
+  ],
+  "raise": [
+   3.35,
+   3.6
+  ],
+  "titleOut": [
+   2.9,
+   3.25
+  ],
+  "zoom": [
+   3.6,
+   4.1
+  ],
+  "lensSlide": [
+   5.45,
+   6.2
+  ],
+  "deep": [
+   6.6,
+   7.15
+  ],
+  "glint": [
+   7.55,
+   8.95
+  ],
+  "pan": [
+   8.05,
+   9.15
+  ],
+  "touch": 9.38,
+  "ticksUp": [
+   9.55,
+   9.8,
+   10.05,
+   10.3,
+   10.55
+  ],
+  "ticksDown": [
+   10.95,
+   11.3,
+   11.65,
+   12,
+   12.35
+  ],
+  "chorusIn": [
+   10.75,
+   11.25
+  ],
+  "chorusOut": [
+   12,
+   12.45
+  ],
+  "zzzip": [
+   12.62,
+   13.4
+  ],
+  "out": [
+   13.35,
+   13.72
+  ],
+  "violin": 13.78,
+  "lensDown": [
+   15.5,
+   16
+  ],
+  "step": [
+   16.15,
+   16.5
+  ],
+  "legUp": [
+   16.6,
+   16.95
+  ],
+  "rub": [
+   17.3,
+   17.85
+  ],
+  "squeak": 17.9,
+  "hush": [
+   17.9,
+   18.45
+  ],
+  "giggle": [
+   18.3,
+   19.1
+  ],
+  "shrug": [
+   19.3,
+   19.8
+  ],
+  "reprise": [
+   19.9,
+   21.95
+  ],
+  "ask": 22.1,
+  "ready": [
+   22.85,
+   23.35
+  ],
+  "recall": 22.95,
+  "home": [
+   23.1,
+   23.75
+  ],
+  "loop": [
+   23.4,
+   24
+  ]
+ },
+ "standard": "2026-11b",
+ "song": {
+  "key": "Db",
+  "tonic": 1,
+  "film": 120,
+  "parts": [
+   {
+    "t0": 0,
+    "t1": 3.6,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "Db Ab7"
+   },
+   {
+    "t0": 3.6,
+    "t1": 9.38,
+    "bpm": 108,
+    "beat": 0.555556,
+    "origin": 3.6,
+    "meter": 4,
+    "chords": "Gb Db"
+   },
+   {
+    "t0": 9.38,
+    "t1": 12.62,
+    "bpm": 126,
+    "beat": 0.47619,
+    "origin": 9.38,
+    "meter": 4,
+    "chords": "Db Gb Ab7 Db"
+   },
+   {
+    "t0": 12.62,
+    "t1": 18.6,
+    "bpm": 132,
+    "beat": 0.454545,
+    "origin": 12.62,
+    "meter": 4,
+    "chords": "Db Gb Ab Db"
+   },
+   {
+    "t0": 18.6,
+    "t1": 24,
+    "bpm": 126,
+    "beat": 0.47619,
+    "origin": 18.6,
+    "meter": 4,
+    "chords": "Db Gb Ab7 Db"
+   }
+  ],
+  "chart": [
+   [
+    0,
+    2,
+    "Db"
+   ],
+   [
+    2,
+    3.6,
+    "Ab7"
+   ],
+   [
+    3.6,
+    5.822,
+    "Gb"
+   ],
+   [
+    5.822,
+    8.044,
+    "Db"
+   ],
+   [
+    8.044,
+    9.38,
+    "Gb"
+   ],
+   [
+    9.38,
+    11.285,
+    "Db"
+   ],
+   [
+    11.285,
+    12.62,
+    "Gb"
+   ],
+   [
+    12.62,
+    14.438,
+    "Db"
+   ],
+   [
+    14.438,
+    16.256,
+    "Gb"
+   ],
+   [
+    16.256,
+    18.075,
+    "Ab"
+   ],
+   [
+    18.075,
+    18.6,
+    "Db"
+   ],
+   [
+    18.6,
+    20.505,
+    "Db"
+   ],
+   [
+    20.505,
+    22.41,
+    "Gb"
+   ],
+   [
+    22.41,
+    24,
+    "Ab7"
+   ]
+  ],
+  "motif": [
+   {
+    "b": 0,
+    "d": 0.5,
+    "s": 4
+   },
+   {
+    "b": 0.5,
+    "d": 0.25,
+    "s": 4
+   },
+   {
+    "b": 0.75,
+    "d": 0.25,
+    "s": 7
+   },
+   {
+    "b": 1,
+    "d": 1,
+    "s": 9
+   }
+  ]
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 2.9,
+   "what": "Hop kéo \"zzip!\", nốt bật ra; Miss Loupe giật mình, hát hỏi \"Could you sing with your legs?\", ngó chân mình"
+  },
+  {
+   "id": "setup",
+   "t0": 2.9,
+   "t1": 6.6,
+   "what": "\"Let's zoom in!\": kính lớn trên chân sau của Hop, kính trượt dọc đùi"
+  },
+  {
+   "id": "discovery",
+   "t0": 6.6,
+   "t1": 13.72,
+   "what": "Cận cảnh hàng gai, lia dọc hàng gai, mỗi gai một tiếng tách; điệp khúc lần 1; \"zzzzip!\""
+  },
+  {
+   "id": "surprise",
+   "t0": 13.72,
+   "t1": 19.9,
+   "what": "Vĩ cầm hiện ra; \"Let me try!\" → \"squeak.\" bé tí, Hop bật cười, \"Oops! No pegs!\""
+  },
+  {
+   "id": "payoff",
+   "t0": 19.9,
+   "t1": 22.1,
+   "what": "Điệp khúc lần 2: Miss Loupe hát, Hop kéo theo từng phách: bí mật thành câu hát dễ nhớ"
+  },
+  {
+   "id": "cta",
+   "t0": 22.1,
+   "t1": 24,
+   "what": "\"Can YOU make music with your legs?\": chữ móc trở lại, vòng lặp"
+  }
+ ],
+ "shots": [
+  {
+   "t": 0,
+   "kind": "trung, sân khấu, máy đẩy vào",
+   "why": "hành động ở khung 0: Hop kéo chân, chữ móc nảy, Miss Loupe giật mình"
+  },
+  {
+   "t": 1.15,
+   "kind": "đẩy nhẹ vào Miss Loupe",
+   "why": "gài đạo cụ gag: cô ngó chân mình, nhấc giày"
+  },
+  {
+   "t": 2.2,
+   "kind": "Hop kéo một tràng, Miss Loupe nghiêng đầu \"?\" rồi nhảy sang",
+   "why": "bí ẩn chưa giải; câu cửa miệng có hành động"
+  },
+  {
+   "t": 3.6,
+   "kind": "kính lớn bật lên trên chân sau",
+   "why": "bắt đầu khám phá"
+  },
+  {
+   "t": 5.45,
+   "kind": "kính trượt dọc đùi, to thêm",
+   "why": "kính không đứng quá 3 s; chuẩn bị lao sâu"
+  },
+  {
+   "t": 6.6,
+   "kind": "lao sâu: cận cảnh toàn mặt kính",
+   "why": "khoảnh khắc wow: hàng gai"
+  },
+  {
+   "t": 8.05,
+   "kind": "lia dọc hàng gai",
+   "why": "đếm gai bằng mắt trong lúc hát \"a row of tiny pegs\""
+  },
+  {
+   "t": 9.38,
+   "kind": "đùi chạm mép cánh, rung",
+   "why": "bí mật xảy ra: tiếng tách đầu tiên"
+  },
+  {
+   "t": 10.75,
+   "kind": "đẩy vào đỉnh gờ mép cánh",
+   "why": "điệp khúc lần 1: thấy gai cào qua mép cánh đúng lúc hát"
+  },
+  {
+   "t": 12.62,
+   "kind": "rung mạnh, nốt tuôn ra; kính lùi, vĩ cầm hiện bên cạnh",
+   "why": "cao trào \"zzzzip!\" rồi ẩn dụ \"violin bow\" nói rõ bằng hình"
+  },
+  {
+   "t": 15.5,
+   "kind": "kính hạ, về sân khấu",
+   "why": "mở gag"
+  },
+  {
+   "t": 16.6,
+   "kind": "đẩy vào Miss Loupe đứng một chân",
+   "why": "gag: cô bắt chước Hop"
+  },
+  {
+   "t": 17.9,
+   "kind": "khựng, rung nhẹ; hai nhân vật, Hop cười",
+   "why": "\"squeak.\" bé tí: bất ngờ hài và phản ứng"
+  },
+  {
+   "t": 19.9,
+   "kind": "đẩy vào hai nhân vật cùng biểu diễn",
+   "why": "điệp khúc lần 2: trẻ hát theo"
+  },
+  {
+   "t": 22.1,
+   "kind": "Miss Loupe nhìn người xem, chữ móc trở lại, về bố cục khung 0",
+   "why": "CTA và vòng lặp liền"
+  }
+ ],
+ "secret": {
+  "kw": [
+   "pegs",
+   "leg",
+   "wing"
+  ]
+ }
+}

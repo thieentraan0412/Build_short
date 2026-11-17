@@ -38,6 +38,13 @@ samba (010), cha-cha-chá (011), reggae (012), cumbia (013), funk (014), tango (
 cảnh nhạc với `music-plan.json` của mọi Short khác (soundplan.py ghi, qa.py kiểm). Tập mới: thêm một điệu mới vào `STYLES`.
 Điệu `jig` chia ba mỗi phách của phim (`'swing': 'trip'`), nên hình vẫn nhún đúng phách 120 BPM.
 
+**Bài hát (song mode, Musical Storytelling 11/2026b).** `Groove(..., song=TL['song'])` với bài hát đã giải từ `_shared/song.js`
+(timeline.json). Câu hát (`line['sung']`) đi theo đúng giọng, hợp âm và lưới phách của bài: cảnh nhạc nào chồng lên câu hát phải
+khai báo `chords='song'` (lấy hợp âm của phần bài hát, BPM phải trùng BPM của phần; thiếu thì ValueError). Dưới câu hát (`UNDER_SUNG`):
+hợp âm đủ nhịp, đủ độ dài, ở dải cao hơn nốt hát ≥ 3 nửa cung; không arp, không câu đáp; câu 'sing' được nhạc cụ hát chính đánh đôi cao
+một quãng tám (`DOUBLE_G`). `G.motif(t, inst)` đặt giai điệu đặc trưng của tập (SONG.motif). music.json thêm `song`, `sung`, `motifs`.
+Không truyền `song` thì mọi đường y như cũ (các tập trước 11/2026b dựng lại khớp từng byte).
+
 Mọi nốt dùng nhạc cụ tổng hợp của band.py và toon.py (không mẫu của bên thứ ba).
 """
 import json
@@ -125,6 +132,9 @@ KIT_VI = {'toy': 'đồ chơi (vỗ tay, shaker, phách gỗ)', 'pop': 'pop (kic
           'guira': 'cumbia (tambora, güira cạo, bongo)', 'funk': 'funk (snare nốt ma, hi-hat móc kép, vỗ tay)', 'tango': 'tango (bass marcato, chổi "kéo")'}
 ROLE_G = {'kick': .7, 'back': .5, 'hat': .62, 'perc': .45, 'bass': 1.1, 'comp': .42, 'arp': .36, 'lead': .42}
 UNDER = {'kick': .8, 'back': .3, 'comp': .6, 'arp': .65}            # dưới lời: tiếng đệm nhỏ lại, giai điệu im
+# (Musical Storytelling, 11/2026b) dưới câu HÁT (song mode): hợp âm của bài đủ nhịp, đủ độ dài, ở dải cao hơn nốt hát; không arp, không câu đáp
+UNDER_SUNG = {'kick': .9, 'back': .55, 'hat': .75, 'perc': .6, 'comp': .8, 'arp': 0.}
+DOUBLE_G = .3                                                       # câu "sing": nhạc cụ hát chính đánh đôi giai điệu cao một quãng tám
 LOW_KICK = .55                                                      # dưới giọng trầm: kick nhỏ hơn nữa, bass bỏ hẳn
 
 # ---------- điệu: vai → [(móc kép trong ô nhịp, độ mạnh[, bậc hoặc chỉ số nốt, độ dài theo phách])] ----------
@@ -317,13 +327,17 @@ def place(pc, lo, hi, near=None):
 
 
 class Groove:
-    def __init__(self, M, beat, lines, meter=4, seed=1, avoid=(), low_voices=('albie',), dur=None, plan=False):
+    def __init__(self, M, beat, lines, meter=4, seed=1, avoid=(), low_voices=('albie',), dur=None, plan=False, song=None):
         self.M, self.beat, self.meter = M, beat, meter
         self.lines = sorted(lines, key=lambda l: l['t'])
         self.avoid = list(avoid); self.low = low_voices
         self.rng = np.random.default_rng(seed); self.S = []; self.dur = dur
         self.last_lead = None; self.voice = None; self.fills = 0; self.notes = 0; self.answers = []
         self.plan = plan; self.trans = []; self.last_tr = None; self.cell_i = {}; self.last_ctr = None
+        # (Musical Storytelling, 11/2026b) song: bài hát đã giải (timeline.json 'song', từ _shared/song.js). None: mọi đường như cũ.
+        # Câu hát (line['sung']) theo đúng giọng, hợp âm và lưới phách của bài; cảnh nhạc chồng lên câu hát phải khai báo chords='song'.
+        self.song = song; self.motifs = []
+        self.sung = [l for l in self.lines if l.get('sung')] if song is not None else []
 
     # ---------- lời ----------
     def speaking(self, t, pre=.06, post=.03, who=None):
@@ -343,6 +357,51 @@ class Groove:
         return [(s, e) for s, e in out if e - s > .05]
     def avoided(self, t): return any(a <= t < b for a, b in self.avoid)
     def avoided_span(self, a, b): return any(x < b and y > a for x, y in self.avoid)
+    def singing(self, t, pre=.06, post=.03):
+        """(song mode) Đang có câu hát lúc t?"""
+        return any(l['t'] - pre <= t < l['t'] + l['dur'] + post for l in self.sung)
+
+    # ---------- bài hát (song mode) ----------
+    def _part(self, t0, t1, name):
+        ps = self.song['parts']
+        p = next((p for p in ps if p['t0'] - 1e-6 <= t0 < p['t1'] - 1e-6), None)
+        if p is None or t1 > p['t1'] + 1e-3:
+            spans = ', '.join(f"{q['t0']}–{q['t1']}" for q in ps)
+            raise ValueError(f"groove: section '{name}' {t0:.2f}–{t1:.2f} s must lie inside one part of the song ({spans})")
+        return p
+    def _song_chords(self, S):
+        """chords='song': hợp âm của phần bài hát, xoay cho ô nhịp đầu của cảnh khớp ô nhịp của bài (cùng cách đếm với song.js chordAt)."""
+        p = self._part(S['t0'], S['t1'], S['name']); beat = p['beat']
+        if abs(S['beat'] - beat) > 1e-6:
+            raise ValueError(f"groove: section '{S['name']}' is {S['bpm']} BPM but its song part is {p['bpm']} BPM (bpm= must match the song)")
+        bars = p['chords'].split(); bar = p.get('meter', 4) * beat
+        b0p = int(np.floor((p['t0'] - p['origin']) / bar + 1e-6)); b0s = int(np.floor((S['t0'] - p['origin']) / bar + 1e-6))
+        k = (b0s - b0p) % len(bars)
+        S['chords'] = ' '.join(bars[k:] + bars[:k]); S['origin'] = float(p['origin']); S['song'] = True
+
+    def motif(self, t, inst, g=1., pan=.2):
+        """(song mode) Giai điệu đặc trưng của tập (SONG.motif) trên lưới phách của phần bài hát chứa t, ở quãng của nhạc cụ inst."""
+        if self.song is None or not self.song.get('motif'): raise ValueError('groove: motif() needs song= with a motif')
+        p = self._part(t, t, f'motif @ {t:.2f}'); lo, hi = PITCHED[inst][1]
+        base = place(self.song['tonic'], lo, hi)
+        mot = self.song['motif']; top = max(n['s'] for n in mot)
+        while base + top > hi + 5 and base - 12 >= lo - 7: base -= 12
+        for n in mot:
+            self._note(inst, base + n['s'], t + n['b'] * p['beat'], ROLE_G['lead'] * g, n['d'] * p['beat'] * .95, pan)
+        self.motifs.append({'t': round(float(t), 3), 'inst': inst, 'end': round(float(t + (mot[-1]['b'] + mot[-1]['d']) * p['beat']), 3)})
+
+    def _double(self):
+        """(song mode) Câu 'sing': nhạc cụ hát chính của cảnh đánh đôi giai điệu cao một quãng tám, nhỏ (DOUBLE_G)."""
+        for l in self.sung:
+            if l['sung']['mode'] != 'sing': continue
+            for n in l['sung']['notes']:
+                t = l['t'] + n['t']
+                S = next((S for S in self.S if not S['hand'] and S['t0'] <= t < S['t1']), None)
+                if S is None or not S.get('lead') or 'lead' in S['no']: continue
+                lo, hi = PITCHED[S['lead']][1]; m = n['m'] + 12
+                while m < lo: m += 12
+                while m > hi + 5: m -= 12
+                self._note(S['lead'], m, t, ROLE_G['lead'] * DOUBLE_G * ENERGY_G[S['energy']] * S['lead_g'], n['d'] * .92, .2)
 
     # ---------- khai báo cảnh ----------
     def _meta(self, style, bpm, mood, arc, what, emo, why, sfx, reprise, t0):
@@ -362,6 +421,13 @@ class Groove:
                  lead=lead, arp=arp or comp, kit=kit, energy=energy, fills=fills, cue=cue, no=tuple(no), g=g,
                  lead_g=lead_g, comp_reg=comp_reg, hand=False, **kw)
         S.update(self._meta(style, bpm, mood, arc, what, emo, why, sfx, reprise, t0)); S['tr_req'] = tr
+        if self.song is not None:                                          # (song mode) cảnh có câu hát đi theo bài hát
+            if chords == 'song': self._song_chords(S); S['key'] = self.song['key']
+            else:
+                hit = [l['id'] for l in self.sung if l['t'] < S['t1'] and l['t'] + l['dur'] > S['t0']]
+                if hit: raise ValueError(f"groove: section '{name}' overlaps sung line(s) {', '.join(hit)}: declare chords='song' (and the song part's bpm)")
+        elif chords == 'song':
+            raise ValueError("groove: chords='song' needs Groove(..., song=TL['song'])")
         self.S.append(S)
 
     def answer(self, *ts):
@@ -419,6 +485,7 @@ class Groove:
                     S['tr'] = self._pick_tr(prev, S)
                     if S['tr'] in ('tail', 'gliss', 'swell', 'soft'): S['ramp'] = S['beat']
             self._play_sec(S, prev)
+        if self.sung: self._double()                                       # (song mode) đánh đôi giai điệu của câu "sing"
         for i, S in enumerate(self.S):                                     # bảng các chỗ đổi cảnh (cho SOUND-PLAN.md và qa.py)
             if not i: continue
             prev = self.S[i - 1]
@@ -438,6 +505,7 @@ class Groove:
             pos = s % spb; t = self._step_t(s, swing, spb, beat, O)
             if not t0 - 1e-6 <= t < t1: continue
             under = self.speaking(t); (root, iv), (nroot, _) = self._chord_at(S, t); en = self._ent(S, t)
+            sungT = bool(self.sung) and self.singing(t); UG = UNDER_SUNG if sungT else UNDER   # (song mode) dưới câu hát
             for role in ('kick', 'back', 'hat', 'perc'):
                 if role in S['no'] or role not in st or not kit.get(role): continue
                 if role == 'kick' and S['energy'] < 2 and S['style'] not in ('tension', 'sway'): continue
@@ -446,7 +514,7 @@ class Groove:
                 for p in st[role]:
                     if p[0] != s % span: continue
                     v = p[1] * (1 + rng.uniform(-.08, .08))
-                    gg = ROLE_G[role] * E * (UNDER.get(role, 1) if under else 1) * (LOW_KICK if role == 'kick' and lowv(t) else 1)
+                    gg = ROLE_G[role] * E * (UG.get(role, 1) if under else 1) * (LOW_KICK if role == 'kick' and lowv(t) else 1)
                     if role == 'hat' and S['energy'] == 3: gg *= 1.15
                     self._drum(kit[role], v, t + (rng.uniform(-.004, .004) if role in ('hat', 'perc') else 0), gg * en,
                                {'hat': .35, 'perc': .3, 'back': -.15}.get(role, 0))
@@ -462,14 +530,14 @@ class Groove:
             if S['comp'] and 'comp' not in S['no'] and 'comp' in st and not self.avoided(t):
                 for k_, p in enumerate(st['comp']):
                     if p[0] != pos: continue
-                    if under and len(st['comp']) >= 4 and k_ % 2 == 0: continue    # dưới lời: tiếng đệm thưa một nửa
+                    if under and not sungT and len(st['comp']) >= 4 and k_ % 2 == 0: continue    # dưới lời: tiếng đệm thưa một nửa (dưới câu hát: đủ nhịp)
                     lo, hi = S['comp_reg'] or PITCHED[S['comp']][1]
                     if under: lo, hi = max(lo, 72), max(hi, 84)
                     vo = self._voicing(root, iv, lo, hi)
-                    d = p[3] * beat * 2 * (.6 if under else 1)
+                    d = p[3] * beat * 2 * (.6 if under and not sungT else 1)
                     for k, m in enumerate(vo):
-                        self._note(S['comp'], m, t + k * .007, ROLE_G['comp'] * E * p[1] * (UNDER['comp'] if under else 1) / len(vo) ** .5 * 1.6 * en, d, -.3 + .6 * k / max(1, len(vo) - 1))
-            if S['arp'] and 'arp' not in S['no'] and 'arp' in st and not self.avoided(t):
+                        self._note(S['comp'], m, t + k * .007, ROLE_G['comp'] * E * p[1] * (UG['comp'] if under else 1) / len(vo) ** .5 * 1.6 * en, d, -.3 + .6 * k / max(1, len(vo) - 1))
+            if S['arp'] and 'arp' not in S['no'] and 'arp' in st and not self.avoided(t) and not sungT:
                 for p in st['arp']:
                     if p[0] != pos: continue
                     lo, hi = PITCHED[S['arp']][1]; lo = max(lo, 72) if under else lo
@@ -744,7 +812,13 @@ class Groove:
     def save(self, path, color=None):
         keep = ('name', 't0', 't1', 'style', 'key', 'chords', 'bass', 'comp', 'lead', 'arp', 'kit', 'energy', 'hand',
                 'bpm', 'feel_bpm', 'mood', 'arc', 'what', 'emo', 'why', 'sfx', 'reprise', 'tr', 'nfill', 'cue')
-        json.dump({'version': 2, 'plan': self.plan, 'bpm': round(60 / self.beat, 2), 'color': color,
-                   'sections': [{k: S.get(k) for k in keep} for S in self.S], 'transitions': self.trans,
-                   'fills': self.fills, 'answers': sorted(self.answers), 'notes': self.notes},
-                  open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        out = {'version': 2, 'plan': self.plan, 'bpm': round(60 / self.beat, 2), 'color': color,
+               'sections': [{k: S.get(k) for k in keep} for S in self.S], 'transitions': self.trans,
+               'fills': self.fills, 'answers': sorted(self.answers), 'notes': self.notes}
+        if self.song is not None:                                          # (song mode) bài hát, câu hát, motif: cho soundplan.py và qa_musical.py
+            for d_, S in zip(out['sections'], self.S): d_['song'] = bool(S.get('song'))
+            out['song'] = {'key': self.song['key'], 'parts': self.song['parts'], 'motif': self.song.get('motif', [])}
+            out['sung'] = [{'id': l['id'], 'who': l['who'], 't0': l['t'], 't1': round(l['t'] + l['dur'], 3), 'mode': l['sung']['mode'],
+                            'chorus': l['sung'].get('chorus')} for l in self.sung]
+            out['motifs'] = self.motifs
+        json.dump(out, open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

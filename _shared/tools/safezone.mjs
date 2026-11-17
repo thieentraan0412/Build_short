@@ -1,10 +1,12 @@
 // Vùng an toàn của YouTube Shorts (QUALITY.md §5) và "người nói có trên hình" (QUALITY.md §3).
-//   node _shared/tools/safezone.mjs films/<tập> [--out <file>] [--step 0.25]
+//   node _shared/tools/safezone.mjs films/<tập> [--out <file>] [--step 0.25] [--size 1080x1920]
 // Mở trang của tập (khung 1080×1920), ở mỗi bước thời gian vẽ lại phim một lần và gom:
 //   - chữ trên hình: REC của _shared/kit.js (giống window.TEXTS; chữ trong kính không tính);
 //   - mặt nhân vật: FACES của _shared/characters/stage.js (tâm, bán kính, tên nhân vật);
 //   - tấm phụ đề: SUB của _shared/episode.js (tập có hàm phụ đề riêng, như SHORT-001, thì không đo được).
-// Ghi <film>/out/safezone.json (hoặc --out): mỗi bước một dòng { t, texts, faces, sub }, cùng các đoạn vi phạm đã gộp.
+//   - (11/2026b) máy quay và kính: CAM của _shared/episode.js; khung chữ móc: HOOK; tên biểu cảm của từng mặt (qa_musical.py: nhịp đổi hình).
+// Ghi <film>/out/safezone.json (hoặc --out): mỗi bước một dòng { t, texts, faces, sub[, cam, lens, hook] }, cùng các đoạn vi phạm đã gộp.
+// --size 1920x1080 cho video dài: chỉ gom số đo (vùng che của Shorts không áp dụng, issues để trống).
 // _shared/qa.py đọc file này. Chỉ đo, không đổi hình. Vùng che là ước lượng: thật sự khác theo máy và phiên bản ứng dụng.
 import fs from 'fs'; import path from 'path';
 import { openDemo, closeServer, requireDemo } from '../../core/render/page.mjs';
@@ -12,26 +14,32 @@ import { openDemo, closeServer, requireDemo } from '../../core/render/page.mjs';
 const args = process.argv.slice(2), opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const dir = args[0]; requireDemo(dir);
 const OUT = opt('--out', path.join(dir, 'out', 'safezone.json')), STEP = +opt('--step', .25);
+const [VW, VH] = opt('--size', '1080x1920').split('x').map(Number), WIDE = VW > VH;
 const SAFE = { top: 150, bottom: 1530, subBottom: 1500, right: 940, rightY: [880, 1780] };   // giống SAFE trong _shared/episode.js
 
-const { browser, page } = await openDemo(dir, { w: 1080, h: 1920 });
-const frames = await page.evaluate(async ({ STEP }) => {
+const { browser, page } = await openDemo(dir, { w: VW, h: VH });
+const frames = await page.evaluate(async ({ STEP, W, H }) => {
   const K = await import('/_shared/kit.js'), S = await import('/_shared/characters/stage.js');
   let E = null; try { E = await import('/_shared/episode.js'); } catch (e) { }
   const out = [], r1 = v => Math.round(v * 10) / 10;
   for (let t = 0; t < window.DUR - 1e-6; t += STEP) {
     S.FACES.on = true; S.FACES.list = []; if (E) { E.SUB.on = true; E.SUB.box = null; }
+    const CAM = E && E.CAM, HOOK = E && E.HOOK;
+    if (CAM) { CAM.on = true; CAM.cam = null; CAM.lens = []; } if (HOOK) { HOOK.on = true; HOOK.box = null; }
     const texts = (window.TEXTS ? window.TEXTS(t) : (window.render(t), [])) || [];
-    S.FACES.on = false; if (E) E.SUB.on = false;
+    S.FACES.on = false; if (E) E.SUB.on = false; if (CAM) CAM.on = false; if (HOOK) HOOK.on = false;
     out.push({
       t: Math.round(t * 1000) / 1000,
       texts: texts.map(b => ({ text: String(b.text).slice(0, 40), x0: r1(b.x0), y0: r1(b.y0), x1: r1(b.x1), y1: r1(b.y1) })),
-      faces: S.FACES.list.filter(f => f.r >= 12 && f.x > -f.r && f.x < 1080 + f.r && f.y > -f.r && f.y < 1920 + f.r).map(f => ({ who: f.who, x: r1(f.x), y: r1(f.y), r: r1(f.r), ...(f.clip && { clip: true }), ...(f.sad && { sad: true }) })),
+      faces: S.FACES.list.filter(f => f.r >= 12 && f.x > -f.r && f.x < W + f.r && f.y > -f.r && f.y < H + f.r).map(f => ({ who: f.who, x: r1(f.x), y: r1(f.y), r: r1(f.r), ...(f.clip && { clip: true }), ...(f.sad && { sad: true }), ...(f.ex && { ex: f.ex }) })),
       sub: E && E.SUB.box ? { x0: r1(E.SUB.box.x0), y0: r1(E.SUB.box.y0), x1: r1(E.SUB.box.x1), y1: r1(E.SUB.box.y1) } : null,
+      ...(CAM && CAM.cam && { cam: { cx: r1(CAM.cam.cx), cy: r1(CAM.cam.cy), z: Math.round(CAM.cam.z * 1e4) / 1e4 } }),
+      ...(CAM && CAM.lens.length && { lens: CAM.lens.map(l => ({ x: r1(l.x), y: r1(l.y), r: r1(l.r), ...(l.mag !== undefined && { mag: Math.round(l.mag * 1e3) / 1e3 }), ...(l.pan !== undefined && { pan: r1(l.pan) }) })) }),
+      ...(HOOK && HOOK.box && { hook: { x0: r1(HOOK.box.x0), y0: r1(HOOK.box.y0), x1: r1(HOOK.box.x1), y1: r1(HOOK.box.y1) } }),
     });
   }
   return out;
-}, { STEP });
+}, { STEP, W: VW, H: VH });
 await browser.close(); closeServer();
 
 // ---------- vùng che ----------
@@ -64,7 +72,7 @@ for (const F of frames) {
     for (const f of big) if (covers(F.sub, f)) hits.push({ key: `cover|${f.who}`, kind: 'phụ đề che mặt', who: f.who, zone: '', t: F.t });
   }
 }
-const issues = spans(hits);
+const issues = WIDE ? [] : spans(hits);
 const res = { film: path.basename(path.resolve(dir)), step: STEP, safe: SAFE, subMeasured: frames.some(F => F.sub), issues, frames };
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(res));

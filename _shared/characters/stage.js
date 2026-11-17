@@ -66,7 +66,8 @@ export function drawChar(c, CH, o = {}) {
   r.draw(c);
   if (FACES.on && !OFF_DRAW && CH.face) {
     const m = c.getTransform(), p = r.P(CH.face.c);
-    FACES.list.push({ who: CH.id, x: m.a * p[0] + m.c * p[1] + m.e, y: m.b * p[0] + m.d * p[1] + m.f, r: CH.face.r * Math.hypot(m.a, m.b), clip: REC.mute > 0, sad: !CH.noFace && sadFace(E) });
+    FACES.list.push({ who: CH.id, x: m.a * p[0] + m.c * p[1] + m.e, y: m.b * p[0] + m.d * p[1] + m.f, r: CH.face.r * Math.hypot(m.a, m.b), clip: REC.mute > 0, sad: !CH.noFace && sadFace(E),
+      ex: typeof ex === 'string' ? ex : (E.name || null) });   // ex: tên biểu cảm (qa_musical.py: đổi biểu cảm là một nhịp đổi hình)
   }
   if (props) props(c, r);
   if (showFx && E.fx && CH.face) {

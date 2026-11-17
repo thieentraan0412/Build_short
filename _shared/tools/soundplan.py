@@ -43,6 +43,10 @@ SFX_VI = {
     'drum': 'màng nhĩ rung', 'sniff': 'hít ngửi', 'mmm': '"Mmm!"', 'munch': 'nhồm nhoàm', 'slurp': 'hút sột', 'sip': 'nhấp', 'gulp': 'ực',
     'curl': 'cuộn vòi', 'squeak': 'chít chít', 'nuzzle': 'cọ râu', 'tick': 'tíc tắc', 'windup': 'lên dây cót', 'block': 'mõ',
     'roll': 'Rollo lăn', 'tadda': 'ta-da', 'cheer': 'reo vui', 'surprise': 'ngạc nhiên', 'scurry': 'chạy lon ton', 'footsteps': 'bước chân',
+    'scrape': 'kéo chân "zzip"', 'hopL': 'nhảy sang (boing + whoosh)', 'landsoft': 'đáp nhẹ', 'slide': 'kính trượt', 'chorus': 'lấp lánh vào điệp khúc',
+    'notestream': 'nốt tuôn ra', 'deepout': 'whoosh lùi ra', 'glintrun': 'gai sáng lần lượt', 'lensdown': 'kính hạ xuống', 'rubtry': 'cọ chân',
+    'blinkhop': 'chớp mắt', 'hmm': '"hử?"', 'wiggle': 'ngọ nguậy', 'deep': 'lao sâu vào kính', 'zzzip': 'tràng "zzzzip"', 'touch': 'chạm mép cánh',
+    'violin': 'vĩ cầm hiện ra', 'step': 'bước', 'ready': 'sẵn sàng', 'pan': 'lia (whoosh nhẹ)',
 }
 f1 = lambda x: f'{x:.1f}'.replace('.', ',')
 def inst(k): return INST_VI.get(k, k) if k else None
@@ -82,6 +86,87 @@ def sfx(s):
     if len(c) > 5: out.append(f'+{sum(c.values()) - sum(n for _, n in c.most_common(5))} tiếng khác')
     return ', '.join(out) or '—'
 cell = lambda x: str(x).replace('|', '/').replace('\n', ' ')
+
+# ---------- (11/2026b) bảng Musical Storytelling ----------
+STYLE_EN = {'bounce': 'bouncy two-step', 'skip': 'skipping shuffle', 'march': 'cartoon march', 'polka': 'polka', 'calypso': 'calypso', 'swing': 'swing',
+            'sway': 'gentle sway', 'gallop': 'gallop', 'tiptoe': 'tiptoe pizzicato', 'float': 'floating arpeggios', 'country': 'country hoedown',
+            'waltz': 'waltz', 'waltzfloat': 'floating waltz', 'stride': 'stride piano', 'hero': 'heroic fanfare', 'quest': 'adventure quest',
+            'sunny': 'sunny ukulele pop', 'hop': 'hopping off-beat groove', 'twinkle': 'twinkling music-box', 'lilt': 'lilting 6/8', 'jingle': 'channel jingle',
+            'jig': '12/8 jig', 'bossa': 'bossa nova', 'ska': 'ska', 'samba': 'samba', 'disco': 'disco', 'secondline': 'second-line brass', 'chacha': 'cha-cha-chá',
+            'reggae': 'reggae one-drop', 'cumbia': 'cumbia', 'funk': 'funk', 'tango': 'cartoon tango', 'break': 'comic stop'}
+INST_EN = {'pluck': 'ukulele', 'marimba': 'marimba', 'bassn': 'plucked bass', 'buzz': 'buzzy bass', 'upright': 'upright bass', 'tuba': 'tuba',
+           'pizzbass': 'low pizzicato', 'pizz': 'pizzicato strings', 'xylo': 'xylophone', 'glock': 'glockenspiel', 'flute': 'flute', 'reed': 'clarinet',
+           'horn': 'toy horn', 'steel': 'steel drum', 'celesta': 'celesta', 'harp': 'harp', 'rhodes': 'electric piano', 'vibes': 'vibraphone', 'banjo': 'banjo',
+           'bell': 'bells', 'piano': 'piano', 'pianohi': 'bright piano', 'toypiano': 'toy piano', 'trumpet': 'trumpet', 'mute': 'muted trumpet',
+           'trombone': 'trombone', 'bassoon': 'bassoon', 'bassoonlo': 'low bassoon', 'kazoo': 'kazoo', 'accordion': 'accordion', 'strings': 'spiccato strings'}
+KIT_EN = {'toy': 'hand claps, shaker and wood blocks', 'pop': 'kick, claps and hi-hat', 'march': 'snare and tambourine', 'jazz': 'finger snaps and brushes',
+          'latin': 'claves and shaker', 'wood': 'wood blocks and shaker', 'tom': 'soft toms', 'brush': 'brushes', 'epic': 'timpani and snare',
+          'bongo': 'bongos and shaker', 'clap': 'hand claps and tambourine', 'tri': 'triangle and shaker', 'comic': 'two-tone wood blocks',
+          'bodhran': 'bodhrán', 'rim': 'rim clicks', 'ska': 'ska drums', 'samba': 'samba percussion', 'disco': 'four-on-the-floor disco drums',
+          'second': 'second-line snare', 'cha': 'cowbell and guiro', 'dub': 'one-drop drums', 'guira': 'tambora and güira', 'funk': 'funk drums',
+          'tango': 'brush drags and marcato bass'}
+TRANS_EN = {'fill': 'a drum fill', 'riser': 'a riser with reverse cymbal', 'pickup': 'pickup notes of the next instrument', 'run': 'a descending run',
+            'gliss': 'a harp glissando', 'swell': 'a sparkle swell', 'drop': 'a slide-whistle drop', 'tail': 'a soft tail', 'soft': 'a soft change under the voice',
+            'tay': 'a hand-written stinger'}
+WHO_EN = {'loupe': 'Miss Loupe (cheerful woman, clear)', 'albie': 'Albie (warm low man)', 'crumb': 'Crumb (little kid voice)', 'dot': 'Dot (bright kid voice, British)',
+          'blink': 'Blink (high giggly kid voice, British)'}
+MODE_VI = {'sing-talk': 'sing-talk (nói theo nhịp)', 'half-sing': 'half-sing (nửa hát)', 'sing': 'hát trọn', 'speak': 'nói'}
+MODE_EN = {'sing-talk': 'rhythmic sing-talk', 'half-sing': 'half-sung', 'sing': 'fully sung', 'speak': 'spoken'}
+NN = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+note_name = lambda m: f'{NN[m % 12]}{m // 12 - 1}'
+EN_E = {1: 'low', 2: 'medium', 3: 'high'}
+
+
+def musical_tables():
+    LN = sorted(TL['lines'], key=lambda l: l['t'])
+    def in_sec(s): return [l for l in LN if l['t'] < s['t1'] - 1e-6 and l['t'] + l['dur'] > s['t0'] + 1e-6]
+    def vocal(s):
+        ls = in_sec(s)
+        if not ls: return 'không lời'
+        return '<br>'.join(f"{l['id']} {l['who']}: {MODE_VI[(l.get('sung') or {}).get('mode', 'speak')]}" + (f" · điệp khúc '{l['sung']['chorus']}'" if (l.get('sung') or {}).get('chorus') else '') for l in ls)
+    def bgm(s):
+        if s['style'] in PAUSE: return mood(s)
+        return f"{mood(s)}: {STYLE_VI.get(s['style'], s['style'])}, {s['key']}, {bpm(s)} BPM, " + (f"giai điệu {inst(s.get('lead') or s.get('arp'))}" if (s.get('lead') or s.get('arp')) else 'đệm') + (' · theo bài hát' if s.get('song') else '')
+    o = ['## Music Timeline', '', '> Task.md mục 8B. Cột Vocal Style lấy từ kiểu hát của từng câu (`sing.mode` trong `timeline.js`); SFX từ `events.json`.', '',
+         '| Thời gian | Cảnh | Background Music | Vocal Style | SFX |', '|---|---|---|---|---|']
+    for s in MS:
+        o.append('| ' + ' | '.join(cell(x) for x in (f"{f1(s['t0'])}–{f1(s['t1'])} s", s.get('what') or s['name'], bgm(s), vocal(s), sfx(s))) + ' |')
+    o += ['', '## Sing-along Dialogue', '', '> Task.md mục 8C. Nốt do `_shared/song.js` giải từ `sing.notes`; giọng hát do `_shared/sing.py` làm từ chính giọng TTS của nhân vật.', '',
+          '| Câu | Ai | Lời | Kiểu | Giai điệu (nốt · giây) | Điệp khúc | Nhấn |', '|---|---|---|---|---|---|---|']
+    for l in LN:
+        sg = l.get('sung'); mode = (sg or {}).get('mode', 'speak')
+        mel = ' '.join(f"{note_name(n['m'])}·{n['d']:.2f}" for n in sg['notes']) if sg else '—'
+        o.append('| ' + ' | '.join(cell(x) for x in (f"{l['id']} ({f1(l['t'])} s)", l['who'], l['text'], MODE_VI[mode], mel, (sg or {}).get('chorus') or '', ', '.join(l.get('em') or []))) + ' |')
+    words = lambda l: len(l['text'].split()); tot = sum(words(l) for l in LN) or 1
+    sung = sum(words(l) for l in LN if (l.get('sung') or {}).get('mode') in ('sing-talk', 'half-sing', 'sing'))
+    o += ['', f'Lời có nhịp hoặc giai điệu: **{sung / tot:.0%}** số từ ({sung}/{tot}); nói tự nhiên {1 - sung / tot:.0%}.', '']
+    o += ['## Sound Effects Timeline', '', '> Task.md mục 8E. Chuỗi nhịp có chủ đích ghi `run` trong `events.json` (qa: không tính là lặp máy móc).', '',
+          '| Giây | Tiếng | Chuỗi |', '|---|---|---|']
+    for e in sorted(EV, key=lambda e: e['t']):
+        o.append(f"| {f1(e['t'])} | {cell(SFX_VI.get(e['type'], e['type']))} | {e.get('run', '')} |")
+    o += ['', '## AI Music Generation Prompts', '',
+          '> Task.md mục 8D. Prompt tiếng Anh cho từng đoạn nhạc, sinh từ đúng thông số của cảnh (phong cách, BPM, giọng, nhạc cụ, năng lượng, cách chuyển).',
+          '> Chỉ để tham khảo hoặc làm bản nháp ngoài: nhạc trong phim vẫn tổng hợp bằng code (`groove.py`), giọng hát vẫn là giọng nhân vật.', '']
+    for i, s in enumerate(MS):
+        if s['style'] == 'jingle': continue
+        nx = MS[i + 1] if i + 1 < len(MS) else None; tr = next((t for t in trs if nx and abs(t['t'] - nx['t0']) < 1e-3), None)
+        ls = in_sec(s)
+        voc = '; '.join(f"{WHO_EN.get(l['who'], l['who'])} {MODE_EN[(l.get('sung') or {}).get('mode', 'speak')]}: \"{l['text']}\"" for l in ls) or 'instrumental only (no vocals)'
+        ins = ', '.join(dict.fromkeys(INST_EN.get(k, k) for k in (s.get('lead'), s.get('comp'), s.get('arp'), s.get('bass')) if k)) + (f", {KIT_EN[s['kit']]}" if KIT_EN.get(s.get('kit') or '') else '')
+        mel = (f"lead {INST_EN.get(s.get('lead'), s.get('lead'))} answers in the gaps between lines" if s.get('lead') else 'no lead melody, light accompaniment') + \
+              ('; backing follows the vocal melody\'s chords, ' + s['chords'] if s.get('song') else '')
+        end = (f"hand over to the next scene with {TRANS_EN.get(tr['type'], tr['type'])}" if tr else 'end on the tonic chord so the loop returns to the first frame') if s['style'] != 'break' else 'hold a thin vibraphone shimmer, then resume'
+        genre = 'comic stop' if s['style'] == 'break' else f"{MOODS.get(s.get('mood') or '', 'Playful Cartoon')} kids' music, {STYLE_EN.get(s['style'], s['style'])}"
+        o += [f"**{f1(s['t0'])}–{f1(s['t1'])} s · {s.get('what') or s['name']}**", '',
+              '```', f"Genre: {genre}. Mood: cheerful, {EN_E.get(s.get('energy', 2), 'medium')} energy, major key ({s['key']}). BPM: {bpm(s)}.",
+              f"Instruments: {ins or 'light percussion'}. Vocal style: {voc}.",
+              f"Melody: {mel}. Voice stays on top: music ducks under every word.",
+              f"Energy changes: {'builds' if s.get('arc') in ('build', 'peak') else 'steady'}; accent the first beat. Ending: {end}. Length: {s['t1'] - s['t0']:.1f} s.", '```', '']
+    o += ['## Final Audio Checklist', '', '> Task.md mục 8F: điền tay khi nghe lại cả phim.', '',
+          '- [ ] Nhạc có sinh động không? · [ ] Có thay đổi theo cảnh không? · [ ] Lời thoại có giai điệu không?',
+          '- [ ] Có đoạn nhạc dễ nhớ (điệp khúc, motif) không? · [ ] Giọng hát có rõ không? · [ ] Nhạc nền có lấn át giọng không?',
+          '- [ ] SFX có khớp hành động không? · [ ] Âm nhạc có tạo cảm xúc và giữ chân người xem không?', '']
+    return o
 
 rows = []
 for i, s in enumerate(MS):
@@ -135,6 +220,9 @@ out += ['', '## Chống trùng lặp', '',
         f"- BPM: {', '.join(map(str, bpms))} ({len(bpms)} mức).",
         f"- Chuyển cảnh: " + ', '.join(f'{TRANS.get(k, k)} ×{n}' for k, n in trc.most_common()) + '.',
         f"- Câu đáp của nhạc giữa các câu thoại: {MJ.get('fills', 0) + len(MJ.get('answers', []))}.", '']
+# ---- (11/2026b) Musical Storytelling: Music Timeline, Sing-along, SFX timeline, AI music prompts (Task.md mục 8 A–F) ----
+if str(TL.get('standard', '')) >= '2026-11b':
+    out += musical_tables()
 # ---- chống trùng giữa các tập (channel.py): so với music-plan.json của mọi Short khác ----
 write_plan(FILM, MJ, DUR)
 if not NAME.startswith('long-'):

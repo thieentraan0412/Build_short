@@ -19,6 +19,7 @@ TL = json.load(open(os.path.join(FILM, 'timeline.json'), encoding='utf-8'))
 EV = json.load(open(os.path.join(FILM, 'events.json'), encoding='utf-8'))['ev']
 DUR = TL['dur']; LINES = TL['lines']; SECS = TL.get('secs', [])
 LONG = DUR > 90                                                    # video dài 16:9
+STD_NEW = str(TL.get('standard', '')) >= '2026-11b'                # (11/2026b) chuẩn mới + Musical Storytelling: nhóm 8 (_shared/qa_musical.py)
 MP4 = os.path.join(FILM, f'{NAME}.mp4')
 OUT = os.path.join(FILM, 'out')
 rows = []
@@ -84,8 +85,13 @@ row('2 Giữ chân', 'Khoảng "chết" (không lời, không tiếng động) �
 cuts = int((diff > 18).sum())
 secs_n = len(SECS); avg = DUR / max(1, secs_n)
 row('2 Giữ chân', 'Độ dài trung bình mỗi cảnh', OK if avg <= 12 else WARN, f'{avg:.1f} s ({secs_n} cảnh, {cuts} chuyển cảnh mạnh)', '≤ 12 s; trong cảnh dài phải có máy quay hoặc kính di chuyển')
-words = sum(len(l['text'].split()) for l in LINES); wps = words / DUR
-row('2 Giữ chân', 'Tốc độ lời', OK if .8 <= wps <= 2.2 else WARN, f'{wps:.2f} từ/s ({words} từ)', '0,8–2,2 từ/s cho trẻ 4–8 tuổi')
+_seen = set(); _rep = []                                               # (11/2026b) lần lặp của điệp khúc không phải lời mới: chỉ đếm điệp khúc một lần
+for l in LINES:
+    ch = (l.get('sung') or {}).get('chorus') if STD_NEW else None
+    if ch and ch in _seen: _rep.append(l)
+    elif ch: _seen.add(ch)
+words = sum(len(l['text'].split()) for l in LINES if l not in _rep); wps = words / DUR
+row('2 Giữ chân', 'Tốc độ lời', OK if .8 <= wps <= 2.2 else WARN, f'{wps:.2f} từ/s ({words} từ' + (f', không tính {len(_rep)} lần lặp điệp khúc' if _rep else '') + ')', '0,8–2,2 từ/s cho trẻ 4–8 tuổi')
 
 # đoạn không lời dài: nhạc và vài tiếng động không đủ giữ trẻ (QUALITY.md §2; 001 ở 33,3–42,0 s, 004 ở 21,7–30,3 s)
 tt = np.arange(len(ev_v)) * .1
@@ -101,7 +107,7 @@ row('2 Giữ chân', 'Đoạn không lời dài', OK if not novoice else WARN, '
 # Hai mục này mới hiệu chỉnh cho Short; video dài (nhịp kể chậm hơn, khung 16:9) chưa có ngưỡng nên chưa đo.
 med = median_filter(diff, int(1.5 * FPS) | 1, mode='nearest')
 calm = [(a, b) for a, b in spans(med < 1.5, 1 / FPS) if b - a > 3]
-if not LONG: row('2 Giữ chân', 'Hình gần đứng yên kéo dài (kể cả khi có lời)', OK if not calm else WARN, ', '.join(f'{a:.1f}–{b:.1f}' for a, b in calm) or 'không có',
+if not LONG: row('2 Giữ chân', 'Hình gần đứng yên kéo dài (kể cả khi có lời)', OK if not calm else (FAIL if STD_NEW else WARN), ', '.join(f'{a:.1f}–{b:.1f}' for a, b in calm) or 'không có',
     'trung vị chuyển động 1,5 s < 1,5 không quá 3 s: kính, sổ và câu cửa miệng phải có hành động')
 # câu cửa miệng của Albie nói trong lúc có hành động (Albie đớp sticker, nhân vật nhảy vào sổ), không đọc trên trang đứng yên
 cat = [l for l in LINES if l['who'] == 'albie' and (l.get('catch') or 'in you go' in l['text'].lower())]
@@ -261,7 +267,9 @@ if MS:
                 'mỗi chỗ đổi cảnh một cách chuyển (trống dồn, riser, nốt mồi, vuốt đàn hạc, ngân đuôi…); không cách nào quá 50 %; đổi BPM phải có cầu nối')
             nowhy = [s['name'] for s in BODY if not (s.get('what') and s.get('emo') and s.get('why'))]
             sp_ = os.path.join(FILM, 'SOUND-PLAN.md'); sp_ok = os.path.exists(sp_)
-            rows_ = sum(1 for l in open(sp_, encoding='utf-8') if l.startswith('| ') and ' s' in l.split('|')[1]) if sp_ok else 0
+            _txt = open(sp_, encoding='utf-8').read() if sp_ok else ''
+            _main = _txt.split('## Bảng thiết kế âm thanh', 1)[1].split('\n## ', 1)[0] if '## Bảng thiết kế âm thanh' in _txt else _txt   # chỉ bảng 7 cột (tập 11/2026b có thêm bảng)
+            rows_ = sum(1 for l in _main.splitlines() if l.startswith('| ') and ' s' in l.split('|')[1])
             row(G_, 'Bảng Sound Design Plan', OK if sp_ok and rows_ == len(MS) and not nowhy else WARN,
                 ('SOUND-PLAN.md ' + (f'{rows_}/{len(MS)} cảnh' if sp_ok else 'chưa có')) + (f"; thiếu nội dung / cảm xúc / lý do: {', '.join(nowhy)}" if nowhy else ''),
                 'SOUND-PLAN.md (python _shared/tools/soundplan.py) có đủ mọi cảnh nhạc; mỗi cảnh ghi what, emo, why')
@@ -326,7 +334,7 @@ if (vw, vh) == (1080, 1920):
     else:
         dst = os.path.join(OUT, 'safezone.json') if '--json' in sys.argv else os.path.join(tempfile.mkdtemp(), 'safezone.json')
         try:
-            r = subprocess.run(['node', os.path.join(LIB, '_shared', 'tools', 'safezone.mjs'), FILM, '--out', dst], capture_output=True, text=True, encoding='utf-8', errors='ignore', cwd=LIB, timeout=600)
+            r = subprocess.run(['node', os.path.join(LIB, '_shared', 'tools', 'safezone.mjs'), FILM, '--out', dst] + (['--step', '0.1'] if STD_NEW else []), capture_output=True, text=True, encoding='utf-8', errors='ignore', cwd=LIB, timeout=900)
             if r.returncode == 0 and os.path.exists(dst): SZ = json.load(open(dst, encoding='utf-8'))
         except Exception: pass
     RULE_Z = 'phụ đề trên 1500 px; chữ và mặt nhân vật ngoài thanh trên (150 px), vùng dưới (1530 px), cột nút phải (x > 940, y 880–1780)'
@@ -407,6 +415,18 @@ if semis:
     row('7 Giọng', 'Các giọng khác nhau rõ', OK if not close else WARN, f'gần nhất {near[0]:.1f} nửa cung{note}', '≥ 3 nửa cung, hoặc khác giọng Anh/Mỹ')
 kids = [k for k in pitch if k in ('crumb', 'blink', 'dot')]
 for k in kids: row('7 Giọng', f'Giọng trẻ em: {k}', OK if pitch[k] >= 240 else WARN, f'{pitch[k]:.0f} Hz', '≥ 240 Hz')
+
+# ======================= 8. Chuẩn 11/2026b (Task.md: chuẩn sản xuất mới + Musical Storytelling) =======================
+if STD_NEW:
+    if SZ is None and (vw, vh) == (1920, 1080):                    # video dài: chỉ gom số đo máy quay / chữ móc / biểu cảm
+        dst = os.path.join(OUT, 'safezone.json') if '--json' in sys.argv else os.path.join(tempfile.mkdtemp(), 'safezone.json')
+        try:
+            r = subprocess.run(['node', os.path.join(LIB, '_shared', 'tools', 'safezone.mjs'), FILM, '--out', dst, '--step', '0.1', '--size', '1920x1080'], capture_output=True, text=True, encoding='utf-8', errors='ignore', cwd=LIB, timeout=3600)
+            if r.returncode == 0 and os.path.exists(dst): SZ = json.load(open(dst, encoding='utf-8'))
+        except Exception: pass
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import qa_musical
+    qa_musical.run(globals())
 
 # ---------- in ----------
 w1 = max(len(r['item']) for r in rows)

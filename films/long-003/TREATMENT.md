@@ -353,3 +353,19 @@ Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie v
   ```
 
   Bảng hình: thay bằng `--q mode=model --size 1920x1080`.
+
+## 15. Chuẩn 11/2026b (bổ sung trước khi duyệt storyboard)
+
+Video dài này dựng theo chuẩn mới ([`Task.md`](../../Task.md) 17/11/2026, [`QUALITY.md`](../../_shared/QUALITY.md) §8). Những điểm phải thêm vào kịch bản và storyboard ở trên:
+
+- **Bài hát chủ đề và điệp khúc:** *"Look closely, and you'll find your way!"* (6 từ, chính là thông điệp của phim), giai điệu phác `3:.5 5:.5 6:.5 5:.5 | 3:.5 2:.5 1:1` (nối với "Starlight Shuffle" của mục 9). Hát ≥ 3 lần: cuối chương *Bản đồ, lập đội* (Crumb hứa), sau *Cách 5 · Ánh lóe* (cả đội, khi biết Miss Loupe ở đâu), và trong *Kết* (trẻ hát theo). Motif của video = câu mở của điệp khúc.
+- ***The Six Legs Song*** (chương sẵn có): chuyển từ "đọc theo nhịp" thành phần hát trọn duy nhất dài hơn điệp khúc (≤ 20 s), giữ đúng lời *6 chân, 3 phần thân, 2 râu*; tính vào giới hạn hát trọn ≤ 30 %.
+- **Kiểu hát theo chương:** mỗi "cách tìm đường" có một câu phát hiện half-sing (*"Ants follow a smell trail!"*), phần giải thích sing-talk; lời dặn an toàn *"I'm lost... so I stay put."* **nói thường** để trẻ nghe rõ; *"Can I hold the lens... NOW?" — "Yes! NOW!"* nói thường (khoảnh khắc cảm xúc của Crumb).
+- **CTA cụ thể (≤ 3 s, 10 s cuối):** giữ câu hỏi kết *"So... what does Rollo follow?"* → *"The stars!"*, rồi CTA *"Tonight, look up for the river of stars!"* (việc làm thật, có từ khoá "stars"; nhắc đi cùng người lớn nếu cần theo FACTS).
+
+- **Nhịp đổi hình:** `SHOTS` ≤ 5 s giữa hai thay đổi có mục đích (video dài). Bảng cảnh quay ở mục 7 có nhiều cú dài 6–12 s: khi dựng, chia mỗi cú dài thành các nhịp máy (đẩy vào người nói, lia theo hành động, cận biểu cảm, kính đổi độ phóng) và ghi từng nhịp vào `SHOTS` kèm `why`. Đoạn giải thích không đứng một khung quá 2,5 s.
+- **Chữ móc:** `hookStack(…, 'wide')` (khung 1920×1080, tâm y 480), không sát mép; không phụ đề khi chữ móc trên hình.
+- **Phụ đề:** ≤ 7 từ mỗi tấm (`cardsOf`), mỗi tấm một câu, từ khoá của bí mật được nhấn (`em`, `SECRET.kw`).
+- **Lời có nhịp hoặc giai điệu:** 60–80 % số từ, **hát trọn ≤ 30 %**; phần giải thích dài nói hoặc sing-talk; câu hỏi cho trẻ half-sing; trò đếm cùng Dot đọc theo nhịp (sing-talk); câu cửa miệng nói hoặc `CATCH_TUNE`. Nhân vật hát lần đầu (Dot, Albie, Blink…) cần chủ kênh nghe duyệt trước khi dựng hình.
+- **Âm thanh:** `Groove(…, song=TL['song'])`, mỗi chương một phần của bài (BPM ≥ 108, vòng hợp âm riêng); `G.motif` ở mở đầu và trước CTA; SFX không lặp máy móc (≤ 3 lần / phút cho một loại tiếng ngoài chuỗi có chủ đích).
+- **Khung mã:** chép `timeline.js`, `tools/lines.mjs`, `build.sh`, `mix.py` từ [`_shared/template/`](../../_shared/template/) (thêm `sing.py`, `asr_sung.py`); treatment bổ sung các mục còn thiếu của [`_shared/TREATMENT-TEMPLATE.md`](../../_shared/TREATMENT-TEMPLATE.md) (Music Timeline, AI prompts, SFX Timeline sinh tự động khi dựng).

@@ -1,0 +1,94 @@
+[
+ {
+  "t0": 3.25,
+  "t1": 4.096,
+  "text": "Let's zoom in!",
+  "em": [
+   "zoom"
+  ]
+ },
+ {
+  "t0": 4.116,
+  "t1": 5.945,
+  "text": "Watch Hop's back leg!",
+  "em": [
+   "leg"
+  ]
+ },
+ {
+  "t0": 6.893,
+  "t1": 9.555,
+  "text": "Look! A row of tiny pegs!",
+  "em": [
+   "pegs"
+  ]
+ },
+ {
+  "t0": 10.769,
+  "t1": 11.701,
+  "text": "Pegs on the leg,",
+  "em": [
+   "pegs",
+   "leg"
+  ]
+ },
+ {
+  "t0": 11.721,
+  "t1": 12.995,
+  "text": "scrape on the wing!",
+  "em": [
+   "wing"
+  ]
+ },
+ {
+  "t0": 13.716,
+  "t1": 15.747,
+  "text": "It's like a violin bow!",
+  "em": [
+   "violin",
+   "bow"
+  ]
+ },
+ {
+  "t0": 16.15,
+  "t1": 17.657,
+  "text": "Let me try!",
+  "em": [
+   "try"
+  ]
+ },
+ {
+  "t0": 18.4,
+  "t1": 19.969,
+  "text": "Oops! No pegs!",
+  "em": [
+   "pegs"
+  ]
+ },
+ {
+  "t0": 19.989,
+  "t1": 20.921,
+  "text": "Pegs on the leg,",
+  "em": [
+   "pegs",
+   "leg"
+  ]
+ },
+ {
+  "t0": 20.941,
+  "t1": 22.08,
+  "text": "scrape on the wing!",
+  "em": [
+   "wing"
+  ]
+ },
+ {
+  "t0": 22.1,
+  "t1": 23.7,
+  "text": "Can YOU make music with your legs?",
+  "em": [
+   "you",
+   "legs"
+  ]
+ }
+]
