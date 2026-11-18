@@ -1,14 +1,18 @@
 // SHORT-016 · Where Do Bugs Go When It Snows? — timeline (chuẩn 11/2026b, _shared/QUALITY.md §8). Một nguồn thời gian duy nhất
-// cho hình, phụ đề, giọng hát, nhạc. Tập A đặc biệt mùa đông: lưới phim 4/4 ở 120 BPM, 24 ô nhịp = 48 s, phát vòng lặp:
+// cho hình, phụ đề, giọng nói, nhạc. Tập A đặc biệt mùa đông: lưới phim 4/4 ở 120 BPM, 24 ô nhịp = 48 s, phát vòng lặp:
 // khung cuối là đúng khung đầu (vườn tuyết, bông tuyết rơi trúng kính, chấm đỏ của Dot ló dưới chiếc lá).
-// Giọng Đô trưởng: giai điệu quanh bậc 5–6 nằm đúng `home` của Miss Loupe (56).
-// Ba bí mật = ba câu trả lời của điệp khúc "Huddle, fly away, or hide!": ong mật túm lại (kính ấm), bướm vua miền đông bay về Mexico
-// (bản đồ trong trang của Albie), một số loài bọ rùa ngủ dưới lá (Dot đếm). Chỉ Miss Loupe hát; Dot và Albie nói (chưa hát lần nào).
+// Giọng Đô trưởng: giai điệu quanh bậc 5–6. Ba bí mật = ba câu trả lời của điệp khúc "Huddle, fly away, or hide!": ong mật túm lại
+// (kính ấm), bướm vua miền đông bay về Mexico (bản đồ trong trang của Albie), một số loài bọ rùa ngủ dưới lá (Dot đếm).
+// (19/11/2026, Task.md "giọng kính lúp như SHORT-015", QUALITY.md §8.3, §9.10) KHÔNG AI HÁT: Miss Loupe nói bằng giọng SHORT-015
+// (af_heart, lời dẫn .765, câu cửa miệng .9, ngữ điệu TTS gốc). Câu của cô vào đúng phách của bài (tune); bài hát nằm ở nhạc nền:
+// giai điệu điệp khúc do nhạc cụ chơi dưới câu điệp khúc và ở khoảng trống (G.theme).
 import { song, resolveLines, cardsOf, cardClashes, resolveSong, STANDARD as STD } from '../../_shared/song.js';
 import { VOICES, CATCH_TUNE } from '../../_shared/voices.js';
 export const STANDARD = STD;
 // mốc từ thật của câu nói (voice/words.js, _shared/tools/wordtimes.py ghi sau bước giọng): phụ đề chạy chữ đúng lúc nói (Vocal QC 18/11/2026)
 const WORDT = await import('./voice/words.js').then(m => m.default).catch(() => ({}));
+// độ dài thật của từng câu (voice/dur.js, tools/lines.mjs ghi từ voice/dur.json): câu theo phách lấy dur ở đây (19/11/2026)
+const DURS = await import('./voice/dur.js').then(m => m.default).catch(() => ({}));
 export const BPM = 120, BEAT = 60 / BPM, METER = 4, BAR = BEAT * METER;
 export const at = (bar, beat = 0) => (bar * METER + beat) * BEAT;
 export const PACE = 1;                                        // tập A: câu nói ở tốc độ chuẩn của giọng
@@ -37,7 +41,7 @@ export const HIT = {
   snap2: 19.95, fly2: [20.05, 20.55], stamp2: 20.6,
   // điệp khúc lần 1: về sân khấu, Miss Loupe và Albie nhún nhảy; mỗi từ khoá một ô sticker nảy (ô 3 còn "?")
   back: [20.0, 20.6],
-  // bí mật 3: Miss Loupe nhảy sang đống lá cạnh hòn đá; hát hỏi; kính lớn: nhấc chiếc lá, lộ đám bọ rùa ngủ; Dot bật dậy đếm; ngáp, chui lại
+  // bí mật 3: Miss Loupe nhảy sang đống lá cạnh hòn đá; hỏi; kính lớn: nhấc chiếc lá, lộ đám bọ rùa ngủ; Dot bật dậy đếm; ngáp, chui lại
   hopTo: [24.05, 24.55], lensUp: [26.85, 27.2], lift: [27.0, 27.45], dotUp: [27.4, 27.75], yawn: [32.7, 33.35], burrow: [33.2, 33.6],
   snap3: 33.7, zoomIn: [33.8, 34.1], zoomOut: [34.1, 34.45], stamp3: 34.6,
   // sổ: ô 1, 2 bay xuống trang; Albie đếm chân ("Six legs?"), há miệng, đớp đúng "go!"
@@ -64,69 +68,71 @@ export const SONG = song({
   key: 'C', film: BPM,
   motif: '5:.75 5:.25 5:.5 6:.5 7:1',                          // câu mở của điệp khúc ("Huddle, fly a-WAY"): ba nốt đứng rồi leo lên
   parts: [
-    { t0: 0, bpm: 120, chords: 'C G7' },                       // A · móc (câu hỏi nửa hát)
+    { t0: 0, bpm: 120, chords: 'C G7' },                       // A · móc (câu hỏi)
     { t0: P_BEES, bpm: 112, chords: 'C F C G7' },              // B · kính ấm, quả bóng ong
     { t0: P_MAP, bpm: 126, chords: 'F G7 C C' },              // C · "Nope!", bản đồ bướm vua
     { t0: P_CH1, bpm: 124, chords: 'G7 C' },                   // D · điệp khúc lần 1
-    { t0: P_LADY, bpm: 116, chords: 'C F G7 C' },              // E · bọ rùa dưới lá (sổ và gag không có câu hát)
+    { t0: P_LADY, bpm: 116, chords: 'C F G7 C' },              // E · bọ rùa dưới lá (sổ và gag không có câu theo phách)
     { t0: P_CH2, bpm: 124, chords: 'G7 C' },                   // F · điệp khúc lần 2 (cùng nhịp, cùng hợp âm với D)
   ],
 });
-// (18/11/2026, Task.md "giọng chậm lại, hài hòa hơn") câu hát của Miss Loupe: âm tiết vang liền nhau hơn (fill: half-sing .7 → .85,
-// sing-talk .6 → .75) và luyến mềm hơn (glide): bớt "nhát gừng", hoà vào nhạc. Câu nửa hát giữ TTS nguồn ở tốc độ chuẩn: nguồn chậm
-// hơn (.85) thì phụ âm bị nén khi vào nốt, Whisper nghe "monarchs fly" thành "men lie", "Who is" thành "Who was"; câu hát-nói đọc nguồn .85.
-// Chỉ ngân dài âm tiết CUỐI từ, nguyên âm dài: ngân âm tiết đầu / giữa từ thì sing.py kéo nguyên âm tới trần vẫn không lấp được nốt, giữa từ im 0,3–0,45 s.
-// Hát-nói cho kéo nguyên âm tới 2× (mặc định 1,6×): "un-der", "to-ge-ther" bớt đứt.
-// (18/11/2026, Task.md "giọng Miss Loupe trả lại giống SHORT-015") nốt ngân của Miss Loupe ở Sol / La (~200 Hz = giọng nói của cô ở SHORT-015, 187–213 Hz),
-// không treo ở Đô / Si cao; câu nói của cô không uốn ngữ điệu (emote: false); mix.py: không vang phòng, không lọc 8,5 kHz cho giọng cô.
-const LEGATO = { fill: .85, glide: .08 }, LEGATO_TALK = { speed: .85, fill: .75, glide: .05, hi: 2 };
-const CHORUS = { mode: 'sing', chorus: 'snow', speed: .85, notes: '5:.75 5:.25 5:.5 6:.5 7:1 6:1 5:2' };   // "Hud-" dài ¾ phách, TTS chậm hơn: lần đầu Whisper nghe "Cuddle"   // "HUD-dle, fly a-WAY, or HIDE!": leo lên rồi đáp về Sol (gần home của giọng)
+// (19/11/2026, Task.md "giọng kính lúp như SHORT-015") các câu trước đây hát nay là câu NÓI theo phách (tune): cùng lời, cùng chỗ trong bài
+// (nốt đầu của bản nhạc rơi đúng phách cũ, câu bắt đầu sớm hơn 0,12 s), nên hình, mốc hành động và nhạc không dời. Bỏ mọi tham số của bộ hát
+// (fill, glide, hi, sing.speed); tốc độ là của nhân vật (voices.js: Miss Loupe .9 × pace .85, câu cửa miệng .9). tune.mode chỉ còn là màu
+// biểu cảm (film.js singExpr). Bản nhạc của điệp khúc (CHORUS) nhạc cụ chơi dưới câu điệp khúc (groove.py _double) và ở khoảng trống (G.theme).
+const CHORUS = { mode: 'sing', chorus: 'snow', notes: '5:.75 5:.25 5:.5 6:.5 7:1 6:1 5:2' };   // "HUD-dle, fly a-WAY, or HIDE!": leo lên rồi đáp về Sol
 
-// t, dur của câu NÓI: độ dài thật (voice/dur.json). say: chữ đưa vào TTS khi chữ gốc bị Whisper nghe sai ("Huddle," → "Cuddle";
-// "Huddle!" thì qua cả hai Whisper), phụ đề và lời hát vẫn là text. Câu HÁT: song.js suy ra từ bản nhạc (sing.at = lúc nốt đầu vang).
+// t, dur của câu nói thường: độ dài thật (voice/dur.json). Câu theo phách (tune): t từ bản nhạc, dur từ voice/dur.js. say: chữ đưa vào TTS
+// khi chữ gốc bị Whisper nghe sai ("Huddle," → "Cuddle"; "Huddle!" thì qua cả hai Whisper), phụ đề vẫn là text.
 // em: từ nhấn trên phụ đề; cta: câu kêu gọi cuối (≤ 2 s, cụ thể, Made for Kids).
 export const LINES = resolveLines(SONG, VOICES, [
-  { id: 'L01', emo: 'curious', who: 'loupe', text: 'Where do bugs go when it snows?', say: 'Where do bugs go, when it snows?', em: ['bugs', 'snows'],
-    why: 'bản nói không ngắt thì "it" chỉ 80 ms, sing.py bỏ mất âm tiết (bản hát còn "when … snows"); dấu phẩy cho TTS giữ đủ 7 chữ (18/11/2026)',
-    sing: { mode: 'half-sing', at: .5, ...LEGATO, notes: "3:.5 4:.5 5:.5 6:1 5:.5 4:.5 5:1.5" } },           // câu móc: hỏi, leo lên rồi hỏi lại ở Sol; GO và SNOWS ngân dài (18/11/2026: 4 → 5 phách; "bugs" ngân 1 phách thì /z/ dính sang "go"; giọng về như SHORT-015: 220 → 195 Hz)
-  { id: 'L02', emo: 'excited', who: 'loupe', text: "Let's zoom in!", em: ['zoom'], catch: true, sing: { ...CATCH_TUNE.zoom, at: hb(P_BEES, B112, .5) } },
+  { id: 'L01', emo: 'curious', who: 'loupe', text: 'Where do bugs go when it snows?', em: ['bugs', 'snows'],
+    tune: { mode: 'half-sing', at: .5, notes: "3:.5 4:.5 5:.5 6:1 5:.5 4:.5 5:1.5" } },           // câu móc: hỏi, leo lên rồi hỏi lại ở Sol
+  { id: 'L02', emo: 'excited', who: 'loupe', text: "Let's zoom in!", em: ['zoom'], catch: true, tune: { ...CATCH_TUNE.zoom, at: hb(P_BEES, B112, .5) } },
   { id: 'L03', emo: 'surprised', who: 'loupe', text: 'Look! A warm ball of bees!', em: ['warm', 'ball', 'bees'],
-    sing: { mode: 'half-sing', at: hb(P_BEES, B112, 4), ...LEGATO, notes: "1':1 r:.5 5:.5 6:1 5:.5 4:.5 3:1.25" } },     // khám phá: reo lên rồi đi xuống nhẹ
+    tune: { mode: 'half-sing', at: hb(P_BEES, B112, 4), notes: "1':1 r:.5 5:.5 6:1 5:.75 4:.25 3:1.25" } },     // khám phá: reo lên rồi đi xuống nhẹ
   { id: 'L04', emo: 'calm', who: 'loupe', text: 'Wow! Some bees shake their wing muscles!', em: ['bees', 'shake', 'muscles'],
-    sing: { mode: 'sing-talk', at: hb(P_BEES, B112, 10), ...LEGATO_TALK, fill: .68, hi: 1.6, notes: '5:.5 r:.25 5:.5 3:.5 r:.25 5:.5 5:.5 6:.5 5:.5 2:1' },   // nghỉ ¼ phách sau "Wow!" (Vocal QC: ngắt ở dấu câu)
-    was: 'Heater bees shake their wing muscles!', why: 'hát lên Whisper nghe "Heater" thành "Hear their" / "Keter" / "you derbies"; "Some bees" đúng nguồn, thuật ngữ HEATER BEES! thành chữ trên hình' },   // giải thích: rõ từ. "Heater bees" hát lên bị Whisper nghe sai ("Hear their", "Keter", "you derbies"): thuật ngữ thành chữ trên hình HEATER BEES!
+    tune: { mode: 'sing-talk', at: hb(P_BEES, B112, 10), notes: '5:.5 r:.25 5:.5 3:.5 r:.25 5:.5 5:.5 6:.5 5:.5 2:1' },
+    was: 'Heater bees shake their wing muscles!', why: 'hát lên Whisper nghe "Heater" thành "Hear their" / "Keter" / "you derbies"; "Some bees" đúng nguồn, thuật ngữ HEATER BEES! thành chữ trên hình' },   // giải thích: rõ từ; thuật ngữ HEATER BEES! là chữ trên hình
   { id: 'L05', emo: 'curious', who: 'albie', t: 12.2, dur: 2.2, pace: .9, emo_k: .3, text: 'Do all butterflies stay?', em: ['butterflies'],
     was: 'Do all butterflies stay in the snow?', why: 'rút cho vừa nhịp trước "Nope!" (giọng Albie chậm: 2,04 s); 18/11/2026 đọc chậm thêm 10 %, uốn ngữ điệu nhẹ hơn (emo_k .3): ở .5 base.en nghe "Do all" thành "Dual"' },     // Albie hỏi: nói (giọng trầm, tương phản)
-  { id: 'L06', emo: 'playful', who: 'loupe', text: 'Nope!', catch: true, sing: { ...CATCH_TUNE.nope, at: hb(P_MAP, B126, 5) } },
+  { id: 'L06', emo: 'playful', who: 'loupe', text: 'Nope!', catch: true, tune: { ...CATCH_TUNE.nope, at: hb(P_MAP, B126, 5) } },
   { id: 'L07', emo: 'excited', who: 'loupe', text: 'These monarchs fly all the way to Mexico!', em: ['monarchs', 'fly', 'Mexico'], split: [3],
-    sing: { mode: 'half-sing', at: hb(P_MAP, B126, 7.5), ...LEGATO, notes: "5:.5 1':.5 1':.5 6:1 5:1 4:.5 5:1 4:.5 5:1 3:.5 3:1.5" } },   // từ trên cao bay xuống phương nam; FLY, ALL, WAY, MEX-i-co ngân, nốt ngân ở Sol / La (giọng như SHORT-015: 219 → 197 Hz) (18/11/2026: 7,5 → 8,5 phách; "MON" ngân dài thì Whisper nghe "minor"; "way" 1,5 phách thì im 0,3 s trước "to")
-  { id: 'L08', emo: 'happy', who: 'loupe', text: 'Huddle, fly away, or hide!', say: 'Huddle! Fly away, or hide!', why: 'TTS đọc "Huddle!" (dấu chấm than): "Huddle," bị nghe thành "Cuddle"', em: ['huddle', 'fly', 'hide'], sing: { ...CHORUS, at: P_CH1 } },
-  { id: 'L09', emo: 'curious', who: 'loupe', text: 'Who is hiding under here?', em: ['hiding'],
-    sing: { mode: 'half-sing', at: hb(P_LADY, B116, 1), ...LEGATO, notes: "3:.5 4:.5 5:.5 6:1 5:.5 4:.5 5:1.5" } },    // câu hỏi tò mò: leo lên, hỏi lại ở Sol (giọng như SHORT-015: 220 → 197 Hz); hi-DING ngân (18/11/2026: 4,5 → 5 phách; ngân "hi" hay "un" thì im 0,3–0,45 s giữa từ)
+    tune: { mode: 'half-sing', at: hb(P_MAP, B126, 7.5), notes: "5:.5 1':.5 1':.5 6:1 5:1.25 4:.25 5:1.25 4:.25 5:1 3:.5 3:1.5" } },   // từ trên cao bay xuống phương nam
+  { id: 'L08', emo: 'happy', who: 'loupe', text: 'Huddle, fly away, or hide!', say: 'Huddle! Fly away, or hide!', why: 'TTS đọc "Huddle!" (dấu chấm than): "Huddle," bị nghe thành "Cuddle"', em: ['huddle', 'fly', 'hide'], tune: { ...CHORUS, at: P_CH1 } },
+  { id: 'L09', emo: 'curious', who: 'loupe', text: 'Who is hiding under here?', em: ['hiding'], pace: .76, why: 'giọng SHORT-015 (.765) đọc câu 7 âm tiết ở 4,4 âm tiết/s (> 4,0 cho trẻ 4–8 tuổi): chậm hơn 10 %',
+    tune: { mode: 'half-sing', at: hb(P_LADY, B116, 1), notes: "3:.5 4:.5 5:1 6:.5 5:.5 4:.5 5:1.5" } },    // câu hỏi tò mò: leo lên, hỏi lại ở Sol
   { id: 'L10', emo: 'excited', who: 'dot', t: 27.45, dur: 1.99, pace: .8, text: 'One, two, three... so many!', say: 'One... two... three... so many!', em: ['many'],
     why: 'đếm chậm, mỗi số một nhịp, khớp hình Dot đếm (18/11/2026: trước đó 4,2 âm tiết/s, các số cách nhau 0,22 s)' },               // Dot đếm: nói
   { id: 'L11', emo: 'calm', who: 'loupe', text: 'Some ladybugs nap together under leaves!', em: ['ladybugs', 'nap', 'leaves'],
-    sing: { mode: 'sing-talk', at: hb(P_LADY, B116, 11.5), ...LEGATO_TALK, notes: "5:.5 3:.5 5:.5 5:1 1':1 6:.5 6:.5 5:1 5:.5 4:.5 3:1" } },   // giải thích: rõ từ, NAP nhảy lên; chỉ ngân âm tiết cuối từ (lady-BUGS, NAP, toge-THER, LEAVES), vào phách mạnh (18/11/2026: 6,5 → 7,5 phách; ngân "la" thì giữa "la……dybugs" im 0,32 s)
+    tune: { mode: 'sing-talk', at: hb(P_LADY, B116, 11.5), notes: "5:.5 3:.5 5:.5 5:1 1':1 6:.5 6:.5 5:1 5:.5 4:.5 3:1" } },   // giải thích: rõ từ
   { id: 'L12', emo: 'proud', who: 'albie', t: 34.85, dur: 2.297, text: 'Six legs? In you go!', em: ['legs'], catch: true },
   { id: 'L13', emo: 'curious', who: 'dot', t: 38.4, dur: 1.506, pace: .82, text: 'Is it spring yet?', em: ['spring'] },             // gag: nói (ngái ngủ, chậm)
-  { id: 'L14', emo: 'playful', who: 'loupe', t: 40.15, dur: .628, text: 'Nope!', catch: true, emote: false },                                    // gag: nói (tương phản với lần hát ở bí mật 2)
-  { id: 'L15', emo: 'happy', who: 'loupe', text: 'Huddle, fly away, or hide!', say: 'Huddle! Fly away, or hide!', why: 'như L08', em: ['huddle', 'fly', 'hide'], sing: { ...CHORUS, at: P_CH2 } },
-  { id: 'L16', emo: 'happy', who: 'loupe', t: 45.35, dur: 1.907, text: 'Can YOU huddle like a bee?', em: ['you', 'huddle', 'bee'], cta: true, pace: .78, emote: false,
+  { id: 'L14', emo: 'playful', who: 'loupe', t: 40.15, dur: .628, text: 'Nope!', catch: true },                                    // gag: nói
+  { id: 'L15', emo: 'happy', who: 'loupe', text: 'Huddle, fly away, or hide!', say: 'Huddle! Fly away, or hide!', why: 'như L08', em: ['huddle', 'fly', 'hide'], tune: { ...CHORUS, at: P_CH2 } },
+  { id: 'L16', emo: 'happy', who: 'loupe', t: 45.35, dur: 1.907, text: 'Can YOU huddle like a bee?', em: ['you', 'huddle', 'bee'], cta: true, pace: .78,
     why: 'đọc chậm hơn 22 % (Vocal QC: 5,0 âm tiết/s là nhanh với trẻ 4–8 tuổi; 18/11/2026 chủ kênh: giọng còn nhanh), vẫn ≤ 2 s' },   // CTA: việc làm thật
-]);
+], { durs: DURS });
 export const SECRET = { kw: ['huddle', 'fly', 'hide', 'bees', 'monarchs', 'ladybugs'] };   // từ khoá của bí mật: phụ đề nhấn, CTA nhắc lại
-// Tấm phụ đề ≤ 7 từ, mỗi tấm một câu, chữ hiện từng từ theo lúc hát / nói; không có phụ đề khi chữ móc đang trên hình.
+// Tấm phụ đề ≤ 7 từ, mỗi tấm một câu, chữ hiện từng từ theo lúc nói; không có phụ đề khi chữ móc đang trên hình.
 export const CARDS = cardsOf(LINES, DUR, { max: 7, hide: [0, HIT.titleOut[1]], times: WORDT });
 export const CARD_CLASHES = cardClashes(CARDS);
 const L = id => LINES.find(l => l.id === id);
+// (19/11/2026) hết đoạn nhạc của câu id (nốt cuối của tune / bản hát): hình nhảy theo điệp khúc chạy hết đoạn nhạc, không dừng khi lời hết
+export const spanEnd = id => { const l = L(id), ns = (l.sung || l.tune || {}).notes; return ns && ns.length ? l.t + Math.max(...ns.map(n => n.t + n.d)) + .1 : l.t + l.dur; };
+// (19/11/2026) lúc từ thứ w của câu id vang (giây, tuyệt đối): mốc từ thật của bản nói (voice/words.js); chưa có thì theo nốt của tune
+export const wordAt = (id, w) => {
+  const l = L(id), r = WORDT[id]; if (r && r[w]) return l.t + r[w][0];
+  const n = ((l.sung || l.tune || {}).notes || []).find(n => n.w === w); return n ? l.t + n.t : l.t;
+};
 
 // 6 nhịp kể chuyện (Task.md mục C)
 export const BEATS = [
-  { id: 'hook', t0: 0, t1: HIT.titleOut[0], what: 'Bông tuyết đậu trúng kính, Miss Loupe rùng mình, hát hỏi "Where do bugs go when it snows?"; ngó quanh: vườn vắng tanh' },
+  { id: 'hook', t0: 0, t1: HIT.titleOut[0], what: 'Bông tuyết đậu trúng kính, Miss Loupe rùng mình, hỏi "Where do bugs go when it snows?"; ngó quanh: vườn vắng tanh' },
   { id: 'setup', t0: HIT.titleOut[0], t1: HIT.heatOn[0], what: 'Ba ô sticker trống; logo lao vào kính; "Let\'s zoom in!": tổ ong phủ tuyết, lặng im' },
   { id: 'discovery', t0: HIT.heatOn[0], t1: HIT.flip[1], what: 'Kính ấm: quả bóng ong, Waggle rung ngực · "Nope!": bướm vua bay về Mexico, rừng hoá cam · điệp khúc lần 1 · bọ rùa ngủ dưới lá, Dot đếm · sổ: "Six legs? In you go!"' },
   { id: 'surprise', t0: HIT.flip[1], t1: L('L15').t, what: 'Dot ngái ngủ: "Is it spring yet?" — "Nope!" — cục tuyết rơi PLỘP, Dot lặn mất dưới lá' },
-  { id: 'payoff', t0: L('L15').t, t1: L('L16').t, what: 'Điệp khúc lần 2: ba câu trả lời thành câu hát để nhớ' },
+  { id: 'payoff', t0: L('L15').t, t1: L('L16').t, what: 'Điệp khúc lần 2: ba câu trả lời thành câu điệp khúc để nhớ (nhạc cụ chơi giai điệu)' },
   { id: 'cta', t0: L('L16').t, t1: DUR, what: '"Can YOU huddle like a bee?": hai bạn ôm nhau cho ấm; chữ móc trở lại; bông tuyết rơi về khung đầu' },
 ];
 // cú máy / thay đổi hình có mục đích, mỗi 2–4 s (Task.md mục B); qa_musical.py so với thay đổi đo được
@@ -154,7 +160,7 @@ export const SHOTS = [
   { t: +(L('L12').t + 1.4).toFixed(3), kind: 'đẩy vào Albie há miệng', why: '"Six legs? In you go!" nói trong lúc có hành động' },
   { t: HIT.flip[0], kind: 'lật trang về vườn tuyết, Dot chui ra', why: 'mở gag' },
   { t: L('L14').t, kind: 'đẩy nhanh, dấu X, cục tuyết rơi PLỘP', why: 'gag: "Nope!" và Dot lặn mất' },
-  { t: L('L15').t, kind: 'lùi ra hai bạn nhảy, ba sticker nảy', why: 'điệp khúc lần 2: trẻ hát theo' },
+  { t: L('L15').t, kind: 'lùi ra hai bạn nhảy, ba sticker nảy', why: 'điệp khúc lần 2: trẻ đọc theo, nhạc chơi giai điệu' },
   { t: L('L16').t, kind: 'đẩy vào hai bạn ôm nhau, chữ móc trở lại, về bố cục khung 0', why: 'CTA và vòng lặp liền' },
 ];
 
@@ -240,7 +246,7 @@ export const EV = [
   ...DOTCOUNT.map((t, i) => ({ t, type: 'count', n: i, run: 'dotcount', pan: -.3 + .3 * i })),
   { t: DOTCOUNT[2] + .45, type: 'textpop', n: 5, pan: 0 },                      // chữ SO MANY!
   { t: HIT.yawn[0], type: 'yawn', pan: 0 },
-  { t: HIT.burrow[0], type: 'burrow', d: HIT.burrow[1] - HIT.burrow[0], pan: 0 },
+  { t: HIT.burrow[0] - .15, type: 'burrow', d: HIT.burrow[1] - HIT.burrow[0] + .15, pan: 0 },   // (19/11/2026) Dot bắt đầu chui ở 33,0 s (av_sync); trước đây L11 còn đang hát ở đó nên không lộ
   { t: HIT.snap3, type: 'snap' },
   { t: HIT.zoomIn[0], type: 'zoomin', d: HIT.zoomIn[1] - HIT.zoomIn[0] },
   { t: HIT.zoomOut[0], type: 'zoomout', d: HIT.zoomOut[1] - HIT.zoomOut[0] },

@@ -1,15 +1,15 @@
 [
  {
-  "t0": 4.028,
-  "t1": 5.539,
+  "t0": 3.948,
+  "t1": 5.208,
   "text": "Let's zoom in!",
   "em": [
    "zoom"
   ]
  },
  {
-  "t0": 5.903,
-  "t1": 9.097,
+  "t0": 5.823,
+  "t1": 8.083,
   "text": "Look! A warm ball of bees!",
   "em": [
    "warm",
@@ -18,8 +18,8 @@
   ]
  },
  {
-  "t0": 9.117,
-  "t1": 12.18,
+  "t0": 9.037,
+  "t1": 11.857,
   "text": "Wow! Some bees shake their wing muscles!",
   "em": [
    "bees",
@@ -29,20 +29,20 @@
  },
  {
   "t0": 12.2,
-  "t1": 14.68,
+  "t1": 14.641,
   "text": "Do all butterflies stay?",
   "em": [
    "butterflies"
   ]
  },
  {
-  "t0": 14.741,
-  "t1": 15.911,
+  "t0": 14.661,
+  "t1": 15.831,
   "text": "Nope!"
  },
  {
-  "t0": 15.931,
-  "t1": 17.102,
+  "t0": 15.851,
+  "t1": 17.131,
   "text": "These monarchs fly",
   "em": [
    "monarchs",
@@ -50,16 +50,16 @@
   ]
  },
  {
-  "t0": 17.122,
-  "t1": 20.419,
+  "t0": 17.151,
+  "t1": 19.051,
   "text": "all the way to Mexico!",
   "em": [
    "mexico"
   ]
  },
  {
-  "t0": 20.96,
-  "t1": 24.303,
+  "t0": 20.88,
+  "t1": 23.24,
   "text": "Huddle, fly away, or hide!",
   "em": [
    "huddle",
@@ -68,8 +68,8 @@
   ]
  },
  {
-  "t0": 24.477,
-  "t1": 27.43,
+  "t0": 24.397,
+  "t1": 26.597,
   "text": "Who is hiding under here?",
   "em": [
    "hiding"
@@ -84,8 +84,8 @@
   ]
  },
  {
-  "t0": 29.908,
-  "t1": 34.227,
+  "t0": 29.828,
+  "t1": 32.968,
   "text": "Some ladybugs nap together under leaves!",
   "em": [
    "ladybugs",
@@ -115,8 +115,8 @@
   "text": "Nope!"
  },
  {
-  "t0": 42.16,
-  "t1": 45.33,
+  "t0": 42.08,
+  "t1": 44.44,
   "text": "Huddle, fly away, or hide!",
   "em": [
    "huddle",

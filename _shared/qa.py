@@ -200,6 +200,10 @@ if MS:
     sp_ = np.zeros(len(mus), bool)
     for l in LINES: sp_[int(l['t'] * sr):int((l['t'] + l['dur']) * sr)] = True
     gap_ = ~sp_ & (np.arange(len(mus)) < int((DUR - .5) * sr))
+    # (19/11/2026) cú nhạc hiệu logo của tập A (cảnh 'title', ≤ 0,8 s) là một cú nhấn, không phải nhạc đệm: không tính là "khoảng trống".
+    # SHORT-016 nói (không hát): 40 % năng lượng khoảng trống nằm ở 0,8 s logo, làm phép so nghiêng hẳn (8,8 dB; bỏ logo 7,0 dB)
+    for s_ in (TL.get('secs') or []):
+        if s_.get('id') == 'title': gap_[int(max(0., s_['t0'] - .3) * sr):int((s_['t1'] + .15) * sr)] = False
     mb_ = sosfilt(band, mus)
     drop_ = db(rms(mb_[gap_])) - db(rms(mb_[sp_])) if sp_.any() and gap_.any() else 0.
     un_ = MJ.get('under_notes'); rate_ = un_ / max(1e-6, sp_.sum() / sr) if un_ is not None else None

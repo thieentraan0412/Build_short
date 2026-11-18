@@ -21,6 +21,8 @@
 // sing.at: lúc nốt đầu tiên vang (giây), bắt vào lưới móc đơn của phần nhạc chứa nó. Kiểu hát (sing.mode):
 //   'speak' nói thường · 'sing-talk' nói theo nhịp, ngữ điệu bám nốt nhẹ · 'half-sing' nửa hát · 'sing' hát trọn (điệp khúc)
 // sing.chorus: tên điệp khúc (cùng tên = cùng lời, cùng nốt; qa kiểm số lần lặp) · sing.speed: tốc độ TTS riêng của câu hát
+// (19/11/2026, QUALITY.md §8.3) KÊNH KHÔNG HÁT NỮA: viết `tune` thay cho `sing` (cùng at, notes, chorus, lyr). Câu đọc bằng giọng TTS gốc,
+// vào đúng phách của bản nhạc; giai điệu thuộc về nhạc nền (groove.py đánh giai điệu điệp khúc). `sing` còn chạy được chỉ để dựng lại bản cũ.
 // Kiểm khi giải (lỗi thì dừng build): giọng trưởng, mọi phần ≥ 108 BPM (luôn vui tươi), số nốt = số âm tiết, câu nằm trọn trong một phần,
 // mỗi câu trải ≤ 9 nửa cung, nốt ở phách mạnh là nốt của hợp âm (sing, half-sing, điệp khúc), giai điệu quanh `home` của giọng ± 2 nửa cung,
 // giọng trẻ em không dưới 240 Hz.
@@ -91,9 +93,15 @@ export const wordsOf = text => text.split(/\s+/).filter(w => /[\p{L}\p{N}]/u.tes
 const bare = w => w.toLowerCase().replace(/[^a-z0-9']/g, '');
 
 // một câu hát → { t, dur, sung: { mode, pre, tail, chorus, notes: [{ t (từ đầu câu), d, m, syl, w }], range, speed? } }
-export function resolveLine(L, S, V) {
-  const sg = L.sing; if (!sg || sg.mode === 'speak') return null;
-  if (!MODES.includes(sg.mode)) throw new Error(`song: ${L.id}: mode '${sg.mode}' (${MODES.join(' | ')})`);
+// (19/11/2026, QUALITY.md §8.3) câu NÓI theo phách: L.tune thay cho L.sing (cùng cách viết nốt). Giọng đọc thường (TTS gốc, không hát);
+// bản nhạc chỉ để đặt câu vào phách (nốt đầu vang ở tune.at, câu bắt đầu sớm hơn pre) và để nhạc nền chơi giai điệu (điệp khúc).
+// dur = độ dài thật của bản nói (durs[id], từ voice/dur.json qua voice/dur.js), lần dựng đầu chưa có thì tạm lấy độ dài của bản nhạc.
+// → { t, dur, tune: { mode?, pre, chorus, notes } }. Giai điệu của tune không phải giọng hát: không kiểm `home` / giọng trẻ em.
+export function resolveLine(L, S, V, durs = null) {
+  const isTune = !L.sing && !!L.tune, sg = L.sing || L.tune;
+  if (!sg || (!isTune && sg.mode === 'speak')) return null;
+  if (!isTune && !MODES.includes(sg.mode)) throw new Error(`song: ${L.id}: mode '${sg.mode}' (${MODES.join(' | ')})`);
+  if (isTune && sg.mode && !MODES.includes(sg.mode)) throw new Error(`song: ${L.id}: tune.mode '${sg.mode}' (${MODES.join(' | ')})`);
   if (!V) throw new Error(`song: ${L.id}: no voice '${L.who}' in _shared/voices.js`);
   if (V.home === undefined) throw new Error(`song: ${L.id}: voice '${L.who}' has no home (MIDI) in _shared/voices.js`);
   const words = wordsOf(L.text), lyr = sg.lyr ? sg.lyr.split(/\s+/) : null;
@@ -119,8 +127,8 @@ export function resolveLine(L, S, V) {
   const ms = notes.map(n => n.m), span = Math.max(...ms) - Math.min(...ms);
   if (span > 9) errs.push(`spans ${span} semitones (≤ 9)`);
   const med = [...ms].sort((a, b) => a - b)[ms.length >> 1];
-  if (Math.abs(med - V.home) > 2) errs.push(`median note ${med} is ${(med - V.home).toFixed(1)} semitones from ${L.who}'s home ${V.home} (± 2)`);
-  if (V.child && Math.min(...ms) < 58.9) errs.push(`child voice note ${Math.min(...ms)} is below 240 Hz (MIDI 59)`);
+  if (!isTune && Math.abs(med - V.home) > 2) errs.push(`median note ${med} is ${(med - V.home).toFixed(1)} semitones from ${L.who}'s home ${V.home} (± 2)`);
+  if (!isTune && V.child && Math.min(...ms) < 58.9) errs.push(`child voice note ${Math.min(...ms)} is below 240 Hz (MIDI 59)`);
   for (const n of notes) {
     const pos = (n.abs - p.origin) / p.beat, beatIn = ((Math.round(pos) % p.meter) + p.meter) % p.meter;
     if (Math.abs(pos - Math.round(pos)) > 1e-3 || beatIn % 2) continue;                 // phách mạnh: 1 và 3 của ô 4/4
@@ -129,21 +137,30 @@ export function resolveLine(L, S, V) {
   }
   if (errs.length) throw new Error(`song: ${L.id} "${L.text}": ` + errs.join('; '));
   const pre = sg.pre ?? .12, tail = sg.tail ?? .1, t0 = at - pre;
+  if (isTune) {
+    const real = durs && durs[L.id];
+    return { t: round(t0, 3), dur: round(real ?? (t - t0 + tail), 3), warns,
+      tune: { ...(sg.mode && { mode: sg.mode }), pre, chorus: sg.chorus || null, measured: !!real,
+        notes: notes.map(n => ({ t: round(n.abs - t0), d: round(n.d), m: n.m, syl: n.syl, w: n.w })) } };
+  }
   return {
     t: round(t0, 3), dur: round(t - t0 + tail, 3), warns,
     sung: { mode: sg.mode, pre, tail, chorus: sg.chorus || null, ...(sg.speed && { speed: sg.speed }), ...(sg.fill && { fill: sg.fill }), ...(sg.glide && { glide: sg.glide }), ...(sg.hi && { hi: sg.hi }), ...(sg.alpha !== undefined && { alpha: sg.alpha }),
+      ...(sg.legato === false && { legato: false }), ...(sg.seed !== undefined && { seed: sg.seed }),   // (19/11/2026) sing.py: legato: false = cách cắt âm tiết cũ; seed = chọn bản thu khác
       range: [Math.round(hzOf(V.home - 13)), Math.round(hzOf(V.home + 14))],
       notes: notes.map(n => ({ t: round(n.abs - t0), d: round(n.d), m: n.m, syl: n.syl, w: n.w })) },
   };
 }
 
-// giải mọi câu: câu hát lấy t, dur từ bản nhạc và mang thêm `sung`; câu nói giữ nguyên
-export function resolveLines(S, VOICES, lines) {
+// giải mọi câu: câu hát lấy t, dur từ bản nhạc và mang thêm `sung`; câu nói theo phách (tune) lấy t từ bản nhạc, dur từ durs và mang
+// thêm `tune`; câu nói khác giữ nguyên. durs: { id: giây } độ dài thật của bản nói (voice/dur.js do tools/lines.mjs ghi từ voice/dur.json)
+export function resolveLines(S, VOICES, lines, { durs = null } = {}) {
   return lines.map(L => {
-    const r = resolveLine(L, S, VOICES[L.who]);
-    if (!r) { if (L.t === undefined || L.dur === undefined) throw new Error(`song: ${L.id}: a spoken line needs t and dur`); return { ...L }; }
+    const r = resolveLine(L, S, VOICES[L.who], durs);
+    if (!r) { if (L.t === undefined || L.dur === undefined) throw new Error(`song: ${L.id}: a spoken line needs t and dur (or tune)`); return { ...L }; }
     if (r.warns.length && typeof process !== 'undefined' && process.stderr) process.stderr.write(`song: ${L.id}: ${r.warns.join('; ')}\n`);
-    return { ...L, t: r.t, dur: r.dur, sung: r.sung };
+    const { tune: _t, sing: _s, ...rest } = L;
+    return r.tune ? { ...rest, t: r.t, dur: r.dur, tune: r.tune } : { ...L, t: r.t, dur: r.dur, sung: r.sung };
   });
 }
 

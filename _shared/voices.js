@@ -5,8 +5,12 @@
 // bằng chính giọng này). Đo bằng parselmouth trên các câu đã dựng (17/11/2026): loupe 197 Hz (55,1) khi nói, hát sáng hơn một chút ở 208 Hz;
 // albie 84 Hz (40,4); crumb 273 Hz (60,7); dot 253 Hz (59,4); blink 320 Hz (63,5). child: giọng trẻ em, nốt hát không dưới 240 Hz (MIDI 59).
 // Các trường home, child chỉ được đọc khi tập có câu hát; tập cũ không đổi.
+// (19/11/2026, Task.md "giọng kính lúp trả lại như SHORT-015, sửa quy tắc cho các tập sau") pace: tốc độ lời dẫn riêng của nhân vật
+// (thay PACE của tập; câu cửa miệng vẫn tốc độ chuẩn) · emote: false = không uốn ngữ điệu (_shared/emote.py), giữ ngữ điệu TTS gốc.
+// Miss Loupe luôn NÓI đúng như SHORT-015: af_heart, lời dẫn .9 × .85 = .765, câu cửa miệng .9, không hát (_shared/sing.py), không uốn,
+// không vang phòng / lọc trên giọng cô (QUALITY.md §8.3, §9.10). Các tập 010–015 có tools/lines.mjs riêng, không đọc pace / emote ở đây.
 export const VOICES = {
-  loupe: { voice: 'af_heart', speed: .9, home: 56 },     // nữ, vui, rõ, chậm hơn người lớn nói chuyện
+  loupe: { voice: 'af_heart', speed: .9, pace: .85, emote: false, home: 56 },     // nữ, vui, rõ, chậm hơn người lớn nói chuyện
   albie: { voice: 'bm_lewis', speed: .8, home: 41 },     // nam trầm, lịch sự, chậm (thử A/B ở SHORT-001: films/short-001/TREATMENT.md §9)
   crumb: { voice: 'af_jessica', speed: .85, pitch: 5, home: 61, child: true },   // kiến con: trẻ em, cao, nhanh. pitch: nâng bao nhiêu nửa cung sau TTS (_shared/voicefx.py) — nghe nhỏ và trẻ hơn, nhanh hơn ~33%. +5 (≈270 Hz) để cách Miss Loupe (≈212 Hz) hơn 4 nửa cung (QA, _shared/QUALITY.md mục 7)
   dot: { voice: 'bf_isabella', speed: .9, pitch: 3.5, home: 60, child: true },     // bọ rùa "cô giáo nhí": giọng Anh, rõ ràng, ≈ 250 Hz (thử A/B ở LONG-001 TREATMENT §7). Khác Crumb (giọng Mỹ) ở chất giọng, cách Miss Loupe > 3 nửa cung
@@ -20,7 +24,7 @@ export const VOICES = {
 // Hồ sơ giọng của từng nhân vật (tiếng Anh), cho prompt tạo giọng hát / lồng tiếng (_shared/tools/vocal_qc.py, mục D của VOCAL-QC.md,
 // Task.md 18/11/2026 "AI Vocal & Musical Quality Control"). Nhân vật mới: thêm một dòng khi chọn giọng.
 export const PROFILE = {
-  loupe: 'Miss Loupe, a cheerful adult female cartoon host (a walking magnifying glass): clear General American English, warm, bright and smiling, never breathy; speaking pitch about 210 Hz (G#3)',
+  loupe: 'Miss Loupe, a cheerful adult female cartoon host (a walking magnifying glass): clear General American English, warm, bright and smiling, never breathy; speaking pitch about 202 Hz (G3), natural speech intonation as in SHORT-015, never sung',
   albie: 'Albie, a polite talking notebook: deep, slow, gentle adult male voice, Standard Southern British English, about 98 Hz',
   crumb: 'Crumb, a tiny excited ant kid: high, quick, giggly child voice, American English, about 270 Hz',
   dot: 'Dot, a little ladybug who counts everything like a small teacher: bright, clear child voice, British English, precise consonants, about 255 Hz',
@@ -42,8 +46,9 @@ export const CATCH = {
   sixLegs: 'Six legs? In you go!',
   bzzt: 'BZZT! Not a bug!',
 };
-// Câu cửa miệng khi được hát (Musical Storytelling): mỗi câu một giai điệu cố định của kênh, giống nhau ở mọi tập (bậc theo giọng của bài
-// đang chơi). Không có ở đây thì câu cửa miệng nói đúng tốc độ chuẩn (QUALITY.md §7). Dùng: sing: { ...CATCH_TUNE.zoom, at: … }
+// Giai điệu cố định của câu cửa miệng (giống nhau ở mọi tập, bậc theo giọng của bài đang chơi). (19/11/2026) Không ai hát nữa: câu cửa
+// miệng vẫn NÓI đúng tốc độ chuẩn (QUALITY.md §7), giai điệu chỉ dùng làm `tune` (nhịp đặt câu vào phách, nhạc nền có thể chơi lại).
+// Dùng: tune: { ...CATCH_TUNE.zoom, at: … }  (mode trong đây chỉ để giữ biểu cảm / màu nhạc, không phải kiểu hát)
 export const CATCH_TUNE = {
   zoom: { mode: 'half-sing', notes: "4:.5 5:.5 6:1" },                   // "Let's zoom in!": đi lên, mở ra như ống kính. (18/11/2026) Fa–Sol–La thay Sol–La–Đô:
                                                                          // giọng hát của Miss Loupe về đúng giọng nói (~205 Hz như SHORT-015, trước đó 235 Hz)

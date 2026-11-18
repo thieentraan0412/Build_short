@@ -1,4 +1,6 @@
 """Nhóm kiểm "Chuẩn 11/2026b" (Task.md 17/11/2026: chuẩn sản xuất mới + Musical Storytelling, _shared/QUALITY.md §8).
+(19/11/2026) Kênh không hát nữa: nhóm "Bài hát" kiểm không còn câu hát, lời đọc theo phách (tune), giọng Miss Loupe như SHORT-015,
+điệp khúc nhắc lại với giai điệu ở nhạc nền (out/music.json "tunes"). Các phép đo câu hát chỉ còn chạy khi một bản cũ còn câu hát.
 Gọi từ _shared/qa.py khi timeline.json có "standard" ≥ "2026-11b" (tập dựng theo _shared/template/). Tập cũ không chạy nhóm này.
 Đọc: timeline.json (standard, song, beats, shots, secret, lines có sung / cta), cards.json, events.json, out/music.json,
 out/safezone.json (máy quay, kính, chữ móc, biểu cảm: _shared/tools/safezone.mjs --step 0.1), voice/sung.json, voice/asr-sung.json,
@@ -37,7 +39,7 @@ def run(C):
     # ---------- độ dài ----------
     if not LONG:
         lim = (0, 48) if A_EP else (15, 25)
-        row(GV, 'Độ dài', OK if lim[0] <= DUR <= lim[1] else FAIL, f'{DUR:.1f} s ({"tập A" if A_EP else "bản B"})', 'bản B 15–25 s, tập A ≤ 48 s (hát dài hơn nói: lines.mjs in quỹ thời gian)')
+        row(GV, 'Độ dài', OK if lim[0] <= DUR <= lim[1] else FAIL, f'{DUR:.1f} s ({"tập A" if A_EP else "bản B"})', 'bản B 15–25 s, tập A ≤ 48 s (lines.mjs in quỹ thời gian)')
 
     # ---------- 6 nhịp kể chuyện ----------
     B = TL.get('beats') or []
@@ -157,59 +159,85 @@ def run(C):
             f'trong {t_lim} s cuối, ≤ {d_ok:g} s, là câu hỏi hoặc một việc làm cụ thể gắn với bí mật; không comment / subscribe / like / share (CLAUDE.md, Made for Kids)')
 
     # ---------- bài hát ----------
+    # (19/11/2026, Task.md "giọng kính lúp như SHORT-015, sửa quy tắc cho các tập sau", QUALITY.md §8.3) KÊNH KHÔNG HÁT NỮA: mọi câu là câu
+    # nói bằng giọng TTS gốc của nhân vật; câu vào đúng phách của bài (tune), bài hát nằm ở nhạc nền (nhạc cụ chơi giai điệu điệp khúc).
     words = lambda l: len([w for w in l['text'].split() if re.search(r'[A-Za-z0-9]', w)])
     tot = sum(words(l) for l in LINES) or 1
-    sungw = sum(words(l) for l in LINES if (l.get('sung') or {}).get('mode') in MODES)
-    full = sum(words(l) for l in LINES if (l.get('sung') or {}).get('mode') == 'sing')
-    sh = sungw / tot; st = OK if .6 <= sh <= .8 else WARN if .5 <= sh <= .9 else FAIL
-    if st == OK and LONG and full / tot > .3: st = WARN
-    by = collections.Counter((l.get('sung') or {}).get('mode', 'speak') for l in LINES)
-    row(GS, 'Lời có nhịp hoặc giai điệu', st, f'{sh:.0%} số từ ({sungw}/{tot}); hát trọn {full / tot:.0%}; ' + ', '.join(f'{k} ×{n}' for k, n in by.most_common()),
-        '60–80 % số từ ở sing-talk / half-sing / sing, 20–40 % nói tự nhiên' + ('; hát trọn ≤ 30 %' if LONG else ''))
-    SJ = rd(os.path.join(FILM, 'voice', 'sung.json'))
-    sl = [l for l in LINES if (l.get('sung') or {}).get('mode') in MODES]
-    if sl:
+    sl = [l for l in LINES if (l.get('sung') or {}).get('mode') in MODES]                 # câu hát (bản cũ): không được còn
+    tl_ = [l for l in LINES if l.get('tune')]
+    row(GS, 'Không ai bị biến thành giọng hát', OK if not sl else FAIL,
+        'mọi câu là câu nói (giọng TTS gốc)' if not sl else 'còn câu hát: ' + ', '.join(f"{l['id']} ({l['sung']['mode']})" for l in sl),
+        'từ 19/11/2026 không dùng _shared/sing.py: viết tune thay cho sing (song.js), giọng nhân vật giữ nguyên như khi nói')
+    onb = sum(words(l) for l in tl_); sh = onb / tot
+    row(GS, 'Lời đọc theo phách', OK if sh >= .6 else WARN, f'{sh:.0%} số từ ({onb}/{tot}) ở {len(tl_)} câu theo phách (tune)',
+        '≥ 60 % số từ ở câu đặt vào phách của bài (tune: nốt đầu rơi đúng phách), phần còn lại nói tự nhiên')
+    # giọng Miss Loupe như SHORT-015 (QUALITY.md §9.10): cấu hình (lines.json) và số đo trên file giọng cuối
+    REF = {'loupe': dict(film='SHORT-015', hz=202., rng=7.9)}                              # đo trên films/short-015/voice (9 câu nói)
+    VL = rd(os.path.join(FILM, 'voice', 'lines.json'), []) or []
+    for who, ref in REF.items():
+        mine = [l for l in VL if any(L_['id'] == l['id'] and L_['who'] == who for L_ in LINES)]
+        if not mine: continue
+        bad_cfg = [f"{l['id']}: " + ', '.join(x for x in (('hát' if l.get('sing') else ''), ('uốn ngữ điệu' if l.get('emo') else ''),
+                   (f"tốc độ {l.get('speed')}" if not .66 <= float(l.get('speed', 0)) <= .91 else ''), (f"giọng {l.get('voice')}" if l.get('voice') != 'af_heart' else '')) if x)
+                   for l in mine if l.get('sing') or l.get('emo') or not .66 <= float(l.get('speed', 0)) <= .91 or l.get('voice') != 'af_heart']
+        meas = ''; st_m = OK
+        try:
+            import parselmouth, soundfile as sf_
+            hz_, rg_ = [], []
+            for l in mine:
+                y, sr_ = sf_.read(os.path.join(FILM, 'voice', l['id'] + '.wav')); y = y.mean(1) if y.ndim > 1 else y
+                F = parselmouth.Sound(y, sr_).to_pitch_ac(time_step=.01, pitch_floor=98, pitch_ceiling=466).selected_array['frequency']; F = F[F > 0]
+                if len(F) < 10: continue
+                med = float(np.median(F)); F = F[np.abs(12 * np.log2(F / med)) < 9]; hz_.append(med)
+                if len(l['text'].split()) >= 3: rg_.append(float(12 * np.log2(np.percentile(F, 90) / np.percentile(F, 10))))
+            if hz_:
+                mh, mr = float(np.median(hz_)), float(np.median(rg_)) if rg_ else None; dst = 12 * np.log2(mh / ref['hz'])
+                meas = f"; trung vị {mh:.0f} Hz ({dst:+.1f} nửa cung so với {ref['film']} {ref['hz']:.0f} Hz)" + (f", dải ngữ điệu {mr:.1f} nửa cung ({ref['film']} {ref['rng']})" if mr else '')
+                if abs(dst) > 1 or (mr is not None and mr < ref['rng'] - 2): st_m = WARN
+        except Exception as e: meas = f'; không đo được ({type(e).__name__})'; st_m = WARN
+        st = FAIL if bad_cfg else st_m
+        row(GS, f"Giọng {'Miss Loupe' if who == 'loupe' else who} như {ref['film']}", st, (f'{len(mine)} câu, TTS gốc' if not bad_cfg else 'sai: ' + '; '.join(bad_cfg)) + meas,
+            f"af_heart, tốc độ .765 (câu cửa miệng .9; câu dày chữ / CTA có pace riêng tới .66), không hát, không uốn ngữ điệu; trung vị trong ± 1 nửa cung của {ref['hz']:.0f} Hz, dải ngữ điệu ≥ {ref['rng'] - 2:.1f} nửa cung")
+    if sl:                                                                 # bản cũ còn câu hát: các phép đo của câu hát
+        SJ = rd(os.path.join(FILM, 'voice', 'sung.json'))
         if SJ is None or any(l['id'] not in SJ for l in sl): row(GS, 'Thật sự hát (bám nốt)', FAIL, 'thiếu voice/sung.json (chạy _shared/sing.py)', 'lock theo kiểu hát')
         else:
             low = [f"{l['id']} {SJ[l['id']]['lock']:.2f}" for l in sl if SJ[l['id']]['lock'] < LOCK[l['sung']['mode']]]
             row(GS, 'Thật sự hát (bám nốt)', OK if not low else WARN, ('thấp: ' + ', '.join(low)) if low else ', '.join(f"{l['id']} {SJ[l['id']]['lock']:.2f}" for l in sl),
                 'phần khung có thanh nằm trong ± 50–70 cent của nốt: sing ≥ 0,6 · half-sing ≥ 0,45 · sing-talk ≥ 0,3')
-            homes = voice_homes(LIB); off = []
-            for l in sl:
-                hz = SJ[l['id']].get('med_hz') or 0; h = homes.get(l['who'])
-                if hz and h is not None and abs(69 + 12 * np.log2(hz / 440) - h) > 2.5: off.append(f"{l['id']} {hz:.0f} Hz")
-            row(GS, 'Giọng hát giữ chất giọng nhân vật', OK if not off else WARN, ('lệch: ' + ', '.join(off)) if off else 'mọi câu hát quanh home ± 2,5 nửa cung',
-                'cao độ trung vị của câu hát gần home của giọng (_shared/voices.js): giọng nhất quán giữa các tập')
         AS = rd(os.path.join(FILM, 'voice', 'asr-sung.json'))
         if AS is None or any(l['id'] not in AS for l in sl): row(GS, 'Lời hát nghe rõ (Whisper)', FAIL, 'thiếu voice/asr-sung.json (chạy _shared/tools/asr_sung.py)', 'WER ≤ 0,15 (điệp khúc, sing-talk, half-sing) / 0,25 (sing)')
         else:
             badA = [f"{k}: {v['heard']}" for k, v in AS.items() if not v['ok']]
             row(GS, 'Lời hát nghe rõ (Whisper)', OK if not badA else FAIL, '; '.join(badA) or ', '.join(f"{k} {v['wer']:.2f}" for k, v in AS.items()),
                 'WER ≤ 0,15 (điệp khúc, sing-talk, half-sing) / 0,25 (sing); mọi từ khoá nghe đúng')
+    MJ = rd(os.path.join(OUT, 'music.json'), {}) or {}
+    played = {t['id'] for t in (MJ.get('tunes') or []) if t.get('played')}
+    sc = lambda l: l.get('sung') or l.get('tune') or {}
     ch = collections.defaultdict(list)
-    for l in sl:
-        if l['sung'].get('chorus'): ch[l['sung']['chorus']].append(l)
+    for l in sl + tl_:
+        if sc(l).get('chorus'): ch[sc(l)['chorus']].append(l)
     need = 3 if LONG else 2; tail = 30 if LONG else 6; best = None
     for name, ls in ch.items():
-        same = len({(l['text'], tuple((n['m'], round(n['d'], 3)) for n in l['sung']['notes'])) for l in ls}) == 1
+        same = len({(l['text'], tuple((n['m'], round(n['d'], 3)) for n in sc(l)['notes'])) for l in ls}) == 1
         late = any(l['t'] >= DUR - tail for l in ls); short_ = all(l['dur'] <= 3.4 and words(l) <= 8 for l in ls)
-        cand = (len(ls) >= need, same, late, short_, name, ls)
-        if best is None or cand[:4] > best[:4]: best = cand
-    if best is None: row(GS, 'Điệp khúc hát theo được', FAIL, 'không có câu nào ghi sing.chorus', f'≥ {need} lần, cùng lời cùng nốt, một lần trong {tail} s cuối, ≤ 8 từ')
+        music = all(l.get('sung') or l['id'] in played for l in ls)
+        cand = (len(ls) >= need, same, late, short_, music, name, ls)
+        if best is None or cand[:5] > best[:5]: best = cand
+    if best is None: row(GS, 'Điệp khúc nhắc lại, giai điệu ở nhạc nền', FAIL, 'không có câu nào ghi tune.chorus', f'≥ {need} lần, cùng lời cùng nốt, một lần trong {tail} s cuối, ≤ 8 từ')
     else:
-        n_ok, same, late, short_, name, ls = best
-        st = OK if all(best[:4]) else FAIL if not n_ok else WARN
-        row(GS, 'Điệp khúc hát theo được', st, f"'{name}' ×{len(ls)} ở " + ', '.join(f"{l['t']:.1f}" for l in ls) + f" s: \"{ls[0]['text']}\"" + ('' if same else '; lời / nốt khác nhau') + ('' if late else f'; chưa có lần nào trong {tail} s cuối') + ('' if short_ else '; dài quá'),
-            f'≥ {need} lần, cùng lời cùng nốt, một lần trong {tail} s cuối (nhắc lại trước CTA), mỗi lần ≤ 8 từ và ≤ 3,4 s')
-    MJ = rd(os.path.join(OUT, 'music.json'), {}) or {}
+        n_ok, same, late, short_, music, name, ls = best
+        st = OK if all(best[:5]) else FAIL if not n_ok else WARN
+        row(GS, 'Điệp khúc nhắc lại, giai điệu ở nhạc nền', st, f"'{name}' ×{len(ls)} ở " + ', '.join(f"{l['t']:.1f}" for l in ls) + f" s: \"{ls[0]['text']}\"" + ('' if same else '; lời / nốt khác nhau') + ('' if late else f'; chưa có lần nào trong {tail} s cuối') + ('' if short_ else '; dài quá') + ('' if music else '; nhạc chưa chơi giai điệu (music.json tunes)'),
+            f'≥ {need} lần, cùng lời cùng nốt, một lần trong {tail} s cuối (nhắc lại trước CTA), mỗi lần ≤ 8 từ và ≤ 3,4 s; nhạc cụ chơi giai điệu dưới câu (groove.py)')
     song = TL.get('song') or {}
     mot = song.get('motif') or []; used = list(MJ.get('motifs') or [])
-    if mot:                                                                # câu hát mở bằng đúng motif (cùng quãng, cùng tỉ lệ trường độ) cũng tính là một lần dùng
+    if mot:                                                                # câu mở bằng đúng motif (cùng quãng, cùng tỉ lệ trường độ) mà có người hát / nhạc chơi cũng tính một lần
         ms_, ds_ = [n['s'] - mot[0]['s'] for n in mot], [n['d'] / mot[0]['d'] for n in mot]
-        for l in sl:
-            ns = l['sung']['notes'][:len(mot)]
+        for l in sl + [l for l in tl_ if l['id'] in played]:
+            ns = sc(l)['notes'][:len(mot)]
             if len(ns) == len(mot) and [n['m'] - ns[0]['m'] for n in ns] == ms_ and all(abs(n['d'] / ns[0]['d'] - d) < .02 for n, d in zip(ns, ds_)):
-                used.append({'t': l['t'], 'inst': f"giọng hát {l['id']}"})
+                used.append({'t': l['t'], 'inst': f"giọng hát {l['id']}" if l.get('sung') else f"nhạc cụ dưới {l['id']}"})
     sig = tuple((n['s'] - mot[0]['s'], n['d']) for n in mot) if mot else ()
     dup = []
     for p in glob.glob(os.path.join(os.path.dirname(FILM), '*', 'timeline.json')):
@@ -235,15 +263,16 @@ def run(C):
             gap = ~busy[w0:w1]
             if gap.sum() < .25 * sr: continue
             g = float(np.sqrt(np.mean(mb[w0:w1][gap] ** 2)) + 1e-9); d = float(np.sqrt(np.mean(mb[a:b] ** 2)) + 1e-9)
-            res['sung' if (l.get('sung') or {}).get('mode') in MODES else 'speak'].append(20 * np.log10(g / d))
+            # (19/11/2026) câu theo phách (tune) là phần lời của bài: cùng ngưỡng với câu hát cũ (6–14 dB), nhạc đệm vẫn đủ dưới lời
+            res['sung' if ((l.get('sung') or {}).get('mode') in MODES or l.get('tune')) else 'speak'].append(20 * np.log10(g / d))
         sp, sg_ = (float(np.median(res[k])) if res[k] else None for k in ('speak', 'sung'))
         st = OK
         if sp is not None: st = OK if sp >= 8 else WARN if sp >= 5 else FAIL
         if sg_ is not None:
             s2 = OK if 6 <= sg_ <= 14 else WARN if 4 <= sg_ <= 20 else FAIL
             st = max((st, s2), key=[OK, WARN, FAIL].index)
-        row(GA, 'Nhạc lùi dưới giọng (duck)', cap('duck', st), f"dưới câu nói {sp:.1f} dB" if sp is not None else 'không đo được dưới câu nói' + '', 'dưới câu nói ≥ 8 dB, dưới câu hát 6–14 dB (nhạc ở dải 300–4000 Hz, so với khoảng trống ±1,5 s)')
-        if sg_ is not None: rows_last = C['rows'][-1]; rows_last['value'] += f'; dưới câu hát {sg_:.1f} dB'
+        row(GA, 'Nhạc lùi dưới giọng (duck)', cap('duck', st), f"dưới câu nói {sp:.1f} dB" if sp is not None else 'không đo được dưới câu nói' + '', 'dưới câu nói ≥ 8 dB, dưới câu theo phách / câu hát 6–14 dB (nhạc ở dải 300–4000 Hz, so với khoảng trống ±1,5 s)')
+        if sg_ is not None: rows_last = C['rows'][-1]; rows_last['value'] += f'; dưới câu theo phách {sg_:.1f} dB'
     except Exception as e:
         row(GA, 'Nhạc lùi dưới giọng (duck)', WARN, f'không đo được ({type(e).__name__})', 'dưới câu nói ≥ 8 dB, dưới câu hát 6–14 dB')
     runs = collections.defaultdict(list); free = collections.Counter(); seq = collections.defaultdict(list)

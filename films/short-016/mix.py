@@ -26,6 +26,8 @@ HIT = TL['hit']; BEAT = 60 / TL['bpm']; DUR = TL['dur']; N = int((DUR + .05) * S
 B = {k: np.zeros((NW if k in ('mus', 'fx') else N, 2)) for k in ('mus', 'fx', 'amb')}
 LINES = TL['lines']; L = {l['id']: l for l in LINES}
 end = lambda i: L[i]['t'] + L[i]['dur']
+# (19/11/2026) câu theo phách: hết đoạn nhạc của câu (nốt cuối của tune). Nhạc dâng sau câu theo đoạn nhạc, như khi còn hát; lời nói ngắn hơn ô của bài
+endm = lambda i: L[i]['t'] + max(n['t'] + n['d'] for n in L[i]['tune']['notes']) + .1 if L[i].get('tune') else end(i)
 B_ALB = max(HIT['zoomIn'][0], end('L11'))   # (18/11/2026) L11 ngân "leaves" tới qua cú chụp: nhạc cảnh sổ vào sau nốt cuối, không đổi hợp âm dưới lời
 def speaking(t, pad_=.05): return any(l['t'] - pad_ <= t < l['t'] + l['dur'] + pad_ for l in LINES)
 def mixl(*xs): n = max(len(x) for x in xs); return sum(np.pad(x, (0, n - len(x))) for x in xs)
@@ -129,8 +131,9 @@ strum(pluck, (72, 76, 79, 84), HIT['recall'], .16, .7)
 M(bassn(43, .3), DUR - .25, .9)
 
 # — cường độ theo cảnh (chuyển mềm 0,3 s): dâng ở khám phá / bất ngờ, hạ dưới lời —
-LEVEL = ((0, .92), (L['L01']['t'], .82), (end('L01'), .95), (S0, 1.0), (L['L02']['t'], .82), (HIT['heatOn'][0], 1.0), (L['L03']['t'], .76), (L['L04']['t'], .66), (end('L04'), .95),
-         (L['L05']['t'], .7), (end('L05'), .9), (L['L07']['t'], .72), (HIT['trees'][0], .84), (end('L07'), 1.1), (L['L08']['t'], .85), (end('L08'), .95), (L['L09']['t'], .82),
+# (19/11/2026) dưới câu theo phách (phần lời của bài) nhạc ≈ 0,8 như dưới câu hát trước đây (L03 .76 → .8, L04 .66 → .78, L07 .72 → .8): nhạc đệm dưới lời ≤ 8 dB
+LEVEL = ((0, .92), (L['L01']['t'], .82), (endm('L01'), .95), (S0, 1.0), (L['L02']['t'], .82), (HIT['heatOn'][0], 1.0), (L['L03']['t'], .8), (L['L04']['t'], .78), (endm('L04'), .95),
+         (L['L05']['t'], .7), (end('L05'), .9), (L['L07']['t'], .8), (HIT['trees'][0], .84), (endm('L07'), 1.1), (L['L08']['t'], .85), (endm('L08'), .95), (L['L09']['t'], .82),
          (HIT['lift'][0], .98), (L['L10']['t'], .7), (end('L10'), .85), (L['L11']['t'], .8), (B_ALB, .98), (L['L12']['t'], .58), (end('L12'), .92),
          (L['L13']['t'], .68), (end('L13'), .9), (L['L14']['t'], .7), (HIT['plop'][0], .55), (HIT['plop'][1] + .3, .92), (L['L15']['t'], .85),
          (L['L16']['t'], .68), (end('L16'), .95))
@@ -275,14 +278,14 @@ LV = {k: _lvl(y) for k, y in VY.items()}
 MED = {w: float(np.median([LV[l['id']] for l in LINES if l['who'] == w])) for w in {l['who'] for l in LINES}}
 # (18/11/2026) độ to theo cảm xúc: giải thích nhẹ hơn, hào hứng / ngạc nhiên / điệp khúc to hơn (cảnh thường và cao trào khác nhau rõ)
 # (18/11/2026, giọng chậm lại) L07 dài hơn, nửa sau nằm trên cao trào rừng hoá cam: nâng riêng câu này thay vì hạ nhạc (nhạc đệm dưới lời giữ ≤ 8 dB)
-VOX_TRIM = {'L07': 1.5, 'L01': 1.}   # L01: nốt hạ về giọng nói (lượt 4), nằm gần dải của nhạc móc
+VOX_TRIM = {'L07': 1.5}   # (19/11/2026, giọng như SHORT-015) bỏ L01 +2 dB (cho nốt hát thấp gần dải nhạc móc). Thử L01 / L04 / L08 +1 dB: 'Nope!' L02 lệch −4,2 dB so với các câu khác của cô, bỏ
 SUNGW = json.load(open(os.path.join(HERE, 'voice', 'sung.json'), encoding='utf-8')) if os.path.exists(os.path.join(HERE, 'voice', 'sung.json')) else {}
 def _bare(w): return ''.join(ch for ch in w.lower() if ch.isalpha() or ch == chr(39))
 for Ln in LINES:
     y = VY[Ln['id']] * 10 ** (float(np.clip(MED[Ln['who']] - LV[Ln['id']], -6, 6)) / 20)
-    sg = Ln.get('sung') or {}; ed = EMO_DB.get(Ln.get('emo'), 0.) + (CHORUS_DB if sg.get('chorus') else 0.) + VOX_TRIM.get(Ln['id'], 0.)
+    sg = Ln.get('sung') or Ln.get('tune') or {}; ed = EMO_DB.get(Ln.get('emo'), 0.) + (CHORUS_DB if sg.get('chorus') else 0.) + VOX_TRIM.get(Ln['id'], 0.)   # (19/11/2026) điệp khúc nói theo phách vẫn to hơn
     y = y * 10 ** (ed / 20)
-    if sg and Ln.get('em') and Ln['id'] in SUNGW:                                                   # câu hát: nhấn từ khoá (+1,5 dB)
+    if Ln.get('sung') and Ln.get('em') and Ln['id'] in SUNGW:                                       # câu hát (bản cũ): nhấn từ khoá (+1,5 dB)
         ws = Ln['text'].split(); kw = {_bare(k) for k in Ln['em']}
         sp = [(a, b) for i, a, b in SUNGW[Ln['id']].get('words', []) if i < len(ws) and _bare(ws[i]) in kw]
         y = accent(y, SR, sp, 1.5)
@@ -307,14 +310,17 @@ json.dump({'scenes': [dict(id=i, t0=round(a, 3), t1=round(b, 3), energy=en, amb=
 ve = uniform_filter1d(maximum_filter1d(np.abs(vox), int(.05 * SR)), int(.25 * SR))
 sungm = np.zeros(len(ve))
 for l in LINES:
-    if l.get('sung'): sungm[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1
+    if l.get('sung') or l.get('tune'): sungm[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1   # (19/11/2026) câu theo phách = phần lời của bài: nhạc đệm đủ như dưới câu hát cũ
 # (18/11/2026, lượt 4) câu nói của Albie, Dot rõ hơn nhạc 18–30 dB: nhạc lùi ít hơn dưới các câu đó, để nhạc đệm chung không tụt quá 8 dB
 # khi giọng Miss Loupe (hát thấp lại như giọng nói ở SHORT-015) được nâng riêng cho rõ lời
 otherm = np.zeros(len(ve))
 for l in LINES:
     if l['who'] != 'loupe': otherm[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1
 ve_m = ve * (1 - .25 * uniform_filter1d(sungm, int(.2 * SR)) - .2 * uniform_filter1d(otherm, int(.2 * SR)))
-mus = T.duck(mus, ve_m, .66, .3); fx = T.duck(fx, ve, .6, .3); amb = T.duck(amb, ve, .7, .5)
+# (19/11/2026) dưới câu theo phách (tune; trước đây câu hát) dải lời lùi nông hơn (.66 → .45): nhạc đệm dưới lời ≤ 8 dB (qa.py), nhạc vẫn lùi
+# 6–14 dB dưới câu theo phách và ≥ 8 dB dưới câu nói thường (qa_musical.py); speech_guard giữ lời rõ ≥ 11 dB
+mid_m = (.66 - .21 * uniform_filter1d(sungm, int(.2 * SR)))[:, None]
+mus = T.duck(mus, ve_m, mid_m, .3); fx = T.duck(fx, ve, .6, .3); amb = T.duck(amb, ve, .7, .5)
 mus, GUARD = T.speech_guard(mus, fx, vox, LINES, 11.)               # (Đệm lời) chỉ hạ nhạc ở câu còn thiếu độ rõ
 print('speech_guard:', ', '.join(f'{k} {s_:.1f} dB → −{c:.1f} dB' for k, s_, c in GUARD) or 'không câu nào phải hạ')
 # (18/11/2026, "hài hòa hơn") vang phòng nhỏ cho giọng (gửi −18 dB, 0,6 s, tối từ 4,5 kHz): đuôi câu và chỗ nghỉ giữa âm tiết không rơi về im tuyệt đối, giọng ngồi cùng không gian với nhạc

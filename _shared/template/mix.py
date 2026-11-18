@@ -1,9 +1,10 @@
 """Âm thanh của <TẬP> → out/mix.wav (48 kHz stereo) và stems (chuẩn 11/2026b, _shared/QUALITY.md §4, §8).
-python mix.py   (cần timeline.json + voice/*.wav từ tools/lines.mjs, tts.py, sing.py; events.json từ core/render/events.mjs)
-Khung tối thiểu: thay bảng cảnh nhạc (G.sec), phần viết tay, LEVEL và bảng tiếng động (SFX) bằng của tập. Ví dụ đầy đủ (bản thử đã xoá): git show 137d621:films/lab-musical/mix.py
-- Nhạc: lớp nhịp theo cảnh _shared/audio/groove.py với song=TL['song']: cảnh có câu hát dùng chords='song' và BPM của phần bài hát
-  (sai thì ValueError); dưới câu hát hợp âm đủ nhịp, không arp; câu 'sing' được nhạc cụ hát chính đánh đôi; G.motif đặt giai điệu đặc trưng.
-- Nhạc lùi dưới giọng: dưới câu nói ≈ −15 dB ở dải giọng, dưới câu hát ≈ −10 dB (ve_m); LEVEL dưới câu hát ≈ 0,8.
+python mix.py   (cần timeline.json + voice/*.wav từ tools/lines.mjs, tts.py; events.json từ core/render/events.mjs)
+Khung tối thiểu: thay bảng cảnh nhạc (G.sec), phần viết tay, LEVEL và bảng tiếng động (SFX) bằng của tập. Ví dụ đầy đủ: films/short-016/mix.py
+- (19/11/2026, QUALITY.md §8.3) không ai hát: câu theo phách (tune) là câu nói; bài hát nằm ở nhạc nền.
+- Nhạc: lớp nhịp theo cảnh _shared/audio/groove.py với song=TL['song']: cảnh có câu theo phách dùng chords='song' và BPM của phần bài hát
+  (sai thì ValueError); điệp khúc (tune.chorus) được nhạc cụ hát chính của cảnh chơi giai điệu (TUNE_G); G.theme ở khoảng trống; G.motif.
+- Nhạc lùi dưới giọng: dưới câu nói ≈ −15 dB ở dải giọng (ve_m; phần sungm chỉ còn cho bản cũ có câu hát).
 Không dùng mẫu âm thanh của bên thứ ba."""
 import os, sys, json, numpy as np, soundfile as sf, soxr
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -75,7 +76,7 @@ mus, fx = B['mus'], B['fx']
 # ---------- Lớp 4: nền theo bối cảnh (ambience.py: snow_garden, hive_warm, paper_room, leaf_snow, meadow, night, pond) ----------
 amb = B['amb']; amb += AMB.beds(DUR, [(a, b, nm) for _, a, b, _e, nm in SCENES], speaking=speaking, seed=1)[:len(amb)]
 
-# ---------- giọng (đã hát bằng _shared/sing.py) ----------
+# ---------- giọng (19/11/2026: mọi câu là giọng TTS gốc, không hát; không vang phòng / lọc trên giọng Miss Loupe, QUALITY.md §9.10) ----------
 vox = np.zeros(N)
 def _lvl(y): a = np.abs(y); act = y[a > a.max() * .1] if len(y) else y; return 20 * np.log10(np.sqrt(np.mean(act ** 2)) + 1e-9) if len(act) else -99.
 VY = {}
@@ -91,8 +92,8 @@ SUNGW = json.load(open(os.path.join(HERE, 'voice', 'sung.json'), encoding='utf-8
 def _bare(w): return ''.join(ch for ch in w.lower() if ch.isalpha() or ch == chr(39))
 for Ln in LINES:
     y = VY[Ln['id']] * 10 ** (float(np.clip(MED[Ln['who']] - LV[Ln['id']], -6, 6)) / 20)
-    sg = Ln.get('sung') or {}; y = y * 10 ** ((EMO_DB.get(Ln.get('emo'), 0.) + (CHORUS_DB if sg.get('chorus') else 0.)) / 20)
-    if sg and Ln.get('em') and Ln['id'] in SUNGW:
+    sg = Ln.get('sung') or Ln.get('tune') or {}; y = y * 10 ** ((EMO_DB.get(Ln.get('emo'), 0.) + (CHORUS_DB if sg.get('chorus') else 0.)) / 20)   # điệp khúc (tune.chorus) to hơn
+    if Ln.get('sung') and Ln.get('em') and Ln['id'] in SUNGW:                  # câu hát của bản cũ
         ws = Ln['text'].split(); kw = {_bare(k) for k in Ln['em']}
         y = accent(y, SR, [(a, b) for i, a, b in SUNGW[Ln['id']].get('words', []) if i < len(ws) and _bare(ws[i]) in kw], 1.5)
     s = int(Ln['t'] * SR); e = min(N, s + len(y)); vox[s:e] += y[:e - s]
@@ -114,7 +115,7 @@ json.dump({'scenes': [dict(id=i, t0=round(a, 3), t1=round(b, 3), energy=en, amb=
 ve = uniform_filter1d(maximum_filter1d(np.abs(vox), int(.05 * SR)), int(.25 * SR))
 sungm = np.zeros(len(ve))
 for l in LINES:
-    if l.get('sung'): sungm[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1
+    if l.get('sung') or l.get('tune'): sungm[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1   # (19/11/2026) câu theo phách: nhạc lùi ít hơn, đệm đủ
 ve_m = ve * (1 - .15 * uniform_filter1d(sungm, int(.2 * SR)))
 B['mus'] = T.duck(mus, ve_m, .82, .55); B['fx'] = T.duck(fx, ve, .6, .3); B['amb'] = T.duck(amb, ve, .7, .5)
 mix = B['mus'] + B['fx'] + B['amb'] + B['vox']

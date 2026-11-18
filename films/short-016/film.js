@@ -13,7 +13,7 @@ import { makeTalk, blinkAt, ex, look, toScreen, loupe, ARM, badge, shadow, subti
   titleSting, stickerSlots, flyBadge, albumGulp } from '/_shared/episode.js';
 import { W, GY, bigWord, qmark, ripple, snowflake, snowfall, winterSky, winterGround, HIVE, ballCenter, hiveBox, beeBall, heatWave, monarch,
   MAP, mapPt, mapPage, TREES, labelTag, ROCK, LEAF, rock, bigLeaf, poof, ladybugPile, pilePt, sleepyLadybug } from './props.js';
-import { LINES, CARDS, DUR, HIT, DOTCOUNT, ALBCOUNT, GULP } from './timeline.js';
+import { LINES, CARDS, DUR, HIT, DOTCOUNT, ALBCOUNT, GULP, wordAt, spanEnd } from './timeline.js';
 import { track, ss, ei } from '/core/lib.js';
 
 const K = keys => track(keys);
@@ -29,8 +29,9 @@ const BAND = (t, a, b, f = .2) => ss(seg(t, a, a + f)) * (1 - ss(seg(t, b - f, b
 const decay = (t, list, k = 6) => list.reduce((s, h) => s + (t >= h ? Math.exp(-(t - h) * k) : 0), 0);
 const arcP = (a, b, u, h) => [lerp(a[0], b[0], u), lerp(a[1], b[1], u) - h * 4 * u * (1 - u)];
 const TT = t => (t > 40 ? t - DUR : t);                                           // giờ của móc kéo về trước điểm lặp (t âm = cuối phim)
-// biểu cảm theo kiểu hát (QUALITY.md §8): hát trọn → excited · nửa hát → happy · sing-talk / nói → explaining
-const singExpr = t => { const l = lineAt(t); if (!l || l.who !== 'loupe') return null; const m = l.sung ? l.sung.mode : 'speak'; return m === 'sing' ? 'excited' : m === 'half-sing' ? 'happy' : 'explaining'; };
+// biểu cảm theo màu của câu (QUALITY.md §8): điệp khúc → excited · câu móc / khám phá → happy · giải thích / nói → explaining
+// (19/11/2026) không ai hát nữa: màu lấy từ tune.mode của câu nói theo phách (cùng biểu cảm như khi còn hát)
+const singExpr = t => { const l = lineAt(t); if (!l || l.who !== 'loupe') return null; const m = (l.sung || l.tune || {}).mode || 'speak'; return m === 'sing' ? 'excited' : m === 'half-sing' ? 'happy' : 'explaining'; };
 
 /* ================= bố cục sân khấu (toạ độ cảnh) ================= */
 const LW = { x: 730, r: 92 }, LX2 = 765, AB = { x: 505, k: 118 }, DOTK = 52, DOTL = 62;
@@ -102,7 +103,7 @@ function loupeStage(t) {
   } else {                                                                      // gag → điệp khúc 2 → CTA ôm → về chỗ cũ
     x = t < HIT.home[0] ? LX2 : lerp(LX2, LW.x, W01(t, HIT.home[0], HIT.home[1]));
     hop = t > HIT.home[0] ? .3 * Math.sin(Math.PI * seg(t, HIT.home[0], HIT.home[1])) : 0;
-    const nopeT = line('L14').t, ch2 = t >= line('L15').t && t < line('L15').t + line('L15').dur, ph = (t - line('L15').t) * 124 / 60;
+    const nopeT = line('L14').t, ch2 = t >= line('L15').t && t < spanEnd('L15'), ph = (t - line('L15').t) * 124 / 60;
     rot += t > nopeT && t < nopeT + .9 ? .2 * Math.sin((t - nopeT) * 18) : 0;
     if (ch2) { hop = .14 * Math.abs(Math.sin(ph * Math.PI)); rot += .08 * Math.sin(ph * Math.PI); }
     const hug = BAND(t, HIT.hug[0], HIT.hug[1], .2);
@@ -130,7 +131,7 @@ function albieStage(t) {
     hop = dance ? .16 * Math.abs(Math.sin(ph * Math.PI + .5)) : 0; tilt = dance ? .1 * Math.sin(ph * Math.PI) : 0; tabs = dance ? .6 : 0;
     name = dance ? 'laugh' : 'curious'; lookD = dance ? [.6, -.2] : [.9, 0];
   } else {
-    const g = BAND(t, HIT.giggle - .1, HIT.giggle + .9, .15), ch2 = t >= line('L15').t && t < line('L15').t + line('L15').dur, ph = (t - line('L15').t) * 124 / 60;
+    const g = BAND(t, HIT.giggle - .1, HIT.giggle + .9, .15), ch2 = t >= line('L15').t && t < spanEnd('L15'), ph = (t - line('L15').t) * 124 / 60;
     x = lerp(AB.x, 615, W01(t, HIT.hug[0], HIT.hug[0] + .35)) ; x = lerp(x, AB.x, W01(t, HIT.home[0], HIT.home[1]));
     hop = .06 * g * Math.abs(Math.sin(t * 16)) + (ch2 ? .16 * Math.abs(Math.sin(ph * Math.PI + .5)) : 0) + .3 * Math.sin(Math.PI * seg(t, HIT.hug[0], HIT.hug[0] + .35)) + .3 * Math.sin(Math.PI * seg(t, HIT.home[0], HIT.home[1]));
     tilt = ch2 ? .1 * Math.sin(ph * Math.PI) : -.12 * BAND(t, HIT.hug[0] + .3, HIT.hug[1], .2);
@@ -331,10 +332,10 @@ function art2(cc) { cc.strokeStyle = C.berry; cc.lineWidth = 9; cc.setLineDash([
 function art3(cc) { ladybugPile(cc, 0, 50, 1.3, 0, {}); dotAt(cc, 0, 44, 50, { E: ex(BY.dot, 'happy', { closed: 1 }) }); bigLeaf(cc, -10, 6, .55, .55, 0); }
 const FILLS = [{ t: HIT.stamp1, fill: W.coldA, draw: art1, r0: 100 }, { t: HIT.stamp2, fill: C.skyL, draw: art2, r0: 100 }, { t: HIT.stamp3, fill: C.mintL, draw: art3, r0: 100 }];
 const SLOTS = [{ x: 380, y: 232, r: 52 }, { x: 540, y: 232, r: 52 }, { x: 700, y: 232, r: 52 }];
-// điệp khúc 1: ô nào ứng với từ đang hát thì nảy lên (ô 3 còn trống: dấu "?" lắc)
+// điệp khúc 1: ô nào ứng với từ đang nói thì nảy lên (ô 3 còn trống: dấu "?" lắc). (19/11/2026) theo mốc từ thật của giọng nói
 function slotBounce(c, t) {
   const l = line('L08'); if (t < l.t || t > l.t + l.dur + .2) return;
-  const ns = l.sung.notes, at = w => l.t + ns.find(n => n.w === w).t;
+  const at = w => wordAt('L08', w);
   [[0, at(0)], [1, at(1)], [2, at(4)]].forEach(([i, h]) => {
     const p = Math.sin(Math.PI * seg(t, h, h + .4)); if (p <= 0) return;
     const S = SLOTS[i]; c.save(); c.strokeStyle = C.lemon; c.lineWidth = 8; c.beginPath(); c.arc(S.x, S.y, S.r * (1.15 + .25 * p), 0, TAU); c.stroke(); c.restore();
@@ -344,7 +345,7 @@ function slotBounce(c, t) {
 // điệp khúc 2: ba sticker bật lên trên đầu hai bạn theo từng từ khoá
 function chorusBadges(c, t) {
   const l = line('L15'); if (t < l.t || t > HIT.hug[1]) return;
-  const ns = l.sung.notes, at = w => l.t + ns.find(n => n.w === w).t;
+  const at = w => wordAt('L15', w);
   [[0, at(0), 330], [1, at(1), 540], [2, at(4), 750]].forEach(([i, h, x]) => {
     if (t < h) return;
     const p = back(seg(t, h, h + .35), 2.4), fade = 1 - ss(seg(t, HIT.hug[1] - .3, HIT.hug[1]));

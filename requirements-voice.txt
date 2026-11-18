@@ -5,3 +5,4 @@ edge-tts
 faster-whisper
 av<19   # av 19 dropped an option faster-whisper 1.2 passes when it opens a file (TypeError: metadata_errors)
 praat-parselmouth>=0.4.5   # _shared/sing.py: lời thoại hát (PSOLA của Praat: chỉnh cao độ và độ dài, giữ chất giọng); cài bằng wheel: pip install --only-binary=:all:
+onnx   # _shared/tools/phones.py: mốc âm vị của Kokoro (nối đầu ra độ dài của mô hình) cho sing.py hát liền hơi; thiếu thì sing.py dùng mốc từ của Whisper

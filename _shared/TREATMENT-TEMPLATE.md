@@ -16,21 +16,21 @@
 - **Khoảnh khắc wow** (bí mật xảy ra thành chuyển động gì, to cỡ nào): …
 - **Không trùng** các tập trước (côn trùng, bối cảnh, gag, nhạc): …
 - **Ba cấu trúc đã cân nhắc** (bảng: cấu trúc · ưu · nhược) và **lựa chọn**, kèm lý do.
-- **Rủi ro** (khung tối, cảnh khó đọc ở cỡ điện thoại, lời khó hát…) và cách xử lý.
+- **Rủi ro** (khung tối, cảnh khó đọc ở cỡ điện thoại, lời khó đọc vào nhịp…) và cách xử lý.
 
 ## 2. Hook tối ưu (0–3 s)
 
 | Nhịp | Hình | Lời / chữ | Tiếng |
 |---|---|---|---|
 | 0–1 s gây chú ý | hành động hoặc bất ngờ ở khung 0 | chữ móc 2–4 từ, to, **giữa phía trên** (`hookStack('mid')`) | nhạc từ giây 0, pop / whoosh / boing |
-| 1–2 s nhân vật phản ứng | phản ứng bằng hành động (giật mình, nhảy, va chạm) | câu móc (câu hỏi bất ngờ, tình huống hài, sự thật thú vị), **half-sing** giai điệu cao | … |
+| 1–2 s nhân vật phản ứng | phản ứng bằng hành động (giật mình, nhảy, va chạm) | câu móc (câu hỏi bất ngờ, tình huống hài, sự thật thú vị), đọc vào phách (`tune`) | … |
 | 2–3 s bí ẩn chưa giải | … | … | … |
 
 Không mở bằng giới thiệu dài; mặt nhân vật đứng dưới chữ móc (y 1000–1350), không phụ đề khi chữ móc trên hình.
 
 ## 3. Kịch bản hoàn chỉnh (6 nhịp)
 
-| Nhịp | Thời gian | Chuyện xảy ra | Lời (ai nói / hát) |
+| Nhịp | Thời gian | Chuyện xảy ra | Lời (ai nói) |
 |---|---|---|---|
 | Hook | 0–3 s | … | … |
 | Setup | … | giới thiệu nhân vật và vấn đề | … |
@@ -54,26 +54,26 @@ Mỗi 2–4 s một thay đổi đáng chú ý có mục đích (góc máy, zoom
 ## 5. Chuyển động và góc quay
 
 - Máy quay từng cảnh (đẩy, lùi, lia, rung ở điểm nhấn; cảnh dài có máy trôi); kính: cỡ, vị trí, độ phóng, lia trong kính (`loupe(…, { mag, pan })` để qa đo được).
-- Nhân vật: dáng, biểu cảm (luôn vui: `LOOK.cheer`), biểu cảm đổi theo kiểu hát (hát trọn: phấn khích; nửa hát: vui; sing-talk: giảng giải).
+- Nhân vật: dáng, biểu cảm (luôn vui: `LOOK.cheer`), biểu cảm đổi theo màu của câu (`tune.mode`: điệp khúc phấn khích; câu móc / khám phá vui; giải thích giảng giải).
 - Chuyển cảnh theo ngữ pháp kênh, mỗi chuyển cảnh một tiếng riêng.
 
 ## 6. Text và phụ đề
 
 - Chữ trên hình (chữ móc, chữ gag): …
-- Phụ đề: ≤ 7 từ mỗi tấm (`cardsOf`), mỗi tấm một câu, chữ hiện theo lúc hát / nói; **từ nhấn** (`em`) bằng màu và cỡ; từ khoá của bí mật (`SECRET.kw`): …
+- Phụ đề: ≤ 7 từ mỗi tấm (`cardsOf`), mỗi tấm một câu, chữ hiện theo lúc nói; **từ nhấn** (`em`) bằng màu và cỡ; từ khoá của bí mật (`SECRET.kw`): …
 - Vùng an toàn Shorts: phụ đề ở `SAFE.subY`, chữ và mặt ngoài vùng che.
 
-## 7. Voiceover (và Sing-along Dialogue)
+## 7. Voiceover (lời đọc theo phách, Sing-along)
 
-Giữ giọng của từng nhân vật ([`voices.js`](voices.js)). 60–80 % số từ có nhịp hoặc giai điệu, 20–40 % nói tự nhiên.
+Giữ giọng của từng nhân vật ([`voices.js`](voices.js)). **Không nhân vật nào hát** (QUALITY.md §8.3, 19/11/2026): mọi câu là giọng TTS gốc; ≥ 60 % số từ đọc vào phách của bài (`tune`), còn lại nói tự nhiên. **Miss Loupe luôn như SHORT-015** (§9.10): `af_heart`, lời dẫn .765, câu cửa miệng .9, không uốn ngữ điệu.
 
-| Câu | Ai | Lời | Kiểu (nói / sing-talk / half-sing / sing) | Giai điệu (`sing.notes`, bậc:phách) | Điệp khúc | Nhấn | Ghi chú |
+| Câu | Ai | Lời | Màu (nói / sing-talk / half-sing / sing: chỉ là biểu cảm) | Phách (`tune.at`, `tune.notes` bậc:phách) | Điệp khúc | Nhấn | Ghi chú |
 |---|---|---|---|---|---|---|---|
 | L01 | … | … | half-sing | `5:.5 5:.5 3:.5 …` | | … | câu hỏi: giai điệu cao, vui |
 
-Tốc độ (QUALITY.md §9.7): câu nói ≤ 3,5 âm tiết/s trên đoạn có tiếng, câu hát ≤ 3,0 âm tiết/s theo bản nhạc. Từ nhấn và nốt cuối 1–1,5 phách, từ phụ ½ phách; câu nửa hát `fill .85, glide .08` cho liền hơi. Tính trước câu nào cần chỗ trống để chậm lại.
+Tốc độ (QUALITY.md §9.7): câu nói ≤ 3,5 âm tiết/s trên đoạn có tiếng. Câu theo phách bắt đầu ở phách của `tune.at` (sớm hơn 0,12 s) với độ dài thật của bản nói; ô của bản nhạc phải dài hơn bản nói để không chồng câu sau. Tính trước câu nào cần chỗ trống để chậm lại.
 
-Chọn kiểu theo câu: câu hỏi tò mò → half-sing cao; khám phá → half-sing nhẹ có nhịp; giải thích khoa học → sing-talk rõ từ; bất ngờ → nhấn bằng giai điệu + tiếng hài; kết luận / điệp khúc → sing; câu cửa miệng, gag, CTA → nói (hoặc `CATCH_TUNE`). Có thể thêm Wow!, Hey!, Oops!, Look!, Yeah!. Không đổi kiến thức để vần.
+Màu theo câu (cho biểu cảm và nhạc nền, không phải kiểu hát): câu hỏi tò mò, khám phá → half-sing; giải thích khoa học → sing-talk; bất ngờ → nhấn bằng nhạc + tiếng hài; kết luận / điệp khúc → sing (nhạc cụ chơi giai điệu); câu cửa miệng, gag, CTA → nói (hoặc `CATCH_TUNE` làm `tune`). Có thể thêm Wow!, Hey!, Oops!, Look!, Yeah!. Không đổi kiến thức để vần.
 
 ## 8. SFX và nhạc nền
 
@@ -88,7 +88,7 @@ Một câu cụ thể, tự nhiên, ≤ 2 s, trong 4 s cuối, gắn với bí m
 - [ ] `sh films/<tập>/build.sh` chạy trọn; `qa.py` không còn CHƯA ĐẠT; mọi CẢNH BÁO đã sửa hoặc ghi lý do
 - [ ] Checklist thủ công cuối [`QUALITY.md`](QUALITY.md) và §8.5
 - [ ] Final Audio Checklist (mục F) đã nghe và điền
-- [ ] Dữ kiện đúng `FACTS.md`; không nói quá nguồn, kể cả trong lời hát
+- [ ] Dữ kiện đúng `FACTS.md`; không nói quá nguồn, kể cả trong điệp khúc
 
 ## A. Music Direction
 
@@ -96,7 +96,7 @@ Một câu cụ thể, tự nhiên, ≤ 2 s, trong 4 s cuối, gắn với bí m
 - **Giọng (key):** … trưởng · **BPM** theo phần: … (≥ 108) · **Điệu riêng của tập** (`SIGNATURE`): …
 - **Nhạc cụ chính:** ukulele, xylophone, marimba, pizzicato, piano, vỗ tay, bộ gõ vui…
 - **Cảm xúc âm nhạc** theo phần: mở đầu · diễn biến · cao trào · kết.
-- **Bài hát của tập** (`SONG` trong `timeline.js`): các phần (t0, BPM, vòng hợp âm), **motif** (giai điệu đặc trưng), **điệp khúc** (lời, giai điệu, số lần, vị trí).
+- **Bài hát của tập** (`SONG` trong `timeline.js`): các phần (t0, BPM, vòng hợp âm), **motif** (giai điệu đặc trưng), **điệp khúc** (lời, giai điệu do nhạc cụ chơi, số lần, vị trí).
 
 ## B. Music Timeline *(sinh tự động: `SOUND-PLAN.md`)*
 
@@ -106,11 +106,11 @@ Một câu cụ thể, tự nhiên, ≤ 2 s, trong 4 s cuối, gắn với bí m
 
 ## C. Sing-along Dialogue
 
-Bản phác ở mục 7; bản cuối *(sinh tự động)* trong `SOUND-PLAN.md` (nốt thật, kiểu hát, điệp khúc, từ nhấn). Nhịp điệu và cách nhấn từ: …
+Bản phác ở mục 7; bản cuối *(sinh tự động)* trong `SOUND-PLAN.md` (phách, điệp khúc, từ nhấn). Nhịp điệu và cách nhấn từ: …
 
 ## D. AI Music Generation Prompts *(sinh tự động: `SOUND-PLAN.md`)*
 
-Prompt tiếng Anh cho từng đoạn (genre, mood, BPM, instruments, vocal style, melody, energy changes, ending), sinh từ đúng thông số của cảnh. Chỉ để tham khảo: nhạc trong phim tổng hợp bằng code, giọng hát là giọng nhân vật.
+Prompt tiếng Anh cho từng đoạn (genre, mood, BPM, instruments, vocal style, melody, energy changes, ending), sinh từ đúng thông số của cảnh. Chỉ để tham khảo: nhạc trong phim tổng hợp bằng code; không có giọng hát.
 
 ## E. Sound Effects Timeline *(sinh tự động: `SOUND-PLAN.md`)*
 
@@ -119,13 +119,13 @@ Phác các tiếng chính và thời điểm; bảng đầy đủ từ `events.j
 ## F. Final Audio Checklist
 
 - [ ] Nhạc có sinh động không? · [ ] Có thay đổi theo cảnh không? · [ ] Lời thoại có giai điệu không?
-- [ ] Có đoạn nhạc dễ nhớ không? · [ ] Giọng hát có rõ không? · [ ] Nhạc nền có lấn át giọng không?
+- [ ] Có đoạn nhạc dễ nhớ không? · [ ] Lời có rõ, vào phách không? · [ ] Nhạc nền có lấn át giọng không?
 - [ ] SFX có khớp hành động không? · [ ] Âm nhạc có tạo cảm xúc và giữ chân người xem không?
 
 ## G. Vocal & Musical QC ([`QUALITY.md`](QUALITY.md) §9, Task.md 18/11/2026)
 
-- **Trước khi dựng:** từ khó trong lời (tên loài, từ ≥ 3 âm tiết, phụ âm cuối như bugs, legs, wings) và cách hát chúng; câu có dấu câu giữa câu thì chừa nghỉ; kiểu hát (vocal direction) của từng câu theo nhịp kể chuyện.
-- **Sau khi dựng:** `VOCAL-QC.md` *(sinh tự động bởi `tools/vocal_qc.py`)*: A bảng lỗi (LỖI / CẦN NGHE, timestamp, cách sửa) · B lời trước / sau sửa (trường `was`, `why` trong `timeline.js`) · C hướng dẫn phát âm (IPA, trọng âm, ngắt câu) · D prompt tạo giọng hát · E prompt tạo nhạc · F hướng dẫn trộn · G checklist. Câu LỖI: sửa rồi tạo lại đúng câu đó (`voice_regen.py`); câu CẦN NGHE: nghe và ghi kết luận vào báo cáo giao.
+- **Trước khi dựng:** từ khó trong lời (tên loài, từ ≥ 3 âm tiết, phụ âm cuối như bugs, legs, wings) và cách đọc chúng; câu có dấu câu giữa câu thì chừa nghỉ; màu của từng câu theo nhịp kể chuyện.
+- **Sau khi dựng:** `VOCAL-QC.md` *(sinh tự động bởi `tools/vocal_qc.py`)*: A bảng lỗi (LỖI / CẦN NGHE, timestamp, cách sửa) · B lời trước / sau sửa (trường `was`, `why` trong `timeline.js`) · C hướng dẫn phát âm (IPA, trọng âm, ngắt câu) · D prompt tạo giọng · E prompt tạo nhạc · F hướng dẫn trộn · G checklist. Câu LỖI: sửa rồi tạo lại đúng câu đó (`voice_regen.py`); câu CẦN NGHE: nghe và ghi kết luận vào báo cáo giao.
 
 ## H. Thiết kế âm thanh theo cảnh, 4 lớp ([`QUALITY.md`](QUALITY.md) §10, Task.md 18/11/2026 lượt 2)
 
@@ -139,8 +139,8 @@ Cảm xúc của từng câu (`emo`), "sợ hãi" làm thành giật mình vui (
 
 ## Video dài (chỉ điền khi là video dài)
 
-- **Bài hát chủ đề** (điệp khúc ≥ 3 lần: mở đầu, cuối mỗi chương, kết) và motif của video; mỗi chương một phần của bài (BPM, vòng hợp âm riêng).
-- Hát trọn ≤ 30 % số từ; phần giải thích dài dùng nói hoặc sing-talk; mỗi chương có mở, khám phá, kết (ghi trong `BEATS`).
+- **Bài hát chủ đề** (điệp khúc đọc theo phách ≥ 3 lần: mở đầu, cuối mỗi chương, kết; nhạc cụ chơi giai điệu) và motif của video; mỗi chương một phần của bài (BPM, vòng hợp âm riêng).
+- Không ai hát; phần giải thích dài nói tự nhiên; mỗi chương có mở, khám phá, kết (ghi trong `BEATS`).
 - `SHOTS` ≤ 5 s; CTA trong 10 s cuối, ≤ 3 s; chữ móc khung 1920×1080 ở `hookStack(…, 'wide')`.
 
 ## Ghi chú sản xuất · Báo cáo giao

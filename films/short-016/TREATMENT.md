@@ -103,7 +103,7 @@ Giọng giữ nguyên `voices.js`: Miss Loupe `af_heart` (home 56), Albie `bm_le
 |---|---|---|---|---|---|---|---|
 | L01 | Loupe | Where do bugs go when it snows? | half-sing | `3:.5 4:.5 5:.5 6:1 5:.5 4:.5 5:1.5` | | bugs, snows | câu hỏi: leo lên, hỏi lại ở Sol; GO, SNOWS ngân (lượt 3: 4 → 5 phách; lượt 4: giọng như SHORT-015) |
 | L02 | Loupe | Let's zoom in! | half-sing | `CATCH_TUNE.zoom` (`4:.5 5:.5 6:1`) | | zoom | câu cửa miệng hát đúng giai điệu của kênh (lượt 4: Fa–Sol–La thay Sol–La–Đô) |
-| L03 | Loupe | Look! A warm ball of bees! | half-sing | `1':1 r:.5 5:.5 6:1 5:.5 4:.5 3:1.25` | | warm, ball, bees | khám phá: reo lên rồi đi xuống nhẹ; liền hơi (`fill .85`) |
+| L03 | Loupe | Look! A warm ball of bees! | half-sing | `1':1 r:.5 5:.5 6:1 5:.75 4:.25 3:1.25` | | warm, ball, bees | khám phá: reo lên rồi đi xuống nhẹ; liền hơi (`fill .85`); "BALL-of" chấm dôi (19/11/2026) |
 | L04 | Loupe | Wow! Some bees shake their wing muscles! | sing-talk | `5:.5 r:.25 5:.5 3:.5 r:.25 5:.5 5:.5 6:.5 5:.5 2:1` | | bees, shake, muscles | giải thích: rõ từ; TTS chậm hơn (`speed .85`); liền hơi (`fill .75, hi 2`); thuật ngữ "HEATER BEES!" là chữ trên hình |
 | L05 | Albie | Do all butterflies stay? | nói | | | butterflies | giọng trầm tương phản; lượt 3: `pace .9`, uốn ngữ điệu nhẹ (`emo_k .3`) |
 | L06 | Loupe | Nope! | sing-talk | `CATCH_TUNE.nope` | | | "No-o-pe!" rơi xuống quãng năm, hài |
@@ -185,6 +185,59 @@ Phác: 0,02 ting · 0,05 brrr · 0,95 / 1,4 swish · 2,0 huh · 3,0 zoom/logo ·
 - **Âm thanh:** điệu `sleigh` lúc đầu toàn nốt ngắn, để lỗ im 0,1 s giữa hai phách → bass, đệm và chuông ngân dài hơn. Cảnh "đống lá" dùng `twinkle` quá thưa dưới câu hát (lỗ im ở 25,1 s) → `stride`. Chủ đề nhạc (`G.theme`) không phát lần nào vì phim hát gần như liền, không có khoảng 1,6 s → chủ đề theo đúng nhịp móc đơn của điệp khúc, vừa khoảng ≈ 0,8 s. Bốn cảnh trùng công thức với SHORT-007/010/015 → đổi nhạc cụ hát chính (vibraphone, dàn dây, đàn hạc, trống thép). Điệp khúc kết ở Đô cao làm cao độ hát trung vị 246 Hz (lệch `home` 3 nửa cung) → kết ở Sol.
 - **Hình:** kính lớn dời lên 60 px để mặt Miss Loupe không nằm dưới tấm phụ đề hai dòng; nền tuyết và trời rực hơn (độ rực 0,30 → 0,38); chữ trôi theo bản đồ không qua readcheck → nhãn đứng yên trên khung; Dot và đám bọ rùa to hơn trong kính và ở gag.
 - **`_shared/` được thêm (không đổi tập cũ):** `band.sleighbell` (chuông xe trượt), điệu `sleigh` + bộ gõ `sleigh` trong `groove.py`, `SIGNATURE['sleigh'] = 'short-016'`.
+
+### Giọng Miss Loupe như SHORT-015, không ai hát (Task.md 19/11/2026 lượt 6, QUALITY.md §8.3, §9.10)
+
+Chủ kênh: "đưa lại giọng của kính lúp về giống SHORT-015, sửa lại quy tắc cho các short sau và video sau". Hai lượt trước (hạ nốt về cao độ nói, hát liền hơi) vẫn giữ cô hát, nên ngữ điệu bám nốt. Chủ kênh chọn: cô **nói hẳn** như SHORT-015, **không nhân vật nào hát**, bài hát nằm ở nhạc nền, lời đọc vào phách.
+
+| Đo trên file giọng cuối (12 câu của Miss Loupe) | SHORT-015 | SHORT-016 khi hát | SHORT-016 nay |
+|---|---|---|---|
+| Cách tạo | `af_heart`, TTS gốc | `af_heart` + `sing.py` | **`af_heart`, TTS gốc** |
+| Tốc độ | .765 / câu cửa miệng .9 | .765–.9 rồi kéo theo nốt | **.765 / .9** (L09 .684, L16 .702 cho ≤ 4 âm tiết/s) |
+| Cao độ trung vị | 202 Hz | 196 Hz | **203 Hz** (+0,1 nửa cung) |
+| Dải ngữ điệu | 7,9 nửa cung | 4,1–4,8 (hát), 7,5 (hát-nói) | **7,9 nửa cung** |
+| Uốn ngữ điệu, vang, lọc | không | không | **không** |
+
+- **Lời:** 10 câu trước đây hát nay là câu nói theo phách (`tune`). Lời giữ nguyên, nốt đầu của bản nhạc rơi đúng phách cũ nên hình và mốc hành động không dời. Bỏ dấu phẩy chèn thêm cho bộ hát ở L01 ("…go, when it snows?"). 68 % số từ đọc vào phách.
+- **Nhạc:** điệp khúc "Huddle, fly away, or hide!" do nhạc cụ hát chính chơi giai điệu dưới câu (`groove.py`, `TUNE_G`) và ở các khoảng trống (`G.theme`); motif đặt 3 lần (celesta 33,9 s, nhạc cụ dưới L08 và L15).
+- **Mix:**
+  - Các mốc "nhạc dâng sau câu" (`LEVEL`) theo hết đoạn nhạc của câu (`endm`), không theo lúc lời hết (lời nói ngắn hơn ô của bài).
+  - Nhạc dưới câu theo phách ≈ 0,8 (L03, L04, L07) và lùi nông hơn (dải lời .45). Kết quả: nhạc đệm dưới lời 10,3 → 7,1 dB.
+  - Bỏ L01 +2 dB (dành cho nốt hát thấp).
+- **Hình:** sticker ở điệp khúc 1 nảy theo mốc từ thật của giọng nói (`wordAt`). Điệu nhảy điệp khúc 2 chạy hết đoạn nhạc (`spanEnd`), không dừng khi lời hết. Tiếng "burrow" sớm 0,15 s vì Dot bắt đầu chui ở 33,0 s (trước đây L11 đang hát ở đó nên không lộ).
+- **Kiểm (mới):** "Không ai bị biến thành giọng hát", "Lời đọc theo phách", "Giọng Miss Loupe như SHORT-015", "Điệp khúc nhắc lại, giai điệu ở nhạc nền" (`qa_musical.py`). `qa.py` "Nhạc đệm dưới lời" không tính 0,8 s nhạc hiệu logo là khoảng trống: 40 % năng lượng khoảng trống nằm ở đó (8,8 dB; bỏ logo 7,0 dB).
+- **Kết quả:** `qa.py` **92 đạt · 2 cảnh báo · 0 chưa đạt**. `VOCAL-QC.md` **0 lỗi · 3 cần nghe**: L01, L04, L08 lời hơn nhạc 11,2 / 11,5 / 11,9 dB (ngưỡng 10; báo khi < 12). Đã thử +1 dB cho ba câu: "Nope!" L02 lệch −4,2 dB so với các câu khác của cô, nên bỏ.
+- **Chờ chủ kênh nghe:** giọng cô đã đúng như SHORT-015 chưa; điệp khúc đọc trên giai điệu của nhạc cụ có dễ đọc theo không; L01, L04, L08 có bị nhạc lấn không.
+
+### Giọng liền hơi, không ngập ngừng (Task.md 19/11/2026 lượt 5, QUALITY.md §9.9; thay bằng lượt 6 ở trên: không hát nữa)
+
+Chủ kênh: "giọng nói của nhân vật bị ngập ngừng, không trơn tru". Đo trên file giọng cuối (khung 5 ms dưới đỉnh câu 35 dB): các câu hát im 10–31 % thời gian ở giữa các chữ, bản nói gốc của chính câu đó gần như liền. Câu nói chỉ ngắt ở dấu câu ("Six legs? / In you go!") và ở chỗ Dot đếm có chủ ý, nên giữ nguyên.
+
+| Câu hát | Im giữa các chữ trước | Sau | Độ khớp nốt trước → sau | Whisper small.en / base.en (sau) |
+|---|---|---|---|---|
+| L01 "Where do bugs go…" | 0,27 s (11 %) | **0** | 0,97 → 0,96 | đúng / đúng |
+| L02 "Let's zoom in!" | 0 | **0** | 0,80 → 1,00 | đúng / đúng |
+| L03 "Look! A warm ball of bees!" | 0,51 s (19 %) | **0,07 s** (+ 0,33 s dấu nghỉ có chủ ý sau "Look!") | 0,98 → 0,98 | đúng / đúng |
+| L04 "Wow! Some bees…" | 0,28 s (11 %) | **0,10 s** (sau "Wow!", có dấu nghỉ ¼ phách) | 0,77 → 0,78 | đúng / đúng |
+| L06 "Nope!" | 0 | **0** | 0,49 → 0,33 (ngưỡng 0,3) | đúng / đúng |
+| L07 "These monarchs fly…" | 0,58 s (18 %) | **0** | 0,89 → 0,97 | đúng / đúng |
+| L08 / L15 điệp khúc | 0,28 s (10 %) | **0** | 1,00 → 0,99 | đúng / "Huddle" → "I'll" (như bản trước) |
+| L09 "Who is hiding under here?" | 0,68 s (31 %) | **0** | 0,85 → 0,85 | đúng / đúng |
+| L11 "Some ladybugs nap…" | 0,97 s (25 %) | **0** | 0,72 → 0,81 | đúng / đúng |
+
+Đo trên `voice/<id>.wav` của bản dựng cuối, khung 5 ms dưới đỉnh câu 35 dB. "Nope!" bám nốt thấp hơn vì nay nguyên âm mới thật sự ngân sang nốt Đô thứ hai (trước đó gần như chỉ có nốt Sol); câu này là hát-nói, giữ 35 % ngữ điệu nói.
+
+- **Cách sửa (dùng chung, `_shared/sing.py` VERSION 2):**
+  - Hát liền hơi: cả câu kéo giãn một mạch, nguyên âm vào đúng phách, chỉ ngắt ở dấu nghỉ của bản nhạc.
+  - Mốc âm tiết lấy từ Kokoro (`_shared/tools/phones.py`) thay cho mốc từ của Whisper.
+  - Hạt giống cho PSOLA: dựng lại ra đúng bản đó.
+- **Ba chỗ đổi nhịp trong bản nhạc** (cùng nốt, cùng tổng số phách, cùng thời điểm câu; nên hình, phụ đề, nhạc không lệch). Mục đích: từ phụ có nguyên âm rất ngắn không phải ngân 6–7×.
+  - L03 "BALL-of" chấm dôi `5:.75 4:.25` (trước `5:.5 4:.5`). Nguyên âm của "of" Kokoro đọc chỉ 25 ms; ở ½ phách phải kéo 7,5× và Whisper nghe "ball of" thành "bottle of".
+  - L07 "ALL-the WAY-to" chấm dôi `5:1.25 4:.25 5:1.25 4:.25` (trước `5:1 4:.5 5:1 4:.5`): kéo lớn nhất 7,2× → 4,4×.
+  - L09 "HII-ding": ngân nguyên âm đôi của "hi" 1 phách, "-ding" ½ phách (trước "hi" ½, "-ding" 1): kéo lớn nhất 6,2× → 3,2×.
+- **Mix:** giọng hát nay vang liền, nhạc bị lùi suốt câu: nhạc ở dải giọng tụt 8,5 dB khi có lời (> 8, `qa.py` "Nhạc đệm dưới lời"). 5,3 dB trong đó là của chính nhạc (đo khi tắt duck). Đã sửa: dưới câu hát dải lời lùi nông hơn (`mid_m` .66 → .45), L01 +1 dB (`VOX_TRIM`, vì nhạc móc dưới câu này to nhất phim). Kết quả: 7,9 dB · nhạc vẫn lùi 6,8 dB dưới câu hát (6–14), 8,9 dB dưới câu nói (≥ 8) · lời rõ thấp nhất 11,2 dB (L01).
+- **Kết quả kiểm:** `qa.py` **91 đạt · 4 cảnh báo · 0 chưa đạt** (trước 89 · 6 · 0). `VOCAL-QC.md`: **0 lỗi · 7 cần nghe** (trước 12), phép đo mới "hát ngắt quãng trong cụm" không bắt câu nào.
+- **Chờ chủ kênh nghe:** câu hát nay liền hơi, có trơn tai không; các nguyên âm ngắn được ngân dài ("-ther" của L11, "or" của điệp khúc) có bị rè / máy không; "Huddle" ở điệp khúc (base.en vẫn nghe sai như bản trước, small.en đúng).
 
 ### Giọng Miss Loupe trả lại như SHORT-015 (Task.md 18/11/2026 lượt 4, QUALITY.md §9.8)
 

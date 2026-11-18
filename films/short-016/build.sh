@@ -1,8 +1,8 @@
 #!/bin/sh
 # Dựng lại toàn bộ tập bằng một lệnh, chạy từ bất kỳ đâu: sh films/<tập>/build.sh   (chuẩn 11/2026b: _shared/template/build.sh)
 # Giọng: Kokoro (offline, core/tts/tts.py), giọng và tốc độ từng nhân vật trong _shared/voices.js.
-# Câu hát (Musical Storytelling): bản nói qua Whisper khớp từng chữ, rồi _shared/sing.py hát bằng chính giọng đó, rồi _shared/tools/asr_sung.py
-# kiểm lời hát còn nghe rõ. Cuối cùng _shared/qa.py chạy cả nhóm "Chuẩn mới" (timeline.json có standard).
+# (19/11/2026, QUALITY.md §8.3, §9.10) Không ai hát: Miss Loupe nói bằng giọng SHORT-015, câu vào phách của bài (tune), bài hát ở nhạc nền.
+# Cuối cùng _shared/qa.py chạy cả nhóm "Chuẩn mới" (timeline.json có standard).
 set -e
 HERE=$(cd "$(dirname "$0")" && pwd)
 NAME=$(basename "$HERE")

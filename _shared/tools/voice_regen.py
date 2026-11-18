@@ -4,7 +4,8 @@ python _shared/tools/voice_regen.py films/<tập> [--force L04,L10] [--all] [--a
 Khoá của một câu = lời đưa vào TTS, giọng, tốc độ, pitch, ngôn ngữ, chữ Whisper phải nghe ra và bản nhạc hát (sing). Khoá ghi ở
 voice/regen-mark.json. Câu đổi khoá (hoặc thiếu file giọng, hoặc nêu trong --force) đi trọn chuỗi giọng trong thư mục tạm
 voice/_regen/:
-  core/tts/tts.py → _shared/voicefx.py → core/tts/asr_check.py (base.en rồi small.en) → _shared/sing.py → _shared/tools/asr_sung.py
+  core/tts/tts.py → _shared/voicefx.py → [_shared/tools/phones.py] → core/tts/asr_check.py (base.en rồi small.en) → _shared/sing.py
+  → _shared/tools/asr_sung.py   (phones.py: mốc âm vị Kokoro cho câu hát, 19/11/2026; khoá câu hát có thêm phiên bản của sing.py)
 Đạt hết thì chép file giọng (và bản nói gốc của câu hát) về voice/ và gộp các JSON (dur, words, words.sung, sung, asr-sung,
 sing-mark, fx). Câu không đổi giữ nguyên file và số đo cũ: một câu hát lỗi chỉ tạo lại đúng câu đó, không tạo lại cả bài.
 Thoát 1 nếu một bước rớt; khoá của các câu trong lượt đó không được ghi, lần sau làm lại; voice/_regen/ để lại để xem.
@@ -15,8 +16,8 @@ gộp. Khoá riêng (voice/emote-mark.json: emo, độ mạnh, từ nhấn, câu
 """
 import sys, os, json, hashlib, shutil, subprocess, argparse
 LIB = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
-JSONS = ('dur.json', 'words.json', 'words.sung.json', 'sung.json', 'asr-sung.json', 'sing-mark.json', 'fx.json')
-SUNG_ONLY = ('words.sung.json', 'sung.json', 'asr-sung.json', 'sing-mark.json')
+JSONS = ('dur.json', 'words.json', 'words.sung.json', 'sung.json', 'asr-sung.json', 'sing-mark.json', 'fx.json', 'phones.json')
+SUNG_ONLY = ('words.sung.json', 'sung.json', 'asr-sung.json', 'sing-mark.json', 'phones.json')
 
 
 def ekey(L, base):
@@ -27,6 +28,9 @@ def ekey(L, base):
 
 def key(L):
     k = {f: L.get(f) for f in ('text', 'voice', 'speed', 'pitch', 'lang', 'asr', 'sing')}
+    if L.get('sing') and L['sing'].get('legato', True):      # (19/11/2026) đổi bộ hát (sing.VERSION: hát liền hơi) thì câu hát tạo lại; câu nói không đổi khoá
+        sys.path.insert(0, os.path.join(LIB, '_shared')); import sing
+        k['sing_v'] = sing.VERSION
     return hashlib.sha1(json.dumps(k, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
 
 
@@ -55,6 +59,7 @@ def main():
              ([py, 'core/tts/asr_check.py', tl, tmp, '--lang', 'en'], {'WHISPER_MODEL': 'base.en'}),
              ([py, 'core/tts/asr_check.py', tl, tmp, '--lang', 'en'], {'WHISPER_MODEL': 'small.en'})]   # small.en sau cùng: words.json cho sing.py
     if any(L.get('sing') for L in todo):
+        steps.insert(2, ([py, '_shared/tools/phones.py', tl, tmp], {}))   # (19/11/2026) mốc âm vị Kokoro cho sing.py hát liền hơi (trên bản nói, sau voicefx)
         steps += [([py, '_shared/sing.py', tl, tmp], {}), ([py, '_shared/tools/asr_sung.py', tl, tmp], {'WHISPER_MODEL': 'small.en'})]
     for cmd, e in steps:
         r = subprocess.run(cmd, cwd=LIB, env=dict(env, **e))

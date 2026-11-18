@@ -89,6 +89,7 @@ def main():
     WSP = rd(os.path.join(VOX, 'words.json'), {}); EMS = rd(os.path.join(VOX, 'emote.json'), {})
     EVS = (rd(os.path.join(FILM, 'events.json'), {}) or {}).get('ev', [])
     V = node_json("import('./_shared/voices.js').then(m=>console.log(JSON.stringify({VOICES:m.VOICES,PROFILE:m.PROFILE||{}})))")
+    PLAIN = {k for k, v in ((V or {}).get('VOICES') or {}).items() if v.get('emote') is False}   # (19/11/2026) giữ ngữ điệu TTS gốc (Miss Loupe)
     TLJS = node_json(f"import('./{os.path.relpath(os.path.join(FILM, 'timeline.js'), LIB).replace(os.sep, '/')}').then(m=>console.log(JSON.stringify({{lines:(m.LINES||[]).map(l=>({{id:l.id,was:l.was||null,why:l.why||null,style:l.style||null}})),cards:(m.CARDS||[]).map(c=>({{line:c.line||null,text:c.text,t0:c.t0,parts:c.parts||[]}}))}})))")
     EXTRA = {x['id']: x for x in TLJS['lines']}; CARDLINE = TLJS['cards']
     only = set(filter(None, A.only.split(',')))
@@ -222,8 +223,35 @@ def main():
                     run = run + 1 if v_ else 0; best = max(best, run)
                 if best / sr > .15: cut.append(f'"{bare(ws_[i])}" ({best / sr * 1000:.0f} ms)')
             if cut: f.append(('CẦN NGHE', 'Rhythm', 'đứt giữa từ (im tuyệt đối): ' + ', '.join(cut), 'ngân âm tiết cuối của từ, âm tiết có nguyên âm dài; âm tiết đầu / giữa từ để ½ phách'))
+            # (19/11/2026, Task.md "giọng nhân vật ngập ngừng, không trơn tru") im lặng giữa hai âm tiết liền nhau của cùng một cụm (bản
+            # nhạc không có dấu nghỉ giữa hai nốt): nghe nhát gừng, ngập ngừng. Khung 5 ms dưới đỉnh câu 35 dB; > 100 ms là lỗi (chỗ ngậm
+            # của phụ âm tắc chỉ 30–80 ms), sau dấu câu cho tới 180 ms (một hơi thở) rồi mới cần nghe
+            hop5 = max(1, int(.005 * sr)); n5 = len(y) // hop5
+            e5 = 20 * np.log10(np.sqrt((y[:n5 * hop5].reshape(n5, hop5) ** 2).mean(1)) + 1e-9) if n5 else np.array([])
+            q5 = e5 < (e5.max() if len(e5) else 0) - 35
+            def run5(a_, b_):
+                seg_ = q5[max(0, int(a_ / .005)):max(0, int(b_ / .005))]; r_ = best_ = 0
+                for v_ in seg_: r_ = r_ + 1 if v_ else 0; best_ = max(best_, r_)
+                return best_ * .005
+            sy = sorted({n['syl'] for n in notes}); hard, soft = [], []
+            for k_ in range(len(sy) - 1):
+                n0 = [n for n in notes if n['syl'] == sy[k_]]; n1 = [n for n in notes if n['syl'] == sy[k_ + 1]]
+                if n1[0]['t'] - (n0[-1]['t'] + n0[-1]['d']) > .01: continue                    # có dấu nghỉ: được ngắt
+                g_ = run5(n0[0]['t'] + .03, n1[0]['t'])
+                wi, wj = n0[0]['w'], n1[0]['w']; punct = wi != wj and wi < len(ws_) and re.search(r'[,.!?;:]["\')]*$', ws_[wi])
+                pair = f'"{bare(ws_[wi]) if wi < len(ws_) else wi}" → "{bare(ws_[wj]) if wj < len(ws_) else wj}" ({g_ * 1000:.0f} ms)'
+                if g_ > (.18 if punct else .10): (soft if punct else hard).append(pair)
+            if hard: f.append(('LỖI', 'Rhythm', 'hát ngắt quãng trong cụm (nhát gừng): ' + ', '.join(hard), 'sing.py hát liền hơi (mặc định, không đặt legato: false); còn thì cho âm tiết có nguyên âm ngắn nốt ngắn hơn, tạo lại câu này'))
+            if soft: f.append(('CẦN NGHE', 'Rhythm', 'ngắt dài sau dấu câu trong cụm: ' + ', '.join(soft), 'nghe xem có thành ngập ngừng không; nếu có, đặt dấu nghỉ (r:) đúng chỗ hoặc bỏ dấu câu trong `say`'))
             mx = (SUNG.get(lid) or {}).get('max_stretch', 1)
-            if mx >= 2.6 and not sung.get('chorus'): f.append(('CẦN NGHE', 'Melody', f'nguyên âm bị kéo tới {mx:.1f}×', 'nốt ngắn hơn hoặc thêm luyến (~) để chia âm tiết'))
+            if (SUNG.get(lid) or {}).get('engine') == 'legato':
+                # (19/11/2026) hát liền hơi: nguyên âm ngân lấp cả ô nhịp là chủ ý (cách cũ để im phần còn lại), nên chỉ cần nghe khi một
+                # nguyên âm bị kéo ≥ 6×: nguyên âm ngắn (ɪ, ʌ, ə của "to", "of", "the") kéo dài quá có thể nghe rè, máy
+                st_ = (SUNG.get(lid) or {}).get('stretch') or []
+                hi_ = [f'"{bare(ws_[n0["w"]]) if n0["w"] < len(ws_) else n0["w"]}" {x:.1f}×' for k_, x in enumerate(st_) if x >= 6
+                       for n0 in [next(n for n in notes if n['syl'] == k_)]]
+                if hi_: f.append(('CẦN NGHE', 'Melody', 'nguyên âm ngắn ngân rất dài: ' + ', '.join(hi_), 'nghe xem có rè / máy không; nếu có, cho âm tiết đó nốt ngắn hơn (dồn sang âm tiết bên cạnh)'))
+            elif mx >= 2.6 and not sung.get('chorus'): f.append(('CẦN NGHE', 'Melody', f'nguyên âm bị kéo tới {mx:.1f}×', 'nốt ngắn hơn hoặc thêm luyến (~) để chia âm tiết'))
         elif art > SPOKEN_FAST: f.append(('CẦN NGHE', 'Rhythm', f'nói nhanh: {art:.1f} âm tiết/s trên đoạn có tiếng (> {SPOKEN_FAST})', 'pace thấp hơn cho câu này (giọng Dot có pitch +3,5 nửa cung nên nhanh hơn speed ~22 %), dời câu sau, hoặc bớt chữ'))
 
         # --- B. cao độ từng nốt, độ phẳng, vibrato ---
@@ -268,7 +296,9 @@ def main():
                 for a_, b_ in spans: sel |= (tt >= a_) & (tt < b_)
                 sel &= voiced
                 if sel.sum() > 2: emph = float(12 * np.log2(np.percentile(F0[sel], 80) / med_hz))
-                if emph is not None and emph < .5: f.append(('CẦN NGHE', 'Voice', f'từ nhấn chưa nổi: đỉnh cao độ {emph:+.1f} nửa cung so với cả câu', 'tăng em của emote.py hoặc kiểm từ nhấn'))
+                # (19/11/2026) nhân vật giữ ngữ điệu TTS gốc theo quy tắc (voices.js emote: false, Miss Loupe như SHORT-015): không đòi từ nhấn
+                if emph is not None and emph < .5 and who not in PLAIN and L.get('emote') is not False:
+                    f.append(('CẦN NGHE', 'Voice', f'từ nhấn chưa nổi: đỉnh cao độ {emph:+.1f} nửa cung so với cả câu', 'tăng em của emote.py hoặc kiểm từ nhấn'))
         # --- méo, click, quá tải, độ thở (HNR) ---
         clip = int((np.abs(y) >= .999).sum())
         if clip: f.append(('LỖI', 'Voice', f'{clip} mẫu quá tải (clipping)', 'hạ mức trước khi ghi file'))
@@ -467,7 +497,7 @@ def write_md(FILM, NAME, TL, per, EXTRA, V, SONG, MJ, crit, mixg, ipa, beat_of, 
     for k, p in per.items():
         o.append(f"- {k} ({p['mode']}): " + re.sub(r'([,.!?;:])\s+', r'\1 ‖ ', p['text']))
     # D. prompt tạo giọng hát
-    o += ['', '## D. Vocal Generation Prompt', '', 'Mỗi câu một đoạn riêng (3–8 s), cùng hồ sơ giọng (`PROFILE` trong `_shared/voices.js`). Câu lỗi chỉ tạo lại đúng câu đó. Trong phim, giọng hát là giọng TTS của chính nhân vật được `_shared/sing.py` uốn theo bản nhạc; prompt dưới đây dùng khi tạo bằng công cụ AI khác hoặc khi thu giọng thật.', '']
+    o += ['', '## D. Vocal Generation Prompt', '', 'Mỗi câu một đoạn riêng (3–8 s), cùng hồ sơ giọng (`PROFILE` trong `_shared/voices.js`). Câu lỗi chỉ tạo lại đúng câu đó. Trong phim, mọi câu là giọng TTS của chính nhân vật, không hát (từ 19/11/2026, QUALITY.md §8.3); prompt dưới đây dùng khi tạo bằng công cụ AI khác hoặc khi thu giọng thật.', '']
     lines_by = {l['id']: l for l in TL['lines']}
     for k, p in per.items():
         L = lines_by[k]; prof = PRO.get(p['who'], p['who'])

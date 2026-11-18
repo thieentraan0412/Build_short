@@ -1,1 +1,1 @@
-giọng của nhân vật kính loop trả lại giống với short 15
+Đưa lại giọng của kính loop về giống với short15, sửa lại quy tắt cho các short sau và video sau về giọng kính loop
