@@ -1,0 +1,137 @@
+[
+ {
+  "t0": 4.028,
+  "t1": 5.539,
+  "text": "Let's zoom in!",
+  "em": [
+   "zoom"
+  ]
+ },
+ {
+  "t0": 5.903,
+  "t1": 9.097,
+  "text": "Look! A warm ball of bees!",
+  "em": [
+   "warm",
+   "ball",
+   "bees"
+  ]
+ },
+ {
+  "t0": 9.117,
+  "t1": 12.18,
+  "text": "Wow! Some bees shake their wing muscles!",
+  "em": [
+   "bees",
+   "shake",
+   "muscles"
+  ]
+ },
+ {
+  "t0": 12.2,
+  "t1": 14.68,
+  "text": "Do all butterflies stay?",
+  "em": [
+   "butterflies"
+  ]
+ },
+ {
+  "t0": 14.741,
+  "t1": 15.911,
+  "text": "Nope!"
+ },
+ {
+  "t0": 15.931,
+  "t1": 17.102,
+  "text": "These monarchs fly",
+  "em": [
+   "monarchs",
+   "fly"
+  ]
+ },
+ {
+  "t0": 17.122,
+  "t1": 20.419,
+  "text": "all the way to Mexico!",
+  "em": [
+   "mexico"
+  ]
+ },
+ {
+  "t0": 20.96,
+  "t1": 24.303,
+  "text": "Huddle, fly away, or hide!",
+  "em": [
+   "huddle",
+   "fly",
+   "hide"
+  ]
+ },
+ {
+  "t0": 24.477,
+  "t1": 27.43,
+  "text": "Who is hiding under here?",
+  "em": [
+   "hiding"
+  ]
+ },
+ {
+  "t0": 27.45,
+  "t1": 29.55,
+  "text": "One, two, three... so many!",
+  "em": [
+   "many"
+  ]
+ },
+ {
+  "t0": 29.908,
+  "t1": 34.227,
+  "text": "Some ladybugs nap together under leaves!",
+  "em": [
+   "ladybugs",
+   "nap",
+   "leaves"
+  ]
+ },
+ {
+  "t0": 34.85,
+  "t1": 37.35,
+  "text": "Six legs? In you go!",
+  "em": [
+   "legs"
+  ]
+ },
+ {
+  "t0": 38.4,
+  "t1": 40.04,
+  "text": "Is it spring yet?",
+  "em": [
+   "spring"
+  ]
+ },
+ {
+  "t0": 40.15,
+  "t1": 41.35,
+  "text": "Nope!"
+ },
+ {
+  "t0": 42.16,
+  "t1": 45.33,
+  "text": "Huddle, fly away, or hide!",
+  "em": [
+   "huddle",
+   "fly",
+   "hide"
+  ]
+ },
+ {
+  "t0": 45.35,
+  "t1": 47.37,
+  "text": "Can YOU huddle like a bee?",
+  "em": [
+   "you",
+   "huddle",
+   "bee"
+  ]
+ }
+]

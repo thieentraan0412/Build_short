@@ -1,0 +1,748 @@
+[
+ {
+  "id": "L001",
+  "who": "loupe",
+  "text": "Whoa! Rollo! I can't stop!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L002",
+  "who": "crumb",
+  "text": "Can I hold the lens?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L003",
+  "who": "loupe",
+  "text": "Not NOW!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L004",
+  "who": "albie",
+  "text": "Miss Loupe is lost... at NIGHT!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L005",
+  "who": "crumb",
+  "text": "How do we find her... with no sun?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L006",
+  "who": "rollo",
+  "text": "Oh my. My ball feels... lighter.",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L007",
+  "who": "loupe",
+  "text": "Big secrets of tiny bugs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L008",
+  "who": "albie",
+  "text": "My garden map!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L009",
+  "who": "albie",
+  "text": "We are here... at home.",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L010",
+  "who": "crumb",
+  "text": "And Miss Loupe?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L011",
+  "who": "rollo",
+  "text": "She flew off... straight that way.",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L012",
+  "who": "albie",
+  "text": "Off my map?!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L013",
+  "who": "crumb",
+  "text": "I'll lead the way! I'll find her!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L014",
+  "who": "dot",
+  "text": "Team, count off! One, two, three, four, five!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L015",
+  "who": "blink",
+  "text": "I'll be the light!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L016",
+  "who": "albie",
+  "text": "I'll keep the map. Come home safe!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L017",
+  "who": "crumb",
+  "text": "Waggle wants to dance!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L018",
+  "who": "crumb",
+  "text": "Bees dance to show the way...",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L019",
+  "who": "crumb",
+  "text": "using the sun!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L020",
+  "who": "crumb",
+  "text": "Can you find the sun?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L021",
+  "who": "blink",
+  "text": "Nope!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L022",
+  "who": "rollo",
+  "text": "No sun tonight, little bee.",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L023",
+  "who": "crumb",
+  "text": "Then I'll use my antennae!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L024",
+  "who": "loupe",
+  "text": "I'm lost... so I stay put.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L025",
+  "who": "loupe",
+  "text": "My friends will find me!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L026",
+  "who": "crumb",
+  "text": "Ants follow smell trails!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L027",
+  "who": "crumb",
+  "text": "Sniff, sniff... this way!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L028",
+  "who": "crumb",
+  "text": "My family! Hi, everyone!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L029",
+  "who": "dot",
+  "text": "One, two, three, four, five, six ants!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L030",
+  "who": "crumb",
+  "text": "Follow the trail...",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L031",
+  "who": "crumb",
+  "text": "under the leaf...",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L032",
+  "who": "crumb",
+  "text": "over the pebble!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L033",
+  "who": "crumb",
+  "text": "The trail ends here!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L034",
+  "who": "rollo",
+  "text": "The edge of the garden.",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L035",
+  "who": "crumb",
+  "text": "No trail? Let me think...",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L036",
+  "who": "crumb",
+  "text": "My cousins in the desert...",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L037",
+  "who": "crumb",
+  "text": "keep track of their steps!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L038",
+  "who": "crumb",
+  "text": "Out... and straight back home!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L039",
+  "who": "dot",
+  "text": "I count steps too!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L040",
+  "who": "dot",
+  "text": "One, two, three, four, five...",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L041",
+  "who": "dot",
+  "text": "six, seven, eight, nine, ten!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L042",
+  "who": "dot",
+  "text": "Ten steps from the trail!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L043",
+  "who": "crumb",
+  "text": "So we can find our way back!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L044",
+  "who": "loupe",
+  "text": "I see close things... not far things!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L045",
+  "who": "loupe",
+  "text": "I wish cousin Telly were here!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L046",
+  "who": "crumb",
+  "text": "Which way is straight? It all looks the same!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L047",
+  "who": "rollo",
+  "text": "Leave that to me.",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L048",
+  "who": "rollo",
+  "text": "I look up... at the Milky Way.",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L049",
+  "who": "crumb",
+  "text": "Wow... a river of stars!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L050",
+  "who": "rollo",
+  "text": "It keeps me rolling straight.",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L051",
+  "who": "dot",
+  "text": "So straight!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L052",
+  "who": "crumb",
+  "text": "Oh! Clouds!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L053",
+  "who": "rollo",
+  "text": "Oh my. No stars... no straight!",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L054",
+  "who": "crumb",
+  "text": "Rollo is rolling in wiggles!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L055",
+  "who": "rollo",
+  "text": "Stars are back. Straight on!",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L056",
+  "who": "loupe",
+  "text": "Telly! Over here!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L057",
+  "who": "crumb",
+  "text": "Look! A flash! Far away!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L058",
+  "who": "dot",
+  "text": "One, two, three flashes!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L059",
+  "who": "crumb",
+  "text": "Uncle Telly! He sees far!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L060",
+  "who": "crumb",
+  "text": "Blink! Flash your secret code!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L061",
+  "who": "blink",
+  "text": "Blink! Blink! Blink!",
+  "voice": "bf_lily",
+  "speed": 1,
+  "pitch": 8
+ },
+ {
+  "id": "L062",
+  "who": "crumb",
+  "text": "She's over there! Let's go!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L063",
+  "who": "crumb",
+  "text": "Look closely... look closely...",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L064",
+  "who": "crumb",
+  "text": "A sparkle! Miss Loupe!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L065",
+  "who": "loupe",
+  "text": "Crumb! You found me!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L066",
+  "who": "crumb",
+  "text": "Hold on! We'll pull you out!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L067",
+  "who": "crumb",
+  "text": "Is it a monster?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L068",
+  "who": "dot",
+  "text": "Nope!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L069",
+  "who": "rollo",
+  "text": "It's the Giant. A gentle friend.",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L070",
+  "who": "crumb",
+  "text": "Hello, Giant! Thank you!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L071",
+  "who": "loupe",
+  "text": "Thank you, friend!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L072",
+  "who": "loupe",
+  "text": "Crumb, you looked closely... all by yourself!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L073",
+  "who": "crumb",
+  "text": "Can I hold the lens... NOW?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L074",
+  "who": "loupe",
+  "text": "Yes! NOW!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L075",
+  "who": "loupe",
+  "text": "Ants follow...?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L076",
+  "who": "crumb",
+  "text": "Smell trails!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L077",
+  "who": "loupe",
+  "text": "Rollo follows...?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L078",
+  "who": "rollo",
+  "text": "The stars!",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L079",
+  "who": "loupe",
+  "text": "And bees dance with...?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L080",
+  "who": "dot",
+  "text": "The sun!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L081",
+  "who": "albie",
+  "text": "You're home! All of you!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L082",
+  "who": "albie",
+  "text": "Look! My whole garden is glowing!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L083",
+  "who": "albie",
+  "text": "And a brand new corner!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L084",
+  "who": "crumb",
+  "text": "Six legs, six legs, count them with me!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L085",
+  "who": "dot",
+  "text": "Head, thorax, abdomen... one, two, three!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L086",
+  "who": "loupe",
+  "text": "Two little antennae, sniff and see...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L087",
+  "who": "albie",
+  "text": "That's a bug! That's a bug!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L088",
+  "who": "albie",
+  "text": "BZZT! Not you, Spindle!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L089",
+  "who": "loupe",
+  "text": "Look closely...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L090",
+  "who": "loupe",
+  "text": "and you'll always find your way!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L091",
+  "who": "crumb",
+  "text": "Wait! Did you spot Spindle?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L092",
+  "who": "loupe",
+  "text": "Crumb! Come back!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L093",
+  "who": "crumb",
+  "text": "Not NOW! Yippee!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L094",
+  "who": "albie",
+  "text": "Rollo! That's the end of the page!",
+  "voice": "bm_lewis",
+  "speed": 0.8,
+  "asr": "Rollo! That's the END of the page!"
+ },
+ {
+  "id": "L095",
+  "who": "rollo",
+  "text": "Oh my. It's a pond!",
+  "voice": "am_michael",
+  "speed": 0.88,
+  "pitch": -2
+ },
+ {
+  "id": "L096",
+  "who": "loupe",
+  "text": "So... what does Rollo follow?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L097",
+  "who": "dot",
+  "text": "The stars!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ }
+]

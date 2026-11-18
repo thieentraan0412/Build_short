@@ -131,7 +131,7 @@ export function resolveLine(L, S, V) {
   const pre = sg.pre ?? .12, tail = sg.tail ?? .1, t0 = at - pre;
   return {
     t: round(t0, 3), dur: round(t - t0 + tail, 3), warns,
-    sung: { mode: sg.mode, pre, tail, chorus: sg.chorus || null, ...(sg.speed && { speed: sg.speed }),
+    sung: { mode: sg.mode, pre, tail, chorus: sg.chorus || null, ...(sg.speed && { speed: sg.speed }), ...(sg.fill && { fill: sg.fill }), ...(sg.glide && { glide: sg.glide }), ...(sg.hi && { hi: sg.hi }),
       range: [Math.round(hzOf(V.home - 13)), Math.round(hzOf(V.home + 14))],
       notes: notes.map(n => ({ t: round(n.abs - t0), d: round(n.d), m: n.m, syl: n.syl, w: n.w })) },
   };
@@ -147,13 +147,16 @@ export function resolveLines(S, VOICES, lines) {
   });
 }
 
-// thời điểm của từng từ (giây, tuyệt đối): câu hát theo nốt, câu nói chia theo số âm tiết
-function wordTimes(L) {
+// thời điểm của từng từ (giây, tuyệt đối): câu hát theo nốt; câu nói theo mốc từ thật của giọng (times[id], từ voice/words.js do
+// _shared/tools/wordtimes.py ghi, 18/11/2026 Vocal QC) khi có và đủ từ, không thì chia theo số âm tiết
+function wordTimes(L, times) {
   const words = wordsOf(L.text);
   if (L.sung) return words.map((_, w) => {
     const ns = L.sung.notes.filter(n => n.w === w);
     return ns.length ? [L.t + ns[0].t - .04, L.t + ns.at(-1).t + ns.at(-1).d] : [L.t, L.t + L.dur];
   });
+  const real = times && times[L.id];
+  if (real && real.length === words.length) return real.map(([a, b]) => [L.t + a, L.t + Math.max(a + .05, b)]);
   const syl = words.map(w => Math.max(1, syllables(w))), tot = syl.reduce((a, b) => a + b, 0); let acc = 0;
   return syl.map(n => { const a = L.t + L.dur * acc / tot; acc += n; return [a, L.t + L.dur * acc / tot]; });
 }
@@ -170,12 +173,13 @@ function chunks(ws, max, at = 0) {
   return [...chunks(ws.slice(0, cut), max, at), ...chunks(ws.slice(cut), max, at + cut)];
 }
 // tấm phụ đề ≤ max từ, mỗi tấm thuộc một câu (không gộp lời hai người); chữ hiện từng từ theo lúc hát / nói (karaoke);
+// times: mốc từ thật của câu nói ({ L05: [[a, b], …] }, giây tính từ đầu câu), xem wordTimes;
 // em: từ được nhấn (màu + cỡ, _shared/episode.js subtitleEm); hide: [a, b] không có phụ đề (chữ móc đang trên hình)
-export function cardsOf(LINES, DUR, { max = 7, hide = null, minHold = 1.2, after = .4 } = {}) {
+export function cardsOf(LINES, DUR, { max = 7, hide = null, minHold = 1.2, after = .4, times = null } = {}) {
   const out = [];
   for (const L of LINES) {
     if (L.nosub) continue;
-    const ws = wordsOf(L.text), wt = wordTimes(L), em = (L.em || []).map(bare);
+    const ws = wordsOf(L.text), wt = wordTimes(L, times), em = (L.em || []).map(bare);
     const cut = L.split ? [0, ...L.split, ws.length].map((a, i, arr) => i + 1 < arr.length ? [a, arr[i + 1]] : null).filter(Boolean) : chunks(ws, max);
     for (const [a, b] of cut) {
       const part = ws.slice(a, b);

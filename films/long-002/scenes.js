@@ -7,6 +7,7 @@ import { N, SILK_LEGS, DESK_Y, deskRoom, CUP, ERASER, TAPE, PAGE, SLOTS, SILK_SL
 import { hookTitle } from '/_shared/episode.js';
 
 const L0 = (who, text) => lineBy(who, text).t;                   // lúc một câu bắt đầu
+const Llast = (who, text) => LINES.filter(l => l.who === who && l.text === text).at(-1).t;   // lần nói cuối của một câu lặp
 const Ld = (who, text) => { const l = lineBy(who, text); return [l.t, l.t + l.dur]; };
 
 /* ================= vị trí đặt sẵn trên bàn (cảnh rộng) ================= */
@@ -41,12 +42,17 @@ export function sHook(c, t) {
   if (t < w0) return hookPage(c, t);
   if (t < w1) {                                                   // lia nhanh: trang trượt ra, bàn học trượt vào
     const u = ei(seg(t, w0, w1));
-    c.save(); c.translate(-1920 * u, 0); hookPage(c, t, { noTitle: false }); c.restore();
+    c.save(); c.translate(-1920 * u, 0); hookPage(c, t, { noTitle: true }); c.restore();
     c.save(); c.translate(1920 * (1 - u), 0); deskHook(c, t); c.restore();
     c.fillStyle = `rgba(255,248,231,${.3 * Math.sin(Math.PI * u)})`; for (let i = 0; i < 9; i++) c.fillRect(0, 60 + i * 115, 1920, 16 + 8 * (i % 3));
-    return;
-  }
-  deskHook(c, t);
+  } else deskHook(c, t);
+  parkedTitle(c, t, w0, w1);
+}
+// chữ móc ở lại qua cú lia: thu nhỏ, đậu vào góc trên trái (không che Albie), rồi thu về 0 lúc ≈ 2,4 s (readcheck: đọc được ≥ 2 s)
+function parkedTitle(c, t, w0, w1) {
+  const u = ei(seg(t, w0, w1)), gone = ss(seg(t, w1 + .6, w1 + .85)); if (gone >= 1) return;
+  const X = lerp(600, 390, u), Y = lerp(300, 170, u), k = lerp(1, .6, u);
+  c.save(); c.translate(X, Y); c.scale(k, k); c.translate(-600, -300); hookTitle(c, HOOK_TITLE, t, { cx: 600, cy: 300, rot: -.04, gone }); c.restore();
 }
 // bàn học: Albie giật mình (vẫn cười), Miss Loupe trượt vào, Dot ló ra sau hũ bút, Crumb nhảy lên cục tẩy, kính xoay lóe
 function deskHook(c, t) {
@@ -194,7 +200,7 @@ export function babyPage(c, t) {
     photoFrame(c, 1360, 720, 330, 230, -.05, (cc, w, h) => { cc.fillStyle = C.lemon; cc.fillRect(0, 0, w, h); babyFlutter(cc, w / 2 + 20, h * .66, 150, t * .5, {}); }, 'first leaf');
   });
   loupeN(c, 1770, lpY(1080, 100), 100, t, { name: 'explaining', look: [-.7, -.2], pose: ARM.point, rot: .1 });
-  crumbAt(c, 170, 1075, 66, { E: crumbE('excited', t, { look: [.7, -.4] }), yaw: .8, arms: t > L0('crumb', 'Ooh! To make a cocoon?') ? WAVE_ARMS : UP_ARMS });
+  crumbAt(c, 170, 1075, 66, { E: crumbE('excited', t, { look: [.7, -.4] }), yaw: .8, arms: t > L0('crumb', 'Oh! To make a cocoon?') ? WAVE_ARMS : UP_ARMS });
 }
 function babyFilm(c, t, w, h) {
   c.fillStyle = C.skyL; c.fillRect(0, 0, w, h);
@@ -333,16 +339,20 @@ export function sLine(c, t) {
 function lensPOV(c, t, a) {
   const R = lerp(140, 470, eo(a)), cx = 960, cy = 500;
   c.save(); c.globalAlpha = Math.min(1, a * 1.5); c.fillStyle = 'rgba(30,27,58,.72)'; c.beginPath(); c.rect(0, 0, 1920, 1080); c.arc(cx, cy, R, 0, TAU, true); c.fill('evenodd'); c.restore();
+  hiddenLegsLens(c, t, cx, cy, R, Ld('dot', 'Seven... eight!')[0]);
+  dotAt(c, 300, 1000, 120, t, { name: 'excited', look: [.7, -.4], legsUp: talkAt(t, 'dot') ? [[.3, -.9, .5]] : null, yaw: .5 });
+}
+// vòng kính và lưng Spindle phóng to trong kính (dùng cả ở ảnh bìa, poster.js): số 7, 8 nảy trên hai chân giấu từ lúc s0, cách nhau 0,55 s
+export function hiddenLegsLens(c, t, cx, cy, R, s0, mag = 2.3 * R / 470) {
   c.save(); c.beginPath(); c.arc(cx, cy, R, 0, TAU); c.clip();
-  c.translate(cx, cy); c.scale(2.3, 2.3); c.translate(-SX.spindle, -(DESK_Y - 130)); lineupWorld(c, t, { only: 'spindle', back: true });
+  c.translate(cx, cy); c.scale(mag, mag); c.translate(-SX.spindle, -(DESK_Y - 130)); lineupWorld(c, t, { only: 'spindle', back: true });
   c.restore();
   c.lineWidth = 34; c.strokeStyle = C.berry; c.beginPath(); c.arc(cx, cy, R + 17, 0, TAU); c.stroke(); c.lineWidth = 6; c.strokeStyle = C.ink; c.beginPath(); c.arc(cx, cy, R + 34, 0, TAU); c.stroke();
   c.save(); c.globalAlpha = .5; c.lineWidth = 14; c.strokeStyle = C.white; c.beginPath(); c.arc(cx, cy, R - 40, -2.7, -2.0); c.stroke(); c.restore();
-  const [s0] = Ld('dot', 'Seven... eight!');
-  [...TUCK].sort((p, q) => p[0] - q[0]).forEach(([wx, wy], i) => { const x = cx + (wx - SX.spindle) * 2.3, y = cy + (wy - (DESK_Y - 130)) * 2.3, on = t > s0 + i * .55;
-    c.lineWidth = 9; c.strokeStyle = on ? C.lemon : 'rgba(255,227,77,' + (.5 + .4 * Math.sin(t * 9)) + ')'; c.beginPath(); c.arc(x, y, 58 + 6 * Math.sin(t * 8 + i), 0, TAU); c.stroke();
-    countPop(c, 7 + i, x, y - 100, t, s0 + i * .55, { r: 50 }); });
-  dotAt(c, 300, 1000, 120, t, { name: 'excited', look: [.7, -.4], legsUp: talkAt(t, 'dot') ? [[.3, -.9, .5]] : null, yaw: .5 });
+  const k = mag / 2.3;
+  [...TUCK].sort((p, q) => p[0] - q[0]).forEach(([wx, wy], i) => { const x = cx + (wx - SX.spindle) * mag, y = cy + (wy - (DESK_Y - 130)) * mag, on = t > s0 + i * .55;
+    c.lineWidth = 9 * k; c.strokeStyle = on ? C.lemon : 'rgba(255,227,77,' + (.5 + .4 * Math.sin(t * 9)) + ')'; c.beginPath(); c.arc(x, y, (58 + 6 * Math.sin(t * 8 + i)) * k, 0, TAU); c.stroke();
+    countPop(c, 7 + i, x, y - 100 * k, t, s0 + i * .55, { r: 50 * k }); });
 }
 // thế giới hàng nghi phạm (toạ độ 1920×1080)
 export function lineupWorld(c, t, o = {}) {
@@ -461,7 +471,7 @@ export function sConf(c, t) {
     // sticker tơ: trên chân Spindle → sang "tay" trang của Albie
     const sp = [SP.x - 70, SP.y - 120 - up * 800], tip = rigPt(AL.x, AL.y, AL.k, -.3, 0, albiePageTip([.75, -1.3, -.2])), at = [lerp(sp[0], tip[0] + 40, give), lerp(sp[1], tip[1] - 50, give) - Math.sin(Math.PI * give) * 120];
     if (t > H.c_sticker) silkSticker(c, at[0], at[1], 70, t, { glow: hold(t, H.c_sticker, 1e9, .3, .1), s: back(seg(t, H.c_sticker, H.c_sticker + .4), 2) });
-    crumbAt(c, 1560, DESK_Y, 66, { E: crumbE(t > L0('crumb', "But WHY can't she?") - .1 ? 'curious' : 'happy', t, { look: [-.7, -.3] }), yaw: -.7, q: hold(t, L0('crumb', "But WHY can't she?"), L0('albie', 'This book is for insects.') + .5) });
+    crumbAt(c, 1560, DESK_Y, 66, { E: crumbE(t > L0('crumb', "But WHY can't she join?") - .1 ? 'curious' : 'happy', t, { look: [-.7, -.3] }), yaw: -.7, q: hold(t, L0('crumb', "But WHY can't she join?"), L0('albie', 'This book is for insects.') + .5) });
     dotAt(c, 760, DESK_Y, 64, t, { look: [.7, -.3] });
   });
 }
@@ -485,7 +495,7 @@ export function sRecap(c, t) {
     bookSpread(c, t, { silk: false });
     caseStamp(c, 960, 560, t, H.stamp + .1);
   });
-  const q1 = L0('dot', 'Six!'), q2 = L0('dot', 'Eight!');
+  const q1 = Llast('dot', 'Six legs!'), q2 = Llast('dot', 'Eight legs!');   // câu trả lời ôn bài (Dot cũng nói "Eight legs!" lúc bẫy sập)
   if (t > q1 - .05) { const p = hold(t, q1 - .05, H.r_msg + .2, .2, .3); c.save(); c.globalAlpha = p; ansCard(c, 620, 330, '6', 'BUG', C.lime, t, q1); c.restore(); }
   if (t > q2 - .05) { const p = hold(t, q2 - .05, H.r_msg + .2, .2, .3); c.save(); c.globalAlpha = p; ansCard(c, 1300, 330, '8', 'SPIDER', C.pink, t, q2); c.restore(); }
   dotAt(c, 300, 1065, 110, t, { name: talkAt(t, 'dot') ? 'excited' : 'happy', look: [.6, -.5], legsUp: talkAt(t, 'dot') ? [[.3, -.9, .5], [.25, -.85, .3]] : null });
@@ -512,7 +522,7 @@ export function sRollo(c, t, minis) {
     const ring = seg(t, t0 + .5, t0 + .9); if (ring > 0) { c.lineWidth = 10; c.strokeStyle = C.berry; c.beginPath(); c.arc(-W / 2 + m.rx * W / 1920, -Hh / 2 + m.ry * W / 1920, 50 + 10 * Math.sin(t * 6), 0, TAU * ring); c.stroke(); }
     c.restore();
   });
-  crumbAt(c, 960, 1075, 70, { E: crumbE('excited', t, { look: [0, -.6] }), yaw: 0, arms: WAVE_ARMS });
+  crumbAt(c, 150, 1075, 80, { E: crumbE('excited', t, { look: [.6, -.6] }), yaw: .7, arms: WAVE_ARMS });   // góc trái, ngoài tấm phụ đề
   rolloAt(c, lerp(-200, 2100, seg(t, H.s_rollo, H.s_rollo + 6.5)), 1030, 70, t, lerp(-200, 2100, seg(t, H.s_rollo, H.s_rollo + 6.5)) + 200, { yaw: 1.4 });
 }
 
@@ -532,8 +542,8 @@ export function sBye(c, t) {
   // móc trở lại: sợi tơ lóe ngang khung đúng như khung 0
   if (t > H.recall) silkLine(c, [-60, 120], [1980, 420], t, { sag: 60, u: ei(seg(t, H.recall, H.recall + .35)) });
   if (t > H.s_end) {
-    loupeN(c, 1720, lpY(1080, 110), 110, t, { name: t > L0('crumb', 'Nope!') ? 'laugh' : 'explaining', look: [-.6, -.1], pose: t > L0('crumb', 'Nope!') ? ARM.up : ARM.point, rot: .1 });
-    crumbAt(c, 1480, 900, 74, { E: crumbE('laugh', t, { look: [-.6, -.3] }), yaw: -.7, arms: WAVE_ARMS, hop: .2 * pulse(t, L0('crumb', 'Nope!'), .4) });
-    if (t > L0('crumb', 'Nope!')) big(c, 'NOPE!', 960, 330, 200, C.berry, C.cream, t, L0('crumb', 'Nope!'));
+    loupeN(c, 1720, lpY(1080, 110), 110, t, { name: t > L0('dot', 'Nope!') ? 'laugh' : 'explaining', look: [-.6, -.1], pose: t > L0('dot', 'Nope!') ? ARM.up : ARM.point, rot: .1 });
+    crumbAt(c, 1480, 900, 74, { E: crumbE('laugh', t, { look: [-.6, -.3] }), yaw: -.7, arms: WAVE_ARMS, hop: .2 * pulse(t, L0('dot', 'Nope!'), .4) });
+    if (t > L0('dot', 'Nope!')) big(c, 'NOPE!', 960, 330, 200, C.berry, C.cream, t, L0('dot', 'Nope!'));
   }
 }

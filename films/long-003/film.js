@@ -47,7 +47,7 @@ function scene(c, t) {
 // vòng mở cho trẻ: 5 ô "cách tìm đường" ở mép trên (mặt trời · đường mùi · đếm bước · sao · ánh lóe), lấp dần theo từng chương.
 // Chỉ hiện ở các chương của đội; ẩn khi cắt sang Miss Loupe, trong bóng nghĩ, khi nhìn từ phía Uncle Telly và từ cao trào trở đi.
 export const WAYS = ['sun', 'trail', 'steps', 'stars', 'flash'];
-const FILL = () => [H.dizzy + .6, H.trailEnd + .8, H.s_lp2 - .9, H.clear + 1.0, H.tellyAns + 1.6];
+const FILL = () => [H.dizzy + .6, H.trailEnd + .8, H.s_lp2 - .9, H.clear + 1.0, H.slot5];
 const HIDE = () => [[H.s_lp1 - .45, H.s_ants], [H.s_think, H.s_count], [H.s_lp2 - .45, H.s_stars], [H.s_sky, H.s_track], [H.s_telly - .45, H.s_signal]];
 function wayHud(c, t) {
   if (t < H.s_sun || t >= H.s_edge - .45) return;

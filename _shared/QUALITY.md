@@ -22,6 +22,10 @@ Một video chỉ được giao khi:
 - Bắt buộc từ SHORT-011: `qa.py` báo **CHƯA ĐẠT** nếu có mặt không vui hoặc cảnh nhạc không vui; các tập trước chỉ CẢNH BÁO.
 - Mặt: bật `LOOK.cheer = true` ngay sau `LOOK.v = 2` ở đầu `film.js` (và `poster.js`, `sheets.js` nếu các file này tự đặt `LOOK`). Rig dùng chung tự đổi biểu cảm buồn, lo, cáu, nhăn sang dạng vui (`cheerExpr` trong `characters/stage.js`); đang nói thì miệng cười há.
 
+**Lượt "nhạc đệm dưới lời" 16/11/2026.** Các quy tắc ghi *(Đệm lời)* ở §4 đến từ yêu cầu "nhạc nền đang đồng điệu, cần vui nhộn và đổi nhạc vui tươi khi chuyển cảnh và đệm nhạc khi nhân vật thoại lời" (`Task.md`, 16/11/2026). Chẩn đoán, kỹ thuật và số đo trước/sau: [`PHAN-TICH-SHORTS/NHAC-DEM-LOI.md`](../PHAN-TICH-SHORTS/NHAC-DEM-LOI.md).
+- Bắt buộc từ LONG-002 và SHORT-016. `qa.py` có ba mục mới ("Nhạc đệm dưới lời", "Đổi cảnh nghe ra", "Chủ đề nhạc của tập").
+- Các tập dựng trước lượt này sẽ là CẢNH BÁO ở các mục đó cho tới khi dựng lại nhạc: thêm `accomp=True` + `G.theme`, `duck(.66, .3)`, `speech_guard`. Hình giữ nguyên.
+
 **Lượt chống trùng giữa các tập 11/2026 (lượt 2).** Các quy tắc ghi *(Kênh)* ở §4 đến từ yêu cầu "kiểm tra nhạc nền, đề xuất nhạc nền vui nhộn, tránh trùng lặp các short" (`Task.md`, 10/11/2026). Kết quả kiểm tra và đề xuất từng tập: [`PHAN-TICH-SHORTS/NHAC-NEN-KENH.md`](../PHAN-TICH-SHORTS/NHAC-NEN-KENH.md).
 - Áp dụng cho mọi Short dựng hoặc dựng lại nhạc từ nay. SHORT-001, 004, 006–010 đã dựng lại nhạc theo các quy tắc này.
 - SHORT-002, 003, 005 đã đăng nên giữ nguyên; chạy lại `qa.py` ở các tập này thì các mục *(Kênh)* có thể là CẢNH BÁO.
@@ -31,14 +35,22 @@ Một video chỉ được giao khi:
 - SHORT-010 đến 015 giữ nguyên như đã dựng (mốc so sánh "công thức cũ" với "công thức mới"); `qa.py` không chạy nhóm 8 ở các tập này.
 - Ở tập theo chuẩn mới, một số quy tắc cũ được viết lại cho lời hát (đánh dấu *11/2026b* ở §4 và §7); phần còn lại của §1–§7 vẫn giữ nguyên.
 
+**Lượt "Vocal & Musical QC" 18/11/2026.** Các quy tắc ở [§9](#9-vocal--musical-qc-18112026) đến từ [`Task.md`](../Task.md) ngày 18/11/2026 ("AI Vocal & Musical Quality Control", Short từ SHORT-016 trở đi).
+- Áp dụng cho mọi tập có `STANDARD = '2026-11b'` (Short từ SHORT-016, video dài từ LONG-002 khi dựng hoặc dựng lại giọng). `qa.py` có nhóm "9 Vocal QC" (đọc `out/vocal-qc.json`).
+- Tập dựng trước lượt này: chạy `_shared/tools/voice_regen.py <tập> --adopt` một lần rồi dùng `build.sh` mới (chép từ [`template/build.sh`](template/build.sh)).
+
+**Lượt "Âm thanh theo cảnh 4 lớp" 18/11/2026 (lượt 2).** Các quy tắc ở [§10](#10-thiết-kế-âm-thanh-theo-cảnh-4-lớp-18112026) đến từ [`Task.md`](../Task.md) (đánh giá âm thanh SHORT-016: giọng đều, nhạc chưa đủ cảm xúc, thiếu hiệu ứng theo hành động, thiếu âm thanh môi trường, LRA 2,7 LU quá phẳng).
+- Áp dụng cho tập có `STANDARD = '2026-11b'` (Short từ SHORT-016). `qa.py` có nhóm "10 Âm thanh theo cảnh"; nhóm "9 Vocal QC" thêm tiêu chí "Giọng có cảm xúc, có nhấn nhá".
+- Quyết định của chủ kênh: "sợ hãi" trong Task.md làm thành **giật mình vui** (`startled`), vì kênh luôn vui tươi; giọng vẫn là Kokoro, cảm xúc bằng uốn ngữ điệu (Praat).
+
 ## Quy trình
 
 | Bước | Việc phải làm theo bộ tiêu chí này |
 |---|---|
 | 1. Treatment (`TREATMENT.md`) | *(11/2026b)* Chép [`TREATMENT-TEMPLATE.md`](TREATMENT-TEMPLATE.md): đủ 10 đầu ra và Music Direction A–F của Task.md (6 nhịp, storyboard 2–4 s, Sing-along, AI prompts…). Viết rõ: nhịp móc 0–1 / 1–2 / 2–3 s; ba cấu trúc và lựa chọn; mỗi 3–5 s có chuyện gì mới (bảng cảnh); gag hoặc bất ngờ; thông điệp; chi tiết để xem lại (trứng phục sinh, vòng lặp); màu nhạc riêng của tập. *(SDP)* Phác **bảng Sound Design Plan** theo bảng cảnh: phong cách nhạc, BPM, nhạc cụ hát chính của từng cảnh, đâu là mở đầu / diễn biến / cao trào / kết. *(11/2026)* Thêm: **khoảnh khắc wow** (bí mật xảy ra thành chuyển động gì, kính cỡ nào); **người nói của từng câu** có trên hình không; **đạo cụ của gag** được gài ở đâu; tập A theo khung 45 s ([kế hoạch nâng cấp](../PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md#3-công-thức-mới-của-tập-a-khoảng-45-s)) |
-| 2. Giọng | Mỗi nhân vật có lời phải có trong [`voices.js`](voices.js). Nhân vật mới phải thử A/B. Mọi câu qua Whisper `small.en` và `base.en` (`build.sh` chạy cả hai). *(11/2026b)* Câu hát: bản nói qua Whisper khớp từng chữ, rồi [`sing.py`](sing.py) hát bằng chính giọng đó và [`tools/asr_sung.py`](tools/asr_sung.py) kiểm lời hát. Nhân vật hát lần đầu: chốt duyệt nghe thử với chủ kênh |
+| 2. Giọng | Mỗi nhân vật có lời phải có trong [`voices.js`](voices.js). Nhân vật mới phải thử A/B. Mọi câu qua Whisper `small.en` và `base.en` (`build.sh` chạy cả hai). *(11/2026b)* Câu hát: bản nói qua Whisper khớp từng chữ, rồi [`sing.py`](sing.py) hát bằng chính giọng đó và [`tools/asr_sung.py`](tools/asr_sung.py) kiểm lời hát. Nhân vật hát lần đầu: chốt duyệt nghe thử với chủ kênh. *(Vocal QC)* Giọng chỉ tạo lại cho câu đã đổi (`tools/voice_regen.py`); sau `mix.py`, `tools/vocal_qc.py` kiểm phát âm, hát, nhịp, độ nhất quán giọng, đồng bộ và ghi `VOCAL-QC.md` (A–G) |
 | 3. Hình | Dựng khung tĩnh của mọi cảnh trước khi render; soi lỗi che khuất, chữ đè, nhân vật lơ lửng, cắt mép. *(11/2026)* Soi cả vùng giao diện Shorts: `node _shared/tools/safezone.mjs films/<tập>` (số đo) và `python _shared/tools/safesheet.py films/<tập>` (khung có phủ vùng che) |
-| 4. Âm thanh | Bảng Soundtrack Timeline (`MUSIC.md`: màu nhạc, nhạc cụ, điểm nhấn viết tay) và bảng cue (`SOUND.md`) trước khi trộn. *(SDP)* Bảng cảnh nhạc khai báo trong `mix.py`: `Groove(..., plan=True)`, mỗi cảnh một `G.sec` / `G.mark` có `mood`, `arc`, `bpm`, `what`, `emo`, `why` ([`audio/groove.py`](audio/groove.py)); `python _shared/tools/soundplan.py films/<tập>` viết **`SOUND-PLAN.md`** (bảng 7 cột) |
+| 4. Âm thanh | Bảng Soundtrack Timeline (`MUSIC.md`: màu nhạc, nhạc cụ, điểm nhấn viết tay) và bảng cue (`SOUND.md`) trước khi trộn. *(SDP)* Bảng cảnh nhạc khai báo trong `mix.py`: `Groove(..., plan=True)`, mỗi cảnh một `G.sec` / `G.mark` có `mood`, `arc`, `bpm`, `what`, `emo`, `why` ([`audio/groove.py`](audio/groove.py)); `python _shared/tools/soundplan.py films/<tập>` viết **`SOUND-PLAN.md`** (bảng 7 cột). *(Đệm lời)* `Groove(..., plan=True, accomp=True)` + `G.theme(...)` (chủ đề của tập); trộn bằng `T.duck(mus, ve, .66, .3)` rồi `T.speech_guard(mus, fx, vox, LINES, 11.)`; điểm nhấn viết tay đặt **sau** câu thoại, không đè lên lời |
 | 5. Dựng | `build.sh` chạy readcheck, Whisper, `soundplan.py` ngay sau `mix.py`, và **`qa.py`** ở cuối (`qa.py` tự chạy `safezone.mjs` với Short 1080×1920) |
 | 6. Giao | Báo cáo gồm bảng `qa.py` (hoặc `out/qa.json`) và checklist thủ công, ghi rõ mục nào chưa đạt và lý do |
 
@@ -118,6 +130,10 @@ Một video chỉ được giao khi:
 | *(Kênh)* **Không trùng cảnh nhạc của Short khác**: không cảnh nào cùng điệu + nhạc cụ hát chính + đệm + bộ gõ với một cảnh của Short khác. Một cặp điệu + nhạc cụ hát chính đã có ở ≥ 3 Short khác là quá quen. Tập đăng trước được giữ công thức; tập sau đổi nhạc cụ hoặc điệu. Các cảnh lặp lại ở mọi tập (sổ, gag rình rập, cao trào, phép thuật trong kính) phối theo thể loại riêng của tập, không dùng cách phối mặc định. Tiếng "chụp" (marimba chạy lên + đàn hạc vuốt) và nhạc hiệu là tiếng của kênh, cố ý giống nhau. `soundplan.py` ghi `<tập>/music-plan.json` (được commit) để các tập so với nhau | `qa.py` + mục "Chống trùng lặp giữa các tập" trong `SOUND-PLAN.md` |
 | *(Kênh)* **Nhạc vui nhộn**: hồi hộp + khựng ≤ 20 % thời lượng; cảnh nhạc ở giọng thứ ≤ 20 % thời lượng. Cảnh rình rập, rón rén ưu tiên giọng trưởng và phong cách hài (`mood='funny'`) | `qa.py` |
 | *(Vui tươi)* **Nhạc luôn vui tươi** (từ SHORT-011, thay cho mục trên): mọi cảnh nhạc ở **giọng trưởng**; **không** phong cách hồi hộp (`mood='suspense'`), **không** điệu rình rập / rón rén / nhịp tim / lắng nghe / dừng nhịp (`sneak`, `tiptoe`, `tension`, `hush`, `stab`); mọi cảnh có điệu **≥ 108 BPM, năng lượng ≥ 2**. Chỗ khựng cho gag là khựng hài ≤ 1,2 s, giọng trưởng. Cảnh rình rập dùng điệu nảy, vui (`skip`, `hop`, `stride`, điệu riêng của tập); cảnh khám phá trong kính dùng `float` / `twinkle` ≥ 108 BPM; cảnh kết luôn vui (không bài ru) | `qa.py`: "Nhạc vui tươi" |
+| *(Đệm lời)* **Nhạc đệm khi nhân vật nói**, không chỉ còn bass + kick dưới lời. Lời thường chiếm 50–70 % thời lượng; nếu dưới lời nhạc chỉ còn nhịp trầm thì mọi cảnh nghe giống nhau ("đồng điệu"). Dưới lời giữ: (1) đủ nhịp đệm hợp âm của điệu, chỉ nhỏ lại, ở dải cao (≥ C5), nốt ngắn; (2) một **bè phụ ở dải cao** (C6–D7, 3–4 nốt hợp âm mỗi ô) bằng nhạc cụ sáng của cảnh, nên mỗi cảnh vẫn nghe ra màu riêng. Nhạc nhường giọng vừa đủ (`duck(.66, .3)`: dải giọng −9 dB, ngoài dải −3 dB). Câu nào lời chưa hơn nền 11 dB thì `speech_guard` hạ riêng nhạc ở câu đó | `qa.py`: nhạc ở dải giọng (300–4000 Hz) tụt ≤ 8 dB khi có lời, ≥ 2 nốt đệm có cao độ / giây lời (`music.json`); "Lời rõ" vẫn ≥ 10 dB |
+| *(Đệm lời)* **Đổi cảnh là đổi nhạc vui tươi, nghe ra ngay**, kể cả khi có lời ở điểm cắt: không "vào mềm" / "nhẹ dưới lời". Khi có lời: trống dồn, nốt mồi ở dải cao, hoặc "ta!" hợp âm cao của cảnh mới (`bump`), rồi phách đầu được nhấn theo phong cách | `qa.py`: "vào mềm" / "nhẹ dưới lời" ≤ 10 % số chỗ đổi cảnh |
+| *(Đệm lời)* **Chủ đề nhạc của tập**: một câu 6–8 nốt vui, dễ nhớ (`G.theme`), được nhạc cụ hát chính của từng cảnh hát lại ở câu đáp đầu cảnh, theo giọng, điệu và tốc độ của cảnh (biến tấu, không lặp nguyên), cách nhau ≥ 18–20 s | `qa.py`: ≥ 1 lần / 45 s |
+| *(Đệm lời)* **Điểm nhấn viết tay không đè lên lời**: mô-típ bí mật, "bum-bum", "ta-da" đặt ngay sau câu thoại hoặc trong khoảng trống; lớp đệm dày hơn thì chừa đỉnh cho bộ mã AAC (`T.master(mix, 10.5)`) | `qa.py`: lời rõ, đỉnh thật |
 | Có tiếng động cho mọi chuyển động chính: nhân vật (nhảy, giật mình, khoe), kính (chụp, lao vào, lùi ra), sổ (lật, dán), gag. *(SDP)* Bảng tiếng động theo hành động trong [`audio/toon.py`](audio/toon.py): boing, pop, whoosh (`swish`, `zip_`), va chạm nhẹ (`bonk`), bước chân (`footsteps`), chạy (`scurry`), nhảy (`boing` + `swish`), cười (`giggle`), ngạc nhiên (`surprise`), reo vui (`cheer`), chuyển cảnh (`swirl`, `revcymbal`), "ta-da" (`band.tada`) | `SOUND.md` + cột SFX của `SOUND-PLAN.md` |
 | *(SDP)* **Tiếng động không lạm dụng, không lấn lời**: ≤ 8 cue trong 1 s bất kỳ sau móc; mỗi câu lời hơn riêng tiếng động ≥ 11 dB (dải 300–4000 Hz) | `qa.py` |
 | Nền (ambience) theo bối cảnh: đêm (gió, dế xa), vườn (chim xa, gió lá)…, nhường giọng như nhạc | `mix.py` |
@@ -236,6 +252,114 @@ Một video chỉ được giao khi:
 | Tập | Ngày | Kết quả | Ghi chú |
 |---|---|---|---|
 | `films/lab-musical` (bản thử từ SHORT-015, không đăng; đã xoá, xem `git show 137d621:films/lab-musical/TREATMENT.md`) | 17/11/2026 | 67 đạt · 4 cảnh báo · 0 chưa đạt | Nhịp đổi hình đo được: khoảng dài nhất 1,3 s; 14/15 cú của `SHOTS` đo thấy. Ngưỡng "cắt vụn" đổi từ < 1,2 s sang < 1 s (hook đúng chuẩn có 3 nhịp trong 3 s). Duck: tập cũ 14–16 dB dưới câu nói (SHORT-006…015), lab 7,9 dB dưới câu nói (câu nói cạnh chỗ khựng) và 11,6 dB dưới câu hát: giữ ngưỡng, còn hiệu chỉnh. Tốc độ lời: lần lặp của điệp khúc không tính là lời mới (53 → 45 từ, 1,88 từ/s). Motif: câu hát mở bằng đúng motif tính là một lần dùng |
+| `films/short-016` (tập A thật đầu tiên theo chuẩn này) | 18/11/2026 | 77 đạt · 1 cảnh báo · 0 chưa đạt | Nhịp đổi hình đo được: khoảng dài nhất 3,2 s; 25/25 cú của `SHOTS` đo thấy. Duck 10,8 dB dưới câu nói, 6,6 dB dưới câu hát, cùng lúc nhạc đệm dưới lời chỉ tụt 7,2 dB (`accomp=True` + `song=`: hai ngưỡng thoả được cùng nhau). Phim hát gần như liền nên `G.theme` cần nhịp ngắn (móc đơn) mới tìm được khoảng trống. Whisper nghe sai chữ đầu câu bắt đầu bằng "H" khi hát ("Huddle" → "Cuddle", "Heater" → "Hear their"): sửa bằng `say`, `sing.speed .85`, nốt đầu dài hơn, hoặc đổi lời. Cảnh báo còn lại: trứng phục sinh không phải Rollo / Spindle |
+
+## 9. Vocal & Musical QC (18/11/2026)
+
+Áp dụng cho tập có `STANDARD = '2026-11b'`. Nguồn: [`Task.md`](../Task.md) ngày 18/11/2026. Mục tiêu: giọng hát thiếu nhi tự nhiên, phát âm tiếng Anh chuẩn, giai điệu vui, đồng bộ với hoạt hình; **không coi một câu là đạt chỉ vì nhạc nghe vui**.
+
+**Công cụ:**
+
+| Công cụ | Làm gì |
+|---|---|
+| [`tools/voice_regen.py`](tools/voice_regen.py) | Chỉ câu đổi khoá (lời TTS, giọng, tốc độ, pitch, bản nhạc hát) đi lại chuỗi giọng (tts → voicefx → Whisper base + small → `sing.py` → `asr_sung.py`) trong `voice/_regen/`; đạt hết mới gộp. Câu không đổi giữ nguyên file và số đo (Task.md §6: lỗi câu nào tạo lại câu đó). `--force L04` ép một câu; `--adopt` nhận bộ giọng đang có làm mốc |
+| [`tools/wordtimes.py`](tools/wordtimes.py) | Mốc từng từ thật của câu nói → `voice/words.js`; `timeline.js` đưa vào `cardsOf(…, { times })`: phụ đề câu nói chạy chữ đúng lúc nói (câu hát vốn theo nốt). `build.sh` chạy lại `lines.mjs` sau bước này |
+| [`tools/vocal_qc.py`](tools/vocal_qc.py) | Sau `mix.py`: nghe lại từng câu bằng hai Whisper và đo trên file giọng cuối + stem cuối; ghi `VOCAL-QC.md` trong thư mục tập (A bảng lỗi · B lời trước / sau sửa · C hướng dẫn phát âm · D prompt tạo giọng hát · E prompt tạo nhạc · F hướng dẫn trộn · G checklist) và `out/vocal-qc.json` |
+| [`qa_vocal.py`](qa_vocal.py) | Nhóm "9 Vocal QC" của `qa.py`: mỗi tiêu chuẩn của Task.md §10 một dòng |
+| [`voices.js`](voices.js) `PROFILE` | Hồ sơ giọng tiếng Anh của từng nhân vật (cho prompt mục D); nhân vật mới thêm một dòng khi chọn giọng |
+| [`voicefx.py`](voicefx.py), `mix.py` | Chặn đỉnh sau khi nâng giọng (hết quá tải ở giọng trẻ em); `mix.py` cân độ to từng câu về trung vị của chính nhân vật (± 6 dB) |
+
+### 9.1 Hai mức của một phát hiện
+
+Task.md: "không tự ý kết luận lỗi nếu chưa nghe hoặc kiểm tra được đoạn âm thanh". `vocal_qc.py` chia rõ:
+- **LỖI** (đã xác nhận bằng số đo) → `qa.py` **CHƯA ĐẠT**: sửa và tạo lại đúng câu đó.
+- **CẦN NGHE** (mới là dấu hiệu) → `qa.py` **CẢNH BÁO**: nghe đúng đoạn đó; sửa nếu đúng là lỗi, không thì ghi kết luận vào báo cáo giao.
+
+| Nhóm lỗi (Task.md §2) | LỖI khi | CẦN NGHE khi |
+|---|---|---|
+| A Pronunciation | cả hai Whisper (small.en, base.en) nghe sai / mất / thừa cùng một từ; từ khoá (`em`) không nghe ra ở cả hai; câu hát mất chữ (`sing.py` không đặt được âm tiết nào của một từ, §9.7) | một Whisper nghe sai; xác suất từ < 0,5 ở cả hai; âm cuối (bugs, legs, wings…) yếu hơn bản nói gốc > 9 dB |
+| B Singing | nốt hát / nửa hát mà < 30 % khung có thanh nằm trong dung sai (50 cent; sing-talk 70) và lệch > 1,5 lần dung sai, nguyên âm vang ≥ 120 ms | nốt lướt ngắn lệch; nguyên âm bị kéo ≥ 2,6× (trừ điệp khúc); > 60 % nốt dài có cao độ phẳng tuyệt đối (dễ thành "robot"); dao động cao độ > 110 cent trên nốt dài; độ trong (HNR) kém bản nói > 4 dB |
+| C Rhythm | cả hai Whisper nghe hai từ dính thành một | > 3,2 âm tiết / s (hát, theo bản nhạc, trừ điệp khúc), > 4,0 (nói, trên đoạn có tiếng; §9.7); nốt < 110 ms; không ngắt ở dấu câu giữa câu |
+| D Voice Consistency | quá tải (clipping), click ở chỗ nối âm tiết | cao độ trung vị lệch > 3,5 nửa cung, độ to lệch > 4 dB so với các câu cùng kiểu của cùng nhân vật |
+| E Synchronization | phụ đề khác lời; khẩu hình thiếu khung; lời hơn nhạc + tiếng động < 10 dB (300–4000 Hz) | chữ phụ đề hiện lệch tiếng > 0,3 s; lời hơn nền 10–12 dB |
+
+### 9.2 Viết lại lời và kiểm soát phát âm (Task.md §3–4)
+
+- Câu ngắn, mỗi câu một ý, từ cho trẻ em, vần tự nhiên; không đổi nghĩa khoa học để dễ hát; tên loài và từ khoa học giữ đúng chữ (hướng dẫn phát âm IPA ở mục C của `VOCAL-QC.md`).
+- Câu đã sửa lời ghi `was: '<lời cũ>'` và `why: '<lý do>'` trong `timeline.js` (bảng B). Kiểu hát mặc định theo nhịp kể chuyện (Task.md §5: móc → Energetic, playful · khám phá → Curious, melodic · giải thích → Clear rhythmic sing-talk · bất ngờ → Expressive, short musical reaction · hài → Funny voice, comedic timing · kết → Catchy, cheerful); khác thì ghi `style`.
+- Khi Whisper nghe sai một từ, sửa theo thứ tự (số liệu SHORT-016): (1) đổi dấu câu cho TTS bằng `say` ("Huddle!" thay "Huddle,"); (2) `sing.speed` chậm hơn; (3) âm tiết đầu dài hơn, thêm nghỉ ¼ phách giữa hai từ dính nhau; (4) đổi lời, giữ nội dung (thuật ngữ khó hát chuyển thành chữ trên hình).
+- Từ có phụ âm cuối (bugs, legs, wings, flies, pegs): nốt đủ ≥ ½ phách hoặc có nghỉ sau từ để âm cuối kịp vang.
+
+### 9.3 Chia nhỏ và tạo lại (Task.md §6)
+
+Mỗi câu một file giọng (`voice/<id>.wav`, 1–4 s), cùng một hồ sơ giọng. Câu lỗi: sửa `timeline.js` (hoặc `--force <id>`) rồi chạy `build.sh`: chỉ câu đó được tạo lại. Không tạo lại cả bài để "thử vận may".
+
+### 9.4 Trộn (Task.md §7, mục F)
+
+Giọng là lớp chính: lời hơn nhạc + tiếng động ≥ 10 dB mỗi câu; nhạc lùi dưới lời (§4, §8.4); độ to từng câu đã cân (± 6 dB về trung vị nhân vật); tiếng động rơi giữa câu được liệt kê ở mục F để soát. Nhạc theo §4 và §8 (ukulele, xylophone, marimba, pizzicato, piano, vỗ tay, bộ gõ nhẹ; không một giai điệu lặp suốt phim).
+
+### 9.5 Checklist thủ công thêm (mục G của `VOCAL-QC.md`, điền vào báo cáo giao)
+
+- [ ] Nghe mọi dòng CẦN NGHE và ghi kết luận (lỗi thật → tạo lại câu đó; không phải lỗi → lý do)
+- [ ] Giai điệu tự nhiên, hợp cảm xúc từng cảnh; giọng không robot, không chuột chip; vibrato vừa phải; không dấu autotune
+- [ ] Giọng hát nghe như chính nhân vật, cùng âm sắc giữa các đoạn; lời hát khớp hành động và khẩu hình
+- [ ] Phụ đề khớp 100 % với lời nghe được
+
+### 9.6 Bảng hiệu chỉnh
+
+| Tập | Ngày | Kết quả | Ghi chú |
+|---|---|---|---|
+| `films/short-016` (lượt 3, giọng chậm lại) | 18/11/2026 | 0 LỖI; `qa.py` 89 đạt · 6 cảnh báo · 0 chưa đạt | Câu hát 3,0–3,5 → 2,7–2,8 âm tiết/s (nốt dài hơn, phim vẫn 48 s); câu nói Dot 4,2 / 3,9 → 3,4 / 2,9; CTA 4,2 → 3,9 (1,91 s). Lỗi cũ lộ ra khi đo kỹ: chữ "it" mất hẳn khi hát L01 (Whisper vẫn đoán ra) → phép đo "mất chữ khi hát"; im giữa từ khi ngân âm tiết đầu từ → phép đo "đứt giữa từ"; Dot đếm nhanh hơn hình (0,22 s / số, hình 0,5 s / số) → hình đi theo mốc giọng |
+| `films/short-016` | 18/11/2026 | 0 LỖI · 14 CẦN NGHE (6/16 câu); `qa.py` 82 đạt · 6 cảnh báo · 0 chưa đạt | Lượt đầu báo 4 "lỗi", 3 trong đó do chính thước đo (câu không phụ đề có chủ đích khi chữ móc trên hình; dò cao độ nhảy quãng tám; đo lời / nền khác `qa.py`) → đã sửa công cụ: nốt chỉ là LỖI khi < 30 % khung trong dung sai và nguyên âm ≥ 120 ms. Lỗi thật đã sửa: giọng Dot quá tải 4 mẫu (`voicefx.py` chặn đỉnh); phụ đề câu nói lệch tiếng tới 0,55 s (`wordtimes.py`); hai "Nope!" to hơn các câu khác 4–5,6 dB (cân độ to từng câu); thiếu ngắt sau "Wow!"; CTA 5,0 âm tiết / s (chậm 15 %). Còn CẦN NGHE: base.en nghe "Huddle" ở điệp khúc chưa chắc (small.en đúng; TTS 0,8 thì chính bản nói bị nghe "Suddle", nên giữ 0,85), ba nốt lướt ngắn lệch (L07, L09, L11), cao độ trôi 263 cent trên nốt dài L07, L12 phụ đề lệch 0,33 s giữa hai mô hình |
+
+### 9.7 Tốc độ và độ liền hơi của giọng (18/11/2026, lượt 3)
+
+Chủ kênh nghe SHORT-016: "giọng đang nhanh", cần "chậm lại, hài hòa hơn". Ngưỡng cũ (4,8 / 5,5 âm tiết/s) để lọt. Từ nay:
+
+| Đo | Mục tiêu | CẦN NGHE khi | Cách sửa |
+|---|---|---|---|
+| Câu nói: âm tiết / giây trên đoạn có tiếng (bỏ khoảng lặng TTS ở hai đầu) | ≤ 3,5 | > 4,0 | `pace` riêng cho câu (Dot: giọng có `pitch` +3,5 nửa cung, `voicefx.py` nâng giọng bằng đổi mẫu nên nói nhanh hơn `speed` ~22 %: thường cần `pace` .8); dời câu sau; bớt chữ. CTA ≤ 2 s vẫn là giới hạn trên |
+| Câu hát: âm tiết / giây theo bản nhạc | ≤ 3,0 | > 3,2 (trừ điệp khúc) | từ nhấn và nốt cuối 1–1,5 phách, từ phụ ½ phách; dùng chỗ trống trước câu sau; không hạ BPM dưới 108 |
+| Đếm (one, two, three…) | mỗi số ≥ 0,35 s | | `say` với "…" giữa các số; hình bật số theo mốc từ thật (`voice/words.js`) |
+
+**Liền hơi (hài hoà với nhạc):** `sing: { …, fill, glide, hi }` ghi đè kiểu hát cho từng câu (`sing.py`). Mặc định của kiểu hát làm âm tiết ngắn, rời nhau ("nhát gừng"): half-sing `fill` .7, sing-talk `fill` .6 và kéo nguyên âm tối đa 1,6×. SHORT-016 dùng half-sing `fill .85, glide .08`; sing-talk `fill .75, glide .05, hi 2, speed .85`.
+
+**Chỉ ngân dài âm tiết cuối từ có nguyên âm dài** (go, fly, way, -ding, -co, leaves). `sing.py` kéo nguyên âm tới trần (half-sing 2,2×). Ở âm tiết đầu hoặc giữa từ, nguyên âm dò được thường ngắn (18–30 ms ở "hi-", "la-", "un-"), nên nốt dài để lại im tuyệt đối giữa từ: "hi……ding" 0,45 s, "la……dybugs" 0,32 s. `vocal_qc.py` báo CẦN NGHE "đứt giữa từ" khi khoảng im trong một từ > 0,15 s.
+
+**Mất chữ khi hát:** từ một âm tiết đọc nhanh trong bản nói ("when it snows": "it" 80 ms) có thể bị `sing.py` bỏ hẳn. Whisper vẫn tự đoán ra chữ đó, nên chỉ `vocal_qc.py` bắt được: từ không còn âm tiết nào trong bản hát → LỖI. Sửa bằng `say` có dấu phẩy trước cụm từ ("Where do bugs go, when it snows?").
+
+Đã thử và bỏ hai cách: kéo nguyên âm tới 3× (độ khớp nốt L07 tụt 0,91 → 0,78, L03 0,98 → 0,78) và dò "phần có thanh" rộng hơn. Cả hai gần như không lấp được các khoảng im.
+
+**Không làm chậm TTS nguồn của câu nửa hát:** nguồn chậm thì phụ âm dài ra rồi bị nén lại khi vào nốt. Ở `sing.speed .85`, Whisper nghe "monarchs fly" thành "men lie", "Who is" thành "Who was". Câu nửa hát chậm lại bằng nốt dài hơn, không bằng TTS chậm.
+
+**Câu nói chậm hơn:** khi câu nói chậm lại mà uốn ngữ điệu làm Whisper nghe sai (L05: "Do all" thành "Dual"), giảm độ uốn riêng câu đó bằng `emo_k` (L05: .5 → .3), không bỏ `emo`.
+
+## 10. Thiết kế âm thanh theo cảnh, 4 lớp (18/11/2026)
+
+Mỗi cảnh có đủ 4 lớp, thiết kế cùng nhau theo cảm xúc và diễn biến của cảnh (Task.md mục 5):
+
+| Lớp | Làm gì | Công cụ / khai báo | Kiểm |
+|---|---|---|---|
+| 1 · Voice | Lời có cảm xúc và nhấn nhá: mỗi câu một `emo` (happy · surprised · curious · excited · startled "giật mình vui" · calm · proud · playful); câu nói được uốn ngữ điệu theo `emo` (dải cao độ, đẩy từ đầu khi ngạc nhiên / giật mình, đuôi đi lên khi tò mò, đỉnh cao độ + dài thêm + to thêm ở từ nhấn `em`), giữ chất giọng (PSOLA giữ formant) và tổng độ dài câu; câu hát nhấn từ khoá +1,5 dB; độ to theo cảm xúc (giải thích −2,5 dB … hào hứng +1,5 dB, điệp khúc +1,5 dB); nén giọng nhẹ (2,5:1) để giữ chênh lệch | `emo` trong `timeline.js` · [`emote.py`](emote.py) (bước 2 của `voice_regen.py`, có Whisper kiểm lại) · `EMO_RANGE` trong `voices.js` (Albie, Rollo dải hẹp) · `EMO_DB` trong `mix.py` | `vocal_qc.py`: dải cao độ câu nói ≥ 4 nửa cung, từ nhấn cao hơn cả câu ≥ 0,5 nửa cung, Whisper vẫn nghe đúng |
+| 2 · Music | Nhạc đổi theo cảnh (§4, §8) và **mức năng lượng của cảnh**: `calm` −6 dB · `normal` −2,5 · `high` 0 · `peak` +2 cho nhạc và nền (tiếng động một nửa), áp **sau** bước lấp lỗ im; cao trào có riser, chũm chọe, kèn chặn, timpani; điệp khúc có vỗ tay; tình huống bất ngờ có stinger | `SCENES` + `energy_gain` trong `mix.py` → `out/scenes.json` | `qa.py`: LRA 4–9 LU; cao trào to hơn cảnh êm ≥ 3 LU (độ to ngắn hạn 3 s) |
+| 3 · SFX | Mỗi hành động một tiếng đúng lúc: di chuyển (bước chân, `snowstep` trên tuyết, nhảy, đáp), bay (vo ve `flybuzz`, gió `gust`, vỗ cánh), xuất hiện / biến mất (pop, `textpop` cho chữ to, sticker), va chạm, bất ngờ (bonk, stinger), chuyển cảnh (whoosh, lật trang, gập trang); chuỗi nhịp có chủ đích ghi `run` | `EV` trong `timeline.js`, bảng `SFX` trong `mix.py`, `toon.py` | [`tools/av_sync.py`](tools/av_sync.py): ≥ 85 % điểm chuyển động mạnh (đo trên video) có tiếng trong ± 0,2 s; không tiếng nào lệch > 0,15 s |
+| 4 · Ambient | Nền đúng bối cảnh, có ở mọi cảnh có chuyển động: vườn tuyết (gió lạnh có cơn, gió rít khẽ, chim mùa đông xa, tuyết lách tách), trong tổ ong (rì rầm ấm), trang sổ / bản đồ (phòng yên tĩnh, giấy), đống lá (xào xạc), bãi cỏ, vườn đêm, mép ao; chuyển cảnh crossfade 0,3 s; nhường giọng (`duck .7/.5`); chi tiết điểm xuyết né lời | [`audio/ambience.py`](audio/ambience.py) `beds(DUR, scenes)`; stem `out/stem_amb.wav` | `qa.py`: nền có ở ≥ 95 % số giây; mỗi cảnh có lớp nền |
+
+**Cân bằng và chất lượng (Task.md 2.5):** giọng luôn nổi (lời hơn nhạc + tiếng động ≥ 10 dB, §4); độ to từng câu cân về trung vị của nhân vật rồi mới cộng độ to theo cảm xúc; không quá tải (voicefx chặn đỉnh), không tụt tiếng đột ngột; **khoảng nghỉ giữa các câu** ≥ 0,2 s giữa hai người nói, ≥ 0,12 s giữa hai câu của cùng một người (`qa.py`).
+
+**Bảng 4 lớp theo cảnh** sinh tự động vào `SOUND-PLAN.md` (mục "Thiết kế âm thanh theo cảnh (4 lớp)") từ `out/scenes.json`, cùng mục "Đồng bộ hình – tiếng" từ `out/av-sync.json`.
+
+**Checklist thủ công thêm:**
+- [ ] Mỗi nhân vật nói đúng cảm xúc của tình huống (vui, ngạc nhiên, tò mò, giật mình vui, hào hứng); không câu nào đều đều; từ khoá được nhấn
+- [ ] Cảnh êm và cảnh cao trào nghe khác nhau rõ; cao trào có điểm nhấn
+- [ ] Mỗi hành động có tiếng đúng lúc (bước, bay, xuất hiện, va chạm, chuyển cảnh); không tiếng nào đến sớm / muộn
+- [ ] Nền đúng bối cảnh, không cảnh nào "câm" giữa các câu
+
+**Bảng hiệu chỉnh:**
+
+| Tập | Ngày | Kết quả | Ghi chú |
+|---|---|---|---|
+| `films/short-016` | 18/11/2026 | `qa.py` 89 đạt · 5 cảnh báo · 0 chưa đạt; nhóm 10 đạt cả 5 mục | LRA 2,7 → 6,9 LU; cao trào – cảnh êm +1,8 → +4,4 LU; điểm chuyển động mạnh có tiếng 97 → 100 %; nền 100 % số giây; lời rõ thấp nhất 11,6 → 12,1 dB. Bài học: (1) bước "lấp lỗ im" của nhạc san phẳng mọi chênh lệch, nên năng lượng cảnh phải áp sau nó; (2) chỉ tăng nhạc ở cao trào thì lời sát ngưỡng bị che: cho cả giọng đi theo cảnh, nhẹ hơn nhạc (VDB), chênh giữa các cảnh tăng mà lời / nhạc trong cảnh giữ nguyên; (3) tiếng vo ve dải giữa che câu giải thích: đưa lên dải cao (> 1,8 kHz); (4) `vocal_qc.py` phải trừ chênh lệch cố ý theo cảm xúc và theo cảnh khi so độ to các câu |
 
 ## Hiệu chỉnh các mục đo mới (11/2026)
 
@@ -269,6 +393,19 @@ LONG-001 không có mục mới nào bị CẢNH BÁO. Hai mục "hình gần đ
 
 Trước lượt này (nhạc dựng bằng lớp nhịp cũ), cả 7 Short đều chạy 120 BPM suốt phim, nên mục "BPM đổi theo nội dung" không đạt ở mọi tập, và một nhạc cụ hát chính thường giữ 3–5 cảnh (sáo ở SHORT-007: 5/12 cảnh; glockenspiel ở SHORT-004: 9/16). Hai mục tiếng động mới đã đạt sẵn ở cả 7 tập (dày nhất 5–8 cue / 1 s sau móc; lời hơn riêng tiếng động 11,6–22,1 dB), nên chúng chỉ chặn việc thêm tiếng động quá tay ở các tập sau. Tiếng động dùng nhiễu ngẫu nhiên, nên số đo lời / tiếng động lệch khoảng ±1 dB mỗi lần dựng lại; ngưỡng 11 dB chừa phần đó.
 
+### Hiệu chỉnh nhóm "Nhạc đệm dưới lời" (16/11/2026)
+
+Đo trên stem nhạc của các tập đã dựng (nhạc ở dải 300–4000 Hz, khoảng trống so với lúc có lời; số chỗ đổi cảnh "vào mềm / nhẹ dưới lời"):
+
+| Tập | Lời chiếm | Nhạc tụt khi có lời | Đổi cảnh mềm |
+|---|---|---|---|
+| SHORT-001…010 | 42–69 % | 8,5–13,9 dB | 1–4 / 6–21 |
+| LONG-001 | 53 % | 9,2 dB | — |
+| LONG-002 trước lượt này | 64 % | 9,6 dB (0 nốt đệm ghi nhận, 0 chủ đề) | 1 / 33 |
+| **LONG-002 sau lượt này** | 64 % | **6,8 dB** · 3,8 nốt đệm / giây lời · 6 lần chủ đề | 1 / 33 (không có lời ở điểm cắt) |
+
+Ngưỡng 8 dB nằm giữa bản cũ tốt nhất (8,5 dB) và bản đã nâng cấp. Ở LONG-002, lời vẫn rõ: thấp nhất 10,8 dB, trung vị 15,6 dB. `speech_guard` chỉ phải hạ nhạc ở 9/107 câu, mỗi câu 0,6–2,9 dB.
+
 ## Checklist thủ công (điền vào báo cáo giao)
 
 - [ ] 0–1 s gây chú ý · 1–2 s nhân vật phản ứng · 2–3 s câu hỏi hoặc bí ẩn chưa giải
@@ -281,6 +418,7 @@ Trước lượt này (nhạc dựng bằng lớp nhịp cũ), cả 7 Short đ�
 - [ ] Nhạc đổi theo cảnh, khớp hành động; màu nhạc khác các tập trước
 - [ ] *(Kênh)* Nghe tập này ngay sau tập đăng trước: điệu riêng nghe ra ngay; cảnh sổ, gag và cao trào không nghe như của tập trước; nhạc vui, phần lớn ở giọng trưởng
 - [ ] Nghe lại cả phim: mỗi cảnh nhạc nghe ra khác cảnh trước; dưới lời vẫn còn nhịp; có câu đáp giữa các câu; không đoạn nào nghe như một vòng lặp đều
+- [ ] *(Đệm lời)* Nghe một đoạn hội thoại dài: dưới lời vẫn có hợp âm đệm và bè phụ ở dải cao (không chỉ bass + kick), mà lời vẫn rõ; mỗi lần đổi cảnh nghe ra ngay nhạc mới, vui; nhận ra chủ đề của tập khi nó quay lại ở cảnh sau
 - [ ] *(SDP)* Đọc `SOUND-PLAN.md`: phong cách, nhạc cụ và BPM của từng cảnh hợp với hành động và cảm xúc; mở đầu, diễn biến, cao trào, kết nghe khác nhau; chỗ đổi tốc độ không bị giật (có cầu nối); không cảnh nào nghe như cảnh khác chỉ đổi tốc độ; nhạc không lời (tập 11/2026b: chỉ nhân vật hát), vui, không buồn hay đáng sợ
 - [ ] Kết có điểm nhấn và nối về đầu (vòng lặp hoặc câu cuối)
 - [ ] Không kêu gọi bình luận hay đăng ký (Made for Kids); câu hỏi kết là câu trẻ trả lời to

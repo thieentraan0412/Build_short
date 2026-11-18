@@ -1,0 +1,805 @@
+[
+ {
+  "id": "L01",
+  "who": "albie",
+  "text": "An intruder! In MY pages!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L02",
+  "who": "loupe",
+  "text": "Who snuck into the Bug Book?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L03",
+  "who": "dot",
+  "text": "I'll count the clues!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L04",
+  "who": "crumb",
+  "text": "Can I help? Can I?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L05",
+  "who": "loupe",
+  "text": "Every detective needs a lens!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L06",
+  "who": "loupe",
+  "text": "Big secrets of tiny bugs!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L07",
+  "who": "loupe",
+  "text": "The Insects page...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L08",
+  "who": "loupe",
+  "text": "and a sticker that doesn't belong!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L09",
+  "who": "dot",
+  "text": "One, two, three, four...",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L10",
+  "who": "dot",
+  "text": "five, six, seven, eight!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L11",
+  "who": "albie",
+  "text": "Eight legs?! Insects have SIX!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L12",
+  "who": "albie",
+  "text": "This page is for insects only.",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L13",
+  "who": "crumb",
+  "text": "But WHY?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L14",
+  "who": "albie",
+  "text": "Rules are rules!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L15",
+  "who": "loupe",
+  "text": "Every intruder leaves clues.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L16",
+  "who": "dot",
+  "text": "Three clues! I counted!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L17",
+  "who": "loupe",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L18",
+  "who": "crumb",
+  "text": "A shiny string!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L19",
+  "who": "loupe",
+  "text": "It's silk!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L20",
+  "who": "crumb",
+  "text": "Silk? Only spiders make silk, right?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L21",
+  "who": "loupe",
+  "text": "Only spiders?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L22",
+  "who": "loupe",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L23",
+  "who": "albie",
+  "text": "Look! My baby pictures!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L24",
+  "who": "loupe",
+  "text": "Before Flutter was a butterfly...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L25",
+  "who": "loupe",
+  "text": "Flutter was a caterpillar!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L26",
+  "who": "loupe",
+  "text": "And caterpillars make silk too!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L27",
+  "who": "crumb",
+  "text": "Oh! To make a cocoon?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L28",
+  "who": "loupe",
+  "text": "Nope!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L29",
+  "who": "loupe",
+  "text": "A tiny silk pad... to hang on while it changes!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L30",
+  "who": "crumb",
+  "text": "Flutter made silk once...",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L31",
+  "who": "crumb",
+  "text": "So Flutter is a suspect!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L32",
+  "who": "dot",
+  "text": "Clue number one!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L33",
+  "who": "loupe",
+  "text": "Look! Tiny footprints in the eraser dust!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L34",
+  "who": "dot",
+  "text": "Count them with me!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L35",
+  "who": "dot",
+  "text": "One, two, three, four...",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L36",
+  "who": "dot",
+  "text": "five, six, seven, eight!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L37",
+  "who": "dot",
+  "text": "Eight feet in every step!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L38",
+  "who": "crumb",
+  "text": "Flutter has six feet...",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L39",
+  "who": "crumb",
+  "text": "so it was NOT Flutter!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L40",
+  "who": "loupe",
+  "text": "Then who has eight legs?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L41",
+  "who": "crumb",
+  "text": "Did you see that?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L42",
+  "who": "dot",
+  "text": "Clue number two!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L43",
+  "who": "crumb",
+  "text": "A wing! It's a butterfly wing!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L44",
+  "who": "loupe",
+  "text": "Wait... let me take a closer look.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L45",
+  "who": "loupe",
+  "text": "It's paper! With sticky tape!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L46",
+  "who": "crumb",
+  "text": "A paper wing? But WHY?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L47",
+  "who": "loupe",
+  "text": "Somebody wanted to LOOK like a bug!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L48",
+  "who": "albie",
+  "text": "A disguise! In MY book!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L49",
+  "who": "dot",
+  "text": "Clue number three!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L50",
+  "who": "loupe",
+  "text": "Silk... eight feet... a paper wing.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L51",
+  "who": "loupe",
+  "text": "Time for a lineup!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L52",
+  "who": "albie",
+  "text": "Suspects! Step in line!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L53",
+  "who": "loupe",
+  "text": "Count the legs with Dot!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L54",
+  "who": "dot",
+  "text": "Waggle... one, two, three, four, five, six!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L55",
+  "who": "albie",
+  "text": "Six legs! A bug!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L56",
+  "who": "dot",
+  "text": "Flutter... six legs!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L57",
+  "who": "dot",
+  "text": "Chirp... six legs!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L58",
+  "who": "albie",
+  "text": "Bug! Bug!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L59",
+  "who": "dot",
+  "text": "And you... one, two, three, four, five, six!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L60",
+  "who": "spindle",
+  "text": "Six legs! See? I am a bug!",
+  "voice": "af_kore",
+  "speed": 0.95,
+  "pitch": -1
+ },
+ {
+  "id": "L61",
+  "who": "albie",
+  "text": "Really? Six?",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L62",
+  "who": "loupe",
+  "text": "Let's zoom in!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L63",
+  "who": "dot",
+  "text": "Seven... eight!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L64",
+  "who": "dot",
+  "text": "EIGHT legs!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L65",
+  "who": "spindle",
+  "text": "Oopsie!",
+  "voice": "af_kore",
+  "speed": 0.95,
+  "pitch": -1
+ },
+ {
+  "id": "L66",
+  "who": "loupe",
+  "text": "Now count the body parts!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L67",
+  "who": "dot",
+  "text": "Waggle: one, two, three!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L68",
+  "who": "dot",
+  "text": "Spindle: one, two!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L69",
+  "who": "loupe",
+  "text": "Bugs have three body parts. Spiders have two!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L70",
+  "who": "loupe",
+  "text": "And one more secret...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L71",
+  "who": "loupe",
+  "text": "Bugs have two antennae.",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L72",
+  "who": "loupe",
+  "text": "Spiders have none!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L73",
+  "who": "spindle",
+  "text": "Oh! Those were paper.",
+  "voice": "af_kore",
+  "speed": 0.95,
+  "pitch": -1
+ },
+ {
+  "id": "L74",
+  "who": "albie",
+  "text": "BZZT! Not a bug!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L75",
+  "who": "spindle",
+  "text": "Is it my turn yet?",
+  "voice": "af_kore",
+  "speed": 0.95,
+  "pitch": -1
+ },
+ {
+  "id": "L76",
+  "who": "crumb",
+  "text": "But did she sneak in? We didn't SEE her!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L77",
+  "who": "loupe",
+  "text": "Then let's catch the intruder... in the act!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L78",
+  "who": "crumb",
+  "text": "My trap! A shiny empty spot!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L79",
+  "who": "crumb",
+  "text": "Every intruder wants a spot!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L80",
+  "who": "albie",
+  "text": "Snore... snore... I am totally asleep...",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L81",
+  "who": "dot",
+  "text": "Shh... one, two, three...",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L82",
+  "who": "crumb",
+  "text": "A bug! With wings and stripes!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L83",
+  "who": "dot",
+  "text": "One, two... six legs!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L84",
+  "who": "loupe",
+  "text": "Hold on... are you sure?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L85",
+  "who": "crumb",
+  "text": "Gotcha!",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L86",
+  "who": "dot",
+  "text": "Eight legs!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L87",
+  "who": "albie",
+  "text": "BZZT! Not a bug!",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L88",
+  "who": "spindle",
+  "text": "You caught me!",
+  "voice": "af_kore",
+  "speed": 0.95,
+  "pitch": -1
+ },
+ {
+  "id": "L89",
+  "who": "spindle",
+  "text": "I only wanted one page.",
+  "voice": "af_kore",
+  "speed": 0.95,
+  "pitch": -1
+ },
+ {
+  "id": "L90",
+  "who": "crumb",
+  "text": "But WHY can't she join?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L91",
+  "who": "albie",
+  "text": "Rules are rules.",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L92",
+  "who": "albie",
+  "text": "This book is for insects.",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L93",
+  "who": "spindle",
+  "text": "Okay! Maybe one day?",
+  "voice": "af_kore",
+  "speed": 0.95,
+  "pitch": -1
+ },
+ {
+  "id": "L94",
+  "who": "albie",
+  "text": "...I'll think about it.",
+  "voice": "bm_lewis",
+  "speed": 0.8
+ },
+ {
+  "id": "L95",
+  "who": "loupe",
+  "text": "Case closed!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L96",
+  "who": "loupe",
+  "text": "Little detectives, remember...",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L97",
+  "who": "loupe",
+  "text": "How many legs does a bug have?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L98",
+  "who": "dot",
+  "text": "Six legs!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L99",
+  "who": "loupe",
+  "text": "And a spider?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L100",
+  "who": "dot",
+  "text": "Eight legs!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L101",
+  "who": "loupe",
+  "text": "Count carefully... before you decide!",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L102",
+  "who": "crumb",
+  "text": "Wait! Did you spot Rollo?",
+  "voice": "af_jessica",
+  "speed": 0.85,
+  "pitch": 5
+ },
+ {
+  "id": "L103",
+  "who": "dot",
+  "text": "Now let me count YOU!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L104",
+  "who": "dot",
+  "text": "One, two... Two legs! Not a bug either!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ },
+ {
+  "id": "L105",
+  "who": "spindle",
+  "text": "Is it my turn yet?",
+  "voice": "af_kore",
+  "speed": 0.95,
+  "pitch": -1
+ },
+ {
+  "id": "L106",
+  "who": "loupe",
+  "text": "So... is a spider a bug?",
+  "voice": "af_heart",
+  "speed": 0.9
+ },
+ {
+  "id": "L107",
+  "who": "dot",
+  "text": "Nope!",
+  "voice": "bf_isabella",
+  "speed": 0.9,
+  "pitch": 3.5
+ }
+]

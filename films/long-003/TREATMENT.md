@@ -5,7 +5,7 @@
 Video dài thứ ba của kênh, khép SERIES-003 *Finding the Way* và khép Mùa 1. Ra ngày Thứ Bảy 20/02/2027. Định dạng **C2 dựng mới**, thể loại **giải cứu ban đêm** (QUY-HOACH §6.3, khác thể loại trinh thám của LONG-002).
 - 16:9 gốc 1920×1080, **30 fps** (QUALITY.md §5).
 - Lời, chữ trên hình và phụ đề tiếng Anh. Khán giả 4–8 tuổi xem cùng bố mẹ.
-- **Độ dài ước lượng 4 phút 38 giây** (97 câu, 32 cảnh; kịch bản "chảy" theo độ dài giọng). Giọng thật thường dài hơn ước lượng, dự kiến 4:50–5:20. Đề cương ghi 6–7 phút: xem mục 13, câu hỏi 1.
+- **Độ dài bản dựng: 4 phút 16 giây** (256,0 s; 97 câu, 32 cảnh; kịch bản "chảy" theo độ dài giọng thật). Bản storyboard ước lượng 4:38. Đề cương ghi 6–7 phút: xem mục 13, câu hỏi 1.
 
 Theo:
 - đề cương ([DE-CUONG-CAC-BO.md](../../DE-CUONG-CAC-BO.md), LONG-003) và các sửa đổi do xác minh ([XAC-MINH-DU-KIEN.md](../../XAC-MINH-DU-KIEN.md) mục 6–7);
@@ -58,7 +58,7 @@ Nhạc không gợi giai điệu của nhạc phim nào.
 - **6,0 s:** lia nhanh sang lối đi: cả đội ngó theo.
   - Albie: *"Miss Loupe is lost... at NIGHT!"*
   - Crumb: *"How do we find her... with no sun?"* (câu hỏi xuyên suốt)
-  - Rollo lăn về, viên tròn có một vết lõm trống: *"Hmm. My ball feels... lighter."* (gag)
+  - Rollo lăn về, viên tròn có một vết lõm trống: *"Oh my. My ball feels... lighter."* (gag)
 - **15,5–17,5 s:** tựa và nhạc hiệu 2 s qua vòng đốm sáng của Blink. Miss Loupe nhỏ xíu bay ngang bầu trời sao trên tấm tựa, nói *"Big secrets of tiny bugs!"* (qa.py: video dài, cảnh tựa ≤ 2 s, sau giây 3).
 
 ## 5. Mạch truyện theo chương
@@ -77,7 +77,7 @@ Nhạc không gợi giai điệu của nhạc phim nào.
 | **Mạch của Crumb** | Rìa vườn | — | *"You looked closely... all by yourself!"* | *"Can I hold the lens... NOW?"* — *"Yes! NOW!"* Crumb ôm kính, mắt to trong kính |
 | **Đường về, về nhà** | Lối đi dưới Dải Ngân Hà; nhà | Ôn bài: *"Ants follow...?"* · *"Rollo follows...?"* · *"And bees dance with...?"* | — | Bản đồ sáng lên mọi chỗ của Mùa 1, đường đi đêm nay sáng xuyên qua; Albie dán thêm góc *GARDEN EDGE* |
 | **The Six Legs Song** | Trang bản đồ làm sân khấu | Đọc theo nhịp, chữ nảy từng từ | 6 chân, 3 phần thân, 2 râu | Spindle thả xuống: *"BZZT! Not you, Spindle!"* |
-| **Kết** | Dưới Dải Ngân Hà; khung tìm Spindle; trang bản đồ → trang ao | *"Did you spot Spindle?"*; câu hỏi kết *"So... what does Rollo follow?"* | Thông điệp: *"Look closely... and you'll always find your way!"* | Gag cuối: Crumb chạy trên viên tròn (*"Not NOW! Wheee!"*), Rollo lăn tới mép trang, lật trang, "TÕM!": trang ao (cài trước Mùa 2) |
+| **Kết** | Dưới Dải Ngân Hà; khung tìm Spindle; trang bản đồ → trang ao | *"Did you spot Spindle?"*; câu hỏi kết *"So... what does Rollo follow?"* | Thông điệp: *"Look closely... and you'll always find your way!"* | Gag cuối: Crumb chạy trên viên tròn (*"Not NOW! Yippee!"*), Rollo lăn tới mép trang, lật trang, "TÕM!": trang ao (cài trước Mùa 2) |
 
 ## 6. Bảng cảnh (ước lượng trước khi có giọng; mỗi 3–5 s có một chuyện mới)
 
@@ -286,17 +286,17 @@ Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie v
 
 - **Gag và bất ngờ hợp tính cách:**
   - Miss Loupe chạy trên viên tròn như người chạy trên khúc gỗ: *"I can't stop!"*;
-  - Rollo điềm tĩnh: *"Hmm. My ball feels... lighter."*;
+  - Rollo điềm tĩnh: *"Oh my. My ball feels... lighter."*;
   - Albie: *"Off my map?!"*, các trang phần phật;
   - Waggle nhảy say sưa đến chóng mặt, đáp lên viên tròn;
   - Miss Loupe soi gần giỏi, nhìn xa nhoè: *"BLURRY!"*;
   - cả đội đi vòng vèo theo vệt ngoằn ngoèo của Rollo;
   - Crumb hỏi xin kính lần cuối: *"Can I hold the lens... NOW?"* — *"Yes! NOW!"*;
-  - gag cuối: chính Crumb chạy trên viên tròn: *"Not NOW! Wheee!"*.
+  - gag cuối: chính Crumb chạy trên viên tròn: *"Not NOW! Yippee!"*.
 - **Đạo cụ của gag đã gài trước:**
   - hòn sỏi trên lối đi ngay trước cú vấp;
   - cọc hàng rào (rìa vườn lần 1 và 2) và câu *"I wish cousin Telly were here!"* → ánh lóe;
-  - *"Can I hold the lens?"* / *"Not NOW!"* ở móc → *"Yes! NOW!"* → *"Not NOW! Wheee!"*;
+  - *"Can I hold the lens?"* / *"Not NOW!"* ở móc → *"Yes! NOW!"* → *"Not NOW! Yippee!"*;
   - mép trang bản đồ (cảnh bản đồ) → *"That's the END of the page!"*.
 - **Chi tiết để xem lại:**
   - **Find Spindle** ba lần: treo dưới cành hoa ở móc, trên mạng nhện ở rìa vườn, ở mép kính trong góc nhìn The Giant;
@@ -333,20 +333,30 @@ Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie v
 5. **Chín chỗ trên bản đồ Mùa 1** đang là bản nháp (hoa, tổ ong, ụ kiến, cỏ cao, cửa sổ, đom đóm, mạng nhện, bàn học, đồi của Rollo). Khi Produce tôi sẽ đối chiếu với danh sách tập đã phát hành.
 6. Bản dựng thật sẽ thêm `events.js`, `mix.py`, `build.sh` (bước cuối chạy `_shared/qa.py --json`), `MUSIC.md`, `SOUND.md`, `CREDITS`, ảnh bìa, rồi chạy `qa.py`. **Các bước này chỉ bắt đầu sau khi storyboard được duyệt.**
 
-## 14. Ghi chú sản xuất
+## 14. Bản dựng (17/11/2026)
 
-- Đã dựng:
-  - `timeline.js` (kịch bản đầy đủ, 97 câu, 32 cảnh);
-  - `lib16.js`, `props.js`, `scenes.js`, `film.js` (vẽ được toàn bộ 4:38 bằng code của phim);
-  - `sheets.js` (`?mode=model`, `?mode=board`), `index.html`.
-- Chưa có giọng: khẩu hình và thời lượng đang dùng ước lượng (`RATE` trong `timeline.js`). Khi có giọng, `tools/lines.mjs` ghi `dur.js` và mọi mốc tự chảy theo.
-- **Còn thiếu cho bước Produce:**
-  - thêm `rollo` vào `voices.js` sau khi thử A/B;
-  - `tools/lines.mjs` và `tools/env.py` (chép từ LONG-001);
-  - `events.js` (danh sách tiếng động khớp hình);
-  - `mix.py` (lớp nhịp `Groove(..., plan=True)` theo bảng mục 9), thêm điệu `starwalk` vào `groove.py`;
-  - `build.sh` (chép từ LONG-001, đổi tên tập, bước cuối chạy `_shared/qa.py <thư mục tập> --json`).
-- Dựng lại storyboard:
+Dựng lại bằng một lệnh: `sh films/long-003/build.sh`. Kết quả: [`long-003.mp4`](long-003.mp4) (1920×1080, 30 fps, 4:16, −14,0 LUFS, đỉnh thật −2,6 dBTP), [`long-003.srt`](long-003.srt), [`thumbnail-16x9.jpg`](thumbnail-16x9.jpg), [`poster-9x16.jpg`](poster-9x16.jpg), [`poster.jpg`](poster.jpg). Nhạc: [MUSIC.md](MUSIC.md), [SOUND-PLAN.md](SOUND-PLAN.md). Tiếng động và kiểm giọng: [SOUND.md](SOUND.md). Giấy phép: [CREDITS](CREDITS).
+
+**`_shared/qa.py`: 42 đạt · 0 cảnh báo · 0 chưa đạt** (bảng đầy đủ ở `out/qa.json`). `readcheck`: mọi chữ lớn hiện đủ lâu.
+
+**Các câu hỏi ở mục 13 đã xử lý thế nào** (chưa có ai duyệt; đây là mặc định tôi chọn để dựng):
+1. **Độ dài:** giữ gọn, 4:16. Ba đoạn thêm để lên 6 phút chưa làm.
+2. **Ba mục FACTS "cần chép nguyên văn":** đã mở trang gốc và chép (FACTS mục 3b, 8, 9).
+3. **Bản đính chính 2025 của bài bọ hung: vẫn chưa đọc được** (trang Current Biology và Europe PMC chặn truy cập tự động). Cảnh vệt lăn dựng theo kết luận gốc. **Cần một người mở trang bằng trình duyệt trước khi đăng**; phương án thay thế ghi ở FACTS mục 5.
+4. **Giọng Rollo:** thử A/B bảy giọng, chọn `am_michael` −2 nửa cung (≈ 110 Hz). Mẫu ở `_shared/voice-tests/rollo_*.wav`.
+5. **Chín chỗ trên bản đồ Mùa 1:** giữ bản nháp, chưa đối chiếu với danh sách tập đã phát hành.
+
+**Đổi so với bản storyboard:**
+- Lời: năm câu viết lại vì máy đọc sai (bảng ở SOUND.md): "Hmm" → "Oh my" / "Let me think", "A pond!" → "It's a pond!", "Wheee!" → "Yippee!", "END" đọc bằng bản viết thường.
+- Nhịp: giữ lâu hơn các chữ lớn (NO SUN?, OVER!, STRAIGHT!, HEAVE!, HELLO!, NOW!, THE STARS!) để trẻ kịp đọc; chữ UNDER! và OVER! đứng cạnh nhau; góc GARDEN EDGE dời vào trong khung 70 px.
+- Ô "cách tìm đường" thứ 5 lấp ngay sau câu "She's over there! Let's go!" (mốc `slot5`), để tiếng chuông không lấn lời.
+- Câu tựa "Big secrets of tiny bugs!" có tấm phụ đề riêng.
+- Chữ nảy của bài chant không tính là chữ phải đọc (câu đủ nằm ở phụ đề).
+- Nhạc: ba chỗ đổi so với bảng mục 9, ghi ở MUSIC.md.
+
+**Checklist thủ công (cuối QUALITY.md):** tôi đã soi 52 khung tĩnh trải đều cả phim và ba ảnh bìa; không thấy khung hỏng, mặt kém vui hay chữ bị cắt. **Chưa có ai nghe và xem trọn phim bằng tai và mắt người**; các mục cần người (nhạc có vui không, giọng Rollo có hợp không, gag có buồn cười không) còn chờ anh/chị.
+
+Dựng lại storyboard và bảng hình:
 
   ```sh
   node core/render/still.mjs films/long-003 0 --q mode=board --size 2400x1470 --out films/long-003/out --prefix board_

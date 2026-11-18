@@ -299,3 +299,11 @@ def tada(root=72, v=1.):                        # "ta-da!": nốt mồi ngắn r
     cy = hp(noise(1.2), 5000) * env_exp(1.2, .3) + bp(noise(1.2), 3000, 9000) * env_exp(1.2, .08) * .6
     J(lp(cy, 12000) * .12, .16, 1., .15)
     return out * v
+def sleighbell(v=1.):                           # (SHORT-016) chuông xe trượt tuyết: chùm chuông nhỏ lệch nhau rung "xủng xẻng" (3 nhát sát nhau)
+    d = .3; tt = t_(d); x = np.zeros(len(tt)); rng = np.random.default_rng(16)
+    for k, dt in enumerate((0., .011, .024)):
+        s0 = int(dt * SR); u = tt[:len(tt) - s0]
+        b = sum(a * np.sin(2 * np.pi * f * u + rng.random() * 6) for f, a in ((2630, .55), (3410, .5), (4150, .4), (5020, .3)))
+        x[s0:] += b * np.exp(-u * (17 + 5 * k)) * (1, .7, .5)[k]
+    x += bp(noise(d), 4500, 8000) * env_exp(d, .03) * .25
+    return fade(x * np.minimum(1, tt / .0015), .0015, .06) * v * .1

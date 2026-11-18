@@ -17,7 +17,7 @@ export function skyBg(c, t, k, o = {}) {
 const ON_STONE = 650;                                             // chỗ đứng trên phiến đá ở rìa vườn
 
 /* ================= MÓC: Miss Loupe chạy trên viên tròn của Rollo, máy chạy theo ================= */
-export const HOOK_TITLE = [{ text: 'LOST', y: 210, px: 200, fill: C.lemon, shadow: C.berry, t0: 0 }, { text: 'AT NIGHT!', y: 390, px: 180, fill: C.cream, shadow: C.grape, t0: .12 }];
+export const HOOK_TITLE = [{ text: 'LOST', y: 210, px: 200, fill: C.lemon, shadow: C.berry, t0: 0 }, { text: 'AT NIGHT!', y: 380, px: 150, fill: C.cream, shadow: C.grape, t0: .12 }];
 const RV = 230, RX0 = 560;                                        // tốc độ và chỗ xuất phát của Rollo
 const rolloX = t => RX0 + RV * Math.min(t, H.bump + 2.5);
 const hookCam = t => ({ cx: rolloX(Math.min(t, H.bump + .2)) + 40, cy: 620, z: 1.18 });
@@ -160,8 +160,8 @@ export function sSun(c, t) {
     // máy ngửa lên trời: chỉ có sao. Blink bay lên: "Nope!"
     if (t > tu && t < back0 + .6) { const u = eo(seg(t, tu + .3, tu + 1.0)); blinkN(c, lerp(520, 980, u), lerp(GY, -380, u), 70, t, { fly: 1, lift: .3, glow: 1, name: talkAt(t, 'blink') ? 'excited' : 'happy', look: [0, -.3] }); }
   });
-  const np = L0('blink', 'Nope!'); if (t > np - .05 && t < back0 + .3) big(c, 'NOPE!', 960, 330, 170, C.berry, C.cream, t, np);
-  if (t > tu + .9 && t < np) big(c, 'NO SUN?', 960, 760, 110, C.lemon, C.grape, t, tu + .9);
+  const np = L0('blink', 'Nope!'); if (t > np - .05 && t < np + 2.0) big(c, 'NOPE!', 960, 330, 170, C.berry, C.cream, t, np);
+  if (t > tu + .2 && t < np) big(c, 'NO SUN?', 960, 760, 110, C.lemon, C.grape, t, tu + .2);
 }
 
 /* ================= Miss Loupe ở rìa vườn: kẹt trong khe đá, vẫn cười ================= */
@@ -231,7 +231,7 @@ export function sMarch(c, t) {
     capsule(c, MARCH.leaf - 200, GY - 110, MARCH.leaf - 230, GY + 50, 10, C.leafD); capsule(c, MARCH.leaf + 200, GY - 110, MARCH.leaf + 230, GY + 50, 10, C.leafD);
   });
   // chữ chỉ đường nhỏ theo từng nhịp
-  [['UNDER!', H.leafUp], ['OVER!', H.pebble]].forEach(([s, t0]) => { if (t > t0 && t < t0 + 1.4) big(c, s, 1300, 240, 110, C.lemon, C.berry, t, t0); });
+  [['UNDER!', L0('crumb', 'under the leaf...'), 620, C.lemon], ['OVER!', L0('crumb', 'over the pebble!'), 1340, C.cream]].forEach(([s, t0, x, col]) => { if (t > t0) big(c, s, x, 240, 110, col, C.berry, t, t0); });
 }
 // cỏ cao như bức tường ở rìa vườn
 function grassWall(c, t, x0, x1, y = GY + 60, hgt = 520) { for (let x = x0, i = 0; x < x1; x += 46, i++) { const h = hgt * (.75 + .35 * hash(i + 77)), sw = Math.sin(t * 1.2 + i * .7) * 14; inked(c, cc => { cc.moveTo(x - 22, y); cc.quadraticCurveTo(x + sw, y - h * .6, x + sw * 2 + 8, y - h); cc.quadraticCurveTo(x + 8, y - h * .5, x + 22, y); cc.closePath(); }, i % 2 ? N.tall : N.tallD, 4); } }
@@ -251,7 +251,7 @@ export function sEdge0(c, t) {
     waggleAt(c, 780, 640 + 10 * Math.sin(t * 3), 52, t, { yaw: .7 });
     crumbAt(c, 900, GY + 14, 72, { E: crumbE('curious', t, { look: [.7, -.4] }), yaw: .7, arms: talkAt(t, 'crumb') ? POINT_ARMS : null });
   });
-  const e = L0('crumb', 'The trail ends here!'); if (t > e && t < e + 1.8) big(c, 'THE END?', 1300, 260, 120, C.lemon, C.berry, t, e);
+  const e = L0('crumb', 'The trail ends here!'); if (t > e && t < e + 2.5) big(c, 'THE END?', 1300, 260, 120, C.lemon, C.berry, t, e);
 }
 
 /* ================= CÁCH 3 · bóng nghĩ: kiến sa mạc giữ số bước để đi thẳng về tổ ================= */
@@ -402,7 +402,7 @@ export function sTrack(c, t) {
   c.save(); c.beginPath(); c.arc(x, y, R, 0, TAU); c.clip(); c.translate(x - 960 * .35, y - 300 * .35); c.scale(.35, .35); starSky(c, t, { x0: -800, x1: 2800, y0: -600, y1: 1200, cloud: cover(t), cx: 0 }); c.restore();
   c.lineWidth = 14; c.strokeStyle = C.cream; c.beginPath(); c.arc(x, y, R + 7, 0, TAU); c.stroke(); c.lineWidth = 5; c.strokeStyle = C.ink; c.beginPath(); c.arc(x, y, R + 15, 0, TAU); c.stroke();
   popText(c, 'SKY', x, y + R + 52, 38, C.cream, null, -1, 0, { font: subFont, read: false });
-  const ss1 = L0('dot', 'So straight!'); if (t > ss1 && t < H.clouds + .4) big(c, 'STRAIGHT!', 760, 210, 120, C.lemon, C.berry, t, ss1);
+  const ss1 = L0('dot', 'So straight!'); if (t > ss1 && t < H.clouds + .5) big(c, 'STRAIGHT!', 760, 210, 120, C.lemon, C.berry, t, ss1);
   const w = L0('crumb', 'Rollo is rolling in wiggles!'); if (t > w && t < H.clear + .4) big(c, 'WIGGLES!', 760, 210, 130, C.pink, C.grape, t, w, { wob: true });
 }
 
@@ -455,7 +455,7 @@ export function sSignal(c, t) {
     const go = L0('crumb', 'She\'s over there! Let\'s go!');
     crumbAt(c, 820, GY + 14, 72, { E: crumbE('excited', t, { look: [.7, -.6] }), yaw: .7, arms: talkAt(t, 'crumb') || t > go ? POINT_ARMS : UP_ARMS, hop: .15 * pulse(t, go, .4) });
   });
-  if (t > b0 - .1 && t < H.tellyAns + .2) big(c, 'BLINK! BLINK! BLINK!', 960, 220, 90, C.lemon, C.grape, t, b0, { font: subFont });
+  if (t > b0 - .1 && t < H.tellyAns + 1.8) big(c, 'BLINK! BLINK! BLINK!', 960, 220, 90, C.lemon, C.grape, t, b0, { font: subFont });
 }
 
 /* ================= CAO TRÀO · rìa vườn: Crumb tự tìm ra, The Giant giúp ================= */
@@ -490,7 +490,7 @@ export function sEdge(c, t) {
   // bóng lớn phủ lên cả đội: mềm, không đáng sợ (màu mực trong suốt, đổ từ phải)
   if (shade > 0) { c.save(); c.globalAlpha = shade * .2; c.fillStyle = C.ink; c.fillRect(0, 0, 1920, 1080); c.globalAlpha = shade * .14; c.beginPath(); c.ellipse(1500, 300, 1000, 640, -.2, 0, TAU); c.fill(); c.restore(); }
   if (t > H.pull && t < th) big(c, 'HEAVE!', 760, 240, 110, C.lemon, C.berry, t, H.pull + .2, { font: subFont });
-  if (t > th && t < th + .9) big(c, 'THUMP!', 1300, 200, 150, C.cream, C.grape, t, th);
+  if (t > th && t < th + 2.1) big(c, 'THUMP!', 1300, 200, 150, C.cream, C.grape, t, th);
   const np = L0('dot', 'Nope!'); if (t > np - .05 && t < np + 1.4) big(c, 'NOPE!', 760, 230, 170, C.berry, C.cream, t, np);
 }
 // góc nhìn của The Giant qua chính Miss Loupe: kính đầy khung, cả đội phóng to vẫy chào; ngón tay mũm mĩm giữ cán ở đáy khung
@@ -518,7 +518,7 @@ export function sPov(c, t) {
   inked(c, cc => cc.roundRect(L.x - 70, L.y + R + 40, 140, 400, 60), C.berry, 7);
   giantHand(c, L.x - 130, 1250, 72, { lean: .45, gesture: 'curl' });
   giantHand(c, L.x + 140, 1260, 72, { lean: -.45, gesture: 'curl' });
-  if (wave > 0 && wave < 1) big(c, 'HELLO!', 1560, 200, 110, C.lemon, C.berry, t, H.waveAll);
+  if (wave > 0) big(c, 'HELLO!', 1560, 200, 110, C.lemon, C.berry, t, H.waveAll);
 }
 export const SP_POV = { x: 1260, y: 260 };
 // bàn tay đặt Miss Loupe xuống lối đi, gạt chiếc lá to mở đường về, vẫy chào rồi rời khung
@@ -565,7 +565,7 @@ export function sFound(c, t) {
     const q = L0('crumb', 'Can I hold the lens... NOW?');
     crumbAt(c, lerp(820, 1000, hd), ON_STONE + 14, 80, { E: crumbE(t > q - .1 && t < H.hold ? 'hopeful' : 'excited', t, { look: [.6, -.6] }), yaw: lerp(.7, .2, hd), arms: hd > .2 ? HUG_ARMS : t > q ? UP_ARMS : null, hop: .2 * pulse(t, L0('loupe', 'Yes! NOW!') + .3, .4) });
   });
-  if (t > H.hold) big(c, 'NOW!', 1480, 260, 160, C.lemon, C.berry, t, L0('loupe', 'Yes! NOW!'));
+  if (t > L0('loupe', 'Yes! NOW!')) big(c, 'NOW!', 1480, 260, 160, C.lemon, C.berry, t, L0('loupe', 'Yes! NOW!'));
 }
 
 /* ================= ĐƯỜNG VỀ · ôn bài (trẻ trả lời) ================= */
@@ -626,7 +626,7 @@ export function sSong(c, t) {
   if (cur) { const ws = cur.text.split(' '); c.font = subFont(88); const lw = ws.map(w => c.measureText(w + ' ').width), rows = [[]]; let acc = 0;
     ws.forEach((w, i) => { if (acc + lw[i] > 1500 && rows[rows.length - 1].length) { rows.push([]); acc = 0; } rows[rows.length - 1].push(i); acc += lw[i]; });
     rows.forEach((row, r) => { const tot = row.reduce((a, i) => a + lw[i], 0); let x = 960 - tot / 2;
-      row.forEach(i => { const t0 = cur.t + i * cur.dur / ws.length; if (t > t0) popText(c, ws[i], x + lw[i] / 2, 250 + r * 110, 88, i % 2 ? C.lemon : C.cream, C.berry, t, t0, { font: subFont }); x += lw[i]; }); }); }
+      row.forEach(i => { const t0 = cur.t + i * cur.dur / ws.length; if (t > t0) popText(c, ws[i], x + lw[i] / 2, 250 + r * 110, 88, i % 2 ? C.lemon : C.cream, C.berry, t, t0, { font: subFont, read: false }); x += lw[i]; }); }); }
   const beat = Math.abs(Math.sin(t * Math.PI * 2)), bop = .1 * beat;
   // cả dàn nhảy theo nhịp trên mép trang
   const y = 1000;
@@ -639,7 +639,7 @@ export function sSong(c, t) {
   blinkN(c, 1540, 820 + 14 * Math.sin(t * 3), 64, t, { fly: 1, glow: .6 + .4 * beat, name: 'laugh' });
   // Spindle thả mình xuống giữa khung, vẫy chân; "BZZT!"
   const sd = H.spindleDrop; if (t > sd) { const d = eo(seg(t, sd, sd + .6)), up = ei(seg(t, H.songEnd + .4, H.songEnd + 1.2)); spindleAt(c, 1720, lerp(-200, 560, d) - up * 800, 70, t, { name: 'laugh', look: [-.4, .2], legs: [[-1.1, -1.3 + .3 * Math.sin(t * 9), .2], 0, 0, 0, [1.1, -1.3 - .3 * Math.sin(t * 9), .2], 0, 0, 0] }); }
-  const bz = L0('albie', 'BZZT! Not you, Spindle!'); if (t > bz && t < bz + 1.6) big(c, 'BZZT!', 1500, 160, 130, C.berry, C.cream, t, bz);
+  const bz = L0('albie', 'BZZT! Not you, Spindle!'); if (t > bz && t < bz + 2.3) big(c, 'BZZT!', 1500, 160, 130, C.berry, C.cream, t, bz);
 }
 
 /* ================= THÔNG ĐIỆP ================= */
@@ -702,7 +702,7 @@ export function sBye(c, t) {
   };
   if (t < fl0) pageScene(c);
   else pageFlipLeft(c, t, fl0, fl1, pageScene, pond);
-  if (t > H.splash && t < H.splash + 1.2) big(c, 'SPLASH!', 960, 260, 150, C.cream, N.pondD, t, H.splash);
+  if (t > H.splash && t < H.splash + 2.3) big(c, 'SPLASH!', 960, 260, 150, C.cream, N.pondD, t, H.splash);
   const st = L0('dot', 'The stars!'); if (t > st) { big(c, 'THE STARS!', 1240, 260, 130, C.lemon, C.grape, t, st); }
 }
 function pageFlipLeft(c, t, t0, t1, from, to) {

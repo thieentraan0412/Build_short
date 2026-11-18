@@ -4,6 +4,8 @@
 import { song, resolveLines, cardsOf, cardClashes, resolveSong, STANDARD as STD } from '../../_shared/song.js';
 import { VOICES, CATCH_TUNE } from '../../_shared/voices.js';
 export const STANDARD = STD;                                  // bật nhóm kiểm "Chuẩn mới" của qa.py (_shared/qa_musical.py)
+// (Vocal QC 18/11/2026) mốc từ thật của câu nói (voice/words.js do _shared/tools/wordtimes.py ghi sau bước giọng): phụ đề chạy chữ đúng lúc nói
+const WORDT = await import('./voice/words.js').then(m => m.default).catch(() => ({}));
 export const BPM = 120, BEAT = 60 / BPM, METER = 4, BAR = BEAT * METER;
 export const at = (bar, beat = 0) => (bar * METER + beat) * BEAT;
 export const PACE = .85;                                      // câu NÓI của bản B chậm hơn tập A ~15 % (câu hát theo nhịp của bài, câu cửa miệng giữ tốc độ chuẩn)
@@ -32,17 +34,24 @@ const CHORUS = { mode: 'sing', chorus: '<tên>', notes: "3:.5 3:.25 5:.25 6:1 5:
 
 // t, dur của câu NÓI: độ dài thật (voice/dur.json sau lần dựng đầu). Câu HÁT: song.js suy ra từ sing.at và sing.notes.
 // Kiểu hát: câu hỏi tò mò → half-sing cao · khám phá → half-sing · giải thích → sing-talk · kết luận / điệp khúc → sing · câu cửa miệng, gag, CTA → nói.
+// Tốc độ (QUALITY.md §9.7): câu hát ≤ 3,0 âm tiết/s (từ nhấn, nốt cuối 1–1,5 phách); liền hơi: half-sing ...LEGATO, sing-talk ...LEGATO_TALK.
+// Câu nói ≤ 3,5 âm tiết/s trên đoạn có tiếng: `pace` riêng (Dot thường .8); uốn ngữ điệu làm Whisper nghe sai thì `emo_k` nhỏ hơn cho câu đó.
+// Chỉ ngân dài âm tiết cuối từ có nguyên âm dài (ngân âm tiết đầu / giữa từ → im giữa từ; vocal_qc.py báo "đứt giữa từ").
+const LEGATO = { fill: .85, glide: .08 }, LEGATO_TALK = { speed: .85, fill: .75, glide: .05, hi: 2 };
 // em: từ nhấn trên phụ đề; cta: câu kêu gọi cuối (≤ 2 s, cụ thể, Made for Kids: không comment / subscribe).
+// (Vocal QC) câu đã sửa lời ghi was: '<lời cũ>' và why: '<lý do>'; style: '<vocal direction>' nếu khác mặc định (VOCAL-QC.md mục B).
+// (Âm thanh 4 lớp) emo: cảm xúc của câu (happy · surprised · curious · excited · startled · calm · proud · playful); câu nói được
+// _shared/emote.py uốn ngữ điệu theo emo; không ghi thì lines.mjs suy ra (câu cửa miệng → playful, CTA → happy, ? → curious, ! → excited).
 export const LINES = resolveLines(SONG, VOICES, [
   { id: 'L01', who: 'loupe', text: 'Could you sing with your legs?', em: ['sing', 'legs'],
-    sing: { mode: 'half-sing', at: .5, notes: "5:.5 5:.5 3:.5 5:.5 6:.5 1':1" } },
+    sing: { mode: 'half-sing', at: .5, ...LEGATO, notes: "5:.5 5:.5 3:.5 5:.5 6:.5 1':1" } },
   { id: 'L02', who: 'loupe', t: 3.3, dur: 1.0, text: "Let's zoom in!", em: ['zoom'], catch: true },   // hoặc sing: { ...CATCH_TUNE.zoom, at: … }
   { id: 'L03', who: 'loupe', text: 'Pegs on the leg, scrape on the wing!', em: ['pegs', 'leg', 'wing'], sing: { ...CHORUS, at: 8 + 3 * 60 / 126 } },
   { id: 'L04', who: 'loupe', text: 'Pegs on the leg, scrape on the wing!', em: ['pegs', 'leg', 'wing'], sing: { ...CHORUS, at: 8 + (4 * 4 + 3) * 60 / 126 } },   // cùng vị trí trong ô nhịp như lần 1 (phách 4, bốn ô sau)
   { id: 'L05', who: 'loupe', t: DUR - 2.0, dur: 1.74, text: 'Can YOU make music with your legs?', em: ['you', 'legs'], pace: 1, cta: true },
 ]);
 export const SECRET = { kw: ['pegs', 'leg', 'wing'] };       // từ khoá của bí mật: phụ đề nhấn, CTA nhắc lại
-export const CARDS = cardsOf(LINES, DUR, { max: 7, hide: [0, HIT.titleOut[1]] });
+export const CARDS = cardsOf(LINES, DUR, { max: 7, hide: [0, HIT.titleOut[1]], times: WORDT });
 export const CARD_CLASHES = cardClashes(CARDS);
 
 // 6 nhịp kể chuyện (Task.md mục C): hook ≤ 3 s

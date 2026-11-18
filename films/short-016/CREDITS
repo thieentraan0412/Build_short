@@ -1,0 +1,42 @@
+Big Secrets of Tiny Bugs · SHORT-016 "Where Do Bugs Go When It Snows?" — third-party material and licences
+
+FONTS (both under the SIL Open Font License 1.1; full texts in _shared/fonts/)
+  Baloo 2 — Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)
+    source: https://github.com/google/fonts/tree/main/ofl/baloo2 — _shared/fonts/OFL-Baloo2.txt
+  Paytone One — Copyright 2011 The Paytone Project Authors (https://github.com/googlefonts/paytoneFont)
+    source: https://github.com/google/fonts/tree/main/ofl/paytoneone — _shared/fonts/OFL-PaytoneOne.txt
+
+VOICE
+  Miss Loupe (af_heart), Albie (bm_lewis) and Dot (bf_isabella, pitched up 3.5 semitones by _shared/voicefx.py):
+  Kokoro-82M text-to-speech by hexgrad, Apache License 2.0
+    model: https://huggingface.co/hexgrad/Kokoro-82M · runtime: kokoro-onnx (MIT), https://github.com/thewh1teagle/kokoro-onnx
+    phonemes: espeak-ng (GPL-3.0), used as a tool; no espeak-ng output is distributed.
+  Miss Loupe's sung lines: her own Kokoro voice, pitch- and time-shaped by _shared/sing.py with Praat's PSOLA
+    (praat-parselmouth, GPL-3.0, used as a tool; no Praat output other than the shaped voice itself).
+
+MUSIC AND SOUND EFFECTS
+  Original. Every note and every effect are synthesized in mix.py, _shared/audio/band.py, the scene-by-scene
+  groove layer _shared/audio/groove.py (song mode, accompaniment under speech) and the cartoon effects of
+  _shared/audio/toon.py (numpy/scipy), with the procedural helpers of core/audio/sfx.py. The song and score
+  ("Snowy Sleigh Song", MUSIC.md and SOUND-PLAN.md) use the synthesized ukulele, xylophone, glockenspiel, celesta,
+  harp, vibraphone, marimba, toy piano, pizzicato and spiccato strings, flute, clarinet, kazoo, accordion,
+  trumpet, tuba, buzz bass and percussion voices, and the new sleigh bells (band.sleighbell, this episode).
+  Waggle's "brr", the monarchs' wing flaps, Dot's yawn, the leaf "fwump" and the winter wind are synthesized in mix.py.
+  No samples, loops or recordings by third parties.
+
+PICTURE
+  Original. Every frame and both cover images (poster-shorts-9x16.jpg, thumbnail-16x9.jpg) are drawn
+  in code (film.js, poster.js, props.js) with the channel's character rigs in _shared/characters/,
+  including Dot (the ladybug), who debuts in this episode (_shared/characters/cast/dot.js),
+  drawn in the channel's character style v2. The map is a hand-drawn cartoon, not a geographic map.
+  No images, footage or generated video.
+
+TOOLS (used to make the film, not part of it)
+  Speech check: faster-whisper with the Whisper small.en / base.en models (MIT).
+  Rendering and mux: Chrome Headless Shell via playwright-core (Apache-2.0), ffmpeg.
+
+FACTS
+  Every claim in the narration and on screen, with its source and quoted wording: FACTS.md.
+  Sources: University of Maryland Department of Entomology; UF/IFAS Extension; U.S. Fish & Wildlife Service;
+  The Ohio State University Ohioline; Purdue University; Wikipedia "Winter cluster", "Coccinellidae"
+  (CC BY-SA 4.0, quoted only).

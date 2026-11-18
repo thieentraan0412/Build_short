@@ -13,7 +13,10 @@ for L in lines:
     if not st: continue
     f = os.path.join(d, L['id'] + '.wav'); key = f"{L['text']}|{L.get('voice')}|{L.get('speed')}|{st}"
     if mark.get(L['id'], {}).get('key') == key and mark[L['id']].get('size') == os.path.getsize(f): continue   # đã nâng rồi
-    y, sr = sf.read(f); y = soxr.resample(y, sr, int(round(sr / 2 ** (st / 12)))); sf.write(f, y, sr)
+    y, sr = sf.read(f); y = soxr.resample(y, sr, int(round(sr / 2 ** (st / 12))))
+    pk = float(abs(y).max()) if len(y) else 0.
+    if pk > .97: y = y * (.97 / pk)                   # (18/11/2026) resample vọt đỉnh > 1,0 rồi bị cắt khi ghi PCM 16 bit: chặn trước (câu không vọt đỉnh giữ nguyên)
+    sf.write(f, y, sr)
     dur[L['id']] = round(len(y) / sr, 3); mark[L['id']] = {'key': key, 'size': os.path.getsize(f)}
     print(L['id'], f'+{st} st', dur[L['id']], L['text'])
 json.dump(dur, open(os.path.join(d, 'dur.json'), 'w', encoding='utf-8'), indent=1)

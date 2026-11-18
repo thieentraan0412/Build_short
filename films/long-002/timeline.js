@@ -26,7 +26,7 @@ L('loupe', 'Every detective needs a lens!', { gap: .3 });
 M('lensFlip', -.6, .6);                                 // kính xoay một vòng, lóe sáng
 M('s_title', .25); M('jingle');                         // tựa và nhạc hiệu 2 s (qa.py: video dài, cảnh tựa ≤ 2 s, sau móc)
 L('loupe', 'Big secrets of tiny bugs!', { gap: .05 });
-M('titleEnd', -.03);
+M('titleEnd', .27);                                    // tựa 2,03 s (qa.py ≤ 2,05 s): chữ SECRETS đọc được ≥ 1,97 s (readcheck)
 
 /* ======================= HIỆN TRƯỜNG: trang Insects (≈ 30 s) ======================= */
 M('s_scene', 0); M('page', 0, .4);
@@ -36,10 +36,10 @@ M('dotClimb', .2, .5);                                  // Dot leo lên mép sti
 L('dot', 'One, two, three, four...', { gap: 0 });
 L('dot', 'five, six, seven, eight!', { gap: .1 });
 M('eight', .1, .6);                                     // số 8 to nảy giữa khung
-M('s_rule', .1);
+M('s_rule', 1.45);                                      // giữ "8 LEGS?!" thêm 1,25 s: trẻ kịp đọc (readcheck)
 L('albie', 'Eight legs?! Insects have SIX!', { gap: .1 });
 L('albie', 'This page is for insects only.', { gap: .3 });
-L('crumb', 'But WHY?', { gap: .3 });                     // gài trước câu "But WHY can't she?" ở cao trào
+L('crumb', 'But WHY?', { gap: .3 });                     // gài trước câu "But WHY can't she join?" ở cao trào
 L('albie', 'Rules are rules!', { gap: .2 });
 M('s_clues', .3); M('slots', 0, .6);                    // ba ô manh mối "1 2 3" (hình kính lúp) hiện dưới mép trên: vòng mở của phim
 L('loupe', 'Every intruder leaves clues.', { gap: .1 });
@@ -51,11 +51,11 @@ M('s_c1', .2); M('c1_find', .2, .6);                    // kính lướt dọc t
 L('crumb', 'A shiny string!', { gap: .1 });
 M('c1_twang', .15, .5);                                 // Crumb gảy sợi tơ: "boing" như dây đàn
 L('loupe', "It's silk!", { gap: .15 });
-L('crumb', 'Silk? Only spiders make silk!', { gap: .3 });
+L('crumb', 'Silk? Only spiders make silk, right?', { gap: .3 });
 L('loupe', 'Only spiders?', { gap: .3 });
 M('c1_beat', .1, .6);                                   // khựng hài ≤ 1 s
 L('loupe', 'Nope!', { gap: 0, catch: true });
-M('s_c1a', .2);
+M('s_c1a', 1.25);                                      // giữ "NOPE!" trong kính thêm 1 s (gag, readcheck)
 L('albie', 'Look! My baby pictures!', { gap: 0 });
 M('c1_flip', .1, .8);                                   // Albie lật ngược trang: trang "Baby pictures"
 M('s_c1m', 0);                                          // ký ức: Flutter lúc còn là sâu, gặm lá
@@ -64,7 +64,7 @@ L('loupe', 'Flutter was a caterpillar!', { gap: .2 });
 M('c1_munch', .1, .8);                                  // sâu Flutter gặm lá, cười
 L('loupe', 'And caterpillars make silk too!', { gap: 0 });
 M('s_c1n', .1); M('c1_spin', 0, 1.2);                                  // nhả tơ: những chấm trắng xếp thành nệm tơ nhỏ trên cành
-L('crumb', 'Ooh! To make a cocoon?', { gap: .1 });
+L('crumb', 'Oh! To make a cocoon?', { gap: .1 });
 L('loupe', 'Nope!', { gap: .2, catch: true });
 L('loupe', 'A tiny silk pad... to hang on while it changes!', { gap: .3 });
 M('c1_hang', .1, 2.6);                                  // sâu treo mình chữ J → nhộng → bướm bung cánh
@@ -97,9 +97,9 @@ L('dot', 'Clue number two!', { gap: 0 });
 
 /* ======================= MANH MỐI 3 · CÁNH GIẤY (≈ 35 s) ======================= */
 M('s_c3', .3); M('c3_flap', 0, .8);                     // dưới góc một sticker có gì phập phồng: một chiếc cánh!
-L('crumb', 'A wing! A butterfly wing!', { gap: 0 });
+L('crumb', "A wing! It's a butterfly wing!", { gap: 0 });
 M('c3_compare', .2, 1.0);                               // Flutter đứng cạnh, xoè cánh so
-L('loupe', 'Hmm. Let me take a closer look.', { gap: 0 });
+L('loupe', 'Wait... let me take a closer look.', { gap: 0 });
 M('s_c3b', .2); M('c3_lens', 0, .8);                                   // kính lớn: vân giấy, nét bút chì, mép kéo cắt răng cưa, miếng băng dính
 L('loupe', "It's paper! With sticky tape!", { gap: .1 });
 L('crumb', 'A paper wing? But WHY?', { gap: .3 });
@@ -112,7 +112,7 @@ L('loupe', 'Silk... eight feet... a paper wing.', { gap: 0 });
 L('loupe', 'Time for a lineup!', { gap: .3 });
 
 /* ======================= HÀNG NGHI PHẠM · "LEG-O-METER" (≈ 85 s, cảnh đặc trưng) ======================= */
-M('s_line', .3);
+M('s_line', .8);                                       // "LINEUP!" đọc được ≥ 2 s; trống dồn vào hàng nghi phạm dài hơn
 L('albie', 'Suspects! Step in line!', { gap: .1 });
 M('in_w', .1, .6); M('in_f', 0, .6); M('in_c', 0, .6);  // Waggle vo ve vào, Flutter bay vào, Chirp nhảy vào (gáy một tiếng)
 M('in_s', 0, 1.0);                                      // Spindle thả mình xuống trên sợi tơ: áo len sọc ong, hai râu giấy, giấu 2 chân
@@ -123,16 +123,16 @@ L('dot', 'Waggle... one, two, three, four, five, six!', { gap: 0 });
 M('m_w', .1, .5);                                       // vạch đo trên thước chân trượt lên số 6: "ding"
 L('albie', 'Six legs! A bug!', { gap: 0 });
 M('s_lf', .2);
-L('dot', 'Flutter... six!', { gap: 0 });
+L('dot', 'Flutter... six legs!', { gap: 0 });
 M('m_f', .05, .4);
-L('dot', 'Chirp... six!', { gap: .1 });
+L('dot', 'Chirp... six legs!', { gap: .1 });
 M('m_c', .05, .4);
 L('albie', 'Bug! Bug!', { gap: .1 });
 M('s_ls', .3);
 L('dot', 'And you... one, two, three, four, five, six!', { gap: 0 });
 M('m_s6', .05, .4);
-L('spindle', 'Six! See? I am a bug!', { gap: .1 });
-L('albie', 'Hmm...', { gap: .3 });
+L('spindle', 'Six legs! See? I am a bug!', { gap: .1 });   // A/B giọng: "Six! See?" bị Whisper nghe thành "6C"
+L('albie', 'Really? Six?', { gap: .3 });
 L('loupe', "Let's zoom in!", { gap: .2, catch: true });
 M('s_llens', .1); M('l_lens', 0, .8);                   // kính lớn ra sau lưng Spindle: hai chân giấu đang vẫy
 L('dot', 'Seven... eight!', { gap: 0 });
@@ -167,13 +167,13 @@ L('crumb', 'My trap! A shiny empty spot!', { gap: 0 });
 L('crumb', 'Every intruder wants a spot!', { gap: .3 });
 M('t_hide', .2, 1.2);                                   // cả đội nấp: Dot sau cục tẩy, Miss Loupe trong hũ bút, Crumb dưới góc sticker
 M('t_lamp0', 0, .4);                                    // đèn bàn tắt "tách": ánh trăng xanh, sao lấp lánh
-L('albie', 'Zzz... I am totally asleep...', { gap: .1 });
+L('albie', 'Snore... snore... I am totally asleep...', { gap: .1 });   // "Zzz" bị Kokoro đọc thành chữ cái; chữ zzz vẫn bay trên hình
 M('s_wait', .3);
 L('dot', 'Shh... one, two, three...', { gap: 0 });
 M('t_come', .3, 1.2);                                   // một "con bọ" lạ bước dọc sợi tơ: cánh giấy, áo sọc, râu giấy, đi lắc lư
 L('crumb', 'A bug! With wings and stripes!', { gap: 0 });
 L('dot', 'One, two... six legs!', { gap: .2 });
-L('loupe', 'Hmm... are you sure?', { gap: .3 });
+L('loupe', 'Hold on... are you sure?', { gap: .3 });
 M('s_snap', .2); M('t_step', 0, .8);                    // nó rón rén tới mồi, trượt chân trên chính sợi tơ của mình
 M('t_tangle', 0, 1.6);                                  // xoay tròn, cuộn thành cục tơ, nảy bật trên sợi tơ như bạt nhún (khoảnh khắc đặc trưng)
 M('t_pop', 0, .8);                                      // đồ cải trang bung ra; 8 chân bật khỏi cục tơ
@@ -187,7 +187,7 @@ M('s_conf', .3);
 L('spindle', 'You caught me!', { gap: 0 });
 L('spindle', 'I only wanted one page.', { gap: .3 });
 M('c_sticker', .1, 1.0);                                // Spindle giơ sticker tự dệt bằng tơ: chân dung của chính cô, lấp lánh
-L('crumb', "But WHY can't she?", { gap: .2 }); Q('s_confb', 0);
+L('crumb', "But WHY can't she join?", { gap: .2 }); Q('s_confb', 0);
 L('albie', 'Rules are rules.', { gap: .3 });
 L('albie', 'This book is for insects.', { gap: .3 });
 L('spindle', 'Okay! Maybe one day?', { gap: .3 });       // Spindle cười hy vọng, đặt sticker tơ vào "tay" trang của Albie
@@ -203,16 +203,16 @@ L('loupe', 'Little detectives, remember...', { gap: .3 });
 M('r_q1', .2);
 L('loupe', 'How many legs does a bug have?', { gap: 0 });
 P(1.2);
-L('dot', 'Six!', { gap: 0 });
+L('dot', 'Six legs!', { gap: 0 });
 M('r_q2', .3);
 L('loupe', 'And a spider?', { gap: 0 });
 P(1.0);
-L('dot', 'Eight!', { gap: 0 });
+L('dot', 'Eight legs!', { gap: 0 });
 M('r_msg', .3);
 L('loupe', 'Count carefully... before you decide!', { gap: 0 });
 
 /* ======================= "DID YOU SPOT ROLLO?" (≈ 12 s) ======================= */
-M('s_rollo', .4);
+M('s_rollo', .6);                                       // .6: câu của Crumb mở tấm phụ đề mới, không ghép vào câu thông điệp
 L('crumb', 'Wait! Did you spot Rollo?', { gap: 0 });
 M('e_spots', .2, 4.6);                                  // ba khung nhỏ: rãnh trong bụi tẩy, cuối hàng nghi phạm, sau hũ bút lúc đặt bẫy
 
@@ -220,14 +220,14 @@ M('e_spots', .2, 4.6);                                  // ba khung nhỏ: rãnh
 M('s_bye', .3); M('dotTurn', 0, .5);                    // Dot quay sang người xem, giơ chân đếm
 L('dot', 'Now let me count YOU!', { gap: 0 });
 L('dot', 'One, two... Two legs! Not a bug either!', { gap: .2 });
-M('recall', .2, .4);                                    // sợi tơ lóe ngang khung đúng như khung 0 ("zing"), Spindle thả mình xuống giữa khung
+M('recall', .95, .4);                                    // sợi tơ lóe ngang khung đúng như khung 0 ("zing"), Spindle thả mình xuống giữa khung
 M('spindle', 0);
 L('spindle', 'Is it my turn yet?', { gap: 0 });
 M('s_end', .2);
 L('loupe', 'So... is a spider a bug?', { gap: 0 });       // câu hỏi kết cho trẻ trả lời to (qa.py: trong 5,5 s cuối)
 P(1.0);
-L('crumb', 'Nope!', { gap: 0, catch: true });            // cả nhóm hô "Nope!" cùng trẻ, Spindle cười khúc khích treo ngược
-M('end', .6);
+L('dot', 'Nope!', { gap: 0, catch: true });              // cả nhóm hô "Nope!" cùng trẻ (giọng Dot: Crumb +5 nửa cung bị Whisper nghe thành "nobody"), Spindle cười khúc khích treo ngược
+M('end', 1.1);                                          // 1,1 s: "ta-da" và tiếng reo vang sau "Nope!"; câu hỏi kết vẫn nằm trong 5,5 s cuối (qa.py)
 
 /* ---------- dựng lịch: thời gian tuyệt đối cho câu, mốc, tấm phụ đề ---------- */
 export const HIT = {}, LINES = [], CARDS = [];
@@ -268,7 +268,7 @@ export const BOARD = [
   { t: .05, shot: '1', frame: 'Insert · Insects page at night · frame 0', dur: '1.2 s', line: '(zing!) An intruder! In MY pages!' },
   { t: atL('loupe', 'Who snuck into the Bug Book?', .6), shot: '2', frame: 'Wide · whip-pan to the desk', dur: '4.8 s', line: 'Who snuck into the Bug Book?' },
   { t: atL('dot', 'five, six, seven, eight!', 1.2), shot: '5', frame: 'Push-in · Dot counts the sticker', dur: '9.9 s', line: 'five, six, seven, eight!' },
-  { t: atL('crumb', 'Silk? Only spiders make silk!', .8), shot: '8', frame: 'Medium · lens on the silver thread', dur: '8.4 s', line: 'Silk? Only spiders make silk!' },
+  { t: atL('crumb', 'Silk? Only spiders make silk, right?', .8), shot: '8', frame: 'Medium · lens on the silver thread', dur: '8.4 s', line: 'Silk? Only spiders make silk, right?' },
   { t: at('c1_spin', .9), shot: '10', frame: 'Memory · baby Flutter spins silk', dur: '17 s', line: 'And caterpillars make silk too!' },
   { t: atL('dot', 'Eight feet in every step!', .8), shot: '13', frame: 'Top shot · footprints in eraser dust', dur: '8.3 s', line: 'Eight feet in every step!' },
   { t: at('c3_lens', 1.0), shot: '17', frame: 'Big lens · the paper wing', dur: '9.5 s', line: "It's paper! With sticky tape!" },

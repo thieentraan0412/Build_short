@@ -240,6 +240,28 @@ if not NAME.startswith('long-'):
             + ('; '.join(f"{STYLE_VI.get(k[0], k[0])} + {inst(k[1])} ({', '.join(e.replace('short-', '') for e in v)})" for k, v in R['pairs'].items() if v) or 'không có')
             + (f" (quá quen, ≥ 3 tập: {len(R['common'])})" if R['common'] else '') + '.',
             f"- **Vui nhộn:** hồi hộp + khựng {pct(R['sus_share'])}, cảnh nền giọng thứ {pct(R['minor_share'])} thời lượng (mỗi mục ≤ 20 %).", '']
-out += ['Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/' + NAME + '` (nhóm "4 Âm thanh" và "Sound Design Plan").', '']
+# ---- (18/11/2026) thiết kế âm thanh theo cảnh, 4 lớp (Task.md 18/11/2026, QUALITY.md §10): out/scenes.json do mix.py ghi ----
+_sc = os.path.join(FILM, 'out', 'scenes.json')
+if os.path.exists(_sc):
+    SCN = json.load(open(_sc, encoding='utf-8'))['scenes']
+    EN_VI = {'calm': 'êm', 'normal': 'thường', 'high': 'mạnh', 'peak': 'cao trào'}
+    AMB_VI = {'snow_garden': 'vườn tuyết: gió lạnh có cơn, gió rít khẽ, chim mùa đông xa, tuyết lách tách', 'hive_warm': 'trong tổ ong: rì rầm ấm qua vách',
+              'paper_room': 'trang sổ / bản đồ: phòng yên tĩnh, giấy sột soạt', 'leaf_snow': 'sát đống lá: lá xào xạc, tuyết lách tách',
+              'meadow': 'bãi cỏ: gió nhẹ, chim líu lo', 'night': 'vườn đêm: gió nhẹ, dế xa', 'pond': 'mép ao: nước lăn tăn, chim xa'}
+    out += ['## Thiết kế âm thanh theo cảnh (4 lớp)', '',
+            '> Task.md 18/11/2026 mục 5: mỗi cảnh 4 lớp Voice · Background Music · Sound Effects · Ambient. Sinh từ `out/scenes.json` (mức năng lượng và lớp nền khai báo ở `SCENES` trong `mix.py`), cảm xúc của câu (`emo` trong `timeline.js`) và `events.json`.', '',
+            '| Cảnh | Năng lượng | Lớp 1 · Voice | Lớp 2 · Music | Lớp 3 · SFX | Lớp 4 · Ambient |', '|---|---|---|---|---|---|']
+    for sc in SCN:
+        vo = '<br>'.join(f"{v['id']} {v['who']} · {v.get('emo') or '—'} · {v['mode']}" for v in sc['voice']) or '—'
+        out.append('| ' + ' | '.join(cell(x) for x in (f"{f1(sc['t0'])}–{f1(sc['t1'])} s · {sc['id']}", EN_VI.get(sc['energy'], sc['energy']), vo,
+                                                     '<br>'.join(sc['music']) or '—', ', '.join(sc['sfx']) or '—', AMB_VI.get(sc['amb'], sc['amb']))) + ' |')
+    out.append('')
+_av = os.path.join(FILM, 'out', 'av-sync.json')
+if os.path.exists(_av):
+    AV = json.load(open(_av, encoding='utf-8'))
+    out += ['## Đồng bộ hình – tiếng', '', f"`_shared/tools/av_sync.py` đo trên video: {len(AV['onsets'])} điểm chuyển động mạnh, {AV['coverage'] * 100:.0f} % có tiếng động hoặc lời trong ± {AV['tol']} s."
+            + (f" Thiếu tiếng: {', '.join(f'{x:.2f}' for x in AV['missing'])} s." if AV['missing'] else '')
+            + (f" Tiếng lệch > 0,15 s: {', '.join(f'{t} s {ty} ({d:+.2f})' for t, ty, d in AV['off'])}." if AV['off'] else ''), '']
+out += ['Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/' + NAME + '` (nhóm "4 Âm thanh", "Sound Design Plan" và "10 Âm thanh theo cảnh").', '']
 open(os.path.join(FILM, 'SOUND-PLAN.md'), 'w', encoding='utf-8').write('\n'.join(out))
 print(f'{NAME}/SOUND-PLAN.md: {len(MS)} cảnh, {len(moods)} phong cách, {len(leads)} nhạc cụ chính, BPM {bpms}; music-plan.json')

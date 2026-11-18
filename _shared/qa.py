@@ -194,6 +194,25 @@ if MS:
     same = [f"{a['name']}→{b['name']}" for a, b in zip(MS, MS[1:]) if a['style'] not in PAUSE and b['style'] not in PAUSE and differs(a, b) < 2]
     row('4 Âm thanh', 'Hai cảnh nhạc kề nhau khác rõ', OK if not same else WARN, ', '.join(same) or 'mọi cặp khác nhau ≥ 2 điểm', 'khác ≥ 2 trong: điệu, hoà âm, nhạc cụ, bộ trống, năng lượng')
     row('4 Âm thanh', 'Câu đáp của nhạc giữa các câu thoại', OK if FILLS + HAND >= DUR / 10 else WARN, f'{FILLS + HAND} câu đáp ({FILLS} tự động, {HAND} viết tay)', f'≥ 1 / 10 s (nhạc cụ hát chính chen vào khoảng không lời)')
+    # ---- (16/11/2026, lượt "nhạc đệm dưới lời", QUALITY.md §4 (Đệm lời)): đệm khi nhân vật nói, đổi cảnh nghe ra, chủ đề của tập ----
+    # Hiệu chỉnh trên LONG-002: trước lượt này nhạc ở dải giọng (300–4000 Hz) tụt 10,5 dB mỗi khi có lời (lời chiếm 64 % thời lượng),
+    # nên phần lớn phim chỉ còn bass + kick giống nhau ở mọi cảnh ("nhạc đồng điệu"). Các tập dựng trước lượt này là CẢNH BÁO.
+    sp_ = np.zeros(len(mus), bool)
+    for l in LINES: sp_[int(l['t'] * sr):int((l['t'] + l['dur']) * sr)] = True
+    gap_ = ~sp_ & (np.arange(len(mus)) < int((DUR - .5) * sr))
+    mb_ = sosfilt(band, mus)
+    drop_ = db(rms(mb_[gap_])) - db(rms(mb_[sp_])) if sp_.any() and gap_.any() else 0.
+    un_ = MJ.get('under_notes'); rate_ = un_ / max(1e-6, sp_.sum() / sr) if un_ is not None else None
+    row('4 Âm thanh', 'Nhạc đệm dưới lời', OK if drop_ <= 8 and rate_ is not None and rate_ >= 2 else WARN,
+        f'nhạc ở dải giọng tụt {drop_:.1f} dB khi có lời; ' + (f'{rate_:.1f} nốt đệm có cao độ / giây lời' if rate_ is not None else 'music.json chưa ghi nốt đệm (Groove accomp=True)'),
+        '≤ 8 dB và ≥ 2 nốt / giây lời: dưới lời vẫn đủ đệm hợp âm và bè phụ ở dải cao, không chỉ còn bass + kick (lời vẫn hơn nhạc ≥ 10 dB)')
+    TRA_ = MJ.get('transitions', []); soft_ = [t for t in TRA_ if t['type'] in ('soft', 'tail')]
+    row('4 Âm thanh', 'Đổi cảnh nghe ra', OK if TRA_ and len(soft_) <= max(1, .1 * len(TRA_)) else WARN,
+        f"{len(TRA_)} chỗ đổi cảnh; vào mềm / nhẹ dưới lời ×{len(soft_)}" + (' (' + ', '.join('%.1f s' % t['t'] for t in soft_[:4]) + ')' if soft_ else ''),
+        'mỗi chỗ đổi cảnh nhạc có dấu nghe ra (trống dồn, nốt mồi, "ta!"…); "vào mềm" / "nhẹ dưới lời" ≤ 10 % số chỗ đổi')
+    th_ = MJ.get('themes', 0); need_th = max(1, int(DUR // 45))
+    row('4 Âm thanh', 'Chủ đề nhạc của tập', OK if th_ >= need_th else WARN, f'{th_} lần' + ('' if MJ.get('theme') else ' (chưa khai báo G.theme)'),
+        f'≥ {need_th} lần (1 lần / 45 s): một câu nhạc để nhớ, mỗi cảnh hát lại theo nhạc cụ, giọng và tốc độ của cảnh')
     # ---- Sound Design Plan (11/2026, QUALITY.md §4): phong cách, nhạc cụ, BPM, cung bậc, chuyển cảnh, chống trùng lặp. Chỉ Short. ----
     if not LONG:
         sys.path.insert(0, os.path.join(LIB, '_shared', 'audio'))
@@ -427,6 +446,10 @@ if STD_NEW:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import qa_musical
     qa_musical.run(globals())
+    import qa_vocal                                                  # (18/11/2026) nhóm 9 Vocal QC: đọc out/vocal-qc.json
+    qa_vocal.run(globals())
+    import qa_scene                                                  # (18/11/2026) nhóm 10 Âm thanh theo cảnh: LRA, cao trào, nền, SFX khớp hành động, khoảng nghỉ
+    qa_scene.run(globals())
 
 # ---------- in ----------
 w1 = max(len(r['item']) for r in rows)

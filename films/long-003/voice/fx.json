@@ -1,0 +1,266 @@
+{
+ "L002": {
+  "key": "Can I hold the lens?|af_jessica|0.85|5",
+  "size": 64488
+ },
+ "L005": {
+  "key": "How do we find her... with no sun?|af_jessica|0.85|5",
+  "size": 74506
+ },
+ "L006": {
+  "key": "Oh my. My ball feels... lighter.|am_michael|0.88|-2",
+  "size": 132168
+ },
+ "L010": {
+  "key": "And Miss Loupe?|af_jessica|0.85|5",
+  "size": 40168
+ },
+ "L011": {
+  "key": "She flew off... straight that way.|am_michael|0.88|-2",
+  "size": 112258
+ },
+ "L013": {
+  "key": "I'll lead the way! I'll find her!|af_jessica|0.85|5",
+  "size": 73202
+ },
+ "L014": {
+  "key": "Team, count off! One, two, three, four, five!|bf_isabella|0.9|3.5",
+  "size": 104938
+ },
+ "L015": {
+  "key": "I'll be the light!|bf_lily|1|8",
+  "size": 42064
+ },
+ "L017": {
+  "key": "Waggle wants to dance!|af_jessica|0.85|5",
+  "size": 60218
+ },
+ "L018": {
+  "key": "Bees dance to show the way...|af_jessica|0.85|5",
+  "size": 70694
+ },
+ "L019": {
+  "key": "using the sun!|af_jessica|0.85|5",
+  "size": 47368
+ },
+ "L020": {
+  "key": "Can you find the sun?|af_jessica|0.85|5",
+  "size": 60408
+ },
+ "L021": {
+  "key": "Nope!|bf_lily|1|8",
+  "size": 26078
+ },
+ "L022": {
+  "key": "No sun tonight, little bee.|am_michael|0.88|-2",
+  "size": 93420
+ },
+ "L023": {
+  "key": "Then I'll use my antennae!|af_jessica|0.85|5",
+  "size": 74216
+ },
+ "L026": {
+  "key": "Ants follow smell trails!|af_jessica|0.85|5",
+  "size": 69046
+ },
+ "L027": {
+  "key": "Sniff, sniff... this way!|af_jessica|0.85|5",
+  "size": 58980
+ },
+ "L028": {
+  "key": "My family! Hi, everyone!|af_jessica|0.85|5",
+  "size": 71566
+ },
+ "L029": {
+  "key": "One, two, three, four, five, six ants!|bf_isabella|0.9|3.5",
+  "size": 95286
+ },
+ "L030": {
+  "key": "Follow the trail...|af_jessica|0.85|5",
+  "size": 50342
+ },
+ "L031": {
+  "key": "under the leaf...|af_jessica|0.85|5",
+  "size": 43988
+ },
+ "L032": {
+  "key": "over the pebble!|af_jessica|0.85|5",
+  "size": 46046
+ },
+ "L033": {
+  "key": "The trail ends here!|af_jessica|0.85|5",
+  "size": 56510
+ },
+ "L034": {
+  "key": "The edge of the garden.|am_michael|0.88|-2",
+  "size": 82744
+ },
+ "L035": {
+  "key": "No trail? Let me think...|af_jessica|0.85|5",
+  "size": 66890
+ },
+ "L036": {
+  "key": "My cousins in the desert...|af_jessica|0.85|5",
+  "size": 72636
+ },
+ "L037": {
+  "key": "keep track of their steps!|af_jessica|0.85|5",
+  "size": 60584
+ },
+ "L038": {
+  "key": "Out... and straight back home!|af_jessica|0.85|5",
+  "size": 68450
+ },
+ "L039": {
+  "key": "I count steps too!|bf_isabella|0.9|3.5",
+  "size": 59382
+ },
+ "L040": {
+  "key": "One, two, three, four, five...|bf_isabella|0.9|3.5",
+  "size": 75352
+ },
+ "L041": {
+  "key": "six, seven, eight, nine, ten!|bf_isabella|0.9|3.5",
+  "size": 75156
+ },
+ "L042": {
+  "key": "Ten steps from the trail!|bf_isabella|0.9|3.5",
+  "size": 66148
+ },
+ "L043": {
+  "key": "So we can find our way back!|af_jessica|0.85|5",
+  "size": 69492
+ },
+ "L046": {
+  "key": "Which way is straight? It all looks the same!|af_jessica|0.85|5",
+  "size": 85136
+ },
+ "L047": {
+  "key": "Leave that to me.|am_michael|0.88|-2",
+  "size": 71544
+ },
+ "L048": {
+  "key": "I look up... at the Milky Way.|am_michael|0.88|-2",
+  "size": 112766
+ },
+ "L049": {
+  "key": "Wow... a river of stars!|af_jessica|0.85|5",
+  "size": 66522
+ },
+ "L050": {
+  "key": "It keeps me rolling straight.|am_michael|0.88|-2",
+  "size": 94090
+ },
+ "L051": {
+  "key": "So straight!|bf_isabella|0.9|3.5",
+  "size": 43370
+ },
+ "L052": {
+  "key": "Oh! Clouds!|af_jessica|0.85|5",
+  "size": 42018
+ },
+ "L053": {
+  "key": "Oh my. No stars... no straight!|am_michael|0.88|-2",
+  "size": 129526
+ },
+ "L054": {
+  "key": "Rollo is rolling in wiggles!|af_jessica|0.85|5",
+  "size": 77564
+ },
+ "L055": {
+  "key": "Stars are back. Straight on!|am_michael|0.88|-2",
+  "size": 93880
+ },
+ "L057": {
+  "key": "Look! A flash! Far away!|af_jessica|0.85|5",
+  "size": 67590
+ },
+ "L058": {
+  "key": "One, two, three flashes!|bf_isabella|0.9|3.5",
+  "size": 68610
+ },
+ "L059": {
+  "key": "Uncle Telly! He sees far!|af_jessica|0.85|5",
+  "size": 68094
+ },
+ "L060": {
+  "key": "Blink! Flash your secret code!|af_jessica|0.85|5",
+  "size": 75454
+ },
+ "L061": {
+  "key": "Blink! Blink! Blink!|bf_lily|1|8",
+  "size": 45488
+ },
+ "L062": {
+  "key": "She's over there! Let's go!|af_jessica|0.85|5",
+  "size": 64688
+ },
+ "L063": {
+  "key": "Look closely... look closely...|af_jessica|0.85|5",
+  "size": 71784
+ },
+ "L064": {
+  "key": "A sparkle! Miss Loupe!|af_jessica|0.85|5",
+  "size": 58950
+ },
+ "L066": {
+  "key": "Hold on! We'll pull you out!|af_jessica|0.85|5",
+  "size": 67488
+ },
+ "L067": {
+  "key": "Is it a monster?|af_jessica|0.85|5",
+  "size": 53476
+ },
+ "L068": {
+  "key": "Nope!|bf_isabella|0.9|3.5",
+  "size": 31978
+ },
+ "L069": {
+  "key": "It's the Giant. A gentle friend.|am_michael|0.88|-2",
+  "size": 123094
+ },
+ "L070": {
+  "key": "Hello, Giant! Thank you!|af_jessica|0.85|5",
+  "size": 65510
+ },
+ "L073": {
+  "key": "Can I hold the lens... NOW?|af_jessica|0.85|5",
+  "size": 66742
+ },
+ "L076": {
+  "key": "Smell trails!|af_jessica|0.85|5",
+  "size": 45204
+ },
+ "L078": {
+  "key": "The stars!|am_michael|0.88|-2",
+  "size": 53934
+ },
+ "L080": {
+  "key": "The sun!|bf_isabella|0.9|3.5",
+  "size": 34434
+ },
+ "L084": {
+  "key": "Six legs, six legs, count them with me!|af_jessica|0.85|5",
+  "size": 91602
+ },
+ "L085": {
+  "key": "Head, thorax, abdomen... one, two, three!|bf_isabella|0.9|3.5",
+  "size": 101006
+ },
+ "L091": {
+  "key": "Wait! Did you spot Spindle?|af_jessica|0.85|5",
+  "size": 64854
+ },
+ "L093": {
+  "key": "Not NOW! Yippee!|af_jessica|0.85|5",
+  "size": 52112
+ },
+ "L095": {
+  "key": "Oh my. It's a pond!|am_michael|0.88|-2",
+  "size": 82964
+ },
+ "L097": {
+  "key": "The stars!|bf_isabella|0.9|3.5",
+  "size": 40958
+ }
+}

@@ -12,7 +12,7 @@ Ngày 09/11/2026. Thực hiện theo yêu cầu trong [`Task.md`](../Task.md): p
 
 Không phân tích: pilot `films/bi-mat-ti-hon/` (SHORT-001 là bản dựng lại của pilot) và video dài LONG-001.
 
-**Kế hoạch nâng cấp:** [KE-HOACH-NANG-CAP.md](KE-HOACH-NANG-CAP.md) (09/11/2026).
+**Kế hoạch nâng cấp:** [KE-HOACH-NANG-CAP.md](KE-HOACH-NANG-CAP.md) (09/11/2026). Nhạc nền: [NHAC-NEN-KENH.md](NHAC-NEN-KENH.md) (10/11/2026, chống trùng giữa các tập) · [NHAC-DEM-LOI.md](NHAC-DEM-LOI.md) (16/11/2026, nhạc đệm dưới lời, đổi cảnh vui tươi, chủ đề của tập).
 - Năm tập này giữ nguyên làm mốc so sánh.
 - Từ SHORT-006: tập A dài khoảng 45 s, logo ≤ 0,8 s, và có các quy tắc mới trong `QUALITY.md` và `qa.py`.
 

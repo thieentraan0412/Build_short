@@ -34,7 +34,7 @@ quy tắc chống trùng lặp của QUALITY.md §4 từ music.json; `_shared/to
 
 **Điệu riêng của tập** (lượt chống trùng giữa các tập, 11/2026 lượt 2). `SIGNATURE` ghi điệu nào thuộc tập nào: jig 12/8 (001),
 calypso (002), swing (003), diễu hành + second-line (004), valse (005), đồng quê (006), bossa nova (007), disco (008), ska (009),
-samba (010), cha-cha-chá (011), reggae (012), cumbia (013), funk (014), tango (015). Mỗi Short dùng điệu riêng của mình ≥ 20 % thời lượng và không mượn điệu riêng của tập khác; `channel.py` so bảng
+samba (010), cha-cha-chá (011), reggae (012), cumbia (013), funk (014), tango (015); video dài: swing trinh thám (LONG-002). Mỗi Short dùng điệu riêng của mình ≥ 20 % thời lượng và không mượn điệu riêng của tập khác; `channel.py` so bảng
 cảnh nhạc với `music-plan.json` của mọi Short khác (soundplan.py ghi, qa.py kiểm). Tập mới: thêm một điệu mới vào `STYLES`.
 Điệu `jig` chia ba mỗi phách của phim (`'swing': 'trip'`), nên hình vẫn nhún đúng phách 120 BPM.
 
@@ -45,13 +45,28 @@ hợp âm đủ nhịp, đủ độ dài, ở dải cao hơn nốt hát ≥ 3 n�
 một quãng tám (`DOUBLE_G`). `G.motif(t, inst)` đặt giai điệu đặc trưng của tập (SONG.motif). music.json thêm `song`, `sung`, `motifs`.
 Không truyền `song` thì mọi đường y như cũ (các tập trước 11/2026b dựng lại khớp từng byte).
 
+**Nhạc đệm dưới lời** (`accomp=True`, lượt 16/11/2026, bắt buộc từ LONG-002 và SHORT-016; QUALITY.md §4 *(Đệm lời)*).
+Trước lượt này, dưới lời chỉ còn bass, kick, hat và nửa số tiếng đệm, giai điệu im. Lời chiếm 60–70 % thời lượng, nên phần lớn phim
+chỉ nghe một nhịp trầm giống nhau ở mọi cảnh ("nhạc đồng điệu"). Với `accomp=True`:
+1. **Đệm đủ dưới lời.** Tiếng đệm (comp, arp) giữ đủ nhịp của điệu dưới lời, chỉ nhỏ lại (`UNDER_A`), vẫn ở dải cao (≥ C5), nốt ngắn.
+2. **Bè phụ ở dải cao** (`COUNTER`). Dưới lời, một nhạc cụ sáng (`counter=` của `G.sec`, mặc định lấy nhạc cụ hát chính nếu nó sáng,
+   không thì theo phong cách: `COUNTER_INST`) đi rải 3–4 nốt hợp âm mỗi ô ở C6–D7, trên vùng nguyên âm của giọng. Mỗi cảnh vì thế
+   vẫn nghe ra màu nhạc cụ và nhịp riêng của nó trong lúc nhân vật nói.
+3. **Đổi cảnh luôn nghe ra.** Không còn cách chuyển "nhẹ dưới lời" (`soft`) hay "vào mềm" (`tail`) khi có lời ở điểm cắt; nếu không
+   cách nào hợp, dùng `bump`: nốt mồi cao + hợp âm "ta!" ở dải cao của cảnh mới, rồi phách đầu được nhấn như thường.
+4. **Chủ đề của tập** (`G.theme(steps, xs, every)`): một câu nhạc 6–8 nốt (nửa cung tính từ gốc của giọng trưởng) mà nhạc cụ hát
+   chính của cảnh hát ở câu đáp đầu tiên của cảnh, chuyển sang giọng, điệu và tốc độ của cảnh, cách nhau ≥ `every` giây.
+   Phim có một giai điệu để nhớ, mỗi cảnh là một biến tấu của nó.
+`music.json` ghi thêm `accomp`, `under_notes` (số nốt có cao độ chơi dưới lời), `themes`, và `counter` của từng cảnh; `qa.py` đo.
+Dùng chung với `song`: dưới câu hát vẫn theo luật `UNDER_SUNG` (không arp, không bè phụ); dưới lời nói theo `UNDER_A`.
+
 Mọi nốt dùng nhạc cụ tổng hợp của band.py và toon.py (không mẫu của bên thứ ba).
 """
 import json
 import numpy as np
 from band import (mf, pluck, marimba, bassn, buzzbass, kick, clap, hat, shaker, bell, horn, pizz, xylo, flute, reed, steel, tuba,
                   tom, claves, brush, tamb, celesta, harp, rhodes, vibes, snap, upright, snare, banjo, riser,
-                  piano, toypiano, trumpet, trombone, bassoon, kazoo, accordion, strings, timpani, bongo, triangle, ohat, agogo)
+                  piano, toypiano, trumpet, trombone, bassoon, kazoo, accordion, strings, timpani, bongo, triangle, ohat, agogo, sleighbell)
 import toon as T
 
 # ---------- nhạc cụ có cao độ: (hàm (midi, dài) → mono, quãng thường dùng cho từng vai) ----------
@@ -122,6 +137,12 @@ KITS = {
     'guira':   {'kick': lambda v: tom(41, v), 'back': lambda v: T.block(80, v * .45), 'hat': lambda v: shaker(v * 1.05), 'perc': lambda v: bongo(v * .7, True)},   # tambora + güira cạo
     'funk':    {'kick': kick, 'back': lambda v: snare(v * .9), 'hat': hat, 'perc': lambda v: clap(v * .5)},                                    # snare có nốt ma, hi-hat móc kép
     'tango':   {'kick': lambda v: tom(38, v * .9), 'back': lambda v: brush(v * .8), 'hat': None, 'perc': lambda v: brush(v * .6, .1)},         # không trống: bass marcato + "kéo" (arrastre) bằng chổi
+    # LONG-002 (11/2026): bộ gõ của điệu riêng "swing trinh thám"
+    'sleuth':  {'kick': lambda v: kick(v * .55), 'back': lambda v: snap(v * 1.1), 'hat': lambda v: shaker(v * .75), 'perc': lambda v: T.block(88, v * .32)},   # búng tay 2–4, chổi (shaker), mõ nhỏ "tích"
+    # LONG-003 (11/2026): bộ gõ của điệu riêng "Starlight Shuffle"
+    'star':    {'kick': lambda v: kick(v * .6), 'back': lambda v: brush(v * .9), 'hat': lambda v: shaker(v * .8), 'perc': lambda v: clap(v * .45)},   # chổi 2–4, shaker, vỗ tay nhẹ
+    # ---- SHORT-016 (11/2026): xe trượt tuyết ----
+    'sleigh':  {'kick': lambda v: kick(v * .75), 'back': lambda v: T.block(74, v * .55), 'hat': lambda v: sleighbell(v), 'perc': lambda v: T.block(84, v * .42)},   # chuông xe trượt, mõ "lộc cộc" vó ngựa
 }
 KIT_VI = {'toy': 'đồ chơi (vỗ tay, shaker, phách gỗ)', 'pop': 'pop (kick, vỗ tay, hi-hat)', 'march': 'diễu hành (snare, lục lạc)',
           'jazz': 'jazz (búng tay, hi-hat, chổi)', 'latin': 'latin (phách gỗ, shaker)', 'wood': 'gỗ (mõ, shaker)', 'tom': 'trống tom',
@@ -129,13 +150,27 @@ KIT_VI = {'toy': 'đồ chơi (vỗ tay, shaker, phách gỗ)', 'pop': 'pop (kic
           'tri': 'triangle + shaker', 'comic': 'mõ hai cao độ', 'bodhran': 'trống bodhrán + shaker', 'rim': 'rim click + shaker',
           'ska': 'ska (snare, hi-hat, mõ)', 'samba': 'samba (surdo, tamborim, agogô, ganzá)', 'disco': 'disco (kick 4 phách, vỗ tay, hi-hat mở)',
           'second': 'kèn đồng diễu phố (snare lệch phách, lục lạc)', 'cha': 'cha-cha-chá (chuông bò, guiro, phách)', 'dub': 'reggae one-drop (kick + rim phách 3)',
-          'guira': 'cumbia (tambora, güira cạo, bongo)', 'funk': 'funk (snare nốt ma, hi-hat móc kép, vỗ tay)', 'tango': 'tango (bass marcato, chổi "kéo")'}
+          'guira': 'cumbia (tambora, güira cạo, bongo)', 'funk': 'funk (snare nốt ma, hi-hat móc kép, vỗ tay)', 'tango': 'tango (bass marcato, chổi "kéo")',
+          'sleuth': 'trinh thám (búng tay 2–4, chổi, mõ nhỏ)',
+          'star': 'đêm sao (chổi trống 2–4, shaker, vỗ tay nhẹ)'}
 ROLE_G = {'kick': .7, 'back': .5, 'hat': .62, 'perc': .45, 'bass': 1.1, 'comp': .42, 'arp': .36, 'lead': .42}
 UNDER = {'kick': .8, 'back': .3, 'comp': .6, 'arp': .65}            # dưới lời: tiếng đệm nhỏ lại, giai điệu im
 # (Musical Storytelling, 11/2026b) dưới câu HÁT (song mode): hợp âm của bài đủ nhịp, đủ độ dài, ở dải cao hơn nốt hát; không arp, không câu đáp
 UNDER_SUNG = {'kick': .9, 'back': .55, 'hat': .75, 'perc': .6, 'comp': .8, 'arp': 0.}
 DOUBLE_G = .3                                                       # câu "sing": nhạc cụ hát chính đánh đôi giai điệu cao một quãng tám
 LOW_KICK = .55                                                      # dưới giọng trầm: kick nhỏ hơn nữa, bass bỏ hẳn
+# ---------- lượt "nhạc đệm dưới lời" (16/11/2026, accomp=True) ----------
+UNDER_A = {'kick': .85, 'back': .5, 'comp': .72, 'arp': .8}        # dưới lời vẫn đủ đệm: chỉ nhỏ lại, không thưa đi
+ROLE_G['counter'] = .3
+COUNTER = {                                                         # bè phụ ở dải cao dưới lời: (móc kép trong ô, độ mạnh), theo phong cách
+    'default': [(0, .85), (6, .6), (8, .75), (14, .55)], 'bouncy': [(2, .7), (6, .75), (10, .7), (14, .75)],
+    'magic': [(0, .8), (4, .55), (8, .7), (12, .55)], 'cute': [(0, .8), (4, .55), (8, .7), (12, .55)],
+    'funny': [(0, .8), (3, .5), (8, .75), (11, .5)], 'epic': [(0, .9), (4, .6), (6, .6), (8, .8), (12, .7)]}
+COUNTER3 = [(0, .85), (4, .6), (8, .65)]                            # valse 3/4
+COUNTER_REG = (84, 98)                                              # C6–D7: trên vùng nguyên âm của giọng
+COUNTER_INST = {'magic': 'celesta', 'cute': 'glock', 'funny': 'xylo', 'happy': 'pianohi', 'bouncy': 'xylo', 'playful': 'vibes',
+                'epic': 'glock', 'suspense': 'celesta'}
+BRIGHT = {'glock', 'xylo', 'celesta', 'vibes', 'marimba', 'steel', 'pianohi', 'toypiano', 'pizz', 'pluck', 'harp', 'bell', 'banjo', 'piano'}
 
 # ---------- điệu: vai → [(móc kép trong ô nhịp, độ mạnh[, bậc hoặc chỉ số nốt, độ dài theo phách])] ----------
 # 4/4: 16 móc kép mỗi ô; 3/4: 12. Một mẫu dài 32 (24) móc kép là mẫu hai ô nhịp (son clave 3-2, bass luân phiên).
@@ -255,6 +290,23 @@ STYLES = {
     'tango': {'kick': [(0, .9), (8, .7)], 'back': [(14, .5), (15, .7)],                                               # tango: habanera (3+3+2), bốn phách marcato, "kéo" vào phách 1
               'bass': [(0, .95, 'R', .3), (6, .6, '5', .1), (8, .85, '5', .3), (12, .75, 'R', .2)],
               'comp': [(0, .85, None, .14), (4, .8, None, .14), (8, .85, None, .14), (12, .8, None, .14)]},
+    # ---- LONG-002 (11/2026): điệu riêng của video dài thứ hai ----
+    'sleuth': {'swing': True, 'kick': [(0, .6), (8, .5)], 'back': [(4, 1), (12, 1)],                               # swing trinh thám GIỌNG TRƯỞNG: bass pizzicato đi bộ
+               'hat': [(0, .5), (4, .7), (6, .4), (8, .5), (12, .7), (14, .4)], 'perc': [(7, .45), (15, .45)],     # nhón chân (nốt dẫn nửa cung), búng tay 2–4,
+               'bass': [(0, .95, 'R', .3), (4, .7, '5', .25), (6, .55, '8', .15), (8, .85, '3', .3), (12, .75, 'A', .3)],   # kèn bịt "wah" chặn ở phách lẻ "và"
+               'comp': [(6, .85, None, .1), (14, .85, None, .1), (15, .4, None, .06)]},
+    # ---- LONG-003 (11/2026): điệu riêng của video dài thứ ba ----
+    'starwalk': {'swing': True, 'kick': [(0, .8), (8, .7)], 'back': [(4, .8), (12, .8)],                           # diễu hành đêm sao GIỌNG TRƯỞNG, nhún shuffle:
+                 'hat': [(s, .6 if s % 4 == 2 else .4) for s in O8], 'perc': [(6, .4), (14, .5)],                  # ukulele gảy phách lẻ, celesta rải 3+3+2 như sao lấp lánh,
+                 'bass': [(0, .9, 'R', .35), (6, .55, '5', .15), (8, .85, '5', .35), (12, .7, '8', .25), (14, .55, 'A', .15)],   # chổi trống 2–4, shaker, vỗ tay nhẹ
+                 'comp': [(2, .8, None, .1), (6, .7, None, .1), (10, .8, None, .1), (14, .7, None, .1)],
+                 'arp': [(s, .55, i, .3) for s, i in zip((0, 3, 6, 8, 11, 14), (0, 2, 3, 1, 3, 2))]},
+    # ---- SHORT-016 (11/2026): điệu riêng của tập ----
+    'sleigh': {'kick': [(0, 1), (8, .9)], 'back': [(4, .6), (12, .6)],                                               # xe trượt tuyết GIỌNG TRƯỞNG: chuông xủng xẻng móc đơn,
+               'hat': [(s, .9 if s % 4 == 0 else .55) for s in O8], 'perc': [(2, .5), (6, .4), (10, .5), (14, .4)],   # vó ngựa "lộc cộc" phách lẻ, bass gốc – năm nảy,
+               'bass': [(0, .95, 'R', .45), (4, .75, '5', .4), (8, .9, '8', .45), (12, .75, '5', .4)],                # đệm chặn phách lẻ, celesta / glockenspiel rải như bông tuyết
+               'comp': [(s, .75, None, .2) for s in (2, 6, 10, 14)],
+               'arp': [(s, .5, i, .3) for s, i in zip((0, 4, 8, 12), (0, 2, 1, 3))]},
 }
 STYLE_VI = {'bounce': 'pop nảy', 'skip': 'shuffle nhảy chân sáo', 'march': 'diễu hành', 'polka': 'polka', 'calypso': 'calypso',
             'swing': 'swing', 'sway': 'nửa nhịp đung đưa', 'gallop': 'phi ngựa (nhịp kép)', 'tiptoe': 'rón rén', 'float': 'rải lơ lửng',
@@ -263,7 +315,7 @@ STYLE_VI = {'bounce': 'pop nảy', 'skip': 'shuffle nhảy chân sáo', 'march':
             'sneak': 'rình rập hài', 'sunny': 'ukulele nắng', 'hop': 'nảy lệch phách', 'twinkle': 'hộp nhạc lấp lánh', 'stab': 'dừng nhịp',
             'lilt': 'lơi 3+3+2', 'jig': 'jig 12/8', 'bossa': 'bossa nova', 'ska': 'ska phách lẻ', 'samba': 'samba lễ hội',
             'disco': 'disco', 'secondline': 'second-line kèn đồng', 'chacha': 'cha-cha-chá', 'reggae': 'reggae one-drop', 'cumbia': 'cumbia',
-            'funk': 'funk', 'tango': 'tango'}
+            'funk': 'funk', 'tango': 'tango', 'sleuth': 'swing trinh thám', 'starwalk': 'shuffle đêm sao', 'sleigh': 'xe trượt tuyết'}
 STYLE_FEEL = {'sway': .5, 'hush': .5, 'gallop': 2.}                  # nhịp cảm nhận = BPM × hệ số
 # ---------- điệu riêng của từng tập (QUALITY.md §4, chống trùng giữa các tập) ----------
 # Một điệu ở đây chỉ được dùng trong đúng tập đó; mỗi Short có ≥ 1 điệu riêng, chiếm ≥ 20 % thời lượng nhạc (qa.py).
@@ -271,7 +323,7 @@ STYLE_FEEL = {'sway': .5, 'hush': .5, 'gallop': 2.}                  # nhịp c�
 SIGNATURE = {'jig': 'short-001', 'calypso': 'short-002', 'swing': 'short-003', 'march': 'short-004', 'secondline': 'short-004',
              'waltz': 'short-005', 'waltzfloat': 'short-005', 'country': 'short-006', 'bossa': 'short-007', 'disco': 'short-008',
              'ska': 'short-009', 'samba': 'short-010', 'chacha': 'short-011', 'reggae': 'short-012', 'cumbia': 'short-013', 'funk': 'short-014',
-             'tango': 'short-015'}
+             'tango': 'short-015', 'sleuth': 'long-002', 'starwalk': 'long-003', 'sleigh': 'short-016'}
 # ---------- phong cách nhạc (Sound Design Plan) ----------
 MOODS = {'playful': 'Playful Cartoon', 'happy': 'Happy Kids', 'funny': 'Funny Comedy', 'magic': 'Magical Adventure',
          'cute': 'Cute & Sweet', 'bouncy': 'Bouncy Rhythm', 'suspense': 'Suspense & Surprise', 'epic': 'Epic Cartoon'}
@@ -280,11 +332,11 @@ STYLE_MOOD = {'bounce': 'happy', 'skip': 'playful', 'march': 'epic', 'polka': 'f
               'hush': 'suspense', 'waltz': 'cute', 'waltzfloat': 'magic', 'stride': 'funny', 'hero': 'epic', 'quest': 'magic',
               'sneak': 'suspense', 'sunny': 'happy', 'hop': 'bouncy', 'twinkle': 'cute', 'stab': 'suspense', 'lilt': 'magic', 'jingle': 'epic',
               'jig': 'playful', 'bossa': 'cute', 'ska': 'bouncy', 'samba': 'bouncy', 'disco': 'happy', 'secondline': 'funny',
-              'chacha': 'funny', 'reggae': 'playful', 'cumbia': 'bouncy', 'funk': 'funny', 'tango': 'playful'}
+              'chacha': 'funny', 'reggae': 'playful', 'cumbia': 'bouncy', 'funk': 'funny', 'tango': 'playful', 'sleuth': 'funny', 'starwalk': 'playful'}
 ARCS = {'open': 'Mở đầu', 'build': 'Diễn biến', 'peak': 'Cao trào', 'end': 'Kết'}
 TRANS = {'fill': 'trống dồn', 'riser': 'riser + chũm chọe ngược', 'pickup': 'nốt mồi của nhạc cụ mới', 'run': 'chuỗi nốt đi xuống',
          'gliss': 'vuốt đàn hạc', 'swell': 'dâng lấp lánh', 'drop': 'còi trượt xuống "bwomp"', 'tail': 'ngân đuôi, cảnh sau vào mềm',
-         'soft': 'nhẹ dưới lời', 'tay': 'viết tay (stinger, khựng, nhạc hiệu)'}
+         'soft': 'nhẹ dưới lời', 'tay': 'viết tay (stinger, khựng, nhạc hiệu)', 'bump': 'nhấn "ta!" ở dải cao (đổi cảnh dưới lời)'}
 ENERGY_G = {1: .72, 2: .88, 3: 1.0}
 NOTE = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11}
 QUAL = {'': (0, 4, 7), 'm': (0, 3, 7), '7': (0, 4, 7, 10), 'm7': (0, 3, 7, 10), 'maj7': (0, 4, 7, 11), '6': (0, 4, 7, 9),
@@ -327,7 +379,7 @@ def place(pc, lo, hi, near=None):
 
 
 class Groove:
-    def __init__(self, M, beat, lines, meter=4, seed=1, avoid=(), low_voices=('albie',), dur=None, plan=False, song=None):
+    def __init__(self, M, beat, lines, meter=4, seed=1, avoid=(), low_voices=('albie',), dur=None, plan=False, song=None, accomp=False):
         self.M, self.beat, self.meter = M, beat, meter
         self.lines = sorted(lines, key=lambda l: l['t'])
         self.avoid = list(avoid); self.low = low_voices
@@ -338,6 +390,8 @@ class Groove:
         # Câu hát (line['sung']) theo đúng giọng, hợp âm và lưới phách của bài; cảnh nhạc chồng lên câu hát phải khai báo chords='song'.
         self.song = song; self.motifs = []
         self.sung = [l for l in self.lines if l.get('sung')] if song is not None else []
+        self.accomp = accomp; self.under_notes = 0; self.last_counter = None; self.cdir = 1   # (16/11/2026) nhạc đệm dưới lời
+        self.th = None; self.th_every = 20.; self.th_first = True; self.last_theme = None; self.themes = 0
 
     # ---------- lời ----------
     def speaking(self, t, pre=.06, post=.03, who=None):
@@ -416,7 +470,8 @@ class Groove:
         """Một cảnh nhạc từ t0 tới t1. chords: chuỗi hợp âm cách nhau bởi dấu cách, mỗi hợp âm một ô nhịp
         ('F C Dm Bb'); 'F,C' = hai hợp âm trong một ô. no: các vai bỏ hẳn ('kick', 'bass'…). cue: dấu đổi cảnh ở đầu cảnh này.
         bpm: BPM riêng của cảnh (không ghi: lưới của phim). mood/arc/what/emo/why/sfx/reprise: bảng Sound Design Plan.
-        tr: ép một cách chuyển vào cảnh này ('fill', 'riser', 'pickup', 'run', 'gliss', 'swell', 'drop', 'tail')."""
+        tr: ép một cách chuyển vào cảnh này ('fill', 'riser', 'pickup', 'run', 'gliss', 'swell', 'drop', 'tail', 'bump').
+        counter (accomp=True): nhạc cụ của bè phụ dưới lời (mặc định: nhạc cụ hát chính nếu sáng, không thì theo phong cách)."""
         S = dict(name=name, t0=float(t0), t1=float(t1), style=style, key=key, chords=chords, bass=bass, comp=comp,
                  lead=lead, arp=arp or comp, kit=kit, energy=energy, fills=fills, cue=cue, no=tuple(no), g=g,
                  lead_g=lead_g, comp_reg=comp_reg, hand=False, **kw)
@@ -429,6 +484,13 @@ class Groove:
         elif chords == 'song':
             raise ValueError("groove: chords='song' needs Groove(..., song=TL['song'])")
         self.S.append(S)
+
+    def theme(self, steps, xs=None, every=20., first=True):
+        """(accomp=True) Chủ đề của tập: steps = nửa cung tính từ gốc của giọng (giọng trưởng; giọng thứ tự hạ bậc 3, 6, 7),
+        xs = vị trí từng nốt theo móc đơn của cảnh. Câu đáp đầu tiên của một cảnh hát chủ đề (nhạc cụ hát chính, giọng và tốc độ
+        của cảnh) nếu lần trước đã cách ≥ every giây; khoảng trống ngắn thì hát phần đầu (≥ 4 nốt).
+        first=False: khoảng trống đầu của cảnh quá ngắn thì chủ đề vào khoảng trống đủ dài sau đó trong cùng cảnh (lời dày, câu hát dài)."""
+        self.th = (list(steps), list(xs if xs is not None else range(len(steps)))); self.th_every = float(every); self.th_first = bool(first)
 
     def answer(self, *ts):
         """Ghi các câu đáp viết tay trong mix.py (một câu nhạc ngắn đặt vào khoảng không lời, ví dụ xylophone "hử?"), để báo cáo đếm."""
@@ -501,11 +563,14 @@ class Groove:
         t0, t1 = S['t0'], S['t1']
         s0, s1 = int(np.ceil((t0 - O) / q - 1e-6)), int(np.ceil((t1 - O) / q - 1e-6))
         lowv = lambda t: self.speaking(t, who=self.low)
+        UN = UNDER_A if self.accomp else UNDER
+        if self.accomp and S['style'] != 'break': S['counter'] = self._counter_inst(S); S['nunder'] = 0
+        cpat = (COUNTER3 if meter == 3 else COUNTER.get(S['mood'], COUNTER['default'])) if self.accomp else []
         for s in range(s0, s1):
             pos = s % spb; t = self._step_t(s, swing, spb, beat, O)
             if not t0 - 1e-6 <= t < t1: continue
             under = self.speaking(t); (root, iv), (nroot, _) = self._chord_at(S, t); en = self._ent(S, t)
-            sungT = bool(self.sung) and self.singing(t); UG = UNDER_SUNG if sungT else UNDER   # (song mode) dưới câu hát
+            sungT = bool(self.sung) and self.singing(t); UG = UNDER_SUNG if sungT else UN      # (song mode) dưới câu hát; dưới lời nói: UN (accomp: UNDER_A)
             for role in ('kick', 'back', 'hat', 'perc'):
                 if role in S['no'] or role not in st or not kit.get(role): continue
                 if role == 'kick' and S['energy'] < 2 and S['style'] not in ('tension', 'sway'): continue
@@ -530,20 +595,34 @@ class Groove:
             if S['comp'] and 'comp' not in S['no'] and 'comp' in st and not self.avoided(t):
                 for k_, p in enumerate(st['comp']):
                     if p[0] != pos: continue
-                    if under and not sungT and len(st['comp']) >= 4 and k_ % 2 == 0: continue    # dưới lời: tiếng đệm thưa một nửa (dưới câu hát: đủ nhịp)
+                    if under and not sungT and not self.accomp and len(st['comp']) >= 4 and k_ % 2 == 0: continue    # dưới lời: tiếng đệm thưa một nửa (dưới câu hát, accomp: đủ nhịp)
                     lo, hi = S['comp_reg'] or PITCHED[S['comp']][1]
                     if under: lo, hi = max(lo, 72), max(hi, 84)
                     vo = self._voicing(root, iv, lo, hi)
                     d = p[3] * beat * 2 * (.6 if under and not sungT else 1)
                     for k, m in enumerate(vo):
                         self._note(S['comp'], m, t + k * .007, ROLE_G['comp'] * E * p[1] * (UG['comp'] if under else 1) / len(vo) ** .5 * 1.6 * en, d, -.3 + .6 * k / max(1, len(vo) - 1))
+                    if under and self.accomp: self.under_notes += 1; S['nunder'] += 1
             if S['arp'] and 'arp' not in S['no'] and 'arp' in st and not self.avoided(t) and not sungT:
                 for p in st['arp']:
                     if p[0] != pos: continue
                     lo, hi = PITCHED[S['arp']][1]; lo = max(lo, 72) if under else lo
                     tones = self._voicing(root, iv, lo, hi + 12, n=4)
                     m = tones[p[2] % len(tones)]
-                    self._note(S['arp'], m, t, ROLE_G['arp'] * E * p[1] * (UNDER['arp'] if under else 1) * en, p[3] * beat * 2, .25)
+                    self._note(S['arp'], m, t, ROLE_G['arp'] * E * p[1] * (UN['arp'] if under else 1) * en, p[3] * beat * 2, .25)
+                    if under and self.accomp: self.under_notes += 1; S['nunder'] += 1
+            # (accomp) bè phụ ở dải cao trong lúc có lời: rải nốt hợp âm đi lên rồi đi xuống, nốt ngắn
+            if under and not sungT and cpat and S['style'] != 'break' and 'counter' not in S['no'] and not self.avoided(t):
+                for p in cpat:
+                    if p[0] != pos: continue
+                    lo, hi = COUNTER_REG; tones = [m for m in range(lo, hi + 1) if (m - root) % 12 in iv]
+                    if not tones: continue
+                    near = self.last_counter if self.last_counter is not None else (lo + hi) // 2
+                    j = int(np.argmin([abs(m - near) for m in tones])) + self.cdir
+                    if j <= 0 or j >= len(tones) - 1: self.cdir = -self.cdir; j = int(np.clip(j, 0, len(tones) - 1))
+                    m = tones[j]; self.last_counter = m
+                    self._note(S['counter'], m, t, ROLE_G['counter'] * E * p[1] * en, .14 * beat * 2, .3)
+                    self.under_notes += 1; S['nunder'] += 1
         # nốt bass mở cảnh khi cảnh bắt đầu giữa ô nhịp (phách 1 của ô đã qua): cảnh mới nghe ra ngay từ đầu
         if S['bass'] and 'bass' not in S['no'] and 'bass' in st and S['style'] != 'break' and not lowv(t0):
             spb4 = st.get('meter', 4) * 4; s_first = int(np.ceil((t0 - O) / q - 1e-6))
@@ -605,11 +684,12 @@ class Groove:
         if up and S['energy'] == 3 and S['mood'] not in ('magic', 'cute'): order = ['riser', 'fill'] + order
         if down and S['mood'] != 'magic': order = ['run', 'tail'] + order
         ok, quiet = [], {}
-        for o in dict.fromkeys(order + ['swell', 'fill', 'tail']):
+        for o in dict.fromkeys(order + ['swell', 'fill', 'tail'] + (['bump'] if self.accomp else [])):
             w = self._win(o, prev, S); busy = self.talk(tb - w, tb + .02)
             if self.avoided_span(tb - w, tb - .02) and o not in ('fill', 'tail'): continue   # nhường điểm nhấn viết tay
             if busy:                                                       # dưới lời: không vuốt, không còi, không riser; nốt mồi / chuỗi nốt chỉ ở dải cao
                 if o in ('riser', 'gliss', 'drop'): continue
+                if self.accomp and o == 'tail': continue                   # (accomp) cảnh mới không vào mềm dưới lời: phải nghe ra ngay
                 if o == 'pickup' and not self._hi(S): continue
                 if o == 'run' and not self._hi(prev): continue
             if o == 'run' and not self._pitched(prev): continue
@@ -617,7 +697,10 @@ class Groove:
             if o == 'fill' and prev['style'] in ('hush', 'break', 'float', 'waltzfloat', 'twinkle') and not up: continue
             if o == 'swell' and o not in order and not busy: continue       # dâng lấp lánh: kiểu riêng của phép thuật, hoặc kiểu nhẹ khi có lời
             ok.append(o); quiet[o] = busy
-        if not ok: S['quiet'] = True; return 'soft'
+        if not ok:
+            S['quiet'] = True
+            if self.accomp: self.last_tr = 'bump'; return 'bump'           # (accomp) không còn "nhẹ dưới lời": nhấn "ta!" ở dải cao
+            return 'soft'
         pick = next((o for o in ok if o != self.last_tr), ok[0])
         self.last_tr = pick; S['quiet'] = quiet[pick]
         return pick
@@ -633,7 +716,7 @@ class Groove:
         """Độ dài (giây) mà cách chuyển `o` chiếm trước điểm cắt."""
         pb, nb = prev['beat'], S['beat']
         return {'fill': pb, 'riser': min(pb * 1.5, .9), 'pickup': 1.5 * nb, 'run': 1.15 * pb, 'gliss': min(pb * .9, .6),
-                'swell': min(pb * .9, .6), 'drop': min(pb * 1.2, .6), 'tail': pb * .5}[o]
+                'swell': min(pb * .9, .6), 'drop': min(pb * 1.2, .6), 'tail': pb * .5, 'bump': pb * .5}[o]
 
     def _gliss(self, S, inst, t, d, up, g):
         kroot, pent = self._key(S); lo, hi = PITCHED[inst][1]
@@ -643,7 +726,7 @@ class Groove:
 
     def _transition(self, prev, S):
         tr = S['tr']; tb = S['t0']; pb = prev['beat']; pq = pb / 4; nb = S['beat']
-        talk = S.get('quiet', False); gg = .55 if talk else 1.
+        talk = S.get('quiet', False); gg = (.75 if self.accomp else .55) if talk else 1.
         if tr in ('fill', 'soft'):
             if tr == 'fill':
                 if S['mood'] == 'epic' or prev['kit'] in ('march', 'epic'):
@@ -672,6 +755,12 @@ class Groove:
             run = [pool[max(0, i - k)] for k in (3, 2, 1)]
             for k, m in enumerate(run): self._note(inst, m, tb - (3 - k) * nb / 2, ROLE_G['lead'] * (.6 + .1 * k) * gg, .2, .2)
             if not self.speaking(tb + .05): self._note(inst, tgt, tb, ROLE_G['lead'] * .9, .4, .2)
+        elif tr == 'bump':                                                 # (accomp) nốt mồi cao + hợp âm "ta!" ở dải cao của cảnh mới
+            inst = self._counter_inst(S); (root, iv), _ = self._chord_at(S, tb + .01)
+            tones = [m for m in range(84, 99) if (m - root) % 12 in iv][:3]
+            if tones:
+                self._note(inst, tones[-1] - 12 if tones[-1] - 12 >= 79 else tones[0], tb - nb / 2, ROLE_G['lead'] * .5, .12, .25)
+                for k, m in enumerate(tones): self._note(inst, m, tb + k * .012, ROLE_G['lead'] * .55, .3, -.2 + .2 * k)
         elif tr == 'tail':
             inst = self._pitched(prev, ('comp', 'arp', 'lead'))
             if inst and not self.talk(tb - .1, tb + 1.):
@@ -702,6 +791,34 @@ class Groove:
             self.M(T._ting(mf(place(root, 88, 99)), .8, 1.), tb, .18, .3); self.M(T.cymbal(1.8, 1., 6000), tb, .07, -.2); self.notes += 2
         elif m == 'suspense':
             if not low: self._drum(lambda v: tom(45, v), .7, tb, .4, 0)
+
+    def _counter_inst(self, S):
+        """(accomp) Nhạc cụ của bè phụ dưới lời: counter= của cảnh, hoặc nhạc cụ hát chính / rải / đệm nếu sáng, hoặc theo phong cách."""
+        if S.get('counter') and S['counter'] in PITCHED: return S['counter']
+        for r in ('lead', 'arp', 'comp'):
+            k = S.get(r)
+            if k in BRIGHT and r not in S['no']: return k
+        return COUNTER_INST.get(S['mood'], 'glock')
+
+    def _theme(self, S, a, b, swing):
+        """(accomp) Hát chủ đề của tập trong khoảng trống [a, b): nhạc cụ hát chính, giọng và tốc độ của cảnh."""
+        steps, xs = self.th; lead = S['lead']; lo, hi = PITCHED[lead][1]; O = S['origin']; u = S['beat'] / 2
+        ta = O + np.ceil((a + .04 - O) / (u / 2)) * (u / 2); tb = b - .12
+        n = sum(1 for x in xs if ta + x * u < tb - .05)
+        if n < 4: return False
+        kroot, _ = self._key(S); minor = S['key'].endswith('m')
+        st_ = [d - 1 if minor and d % 12 in (4, 9, 11) else d for d in steps[:n]]
+        base = place(kroot, lo - 2, hi)
+        while base + max(st_) > hi + 3 and base - 12 + min(st_) >= lo - 5: base -= 12
+        while base + min(st_) < lo - 3: base += 12
+        g = ROLE_G['lead'] * ENERGY_G[S['energy']] * S['lead_g']
+        for k, (x, d) in enumerate(zip(xs[:n], st_)):
+            t = ta + x * u + (u / 3 if swing and abs(x % 2 - 1) < 1e-6 else 0)
+            last = k == n - 1
+            self._note(lead, base + d, t, g * (1.12 if last else 1.), .5 if last else .24, .2)
+        self.last_lead = base + st_[-1]; self.last_theme = a; self.themes += 1; self.fills += 1
+        S['nfill'] += 1; S['theme'] = S.get('theme', 0) + 1
+        return True
 
     # ---------- câu đáp ----------
     def _fill(self, S, a, b, swing):
@@ -780,6 +897,8 @@ class Groove:
 
     def _fill_plan(self, S, a, b, swing):
         """Câu đáp theo phong cách nhạc của cảnh (plan=True): ô nhịp và dáng giai điệu từ MOOD_FILL, không lặp ô của lần trước."""
+        if self.accomp and self.th and (S['nfill'] == 0 or (not self.th_first and not S.get('theme'))) and (self.last_theme is None or a - self.last_theme >= self.th_every):
+            if self._theme(S, a, b, swing): return                         # (accomp) câu đáp đầu của cảnh: chủ đề của tập
         lead = S['lead']; lo, hi = PITCHED[lead][1]; O = S['origin']; u = S['beat'] / 2
         ta = O + np.ceil((a + .04 - O) / (u / 2)) * (u / 2); tb = b - .12; avail = tb - ta
         if avail < u * .45: return
@@ -811,10 +930,11 @@ class Groove:
     # ---------- báo cáo ----------
     def save(self, path, color=None):
         keep = ('name', 't0', 't1', 'style', 'key', 'chords', 'bass', 'comp', 'lead', 'arp', 'kit', 'energy', 'hand',
-                'bpm', 'feel_bpm', 'mood', 'arc', 'what', 'emo', 'why', 'sfx', 'reprise', 'tr', 'nfill', 'cue')
+                'bpm', 'feel_bpm', 'mood', 'arc', 'what', 'emo', 'why', 'sfx', 'reprise', 'tr', 'nfill', 'cue', 'counter', 'nunder', 'theme')
         out = {'version': 2, 'plan': self.plan, 'bpm': round(60 / self.beat, 2), 'color': color,
                'sections': [{k: S.get(k) for k in keep} for S in self.S], 'transitions': self.trans,
-               'fills': self.fills, 'answers': sorted(self.answers), 'notes': self.notes}
+               'fills': self.fills, 'answers': sorted(self.answers), 'notes': self.notes,
+               'accomp': self.accomp, 'under_notes': self.under_notes, 'themes': self.themes, 'theme': self.th[0] if self.th else None}
         if self.song is not None:                                          # (song mode) bài hát, câu hát, motif: cho soundplan.py và qa_musical.py
             for d_, S in zip(out['sections'], self.S): d_['song'] = bool(S.get('song'))
             out['song'] = {'key': self.song['key'], 'parts': self.song['parts'], 'motif': self.song.get('motif', [])}

@@ -13,18 +13,18 @@ PY="$LIB/.venv/bin/python"; [ -x "$PY" ] || PY="$LIB/.venv/Scripts/python.exe"  
 export PYTHONIOENCODING=utf-8
 cd "$LIB"
 node "$HERE/tools/lines.mjs"                                                     # timeline.js (song.js đã giải câu hát) → JSON, quỹ thời gian
-"$PY" core/tts/tts.py "$HERE/voice/lines.json" "$HERE/voice"
-"$PY" _shared/voicefx.py "$HERE/voice/lines.json" "$HERE/voice"                 # giọng trẻ em: nâng cao độ (voices.js: pitch)
-WHISPER_MODEL=base.en "$PY" core/tts/asr_check.py "$HERE/voice/lines.json" "$HERE/voice" --lang en
-WHISPER_MODEL=small.en "$PY" core/tts/asr_check.py "$HERE/voice/lines.json" "$HERE/voice" --lang en   # chạy sau cùng: words.json theo small.en (đầu vào của sing.py)
-"$PY" _shared/sing.py "$HERE/voice/lines.json" "$HERE/voice"                    # câu hát: PSOLA theo bản nhạc, giữ chất giọng
-WHISPER_MODEL=small.en "$PY" _shared/tools/asr_sung.py "$HERE/voice/lines.json" "$HERE/voice"   # lời hát nghe rõ (WER, từ khoá)
+# (Vocal QC 18/11/2026) giọng chỉ tạo lại cho câu đã đổi: tts → voicefx → Whisper base.en + small.en → sing.py → asr_sung.py
+# trong voice/_regen/, đạt hết mới gộp về voice/ (một câu lỗi chỉ tạo lại đúng câu đó). Ép tạo lại: --force L04 · cả tập: --all
+"$PY" _shared/tools/voice_regen.py "$HERE"
 "$PY" "$HERE/tools/env.py"                                                       # khẩu hình (theo bản hát)
+"$PY" _shared/tools/wordtimes.py "$HERE" && node "$HERE/tools/lines.mjs"           # phụ đề câu nói chạy theo mốc từ thật (voice/words.js)
 node core/render/events.mjs "$HERE" --size 1080x1920
 node core/render/readcheck.mjs "$HERE" --size 1080x1920
 node core/render/video.mjs "$HERE" --fps 30 --workers 2 --size 1080x1920 --out "$HERE/out/video.mp4"
 "$PY" "$HERE/mix.py"
+"$PY" _shared/tools/av_sync.py "$HERE"                                       # (18/11/2026) tiếng động có khớp hành động trên video không (out/av-sync.json)
 "$PY" _shared/tools/soundplan.py "$HERE"                                    # SOUND-PLAN.md: Sound Design Plan + Music Timeline, Sing-along, SFX timeline, AI prompts
+"$PY" _shared/tools/vocal_qc.py "$HERE"                                      # Vocal & Musical QC (A–G): VOCAL-QC.md, out/vocal-qc.json (qa.py nhóm 9)
 sh core/render/mux.sh "$HERE/out/video.mp4" "$HERE/out/mix.wav" "$HERE/$NAME.mp4" 30 0
 "$PY" core/render/srt.py "$HERE/cards.json" "$HERE/$NAME.srt"
 ffmpeg -v error -y -ss 0.3 -i "$HERE/$NAME.mp4" -frames:v 1 -q:v 2 "$HERE/poster.jpg"

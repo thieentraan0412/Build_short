@@ -12,10 +12,10 @@ cp _shared/TREATMENT-TEMPLATE.md films/short-0XX/TREATMENT.md
 1. **Treatment** (`TREATMENT.md`): điền đủ 10 đầu ra và Music Direction A–F, gồm bản phác Sing-along (kiểu hát, giai điệu từng câu) và `SHOTS`.
 2. **`timeline.js`**: `SONG` (giọng trưởng, các phần ≥ 108 BPM, vòng hợp âm, motif); `LINES` (câu nói: `t`, `dur`; câu hát: `sing: { mode, at, notes, chorus?, lyr?, speed? }`); `em`; CTA `cta: true`; `SECRET.kw`; `BEATS` (6 nhịp); `SHOTS` (mỗi 2–4 s); `EV` (chuỗi nhịp có chủ đích ghi `run`).
    `node films/short-0XX/tools/lines.mjs` giải bài hát (`_shared/song.js`), in quỹ thời gian, dừng nếu nốt không khớp âm tiết, nốt ngoài hợp âm ở phách mạnh, giọng lệch `home`, lời chồng nhau, phim dài quá.
-3. **Nghe thử giọng hát trước khi dựng hình**: chạy năm bước giọng của `build.sh` (tts → voicefx → Whisper → `sing.py` → `asr_sung.py`); nhân vật hát lần đầu thì chủ kênh nghe duyệt.
+3. **Nghe thử giọng hát trước khi dựng hình**: `python _shared/tools/voice_regen.py films/short-0XX` (tts → voicefx → Whisper base + small → `sing.py` → `asr_sung.py`, chỉ cho câu đã đổi); nhân vật hát lần đầu thì chủ kênh nghe duyệt. Câu lỗi: sửa `timeline.js` rồi chạy lại, chỉ câu đó được tạo lại (QUALITY.md §9).
 4. **`film.js`**: cảnh, nhân vật, đạo cụ của tập. Giữ: `LOOK.v = 2`, `LOOK.cheer = true`; chữ móc `hookStack(…, 'mid')` (video dài: `'wide'`), nhân vật dưới chữ trong 3 s đầu; máy quay qua `look()`, kính qua `loupe(…, { mag, pan })`; phụ đề `subtitle(c, card, t, 500, SAFE.subY)`.
-5. **`mix.py`**: `Groove(…, song=TL['song'])`, cảnh chồng câu hát dùng `chords='song'` và BPM của phần; `G.motif`; `LEVEL`; `ve_m` (nhạc lùi ít hơn dưới câu hát); bảng `SFX` cho mọi loại sự kiện.
-6. **`sh films/short-0XX/build.sh`**: dựng trọn, cuối cùng `qa.py` gồm nhóm "8 Chuẩn mới". Không giao khi còn CHƯA ĐẠT; CẢNH BÁO sửa hoặc ghi lý do; báo cáo gồm bảng `qa.py`, checklist cuối `QUALITY.md` và §8.5.
+5. **`mix.py`**: `Groove(…, song=TL['song'])`, cảnh chồng câu hát dùng `chords='song'` và BPM của phần; `G.motif`; `LEVEL`; `ve_m` (nhạc lùi ít hơn dưới câu hát); bảng `SFX` cho mọi loại sự kiện. *(Âm thanh 4 lớp, QUALITY.md §10)* `SCENES` (mức năng lượng và lớp nền của từng cảnh), `EMO_DB`, `ambience.beds`, ghi `out/scenes.json` và stem nền.
+6. **`sh films/short-0XX/build.sh`**: dựng trọn; sau `mix.py` chạy `tools/vocal_qc.py` (→ `VOCAL-QC.md`, mục A–G); cuối cùng `qa.py` gồm nhóm "8 Chuẩn mới" và "9 Vocal QC". Không giao khi còn CHƯA ĐẠT; CẢNH BÁO sửa hoặc ghi lý do (dòng CẦN NGHE: nghe rồi ghi kết luận); báo cáo gồm bảng `qa.py`, checklist cuối `QUALITY.md`, §8.5 và mục A, G của `VOCAL-QC.md`.
 
 ## Các file
 
@@ -24,6 +24,6 @@ cp _shared/TREATMENT-TEMPLATE.md films/short-0XX/TREATMENT.md
 | `timeline.js` | Một nguồn thời gian: bài hát, câu thoại / câu hát, phụ đề (`cardsOf`), 6 nhịp, cú máy, sự kiện âm thanh |
 | `tools/lines.mjs` | timeline.js → `voice/lines.json` (có bản nhạc đã giải cho `sing.py`), `timeline.json`, `cards.json`; quỹ thời gian |
 | `tools/env.py` | khẩu hình theo bản giọng cuối (đã hát) |
-| `build.sh` | toàn bộ quy trình, gồm `sing.py`, `asr_sung.py`, `soundplan.py` (bảng âm thanh A–F) và `qa.py` |
+| `build.sh` | toàn bộ quy trình: `voice_regen.py` (giọng chỉ cho câu đã đổi, gồm `sing.py`, `asr_sung.py`), `wordtimes.py` (phụ đề câu nói theo mốc từ thật), `soundplan.py` (bảng âm thanh A–F), `vocal_qc.py` (Vocal QC A–G) và `qa.py` |
 | `film.js`, `sheets.js`, `poster.js`, `index.html` | khung hình tối thiểu, thay bằng của tập |
 | `mix.py` | khung âm thanh tối thiểu theo song mode |

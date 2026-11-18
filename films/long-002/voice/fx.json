@@ -1,0 +1,218 @@
+{
+ "L03": {
+  "key": "I'll count the clues!|bf_isabella|0.9|3.5",
+  "size": 58440
+ },
+ "L04": {
+  "key": "Can I help? Can I?|af_jessica|0.85|5",
+  "size": 56716
+ },
+ "L09": {
+  "key": "One, two, three, four...|bf_isabella|0.9|3.5",
+  "size": 61650
+ },
+ "L10": {
+  "key": "five, six, seven, eight!|bf_isabella|0.9|3.5",
+  "size": 66418
+ },
+ "L13": {
+  "key": "But WHY?|af_jessica|0.85|5",
+  "size": 36598
+ },
+ "L16": {
+  "key": "Three clues! I counted!|bf_isabella|0.9|3.5",
+  "size": 69354
+ },
+ "L18": {
+  "key": "A shiny string!|af_jessica|0.85|5",
+  "size": 46718
+ },
+ "L20": {
+  "key": "Silk? Only spiders make silk, right?|af_jessica|0.85|5",
+  "size": 89198
+ },
+ "L27": {
+  "key": "Oh! To make a cocoon?|af_jessica|0.85|5",
+  "size": 58014
+ },
+ "L30": {
+  "key": "Flutter made silk once...|af_jessica|0.85|5",
+  "size": 66526
+ },
+ "L31": {
+  "key": "So Flutter is a suspect!|af_jessica|0.85|5",
+  "size": 71180
+ },
+ "L32": {
+  "key": "Clue number one!|bf_isabella|0.9|3.5",
+  "size": 49876
+ },
+ "L34": {
+  "key": "Count them with me!|bf_isabella|0.9|3.5",
+  "size": 53350
+ },
+ "L35": {
+  "key": "One, two, three, four...|bf_isabella|0.9|3.5",
+  "size": 61650
+ },
+ "L36": {
+  "key": "five, six, seven, eight!|bf_isabella|0.9|3.5",
+  "size": 66418
+ },
+ "L37": {
+  "key": "Eight feet in every step!|bf_isabella|0.9|3.5",
+  "size": 68472
+ },
+ "L38": {
+  "key": "Flutter has six feet...|af_jessica|0.85|5",
+  "size": 61404
+ },
+ "L39": {
+  "key": "so it was NOT Flutter!|af_jessica|0.85|5",
+  "size": 58916
+ },
+ "L41": {
+  "key": "Did you see that?|af_jessica|0.85|5",
+  "size": 47086
+ },
+ "L42": {
+  "key": "Clue number two!|bf_isabella|0.9|3.5",
+  "size": 48772
+ },
+ "L43": {
+  "key": "A wing! It's a butterfly wing!|af_jessica|0.85|5",
+  "size": 78934
+ },
+ "L46": {
+  "key": "A paper wing? But WHY?|af_jessica|0.85|5",
+  "size": 62346
+ },
+ "L49": {
+  "key": "Clue number three!|bf_isabella|0.9|3.5",
+  "size": 50922
+ },
+ "L54": {
+  "key": "Waggle... one, two, three, four, five, six!|bf_isabella|0.9|3.5",
+  "size": 99630
+ },
+ "L56": {
+  "key": "Flutter... six legs!|bf_isabella|0.9|3.5",
+  "size": 58836
+ },
+ "L57": {
+  "key": "Chirp... six legs!|bf_isabella|0.9|3.5",
+  "size": 59198
+ },
+ "L59": {
+  "key": "And you... one, two, three, four, five, six!|bf_isabella|0.9|3.5",
+  "size": 101540
+ },
+ "L60": {
+  "key": "Six legs! See? I am a bug!|af_kore|0.95|-1",
+  "size": 78812
+ },
+ "L63": {
+  "key": "Seven... eight!|bf_isabella|0.9|3.5",
+  "size": 44296
+ },
+ "L64": {
+  "key": "EIGHT legs!|bf_isabella|0.9|3.5",
+  "size": 41994
+ },
+ "L65": {
+  "key": "Oopsie!|af_kore|0.95|-1",
+  "size": 32656
+ },
+ "L67": {
+  "key": "Waggle: one, two, three!|bf_isabella|0.9|3.5",
+  "size": 67334
+ },
+ "L68": {
+  "key": "Spindle: one, two!|bf_isabella|0.9|3.5",
+  "size": 60620
+ },
+ "L73": {
+  "key": "Oh! Those were paper.|af_kore|0.95|-1",
+  "size": 60154
+ },
+ "L75": {
+  "key": "Is it my turn yet?|af_kore|0.95|-1",
+  "size": 56660
+ },
+ "L76": {
+  "key": "But did she sneak in? We didn't SEE her!|af_jessica|0.85|5",
+  "size": 89254
+ },
+ "L78": {
+  "key": "My trap! A shiny empty spot!|af_jessica|0.85|5",
+  "size": 80768
+ },
+ "L79": {
+  "key": "Every intruder wants a spot!|af_jessica|0.85|5",
+  "size": 72864
+ },
+ "L81": {
+  "key": "Shh... one, two, three...|bf_isabella|0.9|3.5",
+  "size": 78254
+ },
+ "L82": {
+  "key": "A bug! With wings and stripes!|af_jessica|0.85|5",
+  "size": 73484
+ },
+ "L83": {
+  "key": "One, two... six legs!|bf_isabella|0.9|3.5",
+  "size": 65560
+ },
+ "L85": {
+  "key": "Gotcha!|af_jessica|0.85|5",
+  "size": 33968
+ },
+ "L86": {
+  "key": "Eight legs!|bf_isabella|0.9|3.5",
+  "size": 41994
+ },
+ "L88": {
+  "key": "You caught me!|af_kore|0.95|-1",
+  "size": 42952
+ },
+ "L89": {
+  "key": "I only wanted one page.|af_kore|0.95|-1",
+  "size": 83232
+ },
+ "L90": {
+  "key": "But WHY can't she join?|af_jessica|0.85|5",
+  "size": 63284
+ },
+ "L93": {
+  "key": "Okay! Maybe one day?|af_kore|0.95|-1",
+  "size": 69102
+ },
+ "L98": {
+  "key": "Six legs!|bf_isabella|0.9|3.5",
+  "size": 42530
+ },
+ "L100": {
+  "key": "Eight legs!|bf_isabella|0.9|3.5",
+  "size": 41994
+ },
+ "L102": {
+  "key": "Wait! Did you spot Rollo?|af_jessica|0.85|5",
+  "size": 65116
+ },
+ "L103": {
+  "key": "Now let me count YOU!|bf_isabella|0.9|3.5",
+  "size": 57834
+ },
+ "L104": {
+  "key": "One, two... Two legs! Not a bug either!|bf_isabella|0.9|3.5",
+  "size": 89694
+ },
+ "L105": {
+  "key": "Is it my turn yet?|af_kore|0.95|-1",
+  "size": 56660
+ },
+ "L107": {
+  "key": "Nope!|bf_isabella|0.9|3.5",
+  "size": 31978
+ }
+}

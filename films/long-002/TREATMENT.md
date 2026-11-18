@@ -5,7 +5,7 @@
 Video dài thứ hai của kênh, khép SERIES-002 *Is It a Bug?*. Ra ngày Thứ Bảy 23/01/2027. Định dạng **C2 dựng mới**, thể loại **trinh thám vui**.
 - 16:9 gốc 1920×1080, **30 fps** (QUALITY.md §5).
 - Lời, chữ trên hình và phụ đề tiếng Anh. Khán giả 4–8 tuổi xem cùng bố mẹ.
-- **Độ dài ước lượng 4 phút 35 giây** (107 câu, kịch bản "chảy" theo độ dài giọng; giọng thật thường dài hơn ước lượng một chút, dự kiến 4:45–5:15). Đề cương ghi 6 phút: xem mục 13, câu hỏi 1.
+- **Độ dài bản dựng: 4 phút 16,5 giây** (256,5 s; 107 câu, kịch bản "chảy" theo độ dài giọng thật). Giọng thật nhanh hơn ước lượng (storyboard ước 4:35). Đề cương ghi 6 phút: giữ gọn, xem mục 13.
 
 Theo:
 - đề cương ([DE-CUONG-CAC-BO.md](../../DE-CUONG-CAC-BO.md), LONG-002) và các sửa đổi do xác minh ([XAC-MINH-DU-KIEN.md](../../XAC-MINH-DU-KIEN.md) mục 4–5);
@@ -71,7 +71,7 @@ Nhạc tuyệt đối không gợi giai điệu của các bài nhạc thám t�
 | **Manh mối 3 · Cánh giấy** | Góc trang, dưới sticker Dot | Soi kính: vết kéo răng cưa, nét chì, băng dính | Kẻ đột nhập muốn *trông giống* côn trùng: cải trang! | Ô 3 lấp → *"Time for a lineup!"* |
 | **Hàng nghi phạm** (cảnh đặc trưng) | Bức tường **LEG-O-METER**: thước đo chiều cao thành thước đo chân, vạch 6 xanh lá | Đếm chân từng người; đếm phần thân; đếm râu | 6 so với 8 chân; 3 so với 2 phần thân; **2 râu so với không râu** (chỉ có ở video dài) | Kính soi ra 2 chân giấu sau lưng Spindle; râu giấy rơi; *"BZZT! Not a bug!"*; Spindle kéo tơ lên: *"Is it my turn yet?"*. Rollo vẫn đứng cuối hàng, không ai để ý |
 | **Bẫy ban đêm** (cao trào) | Bàn học, đèn tắt, ánh trăng | Đếm chân "con bọ" lạ: *"six legs!"* ... *"are you sure?"* | Kẻ cải trang trượt trên chính sợi tơ của mình, cuộn thành cục tơ, nảy như bạt nhún; đồ cải trang bung ra, 8 chân bật ra | Đèn bật, *"Gotcha!"*, *"BZZT!"* |
-| **Thú nhận** | Bàn học dưới đèn | — | *"I only wanted one page."* · *"But WHY can't she?"* · *"Rules are rules."* | Spindle tặng sticker tơ, cười hy vọng *"Maybe one day?"*, kéo tơ lên. Albie một mình: *"...I'll think about it."*, giấu sticker dưới ruy băng |
+| **Thú nhận** | Bàn học dưới đèn | — | *"I only wanted one page."* · *"But WHY can't she join?"* · *"Rules are rules."* | Spindle tặng sticker tơ, cười hy vọng *"Maybe one day?"*, kéo tơ lên. Albie một mình: *"...I'll think about it."*, giấu sticker dưới ruy băng |
 | **Kết** | Trang Insects, con dấu CASE CLOSED! | Hỏi lại: bao nhiêu chân? (trẻ đáp *Six!* / *Eight!*); *"Did you spot Rollo?"* | Thông điệp: *"Count carefully... before you decide!"* | Gag: Dot đếm chân người xem, *"Two legs! Not a bug either!"*; sợi tơ lóe lại như khung 0; Spindle thả xuống; câu hỏi kết *"So... is a spider a bug?"* → *"Nope!"* |
 
 ## 6. Bảng cảnh (ước lượng trước khi có giọng; mỗi 3–5 s có một chuyện mới)
@@ -98,15 +98,15 @@ Thời gian lấy từ `timeline.js` (34 cảnh, trung bình 8,1 s, dài nhất 
 | sum | 2:02.9 | 5,5 | ba biểu tượng manh mối nảy lần lượt · "LINEUP!" |
 | line | 2:08.4 | 7,9 | Albie "Step in line!" · Waggle, Flutter, Chirp vào hàng · Spindle thả tơ xuống · Rollo lăn vào cuối hàng |
 | lw / lf | 2:16.3 | 10,7 | Dot đếm Waggle, cột đo dâng tới 6 "ding" · Flutter 6 · Chirp 6 (nhịp nhanh dần) |
-| ls | 2:26.9 | 9,3 | Spindle "Six! See? I am a bug!" · Albie "Hmm..." · "Let's zoom in!" |
+| ls | 2:26.9 | 9,3 | Spindle "Six legs! See? I am a bug!" · Albie "Really? Six?" · "Let's zoom in!" |
 | llens | 2:36.2 | 4,7 | nhìn qua kính: hai chân giơ sau lưng vẫy · 7, 8 · cột đo vọt lên 8 "boing" · "Oopsie!" |
 | body | 2:40.9 | 10,2 | số 1-2-3 trên Waggle · 1-2 trên Spindle · câu chốt |
 | ant | 2:51.1 | 13,7 | râu Waggle, Flutter, Chirp nảy "2" lần lượt · râu giấy Spindle rủ rồi rơi · "BZZT!" · Spindle kéo tơ lên |
 | lq | 3:04.8 | 7,6 | Crumb "We didn't SEE her!" · "catch... in the act!" · Rollo còn lại, ngó quanh, lăn đi |
-| trap | 3:12.4 | 9,0 | Crumb đặt mồi vàng · cả đội nấp (Loupe trong hũ bút, Crumb trong cuộn băng dính, Dot sau cục tẩy) · đèn tắt "tách" · Albie giả ngủ "Zzz" |
+| trap | 3:12.4 | 9,0 | Crumb đặt mồi vàng · cả đội nấp (Loupe trong hũ bút, Crumb trong cuộn băng dính, Dot sau cục tẩy) · đèn tắt "tách" · Albie giả ngủ "Snore... snore..." (chữ zzz bay) |
 | wait | 3:21.4 | 9,2 | Dot thì thầm đếm · "con bọ" lạ đi trên dây tơ, lắc lư · "6?" · "are you sure?" |
 | snap | 3:30.6 | 7,9 | trượt chân · cuộn thành cục tơ, nảy như bạt nhún · đồ cải trang bung · đèn bật · "GOTCHA!" |
-| conf / confb | 3:38.5 | 16,2 | Spindle treo trên tơ "You caught me!" · giơ sticker tơ lấp lánh · "But WHY can't she?" · "Rules are rules." · tặng sticker · kéo tơ lên |
+| conf / confb | 3:38.5 | 16,2 | Spindle treo trên tơ "You caught me!" · giơ sticker tơ lấp lánh · "But WHY can't she join?" · "Rules are rules." · tặng sticker · kéo tơ lên |
 | alone | 3:54.7 | 5,2 | Albie ngắm sticker tơ · "...I'll think about it." · giấu dưới ruy băng |
 | recap | 3:59.9 | 13,9 | con dấu CASE CLOSED! · thẻ "6 BUG" · thẻ "8 SPIDER" · thông điệp |
 | rollo | 4:13.8 | 6,6 | ba khung nhỏ lần lượt bật ra, vòng tròn khoanh Rollo |
@@ -156,7 +156,7 @@ Thời gian lấy từ `timeline.js` (34 cảnh, trung bình 8,1 s, dài nhất 
 | Miss Loupe | Thám tử chính, soi kính | Câu dài | `af_heart` 0,9 |
 | Albie | Nạn nhân, người giữ luật; cuối phim mềm lòng | Câu dài | `bm_lewis` 0,8 |
 | Crumb | Trợ lý *"But WHY?"*, người đặt bẫy | Câu dài | `af_jessica` +5 |
-| **Spindle** | Kẻ đột nhập dễ thương | Câu dài (8 câu ngắn) | **Mới**: nữ, trầm ấm, hơi kịch. Thử A/B ở bước Produce: `bf_emma`, `af_nicole`, `af_kore` (cách Loupe ≥ 3 nửa cung hoặc khác hẳn chất giọng Anh/Mỹ) |
+| **Spindle** | Kẻ đột nhập dễ thương | Câu dài (8 câu ngắn) | **Mới: `af_kore` 0,95, −1 nửa cung (≈ 160–168 Hz).** Đã thử A/B 6 bản (`bf_emma`, `af_nicole`, `af_kore`, có và không hạ cao độ; [`_shared/voice-tests/README.md`](../../_shared/voice-tests/README.md)): bản chọn qua cả hai Whisper, cách Miss Loupe 4,5–5,8 nửa cung |
 | Dot | Đếm manh mối | Câu cửa miệng, câu đếm | `bf_isabella` +3,5 |
 | Waggle, Flutter, Chirp, Rollo | Nghi phạm vô can; trứng phục sinh | Không lời (vo ve, "Mmm?!", gáy, lăn) | — |
 
@@ -197,7 +197,7 @@ Mô-típ bí mật đô–mi–sol ở mỗi lần ô manh mối lấp và ở "
 | Did you spot Rollo? | Funny Comedy | `stride` | piano ragtime | 126 | end |
 | Tạm biệt | Playful Cartoon | `sleuth` (reprise, cả ban) | trumpet + vibraphone | 124 | end |
 
-Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie bỏ bass). Câu đáp nhạc cụ chen giữa các câu. Âm lượng dâng ở phát hiện (8 chân, nệm tơ, 7–8 chân giấu, bẫy sập).
+Nhạc chạy từ giây 0. Dưới lời (lượt 16/11/2026, *Đệm lời*): vẫn đủ đệm hợp âm và một bè phụ ở dải cao, chỉ lùi ở dải giọng (dưới giọng Albie bỏ bass). Chủ đề "Who snuck in?" (đô–mi–sol–la–sol–mi–rê–sol) do nhạc cụ hát chính của từng cảnh hát lại. Câu đáp nhạc cụ chen giữa các câu. Âm lượng dâng ở phát hiện (8 chân, nệm tơ, 7–8 chân giấu, bẫy sập). Chi tiết: [MUSIC.md](MUSIC.md).
 
 ## 10. Âm thanh
 
@@ -206,7 +206,7 @@ Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie b
 | Đêm, bàn học | dế xa ngoài cửa sổ, tiếng ù nhẹ của đèn bàn | tơ "zing" (vuốt chuông thủy tinh), sticker ngọ nguậy, lật trang giấy, pop của chữ | `sleuth` |
 | Manh mối | như trên | gảy tơ "boing", bút chì sột soạt, bước chân tí hon in bụi "pat", vỗ cánh giấy, băng dính kêu "xoẹt" | theo bảng |
 | Hàng nghi phạm | phòng yên, có vang | cột đo dâng "ding", vọt "boing", râu nảy "tink", râu giấy rơi lả tả, "BZZT" | `ska` |
-| Bẫy | ánh trăng: dế rõ hơn, tích tắc khẽ | đèn "tách" tắt/bật, ngáy "Zzz", tơ nảy "boing" tăng dần, đồ cải trang bung "pop pop" | `skip` → `hero` |
+| Bẫy | ánh trăng: dế rõ hơn, tích tắc khẽ | đèn "tách" tắt/bật, Albie giả ngáy "Snore... snore...", tơ nảy "boing" tăng dần, đồ cải trang bung "pop pop" | `skip` → `hero` |
 | Kết | dế xa | con dấu "thụp", ta-da, lăn viên tròn | `sunny` → `sleuth` |
 
 - **Khoảng lặng có chủ đích** (≤ 1 s, nhạc còn một lớp mỏng):
@@ -256,8 +256,8 @@ Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie b
 ## 12. Gag, xem lại, tương tác
 
 - **Gag và bất ngờ hợp tính cách:**
-  - Albie "giả ngủ" nói to *"Zzz... I am totally asleep..."*;
-  - Spindle *"Six! See? I am a bug!"* rồi *"Oopsie!"*;
+  - Albie "giả ngủ" nói to *"Snore... snore... I am totally asleep..."*;
+  - Spindle *"Six legs! See? I am a bug!"* rồi *"Oopsie!"*;
   - râu giấy rơi: *"Oh! Those were paper."*;
   - Flutter *"Mmm?!"* khi bị nghi;
   - Dot đếm chân người xem: *"Two legs! Not a bug either!"*
@@ -278,7 +278,7 @@ Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie b
 - **Gợi lại móc:** mốc `recall`: sợi tơ lóe ngang khung đúng như khung 0, Spindle thả xuống.
 - Made for Kids: không kêu gọi bình luận hay đăng ký.
 
-## 13. Chỗ đổi so với đề cương, và điều tôi chưa chắc (cần anh/chị duyệt)
+## 13. Chỗ đổi so với đề cương, và các quyết định khi dựng
 
 **Đã đổi, có lý do:**
 1. **Cảnh kết của Spindle:** đề cương ghi "buồn bã treo mình ra khỏi khung". Theo luật kênh *luôn vui tươi* (14/11/2026), Spindle cười hy vọng *"Okay! Maybe one day?"*, tặng sticker tơ rồi vẫy chân kéo tơ lên. Ý "luật là luật" và mầm tập 12 vẫn giữ nguyên.
@@ -289,24 +289,36 @@ Nhạc chạy từ giây 0. Dưới lời: nhạc thưa (dưới giọng Albie b
 3. **Nệm tơ, không phải kén:** theo XAC-MINH-DU-KIEN.md mục 5; có câu *"A cocoon?" — "Nope!"*.
 4. **Không có câu "spiders have eight eyes":** nguồn chỉ nói "usually". 8 mắt chỉ có ở hình.
 
-**Cần anh/chị quyết khi duyệt storyboard:**
-1. **Độ dài:** bản này ước lượng **≈ 4:35** (giọng thật ≈ 4:45–5:15), ngắn hơn mức 6 phút của đề cương. Tôi đề xuất giữ gọn. Nếu cần đủ 6 phút, tôi sẽ thêm hai đoạn:
-   - trò "Spot the difference" giữa cánh thật và cánh giấy;
-   - một lượt đặt bẫy hụt (Rollo lăn vào bẫy trước).
-2. **Râu giấy thay chân ruồi** (mục trên): đồng ý không?
-3. **Giọng Spindle:** tôi sẽ thử A/B ba giọng và chọn theo hai Whisper. Anh/chị có muốn nghe mẫu trước khi dựng không?
-4. Bản dựng thật sẽ thêm `events.js`, `mix.py`, `build.sh`, `MUSIC.md`, `SOUND.md`, `CREDITS`, ảnh bìa, rồi chạy `qa.py`. **Các bước này chỉ bắt đầu sau khi storyboard được duyệt.**
+**Các câu hỏi khi duyệt storyboard đã chốt khi dựng (16/11/2026, `Task.md`: "build long 002"):** theo đề xuất mặc định của tôi; anh/chị muốn đổi thì báo lại.
+1. **Độ dài:** giữ gọn. Giọng thật nhanh hơn ước lượng, bản dựng dài **4:16,5**, chưa thêm hai đoạn mở rộng ("Spot the difference", lượt bẫy hụt). Nếu cần đủ 6 phút, hai đoạn này vẫn thêm được vào `timeline.js` và `scenes.js` mà không phải dựng lại phần còn lại.
+2. **Râu giấy thay chân ruồi:** giữ râu giấy.
+3. **Giọng Spindle:** đã thử A/B 6 bản và chọn `af_kore` −1 nửa cung (mục 8). Mẫu nghe ở [`_shared/voice-tests/`](../../_shared/voice-tests/README.md).
+4. **Đổi lời sau khi kiểm bằng Whisper** (bảng ở [SOUND.md](SOUND.md#giọng-kiểm-bằng-whisper)), không đổi nghĩa:
+   - "Six legs! See?";
+   - "Silk? Only spiders make silk, right?";
+   - "Oh! To make a cocoon?";
+   - "A wing! It's a butterfly wing!";
+   - "Wait… / Really? Six? / Hold on…" thay cho "Hmm";
+   - "Flutter… six legs!";
+   - "Snore… snore…" thay cho "Zzz";
+   - "But WHY can't she join?";
+   - "Six legs!" / "Eight legs!" ở phần ôn bài;
+   - "Nope!" cuối do Dot nói.
 
 ## 14. Ghi chú sản xuất
 
-- Đã dựng: `timeline.js` (kịch bản đầy đủ, 107 câu, 34 cảnh), `lib16.js`, `props.js`, `scenes.js`, `film.js` (vẽ được toàn bộ 4:35 bằng code của phim), `sheets.js` (`?mode=model`, `?mode=board`), `index.html`.
-- Chưa có giọng: khẩu hình và thời lượng đang dùng ước lượng (`RATE` trong `timeline.js`). Khi có giọng, `tools/lines.mjs` ghi `dur.js` và mọi mốc tự chảy theo.
-- **Còn thiếu cho bước Produce:**
-  - thêm `spindle` vào `voices.js` sau khi thử A/B;
-  - `tools/lines.mjs` và `tools/env.py` (chép từ LONG-001);
-  - `events.js` (danh sách tiếng động khớp hình);
-  - `mix.py` (lớp nhịp `Groove(..., plan=True)` theo bảng mục 9);
-  - `build.sh` (chép từ LONG-001, đổi tên tập).
+- **Dựng lại cả phim bằng một lệnh:** `sh films/long-002/build.sh`. Thứ tự: giọng → hai Whisper → khẩu hình → tiếng động → readcheck → render → `mix.py` → `soundplan.py` → mux → phụ đề → ảnh bìa → `qa.py`.
+- **Kết quả:**
+  - `long-002.mp4`: 1920×1080, 30 fps, 256,5 s;
+  - `long-002.srt`: 55 tấm;
+  - ảnh bìa: `thumbnail-16x9.jpg`, `poster-9x16.jpg`, `poster.jpg`;
+  - `MUSIC.md`, `SOUND.md`, `SOUND-PLAN.md`, `CREDITS`.
+- **`qa.py`: 41 đạt, 0 cảnh báo, 0 chưa đạt** (16/11/2026, sau lượt "nhạc đệm dưới lời": thêm 3 mục đo nhạc đệm, đổi cảnh, chủ đề).
+- **Chỉnh trong lúc dựng:**
+  - **readcheck:** giữ lâu hơn các chữ lớn "8 LEGS?!", "NOPE!", "LINEUP!", "2 LEGS!"; tựa dài 2,03 s. Chữ móc thu nhỏ đậu ở góc trên trái qua cú lia, không che Albie.
+  - **Cảnh "Did you spot Rollo?":** Crumb ra góc trái, ngoài tấm phụ đề.
+  - **Ảnh bìa:** dựng theo khoảnh khắc wow 2 (kính soi hai chân giấu). `hiddenLegsLens` trong `scenes.js` dùng chung cho phim và `poster.js`.
+  - **Âm thanh:** lọc thấp 8,5 kHz cho giọng (tiếng rít của giọng Dot làm AAC vọt đỉnh); nhạc lùi dưới câu cửa miệng; "ta-da" và tiếng reo cuối đặt ngay sau "Nope!".
 - Dựng lại storyboard:
 
   ```sh

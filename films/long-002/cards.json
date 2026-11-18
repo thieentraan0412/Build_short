@@ -1,0 +1,277 @@
+[
+ {
+  "t0": 0.3,
+  "t1": 3.631,
+  "text": "An intruder! In MY pages!"
+ },
+ {
+  "t0": 3.681,
+  "t1": 9.205,
+  "text": "Who snuck into the Bug Book? I'll count the clues! Can I help? Can I?"
+ },
+ {
+  "t0": 9.255,
+  "t1": 13.65,
+  "text": "Every detective needs a lens! Big secrets of tiny bugs!"
+ },
+ {
+  "t0": 13.82,
+  "t1": 17.719,
+  "text": "The Insects page... and a sticker that doesn't belong!"
+ },
+ {
+  "t0": 17.819,
+  "t1": 21.185,
+  "text": "One, two, three, four... five, six, seven, eight!"
+ },
+ {
+  "t0": 22.835,
+  "t1": 30.692,
+  "text": "Eight legs?! Insects have SIX! This page is for insects only. But WHY?"
+ },
+ {
+  "t0": 30.742,
+  "t1": 33.068,
+  "text": "Rules are rules!"
+ },
+ {
+  "t0": 33.468,
+  "t1": 38.68,
+  "text": "Every intruder leaves clues. Three clues! I counted! Let's zoom in!"
+ },
+ {
+  "t0": 39.18,
+  "t1": 44.534,
+  "text": "A shiny string! It's silk! Silk? Only spiders make silk, right?"
+ },
+ {
+  "t0": 44.584,
+  "t1": 47.602,
+  "text": "Only spiders? Nope!"
+ },
+ {
+  "t0": 48.252,
+  "t1": 50.964,
+  "text": "Look! My baby pictures!"
+ },
+ {
+  "t0": 51.364,
+  "t1": 55.514,
+  "text": "Before Flutter was a butterfly... Flutter was a caterpillar!"
+ },
+ {
+  "t0": 55.814,
+  "t1": 58.192,
+  "text": "And caterpillars make silk too!"
+ },
+ {
+  "t0": 58.992,
+  "t1": 65.082,
+  "text": "Oh! To make a cocoon? Nope! A tiny silk pad... to hang on while it changes!"
+ },
+ {
+  "t0": 68.282,
+  "t1": 72.049,
+  "text": "Flutter made silk once... So Flutter is a suspect!"
+ },
+ {
+  "t0": 73.349,
+  "t1": 75.149,
+  "text": "Clue number one!"
+ },
+ {
+  "t0": 75.487,
+  "t1": 80.007,
+  "text": "Look! Tiny footprints in the eraser dust! Count them with me!"
+ },
+ {
+  "t0": 80.057,
+  "t1": 85.149,
+  "text": "One, two, three, four... five, six, seven, eight! Eight feet in every step!"
+ },
+ {
+  "t0": 86.349,
+  "t1": 88.227,
+  "text": "Flutter has six feet..."
+ },
+ {
+  "t0": 88.827,
+  "t1": 92.367,
+  "text": "so it was NOT Flutter! Then who has eight legs?"
+ },
+ {
+  "t0": 94.067,
+  "t1": 95.867,
+  "text": "Did you see that?"
+ },
+ {
+  "t0": 96.047,
+  "t1": 97.847,
+  "text": "Clue number two!"
+ },
+ {
+  "t0": 98.162,
+  "t1": 100.406,
+  "text": "A wing! It's a butterfly wing!"
+ },
+ {
+  "t0": 101.006,
+  "t1": 103.483,
+  "text": "Wait... let me take a closer look."
+ },
+ {
+  "t0": 103.983,
+  "t1": 107.937,
+  "text": "It's paper! With sticky tape! A paper wing? But WHY?"
+ },
+ {
+  "t0": 107.987,
+  "t1": 113.143,
+  "text": "Somebody wanted to LOOK like a bug! A disguise! In MY book!"
+ },
+ {
+  "t0": 113.543,
+  "t1": 115.343,
+  "text": "Clue number three!"
+ },
+ {
+  "t0": 115.903,
+  "t1": 120.361,
+  "text": "Silk... eight feet... a paper wing. Time for a lineup!"
+ },
+ {
+  "t0": 120.661,
+  "t1": 123.507,
+  "text": "Suspects! Step in line!"
+ },
+ {
+  "t0": 126.507,
+  "t1": 130.749,
+  "text": "Count the legs with Dot! Waggle... one, two, three, four, five, six!"
+ },
+ {
+  "t0": 130.749,
+  "t1": 136.53,
+  "text": "Six legs! A bug! Flutter... six legs! Chirp... six legs!"
+ },
+ {
+  "t0": 136.58,
+  "t1": 140.697,
+  "text": "Bug! Bug! And you... one, two, three, four, five, six!"
+ },
+ {
+  "t0": 140.747,
+  "t1": 146.055,
+  "text": "Six legs! See? I am a bug! Really? Six? Let's zoom in!"
+ },
+ {
+  "t0": 146.355,
+  "t1": 150.23,
+  "text": "Seven... eight! EIGHT legs! Oopsie!"
+ },
+ {
+  "t0": 150.28,
+  "t1": 155.904,
+  "text": "Now count the body parts! Waggle: one, two, three! Spindle: one, two!"
+ },
+ {
+  "t0": 155.954,
+  "t1": 161.328,
+  "text": "Bugs have three body parts. Spiders have two! And one more secret..."
+ },
+ {
+  "t0": 161.428,
+  "t1": 163.387,
+  "text": "Bugs have two antennae."
+ },
+ {
+  "t0": 163.787,
+  "t1": 169.981,
+  "text": "Spiders have none! Oh! Those were paper. BZZT! Not a bug!"
+ },
+ {
+  "t0": 170.031,
+  "t1": 173.969,
+  "text": "Is it my turn yet? But did she sneak in? We didn't SEE her!"
+ },
+ {
+  "t0": 174.019,
+  "t1": 177.22,
+  "text": "Then let's catch the intruder... in the act!"
+ },
+ {
+  "t0": 179.02,
+  "t1": 183.119,
+  "text": "My trap! A shiny empty spot! Every intruder wants a spot!"
+ },
+ {
+  "t0": 184.419,
+  "t1": 190.278,
+  "text": "Snore... snore... I am totally asleep... Shh... one, two, three..."
+ },
+ {
+  "t0": 191.178,
+  "t1": 196.728,
+  "text": "A bug! With wings and stripes! One, two... six legs! Hold on... are you sure?"
+ },
+ {
+  "t0": 199.978,
+  "t1": 205.107,
+  "text": "Gotcha! Eight legs! BZZT! Not a bug!"
+ },
+ {
+  "t0": 205.157,
+  "t1": 208.684,
+  "text": "You caught me! I only wanted one page."
+ },
+ {
+  "t0": 209.384,
+  "t1": 215.852,
+  "text": "But WHY can't she join? Rules are rules. This book is for insects."
+ },
+ {
+  "t0": 215.902,
+  "t1": 217.941,
+  "text": "Okay! Maybe one day?"
+ },
+ {
+  "t0": 221.341,
+  "t1": 223.57,
+  "text": "...I'll think about it."
+ },
+ {
+  "t0": 225.17,
+  "t1": 230.669,
+  "text": "Case closed! Little detectives, remember... How many legs does a bug have?"
+ },
+ {
+  "t0": 231.269,
+  "t1": 233.985,
+  "text": "Six legs! And a spider?"
+ },
+ {
+  "t0": 234.385,
+  "t1": 238.378,
+  "text": "Eight legs! Count carefully... before you decide!"
+ },
+ {
+  "t0": 238.378,
+  "t1": 240.334,
+  "text": "Wait! Did you spot Rollo?"
+ },
+ {
+  "t0": 245.334,
+  "t1": 249.206,
+  "text": "Now let me count YOU! One, two... Two legs! Not a bug either!"
+ },
+ {
+  "t0": 249.956,
+  "t1": 253.651,
+  "text": "Is it my turn yet? So... is a spider a bug?"
+ },
+ {
+  "t0": 254.051,
+  "t1": 255.851,
+  "text": "Nope!"
+ }
+]

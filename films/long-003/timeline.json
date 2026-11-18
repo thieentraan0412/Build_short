@@ -1,0 +1,1054 @@
+{
+ "bpm": 120,
+ "dur": 256,
+ "secs": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 5.38
+  },
+  {
+   "id": "team",
+   "t0": 5.38,
+   "t1": 13.931
+  },
+  {
+   "id": "title",
+   "t0": 13.931,
+   "t1": 15.688
+  },
+  {
+   "id": "map",
+   "t0": 15.688,
+   "t1": 27.087
+  },
+  {
+   "id": "crew",
+   "t0": 27.087,
+   "t1": 37.336
+  },
+  {
+   "id": "sun",
+   "t0": 37.336,
+   "t1": 54.188
+  },
+  {
+   "id": "lp1",
+   "t0": 54.188,
+   "t1": 58.47
+  },
+  {
+   "id": "ants",
+   "t0": 58.47,
+   "t1": 67.91
+  },
+  {
+   "id": "march",
+   "t0": 67.91,
+   "t1": 74.631
+  },
+  {
+   "id": "edge0",
+   "t0": 74.631,
+   "t1": 80.23
+  },
+  {
+   "id": "think",
+   "t0": 80.23,
+   "t1": 84.235
+  },
+  {
+   "id": "desert",
+   "t0": 84.235,
+   "t1": 93.357
+  },
+  {
+   "id": "count",
+   "t0": 93.357,
+   "t1": 101.165
+  },
+  {
+   "id": "lp2",
+   "t0": 101.165,
+   "t1": 107.107
+  },
+  {
+   "id": "stars",
+   "t0": 107.107,
+   "t1": 114.318
+  },
+  {
+   "id": "sky",
+   "t0": 114.318,
+   "t1": 119.962
+  },
+  {
+   "id": "track",
+   "t0": 119.962,
+   "t1": 137.207
+  },
+  {
+   "id": "telly",
+   "t0": 137.207,
+   "t1": 138.607
+  },
+  {
+   "id": "bino",
+   "t0": 138.607,
+   "t1": 142.953
+  },
+  {
+   "id": "signal",
+   "t0": 142.953,
+   "t1": 155.821
+  },
+  {
+   "id": "edge",
+   "t0": 155.821,
+   "t1": 173.961
+  },
+  {
+   "id": "pov",
+   "t0": 173.961,
+   "t1": 178.525
+  },
+  {
+   "id": "place",
+   "t0": 178.525,
+   "t1": 183.552
+  },
+  {
+   "id": "found",
+   "t0": 183.552,
+   "t1": 191.077
+  },
+  {
+   "id": "way",
+   "t0": 191.077,
+   "t1": 202.421
+  },
+  {
+   "id": "home",
+   "t0": 202.421,
+   "t1": 205.268
+  },
+  {
+   "id": "glow",
+   "t0": 205.268,
+   "t1": 214.698
+  },
+  {
+   "id": "song",
+   "t0": 214.698,
+   "t1": 230.124
+  },
+  {
+   "id": "msg",
+   "t0": 230.124,
+   "t1": 233.397
+  },
+  {
+   "id": "spot",
+   "t0": 233.397,
+   "t1": 239.847
+  },
+  {
+   "id": "bye",
+   "t0": 239.847,
+   "t1": 250.563
+  },
+  {
+   "id": "end",
+   "t0": 250.563,
+   "t1": 256
+  }
+ ],
+ "lines": [
+  {
+   "id": "L001",
+   "who": "loupe",
+   "t": 0.15,
+   "dur": 1.659,
+   "text": "Whoa! Rollo! I can't stop!",
+   "card": 1
+  },
+  {
+   "id": "L002",
+   "who": "crumb",
+   "t": 2.259,
+   "dur": 1.343,
+   "text": "Can I hold the lens?",
+   "card": 1
+  },
+  {
+   "id": "L003",
+   "who": "loupe",
+   "t": 3.752,
+   "dur": 0.778,
+   "text": "Not NOW!",
+   "card": 1
+  },
+  {
+   "id": "L004",
+   "who": "albie",
+   "t": 5.38,
+   "dur": 2.647,
+   "text": "Miss Loupe is lost... at NIGHT!",
+   "card": 2
+  },
+  {
+   "id": "L005",
+   "who": "crumb",
+   "t": 8.327,
+   "dur": 1.551,
+   "text": "How do we find her... with no sun?",
+   "card": 2
+  },
+  {
+   "id": "L006",
+   "who": "rollo",
+   "t": 10.928,
+   "dur": 2.753,
+   "text": "Oh my. My ball feels... lighter.",
+   "card": 3
+  },
+  {
+   "id": "L007",
+   "who": "loupe",
+   "t": 13.981,
+   "dur": 1.707,
+   "text": "Big secrets of tiny bugs!",
+   "card": 4
+  },
+  {
+   "id": "L008",
+   "who": "albie",
+   "t": 16.288,
+   "dur": 1.614,
+   "text": "My garden map!",
+   "card": 5
+  },
+  {
+   "id": "L009",
+   "who": "albie",
+   "t": 18.202,
+   "dur": 2.076,
+   "text": "We are here... at home.",
+   "card": 5
+  },
+  {
+   "id": "L010",
+   "who": "crumb",
+   "t": 20.578,
+   "dur": 0.836,
+   "text": "And Miss Loupe?",
+   "card": 5
+  },
+  {
+   "id": "L011",
+   "who": "rollo",
+   "t": 22.014,
+   "dur": 2.338,
+   "text": "She flew off... straight that way.",
+   "card": 6
+  },
+  {
+   "id": "L012",
+   "who": "albie",
+   "t": 25.452,
+   "dur": 1.335,
+   "text": "Off my map?!",
+   "card": 7
+  },
+  {
+   "id": "L013",
+   "who": "crumb",
+   "t": 27.087,
+   "dur": 1.524,
+   "text": "I'll lead the way! I'll find her!",
+   "card": 7
+  },
+  {
+   "id": "L014",
+   "who": "dot",
+   "t": 29.711,
+   "dur": 2.185,
+   "text": "Team, count off! One, two, three, four, five!",
+   "card": 8
+  },
+  {
+   "id": "L015",
+   "who": "blink",
+   "t": 32.496,
+   "dur": 0.875,
+   "text": "I'll be the light!",
+   "card": 8
+  },
+  {
+   "id": "L016",
+   "who": "albie",
+   "t": 34.021,
+   "dur": 3.015,
+   "text": "I'll keep the map. Come home safe!",
+   "card": 9
+  },
+  {
+   "id": "L017",
+   "who": "crumb",
+   "t": 38.036,
+   "dur": 1.254,
+   "text": "Waggle wants to dance!",
+   "card": 10
+  },
+  {
+   "id": "L018",
+   "who": "crumb",
+   "t": 41.59,
+   "dur": 1.472,
+   "text": "Bees dance to show the way...",
+   "card": 11
+  },
+  {
+   "id": "L019",
+   "who": "crumb",
+   "t": 43.312,
+   "dur": 0.986,
+   "text": "using the sun!",
+   "card": 11
+  },
+  {
+   "id": "L020",
+   "who": "crumb",
+   "t": 44.698,
+   "dur": 1.258,
+   "text": "Can you find the sun?",
+   "card": 11
+  },
+  {
+   "id": "L021",
+   "who": "blink",
+   "t": 48.256,
+   "dur": 0.542,
+   "text": "Nope!",
+   "catch": true,
+   "card": 12
+  },
+  {
+   "id": "L022",
+   "who": "rollo",
+   "t": 50.098,
+   "dur": 1.945,
+   "text": "No sun tonight, little bee.",
+   "card": 13
+  },
+  {
+   "id": "L023",
+   "who": "crumb",
+   "t": 52.343,
+   "dur": 1.545,
+   "text": "Then I'll use my antennae!",
+   "card": 13
+  },
+  {
+   "id": "L024",
+   "who": "loupe",
+   "t": 54.688,
+   "dur": 1.838,
+   "text": "I'm lost... so I stay put.",
+   "card": 14
+  },
+  {
+   "id": "L025",
+   "who": "loupe",
+   "t": 56.826,
+   "dur": 1.344,
+   "text": "My friends will find me!",
+   "card": 14
+  },
+  {
+   "id": "L026",
+   "who": "crumb",
+   "t": 59.37,
+   "dur": 1.438,
+   "text": "Ants follow smell trails!",
+   "card": 15
+  },
+  {
+   "id": "L027",
+   "who": "crumb",
+   "t": 61.108,
+   "dur": 1.228,
+   "text": "Sniff, sniff... this way!",
+   "card": 15
+  },
+  {
+   "id": "L028",
+   "who": "crumb",
+   "t": 63.836,
+   "dur": 1.49,
+   "text": "My family! Hi, everyone!",
+   "card": 16
+  },
+  {
+   "id": "L029",
+   "who": "dot",
+   "t": 65.626,
+   "dur": 1.984,
+   "text": "One, two, three, four, five, six ants!",
+   "card": 16
+  },
+  {
+   "id": "L030",
+   "who": "crumb",
+   "t": 69.01,
+   "dur": 1.048,
+   "text": "Follow the trail...",
+   "card": 17
+  },
+  {
+   "id": "L031",
+   "who": "crumb",
+   "t": 70.758,
+   "dur": 0.915,
+   "text": "under the leaf...",
+   "card": 17
+  },
+  {
+   "id": "L032",
+   "who": "crumb",
+   "t": 72.373,
+   "dur": 0.958,
+   "text": "over the pebble!",
+   "card": 18
+  },
+  {
+   "id": "L033",
+   "who": "crumb",
+   "t": 75.631,
+   "dur": 1.176,
+   "text": "The trail ends here!",
+   "card": 19
+  },
+  {
+   "id": "L034",
+   "who": "rollo",
+   "t": 77.107,
+   "dur": 1.723,
+   "text": "The edge of the garden.",
+   "card": 19
+  },
+  {
+   "id": "L035",
+   "who": "crumb",
+   "t": 80.93,
+   "dur": 1.393,
+   "text": "No trail? Let me think...",
+   "card": 20
+  },
+  {
+   "id": "L036",
+   "who": "crumb",
+   "t": 82.623,
+   "dur": 1.512,
+   "text": "My cousins in the desert...",
+   "card": 20
+  },
+  {
+   "id": "L037",
+   "who": "crumb",
+   "t": 86.135,
+   "dur": 1.261,
+   "text": "keep track of their steps!",
+   "card": 21
+  },
+  {
+   "id": "L038",
+   "who": "crumb",
+   "t": 88.196,
+   "dur": 1.425,
+   "text": "Out... and straight back home!",
+   "card": 22
+  },
+  {
+   "id": "L039",
+   "who": "dot",
+   "t": 91.821,
+   "dur": 1.236,
+   "text": "I count steps too!",
+   "card": 23
+  },
+  {
+   "id": "L040",
+   "who": "dot",
+   "t": 93.857,
+   "dur": 1.569,
+   "text": "One, two, three, four, five...",
+   "card": 24
+  },
+  {
+   "id": "L041",
+   "who": "dot",
+   "t": 95.526,
+   "dur": 1.565,
+   "text": "six, seven, eight, nine, ten!",
+   "card": 24
+  },
+  {
+   "id": "L042",
+   "who": "dot",
+   "t": 97.741,
+   "dur": 1.377,
+   "text": "Ten steps from the trail!",
+   "card": 25
+  },
+  {
+   "id": "L043",
+   "who": "crumb",
+   "t": 99.418,
+   "dur": 1.447,
+   "text": "So we can find our way back!",
+   "card": 25
+  },
+  {
+   "id": "L044",
+   "who": "loupe",
+   "t": 101.865,
+   "dur": 2.389,
+   "text": "I see close things... not far things!",
+   "card": 26
+  },
+  {
+   "id": "L045",
+   "who": "loupe",
+   "t": 104.554,
+   "dur": 1.553,
+   "text": "I wish cousin Telly were here!",
+   "card": 26
+  },
+  {
+   "id": "L046",
+   "who": "crumb",
+   "t": 107.107,
+   "dur": 1.773,
+   "text": "Which way is straight? It all looks the same!",
+   "card": 27
+  },
+  {
+   "id": "L047",
+   "who": "rollo",
+   "t": 109.18,
+   "dur": 1.49,
+   "text": "Leave that to me.",
+   "card": 27
+  },
+  {
+   "id": "L048",
+   "who": "rollo",
+   "t": 111.77,
+   "dur": 2.348,
+   "text": "I look up... at the Milky Way.",
+   "card": 28
+  },
+  {
+   "id": "L049",
+   "who": "crumb",
+   "t": 116.018,
+   "dur": 1.385,
+   "text": "Wow... a river of stars!",
+   "card": 29
+  },
+  {
+   "id": "L050",
+   "who": "rollo",
+   "t": 117.703,
+   "dur": 1.959,
+   "text": "It keeps me rolling straight.",
+   "card": 29
+  },
+  {
+   "id": "L051",
+   "who": "dot",
+   "t": 121.962,
+   "dur": 0.903,
+   "text": "So straight!",
+   "card": 30
+  },
+  {
+   "id": "L052",
+   "who": "crumb",
+   "t": 125.365,
+   "dur": 0.874,
+   "text": "Oh! Clouds!",
+   "card": 31
+  },
+  {
+   "id": "L053",
+   "who": "rollo",
+   "t": 128.939,
+   "dur": 2.698,
+   "text": "Oh my. No stars... no straight!",
+   "card": 32
+  },
+  {
+   "id": "L054",
+   "who": "crumb",
+   "t": 131.937,
+   "dur": 1.615,
+   "text": "Rollo is rolling in wiggles!",
+   "card": 32
+  },
+  {
+   "id": "L055",
+   "who": "rollo",
+   "t": 134.952,
+   "dur": 1.955,
+   "text": "Stars are back. Straight on!",
+   "card": 33
+  },
+  {
+   "id": "L056",
+   "who": "loupe",
+   "t": 139.707,
+   "dur": 1.146,
+   "text": "Telly! Over here!",
+   "card": 34
+  },
+  {
+   "id": "L057",
+   "who": "crumb",
+   "t": 143.053,
+   "dur": 1.407,
+   "text": "Look! A flash! Far away!",
+   "card": 35
+  },
+  {
+   "id": "L058",
+   "who": "dot",
+   "t": 144.66,
+   "dur": 1.428,
+   "text": "One, two, three flashes!",
+   "card": 35
+  },
+  {
+   "id": "L059",
+   "who": "crumb",
+   "t": 146.388,
+   "dur": 1.418,
+   "text": "Uncle Telly! He sees far!",
+   "card": 35
+  },
+  {
+   "id": "L060",
+   "who": "crumb",
+   "t": 148.456,
+   "dur": 1.571,
+   "text": "Blink! Flash your secret code!",
+   "card": 36
+  },
+  {
+   "id": "L061",
+   "who": "blink",
+   "t": 150.327,
+   "dur": 0.947,
+   "text": "Blink! Blink! Blink!",
+   "card": 36
+  },
+  {
+   "id": "L062",
+   "who": "crumb",
+   "t": 152.874,
+   "dur": 1.347,
+   "text": "She's over there! Let's go!",
+   "card": 37
+  },
+  {
+   "id": "L063",
+   "who": "crumb",
+   "t": 155.921,
+   "dur": 1.495,
+   "text": "Look closely... look closely...",
+   "card": 38
+  },
+  {
+   "id": "L064",
+   "who": "crumb",
+   "t": 158.316,
+   "dur": 1.227,
+   "text": "A sparkle! Miss Loupe!",
+   "card": 39
+  },
+  {
+   "id": "L065",
+   "who": "loupe",
+   "t": 159.843,
+   "dur": 1.271,
+   "text": "Crumb! You found me!",
+   "card": 39
+  },
+  {
+   "id": "L066",
+   "who": "crumb",
+   "t": 161.414,
+   "dur": 1.405,
+   "text": "Hold on! We'll pull you out!",
+   "card": 39
+  },
+  {
+   "id": "L067",
+   "who": "crumb",
+   "t": 166.019,
+   "dur": 1.113,
+   "text": "Is it a monster?",
+   "card": 40
+  },
+  {
+   "id": "L068",
+   "who": "dot",
+   "t": 167.632,
+   "dur": 0.665,
+   "text": "Nope!",
+   "catch": true,
+   "card": 40
+  },
+  {
+   "id": "L069",
+   "who": "rollo",
+   "t": 168.597,
+   "dur": 2.564,
+   "text": "It's the Giant. A gentle friend.",
+   "card": 40
+  },
+  {
+   "id": "L070",
+   "who": "crumb",
+   "t": 174.961,
+   "dur": 1.364,
+   "text": "Hello, Giant! Thank you!",
+   "card": 41
+  },
+  {
+   "id": "L071",
+   "who": "loupe",
+   "t": 181.125,
+   "dur": 1.027,
+   "text": "Thank you, friend!",
+   "card": 42
+  },
+  {
+   "id": "L072",
+   "who": "loupe",
+   "t": 183.552,
+   "dur": 2.572,
+   "text": "Crumb, you looked closely... all by yourself!",
+   "card": 43
+  },
+  {
+   "id": "L073",
+   "who": "crumb",
+   "t": 186.424,
+   "dur": 1.39,
+   "text": "Can I hold the lens... NOW?",
+   "card": 43
+  },
+  {
+   "id": "L074",
+   "who": "loupe",
+   "t": 188.464,
+   "dur": 0.913,
+   "text": "Yes! NOW!",
+   "card": 44
+  },
+  {
+   "id": "L075",
+   "who": "loupe",
+   "t": 191.577,
+   "dur": 1.009,
+   "text": "Ants follow...?",
+   "card": 45
+  },
+  {
+   "id": "L076",
+   "who": "crumb",
+   "t": 193.786,
+   "dur": 0.941,
+   "text": "Smell trails!",
+   "card": 46
+  },
+  {
+   "id": "L077",
+   "who": "loupe",
+   "t": 195.027,
+   "dur": 1.198,
+   "text": "Rollo follows...?",
+   "card": 46
+  },
+  {
+   "id": "L078",
+   "who": "rollo",
+   "t": 197.425,
+   "dur": 1.123,
+   "text": "The stars!",
+   "card": 47
+  },
+  {
+   "id": "L079",
+   "who": "loupe",
+   "t": 198.848,
+   "dur": 1.357,
+   "text": "And bees dance with...?",
+   "card": 47
+  },
+  {
+   "id": "L080",
+   "who": "dot",
+   "t": 201.405,
+   "dur": 0.716,
+   "text": "The sun!",
+   "card": 48
+  },
+  {
+   "id": "L081",
+   "who": "albie",
+   "t": 203.121,
+   "dur": 1.847,
+   "text": "You're home! All of you!",
+   "card": 48
+  },
+  {
+   "id": "L082",
+   "who": "albie",
+   "t": 208.468,
+   "dur": 2.563,
+   "text": "Look! My whole garden is glowing!",
+   "card": 49
+  },
+  {
+   "id": "L083",
+   "who": "albie",
+   "t": 212.231,
+   "dur": 2.067,
+   "text": "And a brand new corner!",
+   "card": 50
+  },
+  {
+   "id": "L084",
+   "who": "crumb",
+   "t": 215.298,
+   "dur": 1.907,
+   "text": "Six legs, six legs, count them with me!",
+   "chant": true,
+   "card": 51
+  },
+  {
+   "id": "L085",
+   "who": "dot",
+   "t": 217.855,
+   "dur": 2.103,
+   "text": "Head, thorax, abdomen... one, two, three!",
+   "chant": true,
+   "card": 52
+  },
+  {
+   "id": "L086",
+   "who": "loupe",
+   "t": 220.608,
+   "dur": 2.015,
+   "text": "Two little antennae, sniff and see...",
+   "chant": true,
+   "card": 53
+  },
+  {
+   "id": "L087",
+   "who": "albie",
+   "t": 222.923,
+   "dur": 2.245,
+   "text": "That's a bug! That's a bug!",
+   "chant": true,
+   "card": 53
+  },
+  {
+   "id": "L088",
+   "who": "albie",
+   "t": 225.868,
+   "dur": 3.056,
+   "text": "BZZT! Not you, Spindle!",
+   "chant": true,
+   "card": 54
+  },
+  {
+   "id": "L089",
+   "who": "loupe",
+   "t": 230.224,
+   "dur": 1.051,
+   "text": "Look closely...",
+   "card": 55
+  },
+  {
+   "id": "L090",
+   "who": "loupe",
+   "t": 231.475,
+   "dur": 1.522,
+   "text": "and you'll always find your way!",
+   "card": 55
+  },
+  {
+   "id": "L091",
+   "who": "crumb",
+   "t": 233.397,
+   "dur": 1.35,
+   "text": "Wait! Did you spot Spindle?",
+   "card": 55
+  },
+  {
+   "id": "L092",
+   "who": "loupe",
+   "t": 240.847,
+   "dur": 1.178,
+   "text": "Crumb! Come back!",
+   "card": 56
+  },
+  {
+   "id": "L093",
+   "who": "crumb",
+   "t": 242.225,
+   "dur": 1.085,
+   "text": "Not NOW! Yippee!",
+   "card": 56
+  },
+  {
+   "id": "L094",
+   "who": "albie",
+   "t": 244.51,
+   "dur": 2.625,
+   "text": "Rollo! That's the END of the page!",
+   "say": "Rollo! That's the end of the page!",
+   "card": 57
+  },
+  {
+   "id": "L095",
+   "who": "rollo",
+   "t": 248.635,
+   "dur": 1.728,
+   "text": "Oh my. It's a pond!",
+   "card": 58
+  },
+  {
+   "id": "L096",
+   "who": "loupe",
+   "t": 250.563,
+   "dur": 1.748,
+   "text": "So... what does Rollo follow?",
+   "card": 58
+  },
+  {
+   "id": "L097",
+   "who": "dot",
+   "t": 253.211,
+   "dur": 0.852,
+   "text": "The stars!",
+   "catch": true,
+   "card": 59
+  }
+ ],
+ "hit": {
+  "s_hook": 0,
+  "roll": 0,
+  "crumbRun": 1.859,
+  "bump": 4.63,
+  "s_team": 5.38,
+  "rolloBack": 10.028,
+  "s_title": 13.931,
+  "jingle": 13.931,
+  "titleEnd": 15.658,
+  "s_map": 15.688,
+  "mapOpen": 15.688,
+  "rolloPoint": 21.514,
+  "mapArrow": 24.452,
+  "s_crew": 27.087,
+  "lineUp": 28.711,
+  "blinkOn": 31.996,
+  "s_sun": 37.336,
+  "waggleUp": 37.336,
+  "dance": 39.39,
+  "tiltUp": 46.056,
+  "dizzy": 48.898,
+  "s_lp1": 54.188,
+  "lp1": 54.188,
+  "s_ants": 58.47,
+  "sniff": 58.47,
+  "antsCome": 62.436,
+  "s_march": 67.91,
+  "march": 67.91,
+  "mush": 70.058,
+  "leafUp": 71.673,
+  "pebble": 73.331,
+  "s_edge0": 74.631,
+  "trailEnd": 74.631,
+  "antsBye": 78.93,
+  "s_think": 80.23,
+  "thinkPop": 80.23,
+  "s_desert": 84.235,
+  "dOut": 84.235,
+  "dSeed": 87.496,
+  "dHome": 89.721,
+  "s_count": 93.357,
+  "steps": 93.357,
+  "s_lp2": 101.165,
+  "lp2": 101.165,
+  "tellyHint": 106.207,
+  "s_stars": 107.107,
+  "climb": 110.77,
+  "s_sky": 114.318,
+  "crane": 114.318,
+  "s_track": 119.962,
+  "straight": 119.962,
+  "clouds": 123.765,
+  "wiggle": 126.339,
+  "clear": 133.752,
+  "s_telly": 137.207,
+  "tellyLook": 137.207,
+  "s_bino": 138.607,
+  "binoFind": 138.607,
+  "tellyFlash": 141.053,
+  "s_signal": 142.953,
+  "blinkCode": 150.127,
+  "tellyAns": 151.474,
+  "slot5": 154.321,
+  "s_edge": 155.821,
+  "sparkle": 157.516,
+  "pull": 162.919,
+  "thump": 165.119,
+  "hand": 171.261,
+  "lift": 172.761,
+  "s_pov": 173.961,
+  "pov": 173.961,
+  "waveAll": 176.425,
+  "s_place": 178.525,
+  "place": 178.525,
+  "leafSweep": 179.925,
+  "handBye": 182.252,
+  "s_found": 183.552,
+  "hold": 189.477,
+  "s_way": 191.077,
+  "walkHome": 191.077,
+  "s_home": 202.421,
+  "albieHop": 202.421,
+  "s_glow": 205.268,
+  "glow": 205.268,
+  "newCorner": 211.231,
+  "s_song": 214.698,
+  "clap": 214.698,
+  "spindleDrop": 225.268,
+  "songEnd": 229.024,
+  "s_msg": 230.124,
+  "s_spot": 233.397,
+  "e_spots": 234.947,
+  "s_bye": 239.847,
+  "recall": 240.047,
+  "pageEdge": 243.51,
+  "flip": 247.235,
+  "splash": 248.035,
+  "s_end": 250.563,
+  "end": 255.563
+ }
+}

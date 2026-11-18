@@ -6,8 +6,13 @@
 import fs from 'fs'; import path from 'path'; import { fileURLToPath, pathToFileURL } from 'url';
 const here = path.dirname(fileURLToPath(import.meta.url)), film = path.resolve(here, '..');
 const LIB = process.env.LIB || path.resolve(film, '..', '..');
+// (Vocal QC 18/11/2026) timeline.js đọc voice/words.js (mốc từ thật của câu nói); lần dựng đầu chưa có thì tạo file rỗng
+fs.mkdirSync(path.join(film, 'voice'), { recursive: true });
+if (!fs.existsSync(path.join(film, 'voice', 'words.js'))) fs.writeFileSync(path.join(film, 'voice', 'words.js'), 'export default {};' + String.fromCharCode(10));
 const T = await import(pathToFileURL(path.join(film, 'timeline.js')).href);
-const { VOICES } = await import(pathToFileURL(path.join(LIB, '_shared', 'voices.js')).href);
+const { VOICES, EMO_RANGE = {} } = await import(pathToFileURL(path.join(LIB, '_shared', 'voices.js')).href);
+// (18/11/2026) cảm xúc của câu nói cho _shared/emote.py: emo của câu, không ghi thì suy ra (câu cửa miệng → playful, CTA → happy, ? → curious, ! → excited)
+const emoOf = l => l.sung ? null : (l.emo || (l.catch ? 'playful' : l.cta ? 'happy' : /\?\s*$/.test(l.text) ? 'curious' : /!/.test(l.text) ? 'excited' : 'happy'));
 const w = (f, o) => fs.writeFileSync(path.join(film, f), JSON.stringify(o, null, 1));
 fs.mkdirSync(path.join(film, 'voice'), { recursive: true });
 const bad = T.LINES.filter(l => !VOICES[l.who]);
@@ -17,6 +22,7 @@ const speedOf = l => +(VOICES[l.who].speed * (l.sung ? (l.sung.speed ?? 1) : l.c
 w('voice/lines.json', T.LINES.map(l => ({
   id: l.id, text: l.say || l.text, voice: VOICES[l.who].voice, speed: speedOf(l), ...(VOICES[l.who].pitch && { pitch: VOICES[l.who].pitch }),
   ...((l.asr || l.say) && { asr: l.asr || l.text }), ...(l.sung && { sing: l.sung }), ...(l.em && { kw: l.em }),
+  ...(emoOf(l) && { emo: emoOf(l), emo_k: l.emo_k ?? EMO_RANGE[l.who] ?? 1, ...(VOICES[l.who].home && { home: VOICES[l.who].home }), ...(l.catch && { catch: true }) }),
 })));
 w('timeline.json', {
   bpm: T.BPM, dur: T.DUR, secs: T.SECS, lines: T.LINES, hit: T.HIT,                       // hit: mốc hành động, để nhạc khớp với hình

@@ -1,0 +1,1517 @@
+{
+ "bpm": 120,
+ "dur": 48,
+ "secs": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 3
+  },
+  {
+   "id": "title",
+   "t0": 3,
+   "t1": 3.8
+  },
+  {
+   "id": "bees",
+   "t0": 3.8,
+   "t1": 12.55
+  },
+  {
+   "id": "monarchs",
+   "t0": 12.55,
+   "t1": 20.6
+  },
+  {
+   "id": "chorus",
+   "t0": 20.6,
+   "t1": 24
+  },
+  {
+   "id": "ladybugs",
+   "t0": 24,
+   "t1": 33.8
+  },
+  {
+   "id": "album",
+   "t0": 33.8,
+   "t1": 38.2
+  },
+  {
+   "id": "gag",
+   "t0": 38.2,
+   "t1": 48
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "emo": "curious",
+   "who": "loupe",
+   "text": "Where do bugs go when it snows?",
+   "say": "Where do bugs go, when it snows?",
+   "em": [
+    "bugs",
+    "snows"
+   ],
+   "why": "bản nói không ngắt thì \"it\" chỉ 80 ms, sing.py bỏ mất âm tiết (bản hát còn \"when … snows\"); dấu phẩy cho TTS giữ đủ 7 chữ (18/11/2026)",
+   "sing": {
+    "mode": "half-sing",
+    "at": 0.5,
+    "fill": 0.85,
+    "glide": 0.08,
+    "notes": "5:.5 5:.5 1':.5 6:1 6:.5 5:.5 7:1.5"
+   },
+   "t": 0.38,
+   "dur": 2.72,
+   "sung": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "fill": 0.85,
+    "glide": 0.08,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 55,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 55,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.25,
+      "m": 60,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.87,
+      "d": 0.5,
+      "m": 57,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 57,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 55,
+      "syl": 5,
+      "w": 5
+     },
+     {
+      "t": 1.87,
+      "d": 0.75,
+      "m": 59,
+      "syl": 6,
+      "w": 6
+     }
+    ]
+   }
+  },
+  {
+   "id": "L02",
+   "emo": "excited",
+   "who": "loupe",
+   "text": "Let's zoom in!",
+   "em": [
+    "zoom"
+   ],
+   "catch": true,
+   "sing": {
+    "mode": "half-sing",
+    "notes": "5:.5 6:.5 1':1",
+    "at": 4.068
+   },
+   "t": 3.948,
+   "dur": 1.291,
+   "sung": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2679,
+      "m": 55,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3879,
+      "d": 0.2679,
+      "m": 57,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6557,
+      "d": 0.5357,
+      "m": 60,
+      "syl": 2,
+      "w": 2
+     }
+    ]
+   }
+  },
+  {
+   "id": "L03",
+   "emo": "surprised",
+   "who": "loupe",
+   "text": "Look! A warm ball of bees!",
+   "em": [
+    "warm",
+    "ball",
+    "bees"
+   ],
+   "sing": {
+    "mode": "half-sing",
+    "at": 5.943,
+    "fill": 0.85,
+    "glide": 0.08,
+    "notes": "1':1 r:.5 5:.5 6:1 5:.5 4:.5 3:1.25"
+   },
+   "t": 5.823,
+   "dur": 3.033,
+   "sung": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "fill": 0.85,
+    "glide": 0.08,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.5357,
+      "m": 60,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.9236,
+      "d": 0.2679,
+      "m": 55,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 1.1914,
+      "d": 0.5357,
+      "m": 57,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.7271,
+      "d": 0.2679,
+      "m": 55,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.995,
+      "d": 0.2679,
+      "m": 53,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 2.2629,
+      "d": 0.6696,
+      "m": 52,
+      "syl": 5,
+      "w": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "L04",
+   "emo": "calm",
+   "who": "loupe",
+   "text": "Wow! Some bees shake their wing muscles!",
+   "em": [
+    "bees",
+    "shake",
+    "muscles"
+   ],
+   "sing": {
+    "mode": "sing-talk",
+    "at": 9.157,
+    "speed": 0.85,
+    "fill": 0.68,
+    "glide": 0.05,
+    "hi": 1.6,
+    "notes": "5:.5 r:.25 5:.5 3:.5 r:.25 5:.5 5:.5 6:.5 5:.5 2:1"
+   },
+   "was": "Heater bees shake their wing muscles!",
+   "why": "hát lên Whisper nghe \"Heater\" thành \"Hear their\" / \"Keter\" / \"you derbies\"; \"Some bees\" đúng nguồn, thuật ngữ HEATER BEES! thành chữ trên hình",
+   "t": 9.037,
+   "dur": 2.899,
+   "sung": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "speed": 0.85,
+    "fill": 0.68,
+    "glide": 0.05,
+    "hi": 1.6,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2679,
+      "m": 55,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.5218,
+      "d": 0.2679,
+      "m": 55,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.7896,
+      "d": 0.2679,
+      "m": 52,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.1914,
+      "d": 0.2679,
+      "m": 55,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.4593,
+      "d": 0.2679,
+      "m": 55,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.7271,
+      "d": 0.2679,
+      "m": 57,
+      "syl": 5,
+      "w": 5
+     },
+     {
+      "t": 1.995,
+      "d": 0.2679,
+      "m": 55,
+      "syl": 6,
+      "w": 6
+     },
+     {
+      "t": 2.2629,
+      "d": 0.5357,
+      "m": 50,
+      "syl": 7,
+      "w": 6
+     }
+    ]
+   }
+  },
+  {
+   "id": "L05",
+   "emo": "curious",
+   "who": "albie",
+   "t": 12.2,
+   "dur": 2.2,
+   "pace": 0.9,
+   "emo_k": 0.3,
+   "text": "Do all butterflies stay?",
+   "em": [
+    "butterflies"
+   ],
+   "was": "Do all butterflies stay in the snow?",
+   "why": "rút cho vừa nhịp trước \"Nope!\" (giọng Albie chậm: 2,04 s); 18/11/2026 đọc chậm thêm 10 %, uốn ngữ điệu nhẹ hơn (emo_k .3): ở .5 base.en nghe \"Do all\" thành \"Dual\""
+  },
+  {
+   "id": "L06",
+   "emo": "playful",
+   "who": "loupe",
+   "text": "Nope!",
+   "catch": true,
+   "sing": {
+    "mode": "sing-talk",
+    "notes": "5:.5 ~1:1",
+    "at": 14.781
+   },
+   "t": 14.661,
+   "dur": 0.934,
+   "sung": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2381,
+      "m": 55,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3581,
+      "d": 0.4762,
+      "m": 48,
+      "syl": 0,
+      "w": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "L07",
+   "emo": "excited",
+   "who": "loupe",
+   "text": "These monarchs fly all the way to Mexico!",
+   "em": [
+    "monarchs",
+    "fly",
+    "Mexico"
+   ],
+   "split": [
+    3
+   ],
+   "sing": {
+    "mode": "half-sing",
+    "at": 15.971,
+    "fill": 0.85,
+    "glide": 0.08,
+    "notes": "5:.5 1':.5 1':.5 6:1 5:1 5:.5 6:1 5:.5 6:1 5:.5 3:1.5"
+   },
+   "t": 15.851,
+   "dur": 4.268,
+   "sung": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "fill": 0.85,
+    "glide": 0.08,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2381,
+      "m": 55,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3581,
+      "d": 0.2381,
+      "m": 60,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.5962,
+      "d": 0.2381,
+      "m": 60,
+      "syl": 2,
+      "w": 1
+     },
+     {
+      "t": 0.8343,
+      "d": 0.4762,
+      "m": 57,
+      "syl": 3,
+      "w": 2
+     },
+     {
+      "t": 1.3105,
+      "d": 0.4762,
+      "m": 55,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.7867,
+      "d": 0.2381,
+      "m": 55,
+      "syl": 5,
+      "w": 4
+     },
+     {
+      "t": 2.0248,
+      "d": 0.4762,
+      "m": 57,
+      "syl": 6,
+      "w": 5
+     },
+     {
+      "t": 2.501,
+      "d": 0.2381,
+      "m": 55,
+      "syl": 7,
+      "w": 6
+     },
+     {
+      "t": 2.739,
+      "d": 0.4762,
+      "m": 57,
+      "syl": 8,
+      "w": 7
+     },
+     {
+      "t": 3.2152,
+      "d": 0.2381,
+      "m": 55,
+      "syl": 9,
+      "w": 7
+     },
+     {
+      "t": 3.4533,
+      "d": 0.7143,
+      "m": 52,
+      "syl": 10,
+      "w": 7
+     }
+    ]
+   }
+  },
+  {
+   "id": "L08",
+   "emo": "happy",
+   "who": "loupe",
+   "text": "Huddle, fly away, or hide!",
+   "say": "Huddle! Fly away, or hide!",
+   "why": "TTS đọc \"Huddle!\" (dấu chấm than): \"Huddle,\" bị nghe thành \"Cuddle\"",
+   "em": [
+    "huddle",
+    "fly",
+    "hide"
+   ],
+   "sing": {
+    "mode": "sing",
+    "chorus": "snow",
+    "speed": 0.85,
+    "notes": "5:.75 5:.25 5:.5 6:.5 7:1 6:1 5:2",
+    "at": 21
+   },
+   "t": 20.88,
+   "dur": 3.123,
+   "sung": {
+    "mode": "sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": "snow",
+    "speed": 0.85,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.3629,
+      "m": 55,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.4829,
+      "d": 0.121,
+      "m": 55,
+      "syl": 1,
+      "w": 0
+     },
+     {
+      "t": 0.6039,
+      "d": 0.2419,
+      "m": 55,
+      "syl": 2,
+      "w": 1
+     },
+     {
+      "t": 0.8458,
+      "d": 0.2419,
+      "m": 57,
+      "syl": 3,
+      "w": 2
+     },
+     {
+      "t": 1.0877,
+      "d": 0.4839,
+      "m": 59,
+      "syl": 4,
+      "w": 2
+     },
+     {
+      "t": 1.5716,
+      "d": 0.4839,
+      "m": 57,
+      "syl": 5,
+      "w": 3
+     },
+     {
+      "t": 2.0555,
+      "d": 0.9677,
+      "m": 55,
+      "syl": 6,
+      "w": 4
+     }
+    ]
+   }
+  },
+  {
+   "id": "L09",
+   "emo": "curious",
+   "who": "loupe",
+   "text": "Who is hiding under here?",
+   "em": [
+    "hiding"
+   ],
+   "sing": {
+    "mode": "half-sing",
+    "at": 24.517,
+    "fill": 0.85,
+    "glide": 0.08,
+    "notes": "3:.5 4:.5 5:.5 6:1 5:.5 6:.5 1':1.5"
+   },
+   "t": 24.397,
+   "dur": 2.806,
+   "sung": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "fill": 0.85,
+    "glide": 0.08,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2586,
+      "m": 52,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3786,
+      "d": 0.2586,
+      "m": 53,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6372,
+      "d": 0.2586,
+      "m": 55,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.8959,
+      "d": 0.5172,
+      "m": 57,
+      "syl": 3,
+      "w": 2
+     },
+     {
+      "t": 1.4131,
+      "d": 0.2586,
+      "m": 55,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.6717,
+      "d": 0.2586,
+      "m": 57,
+      "syl": 5,
+      "w": 3
+     },
+     {
+      "t": 1.9303,
+      "d": 0.7759,
+      "m": 60,
+      "syl": 6,
+      "w": 4
+     }
+    ]
+   }
+  },
+  {
+   "id": "L10",
+   "emo": "excited",
+   "who": "dot",
+   "t": 27.45,
+   "dur": 1.99,
+   "pace": 0.8,
+   "text": "One, two, three... so many!",
+   "say": "One... two... three... so many!",
+   "em": [
+    "many"
+   ],
+   "why": "đếm chậm, mỗi số một nhịp, khớp hình Dot đếm (18/11/2026: trước đó 4,2 âm tiết/s, các số cách nhau 0,22 s)"
+  },
+  {
+   "id": "L11",
+   "emo": "calm",
+   "who": "loupe",
+   "text": "Some ladybugs nap together under leaves!",
+   "em": [
+    "ladybugs",
+    "nap",
+    "leaves"
+   ],
+   "sing": {
+    "mode": "sing-talk",
+    "at": 29.948,
+    "speed": 0.85,
+    "fill": 0.75,
+    "glide": 0.05,
+    "hi": 2,
+    "notes": "5:.5 3:.5 5:.5 5:1 1':1 6:.5 6:.5 5:1 5:.5 4:.5 3:1"
+   },
+   "t": 29.828,
+   "dur": 4.099,
+   "sung": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": null,
+    "speed": 0.85,
+    "fill": 0.75,
+    "glide": 0.05,
+    "hi": 2,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2586,
+      "m": 55,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3786,
+      "d": 0.2586,
+      "m": 52,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6372,
+      "d": 0.2586,
+      "m": 55,
+      "syl": 2,
+      "w": 1
+     },
+     {
+      "t": 0.8959,
+      "d": 0.5172,
+      "m": 55,
+      "syl": 3,
+      "w": 1
+     },
+     {
+      "t": 1.4131,
+      "d": 0.5172,
+      "m": 60,
+      "syl": 4,
+      "w": 2
+     },
+     {
+      "t": 1.9303,
+      "d": 0.2586,
+      "m": 57,
+      "syl": 5,
+      "w": 3
+     },
+     {
+      "t": 2.189,
+      "d": 0.2586,
+      "m": 57,
+      "syl": 6,
+      "w": 3
+     },
+     {
+      "t": 2.4476,
+      "d": 0.5172,
+      "m": 55,
+      "syl": 7,
+      "w": 3
+     },
+     {
+      "t": 2.9648,
+      "d": 0.2586,
+      "m": 55,
+      "syl": 8,
+      "w": 4
+     },
+     {
+      "t": 3.2234,
+      "d": 0.2586,
+      "m": 53,
+      "syl": 9,
+      "w": 4
+     },
+     {
+      "t": 3.4821,
+      "d": 0.5172,
+      "m": 52,
+      "syl": 10,
+      "w": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "L12",
+   "emo": "proud",
+   "who": "albie",
+   "t": 34.85,
+   "dur": 2.297,
+   "text": "Six legs? In you go!",
+   "em": [
+    "legs"
+   ],
+   "catch": true
+  },
+  {
+   "id": "L13",
+   "emo": "curious",
+   "who": "dot",
+   "t": 38.4,
+   "dur": 1.506,
+   "pace": 0.82,
+   "text": "Is it spring yet?",
+   "em": [
+    "spring"
+   ]
+  },
+  {
+   "id": "L14",
+   "emo": "playful",
+   "who": "loupe",
+   "t": 40.15,
+   "dur": 0.628,
+   "text": "Nope!",
+   "catch": true
+  },
+  {
+   "id": "L15",
+   "emo": "happy",
+   "who": "loupe",
+   "text": "Huddle, fly away, or hide!",
+   "say": "Huddle! Fly away, or hide!",
+   "why": "như L08",
+   "em": [
+    "huddle",
+    "fly",
+    "hide"
+   ],
+   "sing": {
+    "mode": "sing",
+    "chorus": "snow",
+    "speed": 0.85,
+    "notes": "5:.75 5:.25 5:.5 6:.5 7:1 6:1 5:2",
+    "at": 42.2
+   },
+   "t": 42.08,
+   "dur": 3.123,
+   "sung": {
+    "mode": "sing",
+    "pre": 0.12,
+    "tail": 0.1,
+    "chorus": "snow",
+    "speed": 0.85,
+    "range": [
+     98,
+     466
+    ],
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.3629,
+      "m": 55,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.4829,
+      "d": 0.121,
+      "m": 55,
+      "syl": 1,
+      "w": 0
+     },
+     {
+      "t": 0.6039,
+      "d": 0.2419,
+      "m": 55,
+      "syl": 2,
+      "w": 1
+     },
+     {
+      "t": 0.8458,
+      "d": 0.2419,
+      "m": 57,
+      "syl": 3,
+      "w": 2
+     },
+     {
+      "t": 1.0877,
+      "d": 0.4839,
+      "m": 59,
+      "syl": 4,
+      "w": 2
+     },
+     {
+      "t": 1.5716,
+      "d": 0.4839,
+      "m": 57,
+      "syl": 5,
+      "w": 3
+     },
+     {
+      "t": 2.0555,
+      "d": 0.9677,
+      "m": 55,
+      "syl": 6,
+      "w": 4
+     }
+    ]
+   }
+  },
+  {
+   "id": "L16",
+   "emo": "happy",
+   "who": "loupe",
+   "t": 45.35,
+   "dur": 1.907,
+   "text": "Can YOU huddle like a bee?",
+   "em": [
+    "you",
+    "huddle",
+    "bee"
+   ],
+   "cta": true,
+   "pace": 0.78,
+   "why": "đọc chậm hơn 22 % (Vocal QC: 5,0 âm tiết/s là nhanh với trẻ 4–8 tuổi; 18/11/2026 chủ kênh: giọng còn nhanh), vẫn ≤ 2 s"
+  }
+ ],
+ "hit": {
+  "words": [
+   0,
+   0.12
+  ],
+  "plip": 0.02,
+  "brrr": [
+   0.05,
+   0.7
+  ],
+  "lookL": [
+   0.95,
+   1.4
+  ],
+  "lookR": [
+   1.4,
+   1.9
+  ],
+  "albieShiver": [
+   0.3,
+   1
+  ],
+  "puzzle": [
+   2.25,
+   2.95
+  ],
+  "titleOut": [
+   2.55,
+   2.85
+  ],
+  "slots": 2.75,
+  "raise": 2.7,
+  "sting": [
+   3,
+   3.8
+  ],
+  "heatTwist": [
+   5,
+   5.35
+  ],
+  "heatOn": [
+   5.2,
+   5.75
+  ],
+  "ballPulse": 6,
+  "deep": [
+   9,
+   9.45
+  ],
+  "shakes": [
+   9.66,
+   9.928,
+   10.196,
+   10.464,
+   10.731,
+   10.999,
+   11.267,
+   11.535,
+   11.803
+  ],
+  "snap1": 11.98,
+  "fly1": [
+   12.05,
+   12.5
+  ],
+  "stamp1": 12.55,
+  "lensDown": [
+   12.4,
+   12.85
+  ],
+  "xmark": 14.8,
+  "mapOpen": [
+   15.45,
+   16
+  ],
+  "flight": [
+   16,
+   19.3
+  ],
+  "arrive": 18.25,
+  "trees": [
+   18.35,
+   19.4
+  ],
+  "snap2": 19.95,
+  "fly2": [
+   20.05,
+   20.55
+  ],
+  "stamp2": 20.6,
+  "back": [
+   20,
+   20.6
+  ],
+  "hopTo": [
+   24.05,
+   24.55
+  ],
+  "lensUp": [
+   26.85,
+   27.2
+  ],
+  "lift": [
+   27,
+   27.45
+  ],
+  "dotUp": [
+   27.4,
+   27.75
+  ],
+  "yawn": [
+   32.7,
+   33.35
+  ],
+  "burrow": [
+   33.2,
+   33.6
+  ],
+  "snap3": 33.7,
+  "zoomIn": [
+   33.8,
+   34.1
+  ],
+  "zoomOut": [
+   34.1,
+   34.45
+  ],
+  "stamp3": 34.6,
+  "slotsDown": [
+   34.45,
+   34.85
+  ],
+  "flip": [
+   37.75,
+   38.2
+  ],
+  "dotOut": [
+   38.35,
+   38.75
+  ],
+  "stretch": [
+   38.7,
+   39.5
+  ],
+  "plop": [
+   40.55,
+   40.9
+  ],
+  "dive": [
+   40.6,
+   41.1
+  ],
+  "giggle": 41.25,
+  "hug": [
+   45.3,
+   46.5
+  ],
+  "recall": 46.75,
+  "home": [
+   46.3,
+   47.4
+  ],
+  "flakeFall": [
+   46.6,
+   48
+  ],
+  "loop": [
+   47.4,
+   48
+  ]
+ },
+ "standard": "2026-11b",
+ "song": {
+  "key": "C",
+  "tonic": 0,
+  "film": 120,
+  "parts": [
+   {
+    "t0": 0,
+    "t1": 3.8,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "C G7"
+   },
+   {
+    "t0": 3.8,
+    "t1": 12.4,
+    "bpm": 112,
+    "beat": 0.535714,
+    "origin": 3.8,
+    "meter": 4,
+    "chords": "C F C G7"
+   },
+   {
+    "t0": 12.4,
+    "t1": 21,
+    "bpm": 126,
+    "beat": 0.47619,
+    "origin": 12.4,
+    "meter": 4,
+    "chords": "F G7 C C"
+   },
+   {
+    "t0": 21,
+    "t1": 24,
+    "bpm": 124,
+    "beat": 0.483871,
+    "origin": 21,
+    "meter": 4,
+    "chords": "G7 C"
+   },
+   {
+    "t0": 24,
+    "t1": 42.2,
+    "bpm": 116,
+    "beat": 0.517241,
+    "origin": 24,
+    "meter": 4,
+    "chords": "C F G7 C"
+   },
+   {
+    "t0": 42.2,
+    "t1": 48,
+    "bpm": 124,
+    "beat": 0.483871,
+    "origin": 42.2,
+    "meter": 4,
+    "chords": "G7 C"
+   }
+  ],
+  "chart": [
+   [
+    0,
+    2,
+    "C"
+   ],
+   [
+    2,
+    3.8,
+    "G7"
+   ],
+   [
+    3.8,
+    5.943,
+    "C"
+   ],
+   [
+    5.943,
+    8.086,
+    "F"
+   ],
+   [
+    8.086,
+    10.229,
+    "C"
+   ],
+   [
+    10.229,
+    12.371,
+    "G7"
+   ],
+   [
+    12.371,
+    12.4,
+    "C"
+   ],
+   [
+    12.4,
+    14.305,
+    "F"
+   ],
+   [
+    14.305,
+    16.21,
+    "G7"
+   ],
+   [
+    16.21,
+    18.114,
+    "C"
+   ],
+   [
+    18.114,
+    20.019,
+    "C"
+   ],
+   [
+    20.019,
+    21,
+    "F"
+   ],
+   [
+    21,
+    22.935,
+    "G7"
+   ],
+   [
+    22.935,
+    24,
+    "C"
+   ],
+   [
+    24,
+    26.069,
+    "C"
+   ],
+   [
+    26.069,
+    28.138,
+    "F"
+   ],
+   [
+    28.138,
+    30.207,
+    "G7"
+   ],
+   [
+    30.207,
+    32.276,
+    "C"
+   ],
+   [
+    32.276,
+    34.345,
+    "C"
+   ],
+   [
+    34.345,
+    36.414,
+    "F"
+   ],
+   [
+    36.414,
+    38.483,
+    "G7"
+   ],
+   [
+    38.483,
+    40.552,
+    "C"
+   ],
+   [
+    40.552,
+    42.2,
+    "C"
+   ],
+   [
+    42.2,
+    44.135,
+    "G7"
+   ],
+   [
+    44.135,
+    46.071,
+    "C"
+   ],
+   [
+    46.071,
+    48,
+    "G7"
+   ]
+  ],
+  "motif": [
+   {
+    "b": 0,
+    "d": 0.75,
+    "s": 7
+   },
+   {
+    "b": 0.75,
+    "d": 0.25,
+    "s": 7
+   },
+   {
+    "b": 1,
+    "d": 0.5,
+    "s": 7
+   },
+   {
+    "b": 1.5,
+    "d": 0.5,
+    "s": 9
+   },
+   {
+    "b": 2,
+    "d": 1,
+    "s": 11
+   }
+  ]
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 2.55,
+   "what": "Bông tuyết đậu trúng kính, Miss Loupe rùng mình, hát hỏi \"Where do bugs go when it snows?\"; ngó quanh: vườn vắng tanh"
+  },
+  {
+   "id": "setup",
+   "t0": 2.55,
+   "t1": 5.2,
+   "what": "Ba ô sticker trống; logo lao vào kính; \"Let's zoom in!\": tổ ong phủ tuyết, lặng im"
+  },
+  {
+   "id": "discovery",
+   "t0": 5.2,
+   "t1": 38.2,
+   "what": "Kính ấm: quả bóng ong, Waggle rung ngực · \"Nope!\": bướm vua bay về Mexico, rừng hoá cam · điệp khúc lần 1 · bọ rùa ngủ dưới lá, Dot đếm · sổ: \"Six legs? In you go!\""
+  },
+  {
+   "id": "surprise",
+   "t0": 38.2,
+   "t1": 42.08,
+   "what": "Dot ngái ngủ: \"Is it spring yet?\" — \"Nope!\" — cục tuyết rơi PLỘP, Dot lặn mất dưới lá"
+  },
+  {
+   "id": "payoff",
+   "t0": 42.08,
+   "t1": 45.35,
+   "what": "Điệp khúc lần 2: ba câu trả lời thành câu hát để nhớ"
+  },
+  {
+   "id": "cta",
+   "t0": 45.35,
+   "t1": 48,
+   "what": "\"Can YOU huddle like a bee?\": hai bạn ôm nhau cho ấm; chữ móc trở lại; bông tuyết rơi về khung đầu"
+  }
+ ],
+ "shots": [
+  {
+   "t": 0,
+   "kind": "trung, vườn tuyết, máy đẩy vào; bông tuyết trúng kính",
+   "why": "hành động ở khung 0: Miss Loupe rùng mình, chữ móc nảy"
+  },
+  {
+   "t": 0.95,
+   "kind": "kính lia trái rồi phải (ngó quanh)",
+   "why": "phản ứng bằng hành động: vườn vắng tanh, không một con bọ"
+  },
+  {
+   "t": 2.25,
+   "kind": "đẩy nhẹ, hai dấu hỏi; ba ô sticker trống",
+   "why": "bí ẩn chưa giải: lý do để xem hết"
+  },
+  {
+   "t": 3,
+   "kind": "logo lao vào kính → kính lớn trên tổ ong",
+   "why": "nhận diện kênh ≤ 0,8 s, vào thẳng bí mật 1"
+  },
+  {
+   "t": 5,
+   "kind": "vặn vành kính: cả mặt kính đổi sang màu nhiệt",
+   "why": "khoảnh khắc wow: quả bóng ong rực cam giữa tổ lạnh"
+  },
+  {
+   "t": 7.2,
+   "kind": "đẩy vào tâm quả bóng (phóng trong kính)",
+   "why": "\"a warm ball\": tâm ấm nhất"
+  },
+  {
+   "t": 9,
+   "kind": "lao sâu: cận cảnh toàn mặt kính, Waggle ở giữa",
+   "why": "bí mật xảy ra: ngực rung, hơi ấm toả ra theo phách"
+  },
+  {
+   "t": 11,
+   "kind": "lia trong kính theo vòng hơi ấm",
+   "why": "kính không đứng quá 3 s trong câu giải thích"
+  },
+  {
+   "t": 12.4,
+   "kind": "chụp, sticker 1 bay lên ô; kính thu về sân khấu",
+   "why": "lấp ô 1 \"HUDDLE\"; Albie vào khung để hỏi"
+  },
+  {
+   "t": 14.8,
+   "kind": "đẩy vào Miss Loupe, dấu X \"Nope!\"",
+   "why": "bất ngờ: không phải bướm nào cũng ở lại"
+  },
+  {
+   "t": 15.45,
+   "kind": "Albie mở trang; máy lao vào trang bản đồ",
+   "why": "chuyển sang bản đồ có chuyển động nối"
+  },
+  {
+   "t": 16.6,
+   "kind": "kính lớn lướt theo đàn bướm xuống phương nam",
+   "why": "theo chuyến bay: \"fly all the way to Mexico\""
+  },
+  {
+   "t": 18.35,
+   "kind": "kính dừng ở Mexico, rừng hoá cam, rung nhẹ",
+   "why": "khoảnh khắc wow thứ hai: hàng triệu bướm bám kín cây"
+  },
+  {
+   "t": 20.6,
+   "kind": "về sân khấu rộng, hai bạn nhún nhảy",
+   "why": "điệp khúc lần 1: ô 1, 2 nảy theo lời, ô 3 còn \"?\""
+  },
+  {
+   "t": 24.05,
+   "kind": "lia sang đống lá cạnh hòn đá",
+   "why": "bí mật 3 ở chỗ chấm đỏ đã ló ra từ khung đầu"
+  },
+  {
+   "t": 26.85,
+   "kind": "kính lớn trên chiếc lá, lá nhấc lên",
+   "why": "lộ đám bọ rùa ngủ"
+  },
+  {
+   "t": 27.7,
+   "kind": "Dot bật dậy, số 1 2 3 hiện",
+   "why": "nhân vật mới có lời: Dot đếm"
+  },
+  {
+   "t": 30.6,
+   "kind": "lia dọc đám bọ rùa (phóng trong kính)",
+   "why": "\"nap together\": thấy cả đám ngủ sát nhau"
+  },
+  {
+   "t": 32.7,
+   "kind": "Dot ngáp, chui lại vào đám",
+   "why": "gài đạo cụ của gag kết"
+  },
+  {
+   "t": 33.8,
+   "kind": "chụp → match cut qua sticker → trang sổ",
+   "why": "chuyển cảnh kính → sổ có chuyển động nối"
+  },
+  {
+   "t": 36.25,
+   "kind": "đẩy vào Albie há miệng",
+   "why": "\"Six legs? In you go!\" nói trong lúc có hành động"
+  },
+  {
+   "t": 37.75,
+   "kind": "lật trang về vườn tuyết, Dot chui ra",
+   "why": "mở gag"
+  },
+  {
+   "t": 40.15,
+   "kind": "đẩy nhanh, dấu X, cục tuyết rơi PLỘP",
+   "why": "gag: \"Nope!\" và Dot lặn mất"
+  },
+  {
+   "t": 42.08,
+   "kind": "lùi ra hai bạn nhảy, ba sticker nảy",
+   "why": "điệp khúc lần 2: trẻ hát theo"
+  },
+  {
+   "t": 45.35,
+   "kind": "đẩy vào hai bạn ôm nhau, chữ móc trở lại, về bố cục khung 0",
+   "why": "CTA và vòng lặp liền"
+  }
+ ],
+ "secret": {
+  "kw": [
+   "huddle",
+   "fly",
+   "hide",
+   "bees",
+   "monarchs",
+   "ladybugs"
+  ]
+ }
+}

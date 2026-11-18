@@ -7,7 +7,7 @@ export const BPM = 120, BEAT = 60 / BPM, BAR = BEAT * 4, W = 1920, H = 1080;
 const RATE = { loupe: [.32, .35], crumb: [.24, .3], albie: [.42, .4], dot: [.36, .35], blink: [.26, .3], rollo: [.46, .45] };   // s/từ, đệm (ước lượng; Rollo già, chậm)
 const est = (who, text) => { const n = text.split(/\s+/).length, [a, b] = RATE[who]; return +(n * a + b).toFixed(3); };
 const S = [];
-const L = (who, text, o = {}) => S.push({ k: 'L', who, text, ...o });     // câu thoại: o.gap (mặc định .35 s sau mục trước), o.catch, o.say, o.off, o.chant
+const L = (who, text, o = {}) => S.push({ k: 'L', who, text, ...o });     // câu thoại: o.gap (mặc định .35 s sau mục trước), o.catch, o.say, o.off, o.chant, o.cut
 const M = (name, gap = 0, d = 0) => S.push({ k: 'M', name, gap, d });      // mốc hành động: HIT[name] = lúc này + gap; rồi chạy tiếp d giây
 const Q = (name, dt) => S.push({ k: 'Q', name, dt });                      // mốc đặt theo lúc câu vừa rồi BẮT ĐẦU (không đẩy thời gian)
 const P = s => S.push({ k: 'P', s });                                      // nghỉ s giây (trẻ trả lời, hành động không lời)
@@ -23,9 +23,9 @@ M('s_team', .25);                                       // trên lối đi: cả
 L('albie', 'Miss Loupe is lost... at NIGHT!', { gap: 0 });
 L('crumb', 'How do we find her... with no sun?', { gap: .3 });   // câu hỏi xuyên suốt của phim
 M('rolloBack', .15, .9);                                // Rollo lăn về, viên tròn có một vết lõm trống
-L('rollo', 'Hmm. My ball feels... lighter.', { gap: 0 });
+L('rollo', 'Oh my. My ball feels... lighter.', { gap: 0 });
 M('s_title', .25); M('jingle');                         // tựa và nhạc hiệu 2 s (video dài; qa.py: cảnh tựa sau móc)
-L('loupe', 'Big secrets of tiny bugs!', { gap: .05 });  // Miss Loupe nhỏ xíu bay ngang bầu trời sao trên tấm tựa
+L('loupe', 'Big secrets of tiny bugs!', { gap: .05, cut: true });  // Miss Loupe nhỏ xíu bay ngang bầu trời sao trên tấm tựa
 M('titleEnd', -.03);
 
 /* ======================= BẢN ĐỒ VƯỜN · LẬP ĐỘI (≈ 30 s) ======================= */
@@ -53,7 +53,7 @@ L('crumb', 'Bees dance to show the way...', { gap: 0 });
 L('crumb', 'using the sun!', { gap: .25 });
 L('crumb', 'Can you find the sun?', { gap: .4 });
 M('tiltUp', .1, 1.2);                                   // máy ngửa lên trời: chỉ có sao (trẻ trả lời)
-P(.5);
+P(1.0);                                                 // .9: chữ NO SUN? đọc được ≥ 1,9 s (readcheck), trẻ kịp trả lời
 L('blink', 'Nope!', { gap: 0, catch: true });
 M('dizzy', .1, 1.2);                                    // Waggle xoay vòng chóng mặt (vui), đáp lên viên tròn của Rollo
 L('rollo', 'No sun tonight, little bee.', { gap: 0 });
@@ -77,7 +77,7 @@ M('mush', 0, .6);
 L('crumb', 'under the leaf...', { gap: .1 });
 M('leafUp', 0, .6);
 L('crumb', 'over the pebble!', { gap: .1 });
-M('pebble', 0, .6);
+M('pebble', 0, 1.0);                                    // 1,0 s: chữ OVER! đọc được ≥ 1,9 s (readcheck)
 M('s_edge0', .3); M('trailEnd', 0, 1.0);                // đường mùi tắt ở rìa vườn: phiến đá to, cỏ cao, bãi cỏ tối phía trước. Đàn kiến vẫy chào, quay về
 L('crumb', 'The trail ends here!', { gap: 0 });
 L('rollo', 'The edge of the garden.', { gap: .3 });
@@ -85,7 +85,7 @@ M('antsBye', .1, 1.0);
 
 /* ======================= CÁCH 3 · KIẾN SA MẠC ĐẾM BƯỚC (≈ 40 s, chỉ có ở video dài) ======================= */
 M('s_think', .3); M('thinkPop', 0, .6);                 // bóng nghĩ của Crumb phình ra
-L('crumb', 'No trail? Hmm...', { gap: .1 });
+L('crumb', 'No trail? Let me think...', { gap: .1 });
 L('crumb', 'My cousins in the desert...', { gap: .3 });
 M('s_desert', .1); M('dOut', 0, 1.8);                   // trong bóng nghĩ: sa mạc nắng, một chú kiến sa mạc chân dài đi ra khỏi tổ tìm mồi
 L('crumb', 'keep track of their steps!', { gap: .1 });
@@ -116,7 +116,7 @@ L('crumb', 'Wow... a river of stars!', { gap: .1 });
 L('rollo', 'It keeps me rolling straight.', { gap: .3 });
 M('s_track', .3); M('straight', 0, 2.0);                // nhìn thẳng từ trên xuống: Rollo lăn, để lại vệt thẳng tắp; cả đội nối đuôi
 L('dot', 'So straight!', { gap: 0 });
-M('clouds', .3, 1.6);                                   // bóng mây trôi ngang khung, che sao (máy ngửa lên nửa giây rồi về)
+M('clouds', .9, 1.6);                                   // bóng mây trôi ngang khung, che sao (máy ngửa lên nửa giây rồi về)
 L('crumb', 'Oh! Clouds!', { gap: 0 });
 M('wiggle', .1, 2.6);                                   // vệt lăn thành ngoằn ngoèo, cả đội đi vòng vèo theo, va nhẹ vào nhau (vui)
 L('rollo', 'Oh my. No stars... no straight!', { gap: 0 });
@@ -138,6 +138,7 @@ M('blinkCode', .1, .2);                                 // Blink nháy đèn đu
 L('blink', 'Blink! Blink! Blink!', { gap: 0 });
 M('tellyAns', .2, 1.4);                                 // Uncle Telly nháy đáp, giơ tay chỉ xuống một chỗ trong bãi cỏ
 L('crumb', 'She\'s over there! Let\'s go!', { gap: 0 });
+M('slot5', .1, 1.2);                                    // ô 5 lấp ngay sau lời (tiếng chuông không lấn câu), giữ 1,2 s trước khi sang rìa vườn
 
 /* ======================= CAO TRÀO · RÌA VƯỜN, THE GIANT (≈ 55 s) ======================= */
 M('s_edge', .3);                                        // các phiến đá lớn, khe nứt, cỏ cao; Crumb tự soi kỹ
@@ -146,7 +147,7 @@ M('sparkle', .1, .8);                                   // một đốm lấp l�
 L('crumb', 'A sparkle! Miss Loupe!', { gap: 0 });
 L('loupe', 'Crumb! You found me!', { gap: .3 });
 L('crumb', 'Hold on! We\'ll pull you out!', { gap: .3 });
-M('pull', .1, 1.6);                                     // cả đội nối thành chuỗi kéo: "heave!", khe đá không nhúc nhích (vui)
+M('pull', .1, 2.0);                                     // cả đội nối thành chuỗi kéo: "heave!", khe đá không nhúc nhích (vui)
 M('thump', .2, .9);                                     // THỊCH: đất rung một nhịp, một bóng khổng lồ phủ lên cả đội
 L('crumb', 'Is it a monster?', { gap: 0 });
 P(.5);
@@ -156,7 +157,7 @@ M('hand', .1, 1.4);                                     // bàn tay The Giant h�
 M('lift', .1, 1.0);
 M('s_pov', .2); M('pov', 0, .8);                        // CẢNH ĐẶC TRƯNG 2: góc nhìn của The Giant qua chính Miss Loupe; trong kính, cả đội phóng to, vẫy chào
 L('crumb', 'Hello, Giant! Thank you!', { gap: .2 });
-M('waveAll', .1, 1.4);
+M('waveAll', .1, 1.8);
 M('s_place', .3); M('place', 0, 1.2);                   // bàn tay đặt Miss Loupe xuống lối đi, rồi gạt một chiếc lá to mở đường về
 M('leafSweep', .2, 1.2);
 L('loupe', 'Thank you, friend!', { gap: 0 });
@@ -165,7 +166,7 @@ M('s_found', .3);
 L('loupe', 'Crumb, you looked closely... all by yourself!', { gap: 0 });
 L('crumb', 'Can I hold the lens... NOW?', { gap: .3 });
 L('loupe', 'Yes! NOW!', { gap: .2 });
-M('hold', .1, 1.0);                                     // Crumb ôm cán kính, ghé mắt nhìn qua kính; Miss Loupe cười
+M('hold', .1, 1.3);                                     // Crumb ôm cán kính, ghé mắt nhìn qua kính; Miss Loupe cười
 
 /* ======================= ĐƯỜNG VỀ · ÔN BÀI (≈ 30 s) ======================= */
 M('s_way', .3); M('walkHome', 0, .4);                   // cả đội đi về dưới Dải Ngân Hà; Crumb đi đầu, ôm kính
@@ -210,17 +211,17 @@ M('e_spots', .2, 4.6);                                  // ba khung nhỏ: móc 
 /* ======================= GAG CUỐI · gợi lại móc · cài trước Mùa 2 (≈ 16 s) ======================= */
 M('s_bye', .3); M('recall', .2, .8);                    // gợi lại móc: Rollo lăn qua, lần này Crumb (ôm kính) đứng chạy trên viên tròn
 L('loupe', 'Crumb! Come back!', { gap: 0 });
-L('crumb', 'Not NOW! Wheee!', { gap: .2 });
+L('crumb', 'Not NOW! Yippee!', { gap: .2 });                 // "Wheee!" bị Whisper nghe thành "are we?"
 M('pageEdge', .2, 1.0);                                 // Rollo lăn thẳng tới mép trang sổ
-L('albie', 'Rollo! That\'s the END of the page!', { gap: 0 });
+L('albie', 'Rollo! That\'s the END of the page!', { gap: 0, say: 'Rollo! That\'s the end of the page!' });   // Kokoro đánh vần "END" thành E-N-D
 M('flip', .1, .8);                                      // lật trang: "TÕM!", giọt nước bắn lên, trang sau xanh mặt ao (cài trước Mùa 2)
 M('splash', 0, .6);
-L('rollo', 'Oh my. A pond!', { gap: 0 });
+L('rollo', "Oh my. It's a pond!", { gap: 0 });
 M('s_end', .2);
 L('loupe', 'So... what does Rollo follow?', { gap: 0 });  // câu hỏi kết cho trẻ trả lời to (qa.py: trong 5,5 s cuối)
 P(.9);
 L('dot', 'The stars!', { gap: 0, catch: true });         // cả nhóm hô cùng trẻ
-M('end', .4);
+M('end', 1.0);                                         // .7: chữ THE STARS! đọc được ≥ 2,1 s; "ta-da" vang sau lời; câu hỏi kết vẫn trong 5,5 s cuối
 
 /* ---------- dựng lịch: thời gian tuyệt đối cho câu, mốc, tấm phụ đề ---------- */
 export const HIT = {}, LINES = [], CARDS = [];
@@ -232,6 +233,7 @@ export const HIT = {}, LINES = [], CARDS = [];
     if (s.k === 'M') { HIT[s.name] = +(t + s.gap).toFixed(3); t = Math.max(t, HIT[s.name] + s.d); continue; }
     const id = 'L' + String(++n).padStart(3, '0'), key = `${s.who}|${s.say || s.text}`, dur = MEASURED[key] ?? est(s.who, s.text);
     let t0 = Math.max(t + (s.gap ?? .35), t - .15);
+    if (card && s.cut) { card.t1 = Math.min(card.t1, +(t0 - .05).toFixed(3)); card = null; }   // o.cut: câu này mở tấm phụ đề mới (không ghép vào câu trước)
     if (card && t0 < card.t1) {                                  // tấm phụ đề trước chưa hết giờ: ghép vào, hoặc lùi câu này lại
       if (card.parts.length < 3 && (card.text + ' ' + s.text).length <= 78) { card.parts.push({ t: t0, text: s.text }); card.text += ' ' + s.text; }
       else { t0 = card.t1 + .05; card = null; }
@@ -261,7 +263,7 @@ const atL = (who, text, dt = 0) => +(lineAt0(who, text).t + dt).toFixed(2);
 const SHOT_DUR = { 1: '5.3 s', 3: '9.5 s', 5: '13.3 s', 8: '9.3 s', 12: '10.0 s', 16: '10.0 s', 20: '6.5 s', 22: '14.5 s', 24: '2.6 s', 28: '8.8 s', 30: '4.1 s', 35: '10.2 s' };
 export const BOARD = [
   { t: .05, shot: '1', frame: 'Wide · Loupe on Rollo\'s ball · frame 0', sec: 'hook', line: 'Whoa! Rollo! I can\'t stop! — Can I hold the lens? — Not NOW!' },
-  { t: atL('rollo', 'Hmm. My ball feels... lighter.', .8), shot: '3', frame: 'Medium · the team, Rollo returns', sec: 'team', line: 'How do we find her... with no sun? — My ball feels... lighter.' },
+  { t: atL('rollo', 'Oh my. My ball feels... lighter.', .8), shot: '3', frame: 'Medium · the team, Rollo returns', sec: 'team', line: 'How do we find her... with no sun? — My ball feels... lighter.' },
   { t: at('mapArrow', .9), shot: '5', frame: 'Insert · the garden map', sec: 'map', line: 'She flew off... straight that way. — Off my map?!' },
   { t: at('dance', 1.3), shot: '8', frame: 'Medium · Waggle\'s figure-8', sec: 'sun', line: 'Bees dance to show the way... using the sun!' },
   { t: at('antsCome', 1.6), shot: '12', frame: 'Low medium · sniff view, ants arrive', sec: 'ants', line: 'Ants follow smell trails! — My family! Hi, everyone!' },

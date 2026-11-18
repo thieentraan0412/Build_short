@@ -71,6 +71,8 @@ Giữ giọng của từng nhân vật ([`voices.js`](voices.js)). 60–80 % s�
 |---|---|---|---|---|---|---|---|
 | L01 | … | … | half-sing | `5:.5 5:.5 3:.5 …` | | … | câu hỏi: giai điệu cao, vui |
 
+Tốc độ (QUALITY.md §9.7): câu nói ≤ 3,5 âm tiết/s trên đoạn có tiếng, câu hát ≤ 3,0 âm tiết/s theo bản nhạc. Từ nhấn và nốt cuối 1–1,5 phách, từ phụ ½ phách; câu nửa hát `fill .85, glide .08` cho liền hơi. Tính trước câu nào cần chỗ trống để chậm lại.
+
 Chọn kiểu theo câu: câu hỏi tò mò → half-sing cao; khám phá → half-sing nhẹ có nhịp; giải thích khoa học → sing-talk rõ từ; bất ngờ → nhấn bằng giai điệu + tiếng hài; kết luận / điệp khúc → sing; câu cửa miệng, gag, CTA → nói (hoặc `CATCH_TUNE`). Có thể thêm Wow!, Hey!, Oops!, Look!, Yeah!. Không đổi kiến thức để vần.
 
 ## 8. SFX và nhạc nền
@@ -119,6 +121,21 @@ Phác các tiếng chính và thời điểm; bảng đầy đủ từ `events.j
 - [ ] Nhạc có sinh động không? · [ ] Có thay đổi theo cảnh không? · [ ] Lời thoại có giai điệu không?
 - [ ] Có đoạn nhạc dễ nhớ không? · [ ] Giọng hát có rõ không? · [ ] Nhạc nền có lấn át giọng không?
 - [ ] SFX có khớp hành động không? · [ ] Âm nhạc có tạo cảm xúc và giữ chân người xem không?
+
+## G. Vocal & Musical QC ([`QUALITY.md`](QUALITY.md) §9, Task.md 18/11/2026)
+
+- **Trước khi dựng:** từ khó trong lời (tên loài, từ ≥ 3 âm tiết, phụ âm cuối như bugs, legs, wings) và cách hát chúng; câu có dấu câu giữa câu thì chừa nghỉ; kiểu hát (vocal direction) của từng câu theo nhịp kể chuyện.
+- **Sau khi dựng:** `VOCAL-QC.md` *(sinh tự động bởi `tools/vocal_qc.py`)*: A bảng lỗi (LỖI / CẦN NGHE, timestamp, cách sửa) · B lời trước / sau sửa (trường `was`, `why` trong `timeline.js`) · C hướng dẫn phát âm (IPA, trọng âm, ngắt câu) · D prompt tạo giọng hát · E prompt tạo nhạc · F hướng dẫn trộn · G checklist. Câu LỖI: sửa rồi tạo lại đúng câu đó (`voice_regen.py`); câu CẦN NGHE: nghe và ghi kết luận vào báo cáo giao.
+
+## H. Thiết kế âm thanh theo cảnh, 4 lớp ([`QUALITY.md`](QUALITY.md) §10, Task.md 18/11/2026 lượt 2)
+
+Mỗi cảnh một dòng (khai báo ở `SCENES` trong `mix.py`; bảng cuối sinh tự động vào `SOUND-PLAN.md`):
+
+| Cảnh | Năng lượng (calm / normal / high / peak) | Voice (câu · `emo`) | Music | SFX (hành động → tiếng) | Ambient |
+|---|---|---|---|---|---|
+| … | … | … | … | … | … |
+
+Cảm xúc của từng câu (`emo`), "sợ hãi" làm thành giật mình vui (`startled`); hành động nào cần tiếng (bước, bay, xuất hiện, va chạm, bất ngờ, chuyển cảnh); lớp nền của từng bối cảnh.
 
 ## Video dài (chỉ điền khi là video dài)
 

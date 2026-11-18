@@ -1,0 +1,1151 @@
+{
+ "bpm": 120,
+ "dur": 256.5,
+ "secs": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 11.293
+  },
+  {
+   "id": "title",
+   "t0": 11.293,
+   "t1": 13.32
+  },
+  {
+   "id": "scene",
+   "t0": 13.32,
+   "t1": 22.735
+  },
+  {
+   "id": "rule",
+   "t0": 22.735,
+   "t1": 32.768
+  },
+  {
+   "id": "clues",
+   "t0": 32.768,
+   "t1": 38.28
+  },
+  {
+   "id": "c1",
+   "t0": 38.28,
+   "t1": 48.252
+  },
+  {
+   "id": "c1a",
+   "t0": 48.252,
+   "t1": 51.264
+  },
+  {
+   "id": "c1m",
+   "t0": 51.264,
+   "t1": 57.692
+  },
+  {
+   "id": "c1n",
+   "t0": 57.692,
+   "t1": 67.382
+  },
+  {
+   "id": "c1b",
+   "t0": 67.382,
+   "t1": 74.687
+  },
+  {
+   "id": "c2",
+   "t0": 74.687,
+   "t1": 79.607
+  },
+  {
+   "id": "c2a",
+   "t0": 79.607,
+   "t1": 86.249
+  },
+  {
+   "id": "c2b",
+   "t0": 86.249,
+   "t1": 97.362
+  },
+  {
+   "id": "c3",
+   "t0": 97.362,
+   "t1": 103.083
+  },
+  {
+   "id": "c3b",
+   "t0": 103.083,
+   "t1": 114.903
+  },
+  {
+   "id": "sum",
+   "t0": 114.903,
+   "t1": 120.561
+  },
+  {
+   "id": "line",
+   "t0": 120.561,
+   "t1": 128.074
+  },
+  {
+   "id": "lw",
+   "t0": 128.074,
+   "t1": 132.923
+  },
+  {
+   "id": "lf",
+   "t0": 132.923,
+   "t1": 137.982
+  },
+  {
+   "id": "ls",
+   "t0": 137.982,
+   "t1": 145.555
+  },
+  {
+   "id": "llens",
+   "t0": 145.555,
+   "t1": 149.93
+  },
+  {
+   "id": "body",
+   "t0": 149.93,
+   "t1": 159.276
+  },
+  {
+   "id": "ant",
+   "t0": 159.276,
+   "t1": 171.51
+  },
+  {
+   "id": "lq",
+   "t0": 171.51,
+   "t1": 178.22
+  },
+  {
+   "id": "trap",
+   "t0": 178.22,
+   "t1": 188.049
+  },
+  {
+   "id": "wait",
+   "t0": 188.049,
+   "t1": 196.328
+  },
+  {
+   "id": "snap",
+   "t0": 196.328,
+   "t1": 204.807
+  },
+  {
+   "id": "conf",
+   "t0": 204.807,
+   "t1": 209.384
+  },
+  {
+   "id": "confb",
+   "t0": 209.384,
+   "t1": 219.741
+  },
+  {
+   "id": "alone",
+   "t0": 219.741,
+   "t1": 224.57
+  },
+  {
+   "id": "recap",
+   "t0": 224.57,
+   "t1": 238.378
+  },
+  {
+   "id": "rollo",
+   "t0": 238.378,
+   "t1": 244.834
+  },
+  {
+   "id": "bye",
+   "t0": 244.834,
+   "t1": 251.335
+  },
+  {
+   "id": "end",
+   "t0": 251.335,
+   "t1": 256.5
+  }
+ ],
+ "lines": [
+  {
+   "id": "L01",
+   "who": "albie",
+   "t": 0.3,
+   "dur": 2.731,
+   "text": "An intruder! In MY pages!",
+   "off": "Albie nói từ ngoài khung 1 s đầu, máy lia sang ngay",
+   "card": 1
+  },
+  {
+   "id": "L02",
+   "who": "loupe",
+   "t": 3.681,
+   "dur": 1.526,
+   "text": "Who snuck into the Bug Book?",
+   "card": 2
+  },
+  {
+   "id": "L03",
+   "who": "dot",
+   "t": 5.707,
+   "dur": 1.217,
+   "text": "I'll count the clues!",
+   "card": 2
+  },
+  {
+   "id": "L04",
+   "who": "crumb",
+   "t": 7.424,
+   "dur": 1.181,
+   "text": "Can I help? Can I?",
+   "card": 2
+  },
+  {
+   "id": "L05",
+   "who": "loupe",
+   "t": 9.255,
+   "dur": 1.788,
+   "text": "Every detective needs a lens!",
+   "card": 3
+  },
+  {
+   "id": "L06",
+   "who": "loupe",
+   "t": 11.343,
+   "dur": 1.707,
+   "text": "Big secrets of tiny bugs!",
+   "card": 3
+  },
+  {
+   "id": "L07",
+   "who": "loupe",
+   "t": 13.82,
+   "dur": 1.302,
+   "text": "The Insects page...",
+   "card": 4
+  },
+  {
+   "id": "L08",
+   "who": "loupe",
+   "t": 15.322,
+   "dur": 1.797,
+   "text": "and a sticker that doesn't belong!",
+   "card": 4
+  },
+  {
+   "id": "L09",
+   "who": "dot",
+   "t": 17.819,
+   "dur": 1.283,
+   "text": "One, two, three, four...",
+   "card": 5
+  },
+  {
+   "id": "L10",
+   "who": "dot",
+   "t": 19.202,
+   "dur": 1.383,
+   "text": "five, six, seven, eight!",
+   "card": 5
+  },
+  {
+   "id": "L11",
+   "who": "albie",
+   "t": 22.835,
+   "dur": 3.213,
+   "text": "Eight legs?! Insects have SIX!",
+   "card": 6
+  },
+  {
+   "id": "L12",
+   "who": "albie",
+   "t": 26.348,
+   "dur": 2.682,
+   "text": "This page is for insects only.",
+   "card": 6
+  },
+  {
+   "id": "L13",
+   "who": "crumb",
+   "t": 29.33,
+   "dur": 0.762,
+   "text": "But WHY?",
+   "card": 6
+  },
+  {
+   "id": "L14",
+   "who": "albie",
+   "t": 30.742,
+   "dur": 1.726,
+   "text": "Rules are rules!",
+   "card": 7
+  },
+  {
+   "id": "L15",
+   "who": "loupe",
+   "t": 33.468,
+   "dur": 1.669,
+   "text": "Every intruder leaves clues.",
+   "card": 8
+  },
+  {
+   "id": "L16",
+   "who": "dot",
+   "t": 35.437,
+   "dur": 1.444,
+   "text": "Three clues! I counted!",
+   "card": 8
+  },
+  {
+   "id": "L17",
+   "who": "loupe",
+   "t": 37.081,
+   "dur": 0.999,
+   "text": "Let's zoom in!",
+   "catch": true,
+   "card": 8
+  },
+  {
+   "id": "L18",
+   "who": "crumb",
+   "t": 39.18,
+   "dur": 0.972,
+   "text": "A shiny string!",
+   "card": 9
+  },
+  {
+   "id": "L19",
+   "who": "loupe",
+   "t": 40.952,
+   "dur": 0.825,
+   "text": "It's silk!",
+   "card": 9
+  },
+  {
+   "id": "L20",
+   "who": "crumb",
+   "t": 42.077,
+   "dur": 1.857,
+   "text": "Silk? Only spiders make silk, right?",
+   "card": 9
+  },
+  {
+   "id": "L21",
+   "who": "loupe",
+   "t": 44.584,
+   "dur": 1.09,
+   "text": "Only spiders?",
+   "card": 10
+  },
+  {
+   "id": "L22",
+   "who": "loupe",
+   "t": 46.374,
+   "dur": 0.628,
+   "text": "Nope!",
+   "catch": true,
+   "card": 10
+  },
+  {
+   "id": "L23",
+   "who": "albie",
+   "t": 48.252,
+   "dur": 2.112,
+   "text": "Look! My baby pictures!",
+   "card": 11
+  },
+  {
+   "id": "L24",
+   "who": "loupe",
+   "t": 51.364,
+   "dur": 1.909,
+   "text": "Before Flutter was a butterfly...",
+   "card": 12
+  },
+  {
+   "id": "L25",
+   "who": "loupe",
+   "t": 53.473,
+   "dur": 1.441,
+   "text": "Flutter was a caterpillar!",
+   "card": 12
+  },
+  {
+   "id": "L26",
+   "who": "loupe",
+   "t": 55.814,
+   "dur": 1.778,
+   "text": "And caterpillars make silk too!",
+   "card": 13
+  },
+  {
+   "id": "L27",
+   "who": "crumb",
+   "t": 58.992,
+   "dur": 1.208,
+   "text": "Oh! To make a cocoon?",
+   "card": 14
+  },
+  {
+   "id": "L28",
+   "who": "loupe",
+   "t": 60.4,
+   "dur": 0.628,
+   "text": "Nope!",
+   "catch": true,
+   "card": 14
+  },
+  {
+   "id": "L29",
+   "who": "loupe",
+   "t": 61.328,
+   "dur": 3.154,
+   "text": "A tiny silk pad... to hang on while it changes!",
+   "card": 14
+  },
+  {
+   "id": "L30",
+   "who": "crumb",
+   "t": 68.282,
+   "dur": 1.385,
+   "text": "Flutter made silk once...",
+   "card": 15
+  },
+  {
+   "id": "L31",
+   "who": "crumb",
+   "t": 69.967,
+   "dur": 1.482,
+   "text": "So Flutter is a suspect!",
+   "card": 15
+  },
+  {
+   "id": "L32",
+   "who": "dot",
+   "t": 73.349,
+   "dur": 1.038,
+   "text": "Clue number one!",
+   "card": 16
+  },
+  {
+   "id": "L33",
+   "who": "loupe",
+   "t": 75.487,
+   "dur": 2.509,
+   "text": "Look! Tiny footprints in the eraser dust!",
+   "card": 17
+  },
+  {
+   "id": "L34",
+   "who": "dot",
+   "t": 78.296,
+   "dur": 1.111,
+   "text": "Count them with me!",
+   "card": 17
+  },
+  {
+   "id": "L35",
+   "who": "dot",
+   "t": 80.057,
+   "dur": 1.283,
+   "text": "One, two, three, four...",
+   "card": 18
+  },
+  {
+   "id": "L36",
+   "who": "dot",
+   "t": 81.44,
+   "dur": 1.383,
+   "text": "five, six, seven, eight!",
+   "card": 18
+  },
+  {
+   "id": "L37",
+   "who": "dot",
+   "t": 83.123,
+   "dur": 1.426,
+   "text": "Eight feet in every step!",
+   "card": 18
+  },
+  {
+   "id": "L38",
+   "who": "crumb",
+   "t": 86.349,
+   "dur": 1.278,
+   "text": "Flutter has six feet...",
+   "card": 19
+  },
+  {
+   "id": "L39",
+   "who": "crumb",
+   "t": 88.827,
+   "dur": 1.226,
+   "text": "so it was NOT Flutter!",
+   "card": 20
+  },
+  {
+   "id": "L40",
+   "who": "loupe",
+   "t": 90.353,
+   "dur": 1.414,
+   "text": "Then who has eight legs?",
+   "card": 20
+  },
+  {
+   "id": "L41",
+   "who": "crumb",
+   "t": 94.067,
+   "dur": 0.98,
+   "text": "Did you see that?",
+   "card": 21
+  },
+  {
+   "id": "L42",
+   "who": "dot",
+   "t": 96.047,
+   "dur": 1.015,
+   "text": "Clue number two!",
+   "card": 22
+  },
+  {
+   "id": "L43",
+   "who": "crumb",
+   "t": 98.162,
+   "dur": 1.644,
+   "text": "A wing! It's a butterfly wing!",
+   "card": 23
+  },
+  {
+   "id": "L44",
+   "who": "loupe",
+   "t": 101.006,
+   "dur": 1.877,
+   "text": "Wait... let me take a closer look.",
+   "card": 24
+  },
+  {
+   "id": "L45",
+   "who": "loupe",
+   "t": 103.983,
+   "dur": 1.756,
+   "text": "It's paper! With sticky tape!",
+   "card": 25
+  },
+  {
+   "id": "L46",
+   "who": "crumb",
+   "t": 106.039,
+   "dur": 1.298,
+   "text": "A paper wing? But WHY?",
+   "card": 25
+  },
+  {
+   "id": "L47",
+   "who": "loupe",
+   "t": 107.987,
+   "dur": 1.911,
+   "text": "Somebody wanted to LOOK like a bug!",
+   "card": 26
+  },
+  {
+   "id": "L48",
+   "who": "albie",
+   "t": 110.198,
+   "dur": 2.345,
+   "text": "A disguise! In MY book!",
+   "card": 26
+  },
+  {
+   "id": "L49",
+   "who": "dot",
+   "t": 113.543,
+   "dur": 1.06,
+   "text": "Clue number three!",
+   "card": 27
+  },
+  {
+   "id": "L50",
+   "who": "loupe",
+   "t": 115.903,
+   "dur": 2.341,
+   "text": "Silk... eight feet... a paper wing.",
+   "card": 28
+  },
+  {
+   "id": "L51",
+   "who": "loupe",
+   "t": 118.544,
+   "dur": 1.217,
+   "text": "Time for a lineup!",
+   "card": 28
+  },
+  {
+   "id": "L52",
+   "who": "albie",
+   "t": 120.661,
+   "dur": 2.246,
+   "text": "Suspects! Step in line!",
+   "card": 29
+  },
+  {
+   "id": "L53",
+   "who": "loupe",
+   "t": 126.507,
+   "dur": 1.367,
+   "text": "Count the legs with Dot!",
+   "card": 30
+  },
+  {
+   "id": "L54",
+   "who": "dot",
+   "t": 128.074,
+   "dur": 2.075,
+   "text": "Waggle... one, two, three, four, five, six!",
+   "card": 30
+  },
+  {
+   "id": "L55",
+   "who": "albie",
+   "t": 130.749,
+   "dur": 1.974,
+   "text": "Six legs! A bug!",
+   "card": 31
+  },
+  {
+   "id": "L56",
+   "who": "dot",
+   "t": 132.923,
+   "dur": 1.225,
+   "text": "Flutter... six legs!",
+   "card": 31
+  },
+  {
+   "id": "L57",
+   "who": "dot",
+   "t": 134.698,
+   "dur": 1.232,
+   "text": "Chirp... six legs!",
+   "card": 31
+  },
+  {
+   "id": "L58",
+   "who": "albie",
+   "t": 136.58,
+   "dur": 1.102,
+   "text": "Bug! Bug!",
+   "card": 32
+  },
+  {
+   "id": "L59",
+   "who": "dot",
+   "t": 137.982,
+   "dur": 2.115,
+   "text": "And you... one, two, three, four, five, six!",
+   "card": 32
+  },
+  {
+   "id": "L60",
+   "who": "spindle",
+   "t": 140.747,
+   "dur": 1.641,
+   "text": "Six legs! See? I am a bug!",
+   "card": 33
+  },
+  {
+   "id": "L61",
+   "who": "albie",
+   "t": 142.688,
+   "dur": 1.568,
+   "text": "Really? Six?",
+   "card": 33
+  },
+  {
+   "id": "L62",
+   "who": "loupe",
+   "t": 144.456,
+   "dur": 0.999,
+   "text": "Let's zoom in!",
+   "catch": true,
+   "card": 33
+  },
+  {
+   "id": "L63",
+   "who": "dot",
+   "t": 146.355,
+   "dur": 0.922,
+   "text": "Seven... eight!",
+   "card": 34
+  },
+  {
+   "id": "L64",
+   "who": "dot",
+   "t": 147.877,
+   "dur": 0.874,
+   "text": "EIGHT legs!",
+   "card": 34
+  },
+  {
+   "id": "L65",
+   "who": "spindle",
+   "t": 148.951,
+   "dur": 0.679,
+   "text": "Oopsie!",
+   "card": 34
+  },
+  {
+   "id": "L66",
+   "who": "loupe",
+   "t": 150.28,
+   "dur": 1.56,
+   "text": "Now count the body parts!",
+   "card": 35
+  },
+  {
+   "id": "L67",
+   "who": "dot",
+   "t": 152.24,
+   "dur": 1.402,
+   "text": "Waggle: one, two, three!",
+   "card": 35
+  },
+  {
+   "id": "L68",
+   "who": "dot",
+   "t": 154.042,
+   "dur": 1.262,
+   "text": "Spindle: one, two!",
+   "card": 35
+  },
+  {
+   "id": "L69",
+   "who": "loupe",
+   "t": 155.954,
+   "dur": 3.022,
+   "text": "Bugs have three body parts. Spiders have two!",
+   "card": 36
+  },
+  {
+   "id": "L70",
+   "who": "loupe",
+   "t": 159.376,
+   "dur": 1.352,
+   "text": "And one more secret...",
+   "card": 36
+  },
+  {
+   "id": "L71",
+   "who": "loupe",
+   "t": 161.428,
+   "dur": 1.359,
+   "text": "Bugs have two antennae.",
+   "card": 37
+  },
+  {
+   "id": "L72",
+   "who": "loupe",
+   "t": 163.787,
+   "dur": 1.194,
+   "text": "Spiders have none!",
+   "card": 38
+  },
+  {
+   "id": "L73",
+   "who": "spindle",
+   "t": 165.281,
+   "dur": 1.252,
+   "text": "Oh! Those were paper.",
+   "card": 38
+  },
+  {
+   "id": "L74",
+   "who": "albie",
+   "t": 166.733,
+   "dur": 2.648,
+   "text": "BZZT! Not a bug!",
+   "catch": true,
+   "card": 38
+  },
+  {
+   "id": "L75",
+   "who": "spindle",
+   "t": 170.031,
+   "dur": 1.179,
+   "text": "Is it my turn yet?",
+   "card": 39
+  },
+  {
+   "id": "L76",
+   "who": "crumb",
+   "t": 171.51,
+   "dur": 1.859,
+   "text": "But did she sneak in? We didn't SEE her!",
+   "card": 39
+  },
+  {
+   "id": "L77",
+   "who": "loupe",
+   "t": 174.019,
+   "dur": 2.601,
+   "text": "Then let's catch the intruder... in the act!",
+   "card": 40
+  },
+  {
+   "id": "L78",
+   "who": "crumb",
+   "t": 179.02,
+   "dur": 1.682,
+   "text": "My trap! A shiny empty spot!",
+   "card": 41
+  },
+  {
+   "id": "L79",
+   "who": "crumb",
+   "t": 181.002,
+   "dur": 1.517,
+   "text": "Every intruder wants a spot!",
+   "card": 41
+  },
+  {
+   "id": "L80",
+   "who": "albie",
+   "t": 184.419,
+   "dur": 3.33,
+   "text": "Snore... snore... I am totally asleep...",
+   "card": 42
+  },
+  {
+   "id": "L81",
+   "who": "dot",
+   "t": 188.049,
+   "dur": 1.629,
+   "text": "Shh... one, two, three...",
+   "card": 42
+  },
+  {
+   "id": "L82",
+   "who": "crumb",
+   "t": 191.178,
+   "dur": 1.53,
+   "text": "A bug! With wings and stripes!",
+   "card": 43
+  },
+  {
+   "id": "L83",
+   "who": "dot",
+   "t": 192.908,
+   "dur": 1.365,
+   "text": "One, two... six legs!",
+   "card": 43
+  },
+  {
+   "id": "L84",
+   "who": "loupe",
+   "t": 194.573,
+   "dur": 1.555,
+   "text": "Hold on... are you sure?",
+   "card": 43
+  },
+  {
+   "id": "L85",
+   "who": "crumb",
+   "t": 199.978,
+   "dur": 0.707,
+   "text": "Gotcha!",
+   "card": 44
+  },
+  {
+   "id": "L86",
+   "who": "dot",
+   "t": 200.785,
+   "dur": 0.874,
+   "text": "Eight legs!",
+   "card": 44
+  },
+  {
+   "id": "L87",
+   "who": "albie",
+   "t": 201.859,
+   "dur": 2.648,
+   "text": "BZZT! Not a bug!",
+   "catch": true,
+   "card": 44
+  },
+  {
+   "id": "L88",
+   "who": "spindle",
+   "t": 205.157,
+   "dur": 0.894,
+   "text": "You caught me!",
+   "card": 45
+  },
+  {
+   "id": "L89",
+   "who": "spindle",
+   "t": 206.351,
+   "dur": 1.733,
+   "text": "I only wanted one page.",
+   "card": 45
+  },
+  {
+   "id": "L90",
+   "who": "crumb",
+   "t": 209.384,
+   "dur": 1.317,
+   "text": "But WHY can't she join?",
+   "card": 46
+  },
+  {
+   "id": "L91",
+   "who": "albie",
+   "t": 211.001,
+   "dur": 1.768,
+   "text": "Rules are rules.",
+   "card": 46
+  },
+  {
+   "id": "L92",
+   "who": "albie",
+   "t": 213.069,
+   "dur": 2.183,
+   "text": "This book is for insects.",
+   "card": 46
+  },
+  {
+   "id": "L93",
+   "who": "spindle",
+   "t": 215.902,
+   "dur": 1.439,
+   "text": "Okay! Maybe one day?",
+   "card": 47
+  },
+  {
+   "id": "L94",
+   "who": "albie",
+   "t": 221.341,
+   "dur": 1.629,
+   "text": "...I'll think about it.",
+   "card": 48
+  },
+  {
+   "id": "L95",
+   "who": "loupe",
+   "t": 225.17,
+   "dur": 0.947,
+   "text": "Case closed!",
+   "card": 49
+  },
+  {
+   "id": "L96",
+   "who": "loupe",
+   "t": 226.417,
+   "dur": 1.73,
+   "text": "Little detectives, remember...",
+   "card": 49
+  },
+  {
+   "id": "L97",
+   "who": "loupe",
+   "t": 228.347,
+   "dur": 1.722,
+   "text": "How many legs does a bug have?",
+   "card": 49
+  },
+  {
+   "id": "L98",
+   "who": "dot",
+   "t": 231.269,
+   "dur": 0.885,
+   "text": "Six legs!",
+   "card": 50
+  },
+  {
+   "id": "L99",
+   "who": "loupe",
+   "t": 232.454,
+   "dur": 0.931,
+   "text": "And a spider?",
+   "card": 50
+  },
+  {
+   "id": "L100",
+   "who": "dot",
+   "t": 234.385,
+   "dur": 0.874,
+   "text": "Eight legs!",
+   "card": 51
+  },
+  {
+   "id": "L101",
+   "who": "loupe",
+   "t": 235.559,
+   "dur": 2.219,
+   "text": "Count carefully... before you decide!",
+   "card": 51
+  },
+  {
+   "id": "L102",
+   "who": "crumb",
+   "t": 238.378,
+   "dur": 1.356,
+   "text": "Wait! Did you spot Rollo?",
+   "card": 52
+  },
+  {
+   "id": "L103",
+   "who": "dot",
+   "t": 245.334,
+   "dur": 1.204,
+   "text": "Now let me count YOU!",
+   "card": 53
+  },
+  {
+   "id": "L104",
+   "who": "dot",
+   "t": 246.738,
+   "dur": 1.868,
+   "text": "One, two... Two legs! Not a bug either!",
+   "card": 53
+  },
+  {
+   "id": "L105",
+   "who": "spindle",
+   "t": 249.956,
+   "dur": 1.179,
+   "text": "Is it my turn yet?",
+   "card": 54
+  },
+  {
+   "id": "L106",
+   "who": "loupe",
+   "t": 251.335,
+   "dur": 1.716,
+   "text": "So... is a spider a bug?",
+   "card": 54
+  },
+  {
+   "id": "L107",
+   "who": "dot",
+   "t": 254.051,
+   "dur": 0.665,
+   "text": "Nope!",
+   "catch": true,
+   "card": 55
+  }
+ ],
+ "hit": {
+  "s_hook": 0,
+  "zing": 0,
+  "wiggle": 0.12,
+  "whip": 1.2,
+  "loupeIn": 3.181,
+  "dotPop": 5.407,
+  "crumbPop": 7.124,
+  "lensFlip": 10.443,
+  "s_title": 11.293,
+  "jingle": 11.293,
+  "titleEnd": 13.32,
+  "s_scene": 13.32,
+  "page": 13.32,
+  "dotClimb": 17.319,
+  "eight": 20.685,
+  "s_rule": 22.735,
+  "s_clues": 32.768,
+  "slots": 32.768,
+  "s_c1": 38.28,
+  "c1_find": 38.48,
+  "c1_twang": 40.302,
+  "c1_beat": 45.774,
+  "s_c1a": 48.252,
+  "c1_flip": 50.464,
+  "s_c1m": 51.264,
+  "c1_munch": 55.014,
+  "s_c1n": 57.692,
+  "c1_spin": 57.692,
+  "c1_hang": 64.582,
+  "s_c1b": 67.382,
+  "flutterIn": 67.382,
+  "c1_mmm": 71.549,
+  "c1_slot": 72.549,
+  "s_c2": 74.687,
+  "c2_pan": 74.687,
+  "c2_count": 79.607,
+  "s_c2a": 79.607,
+  "rollo1": 84.749,
+  "s_c2b": 86.249,
+  "c2_flutter": 87.727,
+  "c2_shadow": 93.067,
+  "c2_slot": 95.247,
+  "s_c3": 97.362,
+  "c3_flap": 97.362,
+  "c3_compare": 100.006,
+  "s_c3b": 103.083,
+  "c3_lens": 103.083,
+  "c3_slot": 112.743,
+  "s_sum": 114.903,
+  "sum": 114.903,
+  "s_line": 120.561,
+  "in_w": 123.007,
+  "in_f": 123.607,
+  "in_c": 124.207,
+  "in_s": 124.807,
+  "rollo2": 125.907,
+  "s_lw": 128.074,
+  "m_w": 130.249,
+  "s_lf": 132.923,
+  "m_f": 134.198,
+  "m_c": 135.98,
+  "s_ls": 137.982,
+  "m_s6": 140.147,
+  "s_llens": 145.555,
+  "l_lens": 145.555,
+  "l_pop": 147.377,
+  "s_body": 149.93,
+  "b_w": 151.94,
+  "b_s": 153.742,
+  "s_ant": 159.276,
+  "a_boing": 160.828,
+  "a_droop": 162.887,
+  "l_up": 169.481,
+  "s_lq": 171.51,
+  "rollo": 176.72,
+  "s_trap": 178.22,
+  "t_bait": 178.22,
+  "t_hide": 182.719,
+  "t_lamp0": 183.919,
+  "s_wait": 188.049,
+  "t_come": 189.978,
+  "s_snap": 196.328,
+  "t_step": 196.328,
+  "t_tangle": 197.128,
+  "t_pop": 198.728,
+  "t_lamp1": 199.578,
+  "s_conf": 204.807,
+  "c_sticker": 208.184,
+  "s_confb": 209.384,
+  "c_give": 217.441,
+  "c_up": 218.241,
+  "s_alone": 219.741,
+  "a_look": 219.741,
+  "a_tuck": 223.07,
+  "s_recap": 224.57,
+  "stamp": 224.57,
+  "r_q1": 228.347,
+  "r_q2": 232.454,
+  "r_msg": 235.559,
+  "s_rollo": 238.378,
+  "e_spots": 239.934,
+  "s_bye": 244.834,
+  "dotTurn": 244.834,
+  "recall": 249.556,
+  "spindle": 249.956,
+  "s_end": 251.335,
+  "end": 256.31600000000003
+ }
+}

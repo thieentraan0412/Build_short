@@ -245,6 +245,34 @@ def duck(x, ve, mid=.8, rest=.5, lo=300, hi=4000, thr=.25):
     return (x - m) * (1 - rest * g) + m * (1 - mid * g)
 
 
+def speech_guard(mus, fx, vox, lines, target=11., lo=300, hi=4000, max_cut=9., passes=2):
+    """(Lượt "nhạc đệm dưới lời" 16/11/2026, QUALITY.md §4 (Đệm lời)) Vòng bảo vệ lời rõ, chạy sau duck():
+    câu nào lời chưa hơn nhạc + tiếng động `target` dB (dải lo–hi, trung vị theo ô 50 ms, cách đo của qa.py) thì hạ riêng NHẠC
+    trong câu đó đúng phần thiếu (+0,5 dB, tối đa max_cut, chuyển mềm 0,1 s). Mọi chỗ khác giữ nguyên lớp đệm.
+    mus, fx: (n, 2); vox: (n,) hoặc (n, 2); lines: [{'id', 't', 'dur'}]. Trả (mus, [(id, lời hơn nền trước khi hạ, dB đã hạ)])."""
+    from scipy.signal import butter, sosfilt
+    sos = butter(2, [lo, hi], 'band', fs=SR, output='sos')
+    mono = lambda x: x.mean(1) if x.ndim > 1 else x
+    v = sosfilt(sos, mono(vox)); f = sosfilt(sos, mono(fx)); n = len(mus); w = int(.05 * SR); report = {}
+    for _ in range(passes):
+        m = sosfilt(sos, mono(mus)); g = np.ones(n)
+        for L in lines:
+            i, j = int(L['t'] * SR), min(n, int((L['t'] + L['dur']) * SR)); r = []
+            for q in range(i, j - w, w):
+                a = np.sqrt(np.mean(v[q:q + w] ** 2))
+                if a > .02: r.append(20 * np.log10(a / (np.sqrt(np.mean((m[q:q + w] + f[q:q + w]) ** 2)) + 1e-9)))
+            if not r: continue
+            s = float(np.median(r))
+            if s >= target: continue
+            cut = min(max_cut, target - s + .5); k = 10 ** (-cut / 20)
+            report.setdefault(L.get('id', '?'), [s, 0.])[1] += cut
+            tt = (np.arange(n) - i) / SR; d = (j - i) / SR
+            g = np.minimum(g, 1 - (1 - k) * np.clip(np.minimum((tt + .1) / .1, (d + .1 - tt) / .1), 0, 1))
+        if g.min() >= 1: break
+        mus = mus * g[:, None]
+    return mus, [(k, round(s, 1), round(c, 1)) for k, (s, c) in report.items()]
+
+
 # ---------- đo độ to và chặn đỉnh thật ----------
 def lufs(x):
     """Độ to tích hợp theo ITU-R BS.1770 (K-weighting, khối 400 ms chồng 75 %, cổng −70 LUFS và −10 LU). x: (n, 2) @ 48 kHz."""
@@ -352,3 +380,36 @@ def cheer(d=.9, v=1., seed=0):
     for k in range(int(d * 14)):
         c = bp(noise(.03), 1000, 3500) * env_exp(.03, .006) * r.uniform(.25, .6); _at(x, c, .1 + r.uniform(0, d * .85))
     return fade(norm(x), .002, .05) * v
+
+
+# ---------- (18/11/2026, thiết kế âm thanh theo cảnh – Lớp SFX, QUALITY.md §10) ----------
+def snowstep(v=1., seed=0, soft=False):
+    """Bước chân giẫm tuyết "rộp": tiếng nén tuyết (nhiễu lọc dải nhiều hạt nhỏ dồn nhanh) + một tiếng thịch mềm."""
+    r = np.random.default_rng(seed); d = .16; x = np.zeros(int(d * SR))
+    for k in range(9):
+        g = bp(noise(.012), 1800, 6000) * env_exp(.012, .003) * r.uniform(.4, 1.); _at(x, g, .004 + k * .011 + r.uniform(0, .004))
+    body = lp(noise(.06), 500) * env_exp(.06, .015) * .8; _at(x, body, 0)
+    return fade(norm(x), .001, .03) * v * (.55 if soft else 1.)
+
+
+def textpop(v=1., m=88, seed=0):
+    """Chữ to bật lên màn hình: "pốp" + một nốt chuông nhỏ đi lên (cao độ m, MIDI)."""
+    x = np.zeros(int(.35 * SR)); _at(x, bubble(900 + 25 * (m - 84), .5, .06, 2.6), 0); _at(x, _ting(mf(m), .3, .5) * .5, .02)
+    return fade(norm(x), .001, .04) * v
+
+
+def gust(d=.8, v=1., up=True):
+    """Cơn gió vút qua (đàn bướm bay, bản đồ gập lại): nhiễu lọc dải quét, mạnh lên rồi tắt."""
+    tt = t_(d); x = noise(d)[:len(tt)]; e = np.sin(np.pi * tt / d) ** 1.5
+    lo, hi = (500, 3000) if up else (3000, 500); f = lo + (hi - lo) * tt / d
+    y = np.zeros(len(tt)); n = 2400
+    for i in range(0, len(tt), n):
+        c = f[min(i + n // 2, len(f) - 1)]; seg_ = bp(x[max(0, i - 600):i + n], max(120, c * .6), min(9000, c * 1.6))[min(i, 600):]; y[i:i + len(seg_)] += seg_[:len(y) - i]
+    return fade(norm(y * e), .01, .05) * v
+
+
+def flybuzz(d=.6, v=1., f0=210, rate=11.):
+    """Côn trùng bay vo ve (ong, ruồi): răng cưa có cao độ dao động nhẹ, lọc, to dần rồi nhỏ dần."""
+    tt = t_(d); f = f0 * (1 + .04 * np.sin(2 * np.pi * rate * tt)); ph = np.cumsum(f) / SR
+    x = (2 * (ph % 1) - 1) * np.sin(np.pi * tt / d) ** .8
+    return fade(norm(bp(x, 150, 2500)), .01, .04) * v

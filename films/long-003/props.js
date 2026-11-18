@@ -279,7 +279,7 @@ export function tripPath(c, t, p) {
 }
 // mảnh bản đồ mới Albie dán thêm ở mép phải: "GARDEN EDGE"
 export function newCorner(c, t, p) {
-  const s = back(clamp(p), 1.8), x = MAP.x + MAP.w + 30, y = 470;
+  const s = back(clamp(p), 1.8), x = MAP.x + MAP.w - 40, y = 470;
   c.save(); c.translate(x, y); c.rotate(.06); c.scale(s, s);
   inked(c, cc => cc.roundRect(-150, -150, 300, 300, 18), N.paper, 6);
   for (let i = 0; i < 4; i++) rrect(c, -110 + i * 60, 20, 44, 60, 6, N.stone);
