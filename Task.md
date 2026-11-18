@@ -1,0 +1,1 @@
+giọng của nhân vật kính loop trả lại giống với short 15

@@ -100,6 +100,18 @@ def emote_stage(vd, lines, mark, fresh):
         if not os.path.exists(pl) and L['id'] not in EM: shutil.copyfile(os.path.join(vd, L['id'] + '.wav'), pl)
         if L['id'] not in WP and L['id'] in W and L['id'] not in EM: WP[L['id']] = W[L['id']]
     json.dump(WP, open(os.path.join(vd, 'words.plain.json'), 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+    # câu không còn uốn ngữ điệu (emote: false hoặc thành câu hát): trả bản nói gốc (voice/plain) và mốc từ của nó
+    off = [L for L in lines if L['id'] in EM and not L.get('emo') and not L.get('sing') and L['id'] not in fresh
+           and os.path.exists(os.path.join(vd, 'plain', L['id'] + '.wav'))]
+    if off:
+        STv = rd(os.path.join(vd, 'emote.json'))
+        for L in off:
+            shutil.copyfile(os.path.join(vd, 'plain', L['id'] + '.wav'), os.path.join(vd, L['id'] + '.wav'))
+            if L['id'] in WP: W[L['id']] = WP[L['id']]
+            EM.pop(L['id'], None); STv.pop(L['id'], None)
+        for fn, o in (('words.json', W), ('emote.json', STv), ('emote-mark.json', EM)):
+            json.dump(o, open(os.path.join(vd, fn), 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+        print('voice_regen: emotion removed, plain take restored for', ', '.join(L['id'] for L in off))
     todo = [L for L in spoken if L['id'] in fresh or EM.get(L['id']) != ekey(L, mark.get(L['id']))]
     if not todo: print(f'voice_regen: emotion unchanged ({len(spoken)} spoken lines)'); return
     print('voice_regen: emotion for', ', '.join(f"{L['id']} {L['emo']}" for L in todo))

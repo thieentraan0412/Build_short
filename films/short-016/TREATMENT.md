@@ -101,22 +101,22 @@ Giọng giữ nguyên `voices.js`: Miss Loupe `af_heart` (home 56), Albie `bm_le
 
 | Câu | Ai | Lời | Kiểu | Giai điệu (`sing.notes`) | Điệp khúc | Nhấn | Ghi chú |
 |---|---|---|---|---|---|---|---|
-| L01 | Loupe | Where do bugs go when it snows? | half-sing | `5:.5 5:.5 1':.5 6:1 6:.5 5:.5 7:1.5` | | bugs, snows | câu hỏi: đi lên, treo ở nốt dẫn Si; GO, SNOWS ngân (lượt 3: 4 → 5 phách) |
-| L02 | Loupe | Let's zoom in! | half-sing | `CATCH_TUNE.zoom` | | zoom | câu cửa miệng hát đúng giai điệu của kênh |
+| L01 | Loupe | Where do bugs go when it snows? | half-sing | `3:.5 4:.5 5:.5 6:1 5:.5 4:.5 5:1.5` | | bugs, snows | câu hỏi: leo lên, hỏi lại ở Sol; GO, SNOWS ngân (lượt 3: 4 → 5 phách; lượt 4: giọng như SHORT-015) |
+| L02 | Loupe | Let's zoom in! | half-sing | `CATCH_TUNE.zoom` (`4:.5 5:.5 6:1`) | | zoom | câu cửa miệng hát đúng giai điệu của kênh (lượt 4: Fa–Sol–La thay Sol–La–Đô) |
 | L03 | Loupe | Look! A warm ball of bees! | half-sing | `1':1 r:.5 5:.5 6:1 5:.5 4:.5 3:1.25` | | warm, ball, bees | khám phá: reo lên rồi đi xuống nhẹ; liền hơi (`fill .85`) |
 | L04 | Loupe | Wow! Some bees shake their wing muscles! | sing-talk | `5:.5 r:.25 5:.5 3:.5 r:.25 5:.5 5:.5 6:.5 5:.5 2:1` | | bees, shake, muscles | giải thích: rõ từ; TTS chậm hơn (`speed .85`); liền hơi (`fill .75, hi 2`); thuật ngữ "HEATER BEES!" là chữ trên hình |
 | L05 | Albie | Do all butterflies stay? | nói | | | butterflies | giọng trầm tương phản; lượt 3: `pace .9`, uốn ngữ điệu nhẹ (`emo_k .3`) |
 | L06 | Loupe | Nope! | sing-talk | `CATCH_TUNE.nope` | | | "No-o-pe!" rơi xuống quãng năm, hài |
-| L07 | Loupe | These monarchs fly all the way to Mexico! | half-sing | `5:.5 1':.5 1':.5 6:1 5:1 5:.5 6:1 5:.5 6:1 5:.5 3:1.5` | | monarchs, fly, Mexico | từ trên cao bay xuống như đường bay; FLY, ALL, WAY, MEX ngân (lượt 3: 7,5 → 8,5 phách) |
+| L07 | Loupe | These monarchs fly all the way to Mexico! | half-sing | `5:.5 1':.5 1':.5 6:1 5:1 4:.5 5:1 4:.5 5:1 3:.5 3:1.5` | | monarchs, fly, Mexico | từ trên cao bay xuống như đường bay; FLY, ALL, WAY, MEX ngân (lượt 3: 7,5 → 8,5 phách; lượt 4: nốt ngân ở Sol / La) |
 | L08 | Loupe | Huddle, fly away, or hide! | sing | `5:.75 5:.25 5:.5 6:.5 7:1 6:1 5:2` | snow ×1 | huddle, fly, hide | ba nốt đứng rồi leo lên Si, đáp về Sol (gần `home`) |
-| L09 | Loupe | Who is hiding under here? | half-sing | `3:.5 4:.5 5:.5 6:1 5:.5 6:.5 1':1.5` | | hiding | câu hỏi tò mò: leo lên; hi-DING ngân (lượt 3: 4,5 → 5 phách) |
+| L09 | Loupe | Who is hiding under here? | half-sing | `3:.5 4:.5 5:.5 6:1 5:.5 4:.5 5:1.5` | | hiding | câu hỏi tò mò: leo lên, hỏi lại ở Sol; hi-DING ngân (lượt 3: 4,5 → 5 phách; lượt 4: giọng như SHORT-015) |
 | L10 | Dot | One, two, three... so many! | nói | | | many | Dot ra mắt: đếm to; lượt 3: `pace .8`, TTS đọc "One... two... three..." (mỗi số cách ~0,4 s), hình bật số theo mốc giọng |
 | L11 | Loupe | Some ladybugs nap together under leaves! | sing-talk | `5:.5 3:.5 5:.5 5:1 1':1 6:.5 6:.5 5:1 5:.5 4:.5 3:1` | | ladybugs, nap, leaves | "NAP" nhảy lên; lady-BUGS, NAP, toge-THER, LEAVES ngân (lượt 3: 6,5 → 7,5 phách) |
 | L12 | Albie | Six legs? In you go! | nói | | | legs | câu cửa miệng, tốc độ chuẩn; lượt 3: vào sớm 0,15 s (34,85 s) để chủ đề nhạc vừa khoảng trống trước khi lật trang |
 | L13 | Dot | Is it spring yet? | nói | | | spring | gag; lượt 3: `pace .82`, ngái ngủ |
-| L14 | Loupe | Nope! | nói | | | | gag, tương phản với lần hát |
+| L14 | Loupe | Nope! | nói | | | | gag, tương phản với lần hát; lượt 4: không uốn ngữ điệu |
 | L15 | Loupe | Huddle, fly away, or hide! | sing | như L08 | snow ×2 | huddle, fly, hide | trước CTA, trẻ hát theo |
-| L16 | Loupe | Can YOU huddle like a bee? | nói | | | you, huddle, bee | CTA 1,9 s (`pace .78`, ≤ 2 s) |
+| L16 | Loupe | Can YOU huddle like a bee? | nói | | | you, huddle, bee | CTA 1,9 s (`pace .78`, ≤ 2 s); lượt 4: không uốn ngữ điệu |
 
 ## 8. SFX và nhạc nền
 
@@ -186,6 +186,31 @@ Phác: 0,02 ting · 0,05 brrr · 0,95 / 1,4 swish · 2,0 huh · 3,0 zoom/logo ·
 - **Hình:** kính lớn dời lên 60 px để mặt Miss Loupe không nằm dưới tấm phụ đề hai dòng; nền tuyết và trời rực hơn (độ rực 0,30 → 0,38); chữ trôi theo bản đồ không qua readcheck → nhãn đứng yên trên khung; Dot và đám bọ rùa to hơn trong kính và ở gag.
 - **`_shared/` được thêm (không đổi tập cũ):** `band.sleighbell` (chuông xe trượt), điệu `sleigh` + bộ gõ `sleigh` trong `groove.py`, `SIGNATURE['sleigh'] = 'short-016'`.
 
+### Giọng Miss Loupe trả lại như SHORT-015 (Task.md 18/11/2026 lượt 4, QUALITY.md §9.8)
+
+Chủ kênh chọn: vẫn hát, nhưng giọng phải như SHORT-015.
+
+Ba chỗ làm giọng Miss Loupe khác SHORT-015:
+- **Cao độ:** câu hát treo ở Đô / Si cao, nên cao hơn giọng nói của cô 1–2,5 nửa cung.
+- **Ngữ điệu:** hai câu nói bị `emote.py` uốn lên cao.
+- **Xử lý trong mix:** thêm vang phòng và lọc cắt trên 8,5 kHz (đặt cho Dot nhưng áp cả Loupe).
+
+| Đo (giọng `af_heart`, từng câu) | SHORT-015 (nói) | SHORT-016 trước | SHORT-016 sau |
+|---|---|---|---|
+| Cao độ trung vị của các câu | 202 Hz (187–213) | 216 Hz (196–245) | **197 Hz (194–224)** |
+| L01 · L02 · L07 · L09 (hát) | | 220 · 230 · 219 · 220 Hz | **195 · 205 · 197 · 197 Hz** |
+| L14 "Nope!" · L16 CTA (nói) | | 245 · 225 Hz, uốn ngữ điệu | **224 · 194 Hz**, ngữ điệu TTS gốc |
+| Vang phòng / lọc 8,5 kHz | không / không | có / có | **không / không** (Dot, Albie giữ như cũ) |
+
+- **Giai điệu:** nốt ngân của L01, L07, L09 về Sol / La, gần giọng nói của cô; nốt cao Đô chỉ còn ở âm tiết ngắn ("mon-archs").
+- **Câu cửa miệng "Let's zoom in!"** (`CATCH_TUNE.zoom`, dùng chung) đổi Sol–La–Đô thành Fa–Sol–La: vẫn đi lên như ống kính mở. Các tập sau cũng hát như vậy.
+- **Kiểm:** cả hai Whisper vẫn nghe đúng cả bốn câu; độ khớp nốt 0,80–0,96.
+- **Đã thử và bỏ:** giữ nhiều ngữ điệu nói hơn khi hát (`alpha` .15 → .3). Dải cao độ gần như không đổi mà độ khớp nốt tụt (L07 0,89 → 0,70).
+- **Mix:** L01 hát thấp lại thì nằm gần dải của nhạc móc, lời chỉ hơn nhạc 11,5 dB. Đã sửa:
+  - giọng L01 +1 dB (`VOX_TRIM`);
+  - nhạc lùi ít hơn dưới câu của Albie, Dot (vốn rõ hơn nhạc 18–30 dB), để nhạc đệm chung không tụt quá 8 dB.
+  - Kết quả: lời L01 12,3 dB, nhạc đệm dưới lời 8,0 dB.
+
 ### Giọng chậm lại, hài hoà hơn (Task.md 18/11/2026 lượt 3, QUALITY.md §9.7)
 
 Chủ kênh: "giọng đang nhanh". Phim vẫn 48 s; câu hát chậm lại bằng nốt dài hơn ở chỗ trống sẵn có (không hạ BPM), câu nói bằng `pace` riêng từng câu.
@@ -254,7 +279,7 @@ Bảng 4 lớp từng cảnh: [`SOUND-PLAN.md`](SOUND-PLAN.md) mục "Thiết k�
 
 ### Bảng `qa.py` (out/qa.json, 18/11/2026, sau Vocal QC)
 
-**89 đạt · 6 cảnh báo · 0 chưa đạt** (sau lượt giọng chậm lại; nhóm "10 Âm thanh theo cảnh" đạt cả 5 mục; mục mới "Tốc độ giọng vừa tai trẻ" đạt). LRA 6,1 LU · cao trào – cảnh êm +3,9 LU · lời rõ thấp nhất 12,2 dB (L07) · −13,9 LUFS, đỉnh −2,7 dBFS. Năm cảnh báo của nhóm "9 Vocal QC" là các dòng CẦN NGHE (chưa nghe bằng tai): điệp khúc base.en ("huddle", từ thừa), nốt lướt L07 / L11, cao độ trôi trên nốt dài L07, đứt giữa từ L09 "hiding" / L11 "under" (phép đo mới, hiện tượng có từ bản trước); cảnh báo còn lại là "Chi tiết để tìm lại" (lý do bên dưới). Bảng dưới là lượt trước Vocal QC (77 đạt · 1 cảnh báo).
+**89 đạt · 6 cảnh báo · 0 chưa đạt** (sau lượt 4 "giọng Miss Loupe như SHORT-015"; nhóm "10 Âm thanh theo cảnh" đạt cả 5 mục; "Tốc độ giọng vừa tai trẻ" và "Giọng hát giữ chất giọng nhân vật" đạt). LRA 6,0 LU · cao trào – cảnh êm +3,8 LU · lời rõ thấp nhất 12,3 dB (L01) · −13,9 LUFS, đỉnh −2,7 dBFS. Năm cảnh báo của nhóm "9 Vocal QC" là các dòng CẦN NGHE (chưa nghe bằng tai): điệp khúc base.en ("huddle", từ thừa), nốt lướt L07 / L11, cao độ trôi trên nốt dài L07, đứt giữa từ L09 "hiding" / L11 "under" (phép đo mới, hiện tượng có từ bản trước); cảnh báo còn lại là "Chi tiết để tìm lại" (lý do bên dưới). Bảng dưới là lượt trước Vocal QC (77 đạt · 1 cảnh báo).
 
 | Nhóm | Kết quả | Số đo chính |
 |---|---|---|

@@ -45,7 +45,8 @@ export const CATCH = {
 // Câu cửa miệng khi được hát (Musical Storytelling): mỗi câu một giai điệu cố định của kênh, giống nhau ở mọi tập (bậc theo giọng của bài
 // đang chơi). Không có ở đây thì câu cửa miệng nói đúng tốc độ chuẩn (QUALITY.md §7). Dùng: sing: { ...CATCH_TUNE.zoom, at: … }
 export const CATCH_TUNE = {
-  zoom: { mode: 'half-sing', notes: "5:.5 6:.5 1':1" },                  // "Let's zoom in!": đi lên, mở ra như ống kính
+  zoom: { mode: 'half-sing', notes: "4:.5 5:.5 6:1" },                   // "Let's zoom in!": đi lên, mở ra như ống kính. (18/11/2026) Fa–Sol–La thay Sol–La–Đô:
+                                                                         // giọng hát của Miss Loupe về đúng giọng nói (~205 Hz như SHORT-015, trước đó 235 Hz)
   nope: { mode: 'sing-talk', notes: '5:.5 ~1:1' },                       // "No-o-pe!": một âm tiết luyến rơi xuống quãng năm, hài
   sixLegs: { mode: 'half-sing', notes: "3:.5 3:.5 r:.5 3:.5 5:.5 1':1" },  // "Six legs? In you go!"
 };

@@ -131,7 +131,7 @@ export function resolveLine(L, S, V) {
   const pre = sg.pre ?? .12, tail = sg.tail ?? .1, t0 = at - pre;
   return {
     t: round(t0, 3), dur: round(t - t0 + tail, 3), warns,
-    sung: { mode: sg.mode, pre, tail, chorus: sg.chorus || null, ...(sg.speed && { speed: sg.speed }), ...(sg.fill && { fill: sg.fill }), ...(sg.glide && { glide: sg.glide }), ...(sg.hi && { hi: sg.hi }),
+    sung: { mode: sg.mode, pre, tail, chorus: sg.chorus || null, ...(sg.speed && { speed: sg.speed }), ...(sg.fill && { fill: sg.fill }), ...(sg.glide && { glide: sg.glide }), ...(sg.hi && { hi: sg.hi }), ...(sg.alpha !== undefined && { alpha: sg.alpha }),
       range: [Math.round(hzOf(V.home - 13)), Math.round(hzOf(V.home + 14))],
       notes: notes.map(n => ({ t: round(n.abs - t0), d: round(n.d), m: n.m, syl: n.syl, w: n.w })) },
   };

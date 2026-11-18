@@ -18,7 +18,8 @@ Cách làm (PSOLA của Praat qua parselmouth, giữ formant nên giữ chất g
 
 Ba kiểu hát (MODES): sing-talk giữ 35 % ngữ điệu nói và độ dài gần tự nhiên; half-sing giữ 15 %, nguyên âm lấp 70 % ô nhịp;
 sing khoá hẳn vào nốt, nguyên âm lấp 90 % ô, có vibrato ở nốt dài và luyến giữa các nốt.
-Ghi đè cho từng câu (18/11/2026): "fill" (phần ô nhịp nguyên âm lấp), "glide" (giây luyến giữa hai nốt), "hi" (trần kéo nguyên âm).
+Ghi đè cho từng câu (18/11/2026): "fill" (phần ô nhịp nguyên âm lấp), "glide" (giây luyến giữa hai nốt), "hi" (trần kéo nguyên âm),
+"alpha" (phần ngữ điệu nói giữ lại: cao hơn thì giọng hát gần giọng nói của nhân vật hơn).
 Nốt dài chỉ nên đặt vào âm tiết cuối từ có nguyên âm dài: nguyên âm ở đầu / giữa từ dò được thường ngắn, kéo tới trần vẫn để im giữa từ.
 
 Ghi đè <id>.wav, cập nhật dur.json, ghi sung.json (nốt, từ theo thời gian mới, độ bám nốt "lock", Hz trung vị, độ kéo lớn nhất).
@@ -150,7 +151,7 @@ def vowel(s0, p, s1, ti, I, voiced):
 
 def sing_line(pm, y, sr, words, S):
     from parselmouth.praat import call
-    mode = {**MODES[S['mode']], **{k: float(S[k]) for k in ('fill', 'glide', 'hi') if S.get(k)}}   # sing.fill / glide / hi: hát liền hơi, luyến mềm, kéo nguyên âm dài hơn kiểu chuẩn (18/11/2026, SHORT-016)
+    mode = {**MODES[S['mode']], **{k: float(S[k]) for k in ('fill', 'glide', 'hi', 'alpha') if S.get(k) is not None}}   # sing.fill / glide / hi / alpha: hát liền hơi, luyến mềm, kéo nguyên âm dài hơn, giữ nhiều ngữ điệu nói hơn kiểu chuẩn (18/11/2026, SHORT-016)
     notes = sorted(S['notes'], key=lambda n: n['t'])
     snd, floor, ceil, tp, f0, ti, I, voiced = analyse(pm, y, sr, S.get('range'))
     dur_in = len(y) / sr

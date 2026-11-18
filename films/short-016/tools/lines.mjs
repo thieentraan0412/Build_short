@@ -12,7 +12,8 @@ if (!fs.existsSync(path.join(film, 'voice', 'words.js'))) fs.writeFileSync(path.
 const T = await import(pathToFileURL(path.join(film, 'timeline.js')).href);
 const { VOICES, EMO_RANGE = {} } = await import(pathToFileURL(path.join(LIB, '_shared', 'voices.js')).href);
 // (18/11/2026) cảm xúc của câu nói cho _shared/emote.py: emo của câu, không ghi thì suy ra (câu cửa miệng → playful, CTA → happy, ? → curious, ! → excited)
-const emoOf = l => l.sung ? null : (l.emo || (l.catch ? 'playful' : l.cta ? 'happy' : /\?\s*$/.test(l.text) ? 'curious' : /!/.test(l.text) ? 'excited' : 'happy'));
+const emoOf = l => l.sung || l.emote === false ? null :   // emote: false: câu nói giữ nguyên ngữ điệu TTS (vẫn mang emo cho độ to trong mix.py)
+   (l.emo || (l.catch ? 'playful' : l.cta ? 'happy' : /\?\s*$/.test(l.text) ? 'curious' : /!/.test(l.text) ? 'excited' : 'happy'));
 const w = (f, o) => fs.writeFileSync(path.join(film, f), JSON.stringify(o, null, 1));
 fs.mkdirSync(path.join(film, 'voice'), { recursive: true });
 const bad = T.LINES.filter(l => !VOICES[l.who]);

@@ -111,15 +111,15 @@
 
 | Câu | Ai | Lời | Kiểu | Giai điệu (nốt · giây) | Điệp khúc | Nhấn |
 |---|---|---|---|---|---|---|
-| L01 (0,4 s) | loupe | Where do bugs go when it snows? | half-sing (nửa hát) | G3·0.25 G3·0.25 C4·0.25 A3·0.50 A3·0.25 G3·0.25 B3·0.75 |  | bugs, snows |
-| L02 (3,9 s) | loupe | Let's zoom in! | half-sing (nửa hát) | G3·0.27 A3·0.27 C4·0.54 |  | zoom |
+| L01 (0,4 s) | loupe | Where do bugs go when it snows? | half-sing (nửa hát) | E3·0.25 F3·0.25 G3·0.25 A3·0.50 G3·0.25 F3·0.25 G3·0.75 |  | bugs, snows |
+| L02 (3,9 s) | loupe | Let's zoom in! | half-sing (nửa hát) | F3·0.27 G3·0.27 A3·0.54 |  | zoom |
 | L03 (5,8 s) | loupe | Look! A warm ball of bees! | half-sing (nửa hát) | C4·0.54 G3·0.27 A3·0.54 G3·0.27 F3·0.27 E3·0.67 |  | warm, ball, bees |
 | L04 (9,0 s) | loupe | Wow! Some bees shake their wing muscles! | sing-talk (nói theo nhịp) | G3·0.27 G3·0.27 E3·0.27 G3·0.27 G3·0.27 A3·0.27 G3·0.27 D3·0.54 |  | bees, shake, muscles |
 | L05 (12,2 s) | albie | Do all butterflies stay? | nói | — |  | butterflies |
 | L06 (14,7 s) | loupe | Nope! | sing-talk (nói theo nhịp) | G3·0.24 C3·0.48 |  |  |
-| L07 (15,9 s) | loupe | These monarchs fly all the way to Mexico! | half-sing (nửa hát) | G3·0.24 C4·0.24 C4·0.24 A3·0.48 G3·0.48 G3·0.24 A3·0.48 G3·0.24 A3·0.48 G3·0.24 E3·0.71 |  | monarchs, fly, Mexico |
+| L07 (15,9 s) | loupe | These monarchs fly all the way to Mexico! | half-sing (nửa hát) | G3·0.24 C4·0.24 C4·0.24 A3·0.48 G3·0.48 F3·0.24 G3·0.48 F3·0.24 G3·0.48 E3·0.24 E3·0.71 |  | monarchs, fly, Mexico |
 | L08 (20,9 s) | loupe | Huddle, fly away, or hide! | hát trọn | G3·0.36 G3·0.12 G3·0.24 A3·0.24 B3·0.48 A3·0.48 G3·0.97 | snow | huddle, fly, hide |
-| L09 (24,4 s) | loupe | Who is hiding under here? | half-sing (nửa hát) | E3·0.26 F3·0.26 G3·0.26 A3·0.52 G3·0.26 A3·0.26 C4·0.78 |  | hiding |
+| L09 (24,4 s) | loupe | Who is hiding under here? | half-sing (nửa hát) | E3·0.26 F3·0.26 G3·0.26 A3·0.52 G3·0.26 F3·0.26 G3·0.78 |  | hiding |
 | L10 (27,4 s) | dot | One, two, three... so many! | nói | — |  | many |
 | L11 (29,8 s) | loupe | Some ladybugs nap together under leaves! | sing-talk (nói theo nhịp) | G3·0.26 E3·0.26 G3·0.26 G3·0.52 C4·0.52 A3·0.26 A3·0.26 G3·0.52 G3·0.26 F3·0.26 E3·0.52 |  | ladybugs, nap, leaves |
 | L12 (34,9 s) | albie | Six legs? In you go! | nói | — |  | legs |
@@ -434,6 +434,6 @@ So với 15 Short khác (001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 
 
 ## Đồng bộ hình – tiếng
 
-`_shared/tools/av_sync.py` đo trên video: 31 điểm chuyển động mạnh, 100 % có tiếng động hoặc lời trong ± 0.2 s.
+`_shared/tools/av_sync.py` đo trên video: 30 điểm chuyển động mạnh, 100 % có tiếng động hoặc lời trong ± 0.2 s.
 
 Các ngưỡng và kết quả kiểm: `python _shared/qa.py films/short-016` (nhóm "4 Âm thanh", "Sound Design Plan" và "10 Âm thanh theo cảnh").

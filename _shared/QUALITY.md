@@ -334,6 +334,20 @@ Chủ kênh nghe SHORT-016: "giọng đang nhanh", cần "chậm lại, hài hò
 
 **Câu nói chậm hơn:** khi câu nói chậm lại mà uốn ngữ điệu làm Whisper nghe sai (L05: "Do all" thành "Dual"), giảm độ uốn riêng câu đó bằng `emo_k` (L05: .5 → .3), không bỏ `emo`.
 
+### 9.8 Giọng hát giữ đúng giọng nói của nhân vật (18/11/2026, lượt 4)
+
+Chủ kênh nghe SHORT-016: giọng Miss Loupe khác SHORT-015, cần trả lại như cũ nhưng vẫn hát. Từ nay:
+- **Nốt ngân (dài, cuối câu) nằm quanh cao độ nói của nhân vật.**
+  - Miss Loupe: Sol / La giọng Đô, ~196–220 Hz; giọng nói của cô ở SHORT-015 là 187–213 Hz, trung vị 202 Hz.
+  - Nốt cao (Đô, Si) chỉ đặt vào âm tiết ngắn. Nốt treo ở Đô / Si cao làm giọng cao hơn giọng nói 1–2,5 nửa cung, nghe như người khác.
+  - Đo: cao độ trung vị từng câu hát cách trung vị giọng nói của chính nhân vật (các tập trước) ≤ 1 nửa cung.
+- **Câu nói của nhân vật chính giữ ngữ điệu TTS gốc khi cần giữ giọng quen:** `emote: false` trên câu (vẫn giữ `emo` cho độ to trong `mix.py`).
+  - Tắt `emote` thì `voice_regen.py` trả bản nói gốc (`voice/plain`).
+- **Xử lý giọng theo nhân vật, không áp chung.**
+  - Lọc 8,5 kHz chỉ cho giọng có `pitch` (Dot: tiếng rít khi nâng giọng).
+  - Vang phòng không áp cho Miss Loupe.
+- **Không tăng `alpha` để giọng hát "giống giọng nói":** dải cao độ gần như không đổi mà độ khớp nốt tụt (0,89 → 0,70).
+
 ## 10. Thiết kế âm thanh theo cảnh, 4 lớp (18/11/2026)
 
 Mỗi cảnh có đủ 4 lớp, thiết kế cùng nhau theo cảm xúc và diễn biến của cảnh (Task.md mục 5):

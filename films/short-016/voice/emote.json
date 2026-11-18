@@ -34,23 +34,5 @@
   "median_hz": 255.4,
   "em_words": 1,
   "version": 1
- },
- "L14": {
-  "emo": "playful",
-  "k": 1.0,
-  "range_before": 6.4,
-  "range_after": 8.0,
-  "median_hz": 224.4,
-  "em_words": 0,
-  "version": 1
- },
- "L16": {
-  "emo": "happy",
-  "k": 1.0,
-  "range_before": 8.5,
-  "range_after": 11.0,
-  "median_hz": 194.6,
-  "em_words": 3,
-  "version": 1
  }
 }

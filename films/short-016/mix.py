@@ -275,7 +275,7 @@ LV = {k: _lvl(y) for k, y in VY.items()}
 MED = {w: float(np.median([LV[l['id']] for l in LINES if l['who'] == w])) for w in {l['who'] for l in LINES}}
 # (18/11/2026) độ to theo cảm xúc: giải thích nhẹ hơn, hào hứng / ngạc nhiên / điệp khúc to hơn (cảnh thường và cao trào khác nhau rõ)
 # (18/11/2026, giọng chậm lại) L07 dài hơn, nửa sau nằm trên cao trào rừng hoá cam: nâng riêng câu này thay vì hạ nhạc (nhạc đệm dưới lời giữ ≤ 8 dB)
-VOX_TRIM = {'L07': 1.5}
+VOX_TRIM = {'L07': 1.5, 'L01': 1.}   # L01: nốt hạ về giọng nói (lượt 4), nằm gần dải của nhạc móc
 SUNGW = json.load(open(os.path.join(HERE, 'voice', 'sung.json'), encoding='utf-8')) if os.path.exists(os.path.join(HERE, 'voice', 'sung.json')) else {}
 def _bare(w): return ''.join(ch for ch in w.lower() if ch.isalpha() or ch == chr(39))
 for Ln in LINES:
@@ -286,8 +286,8 @@ for Ln in LINES:
         ws = Ln['text'].split(); kw = {_bare(k) for k in Ln['em']}
         sp = [(a, b) for i, a, b in SUNGW[Ln['id']].get('words', []) if i < len(ws) and _bare(ws[i]) in kw]
         y = accent(y, SR, sp, 1.5)
+    if Ln['who'] == 'dot': y = lp(y, 8500, 4)                # giọng nâng cao độ (Dot) có tiếng rít ~9,5 kHz; trên 8,5 kHz chỉ còn tiếng xì. (18/11/2026) chỉ lọc Dot: giọng Miss Loupe giữ đủ dải như SHORT-015
     s = int(Ln['t'] * SR); e = min(N, s + len(y)); vox[s:e] += y[:e - s]
-vox = lp(vox, 8500, 4)                                    # giọng nâng cao độ (Dot) có tiếng rít ~9,5 kHz; trên 8,5 kHz chỉ còn tiếng xì
 vox = norm(compress(norm(vox, .9), thr=.22, ratio=2.5), .85)
 vox = vox * energy_gain(len(vox), 1., VDB)                 # (18/11/2026) giọng theo năng lượng cảnh (êm −2 dB … cao trào +1,5 dB)   # (18/11/2026) nén nhẹ hơn (3,5 → 2,5): giữ lại chênh lệch cảm xúc
 
@@ -308,12 +308,22 @@ ve = uniform_filter1d(maximum_filter1d(np.abs(vox), int(.05 * SR)), int(.25 * SR
 sungm = np.zeros(len(ve))
 for l in LINES:
     if l.get('sung'): sungm[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1
-ve_m = ve * (1 - .25 * uniform_filter1d(sungm, int(.2 * SR)))
+# (18/11/2026, lượt 4) câu nói của Albie, Dot rõ hơn nhạc 18–30 dB: nhạc lùi ít hơn dưới các câu đó, để nhạc đệm chung không tụt quá 8 dB
+# khi giọng Miss Loupe (hát thấp lại như giọng nói ở SHORT-015) được nâng riêng cho rõ lời
+otherm = np.zeros(len(ve))
+for l in LINES:
+    if l['who'] != 'loupe': otherm[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1
+ve_m = ve * (1 - .25 * uniform_filter1d(sungm, int(.2 * SR)) - .2 * uniform_filter1d(otherm, int(.2 * SR)))
 mus = T.duck(mus, ve_m, .66, .3); fx = T.duck(fx, ve, .6, .3); amb = T.duck(amb, ve, .7, .5)
 mus, GUARD = T.speech_guard(mus, fx, vox, LINES, 11.)               # (Đệm lời) chỉ hạ nhạc ở câu còn thiếu độ rõ
 print('speech_guard:', ', '.join(f'{k} {s_:.1f} dB → −{c:.1f} dB' for k, s_, c in GUARD) or 'không câu nào phải hạ')
 # (18/11/2026, "hài hòa hơn") vang phòng nhỏ cho giọng (gửi −18 dB, 0,6 s, tối từ 4,5 kHz): đuôi câu và chỗ nghỉ giữa âm tiết không rơi về im tuyệt đối, giọng ngồi cùng không gian với nhạc
-V = np.stack([vox, vox], 1) + T.verb(hp(vox, 250), .6, 4500) * .12
+# (18/11/2026) không gửi giọng Miss Loupe vào vang: giọng cô khô, gần như SHORT-015 (Task.md); Dot, Albie vẫn có vang phòng nhỏ
+_nl = np.zeros(N)
+for Ln in LINES:
+    if Ln['who'] != 'loupe': _nl[int(Ln['t'] * SR):int((Ln['t'] + Ln['dur']) * SR)] = 1
+_nl = uniform_filter1d(_nl, int(.03 * SR))
+V = np.stack([vox, vox], 1) + T.verb(hp(vox * _nl, 250), .6, 4500) * .12
 mix = mus + fx + amb + V
 mix = np.tanh(mix * 1.1) / 1.1
 mix, I_mix, ceil_db = T.master(mix, 10.5); print(f'master: {I_mix:.1f} LUFS, true-peak ceiling {ceil_db:.1f} dBFS')
