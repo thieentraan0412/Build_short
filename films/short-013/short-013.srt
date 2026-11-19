@@ -1,63 +1,71 @@
 1
-00:00:00,450 --> 00:00:03,018
-Where does a grasshopper hide its ears?
-
-2
-00:00:03,900 --> 00:00:04,950
+00:00:03,958 --> 00:00:05,140
 Let's zoom in!
 
+2
+00:00:05,160 --> 00:00:07,000
+Are they on its legs, like Chirp?
+
 3
-00:00:04,950 --> 00:00:08,050
-Are they on its legs, like Chirp? Nope!
+00:00:07,458 --> 00:00:08,271
+Nope!
 
 4
-00:00:08,050 --> 00:00:10,167
+00:00:08,291 --> 00:00:10,491
 Its ears are on its tummy!
 
 5
-00:00:10,400 --> 00:00:12,000
+00:00:10,600 --> 00:00:12,120
 But WHY on its tummy?
 
 6
-00:00:12,000 --> 00:00:14,320
+00:00:12,240 --> 00:00:14,620
 To hear other grasshoppers sing!
 
 7
-00:00:14,650 --> 00:00:16,900
+00:00:15,380 --> 00:00:18,060
 Many grasshoppers sing with their legs!
 
 8
-00:00:16,900 --> 00:00:19,141
-They rub a back leg on a wing!
+00:00:18,130 --> 00:00:19,090
+They rub a back
 
 9
-00:00:20,400 --> 00:00:22,916
-And its back legs are like springs!
+00:00:19,110 --> 00:00:20,450
+leg on a wing!
 
 10
-00:00:23,050 --> 00:00:24,600
-Look at it go!
+00:00:22,048 --> 00:00:24,388
+And its back legs are like springs!
 
 11
-00:00:24,600 --> 00:00:25,750
-A bug band!
+00:00:24,620 --> 00:00:25,840
+Look at it go!
 
 12
-00:00:25,750 --> 00:00:27,701
-The notes make a heart!
+00:00:26,250 --> 00:00:27,360
+A bug band!
 
 13
-00:00:29,800 --> 00:00:32,697
-Six legs? In you go!
+00:00:27,380 --> 00:00:29,900
+Tummy ears, and legs that sing!
 
 14
-00:00:33,350 --> 00:00:35,150
-Play it again! Louder!
+00:00:31,600 --> 00:00:34,100
+Six legs? In you go!
 
 15
-00:00:37,450 --> 00:00:39,250
-Oops! Too loud!
+00:00:35,150 --> 00:00:36,350
+Play it again! Louder!
 
 16
-00:00:39,350 --> 00:00:41,150
+00:00:39,250 --> 00:00:40,450
+Oops! Too loud!
+
+17
+00:00:41,380 --> 00:00:43,900
+Tummy ears, and legs that sing!
+
+18
+00:00:44,130 --> 00:00:45,390
 Where are YOUR ears?

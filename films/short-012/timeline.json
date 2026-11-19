@@ -5,97 +5,465 @@
   {
    "id": "garden",
    "t0": 0,
-   "t1": 12.65
+   "t1": 12.3
   },
   {
    "id": "album",
-   "t0": 12.65,
-   "t1": 16.85
+   "t0": 12.3,
+   "t1": 16.3
   },
   {
    "id": "gag",
-   "t0": 16.85,
+   "t0": 16.3,
    "t1": 24
   }
  ],
  "lines": [
   {
    "id": "L01",
+   "emo": "curious",
    "who": "loupe",
-   "t": 0.1,
-   "dur": 1.362,
-   "card": 1,
    "text": "Could you fly backwards?",
-   "pace": 1
+   "em": [
+    "fly",
+    "backwards"
+   ],
+   "t": 0.38,
+   "dur": 1.75,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.5,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 58,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.37,
+      "d": 0.75,
+      "m": 61,
+      "syl": 4,
+      "w": 3
+     }
+    ]
+   }
   },
   {
    "id": "L02",
+   "emo": "excited",
    "who": "loupe",
-   "t": 3.3,
-   "dur": 0.999,
-   "card": 2,
    "text": "Let's zoom in!",
-   "catch": true
+   "em": [
+    "zoom"
+   ],
+   "catch": true,
+   "t": 3.368,
+   "dur": 0.999,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2381,
+      "m": 54,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3581,
+      "d": 0.2381,
+      "m": 56,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.5962,
+      "d": 0.4762,
+      "m": 58,
+      "syl": 2,
+      "w": 2
+     }
+    ]
+   }
   },
   {
    "id": "L03",
+   "emo": "surprised",
    "who": "loupe",
-   "t": 4.85,
-   "dur": 2.005,
-   "card": 3,
    "text": "Dragonflies can fly backwards!",
-   "pace": 1
+   "em": [
+    "dragonflies",
+    "backwards"
+   ],
+   "pace": 1,
+   "why": "giữ tốc độ .9 của bản 24 s cũ (3,9 âm tiết/s): ở .765 câu dài 2,67 s, đè lên \"And stay still in the air!\"",
+   "t": 4.658,
+   "dur": 2.005,
+   "tune": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.2778,
+      "m": 53,
+      "syl": 1,
+      "w": 0
+     },
+     {
+      "t": 0.6756,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 2,
+      "w": 0
+     },
+     {
+      "t": 0.9533,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 3,
+      "w": 1
+     },
+     {
+      "t": 1.2311,
+      "d": 0.2778,
+      "m": 58,
+      "syl": 4,
+      "w": 2
+     },
+     {
+      "t": 1.5089,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 5,
+      "w": 3
+     },
+     {
+      "t": 1.7867,
+      "d": 0.4167,
+      "m": 53,
+      "syl": 6,
+      "w": 3
+     }
+    ]
+   }
   },
   {
    "id": "L04",
+   "emo": "calm",
    "who": "loupe",
-   "t": 7.05,
+   "text": "And stay still in the air!",
+   "em": [
+    "still",
+    "air"
+   ],
+   "t": 7.158,
    "dur": 1.782,
-   "card": 4,
-   "text": "And stay still in the air!"
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6756,
+      "d": 0.4167,
+      "m": 61,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.0922,
+      "d": 0.1389,
+      "m": 58,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.2311,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.5089,
+      "d": 0.4167,
+      "m": 53,
+      "syl": 5,
+      "w": 5
+     }
+    ]
+   }
   },
   {
    "id": "L05",
+   "emo": "happy",
    "who": "loupe",
-   "t": 9.35,
+   "text": "Front wings up, back wings down!",
+   "em": [
+    "front",
+    "up",
+    "back",
+    "down"
+   ],
+   "t": 9.38,
    "dur": 2.507,
-   "card": 5,
-   "text": "Front wings up, back wings down!"
+   "tune": {
+    "mode": "sing",
+    "pre": 0.12,
+    "chorus": "wings",
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.5,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 51,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.87,
+      "d": 0.75,
+      "m": 49,
+      "syl": 5,
+      "w": 5
+     }
+    ]
+   }
   },
   {
    "id": "L06",
+   "emo": "proud",
    "who": "albie",
-   "t": 13.75,
+   "t": 13.35,
    "dur": 2.297,
-   "card": 6,
    "text": "Six legs? In you go!",
+   "em": [
+    "legs"
+   ],
    "catch": true
   },
   {
-   "id": "L07",
-   "who": "loupe",
-   "t": 16.95,
-   "dur": 1.849,
-   "card": 7,
-   "text": "I can go backwards too!"
-  },
-  {
    "id": "L08",
+   "emo": "playful",
    "who": "albie",
-   "t": 20,
+   "t": 17.62,
    "dur": 1.537,
-   "card": 8,
+   "pace": 1,
    "text": "Watch the corners!",
-   "pace": 1
+   "em": [
+    "corners"
+   ]
   },
   {
    "id": "L09",
+   "emo": "happy",
    "who": "loupe",
-   "t": 21.9,
-   "dur": 1.511,
-   "card": 9,
+   "text": "Front wings up, back wings down!",
+   "em": [
+    "front",
+    "up",
+    "back",
+    "down"
+   ],
+   "t": 19.38,
+   "dur": 2.507,
+   "tune": {
+    "mode": "sing",
+    "pre": 0.12,
+    "chorus": "wings",
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.5,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 51,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.87,
+      "d": 0.75,
+      "m": 49,
+      "syl": 5,
+      "w": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "L10",
+   "emo": "happy",
+   "who": "loupe",
    "text": "Which way is Zip flying?",
-   "pace": 1
+   "em": [
+    "zip",
+    "flying"
+   ],
+   "cta": true,
+   "was": "Which way is Zip flying? (tốc độ .9)",
+   "why": "câu hỏi kết cho trẻ trả lời to (\"Backwards!\"); đọc ở tốc độ lời dẫn .765 thay .9 (4,0 âm tiết/s là nhanh với trẻ 4–8 tuổi), vẫn ≤ 2 s",
+   "t": 22.13,
+   "dur": 1.841,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 56,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.25,
+      "m": 58,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.87,
+      "d": 0.5,
+      "m": 61,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 58,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 63,
+      "syl": 5,
+      "w": 4
+     }
+    ]
+   }
   }
  ],
  "hit": {
@@ -130,14 +498,14 @@
    4.75
   ],
   "lback": [
-   5.55,
-   6.95
+   5.45,
+   6.85
   ],
-  "lbrake": 6.95,
-  "still": 7.15,
+  "lbrake": 6.85,
+  "still": 7.05,
   "turn": [
-   7.3,
-   7.9
+   7.2,
+   7.8
   ],
   "slow": [
    8.85,
@@ -150,62 +518,373 @@
    11.35,
    11.975
   ],
-  "happy": 12,
-  "snap": 12.55,
+  "happy": 11.9,
+  "snap": 12.2,
   "zoomIn": [
-   12.65,
-   12.95
+   12.3,
+   12.6
   ],
   "zoomOut": [
-   12.95,
-   13.3
+   12.6,
+   12.95
   ],
-  "stamp": 13.45,
+  "stamp": 13.1,
   "zipIn": [
-   13.5,
-   14
+   13.15,
+   13.65
   ],
   "counts": [
-   14,
-   14.25,
-   14.5
+   13.6,
+   13.85,
+   14.1
   ],
   "reverse": [
-   15.1,
-   15.55
+   14.7,
+   15.15
   ],
-  "gulp": 15.55,
-  "mini": 15.75,
+  "gulp": 15.15,
+  "mini": 15.35,
   "flip": [
-   16.35,
-   16.85
+   15.85,
+   16.3
+  ],
+  "wings": [
+   16.3,
+   16.6
   ],
   "stepsBack": [
-   18.75,
-   19.8
+   16.5,
+   17.5
   ],
   "beeps": [
-   18.85,
-   19.17,
-   19.49
+   16.6,
+   16.92,
+   17.24
   ],
-  "notice": 18.95,
-  "bump": 19.8,
-  "glint": 20.75,
-  "giggle": 21.55,
+  "notice": 16.7,
+  "bump": 17.5,
+  "glint": 18.5,
+  "ch2": [
+   19.38,
+   21.95
+  ],
   "albieOut": [
-   21.7,
-   22.45
+   22,
+   22.75
   ],
   "zipBack": [
-   21.75,
-   23.15
+   22.2,
+   23.3
   ],
-  "recall": 22.95,
+  "recall": 23,
   "spin": 23.45,
   "loop": [
    23.45,
    24
+  ]
+ },
+ "standard": "2026-11b",
+ "song": {
+  "key": "Db",
+  "tonic": 1,
+  "film": 120,
+  "parts": [
+   {
+    "t0": 0,
+    "t1": 3.25,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "Db Gb"
+   },
+   {
+    "t0": 3.25,
+    "t1": 4.5,
+    "bpm": 126,
+    "beat": 0.47619,
+    "origin": 3.25,
+    "meter": 4,
+    "chords": "Gb Ab"
+   },
+   {
+    "t0": 4.5,
+    "t1": 7,
+    "bpm": 108,
+    "beat": 0.555556,
+    "origin": 4.5,
+    "meter": 4,
+    "chords": "Db Bbm Gb Ab"
+   },
+   {
+    "t0": 7,
+    "t1": 9.1,
+    "bpm": 108,
+    "beat": 0.555556,
+    "origin": 7,
+    "meter": 4,
+    "chords": "Gb Db"
+   },
+   {
+    "t0": 9.1,
+    "t1": 19,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "Db Ab Bbm Gb"
+   },
+   {
+    "t0": 19,
+    "t1": 24,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "Db Ab Db Gb"
+   }
+  ],
+  "chart": [
+   [
+    0,
+    2,
+    "Db"
+   ],
+   [
+    2,
+    3.25,
+    "Gb"
+   ],
+   [
+    3.25,
+    4.5,
+    "Gb"
+   ],
+   [
+    4.5,
+    6.722,
+    "Db"
+   ],
+   [
+    6.722,
+    7,
+    "Bbm"
+   ],
+   [
+    7,
+    9.1,
+    "Gb"
+   ],
+   [
+    9.1,
+    10,
+    "Db"
+   ],
+   [
+    10,
+    12,
+    "Ab"
+   ],
+   [
+    12,
+    14,
+    "Bbm"
+   ],
+   [
+    14,
+    16,
+    "Gb"
+   ],
+   [
+    16,
+    18,
+    "Db"
+   ],
+   [
+    18,
+    19,
+    "Ab"
+   ],
+   [
+    19,
+    20,
+    "Db"
+   ],
+   [
+    20,
+    22,
+    "Ab"
+   ],
+   [
+    22,
+    24,
+    "Db"
+   ]
+  ],
+  "motif": [
+   {
+    "b": 0,
+    "d": 0.5,
+    "s": 4
+   },
+   {
+    "b": 0.5,
+    "d": 0.5,
+    "s": 5
+   },
+   {
+    "b": 1,
+    "d": 1,
+    "s": 7
+   },
+   {
+    "b": 2.5,
+    "d": 0.5,
+    "s": 5
+   },
+   {
+    "b": 3,
+    "d": 0.5,
+    "s": 2
+   },
+   {
+    "b": 3.5,
+    "d": 1.5,
+    "s": 0
+   }
+  ]
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 2.85,
+   "what": "Zip lao tới, phanh kít, bay giật lùi trước mặt Miss Loupe; \"Could you fly backwards?\"; lần hai, Miss Loupe hoa mắt"
+  },
+  {
+   "id": "setup",
+   "t0": 2.85,
+   "t1": 5.45,
+   "what": "\"Let's zoom in!\": kính lớn bật lên trên Zip"
+  },
+  {
+   "id": "discovery",
+   "t0": 5.45,
+   "t1": 16.3,
+   "what": "Trong kính: Zip bay lùi (BACKWARDS!) · phanh, đứng yên giữa trời (STILL!) · soi chậm bốn cánh: điệp khúc lần 1 · sổ: \"Six legs? In you go!\", Zip lùi đuôi vào trang"
+  },
+  {
+   "id": "surprise",
+   "t0": 16.3,
+   "t1": 19.38,
+   "what": "Gag: Miss Loupe dang tay làm cánh, đi lùi \"bíp bíp\", BONK vào góc sách: \"Watch the corners!\""
+  },
+  {
+   "id": "payoff",
+   "t0": 19.38,
+   "t1": 22.13,
+   "what": "Điệp khúc lần 2: Zip trên cao đập cánh so le (tô hai màu), Miss Loupe vỗ tay theo; nhạc chơi giai điệu"
+  },
+  {
+   "id": "cta",
+   "t0": 22.13,
+   "t1": 24,
+   "what": "\"Which way is Zip flying?\" (trẻ đáp \"Backwards!\"): Zip bay lùi ra phải; chữ móc trở lại; Zip lao tới lại như khung đầu"
+  }
+ ],
+ "shots": [
+  {
+   "t": 0,
+   "kind": "trung, lối cỏ nhiệt đới; Zip lao vào khung, phanh kít",
+   "why": "hành động ở khung 0, chữ móc nảy"
+  },
+  {
+   "t": 0.62,
+   "kind": "rung máy, Zip bay giật lùi (đuôi đi trước)",
+   "why": "phản ứng: Miss Loupe giật mình"
+  },
+  {
+   "t": 1.95,
+   "kind": "lần hai: lao tới, phanh, lùi; Miss Loupe hoa mắt",
+   "why": "bí ẩn chưa giải: bay lùi thế nào?"
+  },
+  {
+   "t": 4.25,
+   "kind": "kính lớn bật lên, máy lùi",
+   "why": "\"Let's zoom in!\": vào bí mật"
+  },
+  {
+   "t": 5.45,
+   "kind": "trong kính: theo Zip bay lùi (lia trong kính), chữ BACKWARDS!",
+   "why": "bí mật 1 xảy ra thành chuyển động"
+  },
+  {
+   "t": 6.85,
+   "kind": "rung nhẹ, phanh; chữ STILL!, đường chấm ngang",
+   "why": "bí mật 2: đứng yên giữa trời"
+  },
+  {
+   "t": 7.5,
+   "kind": "phóng trong kính: Zip quay mặt ra",
+   "why": "chuẩn bị soi chậm"
+  },
+  {
+   "t": 9.049999999999999,
+   "kind": "soi chậm: kính tối lại, cánh tô hai màu",
+   "why": "điệp khúc lần 1: cánh trước lên, cánh sau xuống"
+  },
+  {
+   "t": 11.2,
+   "kind": "phóng sát hơn vào bốn cánh, mũi tên đổi chiều",
+   "why": "thấy rõ hai cặp cánh so le"
+  },
+  {
+   "t": 12.3,
+   "kind": "chụp → match cut qua sticker → trang sổ",
+   "why": "chuyển cảnh kính → sổ có chuyển động nối"
+  },
+  {
+   "t": 13.85,
+   "kind": "Zip đứng yên giữa trời cho Albie đếm chân",
+   "why": "đứng yên thì mới đếm được"
+  },
+  {
+   "t": 14.7,
+   "kind": "đẩy nhẹ: Zip lùi đuôi vào trang đúng \"go!\"",
+   "why": "câu cửa miệng có hành động"
+  },
+  {
+   "t": 15.85,
+   "kind": "lật trang về lối cỏ",
+   "why": "mở gag"
+  },
+  {
+   "t": 16.5,
+   "kind": "máy theo Miss Loupe đi lùi, dang tay",
+   "why": "gag: bắt chước Zip"
+  },
+  {
+   "t": 17.5,
+   "kind": "rung máy, BONK!",
+   "why": "bất ngờ: đụng góc sách của Albie"
+  },
+  {
+   "t": 19.58,
+   "kind": "lùi ra, ngẩng lên Zip đập cánh so le",
+   "why": "điệp khúc lần 2: trẻ đọc theo, nhạc chơi giai điệu"
+  },
+  {
+   "t": 22.13,
+   "kind": "máy lia theo Zip bay lùi ra phải; chữ móc trở lại",
+   "why": "CTA và vòng lặp liền"
+  }
+ ],
+ "secret": {
+  "kw": [
+   "backwards",
+   "still",
+   "wings",
+   "flying"
   ]
  }
 }

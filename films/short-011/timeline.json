@@ -1,106 +1,497 @@
 {
  "bpm": 120,
- "dur": 22,
+ "dur": 25,
  "secs": [
   {
    "id": "garden",
    "t0": 0,
-   "t1": 3.85
+   "t1": 4.35
   },
   {
    "id": "split",
-   "t0": 3.85,
-   "t1": 13.35
+   "t0": 4.35,
+   "t1": 13.25
   },
   {
    "id": "album",
-   "t0": 13.35,
-   "t1": 17.45
+   "t0": 13.25,
+   "t1": 17.25
   },
   {
    "id": "gag",
-   "t0": 17.45,
-   "t1": 22
+   "t0": 17.25,
+   "t1": 25
   }
  ],
  "lines": [
   {
    "id": "L01",
+   "emo": "curious",
    "who": "loupe",
-   "t": 0.1,
-   "dur": 1.832,
-   "card": 1,
    "text": "Can you sneak up on a dragonfly?",
-   "pace": 1
+   "em": [
+    "sneak",
+    "dragonfly"
+   ],
+   "t": 0.38,
+   "dur": 2.415,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 51,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 52,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.5,
+      "m": 54,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 56,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 54,
+      "syl": 5,
+      "w": 5
+     },
+     {
+      "t": 1.87,
+      "d": 0.25,
+      "m": 56,
+      "syl": 6,
+      "w": 6
+     },
+     {
+      "t": 2.12,
+      "d": 0.25,
+      "m": 58,
+      "syl": 7,
+      "w": 6
+     },
+     {
+      "t": 2.37,
+      "d": 0.75,
+      "m": 59,
+      "syl": 8,
+      "w": 6
+     }
+    ]
+   }
   },
   {
    "id": "L02",
+   "emo": "proud",
    "who": "crumb",
-   "t": 2.25,
+   "t": 3,
    "dur": 1.495,
-   "card": 1,
+   "pace": 1,
    "text": "From behind, it can't see me!",
-   "pace": 1
+   "em": [
+    "behind",
+    "see"
+   ],
+   "why": "giữ tốc độ chuẩn của Crumb (.85): Kokoro af_jessica đọc chậm hơn (.68–.8) sinh tiếng \"uh\" ở đầu câu, base.en và small.en nghe thành \"But / Or from behind\" (thử 8 cách viết, 19/11/2026)"
   },
   {
    "id": "L03",
+   "emo": "calm",
    "who": "loupe",
-   "t": 4.45,
+   "text": "Crumb only sees its back.",
+   "em": [
+    "back"
+   ],
+   "t": 5.008,
    "dur": 1.988,
-   "card": 2,
-   "text": "Crumb only sees its back."
+   "tune": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 54,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.2778,
+      "m": 51,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6756,
+      "d": 0.2778,
+      "m": 51,
+      "syl": 2,
+      "w": 1
+     },
+     {
+      "t": 0.9533,
+      "d": 0.2778,
+      "m": 52,
+      "syl": 3,
+      "w": 2
+     },
+     {
+      "t": 1.2311,
+      "d": 0.2778,
+      "m": 51,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.5089,
+      "d": 0.4167,
+      "m": 47,
+      "syl": 5,
+      "w": 4
+     }
+    ]
+   }
   },
   {
    "id": "L04",
+   "emo": "surprised",
    "who": "loupe",
-   "t": 7.05,
+   "text": "But Zip can see Crumb!",
+   "em": [
+    "zip",
+    "see"
+   ],
+   "t": 7.208,
    "dur": 1.765,
-   "card": 3,
-   "text": "But Zip can see Crumb!"
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 51,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.2778,
+      "m": 52,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6756,
+      "d": 0.2778,
+      "m": 54,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.9533,
+      "d": 0.5556,
+      "m": 59,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.5089,
+      "d": 0.8333,
+      "m": 56,
+      "syl": 4,
+      "w": 4
+     }
+    ]
+   }
   },
   {
    "id": "L05",
+   "emo": "startled",
+   "emo_k": 0.5,
    "who": "crumb",
-   "t": 8.95,
-   "dur": 0.679,
-   "card": 3,
+   "t": 9.18,
+   "dur": 0.845,
+   "pace": 0.8,
    "text": "Oh no!",
-   "pace": 1
+   "why": "uốn ngữ điệu giật mình đủ mạnh (1,1) thì base.en nghe \"Oh no!\" thành \"Although, no\": độ uốn .5"
   },
   {
    "id": "L06",
+   "emo": "happy",
    "who": "loupe",
-   "t": 10.25,
-   "dur": 2.607,
-   "card": 4,
-   "text": "Its big eyes see almost all around!"
+   "text": "Big eyes see almost all around!",
+   "em": [
+    "eyes",
+    "around"
+   ],
+   "was": "Its big eyes see almost all around!",
+   "why": "thành điệp khúc (≤ 8 từ, nhắc lại trước câu hỏi kết); giữ \"almost\" đúng nguồn (FACTS.md §2)",
+   "t": 10.535,
+   "dur": 2.37,
+   "tune": {
+    "mode": "sing",
+    "pre": 0.12,
+    "chorus": "eyes",
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2273,
+      "m": 54,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3473,
+      "d": 0.4545,
+      "m": 59,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.8018,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.0291,
+      "d": 0.2273,
+      "m": 54,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.2564,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.4836,
+      "d": 0.2273,
+      "m": 58,
+      "syl": 5,
+      "w": 4
+     },
+     {
+      "t": 1.7109,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 6,
+      "w": 5
+     },
+     {
+      "t": 1.9382,
+      "d": 0.5682,
+      "m": 54,
+      "syl": 7,
+      "w": 5
+     }
+    ]
+   }
   },
   {
    "id": "L07",
+   "emo": "proud",
    "who": "albie",
-   "t": 14.4,
+   "t": 14.25,
    "dur": 2.297,
-   "card": 5,
    "text": "Six legs? In you go!",
+   "em": [
+    "legs"
+   ],
    "catch": true
   },
   {
    "id": "L08",
+   "emo": "playful",
    "who": "crumb",
-   "t": 19.05,
+   "t": 18.6,
    "dur": 1.289,
-   "card": 6,
+   "pace": 1,
    "text": "Oh! I scared myself!",
-   "pace": 1
+   "em": [
+    "scared"
+   ],
+   "why": "tốc độ chuẩn của Crumb (.85): đọc chậm (.68, .72) thì small.en nghe \"Oh! I\" thành \"Although I\""
   },
   {
    "id": "L09",
+   "emo": "happy",
    "who": "loupe",
-   "t": 20.45,
-   "dur": 1.425,
-   "card": 6,
+   "text": "Big eyes see almost all around!",
+   "em": [
+    "eyes",
+    "around"
+   ],
+   "t": 20.235,
+   "dur": 2.37,
+   "tune": {
+    "mode": "sing",
+    "pre": 0.12,
+    "chorus": "eyes",
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2273,
+      "m": 54,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3473,
+      "d": 0.4545,
+      "m": 59,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.8018,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.0291,
+      "d": 0.2273,
+      "m": 54,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.2564,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.4836,
+      "d": 0.2273,
+      "m": 58,
+      "syl": 5,
+      "w": 4
+     },
+     {
+      "t": 1.7109,
+      "d": 0.2273,
+      "m": 56,
+      "syl": 6,
+      "w": 5
+     },
+     {
+      "t": 1.9382,
+      "d": 0.5682,
+      "m": 54,
+      "syl": 7,
+      "w": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "L10",
+   "emo": "happy",
+   "who": "loupe",
    "text": "Can YOU sneak up on Zip?",
-   "pace": 1
+   "em": [
+    "you",
+    "sneak",
+    "zip"
+   ],
+   "cta": true,
+   "pace": 0.85,
+   "why": "câu hỏi kết cho trẻ trả lời to (\"No!\"); đọc chậm hơn tốc độ chuẩn .9 của bản 22 s (4,2 âm tiết/s là nhanh với trẻ 4–8 tuổi), vẫn ≤ 2 s",
+   "t": 22.88,
+   "dur": 1.79,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 54,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.5,
+      "m": 59,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.87,
+      "d": 0.25,
+      "m": 58,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 54,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 56,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 61,
+      "syl": 5,
+      "w": 5
+     }
+    ]
+   }
   }
  ],
  "hit": {
@@ -121,88 +512,409 @@
   ],
   "grin": 2.25,
   "titleOut": [
-   3,
-   3.35
+   2.85,
+   3.2
+  ],
+  "tilt": [
+   3.05,
+   4.2
   ],
   "split": [
-   3.85,
-   4.35
+   4.35,
+   4.85
   ],
   "open": [
-   6.6,
-   6.95
+   7.05,
+   7.3999999999999995
   ],
   "wide": [
-   6.9,
-   7.9
+   7.35,
+   8.35
   ],
-  "spot": 8.2,
+  "spot": 8.6,
   "hide": [
-   9.65,
-   9.95
+   9.899999999999999,
+   10.2
   ],
   "glow": [
-   10.3,
-   12.9
+   10.55,
+   13
   ],
   "sweep": [
-   10.8,
-   12.3
+   11.05,
+   12.55
   ],
-  "peek": 12.55,
-  "snap": 13.25,
+  "peek": 12.85,
+  "snap": 13.15,
   "zoomIn": [
-   13.35,
-   13.65
+   13.25,
+   13.55
   ],
   "zoomOut": [
-   13.65,
-   14
+   13.55,
+   13.9
   ],
-  "stamp": 14.15,
+  "stamp": 14.05,
   "zipIn": [
-   14.25,
-   14.75
+   14.15,
+   14.65
   ],
   "counts": [
-   14.65,
-   14.9,
-   15.15
+   14.5,
+   14.75,
+   15
   ],
   "dive": [
-   16.25,
-   16.65
+   16.1,
+   16.5
   ],
-  "gulp": 16.65,
-  "mini": 16.85,
+  "gulp": 16.5,
+  "mini": 16.7,
   "flip": [
-   17,
-   17.45
+   16.8,
+   17.25
   ],
   "sneak2": [
-   17.45,
-   18
+   17.25,
+   17.75
   ],
-  "inhale": 18,
+  "tip2": [
+   17.32,
+   17.56
+  ],
+  "inhale": 17.75,
   "turn": [
-   18.05,
-   18.3
+   17.8,
+   18.05
   ],
-  "jump": 18.4,
-  "land": 18.88,
-  "hat": 19.12,
-  "turnBack": [
-   20.55,
-   20.95
+  "jump": 18.15,
+  "land": 18.63,
+  "hat": 18.87,
+  "giggle": 19.5,
+  "glow2": [
+   20.349999999999998,
+   22.799999999999997
+  ],
+  "ring2": [
+   20.799999999999997,
+   22.5
   ],
   "getUp": [
-   20.5,
-   21
+   20.6,
+   21.1
   ],
-  "recall": 20.95,
+  "turnBack": [
+   22.95,
+   23.35
+  ],
+  "recall": 23.75,
+  "tip3": 24.45,
   "loop": [
-   21.1,
-   22
+   23.95,
+   25
+  ]
+ },
+ "standard": "2026-11b",
+ "song": {
+  "key": "B",
+  "tonic": 11,
+  "film": 120,
+  "parts": [
+   {
+    "t0": 0,
+    "t1": 4.85,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "B F#"
+   },
+   {
+    "t0": 4.85,
+    "t1": 7.05,
+    "bpm": 108,
+    "beat": 0.555556,
+    "origin": 4.85,
+    "meter": 4,
+    "chords": "E C#m B"
+   },
+   {
+    "t0": 7.05,
+    "t1": 10.2,
+    "bpm": 108,
+    "beat": 0.555556,
+    "origin": 7.05,
+    "meter": 4,
+    "chords": "B E"
+   },
+   {
+    "t0": 10.2,
+    "t1": 19.9,
+    "bpm": 132,
+    "beat": 0.454545,
+    "origin": 10.2,
+    "meter": 4,
+    "chords": "E F# B"
+   },
+   {
+    "t0": 19.9,
+    "t1": 23,
+    "bpm": 132,
+    "beat": 0.454545,
+    "origin": 19.9,
+    "meter": 4,
+    "chords": "E F# B"
+   },
+   {
+    "t0": 23,
+    "t1": 25,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "B F#"
+   }
+  ],
+  "chart": [
+   [
+    0,
+    2,
+    "B"
+   ],
+   [
+    2,
+    4,
+    "F#"
+   ],
+   [
+    4,
+    4.85,
+    "B"
+   ],
+   [
+    4.85,
+    7.05,
+    "E"
+   ],
+   [
+    7.05,
+    9.272,
+    "B"
+   ],
+   [
+    9.272,
+    10.2,
+    "E"
+   ],
+   [
+    10.2,
+    12.018,
+    "E"
+   ],
+   [
+    12.018,
+    13.836,
+    "F#"
+   ],
+   [
+    13.836,
+    15.655,
+    "B"
+   ],
+   [
+    15.655,
+    17.473,
+    "E"
+   ],
+   [
+    17.473,
+    19.291,
+    "F#"
+   ],
+   [
+    19.291,
+    19.9,
+    "B"
+   ],
+   [
+    19.9,
+    21.718,
+    "E"
+   ],
+   [
+    21.718,
+    23,
+    "F#"
+   ],
+   [
+    23,
+    24,
+    "B"
+   ],
+   [
+    24,
+    25,
+    "F#"
+   ]
+  ],
+  "motif": [
+   {
+    "b": 0,
+    "d": 0.5,
+    "s": 7
+   },
+   {
+    "b": 0.5,
+    "d": 1,
+    "s": 12
+   },
+   {
+    "b": 1.5,
+    "d": 0.5,
+    "s": 9
+   },
+   {
+    "b": 2,
+    "d": 0.5,
+    "s": 7
+   }
+  ]
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 2.85,
+   "what": "Crumb rón rén giơ biển BOO! sau lưng Zip; \"Can you sneak up on a dragonfly?\"; lá khô \"rắc\", Crumb đứng sững một chân"
+  },
+  {
+   "id": "setup",
+   "t0": 2.85,
+   "t1": 7.05,
+   "what": "Crumb chắc mẩm \"From behind, it can't see me!\"; khoá kéo tách khung; CRUMB SEES: chỉ thấy lưng Zip"
+  },
+  {
+   "id": "discovery",
+   "t0": 7.05,
+   "t1": 17.25,
+   "what": "ZIP SEES: mắt Zip mở, tầm nhìn nở rộng, Crumb bị thấy · \"Oh no!\" · điệp khúc lần 1 \"Big eyes see almost all around!\" · sổ: \"Six legs? In you go!\""
+  },
+  {
+   "id": "surprise",
+   "t0": 17.25,
+   "t1": 20.235,
+   "what": "Gag: Crumb rình lần nữa, Zip quay lại trước, Crumb tự giật mình ngã lên đệm cỏ, biển đội đầu: \"Oh! I scared myself!\""
+  },
+  {
+   "id": "payoff",
+   "t0": 20.235,
+   "t1": 22.88,
+   "what": "Điệp khúc lần 2: đôi mắt Zip sáng lên, vòng sáng chạy quanh cả khu vườn (nhạc cụ chơi giai điệu)"
+  },
+  {
+   "id": "cta",
+   "t0": 22.88,
+   "t1": 25,
+   "what": "\"Can YOU sneak up on Zip?\" (trẻ đáp \"No!\"); chữ móc trở lại; Crumb giơ biển, rón rén về khung đầu"
+  }
+ ],
+ "shots": [
+  {
+   "t": 0,
+   "kind": "trung, khu vườn, máy đẩy chậm; chữ móc ở trời",
+   "why": "hành động ở khung 0: Crumb nhón chân giơ biển BOO! sau lưng Zip"
+  },
+  {
+   "t": 1.98,
+   "kind": "rung máy, đẩy nhanh: lá khô \"rắc\"",
+   "why": "phản ứng bằng hành động: Crumb đứng sững một chân"
+  },
+  {
+   "t": 3.05,
+   "kind": "máy hạ xuống ngang tầm Crumb",
+   "why": "Crumb cười trừ, nói câu sai \"it can't see me!\""
+  },
+  {
+   "t": 4.35,
+   "kind": "khoá kéo tách khung từ trên xuống",
+   "why": "chuyển sang khung chia đôi: ai thấy ai?"
+  },
+  {
+   "t": 5.1499999999999995,
+   "kind": "đẩy vào nửa trái CRUMB SEES",
+   "why": "\"Crumb only sees its back\": chỉ thấy lưng Zip"
+  },
+  {
+   "t": 7.05,
+   "kind": "lia sang nửa phải ZIP SEES, mắt Zip mở",
+   "why": "bí mật xảy ra: tầm nhìn nở rộng gần trọn vòng"
+  },
+  {
+   "t": 8.6,
+   "kind": "rung nhẹ, vòng \"bị thấy rồi!\" quanh Crumb",
+   "why": "\"But Zip can see Crumb!\""
+  },
+  {
+   "t": 9.899999999999999,
+   "kind": "đẩy vào Crumb nấp sau biển",
+   "why": "gag nhỏ: nấp rồi vẫn bị thấy"
+  },
+  {
+   "t": 10.55,
+   "kind": "lùi ra cả hai khung, hai vòm mắt sáng",
+   "why": "điệp khúc lần 1: vệt sáng chạy quanh tầm nhìn"
+  },
+  {
+   "t": 12.85,
+   "kind": "Crumb ló ra vẫy (khung phải)",
+   "why": "biểu cảm: Crumb chịu thua, cười"
+  },
+  {
+   "t": 13.25,
+   "kind": "chụp → match cut qua sticker → trang sổ",
+   "why": "chuyển cảnh kính → sổ có chuyển động nối"
+  },
+  {
+   "t": 14.75,
+   "kind": "Albie đếm chân, Zip bay vòng",
+   "why": "\"Six legs? In you go!\" nói trong lúc có hành động"
+  },
+  {
+   "t": 16.1,
+   "kind": "đẩy nhẹ: Zip lao vào trang, Albie đớp",
+   "why": "câu cửa miệng có hành động"
+  },
+  {
+   "t": 16.8,
+   "kind": "lật trang về khu vườn",
+   "why": "mở gag"
+  },
+  {
+   "t": 18.15,
+   "kind": "đẩy nhanh, rung: Zip quay lại trước, EEK!",
+   "why": "bất ngờ: Crumb tự giật mình"
+  },
+  {
+   "t": 18.87,
+   "kind": "biển đáp lên đầu như mũ",
+   "why": "gag kết, đạo cụ (tấm biển, đệm cỏ) có từ khung 0"
+  },
+  {
+   "t": 20.349999999999998,
+   "kind": "lùi ra khu vườn, mắt Zip sáng, vòng sáng chạy quanh",
+   "why": "điệp khúc lần 2: trẻ đọc theo, nhạc chơi giai điệu"
+  },
+  {
+   "t": 22.88,
+   "kind": "đẩy vào Crumb và Zip, chữ móc trở lại, máy ngẩng về khung 0",
+   "why": "CTA và vòng lặp liền"
+  }
+ ],
+ "secret": {
+  "kw": [
+   "eyes",
+   "around",
+   "sneak"
   ]
  }
 }

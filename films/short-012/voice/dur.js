@@ -1,0 +1,13 @@
+// Sinh tự động bởi tools/lines.mjs từ voice/dur.json: độ dài thật của từng câu (giây)
+export default {
+ "L01": 1.75,
+ "L02": 0.999,
+ "L03": 2.005,
+ "L04": 1.782,
+ "L05": 2.507,
+ "L06": 2.297,
+ "L07": 1.849,
+ "L08": 1.537,
+ "L09": 2.507,
+ "L10": 1.841
+};

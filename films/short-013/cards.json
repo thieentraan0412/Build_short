@@ -1,82 +1,157 @@
 [
  {
-  "t0": 0.45,
-  "t1": 3.0180000000000002,
-  "text": "Where does a grasshopper hide its ears?"
+  "t0": 3.958,
+  "t1": 5.14,
+  "text": "Let's zoom in!",
+  "em": [
+   "zoom"
+  ]
  },
  {
-  "t0": 3.9,
-  "t1": 4.95,
-  "text": "Let's zoom in!"
+  "t0": 5.16,
+  "t1": 7,
+  "text": "Are they on its legs, like Chirp?",
+  "em": [
+   "legs",
+   "chirp"
+  ]
  },
  {
-  "t0": 4.95,
-  "t1": 8.05,
-  "text": "Are they on its legs, like Chirp? Nope!"
+  "t0": 7.458,
+  "t1": 8.271,
+  "text": "Nope!"
  },
  {
-  "t0": 8.05,
-  "t1": 10.167,
-  "text": "Its ears are on its tummy!"
+  "t0": 8.291,
+  "t1": 10.491,
+  "text": "Its ears are on its tummy!",
+  "em": [
+   "ears",
+   "tummy"
+  ]
  },
  {
-  "t0": 10.4,
-  "t1": 12,
-  "text": "But WHY on its tummy?"
+  "t0": 10.6,
+  "t1": 12.12,
+  "text": "But WHY on its tummy?",
+  "em": [
+   "why",
+   "tummy"
+  ]
  },
  {
-  "t0": 12,
-  "t1": 14.32,
-  "text": "To hear other grasshoppers sing!"
+  "t0": 12.24,
+  "t1": 14.62,
+  "text": "To hear other grasshoppers sing!",
+  "em": [
+   "hear",
+   "sing"
+  ]
  },
  {
-  "t0": 14.65,
-  "t1": 16.9,
-  "text": "Many grasshoppers sing with their legs!"
+  "t0": 15.38,
+  "t1": 18.06,
+  "text": "Many grasshoppers sing with their legs!",
+  "em": [
+   "sing",
+   "legs"
+  ]
  },
  {
-  "t0": 16.9,
-  "t1": 19.141,
-  "text": "They rub a back leg on a wing!"
+  "t0": 18.13,
+  "t1": 19.09,
+  "text": "They rub a back",
+  "em": [
+   "rub"
+  ]
  },
  {
-  "t0": 20.4,
-  "t1": 22.916,
-  "text": "And its back legs are like springs!"
+  "t0": 19.11,
+  "t1": 20.45,
+  "text": "leg on a wing!",
+  "em": [
+   "leg",
+   "wing"
+  ]
  },
  {
-  "t0": 23.05,
-  "t1": 24.6,
-  "text": "Look at it go!"
+  "t0": 22.048,
+  "t1": 24.388,
+  "text": "And its back legs are like springs!",
+  "em": [
+   "legs",
+   "springs"
+  ]
  },
  {
-  "t0": 24.6,
-  "t1": 25.75,
-  "text": "A bug band!"
+  "t0": 24.62,
+  "t1": 25.84,
+  "text": "Look at it go!",
+  "em": [
+   "go"
+  ]
  },
  {
-  "t0": 25.75,
-  "t1": 27.701,
-  "text": "The notes make a heart!"
+  "t0": 26.25,
+  "t1": 27.36,
+  "text": "A bug band!",
+  "em": [
+   "band"
+  ]
  },
  {
-  "t0": 29.8,
-  "t1": 32.697,
-  "text": "Six legs? In you go!"
+  "t0": 27.38,
+  "t1": 29.9,
+  "text": "Tummy ears, and legs that sing!",
+  "em": [
+   "tummy",
+   "ears",
+   "legs",
+   "sing"
+  ]
  },
  {
-  "t0": 33.35,
-  "t1": 35.15,
-  "text": "Play it again! Louder!"
+  "t0": 31.6,
+  "t1": 34.1,
+  "text": "Six legs? In you go!",
+  "em": [
+   "legs"
+  ]
  },
  {
-  "t0": 37.45,
-  "t1": 39.25,
-  "text": "Oops! Too loud!"
+  "t0": 35.15,
+  "t1": 36.35,
+  "text": "Play it again! Louder!",
+  "em": [
+   "louder"
+  ]
  },
  {
-  "t0": 39.35,
-  "t1": 41.15,
-  "text": "Where are YOUR ears?"
+  "t0": 39.25,
+  "t1": 40.45,
+  "text": "Oops! Too loud!",
+  "em": [
+   "loud"
+  ]
+ },
+ {
+  "t0": 41.38,
+  "t1": 43.9,
+  "text": "Tummy ears, and legs that sing!",
+  "em": [
+   "tummy",
+   "ears",
+   "legs",
+   "sing"
+  ]
+ },
+ {
+  "t0": 44.13,
+  "t1": 45.39,
+  "text": "Where are YOUR ears?",
+  "em": [
+   "your",
+   "ears"
+  ]
  }
 ]

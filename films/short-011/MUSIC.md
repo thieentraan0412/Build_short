@@ -1,5 +1,7 @@
 # SHORT-011 · Soundtrack Timeline
 
+> **Cập nhật 19/11/2026 (dựng lại theo chuẩn 11/2026b, như SHORT-016):** phần dưới đây mô tả bản 14/11/2026. "Tiptoe Cha-Cha" giờ là một bài hát (Si trưởng, 6 phần 108–132 BPM): 6/10 câu đọc vào phách, điệp khúc "Big eyes see almost all around!" ×2 (trumpet chơi giai điệu), chủ đề ở gag (bassoon); thêm cảnh nhạc "điệp khúc 2" và lớp nền / năng lượng theo cảnh. Phim 25 s. Bảng hiện hành: [`SOUND-PLAN.md`](SOUND-PLAN.md) (sinh từ `out/music.json`, `events.json`, `out/scenes.json`), [`TREATMENT.md`](TREATMENT.md) mục 7, 8, A và H.
+
 ## Màu nhạc của tập: "Tiptoe Cha-Cha"
 
 Tập này là một trò **rình rập**: Crumb nhón chân giơ biển BOO! sau lưng Zip. Nhạc là một bài cha-cha-chá rón rén:

@@ -1,32 +1,77 @@
 [
  {
-  "t0": 0.1,
-  "t1": 4.2,
-  "text": "Can you sneak up on a dragonfly? From behind, it can't see me!"
+  "t0": 3.2,
+  "t1": 4.72,
+  "text": "From behind, it can't see me!",
+  "em": [
+   "behind",
+   "see"
+  ]
  },
  {
-  "t0": 4.45,
-  "t1": 7.038,
-  "text": "Crumb only sees its back."
+  "t0": 5.008,
+  "t1": 7.188,
+  "text": "Crumb only sees its back.",
+  "em": [
+   "back"
+  ]
  },
  {
-  "t0": 7.05,
-  "t1": 10.229,
-  "text": "But Zip can see Crumb! Oh no!"
+  "t0": 7.208,
+  "t1": 9.16,
+  "text": "But Zip can see Crumb!",
+  "em": [
+   "zip",
+   "see"
+  ]
  },
  {
-  "t0": 10.25,
-  "t1": 13.456999999999999,
-  "text": "Its big eyes see almost all around!"
+  "t0": 9.18,
+  "t1": 10.38,
+  "text": "Oh no!"
  },
  {
-  "t0": 14.4,
-  "t1": 17.297,
-  "text": "Six legs? In you go!"
+  "t0": 10.535,
+  "t1": 13.035,
+  "text": "Big eyes see almost all around!",
+  "em": [
+   "eyes",
+   "around"
+  ]
  },
  {
-  "t0": 19.05,
-  "t1": 21.7,
-  "text": "Oh! I scared myself! Can YOU sneak up on Zip?"
+  "t0": 14.25,
+  "t1": 16.75,
+  "text": "Six legs? In you go!",
+  "em": [
+   "legs"
+  ]
+ },
+ {
+  "t0": 18.6,
+  "t1": 20,
+  "text": "Oh! I scared myself!",
+  "em": [
+   "scared"
+  ]
+ },
+ {
+  "t0": 20.235,
+  "t1": 22.735,
+  "text": "Big eyes see almost all around!",
+  "em": [
+   "eyes",
+   "around"
+  ]
+ },
+ {
+  "t0": 22.88,
+  "t1": 24.7,
+  "text": "Can YOU sneak up on Zip?",
+  "em": [
+   "you",
+   "sneak",
+   "zip"
+  ]
  }
 ]

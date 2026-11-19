@@ -1,6 +1,6 @@
 {
  "bpm": 120,
- "dur": 44,
+ "dur": 46,
  "secs": [
   {
    "id": "hook",
@@ -15,168 +15,839 @@
   {
    "id": "ears",
    "t0": 3.8,
-   "t1": 14.5
+   "t1": 15.2
   },
   {
    "id": "sing",
-   "t0": 14.5,
-   "t1": 20.3
+   "t0": 15.2,
+   "t1": 21.9
   },
   {
    "id": "springs",
-   "t0": 20.3,
-   "t1": 28.65
+   "t0": 21.9,
+   "t1": 30.45
   },
   {
    "id": "album",
-   "t0": 28.65,
-   "t1": 33.1
+   "t0": 30.45,
+   "t1": 34.9
   },
   {
    "id": "gag",
-   "t0": 33.1,
-   "t1": 44
+   "t0": 34.9,
+   "t1": 46
   }
  ],
  "lines": [
   {
    "id": "L01",
+   "emo": "curious",
    "who": "loupe",
-   "t": 0.45,
-   "dur": 1.968,
-   "card": 1,
-   "text": "Where does a grasshopper hide its ears?"
+   "text": "Where does a grasshopper hide its ears?",
+   "em": [
+    "grasshopper",
+    "ears"
+   ],
+   "t": 0.38,
+   "dur": 2.442,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.25,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.87,
+      "d": 0.25,
+      "m": 56,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 58,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 56,
+      "syl": 5,
+      "w": 3
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 58,
+      "syl": 6,
+      "w": 4
+     },
+     {
+      "t": 1.87,
+      "d": 0.25,
+      "m": 56,
+      "syl": 7,
+      "w": 5
+     },
+     {
+      "t": 2.12,
+      "d": 0.5,
+      "m": 61,
+      "syl": 8,
+      "w": 6
+     }
+    ]
+   }
   },
   {
    "id": "L02",
+   "emo": "excited",
    "who": "loupe",
-   "t": 3.9,
-   "dur": 0.999,
-   "card": 2,
    "text": "Let's zoom in!",
-   "catch": true
+   "em": [
+    "zoom"
+   ],
+   "catch": true,
+   "t": 3.958,
+   "dur": 0.999,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 54,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6756,
+      "d": 0.5556,
+      "m": 58,
+      "syl": 2,
+      "w": 2
+     }
+    ]
+   }
   },
   {
    "id": "L03",
+   "emo": "curious",
+   "emo_k": 1.4,
    "who": "crumb",
-   "t": 4.95,
+   "t": 5.16,
    "dur": 1.551,
-   "card": 3,
-   "text": "Are they on its legs, like Chirp?"
+   "text": "Are they on its legs, like Chirp?",
+   "em": [
+    "legs",
+    "chirp"
+   ]
   },
   {
    "id": "L04",
+   "emo": "playful",
    "who": "loupe",
-   "t": 7.25,
-   "dur": 0.628,
-   "card": 3,
    "text": "Nope!",
-   "catch": true
+   "catch": true,
+   "t": 7.458,
+   "dur": 0.628,
+   "tune": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.5556,
+      "m": 49,
+      "syl": 0,
+      "w": 0
+     }
+    ]
+   }
   },
   {
    "id": "L05",
+   "emo": "surprised",
    "who": "loupe",
-   "t": 8.05,
-   "dur": 1.517,
-   "card": 4,
-   "text": "Its ears are on its tummy!"
+   "text": "Its ears are on its tummy!",
+   "em": [
+    "ears",
+    "tummy"
+   ],
+   "t": 8.291,
+   "dur": 1.906,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3978,
+      "d": 0.2778,
+      "m": 58,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6756,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.9533,
+      "d": 0.2778,
+      "m": 54,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.2311,
+      "d": 0.2778,
+      "m": 54,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.5089,
+      "d": 0.2778,
+      "m": 58,
+      "syl": 5,
+      "w": 5
+     },
+     {
+      "t": 1.7867,
+      "d": 0.2778,
+      "m": 56,
+      "syl": 6,
+      "w": 5
+     }
+    ]
+   }
   },
   {
    "id": "L06",
+   "emo": "curious",
    "who": "crumb",
-   "t": 10.4,
+   "t": 10.6,
    "dur": 1.219,
-   "card": 5,
-   "text": "But WHY on its tummy?"
+   "text": "But WHY on its tummy?",
+   "em": [
+    "why",
+    "tummy"
+   ]
   },
   {
    "id": "L07",
+   "emo": "calm",
    "who": "loupe",
-   "t": 12,
-   "dur": 1.72,
-   "card": 6,
-   "text": "To hear other grasshoppers sing!"
+   "text": "To hear other grasshoppers sing!",
+   "em": [
+    "hear",
+    "sing"
+   ],
+   "t": 12.24,
+   "dur": 2.219,
+   "tune": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2586,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3786,
+      "d": 0.2586,
+      "m": 56,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6372,
+      "d": 0.2586,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.8959,
+      "d": 0.2586,
+      "m": 54,
+      "syl": 3,
+      "w": 2
+     },
+     {
+      "t": 1.1545,
+      "d": 0.2586,
+      "m": 53,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.4131,
+      "d": 0.2586,
+      "m": 53,
+      "syl": 5,
+      "w": 3
+     },
+     {
+      "t": 1.6717,
+      "d": 0.2586,
+      "m": 51,
+      "syl": 6,
+      "w": 3
+     },
+     {
+      "t": 1.9303,
+      "d": 0.7759,
+      "m": 49,
+      "syl": 7,
+      "w": 4
+     }
+    ]
+   }
   },
   {
    "id": "L08",
+   "emo": "excited",
    "who": "loupe",
-   "t": 14.65,
-   "dur": 2.129,
-   "card": 7,
-   "text": "Many grasshoppers sing with their legs!"
+   "text": "Many grasshoppers sing with their legs!",
+   "em": [
+    "sing",
+    "legs"
+   ],
+   "t": 15.38,
+   "dur": 2.571,
+   "tune": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 53,
+      "syl": 1,
+      "w": 0
+     },
+     {
+      "t": 0.62,
+      "d": 0.25,
+      "m": 56,
+      "syl": 2,
+      "w": 1
+     },
+     {
+      "t": 0.87,
+      "d": 0.25,
+      "m": 58,
+      "syl": 3,
+      "w": 1
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 56,
+      "syl": 4,
+      "w": 1
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 58,
+      "syl": 5,
+      "w": 2
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 60,
+      "syl": 6,
+      "w": 3
+     },
+     {
+      "t": 1.87,
+      "d": 0.25,
+      "m": 58,
+      "syl": 7,
+      "w": 4
+     },
+     {
+      "t": 2.12,
+      "d": 0.5,
+      "m": 56,
+      "syl": 8,
+      "w": 5
+     }
+    ]
+   }
   },
   {
    "id": "L09",
+   "emo": "calm",
    "who": "loupe",
-   "t": 16.9,
-   "dur": 1.641,
-   "card": 8,
-   "text": "They rub a back leg on a wing!"
+   "text": "They rub a back leg on a wing!",
+   "em": [
+    "rub",
+    "leg",
+    "wing"
+   ],
+   "pace": 0.83,
+   "why": "giọng SHORT-015 (.765) đọc câu 8 âm tiết ở 4,2 âm tiết/s (> 4,0 cho trẻ 4–8 tuổi): chậm hơn 2 % (pace .8 thì base.en nghe thêm \"So\" ở đầu câu)",
+   "t": 18.13,
+   "dur": 2.168,
+   "tune": {
+    "mode": "sing-talk",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.25,
+      "m": 54,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.87,
+      "d": 0.25,
+      "m": 54,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 58,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 56,
+      "syl": 5,
+      "w": 5
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 54,
+      "syl": 6,
+      "w": 6
+     },
+     {
+      "t": 1.87,
+      "d": 0.5,
+      "m": 56,
+      "syl": 7,
+      "w": 7
+     }
+    ]
+   }
   },
   {
    "id": "L10",
+   "emo": "excited",
    "who": "loupe",
-   "t": 20.4,
-   "dur": 1.916,
-   "card": 9,
-   "text": "And its back legs are like springs!"
+   "text": "And its back legs are like springs!",
+   "em": [
+    "legs",
+    "springs"
+   ],
+   "t": 22.048,
+   "dur": 2.356,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.2679,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.3879,
+      "d": 0.2679,
+      "m": 54,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.6557,
+      "d": 0.2679,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.9236,
+      "d": 0.2679,
+      "m": 56,
+      "syl": 3,
+      "w": 3
+     },
+     {
+      "t": 1.1914,
+      "d": 0.2679,
+      "m": 58,
+      "syl": 4,
+      "w": 4
+     },
+     {
+      "t": 1.4593,
+      "d": 0.2679,
+      "m": 60,
+      "syl": 5,
+      "w": 5
+     },
+     {
+      "t": 1.7271,
+      "d": 0.8036,
+      "m": 61,
+      "syl": 6,
+      "w": 6
+     }
+    ]
+   }
   },
   {
    "id": "L11",
+   "emo": "excited",
+   "emo_k": 1.4,
    "who": "crumb",
-   "t": 23.05,
+   "t": 24.62,
    "dur": 1.011,
-   "card": 10,
-   "text": "Look at it go!"
+   "text": "Look at it go!",
+   "em": [
+    "go"
+   ]
   },
   {
    "id": "L12",
+   "emo": "happy",
    "who": "crumb",
-   "t": 24.6,
+   "t": 26.25,
    "dur": 0.867,
-   "card": 11,
-   "text": "A bug band!"
+   "text": "A bug band!",
+   "em": [
+    "band"
+   ]
   },
   {
    "id": "L13",
+   "emo": "happy",
    "who": "loupe",
-   "t": 25.75,
-   "dur": 1.351,
-   "card": 12,
-   "text": "The notes make a heart!"
+   "text": "Tummy ears, and legs that sing!",
+   "em": [
+    "tummy",
+    "ears",
+    "legs",
+    "sing"
+   ],
+   "was": "The notes make a heart!",
+   "why": "thành điệp khúc (gom hai bí mật, đọc theo được); trái tim nốt nhạc vẫn hiện trên hình. \"Tummy ears and singing legs!\" bị cả hai Whisper nghe \"Tommy\": đổi thành \"Tummy ears, and legs that sing!\"",
+   "t": 27.38,
+   "dur": 2.373,
+   "tune": {
+    "mode": "sing",
+    "pre": 0.12,
+    "chorus": "tummy",
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 58,
+      "syl": 1,
+      "w": 0
+     },
+     {
+      "t": 0.62,
+      "d": 0.5,
+      "m": 60,
+      "syl": 2,
+      "w": 1
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 58,
+      "syl": 3,
+      "w": 2
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 56,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 53,
+      "syl": 5,
+      "w": 4
+     },
+     {
+      "t": 1.87,
+      "d": 0.5,
+      "m": 61,
+      "syl": 6,
+      "w": 5
+     }
+    ]
+   }
   },
   {
    "id": "L14",
+   "emo": "proud",
    "who": "albie",
-   "t": 29.8,
+   "t": 31.6,
    "dur": 2.297,
-   "card": 13,
    "text": "Six legs? In you go!",
+   "em": [
+    "legs"
+   ],
    "catch": true
   },
   {
    "id": "L15",
+   "emo": "excited",
+   "emote": false,
    "who": "crumb",
-   "t": 33.35,
+   "t": 35.15,
    "dur": 1.185,
-   "card": 14,
-   "text": "Play it again! Louder!"
+   "text": "Play it again! Louder!",
+   "em": [
+    "louder"
+   ],
+   "why": "giữ ngữ điệu TTS gốc (emote: false): mọi cách uốn (excited 1,1 / .5, happy .5) làm base.en nghe thêm \"We will / I will\" ở đầu câu"
   },
   {
    "id": "L16",
+   "emo": "startled",
    "who": "loupe",
-   "t": 37.45,
+   "t": 39.25,
    "dur": 1.162,
-   "card": 15,
-   "text": "Oops! Too loud!"
+   "pace": 1,
+   "text": "Oops! Too loud!",
+   "em": [
+    "loud"
+   ],
+   "why": "giữ tốc độ .9 của bản cũ (câu cảm thán ngắn): ở .765 base.en nghe \"It oops, too loud\""
   },
   {
    "id": "L17",
+   "emo": "happy",
    "who": "loupe",
-   "t": 39.35,
-   "dur": 1,
-   "card": 16,
-   "text": "Where are YOUR ears?"
+   "text": "Tummy ears, and legs that sing!",
+   "em": [
+    "tummy",
+    "ears",
+    "legs",
+    "sing"
+   ],
+   "t": 41.38,
+   "dur": 2.373,
+   "tune": {
+    "mode": "sing",
+    "pre": 0.12,
+    "chorus": "tummy",
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 56,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 58,
+      "syl": 1,
+      "w": 0
+     },
+     {
+      "t": 0.62,
+      "d": 0.5,
+      "m": 60,
+      "syl": 2,
+      "w": 1
+     },
+     {
+      "t": 1.12,
+      "d": 0.25,
+      "m": 58,
+      "syl": 3,
+      "w": 2
+     },
+     {
+      "t": 1.37,
+      "d": 0.25,
+      "m": 56,
+      "syl": 4,
+      "w": 3
+     },
+     {
+      "t": 1.62,
+      "d": 0.25,
+      "m": 53,
+      "syl": 5,
+      "w": 4
+     },
+     {
+      "t": 1.87,
+      "d": 0.5,
+      "m": 61,
+      "syl": 6,
+      "w": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "L18",
+   "emo": "happy",
+   "who": "loupe",
+   "text": "Where are YOUR ears?",
+   "em": [
+    "your",
+    "ears"
+   ],
+   "cta": true,
+   "t": 44.13,
+   "dur": 1.246,
+   "tune": {
+    "mode": "half-sing",
+    "pre": 0.12,
+    "chorus": null,
+    "measured": true,
+    "notes": [
+     {
+      "t": 0.12,
+      "d": 0.25,
+      "m": 53,
+      "syl": 0,
+      "w": 0
+     },
+     {
+      "t": 0.37,
+      "d": 0.25,
+      "m": 54,
+      "syl": 1,
+      "w": 1
+     },
+     {
+      "t": 0.62,
+      "d": 0.25,
+      "m": 56,
+      "syl": 2,
+      "w": 2
+     },
+     {
+      "t": 0.87,
+      "d": 0.5,
+      "m": 58,
+      "syl": 3,
+      "w": 3
+     }
+    ]
+   }
   }
  ],
  "hit": {
@@ -225,183 +896,630 @@
    3.8
   ],
   "kneeGlow": [
-   4.95,
-   6.5
+   5.1,
+   6.7
   ],
   "slide": [
-   6.55,
-   7.15
+   6.75,
+   7.35
   ],
   "hush": [
-   6.6,
-   7.2
+   6.8,
+   7.4
   ],
-  "xmark": 7.25,
+  "xmark": 7.45,
   "footWag": [
-   7.3,
-   7.95
+   7.5,
+   8.15
   ],
   "sweep": [
-   8.05,
-   8.95
+   8.25,
+   9.15
   ],
   "wing": [
-   8.4,
-   8.95
+   8.6,
+   9.15
   ],
-  "earOn": 8.95,
+  "earOn": 9.15,
   "chirps": [
-   9.62,
-   9.95
+   9.82,
+   10.15
   ],
   "walk": [
-   8.3,
-   10.2
+   8.5,
+   10.4
   ],
   "tummyPat": [
-   10.5,
-   11.6
+   10.7,
+   11.8
   ],
   "far": [
-   12,
-   13.85
+   12.2,
+   14.05
   ],
   "farRings": [
-   12.35,
-   12.95,
-   13.45
+   12.55,
+   13.15,
+   13.65
   ],
-  "snap1": 13.85,
+  "snap1": 14.55,
   "fly1": [
-   13.95,
-   14.45
+   14.65,
+   15.15
   ],
-  "stamp1": 14.5,
+  "stamp1": 15.2,
   "legUp": [
-   15,
-   15.45
+   15.4,
+   15.85
   ],
   "saw": [
-   15.5,
-   19.55
+   15.9,
+   21.15
   ],
   "edge": [
-   16.9,
-   18.6
+   18.13,
+   19.83
   ],
   "solo": [
-   18.7,
-   18.95,
-   19.2,
-   19.45
+   20.3,
+   20.55,
+   20.8,
+   21.05
   ],
-  "snap2": 19.65,
+  "snap2": 21.25,
   "fly2": [
-   19.75,
-   20.25
+   21.35,
+   21.85
   ],
-  "stamp2": 20.3,
+  "stamp2": 21.9,
   "crouch": [
-   21.2,
-   22.35
+   22.85,
+   24.4
   ],
-  "launch": 22.4,
+  "launch": 24.48,
   "exit": [
-   22.4,
-   24.1
+   24.48,
+   25.8
   ],
   "pull": [
-   22.75,
-   23.35
+   24.8,
+   25.35
   ],
-  "land": 24.1,
+  "land": 25.8,
   "duet": [
-   24.35,
-   28.4
+   26,
+   30.3
   ],
   "heart": [
-   25.55,
-   26.75
+   27.3,
+   28.4
   ],
   "star": [
-   26.75,
-   27.6
+   28.4,
+   29.2
   ],
   "smile": [
-   27.6,
-   28.45
+   29.2,
+   30.05
   ],
-  "finale": 28.05,
+  "finale": 29.85,
   "lensUp": [
-   27.9,
-   28.45
+   29.75,
+   30.3
   ],
-  "snap3": 28.55,
+  "snap3": 30.35,
   "zoomIn": [
-   28.65,
-   28.95
+   30.45,
+   30.75
   ],
   "zoomOut": [
-   28.95,
-   29.3
+   30.75,
+   31.1
   ],
-  "stamp3": 29.45,
+  "stamp3": 31.25,
   "slotsDown": [
-   29.3,
-   29.7
+   31.1,
+   31.5
   ],
   "hopIn": [
-   29.55,
-   30.15
+   31.35,
+   31.95
   ],
   "counts": [
-   30.25,
-   30.45,
-   30.65
+   32.05,
+   32.25,
+   32.45
   ],
   "plunge": [
-   31.3,
-   31.75
+   33.1,
+   33.55
   ],
-  "gulp": 31.75,
-  "mini": 31.9,
+  "gulp": 33.55,
+  "mini": 33.7,
   "flip": [
-   32.6,
-   33.1
+   34.4,
+   34.9
   ],
   "encore": [
-   34.6,
-   36.25
+   36.4,
+   38.05
   ],
   "lensRing2": [
-   35.05,
-   36.3
+   36.85,
+   38.1
   ],
   "loud": [
-   35.45,
-   36.25
+   37.25,
+   38.05
   ],
-  "chirpCover": 36.3,
-  "hopCover": 36.65,
-  "loupeCover": 37.05,
-  "giggle2": 38.75,
+  "chirpCover": 38.1,
+  "hopCover": 38.45,
+  "loupeCover": 38.85,
+  "giggle2": 40.55,
   "uncover": [
-   40.55,
-   40.75,
-   40.95
+   40.85,
+   41.05,
+   41.25
+  ],
+  "ch2": [
+   41.38,
+   43.8
   ],
   "home": [
-   41.2,
-   42.85
+   43.8,
+   45.4
   ],
-  "recall": 42.6,
+  "recall": 45.1,
   "loop": [
-   43.1,
-   44
+   45.4,
+   46
   ],
   "rollo": [
-   36.8,
-   41.4
+   38.6,
+   43.2
+  ]
+ },
+ "standard": "2026-11b",
+ "song": {
+  "key": "Db",
+  "tonic": 1,
+  "film": 120,
+  "parts": [
+   {
+    "t0": 0,
+    "t1": 3.8,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "Db Gb,Ab"
+   },
+   {
+    "t0": 3.8,
+    "t1": 7.3,
+    "bpm": 108,
+    "beat": 0.555556,
+    "origin": 3.8,
+    "meter": 4,
+    "chords": "Db Bbm Gb Ab"
+   },
+   {
+    "t0": 7.3,
+    "t1": 10.55,
+    "bpm": 108,
+    "beat": 0.555556,
+    "origin": 7.3,
+    "meter": 4,
+    "chords": "Db Gb Db Ab"
+   },
+   {
+    "t0": 10.55,
+    "t1": 15.2,
+    "bpm": 116,
+    "beat": 0.517241,
+    "origin": 10.55,
+    "meter": 4,
+    "chords": "Gb Db Ab Db"
+   },
+   {
+    "t0": 15.2,
+    "t1": 21.9,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "Db Ab Gb Ab"
+   },
+   {
+    "t0": 21.9,
+    "t1": 25.8,
+    "bpm": 112,
+    "beat": 0.535714,
+    "origin": 21.9,
+    "meter": 4,
+    "chords": "Db Ab"
+   },
+   {
+    "t0": 25.8,
+    "t1": 41,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "Ab,Db Db,Gb"
+   },
+   {
+    "t0": 41,
+    "t1": 46,
+    "bpm": 120,
+    "beat": 0.5,
+    "origin": 0,
+    "meter": 4,
+    "chords": "Db,Gb Ab,Db"
+   }
+  ],
+  "chart": [
+   [
+    0,
+    2,
+    "Db"
+   ],
+   [
+    2,
+    3.8,
+    "Gb"
+   ],
+   [
+    3.8,
+    6.022,
+    "Db"
+   ],
+   [
+    6.022,
+    7.3,
+    "Bbm"
+   ],
+   [
+    7.3,
+    9.522,
+    "Db"
+   ],
+   [
+    9.522,
+    10.55,
+    "Gb"
+   ],
+   [
+    10.55,
+    12.619,
+    "Gb"
+   ],
+   [
+    12.619,
+    14.688,
+    "Db"
+   ],
+   [
+    14.688,
+    15.2,
+    "Ab"
+   ],
+   [
+    15.2,
+    16,
+    "Db"
+   ],
+   [
+    16,
+    18,
+    "Ab"
+   ],
+   [
+    18,
+    20,
+    "Gb"
+   ],
+   [
+    20,
+    21.9,
+    "Ab"
+   ],
+   [
+    21.9,
+    24.043,
+    "Db"
+   ],
+   [
+    24.043,
+    25.8,
+    "Ab"
+   ],
+   [
+    25.8,
+    26,
+    "Db"
+   ],
+   [
+    26,
+    28,
+    "Db"
+   ],
+   [
+    28,
+    30,
+    "Ab"
+   ],
+   [
+    30,
+    32,
+    "Db"
+   ],
+   [
+    32,
+    34,
+    "Ab"
+   ],
+   [
+    34,
+    36,
+    "Db"
+   ],
+   [
+    36,
+    38,
+    "Ab"
+   ],
+   [
+    38,
+    40,
+    "Db"
+   ],
+   [
+    40,
+    41,
+    "Ab"
+   ],
+   [
+    41,
+    42,
+    "Gb"
+   ],
+   [
+    42,
+    44,
+    "Ab"
+   ],
+   [
+    44,
+    46,
+    "Db"
+   ]
+  ],
+  "motif": [
+   {
+    "b": 0,
+    "d": 0.5,
+    "s": 7
+   },
+   {
+    "b": 0.5,
+    "d": 0.5,
+    "s": 9
+   },
+   {
+    "b": 1,
+    "d": 1,
+    "s": 11
+   },
+   {
+    "b": 2,
+    "d": 0.5,
+    "s": 9
+   },
+   {
+    "b": 2.5,
+    "d": 0.5,
+    "s": 7
+   },
+   {
+    "b": 3,
+    "d": 0.5,
+    "s": 4
+   },
+   {
+    "b": 3.5,
+    "d": 1,
+    "s": 12
+   }
+  ]
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 2.55,
+   "what": "Crumb thổi còi lá cỏ PWEEET!, cả ba giật mình, mỗi người \"nghe\" ở một chỗ; \"Where does a grasshopper hide its ears?\""
+  },
+  {
+   "id": "setup",
+   "t0": 2.55,
+   "t1": 5.1,
+   "what": "Ba ô sticker trống; logo lao vào kính; \"Let's zoom in!\""
+  },
+  {
+   "id": "discovery",
+   "t0": 5.1,
+   "t1": 34.9,
+   "what": "Tai Chirp ở đầu gối · \"Nope!\": tai châu chấu ở bụng · hát bằng chân (đùi kéo dọc mép cánh) · chân như lò xo, BOING! · song tấu, điệp khúc lần 1 · sổ: \"Six legs? In you go!\""
+  },
+  {
+   "id": "surprise",
+   "t0": 34.9,
+   "t1": 41.38,
+   "what": "\"Play it again! Louder!\": TOO LOUD! Chirp bịt đầu gối, Hop bịt bụng, Miss Loupe bịt... kính; \"Oops! Too loud!\""
+  },
+  {
+   "id": "payoff",
+   "t0": 41.38,
+   "t1": 44.13,
+   "what": "Điệp khúc lần 2: bỏ tay ra, Chirp và Hop chơi khe khẽ, cả nhóm nhún theo (nhạc cụ chơi giai điệu)"
+  },
+  {
+   "id": "cta",
+   "t0": 44.13,
+   "t1": 46,
+   "what": "\"Where are YOUR ears?\": trẻ chỉ vào tai mình; Crumb nhặt lá cỏ mới, chữ móc trở lại, về khung đầu"
+  }
+ ],
+ "shots": [
+  {
+   "t": 0,
+   "kind": "trung, sân khấu gốc cây; chữ móc ở trời",
+   "why": "hành động ở khung 0: Crumb thổi còi lá cỏ"
+  },
+  {
+   "t": 0.4,
+   "kind": "rung máy, vòng âm bay tới",
+   "why": "phản ứng: cả ba giật mình, mỗi người \"nghe\" ở một chỗ"
+  },
+  {
+   "t": 2.05,
+   "kind": "đẩy nhẹ, hai dấu hỏi",
+   "why": "bí ẩn chưa giải: tai ở đâu?"
+  },
+  {
+   "t": 3,
+   "kind": "logo lao vào kính → kính lớn",
+   "why": "nhận diện kênh ≤ 0,8 s, vào bí mật 1"
+  },
+  {
+   "t": 5.1,
+   "kind": "phóng trong kính vào đầu gối Chirp",
+   "why": "tai của dế ở chân: gài cho câu hỏi của Crumb"
+  },
+  {
+   "t": 6.75,
+   "kind": "kính trượt sang chân trước của Hop",
+   "why": "không có gì → \"Nope!\""
+  },
+  {
+   "t": 8.25,
+   "kind": "quét dọc sườn Hop, cánh nhấc như rèm",
+   "why": "bí mật 1 xảy ra: lộ màng nghe ở bụng"
+  },
+  {
+   "t": 10.6,
+   "kind": "lùi trong kính, Crumb vỗ bụng hỏi",
+   "why": "\"But WHY on its tummy?\""
+  },
+  {
+   "t": 12.2,
+   "kind": "lia trong kính sang châu chấu xa hát",
+   "why": "nghe bạn hát: vòng âm chạm màng nghe"
+  },
+  {
+   "t": 14.55,
+   "kind": "chụp, sticker 1 bay lên ô",
+   "why": "lấp ô 1 \"Tummy ears!\""
+  },
+  {
+   "t": 15.4,
+   "kind": "đẩy vào đùi sau của Hop",
+   "why": "bí mật 2: hát bằng chân"
+  },
+  {
+   "t": 18.13,
+   "kind": "phóng sát mép cánh, đường kéo sáng",
+   "why": "\"They rub a back leg on a wing!\""
+  },
+  {
+   "t": 20.3,
+   "kind": "lùi nhẹ: Hop độc tấu",
+   "why": "nghe tiếng hát bằng chân"
+  },
+  {
+   "t": 21.25,
+   "kind": "chụp, sticker 2 bay lên ô",
+   "why": "lấp ô 2 \"Leg song!\""
+  },
+  {
+   "t": 22.85,
+   "kind": "đẩy vào chân sau co lại, lò xo nén",
+   "why": "bí mật 3: chân như lò xo"
+  },
+  {
+   "t": 24.48,
+   "kind": "BOING! máy ngước theo Hop lên trời",
+   "why": "khoảnh khắc wow: nhảy ra khỏi kính"
+  },
+  {
+   "t": 25.8,
+   "kind": "cảnh rộng sân khấu, Hop đáp cạnh Chirp",
+   "why": "nối vào song tấu"
+  },
+  {
+   "t": 27.3,
+   "kind": "nốt nhạc xếp thành trái tim",
+   "why": "điệp khúc lần 1: \"Tummy ears, and legs that sing!\""
+  },
+  {
+   "t": 28.4,
+   "kind": "nốt thành ngôi sao, rồi mặt cười",
+   "why": "giữ nhịp đổi hình trong song tấu"
+  },
+  {
+   "t": 30.35,
+   "kind": "kính giơ lên chụp → match cut qua sticker → trang sổ",
+   "why": "chuyển cảnh kính → sổ có chuyển động nối"
+  },
+  {
+   "t": 32.05,
+   "kind": "Hop nhún, Albie đếm chân",
+   "why": "\"Six legs? In you go!\" nói trong lúc có hành động"
+  },
+  {
+   "t": 33.1,
+   "kind": "đẩy nhẹ: Hop nhảy vào trang",
+   "why": "câu cửa miệng có hành động"
+  },
+  {
+   "t": 34.4,
+   "kind": "lật trang về sân khấu",
+   "why": "mở gag"
+  },
+  {
+   "t": 36.4,
+   "kind": "máy rung theo song tấu to dần",
+   "why": "gag: \"Louder!\""
+  },
+  {
+   "t": 38.1,
+   "kind": "đẩy nhanh từng người bịt \"tai\"",
+   "why": "bất ngờ: mỗi người bịt một chỗ, Miss Loupe bịt... kính"
+  },
+  {
+   "t": 39.25,
+   "kind": "lùi ra, Miss Loupe cười ngượng",
+   "why": "\"Oops! Too loud!\""
+  },
+  {
+   "t": 41.38,
+   "kind": "lùi ra cả nhóm nhún theo nhạc khe khẽ",
+   "why": "điệp khúc lần 2: trẻ đọc theo, nhạc chơi giai điệu"
+  },
+  {
+   "t": 44.13,
+   "kind": "đẩy vào Miss Loupe hỏi; chữ móc trở lại, về khung 0",
+   "why": "CTA và vòng lặp liền"
+  }
+ ],
+ "secret": {
+  "kw": [
+   "ears",
+   "tummy",
+   "legs",
+   "sing",
+   "springs"
   ]
  }
 }

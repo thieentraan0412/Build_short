@@ -3,57 +3,110 @@
   "id": "L01",
   "text": "Can you sneak up on a dragonfly?",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "sneak",
+   "dragonfly"
+  ]
  },
  {
   "id": "L02",
   "text": "From behind, it can't see me!",
   "voice": "af_jessica",
   "speed": 0.85,
-  "pitch": 5
+  "pitch": 5,
+  "kw": [
+   "behind",
+   "see"
+  ],
+  "emo": "proud",
+  "emo_k": 1.1,
+  "home": 61
  },
  {
   "id": "L03",
   "text": "Crumb only sees its back.",
   "voice": "af_heart",
-  "speed": 0.765
+  "speed": 0.765,
+  "kw": [
+   "back"
+  ]
  },
  {
   "id": "L04",
   "text": "But Zip can see Crumb!",
   "voice": "af_heart",
-  "speed": 0.765
+  "speed": 0.765,
+  "kw": [
+   "zip",
+   "see"
+  ]
  },
  {
   "id": "L05",
   "text": "Oh no!",
   "voice": "af_jessica",
-  "speed": 0.85,
-  "pitch": 5
+  "speed": 0.68,
+  "pitch": 5,
+  "emo": "startled",
+  "emo_k": 0.5,
+  "home": 61
  },
  {
   "id": "L06",
-  "text": "Its big eyes see almost all around!",
+  "text": "Big eyes see almost all around!",
   "voice": "af_heart",
-  "speed": 0.765
+  "speed": 0.765,
+  "kw": [
+   "eyes",
+   "around"
+  ]
  },
  {
   "id": "L07",
   "text": "Six legs? In you go!",
   "voice": "bm_lewis",
-  "speed": 0.8
+  "speed": 0.8,
+  "kw": [
+   "legs"
+  ],
+  "emo": "proud",
+  "emo_k": 0.5,
+  "home": 41,
+  "catch": true
  },
  {
   "id": "L08",
   "text": "Oh! I scared myself!",
   "voice": "af_jessica",
   "speed": 0.85,
-  "pitch": 5
+  "pitch": 5,
+  "kw": [
+   "scared"
+  ],
+  "emo": "playful",
+  "emo_k": 1.1,
+  "home": 61
  },
  {
   "id": "L09",
+  "text": "Big eyes see almost all around!",
+  "voice": "af_heart",
+  "speed": 0.765,
+  "kw": [
+   "eyes",
+   "around"
+  ]
+ },
+ {
+  "id": "L10",
   "text": "Can YOU sneak up on Zip?",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "you",
+   "sneak",
+   "zip"
+  ]
  }
 ]

@@ -3,54 +3,98 @@
   "id": "L01",
   "text": "Could you fly backwards?",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "fly",
+   "backwards"
+  ]
  },
  {
   "id": "L02",
   "text": "Let's zoom in!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.9,
+  "kw": [
+   "zoom"
+  ]
  },
  {
   "id": "L03",
   "text": "Dragonflies can fly backwards!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.9,
+  "kw": [
+   "dragonflies",
+   "backwards"
+  ]
  },
  {
   "id": "L04",
   "text": "And stay still in the air!",
   "voice": "af_heart",
-  "speed": 0.765
+  "speed": 0.765,
+  "kw": [
+   "still",
+   "air"
+  ]
  },
  {
   "id": "L05",
   "text": "Front wings up, back wings down!",
   "voice": "af_heart",
-  "speed": 0.765
+  "speed": 0.765,
+  "kw": [
+   "front",
+   "up",
+   "back",
+   "down"
+  ]
  },
  {
   "id": "L06",
   "text": "Six legs? In you go!",
   "voice": "bm_lewis",
-  "speed": 0.8
- },
- {
-  "id": "L07",
-  "text": "I can go backwards too!",
-  "voice": "af_heart",
-  "speed": 0.765
+  "speed": 0.8,
+  "kw": [
+   "legs"
+  ],
+  "emo": "proud",
+  "emo_k": 0.5,
+  "home": 41,
+  "catch": true
  },
  {
   "id": "L08",
   "text": "Watch the corners!",
   "voice": "bm_lewis",
-  "speed": 0.8
+  "speed": 0.8,
+  "kw": [
+   "corners"
+  ],
+  "emo": "playful",
+  "emo_k": 0.5,
+  "home": 41
  },
  {
   "id": "L09",
+  "text": "Front wings up, back wings down!",
+  "voice": "af_heart",
+  "speed": 0.765,
+  "kw": [
+   "front",
+   "up",
+   "back",
+   "down"
+  ]
+ },
+ {
+  "id": "L10",
   "text": "Which way is Zip flying?",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "zip",
+   "flying"
+  ]
  }
 ]

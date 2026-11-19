@@ -1,315 +1,386 @@
-# SHORT-013 · Grasshoppers Hide Their Ears in a Funny Place! 🦗 — Treatment
+# SHORT-013 · Grasshoppers Hide Their Ears in a Funny Place! 🦗 — Treatment (chuẩn 11/2026b)
 
-**Tựa đăng YouTube:** *Grasshoppers Hide Their Ears in a Funny Place! 🦗 | Big Secrets of Tiny Bugs* (tiếng Việt tham khảo: *Châu chấu giấu tai ở một chỗ thật buồn cười!*)
+> Khung: [`_shared/TREATMENT-TEMPLATE.md`](../../_shared/TREATMENT-TEMPLATE.md). Quy tắc và ngưỡng: [`QUALITY.md`](../../_shared/QUALITY.md) §1–§10. Mã của tập chép từ [`_shared/template/`](../../_shared/template/).
+> **Dựng lại 19/11/2026** theo SHORT-016 ([`Task.md`](../../Task.md): "update từ short 11 đến short 13 theo short 16"). Giữ câu chuyện, ba bí mật, cú nhảy ra khỏi kính, song tấu và gag "TOO LOUD!" của bản 44 s ngày 14/11/2026; bản cũ xem trong git (`git show 3ecd751:films/short-013/TREATMENT.md`).
 
-**Thông số:**
-- **Tập A** tuần 14/12/2026 (Thứ Hai), Tập 5 *Where Are a Grasshopper's Ears?* của kế hoạch kênh. Hạn dựng xong: Chủ Nhật 29/11 (kế hoạch nâng cấp §8).
-- Short dọc 1080×1920, 30 fps, **44 giây**, lưới 4/4 ở 120 BPM (22 ô nhịp, mỗi ô 2 s). Khung tập A là khoảng 45 s.
-- Tiếng Anh cho lời, chữ trên hình và phụ đề. Khán giả 4–8 tuổi.
-- Phong cách nhân vật **v2 "Kẹo Phẳng Viền"** (`LOOK.v = 2`, CHARACTER-BIBLE §10). **Hop** (châu chấu) ra mắt ở tập này.
+**Tựa đăng YouTube:** *Grasshoppers Hide Their Ears in a Funny Place! 🦗 | Big Secrets of Tiny Bugs* · **Loại:** tập A (46,0 s) · **Ngày đăng:** Thứ Hai 14/12/2026
+**Căn cứ:** đề cương ([`DE-CUONG-CAC-BO.md`](../../DE-CUONG-CAC-BO.md), SHORT-013; Tập 5 của kế hoạch kênh), dữ kiện và nguồn [`FACTS.md`](FACTS.md) (không thêm dữ kiện mới), SHORT-001 / 014 / 015 (không lặp dàn cảnh: xem bản cũ).
+**Made for Kids:** không kêu gọi bình luận, đăng ký, like, share trong phim.
 
-**Căn cứ:**
-- Đề cương: [DE-CUONG-CAC-BO.md](../../DE-CUONG-CAC-BO.md), SHORT-013; kế hoạch kênh, Tập 5 ([KE-HOACH-PHAT-TRIEN-KENH.md](../../KE-HOACH-PHAT-TRIEN-KENH.md)).
-- Bộ tiêu chí kênh: [`_shared/QUALITY.md`](../../_shared/QUALITY.md).
-- Công thức tập A 45 s của [kế hoạch nâng cấp](../../PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md) (mục 3, 6 và ghi chú 013 ở mục 7).
-- Dữ kiện và nguồn: [FACTS.md](FACTS.md).
+## 1. Đánh giá ý tưởng
 
-**Ghi chú 013 của kế hoạch nâng cấp và cách tập này đáp ứng:**
+- **Bí mật khoa học** (FACTS.md): tai của châu chấu nằm ở hai bên bụng (để nghe bạn hát); nhiều loài châu chấu hát bằng cách cọ đùi sau vào mép cánh; chân sau dài khoẻ như lò xo.
+- **Vì sao trẻ 4–8 tuổi tò mò:** "tai ở bụng" là điều buồn cười, trẻ chỉ vào bụng mình được ngay; câu hỏi kết *"Where are YOUR ears?"* đưa trẻ về chính cơ thể mình.
+- **Khoảnh khắc wow:** kính quét dọc sườn Hop, cánh nhấc lên như tấm rèm, màng nghe tròn bên bụng sáng lên (TUMMY!); Hop co chân như lò xo rồi BOING! nhảy ra khỏi mặt kính; song tấu của Chirp và Hop, nốt nhạc xếp thành trái tim, ngôi sao, mặt cười.
+- **Không trùng** các tập trước (giữ bảng của bản cũ): không áp tai vào bụng (014), không cận hàng gai (015), không đêm trăng (001). Bài hát mới ("Meadow Cumbia", Rê giáng trưởng, motif mới); điệu riêng `cumbia` giữ nguyên.
+- **Ba cấu trúc đã cân nhắc** (giữ lựa chọn của bản 14/11/2026):
 
-| Ghi chú | Cách làm |
-|---|---|
-| Móc "Chirp và Hop đứng cạnh nhau" đang tĩnh → cả hai giật mình vì một tiếng động, mỗi con "nghe" bằng một chỗ khác | Khung 0: Crumb phồng má thổi còi lá cỏ "PWEEET!". Vòng âm bay tới, cả ba giật mình: **đầu gối Chirp** loé sáng, **bụng Hop** loé sáng, **kính Miss Loupe** rung "ong ong". Chirp giơ chân về phía tiếng, Hop xoay sườn về phía tiếng: hai cách "nghe" thấy được bằng mắt |
-| Chirp và Hop phải khác nhau rõ ở hình (bài học 005) | Cùng "họ hình" (cố ý, để móc "trông khá giống nhau" có nghĩa), nhưng khác màu (xanh chanh / xanh lá đậm), râu (rất dài vắt ra sau / ngắn dày chĩa trước), cánh (xanh lá có hai gai đuôi / nâu vàng xếp mái nhà), chỗ tai (chân trước / bụng). Bảng so sánh ở [modelsheet.jpg](modelsheet.jpg) |
-| Tập thử "Nope!" ở bí mật 1 (KE-HOACH §10): chỉ đổi biến số đó | "Nope!" nằm ở 7,25 s (bí mật 1, khung 3,8–14 s). Mọi phần khác giữ đúng công thức 45 s: logo 0,8 s trong cú lao vào kính, ô "1 2 3", kính lớn, sổ ≤ 4,5 s, gag kết, vòng lặp |
+| Cấu trúc | Ưu | Nhược |
+|---|---|---|
+| A. Đúng thứ tự kế hoạch, đố trước | Ba sticker là ba điều khác nhau | Kính soi hàng gai trùng 015; móc tĩnh; gag không có đạo cụ gài trước |
+| B. Song tấu mở đầu | Có nhạc và hành động ngay | Mất cú wow giữa phim và cú "to quá" của gag |
+| C. "Ai nghe ở đâu?": còi lá cỏ ở khung 0, mỗi người "nghe" một chỗ (gài ba chỗ sẽ bịt ở gag); "Nope!" ở bí mật 1; hát bằng chân cỡ trung; BOING ra khỏi kính; song tấu; sổ; gag bịt tai | Móc là hành động và là câu đố; gag là vần của móc; không trùng 014 / 015 | Nhiều việc dựng nhất |
 
-**Không trùng với các tập kề bên:**
-- **SHORT-001** (tai dế ở chân trước, đêm, "On its head? Nope!"): tập này không soi tai Chirp làm bí mật; tai Chirp chỉ là câu đoán sai ("like Chirp?"), đúng với dế nhưng sai với châu chấu. Bối cảnh trưa nắng, không phải đêm trăng.
-- **SHORT-014** (bản B, Crumb áp tai vào bụng Hop, bụng Crumb sôi "ục ục", Hop nhảy vọt khỏi khung): ở đây **không ai áp tai vào bụng**; màng nghe được tìm bằng **kính quét dọc sườn**, cánh nhấc lên như tấm rèm. Cú nhảy của Hop là **nhảy ra khỏi mặt kính** rồi rơi về đúng gốc cây (không ra khỏi khung, không có tiếng bụng sôi).
-- **SHORT-015** (bản B, cận hàng gai trên đùi cọ vào cánh; Miss Loupe thử cọ chân ra "squeak"): ở đây cảnh hát bằng chân ở **cỡ trung**, mép cánh loé sáng và vòng âm, không cận hàng gai; Miss Loupe không thử cọ chân. Gag của tập là "to quá, bịt tai".
-- Màu nhạc khác mọi tập trước: "Meadow Cumbia Duet" ở **Rê giáng trưởng**, giọng kênh chưa dùng (001 Đô, 002 Sol, 003 Rê thứ/Fa, 004 Fa, 005 La, 006 Mi, 007 Si giáng, 008 La giáng, 009 Rê, 010 Mi giáng). Điệu riêng: **cumbia** (bộ gõ `guira`).
+  **Chọn C.** Lượt 11/2026b thêm: bài hát của tập, 11/18 câu đọc vào phách (66 % số từ), điệp khúc *"Tummy ears, and legs that sing!"* (lần 1 trong song tấu, thay câu *"The notes make a heart!"*; lần 2 sau gag, trước câu hỏi kết), chữ móc giữa phía trên, kính ghi độ phóng / lia, song tấu bắt đầu đúng ô nhịp của phim.
+- **Rủi ro và cách xử lý:**
+  - Miss Loupe đọc chậm như SHORT-015 (.765; bản 44 s cũ đọc .9) và có thêm điệp khúc lần 2: 44 → 46 s (≤ 48 s của tập A). Mọi mốc hình đọc từ `HIT` / `LINES` (bản cũ có vài mốc viết số: 30 s, 38,6 s, 41,6 s…), lịch dời theo độ dài giọng thật.
+  - Điệp khúc "Tummy ears and singing legs!" bị cả hai Whisper nghe "Tommy": đổi thành "Tummy ears, and legs that sing!".
+  - Chữ móc 'mid' đè Chirp và Hop trên gốc cây: thu máy (z 1,6), đặt cao, khối chữ tâm y 590 (vẫn trong vùng giữa phía trên).
 
-## 1. Ba cấu trúc đã cân nhắc
+## 2. Hook tối ưu (0–3 s)
 
-| | Cấu trúc | Ưu | Nhược |
+| Nhịp | Hình | Lời / chữ | Tiếng |
 |---|---|---|---|
-| A | **Đúng thứ tự kế hoạch kênh, đố trước:** móc bằng câu hỏi; bí mật 1 "Nope!" tai ở bụng; bí mật 2 hát bằng chân (kính soi hàng gai); bí mật 3 chân lò xo; song tấu; sổ; gag bịt tai | Bám kế hoạch, ba sticker là ba điều khác nhau | Kính soi hàng gai trùng SHORT-015; móc chỉ có hai con đứng cạnh nhau (tĩnh, ghi chú 013 đã cảnh báo); gag bịt tai không có đạo cụ gài trước |
-| B | **Song tấu mở đầu:** khung 0 là màn song tấu đang diễn, móc là "ai nghe bằng gì?"; ba bí mật kể ngược từ tiếng nhạc | Móc có nhạc và hành động ngay | Song tấu là cảnh đặc trưng, đem lên đầu thì giữa phim không còn cú wow; tiếng to ở khung 0 làm mất cú "to quá" của gag; trẻ chưa biết ai là ai |
-| C | **"Ai nghe ở đâu?":** khung 0 Crumb thổi còi lá cỏ; cả ba giật mình, mỗi người "nghe" một chỗ (đầu gối Chirp, bụng Hop, kính Miss Loupe) — gài sẵn ba chỗ sẽ bị bịt ở gag. Bí mật 1 có "Nope!": kính so chân trước của Chirp với chân trước của Hop, rồi quét dọc sườn, cánh nhấc lên lộ màng nghe; "But WHY?" trả lời bằng công dụng (nghe bạn hát). Bí mật 2: hát bằng chân ở cỡ trung. Bí mật 3: co chân như lò xo, BOING, **nhảy ra khỏi mặt kính**, máy ngước theo rồi cúi xuống cảnh rộng. Song tấu: nốt xếp thành hình. Sổ. Gag: "Play it again! Louder!" → to quá → bịt đúng ba chỗ đã gài → bỏ tay ra, đứng cạnh nhau (vòng lặp) | Móc là hành động và chính là câu đố; gag là vần của móc (cùng ba chỗ "nghe"); cú nhảy ra khỏi kính là thứ chỉ thủ pháp kính làm được; không trùng 014/015 | Nhiều việc dựng nhất (chuyển cảnh kính → trời → cảnh rộng; nốt xếp hình) |
+| 0–1 s gây chú ý | Khung 0: Crumb phồng má thổi còi lá cỏ "PWEEET!"; vòng âm bay tới; chữ HIDDEN / EARS?! ở trời, mặt cả bốn nhân vật ở y ≈ 1050–1330 dưới chữ | HIDDEN EARS?! · *"Where does a grasshopper hide its ears?"* (đọc vào phách, từ 0,38 s) | còi lá cỏ, nhạc từ giây 0 |
+| 1–2 s nhân vật phản ứng | cả ba giật mình, mỗi người "nghe" một chỗ: đầu gối Chirp loé sáng, bụng Hop loé sáng, kính Miss Loupe rung | (câu hỏi tiếp) | gáy, boing, kính rung "ong ong" |
+| 2–3 s bí ẩn chưa giải | hai dấu hỏi trên Chirp và Hop; ba ô sticker trống "1 2 3" | | "hử?", pop |
 
-**Chọn C.**
-- Giữ của kế hoạch: nhân vật (Miss Loupe, Crumb, Albie có lời; Chirp, Hop không lời), "Nope!" ở bí mật 1, câu của Crumb *"But WHY on its tummy?"*, ba bí mật theo đúng thứ tự (tai ở bụng → hát bằng chân → chân lò xo), song tấu nốt bay thành hình, gag "Chirp bịt đầu gối, Hop bịt bụng, Miss Loupe bịt… kính", vòng lặp "cả ba bỏ tay ra, lại đứng cạnh nhau".
-- Đổi: câu móc "Where are a grasshopper's ears?" thành *"Where does a grasshopper hide its ears?"* (Whisper nghe câu cũ thành "Wear a grasshopper's ears", mục 10); câu đoán "On its legs, like Chirp's?" thành *"Are they on its legs, like Chirp?"* (câu cũ bị nghe thành "like cherubs"). Nghĩa giữ nguyên, câu mới gần tựa tập hơn ("hide").
+## 3. Kịch bản hoàn chỉnh (6 nhịp)
 
-## 2. Logline và mạch truyện
+| Nhịp | Thời gian | Chuyện xảy ra | Lời (ai nói) |
+|---|---|---|---|
+| Hook | 0–2,55 s | Còi lá cỏ, cả ba giật mình | Miss Loupe: ♪ *"Where does a grasshopper hide its ears?"* |
+| Setup | 2,55–5,1 s | Ba ô sticker; logo lao vào kính | ♪ *"Let's zoom in!"* |
+| Discovery | 5,1–34,9 s | Tai Chirp ở đầu gối · "Nope!" · tai ở bụng (TUMMY!) · nghe bạn hát · hát bằng chân · chân như lò xo, BOING! ra khỏi kính · song tấu, điệp khúc 1 · sổ | Crumb: *"Are they on its legs, like Chirp?"* · ♪ *"Nope!"* · ♪ *"Its ears are on its tummy!"* · Crumb: *"But WHY on its tummy?"* · ♪ *"To hear other grasshoppers sing!"* · ♪ *"Many grasshoppers sing with their legs!"* · ♪ *"They rub a back leg on a wing!"* · ♪ *"And its back legs are like springs!"* · Crumb: *"Look at it go!"*, *"A bug band!"* · ♪ *"Tummy ears, and legs that sing!"* · Albie: *"Six legs? In you go!"* |
+| Surprise | 34,9–41,38 s | "Play it again! Louder!": TOO LOUD! Chirp bịt đầu gối, Hop bịt bụng, Miss Loupe bịt… kính; bỏ tay ra | Crumb: *"Play it again! Louder!"* · Miss Loupe: *"Oops! Too loud!"* |
+| Payoff | 41,38–44,13 s | Điệp khúc 2: Chirp và Hop chơi khe khẽ, nốt nhỏ bay lên, cả nhóm nhún | ♪ *"Tummy ears, and legs that sing!"* |
+| CTA | 44,13–46 s | Crumb nhặt lá cỏ mới; chữ móc trở lại; về khung đầu | ♪ *"Where are YOUR ears?"* (trẻ chỉ vào tai mình) |
 
-**Logline:** Giữa trưa trên bãi cỏ khô, Chirp (dế) và Hop (châu chấu, khách mới) đứng cạnh nhau trên một gốc cây, trông gần như sinh đôi. Crumb thổi còi lá cỏ, và mỗi người giật mình ở một chỗ khác nhau. Ba bí mật của châu chấu: tai nằm ở hai bên bụng; nhiều loài châu chấu hát bằng cách cọ chân sau vào cánh; đôi chân sau bật như lò xo.
+Thông điệp: mỗi con vật nghe ở một chỗ khác nhau; tai không nhất thiết ở trên đầu.
 
-- **Mở (0–3 s):** khung 0 Crumb phồng má, lá cỏ ở miệng; Chirp và Hop đứng cạnh nhau trên gốc cây; chữ HIDDEN / EARS?! đủ ở khung 0. "PWEEET!" Vòng âm bay tới, cả ba giật mình: đầu gối Chirp loé sáng, bụng Hop loé sáng, kính Miss Loupe rung. Miss Loupe hỏi trẻ: *"Where does a grasshopper hide its ears?"* Chirp giơ chân về phía tiếng, Hop xoay sườn về phía tiếng, rồi hai bạn nhìn nhau "?". Chữ móc rời đi, ô "1 2 3" hiện.
-- **Logo (3,0–3,8 s):** Miss Loupe giơ kính, máy lao vào mặt kính, logo 0,8 s, máy xuyên qua thành kính lớn.
-- **Bí mật 1, có "Nope!" (3,8–14,5 s):**
-  - *"Let's zoom in!"* Kính thấy hai bạn cạnh nhau, rồi đẩy vào chân trước của Chirp: tai ở ống chân sáng lên, Chirp vẫy chân khoe.
-  - Crumb (dưới chân gốc cây, chỉ lên): *"Are they on its legs, like Chirp?"* Kính trượt sang chân trước của Hop: trống trơn. Khựng 0,65 s.
-  - *"Nope!"* Dấu X trên chân Hop, Hop lắc chân "không phải đây".
-  - *"Its ears are on its tummy!"* Kính quét dọc sườn Hop, cánh nhấc lên như tấm rèm, lộ màng nghe tròn bên bụng, chữ TUMMY!. Chirp gáy hai tiếng, mỗi vòng âm chạm vào là màng rung.
-  - Crumb xoa bụng mình: *"But WHY on its tummy?"* — *"To hear other grasshoppers sing!"*: trên ngọn cỏ xa, hai châu chấu tí hon kéo chân hát, vòng âm bay tới, màng nghe của Hop rung theo. Kính "chụp" → sticker 1 bay lên ô 1.
-- **Bí mật 2 (14,5–20,3 s):** *"Many grasshoppers sing with their legs!"* Hop giơ đùi sau, kéo lên xuống dọc mép cánh, mỗi nhát một tiếng "rè" và một vòng âm. *"They rub a back leg on a wing!"* Kính đẩy vào chỗ đùi cọ mép cánh: mép cánh loé sáng, mũi tên lên–xuống. Hop độc tấu bốn nốt, Crumb nhún theo. Chụp → ô 2.
-- **Bí mật 3 và cảnh đặc trưng (20,3–28,65 s):**
-  - *"And its back legs are like springs!"* Hop co chân sau; chiếc lò xo bên cạnh nén lại "kééét".
-  - **BOING!** Hop bật vọt lên, **ra khỏi mặt kính**; máy ngước theo lên trời, rồi cúi xuống cảnh rộng; Crumb: *"Look at it go!"*; Hop rơi xuống gốc cây cạnh Chirp.
-  - **Song tấu:** Hop kéo vĩ, Chirp nâng cánh gáy, nốt nâu vàng (Hop) và nốt xanh chanh (Chirp) bay lên. Crumb nhảy múa: *"A bug band!"* Nốt xếp thành **trái tim** — Miss Loupe: *"The notes make a heart!"* — rồi **ngôi sao**, rồi **mặt cười**. Hop nảy một cú kết, Miss Loupe giơ kính "chụp".
-- **Sổ (28,65–33,1 s, 4,45 s):** máy xuyên mặt kính, hình hoá thành sticker 3, lùi ra lộ trang sổ; ô 1, 2 bay xuống: đủ ba sticker "Tummy ears!", "Leg song!", "Spring legs!". Hop nhảy tưng tưng vào; Albie: *"Six legs? In you go!"*, trang giấy đếm chân; đúng chữ "go!" Hop **bật lò xo** nhảy vào trang, Albie "ực".
-- **Gag và kết (33,1–44 s):**
-  - Lật trang về gốc cây. Crumb nhảy cẫng: *"Play it again! Louder!"*
-  - Chirp và Hop chơi lại, to dần: nốt to, vòng âm dày, máy rung, kính Miss Loupe rung.
-  - Khựng. **Chirp bịt chân trước** (đầu gối), **Hop bịt hai bên bụng**, máy lia sang: **Miss Loupe bịt… kính.** Chữ TOO LOUD!. Miss Loupe: *"Oops! Too loud!"* Crumb cười lăn.
-  - Miss Loupe nhìn ra máy, hỏi trẻ: *"Where are YOUR ears?"* (trẻ chỉ lên hai bên đầu).
-  - Cả ba bỏ tay ra từng người một, lại đứng cạnh nhau. Crumb nhặt một lá cỏ mới, phồng má. Chữ móc trở lại; khung cuối khớp khung đầu (vòng lặp: "PWEEET!").
+## 4. Storyboard chi tiết theo timeline
 
-**Thông điệp:** một bài học thấy được và một trò chơi. Tai không phải lúc nào cũng ở trên đầu: dế nghe bằng chân trước, châu chấu nghe bằng hai bên bụng. Còn tai của trẻ ở đâu? Trẻ chỉ vào tai mình và trả lời to.
+Khớp với `SHOTS` trong `timeline.js` (28 cú, khoảng dài nhất 2,8 s; qa đo thấy 25/28).
 
-## 3. Benchmark
-
-| Tác phẩm | Học | Không lấy |
-|---|---|---|
-| SHORT-010 và SHORT-007 của chính kênh (tập A 45 s) | Khung tập A: `titleSting`, `stickerSlots`, `flyBadge`, `albumGulp`, `stickerMatchCut`, kính lớn có máy trôi, câu cửa miệng có hành động, phụ đề ở `SAFE.subY` | Bối cảnh bờ ao / vườn đêm, câu chuyện, nhạc samba / bossa |
-| SHORT-001 (Chirp, tai ở chân trước) | Cách vẽ tai Chirp trong kính (`detail`, `earGlow`) | Nhịp "On its head? Nope!", đêm trăng |
-| Trò "Simon says: touch your ears!" của mẫu giáo | Câu hỏi kết để trẻ chỉ vào tai mình | Không lời kêu gọi bình luận (Made for Kids) |
-| Cú "nhân vật nhảy ra khỏi khung tranh" của hoạt hình cổ điển | Phá khung kính để bí mật 3 thành cú wow | Nhân vật, thiết kế, tiếng của tác phẩm khác |
-
-Tên, nhân vật, thiết kế, kịch bản và nhạc đều của kênh.
-
-## 4. Nhịp tập A, khoảng 45 s
-
-| Giây | Nhịp của công thức | Tập này |
-|---|---|---|
-| 0–3 | Móc; ba ô "1 2 3" hiện khi chữ móc rời đi | Còi lá cỏ; ba chỗ "nghe" loé sáng; "Where does a grasshopper hide its ears?"; ô "1 2 3" ở 2,75 s |
-| 3,0–3,8 | Logo ≤ 0,8 s lồng vào cú lao vào kính | `titleSting`, cảnh `title` 3,0–3,8 |
-| 3,8–14,5 | Bí mật 1 (tập này thử: **có "Nope!"**) → ô 1 | "Like Chirp?" — khựng — "Nope!" — màng nghe bên bụng; "To hear other grasshoppers sing!" |
-| 14,5–20,3 | Bí mật 2 → ô 2 | Hát bằng chân (đùi sau cọ mép cánh), độc tấu |
-| 20,3–28,65 | Bí mật 3 và cảnh đặc trưng → ô 3 | Lò xo, BOING ra khỏi kính; song tấu nốt thành hình |
-| 28,65–33,1 | Sổ ≤ 4,5 s, câu cửa miệng có hành động | Hop bật lò xo vào trang đúng "In you go!" |
-| 33,1–44 | Gag kết, câu hỏi cho trẻ, chữ móc trở lại, vòng lặp | "Louder!" → to quá → bịt đầu gối, bụng, kính; "Where are YOUR ears?"; bỏ tay ra, lại đứng cạnh nhau |
-
-## 5. Nhịp móc 0–3 s
-
-| Giây | Việc | Kiểm |
-|---|---|---|
-| 0–1 | **Gây chú ý:** khung 0 Crumb đang thổi còi (phồng má, lá cỏ rung), chữ HIDDEN / EARS?! nảy có tiếng, máy đẩy vào. "PWEEET!" ở 0,0–0,34; vòng âm bay tới; 0,4 cả ba giật mình: Chirp nảy, Hop nảy "boing", kính rung | Chuyển động giây đầu ≥ 1,2 |
-| 1–2 | **Phản ứng bằng hành động gắn với câu hỏi khoa học:** đầu gối Chirp và bụng Hop loé sáng có gợn; Chirp giơ chân về phía tiếng; Hop xoay sườn về phía tiếng; Crumb cười | Chuyển động 1–2,5 s ≥ 2,0 |
-| 2–3 | **Câu hỏi chưa giải:** "…hide its ears?" kết thúc ở 2,42 s; hai bạn nhìn nhau, hai dấu "?" nảy trên đầu; chữ móc rời đi, ô "1 2 3" hiện | Vì sao mỗi con "nghe" ở một chỗ? |
-
-## 6. Danh sách cảnh
-
-Mỗi 3–5 s có một chuyện mới (cột cuối). Thời gian là bản cuối, đã khớp với giọng thật trong `timeline.js`.
-
-| # | Thời gian | Khung hình | Máy quay | Chuyện xảy ra | Chuyện mới |
+| # | Thời gian | Khung hình | Máy / kính | Chuyện xảy ra | Vì sao |
 |---|---|---|---|---|---|
-| 1 | 0:00–0:03,0 | Trung, gốc cây | Đẩy vào, rung khi cả ba giật mình | Móc (mục 5) | Hành động ở khung 0, ba chỗ "nghe", câu hỏi |
-| 2 | 0:03,0–0:03,8 | Kính phủ cả khung | Lao vào mặt kính rồi xuyên qua | Logo 0,8 s | Logo lồng vào chuyển cảnh |
-| 3 | 0:03,8–0:06,55 | **Kính lớn** (r ≈ 312 px) | Kính trôi; trong kính đẩy vào chân Chirp | "Let's zoom in!"; tai Chirp ở chân trước sáng; "Are they on its legs, like Chirp?" | Nhân vật cận cảnh, câu đoán |
-| 4 | 0:06,55–0:07,95 | Kính lớn | Trượt sang chân Hop | Chân Hop trống trơn; khựng; "Nope!", dấu X, Hop lắc chân | **"Nope!" ở bí mật 1** |
-| 5 | 0:07,95–0:10,4 | Kính lớn, **cận sườn Hop (S ≈ 4,7: màng nghe rộng ≈ 120 px)** | Quét dọc sườn | Cánh nhấc lên như tấm rèm, lộ màng nghe; TUMMY!; Chirp gáy, màng rung theo từng tiếng | **Khoảnh khắc wow 1** |
-| 6 | 0:10,4–0:14,5 | Kính lớn, lùi ra | Lia sang ngọn cỏ xa | "But WHY on its tummy?" (Crumb xoa bụng); "To hear other grasshoppers sing!"; hai châu chấu xa hát; chụp → ô 1 | Câu hỏi của trẻ, sticker 1 |
-| 7 | 0:14,5–0:16,9 | Kính lớn, cả con Hop | Trôi | "Many grasshoppers sing with their legs!"; Hop giơ đùi, kéo lên xuống | Hát bằng chân |
-| 8 | 0:16,9–0:18,6 | Kính lớn, cận chỗ cọ | Đẩy vào | "They rub a back leg on a wing!"; mép cánh loé sáng, mũi tên lên–xuống | Cận cơ chế (cỡ trung) |
-| 9 | 0:18,6–0:20,3 | Kính lớn | Lùi ra | Hop độc tấu bốn nốt, Crumb nhún; chụp → ô 2 | Sticker 2 |
-| 10 | 0:20,3–0:22,4 | Kính lớn | Trôi | "And its back legs are like springs!"; Hop co chân, lò xo nén | Ẩn dụ được cho thấy |
-| 11 | 0:22,4–0:24,1 | Kính → trời → cảnh rộng | **Ngước theo Hop, rồi cúi xuống** | BOING! Hop nhảy ra khỏi mặt kính; "Look at it go!"; rơi xuống gốc cây | **Khoảnh khắc wow 2** (chỉ thủ pháp kính làm được) |
-| 12 | 0:24,1–0:28,65 | Rộng, gốc cây | Trôi chậm | Song tấu; "A bug band!"; nốt thành trái tim ("The notes make a heart!"), ngôi sao, mặt cười; Hop nảy kết; chụp | **Cảnh đặc trưng** |
-| 13 | 0:28,65–0:29,3 | — | Lao xuyên mặt kính | Chụp → sticker 3 → trang sổ | Chuyển cảnh qua kính |
-| 14 | 0:29,3–0:32,6 | Toàn, trang sổ | Khoá, đẩy nhẹ khi Hop nhảy vào | Ô 1, 2 bay xuống; "Six legs? In you go!"; Hop bật lò xo vào trang | Câu cửa miệng có hành động |
-| 15 | 0:32,6–0:33,1 | — | Lật trang | Trang sổ lật về gốc cây | Chuyển cảnh lật trang |
-| 16 | 0:33,1–0:36,3 | Rộng | Đẩy vào dần, rung | "Play it again! Louder!"; chơi lại to dần | Đạo cụ của gag (tiếng to) quay lại |
-| 17 | 0:36,3–0:38,6 | Cận hai bạn → lia sang Miss Loupe | Lia nhanh | Chirp bịt đầu gối, Hop bịt bụng, Miss Loupe bịt kính; TOO LOUD!; "Oops! Too loud!" | Gag |
-| 18 | 0:38,6–0:41,2 | Rộng | Trôi | Crumb cười; "Where are YOUR ears?"; cả ba bỏ tay ra | Câu hỏi cho trẻ |
-| 19 | 0:41,2–0:44,0 | Rộng → khung đầu | Về bố cục khung 0 | Crumb nhặt lá cỏ, phồng má; chữ móc trở lại | Vòng lặp |
+| 1 | 0:00 | Trung, sân khấu gốc cây | máy cao, đẩy chậm | còi lá cỏ | hành động ở khung 0 |
+| 2 | 0:00,4 | Trung | rung | cả ba giật mình | phản ứng |
+| 3 | 0:02,05 | Trung | đẩy nhẹ | hai dấu hỏi | bí ẩn |
+| 4 | 0:03,0 | Logo → kính lớn | lao vào kính | | nhận diện kênh ≤ 0,8 s |
+| 5 | 0:05,1 | Trong kính | phóng vào đầu gối Chirp | tai dế ở chân | gài câu đoán sai |
+| 6 | 0:06,75 | Trong kính | trượt sang chân Hop | không có gì → "Nope!" | thử nghiệm "Nope!" ở bí mật 1 |
+| 7 | 0:08,25 | Trong kính | quét dọc sườn, phóng 4,3–4,7 | cánh nhấc như rèm, màng nghe sáng | bí mật 1 xảy ra |
+| 8 | 0:10,6 | Trong kính | lùi | Crumb vỗ bụng hỏi | "But WHY?" |
+| 9 | 0:12,2 | Trong kính | lia sang châu chấu xa | vòng âm chạm màng nghe | công dụng của tai |
+| 10 | 0:14,55 | Chụp, sticker 1 bay lên ô | | | lấp ô 1 |
+| 11 | 0:15,4 | Trong kính | đẩy vào đùi sau | Hop giơ đùi | bí mật 2 |
+| 12 | 0:18,13 | Trong kính | phóng sát mép cánh | đường kéo sáng, mũi tên | "They rub a back leg on a wing!" |
+| 13 | 0:20,3 | Trong kính | lùi nhẹ | Hop độc tấu | nghe tiếng hát bằng chân |
+| 14 | 0:21,25 | Chụp, sticker 2 | | | lấp ô 2 |
+| 15 | 0:22,85 | Trong kính | đẩy vào chân co | lò xo nén | bí mật 3 |
+| 16 | 0:24,48 | BOING! | máy ngước theo Hop lên trời | nhảy ra khỏi kính | khoảnh khắc wow |
+| 17 | 0:25,8 | Cảnh rộng | cúi xuống | Hop đáp cạnh Chirp | nối song tấu |
+| 18–19 | 0:27,3 / 0:28,4 | Rộng | trôi chậm | nốt xếp thành trái tim, ngôi sao, mặt cười | điệp khúc 1 |
+| 20 | 0:30,35 | Kính giơ lên chụp → sticker → sổ | match cut | | chuyển cảnh |
+| 21–22 | 0:32,05 / 0:33,1 | Sổ | đẩy nhẹ | Albie đếm chân, Hop nhảy vào trang | câu cửa miệng có hành động |
+| 23 | 0:34,4 | Lật trang | | về sân khấu | mở gag |
+| 24 | 0:36,4 | Rộng | rung dần | song tấu to dần | "Louder!" |
+| 25 | 0:38,1 | Cận từng người | đẩy nhanh | bịt đầu gối, bụng, kính | bất ngờ |
+| 26 | 0:39,25 | Trung | lùi ra | Miss Loupe cười ngượng | "Oops!" |
+| 27 | 0:41,38 | Rộng | lùi ra | cả nhóm nhún, nốt nhỏ | điệp khúc 2 |
+| 28 | 0:44,13 | Trung → khung 0 | đẩy vào, rồi về máy của khung đầu | chữ móc trở lại | CTA, vòng lặp |
 
-**Khoảnh khắc wow:**
-1. Cánh Hop nhấc lên như tấm rèm, lộ màng nghe tròn ở bên bụng (kính r ≈ 312 px, màng nghe rộng ≈ 120 px ≈ 11 % chiều rộng khung), rung theo từng tiếng gáy của Chirp.
-2. Hop co chân như lò xo rồi bật **ra khỏi mặt kính**, máy ngước theo lên trời rồi cúi xuống, Hop rơi đúng xuống gốc cây ở cảnh rộng.
+## 5. Chuyển động và góc quay
 
-## 7. Lời thoại
+- **Móc:** máy đặt cao, thu nhẹ (z 1,6) trong 2,85 s đầu; chữ rời đi thì đẩy vào (z 1,82) như bản cũ cho cú lao vào kính (logo 0,8 s).
+- **Kính lớn:** điểm nhìn và độ phóng trong kính theo nhịp bí mật (FOCUS: 1,6 → 4,7 → 2,0…); ghi `mag`, `pan` cho `qa_musical.py`.
+- **Cú nhảy:** máy ngước theo Hop lên trời (cảnh kính trôi xuống) rồi cúi xuống cảnh rộng (cảnh rộng trôi lên), vệt tốc độ.
+- **Sân khấu (song tấu, gag):** máy song tấu và máy gag đọc mốc từ `HIT` / `LINES`; điệp khúc 2 lùi ra cả nhóm; câu hỏi kết đẩy vào; về đúng máy của khung đầu.
+- **Nhân vật:** luôn vui; Miss Loupe đổi biểu cảm theo màu câu, ở điệp khúc 2 giơ tay / vẫy theo phách, kính đung đưa; Hop kéo chân, Chirp gáy khe khẽ, Crumb nhảy múa.
 
-| # | Ai | Lời | Người nói trên hình | Ghi chú |
-|---|---|---|---|---|
-| L01 | Miss Loupe | Where does a grasshopper hide its ears? | Có | Câu móc (trước 3 s) |
-| L02 | Miss Loupe | Let's zoom in! | Có, cầm kính lớn | Câu cửa miệng |
-| L03 | Crumb | Are they on its legs, like Chirp? | Có, trong kính (dưới chân gốc cây, chỉ lên) | Câu đoán |
-| L04 | Miss Loupe | Nope! | Có | Câu cửa miệng, sau khựng 0,65 s; **bí mật 1** |
-| L05 | Miss Loupe | Its ears are on its tummy! | Có | Bí mật 1 (FACTS §1) |
-| L06 | Crumb | But WHY on its tummy? | Có, trong kính | Câu của đề cương |
-| L07 | Miss Loupe | To hear other grasshoppers sing! | Có | Công dụng, không phải lý do của vị trí (FACTS §2) |
-| L08 | Miss Loupe | Many grasshoppers sing with their legs! | Có | Bí mật 2, "many" (FACTS §3) |
-| L09 | Miss Loupe | They rub a back leg on a wing! | Có | Cơ chế, cỡ trung |
-| L10 | Miss Loupe | And its back legs are like springs! | Có | Bí mật 3; ẩn dụ được cho thấy bằng hình (FACTS §4) |
-| L11 | Crumb | Look at it go! | Có (cảnh rộng hiện lên từ 23,2 s) | "Wow! What a jump!" bị nghe thành "Well, what a jumper" |
-| L12 | Crumb | A bug band! | Có, nhảy múa | Song tấu |
-| L13 | Miss Loupe | The notes make a heart! | Có | Nói về hình trên màn hình |
-| L14 | Albie | Six legs? In you go! | Có | Câu cửa miệng, có hành động |
-| L15 | Crumb | Play it again! Louder! | Có | Mở gag. "Again! Louder!" bị nghe thành "And again louder" |
-| L16 | Miss Loupe | Oops! Too loud! | Có (đang bịt kính) | Gag |
-| L17 | Miss Loupe | Where are YOUR ears? | Có, nhìn ra máy | Câu hỏi kết cho trẻ, nối câu móc |
+## 6. Text và phụ đề
 
-Tập A đọc ở tốc độ chuẩn (`PACE = 1`). Chirp và Hop không có lời.
+- **Chữ trên hình:** HIDDEN / EARS?! (giữa phía trên, 170 / 210 px, khối chữ y ≈ 380–800), NOPE!, TUMMY!, BOING!, TOO LOUD!, nhãn sticker (Tummy ears! · Leg song! · Spring legs!), chữ móc trở lại.
+- **Phụ đề:** ≤ 7 từ mỗi tấm, mỗi tấm một câu, chữ hiện theo lúc nói, từ nhấn màu và cỡ. Từ khoá của bí mật (`SECRET.kw`): **ears, tummy, legs, sing, springs**. Không phụ đề trong 3,2 s đầu.
+- **Vùng an toàn Shorts:** phụ đề ở `SAFE.subY`, ô sticker ở y 232 (dưới thanh trên 150 px).
 
-## 8. Nhạc, tiếng động, chữ
+## 7. Voiceover (lời đọc theo phách, Sing-along)
 
-- **Màu nhạc riêng: "Meadow Cumbia Duet"** (Rê giáng trưởng, giọng kênh chưa dùng). Chi tiết: [MUSIC.md](MUSIC.md), bảng cảnh đầy đủ: [SOUND-PLAN.md](SOUND-PLAN.md).
-  - **Điệu riêng của tập: cumbia** (bộ gõ `guira`: tambora, güira cạo móc kép, bongo). Güira là nhạc cụ **cạo**, hợp với những chú côn trùng hát bằng cách cạo. Dùng ở bí mật 2 (hát bằng chân), song tấu (viết tay) và sổ.
-  - **Song tấu viết tay** (`G.mark`): Hop "kéo vĩ" (tiếng `rasp` có cao độ, băm theo hàng gai) hỏi ở phách, Chirp gáy ("chuông dế" `chirpn`) đáp ở nửa phách sau, phong cầm chặn phách lẻ; mỗi hình nốt hiện lên là một hợp âm celesta.
-  - **Motif lò xo của Hop:** Rê giáng–Fa–La giáng–Rê giáng đi lên, mỗi lần Hop bật (BOING, nảy kết song tấu); mô-típ bí mật đô–mi–sol của kênh (ở Rê giáng, celesta) khi màng nghe lộ ra.
-  - Nhạc hiệu 0,8 s (`band.sting`) ở `root=73` (Rê giáng).
-- **Phác Sound Design Plan** (bản đầy đủ do `soundplan.py` viết ra từ `mix.py`):
+Không nhân vật nào hát; Miss Loupe như SHORT-015 (lời dẫn .765, câu cửa miệng .9). Crumb ở tốc độ chuẩn .85 của kênh.
 
-| Thời gian | Cảnh | Cung bậc | Phong cách · điệu | Nhạc cụ hát chính | BPM |
+| Câu | Ai | Lời | Màu | Phách | Điệp khúc | Ghi chú |
+|---|---|---|---|---|---|---|
+| L01 | Miss Loupe | Where does a grasshopper hide its ears? | half-sing | .5 · `3:.5 4:.5 5:.5 5:.5 6:.5 5:.5 6:.5 5:.5 1':1` | | .765 (bản cũ .9) |
+| L02 | Miss Loupe | Let's zoom in! | half-sing | phần B · `CATCH_TUNE.zoom` | | |
+| L03 | Crumb | Are they on its legs, like Chirp? | nói | 5,16 s | | giữ file giọng của bản đã dựng (tạo lại thì small.en nghe "chirping") |
+| L04 | Miss Loupe | Nope! | sing-talk | phần C · `CATCH_TUNE.nope` | | |
+| L05 | Miss Loupe | Its ears are on its tummy! | half-sing | phần C, phách 2 · `5:.5 6:.5 5:.5 4:.5 4:.5 6:.5 5:.5` | | |
+| L06 | Crumb | But WHY on its tummy? | nói | 10,6 s | | |
+| L07 | Miss Loupe | To hear other grasshoppers sing! | sing-talk | phần D · `3:.5 5:.5 5:.5 4:.5 3:.5 3:.5 2:.5 1:1.5` | | |
+| L08 | Miss Loupe | Many grasshoppers sing with their legs! | sing-talk | 15,5 s · `5:.5 3:.5 5:.5 6:.5 5:.5 6:.5 7:.5 6:.5 5:1` | | |
+| L09 | Miss Loupe | They rub a back leg on a wing! | sing-talk | 18,25 s · `5:.5 4:.5 4:.5 4:.5 6:.5 5:.5 4:.5 5:1` | | |
+| L10 | Miss Loupe | And its back legs are like springs! | half-sing | phần F · `3:.5 4:.5 5:.5 5:.5 6:.5 7:.5 1':1.5` | | "springs" bật lên |
+| L11 | Crumb | Look at it go! | nói | 24,62 s | | |
+| L12 | Crumb | A bug band! | nói | 26,25 s | | |
+| L13 | Miss Loupe | Tummy ears, and legs that sing! | sing | 27,5 s · `5:.5 6:.5 7:1 6:.5 5:.5 3:.5 1':1` | **tummy** | điệp khúc 1 (trước: "The notes make a heart!") |
+| L14 | Albie | Six legs? In you go! | nói | 31,6 s | | câu cửa miệng |
+| L15 | Crumb | Play it again! Louder! | nói | 35,15 s | | ngữ điệu TTS gốc (xem mục G) |
+| L16 | Miss Loupe | Oops! Too loud! | nói | 39,25 s | | .9 như bản cũ (xem mục G) |
+| L17 | Miss Loupe | Tummy ears, and legs that sing! | sing | 41,5 s | **tummy** | điệp khúc 2 |
+| L18 | Miss Loupe | Where are YOUR ears? | half-sing | 44,25 s · `3:.5 4:.5 5:.5 6:1` | | CTA 1,25 s |
+
+## 8. SFX và nhạc nền
+
+- **Tiếng riêng của nhân vật không lời:** Hop "kéo vĩ" (`rasp`: răng cưa có cao độ, băm theo hàng gai), Chirp gáy (`chirp`, `chirpn` có cao độ). Tiếng động: còi lá cỏ, giật mình, gáy, boing, kính rung, hử?, ô sticker, logo, lấp lánh, kính trượt, trống lăn thì thầm, "Nope!", gõ chân (chuỗi `footwag`), chữ NOPE! / TUMMY! / TOO LOUD! (textpop), rèm cánh, lộ màng nghe, gáy + màng rung (chuỗi `chirps`), bước chân Crumb (chuỗi `walk`), vỗ bụng, châu chấu xa hát, chụp ×3, sticker bay, nhát kéo chân (chuỗi `saw1`, `saw2`, `solo`), lò xo nén, BOING, máy lùi, đáp xuống, hình nốt nhạc, sổ (đếm, đớp, lật trang), song tấu to dần (chuỗi `encore`), bịt tai ×3, "bonk" kính, cười, bỏ tay ra (chuỗi), Rollo lăn xa, Crumb chạy, nhặt lá cỏ, chữ móc trở lại.
+- **Nhạc nền theo cảnh:** shuffle (móc) → nhạc hiệu 0,8 s → phiêu lưu nước kiệu (tai Chirp) → khựng hài → hộp nhạc lấp lánh (tai ở bụng) → nảy lệch phách (Crumb hỏi) → cumbia (hát bằng chân) → ragtime (lò xo) → cao trào anh hùng (BOING) → cumbia song tấu (điệp khúc 1) → chụp → cumbia sổ → pop nảy (gag) → phi ngựa nhịp kép (to quá) → khựng (bịt tai) → ukulele nắng (Oops) → cumbia (điệp khúc 2, reprise) → polka (câu hỏi kết) → shuffle (nối vòng lặp).
+
+## 9. CTA
+
+*"Where are YOUR ears?"* (1,25 s, trong 4 s cuối): câu hỏi cho trẻ trả lời to và chỉ vào tai mình, gắn với bí mật (từ khoá "ears"). Không comment / subscribe / like / share.
+
+## 10. Checklist trước khi xuất bản
+
+- [x] `sh films/short-013/build.sh` chạy trọn; `qa.py` không còn CHƯA ĐẠT; mọi CẢNH BÁO đã sửa hoặc ghi lý do
+- [x] Checklist thủ công cuối [`QUALITY.md`](../../_shared/QUALITY.md) và §8.5 (mục Báo cáo giao)
+- [ ] Final Audio Checklist (mục F) nghe bằng tai: chờ chủ kênh
+- [x] Dữ kiện đúng `FACTS.md` ("many grasshoppers", không nói mọi loài; điệp khúc không đổi nghĩa)
+
+## A. Music Direction
+
+- **Phong cách tổng thể:** Playful Kids Pop + Cartoon Musical, nền cumbia (güira cạo móc kép như cái chân "cạo" của Hop), song tấu hỏi – đáp.
+- **Giọng:** Rê giáng trưởng · **BPM:** 120 (móc, hát bằng chân, song tấu, điệp khúc 2, câu hỏi), 108 (kính), 116 (Crumb hỏi), 112 (lò xo), 132 (BOING), 124–126 (gag) · **Điệu riêng** (`SIGNATURE`): `cumbia`.
+- **Nhạc cụ chính:** banjo, piano đồ chơi, vibraphone, clarinet, dàn dây, trombone, trumpet, xylophone (giai điệu điệp khúc), phong cầm, kazoo, trống thép, celesta, piano; Hop "kéo vĩ", Chirp "chuông dế".
+- **Cảm xúc âm nhạc:** mở đầu bất ngờ, tò mò · diễn biến kỳ diệu, buồn cười · cao trào phấn khích (BOING, song tấu) · kết vui, mời gọi.
+- **Bài hát** ("Meadow Cumbia"): A 0 s 120 `Db Gb,Ab` · B 3,8 s 108 `Db Bbm Gb Ab` · C 7,3 s 108 `Db Gb Db Ab` · D 10,55 s 116 `Gb Db Ab Db` · E 15,2 s 120 `Db Ab Gb Ab` · F 21,9 s 112 `Db Ab` · G 25,8 s 120 `Ab,Db Db,Gb` · H 41,0 s 120 `Db,Gb Ab,Db`. **Motif** = câu điệp khúc `5:.5 6:.5 7:1 6:.5 5:.5 3:.5 1':1`. **Điệp khúc** ×2 (27,4 s, 41,4 s), xylophone chơi giai điệu dưới câu; chủ đề (G.theme) ở một khoảng trống.
+
+## B. Music Timeline *(sinh tự động: `SOUND-PLAN.md`)*
+
+Bảng cuối ở [`SOUND-PLAN.md`](SOUND-PLAN.md).
+
+## C. Sing-along Dialogue
+
+Bản phác ở mục 7; bản cuối trong `SOUND-PLAN.md`. Nhịp đọc: "TUM-my EARS, and LEGS that SING!" — trẻ vỗ bụng ở "tummy", vỗ chân ở "legs".
+
+## D. AI Music Generation Prompts *(sinh tự động: `SOUND-PLAN.md`)*
+
+Ở `SOUND-PLAN.md`; chỉ để tham khảo, nhạc trong phim tổng hợp bằng code, không có giọng hát.
+
+## E. Sound Effects Timeline *(sinh tự động: `SOUND-PLAN.md`)*
+
+Bảng đầy đủ từ `events.json` ở `SOUND-PLAN.md`; các tiếng chính ở mục 8.
+
+## F. Final Audio Checklist
+
+- [x] Nhạc sinh động · [x] Đổi theo cảnh (19 cảnh nhạc, 11 điệu, 7 mức BPM 108–132) · [x] Lời có giai điệu (66 % số từ vào phách)
+- [x] Có đoạn dễ nhớ (điệp khúc ×2, chủ đề) · [x] Lời rõ, vào phách · [x] Nhạc không lấn giọng
+- [x] SFX khớp hành động · [ ] Cảm xúc và giữ chân: chờ chủ kênh nghe
+
+## G. Vocal & Musical QC
+
+- **Trước khi dựng:** từ khó *grasshopper(s)* (3 âm tiết), *tummy* (Whisper dễ nghe "Tommy" khi đứng đầu câu), *springs*; âm cuối *ears*, *legs*, *wings*.
+- **Khi dựng:** chín câu không đổi lời / giọng giữ nguyên file giọng của bản đã dựng (`voice_regen.py --adopt`): tạo lại thì small.en nghe L03 "like Chirp?" thành "like chirping?". L16 "Oops! Too loud!" giữ .9 (ở .765 base.en nghe "It oops…"). L15 "Play it again! Louder!" giữ ngữ điệu TTS gốc (`emote: false`): mọi cách uốn (hào hứng 1,1 / .5, vui .5) làm base.en nghe thêm "We will / I will" ở đầu câu.
+- **Sau khi dựng:** [`VOCAL-QC.md`](VOCAL-QC.md) *(sinh tự động)*; mục A và G chép vào Báo cáo giao.
+
+## H. Thiết kế âm thanh theo cảnh, 4 lớp
+
+| Cảnh | Năng lượng | Voice | Music | SFX | Ambient |
 |---|---|---|---|---|---|
-| 0–3,0 | Móc, còi lá cỏ | Mở đầu | Playful · shuffle | banjo | 120 |
-| 3,0–3,8 | Logo | Mở đầu | Epic · nhạc hiệu | kèn đồ chơi | 120 |
-| 3,8–6,6 | Tai Chirp ở đầu gối | Diễn biến | Magical · phiêu lưu | piano đồ chơi | 108 |
-| 6,6–7,25 | Khựng trước "Nope!" | Diễn biến | (khựng) | — | — |
-| 7,25–10,4 | "Nope!", tai ở bụng | Diễn biến | Cute · hộp nhạc | vibraphone | 104 |
-| 10,4–14,5 | "WHY?", châu chấu xa hát | Diễn biến | Funny · nảy lệch phách | clarinet | 116 |
-| 14,5–20,3 | Hát bằng chân | Diễn biến | Bouncy · **cumbia** | dây spiccato | 120 |
-| 20,3–22,4 | Lò xo nén | Diễn biến | Funny · rình rập hài | trombone (trượt xuống như lò xo bị ép) | 100 |
-| 22,4–24,1 | BOING ra khỏi kính | **Cao trào** | Epic · anh hùng | trumpet | 132 |
-| 24,1–28,55 | Song tấu | **Cao trào** | Happy · **cumbia** (viết tay) | phong cầm + vĩ của Hop + chuông dế | 120 |
-| 29,45–32,6 | Sổ | Kết | Epic · **cumbia** | kèn đồ chơi | 116 |
-| 32,6–34,6 | "Louder!" | Kết | Playful · pop nảy | kazoo | 124 |
-| 34,6–36,3 | To quá | Kết | Bouncy · phi ngựa | trống thép | 126 |
-| 36,3–37,45 | Khựng, bịt tai | Kết | (khựng, vibraphone run) | — | — |
-| 37,45–41,2 | "Too loud!", "YOUR ears?" | Kết | Cute · đung đưa | celesta | 104 |
-| 41,2–42,85 | Nhặt lá cỏ, chữ móc | Kết | Happy · polka | piano | 120 |
-| 42,85–44 | Nối vòng lặp | (mở đầu vòng sau) | reprise của móc | banjo | 120 |
+| hook 0–3,0 | high | L01 curious | shuffle | còi, giật mình, gáy, boing, kính rung | meadow |
+| title 3,0–3,8 | high | | nhạc hiệu | lao vào kính, logo | meadow |
+| knee 3,8–7,3 | normal | L02 excited · L03 curious | phiêu lưu → khựng | lấp lánh, kính trượt | meadow |
+| tummy 7,3–10,55 | normal | L04 playful · L05 surprised | hộp nhạc lấp lánh | Nope!, rèm cánh, màng nghe | meadow |
+| far 10,55–15,2 | calm | L06 curious · L07 calm | nảy lệch phách | vỗ bụng, châu chấu xa hát, chụp | meadow |
+| sing 15,2–21,9 | normal | L08 excited · L09 calm | cumbia | nhát kéo chân, độc tấu, chụp | meadow |
+| spring 21,9–24,48 | normal | L10 excited | ragtime | lò xo nén | meadow |
+| boing 24,48–25,8 | peak | L11 excited | cao trào anh hùng | BOING, máy lùi, đáp | meadow |
+| duet 25,8–30,45 | high | L12 happy · L13 happy (điệp khúc) | cumbia song tấu | hình nốt nhạc | meadow |
+| album 30,45–34,9 | normal | L14 proud | chụp → cumbia sổ | sticker, đếm, đớp | paper_room |
+| gag 34,9–36,4 | normal | L15 excited | pop nảy | lật trang, Hop nảy | meadow |
+| loud 36,4–38,1 | peak | | phi ngựa nhịp kép | song tấu to dần, kính rung | meadow |
+| oops 38,1–41,0 | calm | L16 startled | khựng → ukulele nắng | bịt tai ×3, cười, bỏ tay ra | meadow |
+| chorus2 41,0–44,0 | high | L17 happy (điệp khúc) | cumbia (reprise) | | meadow |
+| cta 44,0–46 | normal | L18 happy | polka → shuffle | Crumb chạy, nhặt lá cỏ, chữ móc | meadow |
 
-- **Tiếng động riêng của tập** (bảng cue: [SOUND.md](SOUND.md)): còi lá cỏ "PWEEET!"; kính rung "ong ong" (gài ở móc, trở lại ở gag); màng nghe rung "bum"; tiếng cọ của mỗi nhát kéo chân; lò xo nén "kééét"; BOING; ba tiếng "bộp" khi bịt tai, mỗi người một cao độ; chim xa trên bãi cỏ (nền).
-- **Chữ trên hình:** HIDDEN / EARS?! (móc); logo; ô "1 2 3"; NOPE!; TUMMY!; BOING!; TOO LOUD!; ba nhãn sticker "Tummy ears!", "Leg song!", "Spring legs!".
+## Ghi chú sản xuất · Báo cáo giao
 
-## 9. Chi tiết để xem lại
+**Kết quả (19/11/2026):** [short-013.mp4](short-013.mp4) (1080×1920, 30 fps, 46.0 s, -13.9 LUFS, đỉnh -3.0 dBTP), phụ đề [short-013.srt](short-013.srt), ảnh bìa [poster-shorts-9x16.jpg](poster-shorts-9x16.jpg) và [thumbnail-16x9.jpg](thumbnail-16x9.jpg), [storyboard.jpg](storyboard.jpg), [SOUND-PLAN.md](SOUND-PLAN.md), [VOCAL-QC.md](VOCAL-QC.md). Dựng lại bằng `sh films/short-013/build.sh`.
 
-- **Đáp án có từ khung 0:** ở khung đầu (và khung cuối), một chấm kem nhỏ trên bụng Hop chính là màng nghe; khi còi thổi, chỗ đó loé sáng trước cả khi Miss Loupe hỏi.
-- **Gag đã được gài ở móc:** ba chỗ loé sáng / rung ở móc (đầu gối Chirp, bụng Hop, kính Miss Loupe) chính là ba chỗ bị bịt ở gag.
-- **Hai châu chấu tí hon** trên ngọn cỏ xa (bí mật 1) cũng đang kéo chân hát.
-- **Trứng phục sinh:** Mr. Rollo lăn viên tròn trên bãi cỏ xa trong cảnh gag (36,8–41,4 s), có tiếng "rù rù" rất nhỏ (mốc `HIT.rollo`).
-- **Vòng mở "1 2 3":** ba ô sticker trống từ 2,75 s, lấp ở 14,5 s, 20,3 s và khi vào sổ.
-- **Vòng lặp:** khung cuối khớp khung đầu: Chirp và Hop đứng cạnh nhau, Crumb phồng má cầm lá cỏ, và "PWEEET!" lại vang ở 0,0.
+**Ghi chú sản xuất (lượt 11/2026b):**
+- Phim 44 → 46 s (≤ 48 s của tập A): Miss Loupe đọc .765 như SHORT-015 (bản cũ .9, tập A với PACE 1) và thêm điệp khúc lần 2. Mọi mốc hình đọc từ `HIT` / `LINES`: bản cũ có các mốc viết số trong film.js (30 s, 38,6 s, 41,6 s, khoá máy 25,5 / 27 / 28,3 / 34,5…), nay tính từ mốc của timeline (`MID`, `HIT.giggle2`, `HIT.home`…).
+- Song tấu bắt đầu đúng ô nhịp 13 của phim (26,0 s) và thành cảnh nhạc theo bài hát (cumbia, `chords='song'`): xylophone chơi giai điệu điệp khúc dưới câu; phần hỏi – đáp của Hop (kéo vĩ) và Chirp (gáy) vẫn viết tay. Điệp khúc 2 nhắc lại song tấu, Hop và Chirp chơi khe khẽ (DUET2).
+- Khung móc: chữ 'mid' đè Chirp và Hop trên gốc cây → máy thu nhẹ (z 1,6), đặt cao; khối chữ 166 / 204 px, tâm y 598 (lần 1 tâm 590: mép trên 371 < 380, CẢNH BÁO).
+- Điệp khúc "Tummy ears and singing legs!" bị cả hai Whisper nghe "Tommy" → "Tummy ears, and legs that sing!".
+- Giọng: chín câu không đổi giữ file của bản đã dựng (`voice_regen.py --adopt`; tạo lại thì small.en nghe L03 "like chirping"). L16 "Oops! Too loud!" giữ .9 (ở .765 base.en nghe "It oops"). L09 pace .83 (.8 thì base.en nghe thêm "So"). L15 giữ ngữ điệu TTS gốc: mọi cách uốn làm base.en nghe thêm "We will / I will".
+- Tiếng động: thêm `logopop`, `stingout` ở cú lao vào kính (av_sync: thiếu tiếng 3,7 s, lệch 3,27 s); ba cú bịt tai thành chuỗi `covers`; textpop cho NOPE!, TUMMY!, TOO LOUD!.
+- Nhạc đệm dưới lời 8,2–8,4 → 7,97 dB: nâng mức nhạc dưới các câu (LEVEL .72–.85 → .83–.92) và cảnh kính soi đầu gối (L02, L03) từ năng lượng êm (−8 dB) sang thường (−3 dB): phần lớn lời của tập nằm trong cảnh êm nên nhạc dưới lời luôn thấp hơn khoảng trống.
 
-## 10. Ghi chú sản xuất
+### Bảng `qa.py` (`out/qa.json`, lần chạy `build.sh` cuối)
 
-**Nhân vật mới: Hop** (`_shared/characters/cast/hop.js`, khách mời thứ ba trong `GUESTS`, sau Fizz và Zip). Bảng nhân vật của tập: [modelsheet.jpg](modelsheet.jpg) (xoay 4 góc, 6 dáng riêng, đứng cạnh Chirp với 5 điểm khác, cận màng nghe và đùi sau). Dùng nguyên rig dùng chung, không sửa:
-- `ear` (màng nghe sáng, gợn), `wingOpen` (cánh nhấc lên như tấm rèm, đúng với nguồn: màng nghe "tucked under the wings"), `fiddle` + `bow` (pha kéo vĩ tính theo từng nhát trong `timeline.js`), `hindUp`, `crouch` (lò xo), `lift` (nhảy), `earCover` (gag), `frontR` (lắc chân "Nope"), `pegs`.
-- Vị trí màng nghe lấy theo `BY.hop.ear(sd)` (bên gần máy: `sd = +1` khi `yaw < 0`) qua `rigPt`, cộng độ nâng / co chân của dáng hiện tại, để kính, vòng sáng, vòng âm và gợn bám đúng tâm màng nghe. Bản đầu tự tính từ toạ độ cũ `[±.36, −.86, −.08]`, lệch 0,18 theo trục z so với màng nghe rig vẽ ra (ở cận cảnh S ≈ 4,7 là khoảng 60 px). Sau khi `HOP.ear` được sửa trong `_shared` (thông báo của điều phối, 14/11: `[sd·.352, −.82, −.264]`), tập dùng thẳng hàm này và dời tâm kính ở cận cảnh 13 px cảnh; khung tĩnh 9,0 s và 9,95 s cho thấy vòng sáng nằm đúng trên màng nghe.
-- **Hạn chế của rig đã gặp, xử lý trong tập (không sửa `_shared`):**
-  - Hàng gai ở đùi sau nằm ở mặt trong và rất nhỏ (bán kính 0,026), nên ở cỡ trung gần như không thấy. Tập này không cần thấy gai (cận gai là việc của SHORT-015); chỗ cọ được làm rõ bằng mép cánh loé sáng, mũi tên lên–xuống và vòng âm vẽ ở `film.js`. SHORT-015 có lẽ cần phóng to hàng gai hoặc thêm một dáng cận.
-  - `wingOpen` xoè cả hai cánh ra ngoài; nhìn nghiêng vẫn đọc được là "cánh nhấc lên", đủ cho cảnh lộ màng nghe.
-  - Màng nghe ở rig luôn vẽ (chấm kem) kể cả khi `ear = 0`. Tập dùng chính điều này làm chi tiết để xem lại ở khung 0.
-  - Đứng sát nhau và quay mặt vào nhau (`yaw` ±0,45), đầu Chirp và Hop chồng lên nhau; song tấu dùng `yaw` 0,18 / −0,28.
-- **Chirp bịt đầu gối** dùng đúng dáng thương hiệu của `SIG_EXPR.chirp` (`frontL/frontR` + `earGlow`, biểu cảm `strain`). **Miss Loupe bịt kính:** hai tay đặt chéo lên mặt kính (`handL/handR`, `elbowL/elbowR` tự đặt trong `film.js`).
-- **Lá cỏ của Crumb** vẽ bằng `props` của `drawChar` (toạ độ rig, đi theo đầu Crumb).
+**91 đạt · 3 cảnh báo · 0 chưa đạt.** LRA 5.2 LU · cao trào – cảnh êm +5.1 LU (cao trào -12.4, cảnh êm -17.5 LUFS ngắn hạn) · lời rõ thấp nhất 10.9 dB (L01) · nhạc đệm dưới lời: nhạc ở dải giọng tụt 8.0 dB khi có lời; 3.6 nốt đệm có cao độ / giây lời.
 
-**Giọng:** Miss Loupe, Crumb, Albie dùng giọng chuẩn trong [`voices.js`](../../_shared/voices.js). Mọi câu được thử qua cả `small.en` và `base.en`; chỉ giữ câu cả hai nghe đúng.
-
-| Câu cũ | Whisper nghe thành | Câu dùng |
-|---|---|---|
-| Where are a grasshopper's ears? | "Wear a grasshopper's ears" (small, base) · "Where are Grasshopper's ears" (base) | Where does a grasshopper hide its ears? |
-| On its legs, like Chirp's? | "On its legs like cherubs" (small) · "like chirps" (base) | Are they on its legs, like Chirp? |
-| Wow! What a jump! (và "So high!", "Up, up, up!") | "Well, what a jumper" (cả hai) | Look at it go! |
-| Again! Louder! | "And again louder" (base) | Play it again! Louder! |
-
-**Thư viện dùng lại** (không đổi): `titleSting`, `stickerSlots`, `flyBadge`, `albumGulp`, `stickerMatchCut`, `snapFlash`, `hookTitle`, `subtitle(…, SAFE.subY)` trong `_shared/episode.js`; `band.sting(root=73)`, `band.secret`, `band.chirp`; `Groove(..., plan=True)`.
-
-**Cú nhảy ra khỏi kính** (`sJump`, `hopFlight` trong [`film.js`](film.js)): nửa đầu, cảnh kính trôi xuống (máy ngước lên) trong khi Hop bay lên trong toạ độ khung, từ đúng chỗ của nó trong kính; nửa sau, cảnh rộng trôi lên (máy cúi xuống) và Hop rơi vào đúng chỗ của nó trên gốc cây ở cảnh rộng. Trời vẽ liền một nền cho cả hai nửa, nên không có cú cắt lộ.
-
-**Nốt thành hình** (`duetNotes`): mỗi hình 18 nốt (xen kẽ nốt của Hop và Chirp) bay từ nhạc cụ tới các điểm trên đường viền (`shapePt` trong `props.js`), sau một mảng màu nhạt của chính hình đó để trẻ đọc ngay "trái tim".
-
-**Sửa trong quá trình (từ khung tĩnh và `readcheck`):**
-- Lá cỏ của Crumb lúc đầu vẽ viền theo px trong toạ độ rig nên thành một khối đen to ở khung 0. Nay viền theo cỡ lá.
-- Bố cục móc: nhân vật quá nhỏ, nằm lệch phải. Nay gốc cây ở giữa, máy gần hơn (×1,68), cả cảnh nâng lên để mặt Crumb ở trên 1250 px.
-- Song tấu: hai bạn quay mặt vào nhau thì đầu chồng lên nhau; nốt xếp hình không đọc được. Nay quay nhẹ hơn, có mảng màu của hình, nốt rời mờ đi khi hình hiện.
-- Hai châu chấu xa bị cắt ở mép phải trong cảnh rộng: nay chỉ có trong kính.
-- `readcheck`: NOPE!, BOING!, TOO LOUD! hiện chưa đủ lâu; nay ≥ 1,95 s (TUMMY! nối ngay sau NOPE! để hai chữ không chồng nhau).
-- Chữ NOPE! và BOING! lúc đầu đè ô "1 2 3": hạ xuống dưới thanh ô.
-
-## 11. Báo cáo giao
-
-**Kết quả:** [short-013.mp4](short-013.mp4) (1080×1920, 30 fps, 44,0 s, −13,9 LUFS, đỉnh −2,6 dBTP), phụ đề [short-013.srt](short-013.srt), ảnh bìa [poster-shorts-9x16.jpg](poster-shorts-9x16.jpg) và [thumbnail-16x9.jpg](thumbnail-16x9.jpg), [storyboard.jpg](storyboard.jpg), [modelsheet.jpg](modelsheet.jpg) (Hop ra mắt, đứng cạnh Chirp), bảng vùng an toàn `out/safezone.jpg`. Dựng lại bằng `sh films/short-013/build.sh` (video `--workers 2`).
-
-### Bảng `qa.py` (`out/qa.json`, lần chạy `build.sh` cuối ngày 14/11)
-
-**54 đạt · 0 cảnh báo · 0 chưa đạt.** Ba CẢNH BÁO của lần chạy đầu đã sửa: hình gần đứng yên 39,5–44 s (thêm máy trôi, cú nảy khi bỏ tay ra, nhún thở trước điểm lặp); mặt Hop chạm cột nút phải 37,2–38 s (máy lia sang Miss Loupe dời tâm); cảnh "lò xo nén" trùng công thức 003, 005 (bassoon → trombone, mõ hai cao độ).
+**Lý do của từng mục CẢNH BÁO:**
+- *Tốc độ giọng vừa tai trẻ* (L03: nói nhanh: 4.7 âm tiết/s trên đoạn có tiếng (> 4.0); L06: nói nhanh: 5.3 âm tiết/s trên đoạn có tiếng (> 4.0); L11: nói nhanh: 4.3 âm tiết/s trên đoạn có tiếng (> 4.0)): L03, L06, L11 là câu của Crumb ở tốc độ chuẩn .85 của kênh (L03 là file giọng của bản đã dựng). Chậm hơn thì Kokoro af_jessica sinh tiếng "uh" đầu câu, Whisper nghe sai (SHORT-011, tám cách viết). Chờ chủ kênh nghe.
+- *Giọng có cảm xúc, có nhấn nhá* (L03: từ nhấn chưa nổi: đỉnh cao độ -0.2 nửa cung so với cả câu; L11: từ nhấn chưa nổi: đỉnh cao độ -1.0 nửa cung so với cả câu): L03 ("legs"), L11 ("go"): từ nhấn chưa cao hơn cả câu (−0,2 / −1,0 nửa cung); thử độ uốn 1,4 vẫn vậy (câu ngắn, từ nhấn ở cuối câu hỏi / câu cảm thán, Kokoro hạ giọng ở cuối). Cả hai Whisper nghe đúng. Chờ chủ kênh nghe.
+- *Không bị nhạc nền che lấp* (L01: lời hơn nhạc + tiếng động 10.9 dB (sát ngưỡng 10)): L01 (câu móc) hơn nhạc + tiếng động 10,9 dB (CẦN NGHE dưới 12, LỖI dưới 10): dưới câu là còi lá cỏ, cú giật mình và kính rung của móc. Cả hai Whisper nghe đúng. Chờ chủ kênh nghe.
 
 | Nhóm | Mục | Kết quả | Giá trị |
 |---|---|---|---|
-| 1 Hook | Lời đầu tiên | ĐẠT | 0.45 s |
-| 1 Hook | Chuyển động trong giây đầu | ĐẠT | 8.16 |
-| 1 Hook | Chuyển động 1–2,5 s | ĐẠT | 3.17 |
-| 1 Hook | Nhạc ngay từ giây 0 | ĐẠT | −16 dBFS (0–0,5 s) |
+| 1 Hook | Lời đầu tiên | ĐẠT | 0.38 s |
+| 1 Hook | Chuyển động trong giây đầu | ĐẠT | 6.57 |
+| 1 Hook | Chuyển động 1–2,5 s | ĐẠT | 2.51 |
+| 1 Hook | Nhạc ngay từ giây 0 | ĐẠT | -15 dBFS (0–0,5 s) |
 | 1 Hook | Tiếng động ở khung đầu | ĐẠT | 4 tiếng ≤ 0,3 s |
 | 1 Hook | Mật độ tiếng động 0–3 s | ĐẠT | 14 |
 | 1 Hook | Cảnh tựa / logo | ĐẠT | 3.0–3.8 s (0.8 s) |
 | 2 Giữ chân | Đoạn hình đứng yên ≥ 2,5 s | ĐẠT | không có |
-| 2 Giữ chân | Khoảng "chết" ≥ 1,8 s | ĐẠT | không có |
-| 2 Giữ chân | Độ dài trung bình mỗi cảnh | ĐẠT | 6.3 s (7 cảnh, 17 chuyển cảnh mạnh) |
-| 2 Giữ chân | Tốc độ lời | ĐẠT | 1.89 từ/s (83 từ) |
+| 2 Giữ chân | Khoảng "chết" (không lời, không tiếng động) ≥ 1,8 s | ĐẠT | không có |
+| 2 Giữ chân | Độ dài trung bình mỗi cảnh | ĐẠT | 6.6 s (7 cảnh, 18 chuyển cảnh mạnh) |
+| 2 Giữ chân | Tốc độ lời | ĐẠT | 1.96 từ/s (90 từ) |
 | 2 Giữ chân | Đoạn không lời dài | ĐẠT | không có |
-| 2 Giữ chân | Hình gần đứng yên kéo dài | ĐẠT | không có |
-| 2 Giữ chân | Câu cửa miệng có hành động | ĐẠT | 29.8 s: 4.48 |
-| 2 Giữ chân | Cảnh sổ (tập A) | ĐẠT | 4.5 s |
+| 2 Giữ chân | Hình gần đứng yên kéo dài (kể cả khi có lời) | ĐẠT | không có |
+| 2 Giữ chân | Câu cửa miệng có hành động | ĐẠT | 31.6 s: 4.35 |
+| 2 Giữ chân | Cảnh sổ (tập A) | ĐẠT | 4.4 s |
+| 4 Âm thanh | Độ to | ĐẠT | -13.9 LUFS |
+| 4 Âm thanh | Đỉnh thật | ĐẠT | -3.0 dBTP |
+| 4 Âm thanh | Lời rõ hơn nhạc + tiếng động | ĐẠT | thấp nhất 10.9 dB (L01) |
+| 4 Âm thanh | Mật độ tiếng động | ĐẠT | 25.2 cue / 10 s (116 cue) |
+| 4 Âm thanh | Tiếng động không lạm dụng, không lấn lời | ĐẠT | dày nhất 7 cue / 1 s (sau 3 s); lời hơn tiếng động thấp nhất 16.2 dB (L14) |
+| 4 Âm thanh | Độ chói (năng lượng > 6 kHz) | ĐẠT | 3.2 % |
+| 4 Âm thanh | Tiếng tụt đột ngột | ĐẠT | 0 |
+| 4 Âm thanh | Lỗ im của nhạc nền | ĐẠT | 0 giây dưới −45 dB |
+| 4 Âm thanh | Âm lượng nhạc đổi theo cảnh | ĐẠT | 19 dB giữa giây to nhất và nhỏ nhất |
+| 4 Âm thanh | Nhạc đổi theo cảnh: đoạn dài nhất cùng một kiểu | ĐẠT | 6.7 s (bí mật 2 · hát bằng chân, 15.2–21.9 s); 19 cảnh nhạc |
+| 4 Âm thanh | Số điệu nhạc khác nhau | ĐẠT | 11: bounce, cumbia, gallop, hero, hop, polka, quest, skip, stride, sunny, twinkle |
+| 4 Âm thanh | Hai cảnh nhạc kề nhau khác rõ | ĐẠT | mọi cặp khác nhau ≥ 2 điểm |
+| 4 Âm thanh | Câu đáp của nhạc giữa các câu thoại | ĐẠT | 9 câu đáp (5 tự động, 4 viết tay) |
+| 4 Âm thanh | Nhạc đệm dưới lời | ĐẠT | nhạc ở dải giọng tụt 8.0 dB khi có lời; 3.6 nốt đệm có cao độ / giây lời |
+| 4 Âm thanh | Đổi cảnh nghe ra | ĐẠT | 18 chỗ đổi cảnh; vào mềm / nhẹ dưới lời ×1 (21.9 s) |
+| 4 Âm thanh | Chủ đề nhạc của tập | ĐẠT | 1 lần |
+| Sound Design Plan | Phong cách nhạc theo cảnh | ĐẠT | 7: Bouncy Rhythm, Cute & Sweet, Epic Cartoon, Funny Comedy, Happy Kids, Magical Adventure, Playful Cartoon |
+| Sound Design Plan | Nhạc cụ hát chính luân phiên | ĐẠT | 13 nhạc cụ; nhiều nhất banjo 2/15 cảnh |
+| Sound Design Plan | Luân phiên họ nhạc cụ | ĐẠT | 12: bộ gõ, chuông, dàn dây, dây pizzicato, kèn gỗ, kèn đồng, marimba, nhạc cụ hoạt hình, piano, ukulele, xylophone, đàn hạc |
+| Sound Design Plan | BPM đổi theo nội dung | ĐẠT | 7 mức: 108, 112, 116, 120, 124, 126, 132 (chênh 24) |
+| Sound Design Plan | Không lặp một bản nhạc | ĐẠT | điệu dùng nhiều nhất: cumbia 4/15 cảnh |
+| Sound Design Plan | Mở đầu · diễn biến · cao trào · kết | ĐẠT | open 0.0–46.0 s, build 3.8–24.5 s, peak 24.5–30.4 s, end 31.2–45.4 s |
+| Sound Design Plan | Chuyển cảnh âm thanh mềm, đa dạng | ĐẠT | 18 chỗ chuyển: fill ×2, bump ×2, pickup ×1, riser ×1, run ×1, tail ×1, swell ×1, viết tay ×9 |
+| Sound Design Plan | Bảng Sound Design Plan | ĐẠT | SOUND-PLAN.md 19/19 cảnh |
+| Sound Design Plan | Điệu riêng của tập | ĐẠT | cumbia · 38% thời lượng |
+| Sound Design Plan | Không trùng cảnh nhạc của Short khác | ĐẠT | so với 15 Short; không cảnh nào trùng |
+| Sound Design Plan | Nhạc vui nhộn (hồi hộp, giọng thứ) | ĐẠT | hồi hộp + khựng 0%, giọng thứ 0% thời lượng |
+| Sound Design Plan | Nhạc vui tươi | ĐẠT | mọi cảnh |
+| 4 Âm thanh | Nhạc có nhịp liền | ĐẠT | 100% số giây có ≥ 3 nốt (trung vị 7 nốt/s) |
+| 5 Hình ảnh | Khung trống / đen | ĐẠT | 0 khung |
+| 5 Hình ảnh | Khung hình và tốc độ | ĐẠT | 1080×1920, 30 fps |
+| 5 Hình ảnh | Vùng giao diện Shorts | ĐẠT | không chạm |
+| 5 Hình ảnh | Phụ đề che mặt nhân vật | ĐẠT | không có |
 | 3 Nội dung | Người nói có trên hình | ĐẠT | mọi câu sau 3 s |
-| 4 Âm thanh | Độ to · Đỉnh thật | ĐẠT | −13.9 LUFS · −2.6 dBTP |
-| 4 Âm thanh | Lời rõ hơn nhạc + tiếng động | ĐẠT | thấp nhất 13.1 dB (L01) |
-| 4 Âm thanh | Mật độ tiếng động | ĐẠT | 24.3 cue / 10 s (107 cue) |
-| 4 Âm thanh | Tiếng động không lạm dụng, không lấn lời | ĐẠT | dày nhất 7 cue / 1 s; lời hơn tiếng động thấp nhất 15.8 dB (L14) |
-| 4 Âm thanh | Độ chói · Tiếng tụt · Lỗ im | ĐẠT | 2.5 % · 0 · 0 giây dưới −45 dB |
-| 4 Âm thanh | Âm lượng nhạc đổi theo cảnh | ĐẠT | 28 dB |
-| 4 Âm thanh | Đoạn dài nhất cùng một kiểu | ĐẠT | 5.8 s (hát bằng chân); 18 cảnh nhạc |
-| 4 Âm thanh | Số điệu · Hai cảnh kề nhau khác rõ | ĐẠT | 11 điệu · mọi cặp khác ≥ 2 điểm |
-| 4 Âm thanh | Câu đáp của nhạc | ĐẠT | 11 (7 tự động, 4 viết tay) |
-| 4 Âm thanh | Nhạc có nhịp liền | ĐẠT | 100 % số giây có ≥ 3 nốt |
-| 5 Hình ảnh | Khung trống · Khung hình | ĐẠT | 0 · 1080×1920, 30 fps |
-| 5 Hình ảnh | Vùng giao diện Shorts · Phụ đề che mặt | ĐẠT | không chạm · không có |
-| 5 Hình ảnh | Chớp sáng · Độ rực màu | ĐẠT | tối đa 2 lần/giây · 0.40 |
+| 5 Hình ảnh | Mặt nhân vật vui tươi | ĐẠT | mọi khung |
+| 5 Hình ảnh | Chớp sáng mạnh | ĐẠT | tối đa 2 lần/giây |
+| 5 Hình ảnh | Độ rực màu | ĐẠT | 0.40 |
 | 6 Xem lại | Khung cuối nối khung đầu | ĐẠT | chênh 2.7/255 |
-| 6 Xem lại | Câu hỏi kết cho trẻ | ĐẠT | "Where are YOUR ears?" ở 39.4 s |
-| 6 Xem lại | Cảnh cuối gợi lại câu móc · Chi tiết để tìm lại | ĐẠT | có · có |
-| 7 Giọng | Cao độ · khác nhau rõ · giọng trẻ em | ĐẠT | Loupe 211 Hz, Crumb 276 Hz, Albie 97 Hz · gần nhất 4.7 nửa cung |
-| SDP | Phong cách nhạc theo cảnh | ĐẠT | 7 phong cách |
-| SDP | Nhạc cụ hát chính luân phiên · họ nhạc cụ | ĐẠT | 12 nhạc cụ (nhiều nhất 2/14) · 11 họ |
-| SDP | BPM đổi theo nội dung | ĐẠT | 8 mức, 100–132 |
-| SDP | Không lặp một bản nhạc | ĐẠT | cumbia 3/14 cảnh |
-| SDP | Mở đầu · diễn biến · cao trào · kết | ĐẠT | đủ bốn phần |
-| SDP | Chuyển cảnh âm thanh | ĐẠT | 17 chỗ, không cách nào quá 50 % |
-| SDP | Bảng Sound Design Plan | ĐẠT | 18/18 cảnh |
-| SDP | Điệu riêng của tập | ĐẠT | cumbia · 30 % thời lượng |
-| SDP | Không trùng cảnh nhạc của Short khác | ĐẠT | so với 14 Short (kể cả 011, 012, 014, 015 đang dựng): không cảnh nào trùng |
-| SDP | Nhạc vui nhộn | ĐẠT | hồi hộp + khựng 1 %, giọng thứ 0 % |
+| 6 Xem lại | Câu hỏi kết cho trẻ | ĐẠT | "Where are YOUR ears?" ở 44.1 s |
+| 6 Xem lại | Cảnh cuối gợi lại câu móc | ĐẠT | có (chữ móc trở lại) |
+| 6 Xem lại | Chi tiết để tìm lại | ĐẠT | có |
+| 7 Giọng | Cao độ từng nhân vật | ĐẠT | loupe 203 Hz, crumb 308 Hz, albie 100 Hz |
+| 7 Giọng | Các giọng khác nhau rõ | ĐẠT | gần nhất 7.2 nửa cung |
+| 7 Giọng | Giọng trẻ em: crumb | ĐẠT | 308 Hz |
+| 8a Chuẩn mới · Hình | Độ dài | ĐẠT | 46.0 s (tập A) |
+| 8a Chuẩn mới · Hình | 6 nhịp kể chuyện | ĐẠT | hook 0.0–2.5 · setup 2.5–5.1 · discovery 5.1–34.9 · surprise 34.9–41.4 · payoff 41.4–44.1 · cta 44.1–46.0 |
+| 8a Chuẩn mới · Hình | Danh sách cú máy (SHOTS) | ĐẠT | 28 cú, khoảng dài nhất 2.8 s (từ 41.4 s) |
+| 8a Chuẩn mới · Hình | Nhịp đổi hình đo được | ĐẠT | khoảng dài nhất 1.9 s (từ 31.4 s); 25/28 cú trong SHOTS đo thấy |
+| 8a Chuẩn mới · Hình | Đoạn giải thích không đứng hình | ĐẠT | không có |
+| 8a Chuẩn mới · Hình | Vị trí chữ móc | ĐẠT | y 385–811 (tâm 598), x tâm 543 |
+| 8b Chuẩn mới · Chữ và lời | Số từ mỗi tấm phụ đề | ĐẠT | 1–7 từ (trung vị 4), 18 tấm |
+| 8b Chuẩn mới · Chữ và lời | Từ khoá được nhấn | ĐẠT | 17/18 tấm có từ nhấn; từ khoá của bí mật: ears, tummy, legs, sing, springs |
+| 8b Chuẩn mới · Chữ và lời | Không lặp chữ thừa | ĐẠT | không có |
+| 8b Chuẩn mới · Chữ và lời | CTA cụ thể | ĐẠT | "Where are YOUR ears?" ở 44.1 s, 1.25 s |
+| 8c Chuẩn mới · Bài hát | Không ai bị biến thành giọng hát | ĐẠT | mọi câu là câu nói (giọng TTS gốc) |
+| 8c Chuẩn mới · Bài hát | Lời đọc theo phách | ĐẠT | 66% số từ (59/90) ở 11 câu theo phách (tune) |
+| 8c Chuẩn mới · Bài hát | Giọng Miss Loupe như SHORT-015 | ĐẠT | 12 câu, TTS gốc; trung vị 204 Hz (+0.1 nửa cung so với SHORT-015 202 Hz), dải ngữ điệu 8.5 nửa cung (SHORT-015 7.9) |
+| 8c Chuẩn mới · Bài hát | Điệp khúc nhắc lại, giai điệu ở nhạc nền | ĐẠT | 'tummy' ×2 ở 27.4, 41.4 s: "Tummy ears, and legs that sing!" |
+| 8c Chuẩn mới · Bài hát | Giai điệu đặc trưng (motif) | ĐẠT | 7 nốt, đặt 2 lần (27.4 s nhạc cụ dưới L13, 41.4 s nhạc cụ dưới L17) |
+| 8d Chuẩn mới · Âm thanh | Nhạc lùi dưới giọng (duck) | ĐẠT | dưới câu nói 11.1 dB; dưới câu theo phách 10.8 dB |
+| 8d Chuẩn mới · Âm thanh | Tiếng động đa dạng, không lặp máy móc | ĐẠT | 53 loại tiếng, 116 cue, 11 chuỗi có chủ đích |
+| 8b Chuẩn mới · Chữ và lời | TREATMENT.md đủ các mục | ĐẠT | đủ 10 mục + Music Direction A–F |
+| 9 Vocal QC | Phát âm rõ ràng | ĐẠT | đạt (số đo) |
+| 9 Vocal QC | Không sai từ | ĐẠT | đạt (số đo) |
+| 9 Vocal QC | Không nuốt âm | ĐẠT | đạt (số đo) |
+| 9 Vocal QC | Không lặp từ ngoài ý muốn | ĐẠT | đạt (số đo) |
+| 9 Vocal QC | Giai điệu tự nhiên | ĐẠT | đạt (số đo) |
+| 9 Vocal QC | Không bị méo giọng | ĐẠT | đạt (số đo) |
+| 9 Vocal QC | Tốc độ giọng vừa tai trẻ | CẢNH BÁO | L03: nói nhanh: 4.7 âm tiết/s trên đoạn có tiếng (> 4.0); L06: nói nhanh: 5.3 âm tiết/s trên đoạn có tiếng (> 4.0); L11: nói nhanh: 4.3 âm tiết/s trên đoạn có tiếng (> 4.0) |
+| 9 Vocal QC | Nhịp hát phù hợp hình ảnh | ĐẠT | đạt (số đo) |
+| 9 Vocal QC | Giọng có cảm xúc, có nhấn nhá | CẢNH BÁO | L03: từ nhấn chưa nổi: đỉnh cao độ -0.2 nửa cung so với cả câu; L11: từ nhấn chưa nổi: đỉnh cao độ -1.0 nửa cung so với cả câu |
+| 9 Vocal QC | Giữ nhất quán giọng nhân vật | ĐẠT | đạt (số đo) |
+| 9 Vocal QC | Không bị nhạc nền che lấp | CẢNH BÁO | L01: lời hơn nhạc + tiếng động 10.9 dB (sát ngưỡng 10) |
+| 9 Vocal QC | Phụ đề khớp 100% với lời thoại | ĐẠT | đạt (số đo) |
+| 10 Âm thanh theo cảnh | Độ chênh cường độ (LRA) | ĐẠT | 5.2 LU |
+| 10 Âm thanh theo cảnh | Cao trào nổi hơn cảnh êm | ĐẠT | +5.1 LU (cao trào -12.4, cảnh êm -17.5 LUFS ngắn hạn) |
+| 10 Âm thanh theo cảnh | Âm thanh môi trường | ĐẠT | có nền ở 100% số giây; lớp nền: meadow, paper_room |
+| 10 Âm thanh theo cảnh | Hiệu ứng khớp hành động | ĐẠT | 100% điểm chuyển động mạnh có tiếng (±0.20 s) |
+| 10 Âm thanh theo cảnh | Khoảng nghỉ giữa các câu | ĐẠT | đủ |
 
-Whisper `small.en` và `base.en`: 0 câu nghe sai (17/17). `readcheck`: mọi chữ trên hình hiện đủ lâu.
+### Vocal & Musical QC (`VOCAL-QC.md`)
 
-### Checklist thủ công (`_shared/QUALITY.md`)
+**Kết quả:** 18 câu · **0 lỗi đã xác nhận** · 7 chỗ cần nghe.
 
-- [x] 0–1 s gây chú ý (Crumb thổi còi ở khung 0, chữ HIDDEN / EARS?! nảy có tiếng); 1–2 s phản ứng bằng hành động gắn với câu hỏi khoa học (đầu gối Chirp, bụng Hop loé sáng; Chirp giơ chân, Hop xoay sườn); 2–3 s câu hỏi chưa giải ("…hide its ears?", hai dấu "?").
-- [x] Mỗi 3–5 s có chuyện mới (mục 6, 19 dòng).
-- [x] Gag và bất ngờ: "Nope!" ở bí mật 1, Hop nhảy ra khỏi mặt kính, "to quá" bịt tai đúng ba chỗ đã gài; Miss Loupe bịt… kính. Nhân vật đúng tính cách (Crumb nghịch, tò mò; Miss Loupe vui vẻ; Hop bật lò xo; Chirp rụt rè bịt đầu gối).
-- [x] Nội dung đúng `FACTS.md` ("many grasshoppers", không nói số quãng nhảy, "like springs" được cho thấy bằng hình); hợp 4–8 tuổi, không đáng sợ (tiếng "to quá" là trò đùa, không ai đau).
-- [x] Bài học thấy được: tai không phải lúc nào cũng ở trên đầu; câu hỏi kết cho trẻ chỉ vào tai mình.
-- [x] Biểu cảm đọc được ở cỡ điện thoại; không che, không cắt mép, không lơ lửng (bảng `out/safezone.jpg`, khung tĩnh mỗi 1,5 s). Hop khác Chirp rõ ở hình (màu, râu, cánh, chỗ tai).
-- [x] Nhạc đổi theo cảnh (18 cảnh nhạc, 11 điệu, BPM 100–132); màu "Meadow Cumbia Duet" (Rê giáng trưởng, cumbia) khác các tập trước.
-- [ ] *(Kênh)* **Nghe ngay sau tập đăng trước** và **nghe lại cả phim**: mình không nghe trực tiếp được. Nhạc đã kiểm bằng số đo (nhịp liền 100 %, 11 câu đáp, SDP 11/11 mục, không trùng 14 Short khác, giọng thứ 0 %). Cần chủ kênh nghe lại, nhất là tiếng `rasp` của Hop (có rè quá không) và song tấu dưới hai câu thoại.
-- [x] *(SDP)* `SOUND-PLAN.md` 18 cảnh; mở đầu (shuffle banjo), diễn biến, cao trào (anh hùng → cumbia song tấu), kết (cumbia sổ, pop, phi ngựa, đung đưa, polka) khác nhau; nhạc không lời, vui.
-- [x] Kết có điểm nhấn (khựng bịt tai, "Oops! Too loud!") và nối về đầu (cả ba bỏ tay ra, Crumb lại cầm lá cỏ; khung cuối chênh khung đầu 2,7/255).
-- [x] Không kêu gọi bình luận hay đăng ký; câu hỏi kết là câu trẻ trả lời to.
-- [x] Tựa móc nảy ở khung đầu có tiếng; nhân vật phản ứng bất ngờ trong 0,4 s.
-- [x] Chuyển cảnh kính → sổ: "chụp" và match cut qua sticker (`stickerMatchCut`, từ kính của Miss Loupe ở cảnh rộng).
-- [x] Cảnh cuối gợi lại câu móc: chữ móc trở lại đúng chỗ khung 0.
-- [x] Mỗi nhân vật có lời một giọng riêng; Crumb giọng trẻ em (276 Hz); Chirp, Hop không lời, có tiếng riêng (chuông dế, "kéo vĩ", boing).
-- [x] *(11/2026)* Kính r ≈ 312 px; màng nghe rộng ≈ 120 px ở cận cảnh; bí mật xảy ra thành chuyển động (màng rung theo từng tiếng, đùi kéo theo từng nhát, lò xo nén rồi bật); kính luôn trôi.
-- [x] *(11/2026)* "Six legs? In you go!" có hành động (4,48); sổ 4,45 s; vòng mở "1 2 3" từ 2,75 s.
-- [x] *(11/2026)* Người nói có trên hình ở mọi câu sau 3 s; đạo cụ của gag (tiếng to và ba chỗ "nghe") gài ở móc; ẩn dụ "springs" được nói rõ bằng hình.
-- [x] *(11/2026)* Phụ đề, chữ, mặt ngoài vùng giao diện Shorts; phụ đề không che mặt; chữ có viền mực; nền cỏ khô vàng và đồi tím nhạt tương phản với Hop xanh lá đậm và Chirp xanh chanh.
+**Mục A. Bảng phân tích lỗi**
 
-## Cập nhật 14/11/2026: mặt luôn vui, nhạc luôn tươi
+| Timestamp | Lời thoại | Loại lỗi | Mức độ | Cách sửa |
+|---|---|---|---|---|
+| 0.38–2.82 (L01) | Where does a grasshopper hide its ears? | Synchronization: lời hơn nhạc + tiếng động 10.9 dB (sát ngưỡng 10) | CẦN NGHE | nghe xem có bị che không |
+| 5.16–6.71 (L03) | Are they on its legs, like Chirp? | Rhythm: nói nhanh: 4.7 âm tiết/s trên đoạn có tiếng (> 4.0) | CẦN NGHE | pace thấp hơn cho câu này (giọng Dot có pitch +3,5 nửa cung nên nhanh hơn speed ~22 %), dời câu sau, hoặc bớt chữ |
+| 5.16–6.71 (L03) | Are they on its legs, like Chirp? | Voice: từ nhấn chưa nổi: đỉnh cao độ -0.2 nửa cung so với cả câu | CẦN NGHE | tăng em của emote.py hoặc kiểm từ nhấn |
+| 10.60–11.82 (L06) | But WHY on its tummy? | Rhythm: nói nhanh: 5.3 âm tiết/s trên đoạn có tiếng (> 4.0) | CẦN NGHE | pace thấp hơn cho câu này (giọng Dot có pitch +3,5 nửa cung nên nhanh hơn speed ~22 %), dời câu sau, hoặc bớt chữ |
+| 24.62–25.63 (L11) | Look at it go! | Rhythm: nói nhanh: 4.3 âm tiết/s trên đoạn có tiếng (> 4.0) | CẦN NGHE | pace thấp hơn cho câu này (giọng Dot có pitch +3,5 nửa cung nên nhanh hơn speed ~22 %), dời câu sau, hoặc bớt chữ |
+| 24.62–25.63 (L11) | Look at it go! | Voice: từ nhấn chưa nổi: đỉnh cao độ -1.0 nửa cung so với cả câu | CẦN NGHE | tăng em của emote.py hoặc kiểm từ nhấn |
+| 35.15–36.34 (L15) | Play it again! Louder! | Rhythm: nói nhanh: 5.5 âm tiết/s trên đoạn có tiếng (> 4.0) | CẦN NGHE | pace thấp hơn cho câu này (giọng Dot có pitch +3,5 nửa cung nên nhanh hơn speed ~22 %), dời câu sau, hoặc bớt chữ |
 
-Theo yêu cầu "hãy luôn làm khuôn mặt của các nhân vật và nhạc vui tươi" (QUALITY.md, mục *Vui tươi*).
-- **Mặt:** bật `LOOK.cheer = true`; rig dùng chung đổi biểu cảm buồn, lo, cáu, nhăn, hét, lác mắt sang dạng vui, bất ngờ thành mắt to miệng cười, lúc nói miệng cười há.
-- **Nhạc:** khựng trước "Nope!" sang giọng trưởng, hết hồi hộp; twinkle 104 → 108; sneak → stride 112; sway → sunny 112.
-- **qa.py sau khi dựng lại:** 56 ĐẠT · 0 CẢNH BÁO · 0 CHƯA ĐẠT (gồm hai mục mới "Mặt nhân vật vui tươi" và "Nhạc vui tươi"). Bảng qa ở trên là của lần dựng trước.
+**Kết luận cho các dòng CẦN NGHE:**
+- Chưa nghe bằng tai (máy dựng không có loa); kết luận theo số đo, chờ chủ kênh nghe lại đúng các đoạn dưới đây.
+- L03 (5,2 s), L06 (10,6 s), L11 (24,6 s), Crumb nói nhanh 4,3–5,3 âm tiết/s: tốc độ giọng Crumb của kênh, không chậm được hơn mà vẫn qua Whisper.
+- L03, L11 từ nhấn chưa nổi: nghe xem câu có đều đều không; nếu có, thử `emo: 'surprised'` cho riêng câu đó.
+- L01 (0,4–2,8 s) lời hơn nền 10,9 dB dưới tiếng còi và kính rung của móc: nếu nghe thấy bị che, hạ `glassring` / `whistle` dưới câu.
+
+**Mục G. Checklist**
+
+| Tiêu chí (Task.md §10) | Đo được | Cách đo | Chi tiết |
+|---|---|---|---|
+| Phát âm rõ ràng | ĐẠT | Whisper small.en + base.en nghe từng từ; từ có xác suất < 0,5 ở cả hai mô hình | — |
+| Không sai từ | ĐẠT | cả hai mô hình nghe ra đúng mọi từ và mọi từ khoá | — |
+| Không nuốt âm | ĐẠT | năng lượng xát / bật ở cuối từ (bugs, legs, wings…) so với bản nói gốc | — |
+| Không lặp từ ngoài ý muốn | ĐẠT | không mô hình nào nghe ra từ thừa | — |
+| Giai điệu tự nhiên | ĐẠT | cao độ từng nốt so với bản nhạc (dung sai theo kiểu hát), độ kéo nguyên âm · phần "tự nhiên" chỉ nghe được | — |
+| Không bị méo giọng | ĐẠT | quá tải, click ở chỗ nối, HNR so với bản nói, cao độ phẳng, vibrato | — |
+| Tốc độ giọng vừa tai trẻ | CẦN NGHE | câu nói ≤ 4.0 âm tiết/s trên đoạn có tiếng; câu hát ≤ 3.2 âm tiết/s theo bản nhạc (trừ điệp khúc) · chậm, liền hơi: chỉ nghe được | L03: nói nhanh: 4.7 âm tiết/s trên đoạn có tiếng (> 4.0); L06: nói nhanh: 5.3 âm tiết/s trên đoạn có tiếng (> 4.0); L11: nói nhanh: 4.3 âm tiết/s trên đoạn có tiếng (> 4.0); L15: nói nhanh: 5.5 âm tiết/s trên đoạn có tiếng (> 4.0) |
+| Nhịp hát phù hợp hình ảnh | ĐẠT | âm tiết / giây, nốt ngắn nhất, ngắt ở dấu câu, từ dính nhau · khớp hành động chỉ xem được | — |
+| Giọng có cảm xúc, có nhấn nhá | CẦN NGHE | câu nói: dải cao độ ≥ 4 nửa cung, từ nhấn cao hơn cả câu ≥ 0,5 nửa cung (emote.py uốn theo emo của câu) · cảm xúc có hợp tình huống: chỉ nghe được | L03: từ nhấn chưa nổi: đỉnh cao độ -0.2 nửa cung so với cả câu; L11: từ nhấn chưa nổi: đỉnh cao độ -1.0 nửa cung so với cả câu |
+| Giữ nhất quán giọng nhân vật | ĐẠT | cao độ trung vị và âm lượng từng câu so với các câu khác của cùng nhân vật | — |
+| Không bị nhạc nền che lấp | CẦN NGHE | lời hơn nhạc + tiếng động ≥ 10 dB ở dải 300–4000 Hz (stem cuối) | L01: lời hơn nhạc + tiếng động 10.9 dB (sát ngưỡng 10) |
+| Phụ đề khớp 100% với lời thoại | ĐẠT | chữ trên phụ đề = lời; chữ hiện đúng lúc hát (± 0,3 s); khẩu hình đủ khung | — |
+
+**Chỉ nghe / xem được (điền tay khi duyệt):**
+
+- [ ] Giai điệu tự nhiên, hợp cảm xúc từng cảnh (không chỉ "nghe vui")
+- [ ] Giọng không robot, không chuột chip; vibrato vừa phải; không thấy dấu autotune
+- [ ] Giọng hát nghe như chính nhân vật, giữ cùng âm sắc giữa các đoạn
+- [ ] Lời hát khớp hành động và khẩu hình
+- [ ] Nếu một tiêu chí không đạt: chỉ tạo lại đúng câu đó (`sing.py --only <id>`)
+
+### Checklist thủ công (`QUALITY.md`, cuối file, §8.5, §9.5, §10)
+
+- [x] 0–1 s gây chú ý (còi lá cỏ, chữ móc nảy) · 1–2 s phản ứng (cả ba giật mình, mỗi người "nghe" một chỗ) · 2–3 s bí ẩn (hai dấu hỏi, ô "1 2 3")
+- [x] Mỗi 3–5 s có chuyện mới (28 cú, khoảng dài nhất 2,8 s; qa đo khoảng dài nhất 1,9 s)
+- [x] Gag hợp tính cách: "Louder!" → TOO LOUD! → mỗi người bịt đúng chỗ "tai" đã gài ở móc (Miss Loupe bịt… kính)
+- [x] Nội dung đúng FACTS.md ("many grasshoppers", tai ở bụng), phù hợp 4–8 tuổi, không đáng sợ
+- [x] Thông điệp thấy được: tai không nhất thiết ở trên đầu; mỗi con vật nghe ở một chỗ
+- [x] Biểu cảm đọc được ở cỡ điện thoại; không che, không cắt mép (khung tĩnh, safezone: không chạm)
+- [x] Mặt luôn vui (qa); nhạc giọng trưởng, ≥ 108 BPM, không hồi hộp
+- [x] Nhạc đổi theo cảnh (19 cảnh nhạc, 11 điệu); điệu riêng cumbia 38 %; không trùng Short khác (qa)
+- [ ] Nghe lại cả phim (đệm dưới lời, đổi cảnh nghe ra, chủ đề): chờ chủ kênh nghe
+- [x] Kết có điểm nhấn và nối về đầu (Crumb lại cầm lá cỏ, "PWEEET!" ở 0,0)
+- [x] Không kêu gọi bình luận / đăng ký; câu hỏi kết cho trẻ trả lời to và chỉ vào tai mình
+- [x] Tựa móc nảy ở khung đầu có tiếng; nhân vật phản ứng trong 1 s
+- [x] Chuyển cảnh kính → sổ có chuyển động nối (chụp → match cut qua sticker)
+- [x] Cảnh cuối gợi lại câu móc (chữ móc trở lại)
+- [x] Khoảnh khắc bí mật to (kính r ≈ 312 px; màng nghe ở độ phóng 4,7); BOING ra khỏi kính
+- [x] Tập A: cảnh sổ ≤ 4,5 s, vòng mở "1 2 3"; trứng phục sinh Mr. Rollo ở gag
+- [x] Người nói có trên hình (qa); phụ đề không che mặt; chữ có viền / nền đặc
+- [ ] §8.5 Nghe lại cả phim (lời vào phách, điệp khúc dễ đọc theo, SFX khớp hành động): chờ chủ kênh nghe; số đo: 66 % số từ vào phách, av_sync 100 %
+- [x] §8.5 Xem ở cỡ điện thoại: chữ móc to, giữa phía trên; mỗi 2–4 s một thay đổi có mục đích
+- [x] §8.5 CTA cụ thể, tự nhiên; không comment / subscribe (Made for Kids)
+- [x] §8.5 Không kiến thức nào bị đổi sai để vào nhịp (điệp khúc: "tummy ears", "legs that sing" đúng FACTS.md)
+- [ ] §9.5 Nghe mọi dòng CẦN NGHE: kết luận theo số đo ở trên, chờ chủ kênh nghe
+- [x] §9.5 Phụ đề khớp 100 % với lời (vocal_qc: đạt)
+- [ ] §10 Cảm xúc từng câu, cảnh êm / cao trào khác nhau rõ, nền đúng bối cảnh: chờ chủ kênh nghe; số đo LRA và cao trào – cảnh êm ở bảng trên

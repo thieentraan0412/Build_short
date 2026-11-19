@@ -1,5 +1,7 @@
 # SHORT-013 · Soundtrack Timeline
 
+> **Cập nhật 19/11/2026 (dựng lại theo chuẩn 11/2026b, như SHORT-016):** phần dưới đây mô tả bản 14/11/2026. "Meadow Cumbia" giờ là một bài hát (Rê giáng trưởng, 8 phần 108–120 BPM): 11/18 câu đọc vào phách, điệp khúc "Tummy ears, and legs that sing!" ×2 (xylophone chơi giai điệu); song tấu thành cảnh nhạc theo bài hát (bắt đầu ô nhịp 13), thêm "điệp khúc 2", câu hỏi kết dời ra sau; lớp nền / năng lượng theo cảnh. Phim 46 s, mọi mốc dời theo giọng Miss Loupe chậm lại. Bảng hiện hành: [`SOUND-PLAN.md`](SOUND-PLAN.md) (sinh từ `out/music.json`, `events.json`, `out/scenes.json`), [`TREATMENT.md`](TREATMENT.md) mục 7, 8, A và H.
+
 ## Màu nhạc của tập: "Meadow Cumbia Duet"
 
 Tập này kể về những chú côn trùng **nghe ở chỗ lạ** và **hát bằng cách cạo**, nên nhạc là một ban nhạc cạo và gõ giữa bãi cỏ trưa hè:

@@ -1,23 +1,35 @@
 1
-00:00:00,100 --> 00:00:04,200
-Can you sneak up on a dragonfly? From behind, it can't see me!
+00:00:03,200 --> 00:00:04,720
+From behind, it can't see me!
 
 2
-00:00:04,450 --> 00:00:07,038
+00:00:05,008 --> 00:00:07,188
 Crumb only sees its back.
 
 3
-00:00:07,050 --> 00:00:10,229
-But Zip can see Crumb! Oh no!
+00:00:07,208 --> 00:00:09,160
+But Zip can see Crumb!
 
 4
-00:00:10,250 --> 00:00:13,457
-Its big eyes see almost all around!
+00:00:09,180 --> 00:00:10,380
+Oh no!
 
 5
-00:00:14,400 --> 00:00:17,297
-Six legs? In you go!
+00:00:10,535 --> 00:00:13,035
+Big eyes see almost all around!
 
 6
-00:00:19,050 --> 00:00:21,700
-Oh! I scared myself! Can YOU sneak up on Zip?
+00:00:14,250 --> 00:00:16,750
+Six legs? In you go!
+
+7
+00:00:18,600 --> 00:00:20,000
+Oh! I scared myself!
+
+8
+00:00:20,235 --> 00:00:22,735
+Big eyes see almost all around!
+
+9
+00:00:22,880 --> 00:00:24,700
+Can YOU sneak up on Zip?

@@ -11,7 +11,7 @@ Mọi Short và video của kênh trong `films/` phải theo [`_shared/QUALITY.m
 
 ### Chuẩn 11/2026b: Short từ SHORT-016, video dài từ LONG-002
 
-Chuẩn sản xuất mới và Musical Storytelling ([`Task.md`](Task.md) 17/11/2026, [`QUALITY.md`](_shared/QUALITY.md) §8; phần lời hát thay bằng lời đọc theo phách từ 19/11/2026). SHORT-010 đến 015 giữ nguyên như đã dựng.
+Chuẩn sản xuất mới và Musical Storytelling ([`Task.md`](Task.md) 17/11/2026, [`QUALITY.md`](_shared/QUALITY.md) §8; phần lời hát thay bằng lời đọc theo phách từ 19/11/2026). SHORT-011 đến 013 đã dựng lại theo chuẩn này ngày 19/11/2026 (Task.md: "update từ short 11 đến short 13 theo short 16"); SHORT-010, 014, 015 giữ nguyên như đã dựng.
 - Treatment chép từ [`_shared/TREATMENT-TEMPLATE.md`](_shared/TREATMENT-TEMPLATE.md): đủ 10 đầu ra (đánh giá ý tưởng, hook, kịch bản 6 nhịp, storyboard mỗi 2–4 s, chuyển động và góc quay, chữ và phụ đề, voiceover, SFX và nhạc nền, CTA, checklist) và Music Direction A–F. Khi chủ kênh giao nội dung một tập mới, trả về các mục này trước khi dựng.
 - Mã của tập chép từ [`_shared/template/`](_shared/template/) (thay cho `films/short-004/build.sh`): `timeline.js` khai báo `STANDARD`, bài hát (`SONG`), câu theo phách (`tune`), `BEATS`, `SHOTS`, `SECRET`, CTA (`cta: true`).
 - **Không nhân vật nào hát** ([`Task.md`](Task.md) 19/11/2026, [`QUALITY.md`](_shared/QUALITY.md) §8.3): mọi câu là giọng TTS gốc của nhân vật, không qua `_shared/sing.py`. ≥ 60 % số từ đọc vào phách của bài (`tune`); bài hát nằm ở nhạc nền (nhạc cụ chơi giai điệu điệp khúc); điệp khúc nhắc lại để trẻ đọc theo. Phụ đề ≤ 7 từ có từ nhấn; chữ móc ở giữa phía trên.

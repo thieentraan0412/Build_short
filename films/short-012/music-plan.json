@@ -1,6 +1,6 @@
 {
  "film": "short-012",
- "color": "\"Reverse-Gear Reggae\" (Rê giáng trưởng, reggae one-drop, mỗi cú bay lùi là một cú \"rewind\" của DJ)",
+ "color": "\"Reverse-Gear Reggae\" (Rê giáng trưởng, reggae one-drop, mỗi cú bay lùi là một cú \"rewind\" của DJ; điệp khúc \"Front wings up, back wings down!\" ở trumpet)",
  "dur": 24,
  "sections": [
   {
@@ -25,7 +25,7 @@
   {
    "name": "\"Let's zoom in!\"",
    "t0": 3.25,
-   "t1": 4.75,
+   "t1": 4.5,
    "style": "bounce",
    "key": "Db",
    "chords": "Gb Ab",
@@ -43,8 +43,8 @@
   },
   {
    "name": "kính · bay lùi",
-   "t0": 4.75,
-   "t1": 7.05,
+   "t0": 4.5,
+   "t1": 7.0,
    "style": "quest",
    "key": "Db",
    "chords": "Db Bbm Gb Ab",
@@ -62,8 +62,8 @@
   },
   {
    "name": "kính · đứng yên",
-   "t0": 7.05,
-   "t1": 8.85,
+   "t0": 7.0,
+   "t1": 9.1,
    "style": "float",
    "key": "Db",
    "chords": "Gb Db",
@@ -80,9 +80,9 @@
    "reprise": false
   },
   {
-   "name": "soi chậm · bốn cánh",
-   "t0": 8.85,
-   "t1": 12.55,
+   "name": "soi chậm · điệp khúc 1",
+   "t0": 9.1,
+   "t1": 12.2,
    "style": "reggae",
    "key": "Db",
    "chords": "Db Ab Bbm Gb",
@@ -100,8 +100,8 @@
   },
   {
    "name": "chụp → sổ",
-   "t0": 12.55,
-   "t1": 13.45,
+   "t0": 12.2,
+   "t1": 13.1,
    "style": "break",
    "key": "Db",
    "chords": "Db",
@@ -119,8 +119,8 @@
   },
   {
    "name": "sổ · Albie",
-   "t0": 13.45,
-   "t1": 16.35,
+   "t0": 13.1,
+   "t1": 15.85,
    "style": "reggae",
    "key": "Db",
    "chords": "Gb Db",
@@ -137,9 +137,9 @@
    "reprise": false
   },
   {
-   "name": "gag · đi lùi \"bíp bíp\"",
-   "t0": 16.35,
-   "t1": 19.8,
+   "name": "gag · dang tay đi lùi \"bíp bíp\"",
+   "t0": 15.85,
+   "t1": 17.5,
    "style": "hop",
    "key": "Db",
    "chords": "Db Gb",
@@ -157,8 +157,8 @@
   },
   {
    "name": "\"Watch the corners!\"",
-   "t0": 19.8,
-   "t1": 21.75,
+   "t0": 17.5,
+   "t1": 19.0,
    "style": "polka",
    "key": "Db",
    "chords": "Ab Db",
@@ -175,12 +175,31 @@
    "reprise": false
   },
   {
+   "name": "điệp khúc 2",
+   "t0": 19.0,
+   "t1": 22.0,
+   "style": "reggae",
+   "key": "Db",
+   "chords": "Db Ab Db Gb",
+   "bass": "bassn",
+   "comp": "piano",
+   "lead": "trumpet",
+   "arp": "piano",
+   "kit": "dub",
+   "energy": 3,
+   "hand": false,
+   "bpm": 120.0,
+   "mood": "happy",
+   "arc": "end",
+   "reprise": true
+  },
+  {
    "name": "câu hỏi · vòng lặp",
-   "t0": 21.75,
+   "t0": 22.0,
    "t1": 24.0,
    "style": "gallop",
    "key": "Db",
-   "chords": "Db Ab",
+   "chords": "Db Gb Db Ab",
    "bass": "bassn",
    "comp": "marimba",
    "lead": "xylo",

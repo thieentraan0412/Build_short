@@ -1,0 +1,20 @@
+{
+ "L06": {
+  "emo": "proud",
+  "k": 0.5,
+  "range_before": 8.2,
+  "range_after": 9.2,
+  "median_hz": 80.9,
+  "em_words": 1,
+  "version": 1
+ },
+ "L08": {
+  "emo": "playful",
+  "k": 0.5,
+  "range_before": 11.5,
+  "range_after": 10.6,
+  "median_hz": 81.6,
+  "em_words": 1,
+  "version": 1
+ }
+}

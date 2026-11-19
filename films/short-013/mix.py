@@ -1,8 +1,12 @@
-"""Âm thanh của SHORT-013 → out/mix.wav (48 kHz stereo): nhạc theo từng cảnh ("Meadow Cumbia Duet", Rê giáng trưởng, MUSIC.md và SOUND-PLAN.md),
-nhạc hiệu 0,8 s (band.sting) ở cú lao vào kính, tiếng động theo events.json, nền bãi cỏ trưa hè, giọng.
-python mix.py   (cần timeline.json + voice/*.wav từ tools/lines.mjs và core/tts/tts.py, events.json từ core/render/events.mjs)
-Nhạc cụ: _shared/audio/band.py; lớp nhịp theo cảnh: _shared/audio/groove.py (plan=True, Sound Design Plan); tiếng động: _shared/audio/toon.py.
-Không dùng mẫu âm thanh của bên thứ ba. Phim phát vòng lặp: nốt La giáng (bậc năm) ở cuối dẫn về hợp âm Rê giáng ở 0,0; đuôi tiếng sau 44 s gấp về đầu phim.
+"""Âm thanh của SHORT-013 → out/mix.wav (48 kHz stereo) và stems (chuẩn 11/2026b theo SHORT-016, _shared/QUALITY.md §4, §8, §10).
+python mix.py   (cần timeline.json + voice/*.wav từ tools/lines.mjs, _shared/tools/voice_regen.py; events.json từ core/render/events.mjs)
+- Nhạc: "Meadow Cumbia" (Rê giáng trưởng; cumbia là điệu riêng của tập: güira cạo móc kép như cái chân "cạo" của Hop). Lớp nhịp theo cảnh
+  _shared/audio/groove.py với song=TL['song'] (cảnh chồng câu theo phách dùng chords='song' và BPM của phần bài hát) + accomp=True + G.theme
+  (chủ đề của tập = điệp khúc "Tummy ears, and legs that sing!"). Không ai hát (§8.3): giai điệu điệp khúc do nhạc cụ hát chính của cảnh chơi.
+- Song tấu (cảnh đặc trưng) là một cảnh nhạc theo bài hát (cumbia, bắt đầu đúng ô nhịp của phim); phần hỏi – đáp của Hop (kéo vĩ) và Chirp
+  (gáy) vẫn viết tay; điệp khúc 2 nhắc lại song tấu, nhỏ hơn.
+- Âm thanh theo cảnh 4 lớp (§10): SCENES (năng lượng calm / normal / high / peak, lớp nền), EMO_DB, ambience.beds, out/scenes.json.
+Mọi âm thanh tổng hợp bằng code; không dùng mẫu của bên thứ ba. Phim phát vòng lặp: nốt La giáng (bậc năm) ở cuối dẫn về hợp âm Rê giáng ở 0,0.
 Tiếng riêng của nhân vật không lời (dựng tại đây): Hop "kéo vĩ" = rasp() (răng cưa có cao độ, rung theo hàng gai ~38 lần/giây), Hop nảy = boing;
 Chirp gáy = band.chirp (không cao độ, tiếng động) hoặc chirpn() (ba xung có cao độ, khi gáy thành nhạc trong song tấu)."""
 import os, sys, json, numpy as np, soundfile as sf, soxr
@@ -13,19 +17,24 @@ from sfx import SR, t_, env_exp, bp, lp, hp, noise, norm, brown, thump, pop, cli
 from band import (mf, pluck, marimba, bassn, celesta, harp, xylo, trumpet, trombone, tuba, pizz, toypiano, riser, sting, chirp, accordion,
                   strings, tom, shaker, bongo, timpani, vibes, bassoon, glide, secret, triangle, kick, clap, fade)
 import toon as T
+from groove import Groove
+import ambience as AMB                                   # Lớp 4: nền theo bối cảnh
+sys.path.insert(0, os.path.join(LIB, '_shared'))
+from emote import EMO_DB, CHORUS_DB                      # Lớp 1: độ to theo cảm xúc của câu
+from scipy.ndimage import maximum_filter1d, uniform_filter1d
 
 TL = json.load(open(os.path.join(HERE, 'timeline.json'), encoding='utf-8'))
 EV = json.load(open(os.path.join(HERE, 'events.json'), encoding='utf-8'))['ev']
-HIT = TL['hit']
-BEAT = 60 / TL['bpm']; DUR = TL['dur']; N = int((DUR + .05) * SR); N0 = int(DUR * SR)
-NW = N + int(2.5 * SR)
-B = {k: np.zeros((NW if k in ('mus', 'fx') else N, 2)) for k in ('mus', 'fx', 'amb', 'vox')}
+HIT = TL['hit']; BEAT = 60 / TL['bpm']; DUR = TL['dur']; N = int((DUR + .05) * SR); N0 = int(DUR * SR); NW = N + int(2.5 * SR)
+B = {k: np.zeros((NW if k in ('mus', 'fx') else N, 2)) for k in ('mus', 'fx', 'amb')}
 def mixl(*xs):
     n = max(len(x) for x in xs); return sum(np.pad(x, (0, n - len(x))) for x in xs)
-LINES = TL['lines']
-L = {l['id']: l for l in LINES}
+LINES = TL['lines']; L = {l['id']: l for l in LINES}
 end = lambda i: L[i]['t'] + L[i]['dur']
+endm = lambda i: L[i]['t'] + max(n['t'] + n['d'] for n in L[i]['tune']['notes']) + .1 if L[i].get('tune') else end(i)
 def speaking(t, pad_=.05): return any(l['t'] - pad_ <= t < l['t'] + l['dur'] + pad_ for l in LINES)
+P_EARS, P_NOPE, P_FAR, P_SING, P_SPRING, P_DUET, P_CH2 = [p['t0'] for p in TL['song']['parts']][1:]
+CTA0 = round(L['L18']['t'] - .13, 2)                     # cảnh câu hỏi kết bắt đầu ngay trước câu (cùng phần H của bài)
 
 
 # ---------- tiếng riêng của Hop và Chirp ----------
@@ -51,11 +60,10 @@ def grasswhistle(d=.34, v=1.):
     return fade(x * np.minimum(1, tt / .02) * np.minimum(1, (d - tt) / .06), .004, .04) * v * .28
 
 
-# ---------- nhạc: "Meadow Cumbia Duet" — Rê giáng trưởng, bãi cỏ khô giữa trưa ----------
-# Điệu riêng của tập: CUMBIA (güira cạo móc kép: một nhạc cụ "cạo" cho những chú côn trùng hát bằng cách cạo!). Ba cảnh: Hop hát bằng chân
-# (dây spiccato hát như cây vĩ cầm của Hop), song tấu (viết tay: Hop kéo vĩ, Chirp gáy, phong cầm đệm), sổ.
+# ---------- nhạc: "Meadow Cumbia" — Rê giáng trưởng, bãi cỏ khô giữa trưa; bảng cảnh (Sound Design Plan) theo bài hát ----------
+# Điệu riêng của tập: CUMBIA (güira cạo móc kép: một nhạc cụ "cạo" cho những chú côn trùng hát bằng cách cạo!). Ba cảnh cumbia: Hop hát bằng chân
+# (dây spiccato hát như cây vĩ cầm của Hop), song tấu (xylophone chơi điệp khúc; Hop kéo vĩ, Chirp gáy viết tay), sổ; điệp khúc 2 nhắc lại song tấu.
 # Motif "lò xo" của Hop (Rê giáng–Fa–La giáng–Rê giáng) đi lên mỗi lần Hop nhảy; mô-típ bí mật đô–mi–sol của kênh (ở Rê giáng) khi lộ màng nghe.
-from groove import Groove
 mus = B['mus']
 def M(x, t, g=1., pan=0.): add(mus, x, t, g, pan)
 def seq(inst, ns, t0, step, g=1., pan=0., d=None, ramp=0.):
@@ -68,43 +76,44 @@ SPRING = (73, 77, 80, 85)                                           # Rê♭ Fa 
 DB, GB, AB = (61, 65, 68), (66, 70, 73), (68, 72, 75)              # hợp âm Rê giáng, Sol giáng, La giáng
 
 S0, S1 = HIT['sting']
-D0, D1 = HIT['land'], HIT['snap3']                                  # song tấu viết tay (G.mark)
+D0, D1 = HIT['land'], HIT['snap3']                                  # song tấu (cảnh nhạc theo bài hát, ô nhịp 13)
 AVOID = [(0, .3), (S0 - .05, S1 + .1), (HIT['startle'] - .05, HIT['startle'] + .5), (HIT['kneeGlow'][0], HIT['kneeGlow'][0] + .6),
          (HIT['xmark'] + .55, HIT['xmark'] + 1.0), (HIT['earOn'] - .05, HIT['earOn'] + .7), (HIT['chirps'][0] - .05, HIT['chirps'][1] + .4),
          (HIT['solo'][0] - .05, HIT['solo'][-1] + .35), (HIT['crouch'][0], HIT['launch'] + .6), (HIT['land'] - .05, HIT['land'] + .3),
          (HIT['snap1'] - .05, HIT['stamp1'] + .4), (HIT['snap2'] - .05, HIT['stamp2'] + .4), (HIT['gulp'] - .1, HIT['gulp'] + .5),
          (HIT['flip'][0] - .05, HIT['flip'][1] + .1), (HIT['chirpCover'] - .05, HIT['loupeCover'] + .5), (HIT['recall'] - .05, HIT['recall'] + .5)]
-# Sound Design Plan (11/2026, QUALITY.md §4, SOUND-PLAN.md): mỗi cảnh một phong cách nhạc, một BPM, một nhạc cụ hát chính, một cách chuyển.
-G = Groove(M, BEAT, LINES, meter=4, seed=13, avoid=AVOID, plan=True)
+G = Groove(M, BEAT, LINES, meter=4, seed=13, avoid=AVOID, plan=True, song=TL['song'], accomp=True)
+# chủ đề của tập (accomp): điệp khúc "TUM-my EARS, and LEGS that SING" — la♭ si♭ đô si♭ la♭ fa rê♭' (móc đơn)
+G.theme([7, 9, 11, 9, 7, 4, 12], [0, 1, 2, 4, 5, 6, 7], every=14., first=False)
 HOOK = dict(bass='bassn', comp='pluck', lead='banjo', kit='bongo', energy=2, bpm=120, mood='playful')
-G.sec('móc · còi lá cỏ', 0, S0, 'skip', 'Db', 'Db Gb,Ab', **HOOK, cue=False, arc='open',
+G.sec('móc · còi lá cỏ', 0, S0, 'skip', 'Db', 'song', **HOOK, cue=False, arc='open',
       what='Crumb thổi còi lá cỏ "PWEEET!"; Chirp, Hop và Miss Loupe giật mình, mỗi người "nghe" ở một chỗ: đầu gối, bụng, kính. "Where does a grasshopper hide its ears?"',
       emo='bất ngờ, tò mò', why='Shuffle nhảy chân sáo 120 BPM (phách của phim, để vòng lặp khớp): banjo hát như một buổi trưa ngoài đồng, ukulele đệm, bongo cho cú giật mình; xylophone chạy lên đúng lúc cả ba nảy lên (viết tay).')
 G.mark('logo · nhạc hiệu 0,8 s', S0, S1, 'jingle', 'Db', 'horn marimba bell', 3, mood='epic', arc='open', what='Máy lao vào mặt kính, logo bật lên',
        emo='háo hức', why='Nhạc hiệu 0,8 s của kênh (band.sting) ở Rê giáng, khớp đúng cú lao vào kính.')
-G.sec('bí mật 1 · tai Chirp ở đầu gối', S1, HIT['hush'][0], 'quest', 'Db', 'Db Bbm Gb Ab', bass='upright', comp='celesta', lead='toypiano', kit='tri', energy=2,
+G.sec('bí mật 1 · tai Chirp ở đầu gối', S1, HIT['hush'][0], 'quest', 'Db', 'song', bass='upright', comp='celesta', lead='toypiano', kit='tri', energy=2,
       bpm=108, mood='magic', arc='build', what='"Let\'s zoom in!" — kính soi Chirp và Hop; tai Chirp ở chân trước sáng lên. Crumb: "Are they on its legs, like Chirp?"',
       emo='tò mò, kỳ diệu', why='Phiêu lưu nước kiệu 108 BPM, piano đồ chơi hát, celesta đệm như ánh sáng nhỏ trong kính; đàn hạc vuốt lên khi tai Chirp sáng (viết tay).')
-G.mark('khựng trước "Nope!"', HIT['hush'][0], L['L04']['t'], 'break', 'Db', '', 1, mood='funny', arc='build', what='Kính trượt sang chân trước của Hop: không có gì… khựng hài',
+G.mark('khựng trước "Nope!"', HIT['hush'][0], P_NOPE, 'break', 'Db', '', 1, mood='funny', arc='build', what='Kính trượt sang chân trước của Hop: không có gì… khựng hài',
        emo='tinh nghịch, chờ', why='Khựng hài 0,65 s ở giọng trưởng (11/2026: không hồi hộp, không giọng thứ), trống lăn thì thầm để "Nope!" bật ra rõ: thử nghiệm của tập là "Nope!" ở bí mật 1.')
-G.sec('"Nope!" · tai ở bụng', L['L04']['t'], L['L06']['t'], 'twinkle', 'Db', 'Db Gb Db Ab', bass='bassn', comp='harp', lead='vibes', kit='tri', energy=2,
+G.sec('"Nope!" · tai ở bụng', P_NOPE, P_FAR, 'twinkle', 'Db', 'song', bass='bassn', comp='harp', lead='vibes', kit='tri', energy=2,
       bpm=108, mood='cute', arc='build', what='"Nope!" (dấu X); kính quét dọc sườn Hop, cánh nhấc lên như tấm rèm, lộ màng nghe tròn: "Its ears are on its tummy!"; Chirp gáy, màng rung',
       emo='bất ngờ, thích thú', why='Hộp nhạc lấp lánh 108 BPM, vibraphone hát: bí mật hiện ra nhẹ như mở một chiếc hộp. Trombone "wah-wah" sau "Nope!", mô-típ bí mật đô–mi–sol (celesta) khi màng nghe lộ ra, mỗi tiếng gáy chạm màng là một nốt marimba (viết tay).')
-G.sec('Crumb hỏi · châu chấu xa hát', L['L06']['t'], HIT['stamp1'], 'hop', 'Gb', 'Gb Db Ab Db', bass='pizzbass', comp='pluck', lead='reed', kit='comic', energy=2,
+G.sec('Crumb hỏi · châu chấu xa hát', P_FAR, HIT['stamp1'], 'hop', 'Gb', 'song', bass='pizzbass', comp='pluck', lead='reed', kit='comic', energy=2,
       bpm=116, mood='funny', arc='build', what='Crumb xoa bụng mình: "But WHY on its tummy?" — "To hear other grasshoppers sing!": hai châu chấu xa hát, vòng âm bay tới tai bụng của Hop',
       emo='buồn cười, ngộ ra', why='Nảy lệch phách 116 BPM ở Sol giáng, clarinet hát như một câu hỏi tinh nghịch; mõ hai cao độ cho cú xoa bụng. Tiếng hát xa là ba nốt "kéo vĩ" rất nhỏ (viết tay).')
-G.sec('bí mật 2 · hát bằng chân', HIT['stamp1'], HIT['stamp2'], 'cumbia', 'Db', 'Db Ab Gb Ab', bass='bassn', comp='accordion', lead='strings', kit='guira', energy=2,
+G.sec('bí mật 2 · hát bằng chân', HIT['stamp1'], HIT['stamp2'], 'cumbia', 'Db', 'song', bass='bassn', comp='accordion', lead='strings', kit='guira', energy=2,
       bpm=120, mood='bouncy', arc='build', what='"Many grasshoppers sing with their legs!" — Hop giơ đùi sau, kéo lên xuống dọc mép cánh; "They rub a back leg on a wing!"; Hop độc tấu bốn nốt',
       emo='vui, ngạc nhiên', why='Điệu riêng của tập vào lần đầu: cumbia 120 BPM, güira cạo móc kép như chính cái chân "cạo" của Hop; dàn dây spiccato hát như cây vĩ cầm của Hop, phong cầm đệm. Mỗi nhát kéo là một nốt "rè" có cao độ; đoạn độc tấu Rê giáng–Fa–La giáng–Rê giáng (viết tay).')
-G.sec('bí mật 3 · lò xo nén', HIT['stamp2'], HIT['launch'], 'stride', 'Db', 'Db Ab', bass='tuba', comp='pizz', lead='trombone', kit='comic', energy=2,
+G.sec('bí mật 3 · lò xo nén', HIT['stamp2'], HIT['launch'], 'stride', 'Db', 'song', bass='tuba', comp='pizz', lead='trombone', kit='comic', energy=2,
       bpm=112, mood='funny', arc='build', what='"And its back legs are like springs!" — Hop co chân, lò xo bên cạnh nén lại', emo='tinh nghịch, chờ cú bật',
       why='Ragtime hài 112 BPM, vui tươi (11/2026: không dùng điệu rình rập): trombone hát, trượt xuống từng bậc theo lò xo nén như một chiếc lò xo bị ép (viết tay), mõ hai cao độ; riser ngắn ngay trước cú bật. (Rình rập + bassoon đã quen ở 003, 005, 007.)')
 G.sec('BOING! ra khỏi kính', HIT['launch'], D0, 'hero', 'Db', 'Db Ab', bass='bassn', comp='pluck', lead='trumpet', kit='epic', energy=3,
       bpm=132, mood='epic', arc='peak', what='BOING! Hop nhảy vọt lên, ra khỏi mặt kính; máy ngước theo lên trời rồi cúi xuống bãi cỏ; Crumb: "Look at it go!"', emo='phấn khích, choáng ngợp',
       why='Cao trào anh hùng 132 BPM, timpani: cú nhảy là khoảnh khắc wow. Kèn trumpet thổi motif lò xo Rê giáng–Fa–La giáng–Rê giáng đi lên đúng cú bật (viết tay).', tr='riser')
-G.mark('song tấu · nốt thành hình', D0, D1, 'cumbia', 'Db', 'accordion strings celesta', 3, bpm=120, mood='happy', arc='peak', kit='guira',
-       what='Chirp và Hop song tấu trên gốc cây; nốt nhạc bay lên xếp thành trái tim, ngôi sao, mặt cười. Crumb: "A bug band!" — Miss Loupe: "The notes make a heart!"',
-       emo='vui sướng, tự hào', why='Cảnh đặc trưng, viết tay hoàn toàn trên nền cumbia 120 BPM: tambora phách 1–3, güira cạo móc kép, bass gảy, phong cầm chặn phách lẻ. Hop kéo vĩ (dây "rè" có cao độ) hỏi, Chirp gáy (chuông dế ba xung) đáp, đúng như một cặp song tấu; mỗi hình hiện lên là một hợp âm celesta.')
+G.sec('song tấu · điệp khúc 1', D0, D1, 'cumbia', 'Db', 'song', bass='bassn', comp='accordion', lead='xylo', arp='celesta', kit='guira', energy=3, tr='bump',
+      bpm=120, mood='happy', arc='peak', what='Chirp và Hop song tấu trên gốc cây; Crumb: "A bug band!" — điệp khúc lần 1 "Tummy ears, and legs that sing!" (đọc vào phách); nốt nhạc bay lên xếp thành trái tim, ngôi sao, mặt cười',
+      emo='vui sướng, tự hào', why='Cảnh đặc trưng trên điệu riêng của tập: cumbia 120 BPM (güira cạo móc kép, phong cầm chặn phách lẻ), bắt đầu đúng ô nhịp 13 của phim; xylophone chơi giai điệu điệp khúc dưới câu để trẻ nhớ. Hop kéo vĩ (dây "rè" có cao độ) hỏi, Chirp gáy (chuông dế ba xung) đáp, viết tay; mỗi hình hiện lên là một hợp âm celesta; vỗ tay phách 2 và 4.')
 G.mark('chụp → sổ', HIT['snap3'], HIT['stamp3'], 'break', 'Db', 'marimba harp', 2, mood='happy', arc='end', what='Kính "chụp", máy xuyên mặt kính, sticker 3 dán vào sổ',
        emo='háo hức', why='Marimba chạy lên (tiếng "chụp" của ban nhạc kênh), đàn hạc vuốt qua mặt kính.')
 G.sec('sổ · cumbia', HIT['stamp3'], HIT['flip'][0], 'cumbia', 'Db', 'Db Ab', bass='bassn', comp='marimba', lead='horn', kit='guira', energy=2, cue=False,
@@ -118,17 +127,22 @@ G.sec('gag · to quá!', HIT['encore'][0], HIT['chirpCover'], 'gallop', 'Db', 'D
       why='Phi ngựa nhịp kép 126 BPM, trống thép hát, phong cầm đệm, to dần lên tới mức "quá" — để cú khựng sau nghe rõ.')
 G.mark('khựng · bịt tai', HIT['chirpCover'], L['L16']['t'], 'break', 'Db', 'vibes celesta marimba', 1, mood='funny', arc='end',
        what='Khựng: Chirp bịt đầu gối, Hop bịt bụng, Miss Loupe bịt… kính', emo='buồn cười', why='Cả dàn dừng, chỉ còn vibraphone run run; ba cú bịt là ba nốt: celesta (Chirp), marimba (Hop), tiếng "keng" thuỷ tinh (kính của Miss Loupe), viết tay.')
-G.sec('"Oops! Too loud!" · "Where are YOUR ears?"', L['L16']['t'], HIT['home'][0], 'sunny', 'Gb', 'Gb Db Ebm Ab', bass='bassn', comp='pluck', lead='celesta', kit='brush', energy=2,
-      bpm=112, mood='happy', arc='end', what='"Oops! Too loud!"; Crumb cười; Miss Loupe hỏi trẻ: "Where are YOUR ears?"; cả ba bỏ tay ra', emo='vui, mời gọi',
-      why='Ukulele nắng 112 BPM, celesta hát nhẹ (11/2026: kết luôn vui tươi, không chậm như bài ru): sau tiếng ồn là một nhịp vui, gọn để trẻ chỉ vào tai mình và trả lời.')
-G.sec('nhặt lá cỏ · chữ móc trở lại', HIT['home'][0], HIT['home'][1], 'polka', 'Db', 'Db Ab', bass='tuba', comp='pluck', lead='piano', kit='toy', energy=2,
-      bpm=120, mood='happy', arc='end', what='Crumb nhặt một lá cỏ mới, đưa lên miệng; chữ móc trở lại', emo='tinh nghịch, vui',
-      why='Polka 120 BPM, piano hát: Crumb lại sắp nghịch; chữ móc trở lại với hợp âm Rê giáng.')
+G.sec('"Oops! Too loud!"', L['L16']['t'], P_CH2, 'sunny', 'Gb', 'Gb Db Ebm Ab', bass='bassn', comp='pluck', lead='celesta', kit='brush', energy=2,
+      bpm=112, mood='happy', arc='end', what='"Oops! Too loud!" (nói); Crumb cười; cả ba bỏ tay ra', emo='vui, nhẹ nhõm',
+      why='Ukulele nắng 112 BPM, celesta hát nhẹ: sau tiếng ồn là một nhịp vui, gọn.')
+G.sec('điệp khúc 2', P_CH2, CTA0, 'cumbia', 'Db', 'song', bass='bassn', comp='accordion', lead='xylo', arp='celesta', kit='guira', energy=3, tr='pickup',
+      bpm=120, mood='happy', arc='end', reprise=True, what='Điệp khúc lần 2: Chirp và Hop chơi lại khe khẽ, nốt nhỏ bay lên, cả nhóm nhún theo; "Tummy ears, and legs that sing!"',
+      emo='vui, đọc theo', why='Nhắc lại đúng nhạc của song tấu (reprise): xylophone chơi lại giai điệu điệp khúc để trẻ nhận ra và đọc theo; Hop, Chirp chơi nhỏ hơn (sau "too loud").')
+G.sec('câu hỏi kết · nhặt lá cỏ', CTA0, HIT['home'][1], 'polka', 'Db', 'song', bass='tuba', comp='pluck', lead='piano', kit='toy', energy=2,
+      bpm=120, mood='happy', arc='end', what='"Where are YOUR ears?" (đọc vào phách): trẻ chỉ vào tai mình; Crumb nhặt một lá cỏ mới, đưa lên miệng; chữ móc trở lại', emo='tinh nghịch, mời gọi',
+      why='Polka 120 BPM, piano hát: câu hỏi gọn, vui; chữ móc trở lại với hợp âm Rê giáng.')
 G.sec('nối vòng lặp', HIT['home'][1], DUR, 'skip', 'Db', 'Db', **HOOK, cue=False, arc='open', reprise=True,
       what='Chirp và Hop lại đứng cạnh nhau, Crumb phồng má sắp thổi (đúng khung đầu)', emo='tinh nghịch',
       why='Mở đầu của vòng sau: nhạc của móc bắt đầu lại 1,15 s trước điểm lặp, cùng 120 BPM, nên vòng lặp nghe liền một mạch. Phần kết của tập là polka ở cảnh trước.')
 G.answer(HIT['giggle'], HIT['footWag'][0], HIT['legUp'][0], HIT['giggle2'])
-G.play(); os.makedirs(os.path.join(HERE, 'out'), exist_ok=True); G.save(os.path.join(HERE, 'out', 'music.json'), color='"Meadow Cumbia Duet" (Rê giáng trưởng, song tấu güira – vĩ cầm chân – chuông dế)')
+G.play()
+os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)
+G.save(os.path.join(HERE, 'out', 'music.json'), color='"Meadow Cumbia" (Rê giáng trưởng, song tấu güira – vĩ cầm chân – chuông dế; điệp khúc "Tummy ears, and legs that sing!" ở xylophone)')
 
 # — Móc: hợp âm Rê giáng ở giây 0; cả ba nảy lên: xylophone chạy lên; Chirp giơ chân: celesta; Hop xoay sườn: marimba; "?": bassoon hỏi —
 M(bassn(37, .5), 0., 1.0); strum(pluck, DB + (73,), 0., .3, .5); M(glock(97, .5), 0., .1, .4)
@@ -150,7 +164,7 @@ for h in (HIT['snap1'], HIT['snap2']):
     seq(marimba, (73, 77, 80, 85, 89), h + .04, .06, .4, .2, ramp=.1); M(T.gliss(80, 101, .45, .22, 'harp'), h + .1, .6)
 # — Bí mật 2: Hop kéo vĩ (mỗi nhát một nốt "rè" ở Rê giáng ngũ cung; nhỏ dưới lời, to ở đoạn độc tấu) —
 PENT = (73, 75, 77, 80, 82, 85)
-SAWS = sorted(e['t'] for e in EV if e['type'] == 'rasp' and e['t'] < 20)
+SAWS = sorted(e['t'] for e in EV if e['type'] == 'rasp' and e['t'] < HIT['stamp2'])
 for i, h in enumerate(SAWS):
     solo = h >= HIT['solo'][0] - .01
     m = (73, 77, 80, 85)[HIT['solo'].index(min(HIT['solo'], key=lambda s: abs(s - h)))] if solo else PENT[(i * 2) % len(PENT)]
@@ -160,29 +174,11 @@ for i, m in enumerate((61, 60, 58, 56, 54)): M(trombone(m - 12, .22, 1., -.6), H
 M(riser(.5, .9), HIT['launch'] - .5, .6)
 seq(lambda m, d: trumpet(m, d), SPRING, HIT['launch'] + .02, .09, .36, 0, d=.22); M(timpani(37, 1., 1.2), HIT['launch'], .7)
 M(timpani(37, .9, 1.), HIT['land'], .7); strum(pluck, DB + (73,), HIT['land'] + .02, .3, .6)
-# — Song tấu viết tay (G.mark, cumbia 120 BPM): tambora 1–3, güira cạo móc kép, bass, phong cầm chặn phách lẻ; Hop hỏi (rasp), Chirp đáp (chirpn) —
-DS, DB_ = HIT['duet'][0], BEAT                                       # lưới của song tấu bắt đầu đúng lúc Hop kéo nhát đầu
-DCH = [DB, (66, 70, 73), (68, 72, 75), DB]                           # Rê giáng | Sol giáng | La giáng | Rê giáng (mỗi hợp âm 2 phách)
-def dchord(t): return DCH[min(len(DCH) - 1, int((t - DS) / (2 * DB_)) % len(DCH))]
-t = D0 + .05
-while t < D1 - .02:
-    k = int(round((t - DS) / (DB_ / 4)))                             # móc kép thứ k (lưới 16 móc kép mỗi ô)
-    tt = DS + k * DB_ / 4
-    if tt < D0 or tt >= D1: t += DB_ / 4; continue
-    s16 = k % 16
-    if s16 in (0, 8): M(tom(41, 1.), tt, .55, -.1)                                             # tambora
-    if s16 in (4, 12): M(tom(48, .7), tt, .35, .1)
-    M(shaker(1.15 if s16 % 2 == 0 else .7), tt, .55, .35)                                      # güira cạo
-    if s16 in (2, 6, 10, 14): M(bongo(.6, True), tt, .25, -.4)
-    ch = dchord(tt)
-    if s16 in (0, 8): M(bassn(ch[0] - 24, .3), tt, .9)
-    if s16 in (6, 14): M(bassn(ch[2] - 24, .2), tt, .7)
-    if s16 in (2, 6, 10, 14): strum(accordion, ch, tt, .16 if speaking(tt) else .24, .18, .006)   # phong cầm chặn phách lẻ
-    t = tt + DB_ / 4
-# Hop hỏi: nốt "rè" ở mỗi nhát kéo (phách 1, 2…); Chirp đáp: chuông dế ở nửa phách sau. Dưới lời: nhỏ lại, giữ nhịp
+# — Song tấu (cảnh nhạc cumbia theo bài hát, ô nhịp 13): Hop hỏi (rasp) ở mỗi phách, Chirp đáp (chirpn) ở nửa phách sau; dưới lời nhỏ lại, giữ nhịp —
+DB_ = BEAT
 HOPQ = [73, 77, 80, 77, 82, 80, 77, 73, 85, 82, 80, 77, 80, 85, 89, 85]
 CHA = [92, 97, 92, 89, 94, 92, 97, 101, 97, 94, 92, 97, 101, 104, 101, 97]
-DUET_H = [h for h in (DS + i * DB_ for i in range(20)) if h < D1 - .1]
+DUET_H = [h for h in (HIT['duet'][0] + i * DB_ for i in range(20)) if h < D1 - .1]
 for i, h in enumerate(DUET_H):
     sp = speaking(h, .1)
     M(rasp(HOPQ[i % len(HOPQ)], .2, 1.), h, .14 if sp else .42, .3)
@@ -190,6 +186,15 @@ for i, h in enumerate(DUET_H):
 for k, a in enumerate((HIT['heart'][0], HIT['star'][0], HIT['smile'][0])):                    # mỗi hình hiện lên: hợp âm celesta + đàn hạc
     strum(celesta, [n + 24 for n in (DB, GB, AB)[k]], a + .02, .16, .9, .03); M(T.gliss(80 + 2 * k, 100 + 2 * k, .35, .16, 'harp'), a - .3, .6)
 seq(lambda m, d: trumpet(m, d), SPRING, HIT['finale'] + .02, .08, .3, .2, d=.2)               # cú nảy cuối song tấu
+# — Điệp khúc 2: Hop, Chirp chơi lại khe khẽ (sau "too loud") theo DUET2 của timeline —
+H2 = [t for t in np.arange(HIT['ch2'][0] + .12, HIT['ch2'][1] - .1, DB_)]
+for i, h in enumerate(H2):
+    M(rasp(HOPQ[i % len(HOPQ)], .18, .8), h, .1 if speaking(h, .1) else .25, .3)
+    M(chirpn(CHA[i % len(CHA)], .8), h + DB_ / 2, .12 if speaking(h + DB_ / 2, .1) else .3, -.3)
+B120 = .5
+for c0 in (L['L13']['t'] + .12, L['L17']['t'] + .12):                # điệp khúc: vỗ tay phách 2 và 4, trẻ vỗ theo
+    for k in (1, 3):
+        M(clap(.9), c0 + k * B120, .3, -.2); M(clap(.7), c0 + k * B120 + .012, .18, .25)
 # — Chụp → sổ: marimba chạy lên; đàn hạc vuốt; sticker; Hop nhảy vào trang: xylophone trượt xuống; lật trang —
 seq(marimba, (73, 77, 80, 85, 89), HIT['snap3'] + .04, .07, .45, .2, ramp=.1)
 M(T.gliss(80, 101, HIT['zoomIn'][1] - HIT['zoomIn'][0], .28, 'harp'), HIT['zoomIn'][0], .9)
@@ -199,23 +204,37 @@ seq(xylo, (97, 92, 89, 85, 80), HIT['gulp'] + .02, .05, .35, .1, d=.2)
 M(celesta(101, .8), HIT['mini'] + .02, .3, .4)
 M(T.gliss(77, 101, .45, .3, 'harp'), HIT['flip'][0] + .02, .7)
 # — Gag: to quá! — cả dàn khựng; ba cú bịt là ba nốt; vibraphone run run giữ một lớp mỏng —
-for i, h in enumerate(sorted(e['t'] for e in EV if e['type'] == 'rasp' and e['t'] > 34)): M(rasp((73, 80, 85, 89)[i % 4], .2, 1.), h, .35 + .05 * i, .3)
+for i, h in enumerate(sorted(e['t'] for e in EV if e['type'] == 'rasp' and e['t'] > HIT['flip'][1])): M(rasp((73, 80, 85, 89)[i % 4], .2, 1.), h, .35 + .05 * i, .3)
 for k in range(10): M(vibes(85 + (k % 2) * 4, .25), HIT['chirpCover'] + .05 + k * .11, .07, -.2 + .04 * k)
 M(celesta(97, .5), HIT['chirpCover'] + .02, .3, -.1); M(marimba(80, .5), HIT['hopCover'] + .02, .35, .3); M(T._ting(mf(104), .8, 1.) * .5, HIT['loupeCover'] + .02, .35, -.4)
 # — Chữ móc trở lại: hợp âm Rê giáng nhỏ; nốt dẫn La giáng → Rê giáng ở 0,0 —
 strum(pluck, DB + (73,), HIT['recall'], .28, .8)
 M(bassn(44, .3), DUR - BEAT / 2, .9)
 
-# — cường độ theo cảnh (chuyển mềm 0,3 s) —
-LEVEL = ((0, .85), (.3, .74), (HIT['startle'], .95), (L['L01']['t'] + .25, .74), (S0, .95), (S1 + .1, .8), (L['L02']['t'], .74), (HIT['kneeGlow'][0], .86), (L['L03']['t'], .72),
-         (HIT['hush'][0], .5), (L['L04']['t'], 1.0), (L['L05']['t'], .74), (HIT['earOn'], .9), (end('L05'), .95), (L['L06']['t'], .74), (end('L06'), .9), (L['L07']['t'], .74),
-         (HIT['snap1'], 1.0), (HIT['stamp1'] + .2, .8), (L['L08']['t'], .72), (end('L09'), .95), (HIT['stamp2'] + .2, .78), (L['L10']['t'], .72), (end('L10'), .86),
-         (HIT['launch'], 1.0), (L['L11']['t'], .78), (end('L11'), 1.0), (L['L12']['t'], .78), (end('L12'), .95), (L['L13']['t'], .76), (end('L13'), 1.0),
-         (HIT['snap3'], 1.0), (HIT['stamp3'] + .3, .8), (HIT['gulp'], .95), (HIT['gulp'] + .5, .8), (HIT['flip'][0], .9), (L['L15']['t'], .74), (end('L15'), .9),
-         (HIT['encore'][0], .95), (HIT['loud'][0], 1.0), (HIT['chirpCover'], .55), (L['L16']['t'], .7), (end('L16'), .8), (L['L17']['t'], .66), (end('L17'), .82))
+# — cường độ theo cảnh (chuyển mềm 0,3 s): dâng ở khám phá / bất ngờ, hạ dưới lời (≈ 0,8 dưới câu theo phách, ≈ 0,75 dưới câu nói) —
+LEVEL = ((0, .85), (.3, .84), (HIT['startle'], .95), (L['L01']['t'] + .25, 0.89), (S0, .95), (S1 + .1, .84), (L['L02']['t'], 0.89), (HIT['kneeGlow'][0], .86), (L['L03']['t'], 0.9),
+         (HIT['hush'][0], .55), (L['L04']['t'], 1.0), (L['L05']['t'], 0.85), (HIT['earOn'], .9), (end('L05'), .95), (L['L06']['t'], 0.9), (end('L06'), .9), (L['L07']['t'], 0.89),
+         (HIT['snap1'], 1.0), (HIT['stamp1'] + .2, .82), (L['L08']['t'], 0.85), (end('L09'), .95), (HIT['stamp2'] + .2, .8), (L['L10']['t'], 0.85), (end('L10'), .9),
+         (HIT['launch'], 1.0), (L['L11']['t'], 0.89), (end('L11'), 1.0), (L['L12']['t'], 0.89), (end('L12'), .95), (L['L13']['t'], 0.92), (endm('L13'), 1.0),
+         (HIT['snap3'], 1.0), (HIT['stamp3'] + .3, .8), (L['L14']['t'], 0.83), (HIT['gulp'], .95), (HIT['gulp'] + .5, .85), (HIT['flip'][0], .9), (L['L15']['t'], 0.83), (end('L15'), .9),
+         (HIT['encore'][0], .95), (HIT['loud'][0], 1.0), (HIT['chirpCover'], .55), (L['L16']['t'], 0.86), (end('L16'), .85), (L['L17']['t'], 0.90), (L['L18']['t'], 0.88), (end('L18'), .9))
 tt = np.arange(len(mus)) / SR; lev = np.full(len(mus), LEVEL[0][1])
 for (t, g), (_, g0) in zip(LEVEL[1:], LEVEL[:-1]): lev = np.where(tt >= t - .15, np.where(tt < t + .15, g0 + (g - g0) * (tt - t + .15) / .3, g), lev)
 mus *= lev[:, None]
+
+
+# ---------- thiết kế âm thanh theo cảnh: mỗi cảnh một mức năng lượng và một lớp nền (QUALITY.md §10) ----------
+SCENES = [('hook', 0, S0, 'high', 'meadow'), ('title', S0, S1, 'high', 'meadow'), ('knee', S1, P_NOPE, 'normal', 'meadow'), ('tummy', P_NOPE, P_FAR, 'normal', 'meadow'),
+          ('far', P_FAR, HIT['stamp1'], 'calm', 'meadow'), ('sing', HIT['stamp1'], HIT['stamp2'], 'normal', 'meadow'), ('spring', HIT['stamp2'], HIT['launch'], 'normal', 'meadow'),
+          ('boing', HIT['launch'], D0, 'peak', 'meadow'), ('duet', D0, HIT['zoomIn'][0], 'high', 'meadow'), ('album', HIT['zoomIn'][0], HIT['flip'][1], 'normal', 'paper_room'),
+          ('gag', HIT['flip'][1], HIT['encore'][0], 'normal', 'meadow'), ('loud', HIT['encore'][0], HIT['chirpCover'], 'peak', 'meadow'), ('oops', HIT['chirpCover'], P_CH2, 'calm', 'meadow'),
+          ('chorus2', P_CH2, CTA0, 'high', 'meadow'), ('cta', CTA0, DUR, 'normal', 'meadow')]
+EDB = {'calm': -8., 'normal': -3., 'high': 1.5, 'peak': 3.}                # dB cho nhạc và nền (tiếng động: một nửa)
+VDB = {'calm': -2., 'normal': 0., 'high': 1., 'peak': 1.5}                # giọng cũng theo cảnh, nhẹ hơn nhạc
+def energy_gain(n, k=1., table=None):
+    t_s = np.arange(n) / SR; g = np.zeros(n); table = table or EDB
+    for _, a, b, en, _a in SCENES: g[(t_s >= a) & (t_s < b)] = table[en] * k
+    g = uniform_filter1d(g, int(.5 * SR)); return 10 ** (g / 20)
 
 
 # ---------- tiếng động theo sự kiện ----------
@@ -294,67 +313,85 @@ SFX = {
     'unpop': lambda e: mixl(pop(.5) * .4, T.bubble(900 + 200 * e.get('n', 0), .3, .06, 2.4)),
     'scurry': lambda e: T.scurry(e.get('d', 1.2), .4, 91, 4),
     'pluck': lambda e: mixl(T.plip(1500, .35), np.pad(T.paper(.12, .2, 3, 6), (int(.02 * SR), 0))),
+    'textpop': lambda e: T.textpop(.7, 86 + 2 * e.get('n', 0)),
+    'logopop': lambda e: mixl(T.bubble(1500, .3, .05, 2.4), T.tink(.12, 4800)),
+    'stingout': lambda e: T.swish(.3, .3, 3600, 700, False, .2, .3),
+    'chorus': lambda e: mixl(T.sparkle(.55, .2, 92, 104, 5, 3, 'up'), T.tink(.3)),
     'recall': lambda e: mixl(SFX['titlepop'](e), SFX['wordpop']({'n': 0}), np.pad(SFX['wordpop']({'n': 1}), (int(.12 * SR), 0))),
 }
+
+VERB = {'chorus': .3, 'zoom': .3, 'titlepop': .3, 'ding': .4, 'flip': .3, 'page': .3, 'swipe': .25, 'count': .45, 'shine': .4, 'reveal': .4, 'slotstamp': .3, 'shape': .4, 'glassring': .3, 'whistle': .2}
 missing = sorted({e['type'] for e in EV} - SFX.keys())
 if missing: sys.exit(f'mix.py: no sound for event types {missing}')
-VERB = {'zoom': .3, 'titlepop': .3, 'ding': .4, 'flip': .3, 'page': .3, 'swipe': .25, 'count': .45, 'shine': .4, 'reveal': .4, 'slotstamp': .3, 'shape': .4, 'glassring': .3, 'whistle': .2}
 snd = np.zeros(NW)
 for e in EV:
     x = SFX[e['type']](e); add(fx, x, e['t'], 1., e.get('pan', 0))
     if e['type'] in VERB: s0 = int(e['t'] * SR); k = min(len(x), NW - s0); snd[s0:s0 + k] += x[:k] * VERB[e['type']]
 fx += T.verb(snd, 1.3) * .35
+fx *= energy_gain(len(fx), .5)[:, None]                  # tiếng động theo năng lượng cảnh (một nửa mức của nhạc)
 
 
-# ---------- vòng lặp: phần dư sau 44 s cộng vào đầu phim ----------
+# ---------- vòng lặp: phần dư sau DUR cộng vào đầu phim ----------
 for k in ('mus', 'fx'):
     b = B[k]; tail = b[N0:].copy(); b[:len(tail)] += tail; B[k] = b[:N].copy()
 mus, fx = B['mus'], B['fx']
 
 
-# ---------- nền: bãi cỏ trưa hè (gió nhẹ, chim xa hót ở chỗ không có lời; không có trong sổ) ----------
-amb = B['amb']
-d = DUR; tt = t_(d)
-add(amb, lp(brown(d), 420) * (.75 + .25 * np.sin(2 * np.pi * .17 * tt)) * np.minimum(1, tt / .05) * .045, 0, 1., 0)
-def tweet(v=1., f=3200):
-    d = .16; tt = t_(d); fr = f * (1 + .25 * np.sin(np.pi * tt / d)); x = np.sin(2 * np.pi * np.cumsum(fr) / SR)
-    return x * np.sin(np.pi * tt / d) ** 2 * .05 * v
-rng = np.random.default_rng(13)
-t0 = .9
-while t0 < DUR - .5:
-    if not speaking(t0, .25) and not (HIT['zoomIn'][0] - .2 < t0 < HIT['flip'][1]):
-        for k in range(2): add(amb, tweet(.6, rng.uniform(2800, 3600)), t0 + k * .19, 1., rng.uniform(-.8, .8))
-    t0 += rng.uniform(2.4, 3.8)
+# ---------- Lớp 4 – nền theo bối cảnh: bãi cỏ trưa hè (meadow: gió nhẹ, chim xa né lời), trang sổ (paper_room) ----------
+amb = B['amb']; amb += AMB.beds(DUR, [(a, b, nm) for _, a, b, _e, nm in SCENES], speaking=speaking, seed=13)[:len(amb)]
 
 
-# ---------- giọng ----------
+# ---------- giọng (mọi câu là giọng TTS gốc, không hát; không vang phòng / lọc trên giọng Miss Loupe, QUALITY.md §9.10) ----------
 vox = np.zeros(N)
+def _lvl(y): a = np.abs(y); act = y[a > a.max() * .1] if len(y) else y; return 20 * np.log10(np.sqrt(np.mean(act ** 2)) + 1e-9) if len(act) else -99.
+VY = {}
 for Ln in LINES:
     y, sr = sf.read(os.path.join(HERE, 'voice', Ln['id'] + '.wav'))
     if y.ndim > 1: y = y.mean(1)
-    y = soxr.resample(y, sr, SR)
+    VY[Ln['id']] = soxr.resample(y, sr, SR)
+LV = {k: _lvl(y) for k, y in VY.items()}
+MED = {w: float(np.median([LV[l['id']] for l in LINES if l['who'] == w])) for w in {l['who'] for l in LINES}}
+for Ln in LINES:
+    y = VY[Ln['id']] * 10 ** (float(np.clip(MED[Ln['who']] - LV[Ln['id']], -6, 6)) / 20)
+    sg = Ln.get('tune') or {}; y = y * 10 ** ((EMO_DB.get(Ln.get('emo'), 0.) + (CHORUS_DB if sg.get('chorus') else 0.)) / 20)   # điệp khúc nói theo phách to hơn
+    if Ln['who'] == 'crumb': y = lp(y, 8500, 4)              # giọng nâng cao độ (Crumb +5) có tiếng rít ~9,5 kHz; giọng Miss Loupe giữ đủ dải như SHORT-015
     s = int(Ln['t'] * SR); e = min(N, s + len(y)); vox[s:e] += y[:e - s]
-vox = compress(norm(vox, .9), thr=.22, ratio=3.5)
-vox = norm(vox, .85)
-B['vox'][:, 0] = B['vox'][:, 1] = vox
+vox = norm(compress(norm(vox, .9), thr=.22, ratio=2.5), .85)
+vox = vox * energy_gain(len(vox), 1., VDB)                 # giọng theo năng lượng cảnh (êm −2 dB … cao trào +1,5 dB)
 
 
-# ---------- trộn ----------
+# ---------- trộn: nhạc lùi dưới giọng (dưới câu theo phách lùi ít hơn), lời rõ ≥ 11 dB, master −14 LUFS ----------
 def rms(x): x = x[np.abs(x).max(1) > 1e-4] if x.ndim > 1 else x[np.abs(x) > 1e-4]; return float(np.sqrt(np.mean(x ** 2))) if len(x) else 0.
-mus *= .075 / max(rms(mus), 1e-9)
-fx *= .55 / max(np.abs(fx).max(), 1e-9)
-from scipy.ndimage import maximum_filter1d, uniform_filter1d
+_e = np.sqrt(uniform_filter1d((mus ** 2).mean(1), int(.6 * SR)) + 1e-14); _ref = np.percentile(_e[_e > 1e-5], 70)
+mus = mus * uniform_filter1d(np.clip((_ref / np.maximum(_e, 1e-7)) ** .5, 1, 4), int(.3 * SR))[:, None]   # không có lỗ im của nhạc
+mus *= .075 / max(rms(mus), 1e-9); fx *= .55 / max(np.abs(fx).max(), 1e-9); amb *= .022 / max(rms(amb), 1e-9)
+mus *= energy_gain(len(mus))[:, None]; amb *= energy_gain(len(amb), .6)[:, None]
+SEC = json.load(open(os.path.join(HERE, 'out', 'music.json'), encoding='utf-8')).get('sections', [])
+json.dump({'scenes': [dict(id=i, t0=round(a, 3), t1=round(b, 3), energy=en, amb=nm, music_db=EDB[en], voice_db=VDB[en],
+                           voice=[dict(id=l['id'], who=l['who'], emo=l.get('emo'), mode=(l.get('tune') or {}).get('mode', 'speak'), text=l['text']) for l in LINES if a <= l['t'] + l['dur'] / 2 < b],
+                           music=[S_['name'] for S_ in SEC if S_['t0'] < b - .05 and S_['t1'] > a + .05],
+                           sfx=sorted({e['type'] for e in EV if a <= e['t'] < b})) for i, a, b, en, nm in SCENES]},
+          open(os.path.join(HERE, 'out', 'scenes.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 ve = uniform_filter1d(maximum_filter1d(np.abs(vox), int(.05 * SR)), int(.25 * SR))
-B['mus'] = mus = T.duck(mus, ve, .82, .55)
-B['fx'] = fx = T.duck(fx, ve, .6, .3)
-mix = B['mus'] + B['fx'] + B['amb'] + B['vox']
+tunem = np.zeros(len(ve)); otherm = np.zeros(len(ve))
+for l in LINES:
+    if l.get('tune'): tunem[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1
+    if l['who'] != 'loupe': otherm[int(l['t'] * SR):int((l['t'] + l['dur']) * SR)] = 1
+ve_m = ve * (1 - .25 * uniform_filter1d(tunem, int(.2 * SR)) - .2 * uniform_filter1d(otherm, int(.2 * SR)))
+mid_m = (.66 - .21 * uniform_filter1d(tunem, int(.2 * SR)))[:, None]
+mus = T.duck(mus, ve_m, mid_m, .3); fx = T.duck(fx, ve, .6, .3); amb = T.duck(amb, ve, .7, .5)
+mus, GUARD = T.speech_guard(mus, fx, vox, LINES, 11.)
+print('speech_guard:', ', '.join(f'{k} {s_:.1f} dB → −{c:.1f} dB' for k, s_, c in GUARD) or 'không câu nào phải hạ')
+# vang phòng nhỏ cho Crumb, Albie (không cho Miss Loupe: giọng cô khô như SHORT-015)
+_nl = np.zeros(N)
+for Ln in LINES:
+    if Ln['who'] != 'loupe': _nl[int(Ln['t'] * SR):int((Ln['t'] + Ln['dur']) * SR)] = 1
+_nl = uniform_filter1d(_nl, int(.03 * SR))
+V = np.stack([vox, vox], 1) + T.verb(hp(vox * _nl, 250), .6, 4500) * .12
+mix = mus + fx + amb + V
 mix = np.tanh(mix * 1.1) / 1.1
-mix, I_mix, ceil_db = T.master(mix, 11.0); print(f'master: {I_mix:.1f} LUFS, true-peak ceiling {ceil_db:.1f} dBFS')
+mix, I_mix, ceil_db = T.master(mix, 10.5); print(f'master: {I_mix:.1f} LUFS, true-peak ceiling {ceil_db:.1f} dBFS')
 nf = int(.02 * SR); mix[:nf] *= np.linspace(0, 1, nf)[:, None]
-os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)
 sf.write(os.path.join(HERE, 'out', 'mix.wav'), mix.astype(np.float32), SR, subtype='PCM_24')
-for k in ('mus', 'fx', 'vox'): sf.write(os.path.join(HERE, 'out', f'stem_{k}.wav'), B[k].astype(np.float32), SR, subtype='PCM_16')
-for name, a, b in (('móc', 0, 3.8), ('kính', 3.8, 22.4), ('nhảy+song tấu', 22.4, 28.65), ('sổ', 28.65, 33.1), ('gag', 33.1, 44)):
-    i, j = int(a * SR), int(b * SR)
-    print(f'{name:14s}', '  '.join(f'{k}={20 * np.log10(max(rms(B[k][i:j]), 1e-9)):6.1f}' for k in ('mus', 'fx', 'amb', 'vox')), 'dBFS rms')
+for k, x in (('mus', mus), ('fx', fx), ('amb', amb), ('vox', V)): sf.write(os.path.join(HERE, 'out', f'stem_{k}.wav'), x.astype(np.float32), SR, subtype='PCM_16')
 print('out/mix.wav', f'{len(mix) / SR:.2f} s')

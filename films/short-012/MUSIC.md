@@ -1,5 +1,7 @@
 # SHORT-012 · Soundtrack Timeline
 
+> **Cập nhật 19/11/2026 (dựng lại theo chuẩn 11/2026b, như SHORT-016):** phần dưới đây mô tả bản 14/11/2026. "Reverse-Gear Reggae" giờ là một bài hát (Rê giáng trưởng, 6 phần 108–126 BPM): 7/9 câu đọc vào phách, điệp khúc "Front wings up, back wings down!" ×2 (trumpet chơi giai điệu), chủ đề ở gag (accordion); gag không còn câu "I can go backwards too!"; thêm cảnh nhạc "điệp khúc 2" và lớp nền / năng lượng theo cảnh. Bảng hiện hành: [`SOUND-PLAN.md`](SOUND-PLAN.md) (sinh từ `out/music.json`, `events.json`, `out/scenes.json`), [`TREATMENT.md`](TREATMENT.md) mục 7, 8, A và H.
+
 ## Màu nhạc của tập: "Reverse-Gear Reggae"
 
 Tập này nói về **bay lùi** và **đứng yên giữa trời**, nên nhạc mượn văn hoá "rewind" của reggae sound-system: khi đám đông thích một đoạn, DJ kéo đĩa quay ngược rồi chơi lại từ đầu.

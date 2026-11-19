@@ -2,14 +2,17 @@
 // Bản B theo lượt nâng cấp 11/2026 (PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md §4): kính lớn có máy trôi, bí mật xảy ra thành chuyển động
 // (bay lùi, đứng yên, soi chậm bốn cánh so le), câu cửa miệng có hành động (albumGulp), người nói có trên hình, phụ đề ở vùng an toàn.
 // Nhân vật phong cách v2 "Kẹo Phẳng Viền" (CHARACTER-BIBLE §7, §10): bật trước mọi lần vẽ.
+// (19/11/2026, chuẩn 11/2026b theo SHORT-016) chữ móc ở giữa phía trên (hookStack 'mid'), máy đặt cao trong 3 s đầu để mặt Zip và Miss Loupe
+// đứng dưới chữ; kính lớn ghi độ phóng / lia trong kính (loupe … { mag, pan }); gag mới: Miss Loupe dang tay làm cánh đi lùi, BONK, rồi
+// điệp khúc lần 2 khi Zip trên cao đập cánh so le.
 import { LOOK } from '/_shared/characters/look.js';
 import { C, circle, ell, rrect, ground, popText, subFont, clamp, lerp, seg, back, eo, TAU } from '/_shared/kit.js';
 import { drawChar } from '/_shared/characters/stage.js';
 import { BY } from '/_shared/characters/cast/index.js';
 import { star } from '/_shared/characters/face.js';
-import { makeTalk, blinkAt, ex, rigPt, look, toScreen, loupe, ARM, badge, shadow, subtitle, LENS_UP, hookTitle, stickerMatchCut, snapFlash, SAFE, albumGulp, albieAt } from '/_shared/episode.js';
+import { makeTalk, blinkAt, ex, rigPt, look, toScreen, loupe, ARM, badge, shadow, subtitle, LENS_UP, hookTitle, hookStack, stickerMatchCut, snapFlash, SAFE, albumGulp, albieAt } from '/_shared/episode.js';
 import { D, garden, lensBackdrop, GY, ZIP12, windLines, brakePuff, strokeArrow, bumpStars, levelLine } from './props.js';
-import { LINES, CARDS, DUR, HIT, SLOW } from './timeline.js';
+import { LINES, CARDS, DUR, HIT, SLOW, spanEnd } from './timeline.js';
 import { track, ss, ei } from '/core/lib.js';
 LOOK.v = 2;
 LOOK.cheer = true;   // (11/2026) mặt nhân vật luôn vui tươi (QUALITY.md §5, stage.js cheerExpr)
@@ -22,6 +25,10 @@ const decay = (t, list, k = 6) => list.reduce((s, h) => s + (t >= h ? Math.exp(-
 const arc = (a, b, u, h) => [lerp(a[0], b[0], u), lerp(a[1], b[1], u) - h * 4 * u * (1 - u)];
 const line = id => LINES.find(l => l.id === id);
 const eio = u => { u = clamp(u); return u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; };
+// (19/11/2026) không ai hát: màu biểu cảm của Miss Loupe lấy từ tune.mode của câu nói theo phách
+const lineAt = t => LINES.find(l => t >= l.t && t < l.t + l.dur + .1);
+const singExpr = t => { const l = lineAt(t); if (!l || l.who !== 'loupe') return null; const m = (l.sung || l.tune || {}).mode || 'speak'; return m === 'sing' ? 'excited' : m === 'half-sing' ? 'happy' : m === 'sing-talk' ? 'explaining' : null; };
+const CH2 = t => t >= HIT.ch2[0] && t < HIT.ch2[1];                           // điệp khúc lần 2 (đoạn nhạc của câu L09)
 
 /* ================= nhân vật ================= */
 const ML = { x: 360, r: 95 }, AB = { x: 510, k: 95 }, ZK = 66;
@@ -95,6 +102,13 @@ function zipGag(t) {
   const s = { x: GZ[0], y: GZ[1] + 5 * Math.sin(t * 8), k: ZK, yaw: -1.25, lean: 0, lift: .3, fly: 1, blur: 1, peek: -.95, E: null, wind: null };
   const watch = t > HIT.notice && t < HIT.bump + 1.2;
   s.E = t > HIT.bump && t < HIT.bump + 1.4 ? zipE('laugh', t) : watch ? zipE('surprised', t, { look: [.9, .3] }) : zipE('happy', t, { look: [.9, .35] });
+  // (11/2026b) điệp khúc 2: Zip trôi vào giữa, quay mặt ra, đập cánh so le chậm (cánh trước tô chanh, cánh sau tô hồng) như trong kính
+  const cs = ch2Ramp(t);
+  if (cs > 0) {
+    s.x = lerp(GZ[0], 400, ss(cs)); s.yaw = lerp(-1.25, -.2, cs); s.peek = lerp(-.95, 0, cs); s.blur = 1 - cs;
+    if (cs > .05) { s.fly = 0; s.beat = 1; s.flap = slowFlap(t); s.cs = 1; s.amp = lerp(.35, .62, cs); s.tint = cs; s.wtilt = .8 * cs; }
+    if (cs > .5) s.E = zipE('excited', t, { look: [.1, .15] });
+  }
   if (t >= HIT.zipBack[0]) {
     const u = seg(t, HIT.zipBack[0], HIT.zipBack[1]), v = u < .25 ? ei(u / .25) * .25 : u;
     s.x = lerp(GZ[0], 1010, v); s.y = lerp(GZ[1], 960, v) + 4 * Math.sin(t * 8); s.blur = 0; s.peek = lerp(-.95, 0, ss(seg(u, 0, .2))); s.wind = [ss(seg(u, 0, .2)), 1];
@@ -102,6 +116,8 @@ function zipGag(t) {
   }
   return s;
 }
+// điệp khúc 2: vào / ra mềm trong đoạn nhạc của câu L09
+const ch2Ramp = t => ss(seg(t, HIT.ch2[0] - .25, HIT.ch2[0] + .35)) * (1 - ss(seg(t, HIT.ch2[1] - .35, HIT.ch2[1])));
 
 /* ---------- Miss Loupe (cỡ trung, toạ độ cảnh): đặt theo tâm kính ---------- */
 function loupeHook(t) {
@@ -131,16 +147,18 @@ function gardenWorld(c, t, o = {}) {
   if (o.after) o.after(c);
 }
 function hookCam(t) {
-  const [cx, cy, z] = K([[-1, [530, 1046, 1.82]], [0, [530, 1046, 1.82]], [HIT.brake, [522, 1042, 1.9]], [1.45, [545, 1040, 1.88]], [HIT.brake2, [528, 1040, 1.92]], [3.0, [520, 1044, 1.88]],
+  // (11/2026b) 3 s đầu máy đặt cao (cy ≈ 930): chữ móc ở trời (tâm y 640), vòng kính và mặt Miss Loupe, Zip ở dưới chữ; chữ rời đi thì hạ về bố cục cũ
+  const [cx, cy, z] = K([[-1, [530, 930, 1.76]], [0, [530, 930, 1.76]], [HIT.brake, [522, 927, 1.82]], [1.45, [545, 924, 1.8]], [HIT.brake2, [528, 924, 1.84]], [HIT.titleOut[0], [520, 928, 1.8]],
     [line('L02').t, [500, 1046, 1.85]], [HIT.zoom[0], [490, 1046, 1.8]], [HIT.zoom[0] + 1, [490, 1046, 1.8]]])(t);
   const sh = decay(t, [HIT.brake], 9) + .7 * decay(t, [HIT.brake2], 9);
   return { cx: cx + 7 * Math.sin(t * 47) * sh, cy: cy + 5 * Math.sin(t * 39) * sh, z };
 }
-const TITLE = [{ text: 'TAIL', y: 330, px: 220, fill: C.lemon, shadow: C.ink, t0: HIT.words[0] }, { text: 'FIRST?!', y: 545, px: 200, fill: C.cream, shadow: C.berryD, t0: HIT.words[1] }];
+const HOOK = hookStack([{ text: 'TAIL', px: 220, fill: C.lemon, shadow: C.ink, t0: HIT.words[0] }, { text: 'FIRST?!', px: 200, fill: C.cream, shadow: C.berryD, t0: HIT.words[1] }], 640);   // giữa phía trên, nhích lên một chút so với 'mid' để không đè vòng kính
+const TITLE = HOOK.lines;
 function sHook(c, t, o = {}) {
   look(c, hookCam(t), () => gardenWorld(c, t, { ls: loupeHook(t), zs: zipHook(t) }));
   const wob = [HIT.brake, HIT.brake2].reduce((a, h) => a + (t > h ? Math.sin((t - h) * 16) * Math.exp(-(t - h) * 5) * .06 : 0), 0);
-  if (!o.noTitle) hookTitle(c, TITLE, t, { gone: ss(seg(t, HIT.titleOut[0], HIT.titleOut[1])), cy: 430, wob });
+  if (!o.noTitle && t < HIT.titleOut[1] + .05) hookTitle(c, HOOK.lines, t, { gone: ss(seg(t, HIT.titleOut[0], HIT.titleOut[1])), cy: HOOK.cy, wob });
 }
 
 /* ================= KÍNH LỚN (4,25–12,65 s): bay lùi, đứng yên, soi chậm ================= */
@@ -168,9 +186,10 @@ function wingPt(zs, t, sd, front, f = .8) {
 function sLens(c, t) {
   const L = lensBig(t), zs = zipLens(t), ls = loupeHook(Math.min(t, HIT.zoom[0] - .01)), M = lensMap(t, L, zs), sl = ss(seg(t, HIT.slow[0], HIT.slow[1]));
   look(c, hookCam(t), () => gardenWorld(c, t, { zs: L.big < .3 ? zs : null }));   // kính lớn đã che: Zip chỉ còn trong kính
-  const talk = talkAt(t), name = t > HIT.lbrake && t < HIT.lbrake + .45 ? 'surprised' : talk ? 'explaining' : t > HIT.happy ? 'laugh' : 'happy';
+  const talk = talkAt(t), name = t > HIT.lbrake && t < HIT.lbrake + .45 ? 'surprised' : talk ? (singExpr(t) || 'explaining') : t > HIT.happy ? 'laugh' : 'happy';
   loupe(c, L.x, L.y, L.r, {
     E: ex(BY.loupe, name, { talk, look: L.big > .5 ? [.15, -.35] : [.75, .1], blink: talk ? 0 : blinkAt(t) }), rot: lerp(ls.rot, -.05, L.big), pose: ARM.peer,
+    mag: +(M.S / hookCam(HIT.zoom[0]).z).toFixed(3), pan: +M.fx.toFixed(1),            // (11/2026b) độ phóng và lia trong kính, cho qa_musical.py
     inside: L.big > .02 ? cc => {
       cc.translate(L.x, L.y); cc.scale(M.S, M.S); cc.translate(-M.fx, -M.fy);
       lensBackdrop(cc, t, M.fx, M.fy);
@@ -197,14 +216,14 @@ function sLens(c, t) {
   c.restore();
   // chữ trên kính (toạ độ khung, phía trên mặt kính)
   // chữ đủ lâu để đọc (readcheck): BACKWARDS! 4,95–7,18 · STILL! 7,15–9,15 · SLOW-MO từ 9,13
-  if (t > 4.93 && t < 7.18) popText(c, 'BACKWARDS!', 540, 300, 128, C.lemon, C.ink, t, 4.95, { step: .025, sh: 9 });
-  if (t > 7.15 && t < 9.15) popText(c, 'STILL!', 540, 300, 150, C.cream, C.berryD, t, 7.17, { step: .04, sh: 10 });
-  if (t > 9.11) {
-    const p = back(seg(t, 9.13, 9.43), 2);
+  if (t > 4.85 && t < HIT.still) popText(c, 'BACKWARDS!', 540, 300, 128, C.lemon, C.ink, t, 4.87, { step: .025, sh: 9 });
+  if (t > HIT.still - .02 && t < 9.1) popText(c, 'STILL!', 540, 300, 150, C.cream, C.berryD, t, HIT.still, { step: .04, sh: 10 });
+  if (t > 9.08) {
+    const p = back(seg(t, 9.1, 9.4), 2);
     c.save(); c.translate(540, 262); c.scale(p, p); c.rotate(-.04);
     rrect(c, -190, -58, 380, 116, 58, 'rgba(30,27,58,.35)'); rrect(c, -196, -66, 380, 116, 58, D.ink);
     c.restore();
-    popText(c, 'SLOW-MO', 534, 262 + 30, 84, C.mint, null, t, 9.15, { step: .02 });
+    popText(c, 'SLOW-MO', 534, 262 + 30, 84, C.mint, null, t, 9.12, { step: .02 });
   }
 }
 
@@ -254,8 +273,9 @@ function albieGag(t) {
   s.tilt = .16 * Math.sin((t - HIT.bump) * 13) * bump + .08 * Math.sin(Math.PI * seg(t, HIT.bump, HIT.bump + .25));
   if (t > HIT.notice && t < HIT.bump + .1) { s.page = [.75, -1.75, -.55]; s.tabsUp = seen; }
   if (talk) s.page = [.85, -1.45 + .1 * Math.sin(t * 9), -.5];
-  const name = t < HIT.notice ? 'happy' : t < HIT.bump + .2 ? 'surprised' : talk ? 'explaining' : t < HIT.albieOut[0] ? 'laugh' : 'excited';
-  s.E = ex(BY.albie, name, { talk, look: t < HIT.notice ? [-.7, -.4] : t < line('L09').t ? [-.8, -.1] : [.2, 0], blink: talk ? 0 : blinkAt(t, .4) });
+  const ch = ch2Ramp(t); if (ch > 0) s.hop += .05 * ch * Math.abs(Math.sin(Math.PI * (t - SLOW.t0) / (SLOW.cyc / 2)));   // điệp khúc 2: nhún theo nhịp cánh
+  const name = t < HIT.notice ? 'happy' : t < HIT.bump + .2 ? 'surprised' : talk ? 'explaining' : ch > .5 ? 'excited' : t < HIT.albieOut[0] ? 'laugh' : 'excited';
+  s.E = ex(BY.albie, name, { talk, look: t < HIT.notice ? [-.7, -.4] : ch > .5 ? [-.6, -.6] : t < line('L10').t ? [-.8, -.1] : [.2, 0], blink: talk ? 0 : blinkAt(t, .4) });
   if (t >= HIT.albieOut[0]) {                                // nhảy ra khỏi khung bên phải, hai bước
     const u = seg(t, HIT.albieOut[0], HIT.albieOut[1]), h = u < .5 ? Math.sin(Math.PI * u * 2) : Math.sin(Math.PI * (u - .5) * 2);
     s.x = lerp(AB.x + 24, 1010, eio(u)); s.hop = .55 * h; s.tilt = .1 * h; s.yaw = lerp(-.42, .5, ss(u * 3));
@@ -273,7 +293,7 @@ function drawAlbie(c, s, t) {
   }
 }
 function loupeGag(t) {
-  const L9 = line('L09'), talk = talkAt(t), sb = seg(t, HIT.stepsBack[0], HIT.stepsBack[1]);
+  const L10 = line('L10'), talk = talkAt(t), sb = seg(t, HIT.stepsBack[0], HIT.stepsBack[1]);
   // bước lùi: ba bước theo tiếng "bíp" (mỗi bước nhích một đoạn), rồi bước cuối chạm Albie
   const steps = [HIT.stepsBack[0], ...HIT.beeps.slice(1), HIT.bump - .12], nStep = steps.filter(s => t >= s).length;
   const stepU = nStep ? seg(t, steps[nStep - 1], steps[nStep - 1] + .22) : 0;
@@ -282,25 +302,27 @@ function loupeGag(t) {
   const bump = t > HIT.bump ? Math.exp(-(t - HIT.bump) * 4) : 0, kick = Math.sin(Math.PI * seg(t, HIT.bump, HIT.bump + .3));
   x -= 34 * ss(seg(t, HIT.bump, HIT.bump + .2)) * (1 - ss(seg(t, HIT.albieOut[0] + .1, HIT.albieOut[1] + .2)));   // nảy ra, đứng cách Albie; về chỗ cũ khi Albie đi
   const lift = nStep && sb < 1 ? Math.sin(Math.PI * stepU) : 0;
-  const [, wy] = mlLens(x), raise = 0;
-  let name = 'happy', look_ = [-.75, -.6], pose = ARM.peer, rot = -.06 + .03 * Math.sin(t * 1.7);
-  if (t < line('L07').t + line('L07').dur) { name = talk ? 'excited' : 'happy'; pose = talk ? (t > line('L07').t + 1.2 ? ARM.up : ARM.wave) : ARM.peer; }
-  else if (t < HIT.bump) { name = 'confident'; look_ = [-.8, -.5]; rot = .05 * Math.sin(t * 14) * lift + .06; pose = ARM.shrug; }
+  const [, wy] = mlLens(x), ch = ch2Ramp(t), half = Math.floor((t - SLOW.t0) / (SLOW.cyc / 2));
+  let name = 'happy', look_ = [-.75, -.6], pose = ARM.peer, rot = -.06 + .03 * Math.sin(t * 1.7), hop = 0;
+  if (t < HIT.wings[0]) { name = 'curious'; look_ = [-.8, -.6]; }                                         // ngắm Zip đứng yên trên cao
+  else if (t < HIT.bump) { name = 'excited'; look_ = [-.8, -.5]; pose = nStep % 2 ? ARM.up : ARM.wave; rot = .05 * Math.sin(t * 14) * lift + .06; }   // dang tay làm cánh, đi lùi "bíp bíp"
   else if (t < HIT.bump + .45) { name = 'surprised'; look_ = [.9, -.1]; pose = ARM.up; rot = -.18 * kick; }
-  else if (t < L9.t - .1) { name = 'shy'; look_ = [.85, .2]; pose = ARM.shrug; }
-  else if (t < L9.t + L9.dur + .2) { name = talk ? 'explaining' : 'happy'; look_ = [.1, .1]; pose = ARM.point; }
+  else if (ch < .5 && t < HIT.ch2[0]) { name = 'shy'; look_ = [.85, .2]; pose = ARM.shrug; }
+  else if (ch >= .5) { name = singExpr(t) || 'excited'; look_ = [-.55, -.6]; pose = half % 2 ? ARM.wave : ARM.up; hop = .05 * Math.abs(Math.sin(Math.PI * (t - SLOW.t0) / (SLOW.cyc / 2))); }   // vỗ tay như cánh theo Zip
+  else if (t < L10.t + L10.dur + .2) { name = talk ? (singExpr(t) || 'explaining') : 'happy'; look_ = [.1, .1]; pose = ARM.point; }
   else { name = 'happy'; look_ = [.9, 0]; pose = ARM.peer; }
   const E = ex(BY.loupe, name, { talk, look: look_, blink: talk ? 0 : blinkAt(t), fx: name === 'shy' });
-  const o = { x: x + 4 * Math.sin(t * 40) * bump, y: wy - 16 * lift - 22 * kick, r: ML.r, rot, pose, E };
-  // về đúng dáng của khung đầu
+  const o = { x: x + 4 * Math.sin(t * 40) * bump, y: wy - 16 * lift - 22 * kick - hop * ML.r, r: ML.r, rot, pose, E };
+  // về đúng dáng của khung đầu (câu hỏi kết còn đang nói thì giữ miệng nói)
   const k = ss(seg(t, DUR - 1.0, DUR - .5));
-  if (k > 0) { const h = loupeHook(t - DUR); o.x = lerp(o.x, h.x, k); o.y = lerp(o.y, h.y, k); o.rot = lerp(o.rot, h.rot, k); if (k > .5) { o.E = h.E; o.pose = h.pose; } }
+  if (k > 0) { const h = loupeHook(t - DUR); o.x = lerp(o.x, h.x, k); o.y = lerp(o.y, h.y, k); o.rot = lerp(o.rot, h.rot, k); if (k > .5) { o.E = talk ? ex(BY.loupe, 'happy', { talk, look: [.9, 0], blink: 0 }) : h.E; o.pose = h.pose; } }
   return o;
 }
 function gagCam(t) {
-  const d = seg(t, HIT.flip[1], DUR), toBump = ss(seg(t, HIT.stepsBack[0] - .3, HIT.bump)), q = ss(seg(t, line('L09').t - .3, line('L09').t + .5));
+  const d = seg(t, HIT.flip[1], DUR), toBump = ss(seg(t, HIT.stepsBack[0] - .3, HIT.bump)), q = ss(seg(t, line('L10').t - .3, line('L10').t + .5));
+  const up = ss(seg(t, HIT.ch2[0] - .3, HIT.ch2[0] + .4)) * (1 - q);              // (11/2026b) điệp khúc 2: lùi ra, ngẩng lên Zip đập cánh
   const shake = decay(t, [HIT.bump], 8);
-  const cx = 395 + 25 * toBump + 10 * Math.sin(d * 2.4) + 40 * q, cy = 1046 - 4 * d - 10 * toBump, z = 1.76 + .08 * toBump - .04 * q;
+  const cx = 395 + 25 * toBump + 10 * Math.sin(d * 2.4) + 40 * q - 15 * up, cy = 1046 - 4 * d - 10 * toBump - 70 * up, z = 1.76 + .08 * toBump - .04 * q - .14 * up;
   const k = ss(seg(t, DUR - 1.3, DUR - .5)), h = hookCam(t - DUR);
   return { cx: lerp(cx, h.cx, k) + 7 * Math.sin(t * 47) * shake, cy: lerp(cy, h.cy, k) + 5 * Math.sin(t * 41) * shake, z: lerp(z, h.z, k) };
 }
@@ -311,6 +333,16 @@ function sGag(c, t, o = {}) {
     after: cc => {
       const p = toScreen(cm, 0, 0);
       if (t > HIT.bump && t < HIT.bump + 1) { const L = ls; bumpStars(cc, L.x + 70, L.y + 150, seg(t, HIT.bump, HIT.bump + 1)); }
+      // (11/2026b) điệp khúc 2: mũi tên lên / xuống trên đầu bốn cánh của Zip, đổi chiều mỗi nửa nhịp cánh (như cảnh soi chậm)
+      const cs = ch2Ramp(t);
+      if (cs > .5) {
+        const ph = ((t - SLOW.t0) / SLOW.cyc % 1 + 1) % 1, frontUp = ph < .25 || ph >= .75;
+        const q4 = (t - SLOW.t0 + SLOW.cyc / 4) / (SLOW.cyc / 2), u = q4 - Math.floor(q4), pop = back(clamp(u / .3), 2.4), a = (cs - .5) * 2;
+        for (const sd of [-1, 1]) for (const front of [true, false]) {
+          const up = front ? frontUp : !frontUp, q = rigPt(zs.x, zs.y, zs.k || ZK, zs.yaw, zs.lean || 0, wingPt(zs, t, sd, front, .72));
+          strokeArrow(cc, q[0] + sd * 6, q[1] + (up ? -36 : 36), up, 30 * pop, front ? D.front : D.back, a);
+        }
+      }
     },
   }));
   if (!o.noText && t > HIT.bump - .02 && t < HIT.bump + 2.05) {
@@ -324,7 +356,7 @@ function sGag(c, t, o = {}) {
 function matchCut(c, t) {
   stickerMatchCut(c, t, { t0: HIT.zoomIn[0], t1: HIT.zoomOut[0], t2: HIT.zoomOut[1], lens: lensBig(HIT.zoomIn[0]), from: cc => sLens(cc, HIT.zoomIn[0]), to: (cc, tt) => sAlbum(cc, tt), slot: SLOT, fill: C.skyL, draw: cc => { cc.scale(SLOT.r / 100, SLOT.r / 100); stickerArt(cc); } });
 }
-function recallTitle(c, t) { hookTitle(c, TITLE, -1, { gone: 1 - back(seg(t, HIT.recall, HIT.recall + .32), 2.4), cy: 430 }); }
+function recallTitle(c, t) { hookTitle(c, HOOK.lines, -1, { gone: 1 - back(seg(t, HIT.recall, HIT.recall + .32), 2.4), cy: HOOK.cy }); }
 function pageFlip(c, t) {
   const u = ss(seg(t, HIT.flip[0], HIT.flip[1])), w = 1080 * (1 - u);
   sGag(c, Math.max(t, HIT.flip[1]));
@@ -344,8 +376,8 @@ export function drawFilm(c, t) {
   else sHook(c, t);
   if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
-  if (l) subtitle(c, l, t, 495, SAFE.subY);                       // tâm 495: tấm hai dòng rộng nhất vẫn dừng trước cột nút phải (x 940)
+  if (l) subtitle(c, l, t, 510, SAFE.subY);                       // (11/2026b) tấm ≤ 7 từ, từ nhấn (subtitleEm)
   c.restore();
 }
 // cho poster.js và sheets.js
-export { zipHook, zipLens, drawZip, gardenWorld, hookCam, loupeHook, TITLE };
+export { zipHook, zipLens, drawZip, gardenWorld, hookCam, loupeHook, TITLE, HOOK };

@@ -3,20 +3,34 @@
   "id": "L01",
   "text": "Where does a grasshopper hide its ears?",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "grasshopper",
+   "ears"
+  ]
  },
  {
   "id": "L02",
   "text": "Let's zoom in!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.9,
+  "kw": [
+   "zoom"
+  ]
  },
  {
   "id": "L03",
   "text": "Are they on its legs, like Chirp?",
   "voice": "af_jessica",
   "speed": 0.85,
-  "pitch": 5
+  "pitch": 5,
+  "kw": [
+   "legs",
+   "chirp"
+  ],
+  "emo": "curious",
+  "emo_k": 1.4,
+  "home": 61
  },
  {
   "id": "L04",
@@ -28,82 +42,157 @@
   "id": "L05",
   "text": "Its ears are on its tummy!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "ears",
+   "tummy"
+  ]
  },
  {
   "id": "L06",
   "text": "But WHY on its tummy?",
   "voice": "af_jessica",
   "speed": 0.85,
-  "pitch": 5
+  "pitch": 5,
+  "kw": [
+   "why",
+   "tummy"
+  ],
+  "emo": "curious",
+  "emo_k": 1.1,
+  "home": 61
  },
  {
   "id": "L07",
   "text": "To hear other grasshoppers sing!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "hear",
+   "sing"
+  ]
  },
  {
   "id": "L08",
   "text": "Many grasshoppers sing with their legs!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "sing",
+   "legs"
+  ]
  },
  {
   "id": "L09",
   "text": "They rub a back leg on a wing!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.747,
+  "kw": [
+   "rub",
+   "leg",
+   "wing"
+  ]
  },
  {
   "id": "L10",
   "text": "And its back legs are like springs!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "legs",
+   "springs"
+  ]
  },
  {
   "id": "L11",
   "text": "Look at it go!",
   "voice": "af_jessica",
   "speed": 0.85,
-  "pitch": 5
+  "pitch": 5,
+  "kw": [
+   "go"
+  ],
+  "emo": "excited",
+  "emo_k": 1.4,
+  "home": 61
  },
  {
   "id": "L12",
   "text": "A bug band!",
   "voice": "af_jessica",
   "speed": 0.85,
-  "pitch": 5
+  "pitch": 5,
+  "kw": [
+   "band"
+  ],
+  "emo": "happy",
+  "emo_k": 1.1,
+  "home": 61
  },
  {
   "id": "L13",
-  "text": "The notes make a heart!",
+  "text": "Tummy ears, and legs that sing!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "tummy",
+   "ears",
+   "legs",
+   "sing"
+  ]
  },
  {
   "id": "L14",
   "text": "Six legs? In you go!",
   "voice": "bm_lewis",
-  "speed": 0.8
+  "speed": 0.8,
+  "kw": [
+   "legs"
+  ],
+  "emo": "proud",
+  "emo_k": 0.5,
+  "home": 41,
+  "catch": true
  },
  {
   "id": "L15",
   "text": "Play it again! Louder!",
   "voice": "af_jessica",
   "speed": 0.85,
-  "pitch": 5
+  "pitch": 5,
+  "kw": [
+   "louder"
+  ]
  },
  {
   "id": "L16",
   "text": "Oops! Too loud!",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.9,
+  "kw": [
+   "loud"
+  ]
  },
  {
   "id": "L17",
+  "text": "Tummy ears, and legs that sing!",
+  "voice": "af_heart",
+  "speed": 0.765,
+  "kw": [
+   "tummy",
+   "ears",
+   "legs",
+   "sing"
+  ]
+ },
+ {
+  "id": "L18",
   "text": "Where are YOUR ears?",
   "voice": "af_heart",
-  "speed": 0.9
+  "speed": 0.765,
+  "kw": [
+   "your",
+   "ears"
+  ]
  }
 ]

@@ -1,5 +1,7 @@
 # SHORT-013 · Bảng cue âm thanh (hình ↔ tiếng)
 
+> **Cập nhật 19/11/2026 (dựng lại theo chuẩn 11/2026b, như SHORT-016):** phần dưới đây mô tả bản 14/11/2026. Mốc thời gian của các cue đã dời theo timeline mới; thêm các tiếng của điệp khúc 2 và các chuỗi có chủ đích (`run`). Bảng hiện hành: [`SOUND-PLAN.md`](SOUND-PLAN.md) (sinh từ `out/music.json`, `events.json`, `out/scenes.json`), [`TREATMENT.md`](TREATMENT.md) mục 7, 8, A và H.
+
 Mọi tiếng động đặt theo sự kiện trong `timeline.js` (`EV`) → `events.json` → `mix.py` (bảng `SFX`). Tiếng nằm dưới lời thì ở dải cao và nhỏ, hoặc ở dải trầm; tiếng động nhường giọng bằng `toon.duck`. Mỗi chuyển cảnh một tiếng riêng.
 
 **Tiếng riêng của hai nhân vật không lời** (dựng trong `mix.py`, không dùng mẫu):

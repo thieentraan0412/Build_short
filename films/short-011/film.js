@@ -1,6 +1,8 @@
 // SHORT-011 · Sneaking Up on a Dragonfly... Oops! — mọi khung hình là hàm thuần của t. Phim phát vòng lặp: Crumb lại giơ biển, rón rén về đúng khung đầu.
 // Bản B theo lượt nâng cấp 11/2026 (PHAN-TICH-SHORTS/KE-HOACH-NANG-CAP.md §4). Cảnh đặc trưng của tập: KHUNG CHIA ĐÔI "CRUMB SEES | ZIP SEES"
 // (khoá kéo tách khung; mắt Zip mở ra, tầm nhìn nở rộng gần trọn vòng, Crumb trượt vào tầm nhìn). Nhân vật phong cách v2 "Kẹo Phẳng Viền".
+// (19/11/2026, chuẩn 11/2026b theo SHORT-016) chữ móc ở giữa phía trên (hookStack 'mid'), nhân vật đứng dưới chữ trong 3 s đầu; khung chia đôi
+// có máy riêng (look: đẩy vào nửa trái, lia sang nửa phải, lùi ra ở điệp khúc) để mỗi 2–4 s có một thay đổi; điệp khúc lần 2 ở gag: mắt Zip sáng lại.
 import { LOOK } from '/_shared/characters/look.js';
 LOOK.v = 2;   // (11/2026) tập mới dùng phong cách nhân vật v2
 LOOK.cheer = true;   // (11/2026) mặt nhân vật luôn vui tươi (QUALITY.md §5, stage.js cheerExpr)
@@ -8,9 +10,9 @@ import { C, circle, ell, rrect, poly, ground, popText, subFont, clamp, lerp, seg
 import { drawChar } from '/_shared/characters/stage.js';
 import { BY } from '/_shared/characters/cast/index.js';
 import { star } from '/_shared/characters/face.js';
-import { makeTalk, blinkAt, ex, rigPt, look, loupe, ARM, badge, shadow, subtitle, LENS_UP, hookTitle, stickerMatchCut, SAFE, albumGulp } from '/_shared/episode.js';
+import { makeTalk, blinkAt, ex, rigPt, look, loupe, ARM, badge, shadow, subtitle, LENS_UP, hookTitle, hookStack, stickerMatchCut, SAFE, albumGulp } from '/_shared/episode.js';
 import { D, INK, GY, sky, hedge, grass, stemFlower, daisy, twig, TWIG, cushion, CUSH, dryLeaf, LEAFX, booSign, PL, PR, pc, panelPath, splitBg, panelFrame, tag, zipper, eyelids, spotRing, bang } from './props.js';
-import { LINES, CARDS, DUR, HIT } from './timeline.js';
+import { LINES, CARDS, DUR, HIT, spanEnd } from './timeline.js';
 import { track, ss, ei } from '/core/lib.js';
 
 const K = keys => track(keys);
@@ -24,6 +26,10 @@ const line = id => LINES.find(l => l.id === id);
 const W = (t, a, b) => ss(seg(t, a, b));
 const BAND = (t, a, b, f = .2) => ss(seg(t, a, a + f)) * (1 - ss(seg(t, b - f, b)));
 const wob = (t, t0, f = 14, k = 3) => t > t0 ? Math.sin((t - t0) * f) * Math.exp(-(t - t0) * k) : 0;
+// (19/11/2026) không ai hát: màu biểu cảm của Miss Loupe lấy từ tune.mode của câu nói theo phách (điệp khúc → phấn khích, móc / bất ngờ → vui, giải thích → giảng giải)
+const lineAt = t => LINES.find(l => t >= l.t && t < l.t + l.dur + .1);
+const singExpr = t => { const l = lineAt(t); if (!l || l.who !== 'loupe') return null; const m = (l.sung || l.tune || {}).mode || 'speak'; return m === 'sing' ? 'excited' : m === 'half-sing' ? 'happy' : m === 'sing-talk' ? 'explaining' : null; };
+const CH = id => t => t >= line(id).t && t < spanEnd(id);                      // đang trong đoạn nhạc của câu điệp khúc
 
 /* ================= nhân vật ================= */
 // Crumb: kiến con hổ phách. tip: rón rén (nhón chân, bước cao) · sit: ngồi bệt · one: co một chân (đứng sững) · arms: dáng hai tay
@@ -104,21 +110,26 @@ function zipHook(t) {
 const CLASP = { handL: [-.2, -.95, .45], handR: [.2, -.95, .45], elbowL: [-.52, -.85, .2], elbowR: [.52, -.85, .2] };   // hai tay chắp trước ngực: hồi hộp xem
 function loupeHook(t) {
   const L1 = line('L01'), talk = talkAt(t), jolt = Math.sin(Math.PI * seg(t, HIT.crunch, HIT.crunch + .35));
-  const name = jolt > .2 ? 'surprised' : talk ? 'curious' : t > HIT.crunch + .3 ? 'confident' : 'curious';
+  const name = jolt > .2 ? 'surprised' : talk ? (singExpr(t) || 'curious') : t > HIT.crunch + .3 ? 'confident' : 'curious';
   const lk = t > HIT.crunch + .3 ? [-.75, .1] : [-.2, .15];
   return { x: LX, hop: .12 * jolt, rot: -.06 + .02 * Math.sin(t * 2), pose: jolt > .2 ? ARM.up : CLASP,
     E: ex(BY.loupe, name, { talk, look: lk, blink: talk ? 0 : blinkAt(t) }) };
 }
+// (19/11/2026, chuẩn 11/2026b) 3 s đầu máy đặt cao: chữ móc ở trời (giữa phía trên khung), mặt Crumb, Zip, Miss Loupe ở y 1000–1350 dưới chữ;
+// chữ móc rời đi thì máy hạ xuống ngang tầm Crumb (HIT.tilt) như bản cũ, để khoá kéo tách khung từ đúng bố cục cũ
+const HOOKCAM = K([[-2, [520, 668, 1.04]], [0, [508, 672, 1.06]], [1.0, [496, 676, 1.09]], [HIT.crunch, [488, 680, 1.12]], [HIT.crunch + .25, [482, 684, 1.15]],
+  [HIT.tilt[0], [484, 688, 1.14]], [HIT.tilt[1], [482, 998, 1.18]], [HIT.split[1] + .2, [486, 994, 1.17]]]);
 function hookCam(t) {
-  const [cx, cy, z] = K([[-2, [520, 990, 1.06]], [0, [508, 990, 1.09]], [1.0, [494, 994, 1.13]], [HIT.crunch, [482, 998, 1.17]], [HIT.crunch + .25, [476, 1000, 1.2]], [3.0, [480, 998, 1.18]], [4.5, [486, 994, 1.17]]])(t);
+  const [cx, cy, z] = HOOKCAM(t);
   const sh = decay(t, [HIT.crunch], 7);
   return { cx: cx + 9 * Math.sin(t * 47) * sh, cy: cy + 7 * Math.sin(t * 39) * sh, z };
 }
-const TITLE = [{ text: 'SNEAK', y: 318, px: 210, fill: C.grape, shadow: C.lemon, t0: HIT.words[0] }, { text: 'UP?!', y: 512, px: 196, fill: C.berry, shadow: INK, t0: HIT.words[1] }];
+const HOOK = hookStack([{ text: 'SNEAK', px: 210, fill: C.grape, shadow: C.lemon, t0: HIT.words[0] }, { text: 'UP?!', px: 196, fill: C.berry, shadow: INK, t0: HIT.words[1] }], 'mid');
+const TITLE = HOOK.lines;
 function sHook(c, t, o = {}) {
   look(c, hookCam(t), () => gardenWorld(c, t, { cs: crumbHook(t), zs: zipHook(t), ls: loupeHook(t), broken: seg(t, HIT.crunch, HIT.crunch + .55) }));
   const w = [HIT.crunch].reduce((a, h) => a + (t > h ? Math.sin((t - h) * 16) * Math.exp(-(t - h) * 5) * .05 : 0), 0);
-  if (!o.noTitle) hookTitle(c, TITLE, t, { gone: ss(seg(t, HIT.titleOut[0], HIT.titleOut[1])), cy: 400, wob: w });
+  if (!o.noTitle && t < HIT.titleOut[1] + .05) hookTitle(c, HOOK.lines, t, { gone: ss(seg(t, HIT.titleOut[0], HIT.titleOut[1])), cy: HOOK.cy, wob: w });
 }
 
 /* ================= KHUNG CHIA ĐÔI (3,85–13,35 s) ================= */
@@ -218,7 +229,22 @@ function zipView(c, t) {
   return { cp, cs, rot };
 }
 const crumbSpot = (t, R) => { const h = 1.35 * R.cs.k; return [R.cp.x + h * Math.sin(R.rot), R.cp.y - h * Math.cos(R.rot)]; };
+// (19/11/2026, chuẩn 11/2026b: mỗi 2–4 s một thay đổi có mục đích; bản cũ chia đôi đứng yên 9 s) máy của khung chia đôi: đẩy nhẹ, ngẩng lên
+// lưng Zip (CRUMB SEES; đẩy thẳng giữa khung: lệch trái thì mặt Miss Loupe ở khung phải lọt vào cột nút phải) → lia sang nửa phải khi mắt Zip
+// mở (ZIP SEES) → nhích vào lúc Crumb bị thấy, nấp sau biển → lùi ra cả hai khung ở điệp khúc (hai vòm mắt sáng), đứng đó tới cú chụp
+// (kính chụp đúng chỗ khung phải). z không dưới 1: không lộ mép nền.
+const SPLITCAM = K([[HIT.split[1], [540, 960, 1]], [HIT.split[1] + .3, [540, 960, 1]], [HIT.split[1] + .85, [540, 924, 1.06]], [HIT.open[0] - .15, [540, 926, 1.06]],
+  [HIT.open[0] + .45, [690, 905, 1.08]], [HIT.spot - .05, [698, 910, 1.09]], [HIT.spot + .3, [700, 915, 1.13]], [HIT.hide[0], [700, 930, 1.13]],
+  [HIT.hide[1] + .2, [690, 950, 1.17]], [HIT.glow[0], [684, 952, 1.16]], [HIT.glow[0] + .6, [540, 960, 1.0]], [HIT.snap, [540, 960, 1.0]]]);
+function splitCam(t) {
+  const [cx, cy, z] = SPLITCAM(t), sh = decay(t, [HIT.spot], 9) + .6 * decay(t, [HIT.hide[0] + .1], 10);
+  return { cx: cx + 7 * Math.sin(t * 45) * sh, cy: cy + 6 * Math.sin(t * 38) * sh, z };
+}
 function sSplit(c, t, o = {}) {
+  if (o.intro) return splitBody(c, t, o);
+  look(c, splitCam(t), () => splitBody(c, t, o));
+}
+function splitBody(c, t, o = {}) {
   splitBg(c, t);
   // trái
   c.save(); panelPath(c, PL); c.clip(); crumbView(c, t);
@@ -324,6 +350,7 @@ function crumbGag(t) {
   const s = { x: CUSH.x + 20 + 10 * up, y: sitY + 14 * b, k: CK, yaw: lerp(.5, .9, up), tip: 0, sit: 1 - up, arms: t < HIT.hat - .05 ? ARMS.shrug : up > .4 ? mixArms(ARMS.hat, ARMS.sign, W(t, HIT.getUp[1] - .1, HIT.getUp[1] + .25)) : ARMS.hat,
     E: talk8 ? crumbE('laugh', t, { look: [.3, .1] }) : t < HIT.hat + .3 ? crumbE('surprised', t, { look: [0, -.6] }) : up > .3 ? crumbE('confident', t, { look: [.7, -.45] }) : crumbE('silly', t, { look: [.2, 0] }) };
   if (talk8) s.E = crumbE('happy', t, { look: [.25, .05] });
+  if (CH('L09')(t) && up > .5) { const ph = (t - line('L09').t) * 132 / 60; s.hop = .05 * Math.abs(Math.sin(Math.PI * ph)); s.E = crumbE('excited', t, { look: [.6, -.5] }); }   // (11/2026b) điệp khúc 2: Crumb nhún theo phách, ngước nhìn mắt Zip sáng
   const k = W(t, HIT.loop[0] - .2, HIT.loop[0] + .3);
   if (k > 0) { const h = crumbHook(t - DUR); s.x = lerp(s.x, h.x, k); s.y = lerp(s.y, h.y, k); s.yaw = lerp(s.yaw, h.yaw, k); s.tip = h.tip * k; s.ph = h.ph; s.arms = mixArms(s.arms, h.arms, k); s.sit = (s.sit || 0) * (1 - k); if (k > .5) s.E = h.E; }
   return s;
@@ -331,25 +358,27 @@ function crumbGag(t) {
 function zipGag(t) {
   if (t >= HIT.turnBack[1] + .05) return zipHook(t - DUR);
   const tu = W(t, HIT.turn[0], HIT.turn[1]), tb = W(t, HIT.turnBack[0], HIT.turnBack[1]), hop = Math.sin(Math.PI * seg(t, HIT.turn[0], HIT.turn[1] + .1));
-  const L8 = line('L08'), laugh = t > L8.t - .2 && t < HIT.turnBack[0];
-  const yaw = tb > 0 ? lerp(-1.3, 1.3, tb) : lerp(1.3, -1.3, tu);
-  return { x: ZT[0], y: ZT[1], k: ZK, yaw, beat: hop > .1 || laugh ? .9 : .1, lift: .18 * hop + .1 * Math.sin(Math.PI * tb), lean: -.08 * tu * (1 - tb) + .03 * Math.sin(t * 3) * (laugh ? 1 : 0), curl: laugh ? .15 * Math.sin(t * 12) : 0,
-    E: laugh ? zipE('laugh', t) : tu > .5 && tb < .5 ? zipE('excited', t, { look: [-.6, .15] }) : zipE('happy', t, { look: [.75, -.1] }) };
+  const L8 = line('L08'), ch2 = BAND(t, HIT.glow2[0] - .2, HIT.glow2[1], .3), laugh = t > L8.t - .2 && t < HIT.turnBack[0] && ch2 < .5;
+  const yaw = tb > 0 ? lerp(-1.3 + .9 * ch2, 1.3, tb) : lerp(1.3, -1.3 + .9 * ch2, tu);       // điệp khúc 2: Zip quay mặt ra phía máy, đôi mắt sáng
+  return { x: ZT[0], y: ZT[1], k: ZK, yaw, beat: hop > .1 || laugh || ch2 > .1 ? .9 : .1, lift: .18 * hop + .1 * Math.sin(Math.PI * tb) + .12 * ch2, lean: -.08 * tu * (1 - tb) + .03 * Math.sin(t * 3) * (laugh ? 1 : 0), curl: laugh ? .15 * Math.sin(t * 12) : 0,
+    E: ch2 > .5 ? zipE('excited', t, { look: [-.2, .1] }) : laugh ? zipE('laugh', t) : tu > .5 && tb < .5 ? zipE('excited', t, { look: [-.6, .15] }) : zipE('happy', t, { look: [.75, -.1] }) };
 }
 function loupeGag(t) {
   const talk = talkAt(t), L9 = line('L09'), jolt = Math.sin(Math.PI * seg(t, HIT.jump, HIT.jump + .35)), laugh = t > HIT.hat && t < L9.t - .1;
-  const k = W(t, L9.t + L9.dur - .2, DUR - .15);
-  const name = jolt > .2 ? 'surprised' : talk ? 'explaining' : laugh ? 'laugh' : 'happy';
-  const o = { x: LX, hop: .12 * jolt + (laugh ? .04 * Math.abs(Math.sin(t * 9)) : 0), rot: -.06 + .03 * Math.sin(t * 2), pose: talk ? ARM.up : jolt > .2 ? ARM.up : ARM.shrug,
-    E: ex(BY.loupe, name, { talk, look: talk ? [-.2, .15] : [-.75, .15], blink: talk ? 0 : blinkAt(t) }) };
-  if (k > 0) { const h = loupeHook(t - DUR); o.rot = lerp(o.rot, h.rot, k); o.hop *= 1 - k; if (k > .5) { o.pose = h.pose; o.E = h.E; } }
+  const k = W(t, HIT.loop[0], DUR - .15), ch2 = CH('L09')(t), ph = (t - L9.t) * 132 / 60;
+  const name = jolt > .2 ? 'surprised' : talk ? (singExpr(t) || 'explaining') : laugh ? 'laugh' : ch2 ? 'excited' : 'happy';
+  const o = { x: LX, hop: .12 * jolt + (laugh ? .04 * Math.abs(Math.sin(t * 9)) : 0) + (ch2 ? .07 * Math.abs(Math.sin(Math.PI * ph)) : 0), rot: -.06 + .03 * Math.sin(t * 2) + (ch2 ? .06 * Math.sin(Math.PI * ph) : 0),
+    pose: ch2 ? (Math.floor(ph) % 2 ? ARM.wave : ARM.up) : talk ? ARM.up : jolt > .2 ? ARM.up : ARM.shrug,
+    E: ex(BY.loupe, name, { talk, look: ch2 ? [-.35, -.2] : talk ? [-.2, .15] : [-.75, .15], blink: talk ? 0 : blinkAt(t) }) };
+  if (k > 0) { const h = loupeHook(t - DUR); o.rot = lerp(o.rot, h.rot, k); o.hop *= 1 - k; if (k > .5) { o.pose = h.pose; o.E = talk ? ex(BY.loupe, 'happy', { talk, look: [-.2, .15], blink: 0 }) : h.E; } }   // câu hỏi kết còn đang nói khi máy về khung 0
   return o;
 }
 function gagCam(t) {
   const d = seg(t, HIT.flip[1], DUR), toC = W(t, HIT.inhale - .3, HIT.jump) * (1 - W(t, HIT.hat + .3, HIT.hat + 1.0));
-  const cx = 486 - 22 * toC + 10 * Math.sin(d * 3), cy = 1000 - 22 * toC, z = 1.15 + .08 * toC;
+  const L10 = line('L10'), wide = W(t, HIT.glow2[0] - .2, HIT.glow2[0] + .4) * (1 - W(t, L10.t - .25, L10.t + .3)), push = W(t, L10.t - .25, L10.t + .3);
+  const cx = 486 - 22 * toC + 10 * Math.sin(d * 3) + 40 * wide + 10 * push, cy = 1000 - 22 * toC - 60 * wide - 10 * push, z = 1.15 + .08 * toC - .1 * wide + .05 * push;
   const sh = decay(t, [HIT.jump], 9) + .8 * decay(t, [HIT.land], 10);
-  const k = W(t, DUR - 1.0, DUR - .3), h = hookCam(t - DUR);
+  const k = W(t, HIT.loop[0], DUR - .25), h = hookCam(t - DUR);
   return { cx: lerp(cx, h.cx, k) + 8 * Math.sin(t * 47) * sh, cy: lerp(cy, h.cy, k) + 7 * Math.sin(t * 41) * sh, z: lerp(z, h.z, k) };
 }
 function sGag(c, t) {
@@ -363,6 +392,18 @@ function sGag(c, t) {
       if (t >= HIT.hat && W(t, HIT.getUp[0] + .2, HIT.getUp[1] + .1) < .5) {   // biển đội đầu như mũ: que chỉ lên trời
         const b = Math.sin(Math.PI * seg(t, HIT.hat, HIT.hat + .25));
         booSign(cc, head[0] + 8, head[1] - .45 * CK - 10 * b, CK * .9, .18 + .1 * wob(t, HIT.hat, 12, 4), -1, { hat: true });
+      }
+      // (11/2026b) điệp khúc 2: hai vòm mắt Zip sáng lên lần nữa, vòng sáng chạy từ phía trước vòng ra hai bên, chừa một khe phía sau ("almost")
+      const g = BAND(t, HIT.glow2[0], HIT.glow2[1], .3);
+      if (g > 0) {
+        for (const sd of [-1, 1]) { const p = domeOf(zs, sd), pu = .5 + .5 * Math.sin(t * 9 + sd); for (const [m, a] of [[1.9, .16], [1.45, .24]]) circle(cc, p[0], p[1], .36 * zs.k * m * (1 + .08 * pu), `rgba(183,240,74,${a * g})`); }
+        const u = ss(seg(t, HIT.ring2[0], HIT.ring2[1])), f = 1 - ss(seg(t, HIT.ring2[1] + .05, HIT.glow2[1])), o0 = domeOf(zs, 0), R = 300;
+        if (u > 0 && f > 0) for (const sd of [-1, 1]) {
+          const pts = []; for (let i = 0; i <= 40; i++) { const a = Math.PI + sd * (Math.PI - .38) * u * i / 40; pts.push([o0[0] + R * Math.cos(a), o0[1] + .62 * R * Math.sin(a)]); }
+          cc.lineCap = 'round'; cc.lineJoin = 'round';
+          for (const [lw, col] of [[46, `rgba(183,240,74,${.38 * f})`], [24, `rgba(183,240,74,${.75 * f})`], [10, `rgba(255,255,230,${.95 * f})`]]) { cc.lineWidth = lw; cc.strokeStyle = col; cc.beginPath(); pts.forEach((p, i) => i ? cc.lineTo(p[0], p[1]) : cc.moveTo(p[0], p[1])); cc.stroke(); }
+          const tp = pts.at(-1); star(cc, tp[0], tp[1] - 6, 26 * f, C.cream);
+        }
       }
       // sao nhỏ và nốt nhạc vui quanh đầu khi ngã (không đau: Crumb cười ngay)
       const st = seg(t, HIT.land, HIT.land + .9);
@@ -381,7 +422,7 @@ const LENS_SNAP = { x: 804, y: 760, r: 255 };
 function matchCut(c, t) {
   stickerMatchCut(c, t, { t0: HIT.zoomIn[0], t1: HIT.zoomOut[0], t2: HIT.zoomOut[1], lens: LENS_SNAP, from: cc => sSplit(cc, HIT.zoomIn[0]), to: (cc, tt) => sAlbum(cc, tt), slot: SLOT, fill: '#FFD48A', rim: D.zipRim, draw: cc => { cc.scale(SLOT.r / 100, SLOT.r / 100); stickerArt(cc); } });
 }
-function recallTitle(c, t) { hookTitle(c, TITLE, -1, { gone: 1 - back(seg(t, HIT.recall, HIT.recall + .32), 2.4), cy: 400 }); }
+function recallTitle(c, t) { hookTitle(c, HOOK.lines, -1, { gone: 1 - back(seg(t, HIT.recall, HIT.recall + .32), 2.4), cy: HOOK.cy }); }
 function pageFlip(c, t) {
   const u = ss(seg(t, HIT.flip[0], HIT.flip[1])), w = 1080 * (1 - u);
   sGag(c, Math.max(t, HIT.flip[1]));
@@ -402,11 +443,11 @@ export function drawFilm(c, t) {
   else sHook(c, t);
   if (t >= HIT.recall) recallTitle(c, t);
   const l = CARDS.find(x => t >= x.t0 && t < x.t1);
-  if (l) subtitle(c, l, t, 495, l.text.length > 56 ? SAFE.subY - 18 : SAFE.subY);   // tâm 495: tấm rộng nhất vẫn dừng trước cột nút phải (x 940); tấm ba dòng nhích lên để đáy trên 1500 px
+  if (l) subtitle(c, l, t, 510, SAFE.subY);   // (11/2026b) tấm ≤ 7 từ, từ nhấn (subtitleEm), dưới hai khung chia đôi (đáy khung 1290 px)
   c.restore();
 }
 
 /* ---------- cho ảnh bìa (poster.js) và bảng nhân vật (sheets.js) ---------- */
 export function hookWorld(c, t) { gardenWorld(c, t, { cs: crumbHook(t), zs: zipHook(t), ls: loupeHook(t), broken: seg(t, HIT.crunch, HIT.crunch + .55) }); }
 export function splitAt(c, t) { sSplit(c, t); }
-export { TITLE, crumbAt, drawCrumb, drawZip, ARMS };
+export { TITLE, HOOK, crumbAt, drawCrumb, drawZip, ARMS };

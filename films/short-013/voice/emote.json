@@ -1,0 +1,47 @@
+{
+ "L03": {
+  "emo": "curious",
+  "k": 1.4,
+  "range_before": 11.9,
+  "range_after": 8.9,
+  "median_hz": 266.3,
+  "em_words": 2,
+  "version": 1
+ },
+ "L06": {
+  "emo": "curious",
+  "k": 1.1,
+  "range_before": 11.4,
+  "range_after": 10.2,
+  "median_hz": 268.6,
+  "em_words": 2,
+  "version": 1
+ },
+ "L11": {
+  "emo": "excited",
+  "k": 1.4,
+  "range_before": 12.9,
+  "range_after": 14.0,
+  "median_hz": 244.8,
+  "em_words": 1,
+  "version": 1
+ },
+ "L12": {
+  "emo": "happy",
+  "k": 1.1,
+  "range_before": 11.7,
+  "range_after": 13.6,
+  "median_hz": 251.9,
+  "em_words": 1,
+  "version": 1
+ },
+ "L14": {
+  "emo": "proud",
+  "k": 0.5,
+  "range_before": 8.2,
+  "range_after": 9.8,
+  "median_hz": 80.9,
+  "em_words": 1,
+  "version": 1
+ }
+}
